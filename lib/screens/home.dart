@@ -24,19 +24,19 @@ class Home extends StatelessWidget {
               ),
             ),
             SizedBox(height: 29.h),
-            _homeMenuButton(title: '단소 알아보기'),
-            _homeMenuButton(title: '운지법 익히기'),
-            _homeMenuButton(title: '연주곡 익히기'),
-            _homeMenuButton(title: '질문하기'),
+            _homeMenuButton(title: '단소 알아보기', page: HomeMenu1()),
+            _homeMenuButton(title: '운지법 익히기', page: HomeMenu2()),
+            _homeMenuButton(title: '연주곡 익히기', page: HomeMenu1()),
+            _homeMenuButton(title: '질문하기', page: HomeMenu1()),
           ],
         ),
       ),
     );
   }
 
-  Widget _homeMenuButton({required String title}) {
+  Widget _homeMenuButton({required String title, required Widget page}) {
     return InkWell(
-      onTap: () => Get.to(HomeMenu1()),
+      onTap: () => Get.to(page),
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         height: 106.h,
