@@ -4,7 +4,7 @@ import 'package:project_danso/screens/home_menu_2.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget learningdirlog() {
+Widget learningDialog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
