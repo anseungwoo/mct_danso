@@ -58,21 +58,4 @@ class Home extends StatelessWidget {
       ),
     );
   }
-
-  Widget _MenuButton({required String title}) {
-    return InkWell(
-      onTap: () => {
-        learningdirlog(),
-      },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 10),
-        height: 106.h,
-        width: 330.w,
-        color: Colors.white,
-        child: Center(
-          child: Text('$title'),
-        ),
-      ),
-    );
-  }
 }
