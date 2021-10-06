@@ -11,8 +11,8 @@ class DansoLearning extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 350.h,
-            width: 150.w,
+            height: 312.h,
+            width: 148.w,
             margin: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +24,7 @@ class DansoLearning extends StatelessWidget {
                     fontSize: 17.sp,
                   ),
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 12.h),
                 Text(
                     '설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명',
                     softWrap: true,
@@ -35,9 +35,8 @@ class DansoLearning extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 15),
-            height: 350.h,
-            width: 150.w,
+            height: 360.h,
+            width: 165.w,
             color: Colors.grey,
             child: Center(child: Text('사진1')),
           ),
