@@ -3,7 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PictureAndText extends StatelessWidget {
-  const PictureAndText({Key? key}) : super(key: key);
+  final String subject;
+  final String Explanation;
+  // final Image image;
+  const PictureAndText(
+      {Key? key, required this.subject, required this.Explanation})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +31,14 @@ class PictureAndText extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '단소의 역사',
+                  subject,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 17.sp,
                   ),
                 ),
                 SizedBox(height: 10.h),
-                Text(
-                    '설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명',
-                    style: TextStyle(fontSize: 15.sp)),
+                Text(Explanation, style: TextStyle(fontSize: 15.sp)),
               ],
             ),
           ),
