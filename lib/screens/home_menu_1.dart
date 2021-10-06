@@ -4,9 +4,9 @@ import 'package:project_danso/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeMenu1 extends StatelessWidget {
-  final tabLength;
-  const HomeMenu1({Key? key, this.tabLength}) : super(key: key);
+  const HomeMenu1({Key? key}) : super(key: key);
 
+  // 예시 위젯
   Widget testContainer() {
     return Container(
       color: Colors.grey,
@@ -53,6 +53,7 @@ class HomeMenu1 extends StatelessWidget {
   }
 }
 
+// 예시 화면
 class DansoKinds extends StatelessWidget {
   const DansoKinds({
     Key? key,
