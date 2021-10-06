@@ -15,13 +15,26 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: 257.77.h,
-              width: ScreenUtil().screenWidth,
-              color: Color(0xffA5A5A5),
-              child: Center(
-                child: Text('상단 이미지'),
-              ),
+            Stack(
+              children: [
+                Container(
+                  height: 257.77.h,
+                  width: ScreenUtil().screenWidth,
+                  color: Color(0xffA5A5A5),
+                  child: Center(
+                    child: Text('상단 이미지', style: TextStyle()),
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 30,
+                  child: Container(
+                    child: Center(
+                      child: Text('마이\n페이지'),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 29.h),
             _homeMenuButton(title: '단소 알아보기', page: HomeMenu1()),
