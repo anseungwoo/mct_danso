@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:project_danso/common/const.dart';
+import 'screens/screens.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+        designSize: Size(360, 640),
+        builder: () {
+          return GetMaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              scaffoldBackgroundColor: backgroundGary, // 기본 배경색
+            ),
+            home: Home(),
+          );
+        });
+  }
+}
