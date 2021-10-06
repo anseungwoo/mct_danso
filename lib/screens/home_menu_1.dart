@@ -4,9 +4,9 @@ import 'package:project_danso/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeMenu1 extends StatelessWidget {
-  final tabLength;
-  const HomeMenu1({Key? key, this.tabLength}) : super(key: key);
+  const HomeMenu1({Key? key}) : super(key: key);
 
+  // 예시 위젯
   Widget testContainer() {
     return Container(
       color: Colors.grey,
@@ -33,9 +33,18 @@ class HomeMenu1 extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
+            // 탭바 화면
+            //첫번째 화면
             CarouselListWidget(
-              carouselList: [PictureAndText(), testContainer()],
+              carouselList: [
+                // 좌우 스크롤 화면
+                // 화면 1
+                PictureAndText(),
+                // 화면 2
+                testContainer(),
+              ],
             ),
+            // 두번째 화면
             DansoKinds(),
           ],
         ),
@@ -44,6 +53,7 @@ class HomeMenu1 extends StatelessWidget {
   }
 }
 
+// 예시 화면
 class DansoKinds extends StatelessWidget {
   const DansoKinds({
     Key? key,
