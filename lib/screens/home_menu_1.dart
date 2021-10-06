@@ -33,9 +33,18 @@ class HomeMenu1 extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
+            // 탭바 화면
+            //첫번째 화면
             CarouselListWidget(
-              carouselList: [PictureAndText(), testContainer()],
+              carouselList: [
+                // 좌우 스크롤 화면
+                // 화면 1
+                PictureAndText(),
+                // 화면 2
+                testContainer(),
+              ],
             ),
+            // 두번째 화면
             DansoKinds(),
           ],
         ),
