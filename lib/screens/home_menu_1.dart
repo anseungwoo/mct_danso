@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -7,12 +8,16 @@ class HomeMenu1 extends StatelessWidget {
   const HomeMenu1({Key? key}) : super(key: key);
 
   // 예시 위젯
-  Widget testContainer() {
+  Widget testContainer(String Explanation) {
     return Container(
       color: Colors.grey,
-      height: 100,
-      width: 100,
-      child: Center(child: Text('asdfasdf')),
+      height: 150.h,
+      width: 331.w,
+      child: Center(
+          child: Text(
+        Explanation,
+        style: TextStyle(fontSize: 15.sp),
+      )),
     );
   }
 
@@ -39,13 +44,22 @@ class HomeMenu1 extends StatelessWidget {
               carouselList: [
                 // 좌우 스크롤 화면
                 // 화면 1
-                PictureAndText(),
+                PictureAndText(subject: "단소의 역사", Explanation: history),
                 // 화면 2
-                testContainer(),
+                testContainer(subhistory),
               ],
             ),
             // 두번째 화면
-            DansoKinds(),
+            CarouselListWidget(
+              carouselList: [
+                // 좌우 스크롤 화면
+                // 화면 1
+                PictureAndText(subject: "평조단소", Explanation: pdanso),
+                // 화면 2
+                PictureAndText(subject: "경제단소", Explanation: kdanso),
+                PictureAndText(subject: "향제단소", Explanation: hdanso),
+              ],
+            ),
           ],
         ),
       ),
