@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/screens/home_menu_2.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class Home extends StatelessWidget {
 
   Widget _homeMenuButton({required String title}) {
     return InkWell(
-      onTap: () => Get.to(HomeMenu1()),
+      onTap: () => Get.to(HomeMenu2()),
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         height: 106.h,
