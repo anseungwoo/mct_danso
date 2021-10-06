@@ -20,18 +20,47 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
   var _current = 0;
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        enableInfiniteScroll: false,
-        onPageChanged: (index, reason) {
-          setState(() {
-            index = _current;
-          });
-        },
-        height: ScreenUtil().screenHeight - ScreenUtil().statusBarHeight,
-        viewportFraction: 1,
-      ),
-      items: widget.carouselList,
+    return Stack(
+      children: [
+        CarouselSlider(
+          options: CarouselOptions(
+            enableInfiniteScroll: false,
+            onPageChanged: (index, reason) {
+              setState(() {
+                _current = index;
+              });
+            },
+            height: ScreenUtil().screenHeight - ScreenUtil().statusBarHeight,
+            viewportFraction: 1,
+          ),
+          items: widget.carouselList,
+        ),
+        //   Positioned(
+        //     bottom: 35,
+        //     right: 0,
+        //     left: 0,
+        //     child: Align(
+        //       alignment: Alignment.bottomCenter,
+        //       child: Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: widget.carouselList.map((image) {       //these two lines
+        //       int index=widget.carouselList.indexOf(image); //are changed
+        //       return Container(
+        //         width: 8.0,
+        //         height: 8.0,
+        //         margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+        //         decoration: BoxDecoration(
+        //             shape: BoxShape.circle,
+        //             color: _current == index
+        //                 ? Color.fromRGBO(0, 0, 0, 0.9)
+        //                 : Color.fromRGBO(0, 0, 0, 0.4)),
+        //       );
+        //     },
+        //   ),
+        // ),
+        //     ),
+        //   ),
+      ],
     );
   }
 }

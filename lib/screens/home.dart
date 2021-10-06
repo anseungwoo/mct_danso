@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/home_menu_2.dart';
 import 'package:project_danso/screens/screens.dart';
+import 'package:project_danso/widgets/learning_dirlog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,7 +27,8 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 29.h),
             _homeMenuButton(title: '단소 알아보기', page: HomeMenu1()),
-            _homeMenuButton(title: '운지법 익히기', page: HomeMenu2()),
+            _homeMenuButton(
+                title: '운지법 익히기', page: learningdirlog(), dialog: true),
             _homeMenuButton(title: '연주곡 익히기', page: HomeMenu1()),
             _homeMenuButton(title: '질문하기', page: HomeMenu1()),
           ],
@@ -35,9 +37,33 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget _homeMenuButton({required String title, required Widget page}) {
+  Widget _homeMenuButton(
+      {required String title, required Widget page, bool dialog = false}) {
     return InkWell(
-      onTap: () => Get.to(page),
+      onTap: () {
+        if (dialog) {
+          Get.dialog(page);
+        } else {
+          Get.to(page);
+        }
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10),
+        height: 106.h,
+        width: 330.w,
+        color: Colors.white,
+        child: Center(
+          child: Text('$title'),
+        ),
+      ),
+    );
+  }
+
+  Widget _MenuButton({required String title}) {
+    return InkWell(
+      onTap: () => {
+        learningdirlog(),
+      },
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         height: 106.h,

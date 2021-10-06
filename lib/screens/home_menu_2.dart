@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_danso/widgets/danso_learning.dart';
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -30,17 +31,20 @@ class HomeMenu2 extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          CarouselListWidget(
-            carouselList: [
-              PictureAndText(),
-              testContainer(),
-              testContainer(),
-            ],
-          ),
-          TestBlankPage(),
-          TestBlankPage(),
-        ]),
+        body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            CarouselListWidget(
+              carouselList: [
+                DansoLearning(),
+                DansoLearning(),
+                testContainer(),
+              ],
+            ),
+            TestBlankPage(),
+            TestBlankPage(),
+          ],
+        ),
       ),
     );
   }
