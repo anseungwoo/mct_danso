@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/danso_learning.dart';
+import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeMenu2 extends StatelessWidget {
-  final tabLength;
-  const HomeMenu2({Key? key, this.tabLength}) : super(key: key);
+  const HomeMenu2({Key? key}) : super(key: key);
 
+  // 예시 위젯
   Widget testContainer() {
     return Container(
       color: Colors.grey,
@@ -23,7 +21,7 @@ class HomeMenu2 extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: tabbarAndAppBar(
-          title: '단소 알아보기',
+          title: '단소 학습 익히기',
           tabbar: defaultTabBar(
             tabList: [
               Tab(text: '연주자세'),
@@ -32,30 +30,18 @@ class HomeMenu2 extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            CarouselListWidget(
-              carouselList: [DansoLearning(), testContainer()],
-            ),
-            DansoKinds(),
-            DansoKinds(),
-          ],
-        ),
+        body: TabBarView(children: [
+          CarouselListWidget(
+            carouselList: [
+              PictureAndText(),
+              testContainer(),
+              testContainer(),
+            ],
+          ),
+          TestBlankPage(),
+          TestBlankPage(),
+        ]),
       ),
-    );
-  }
-}
-
-class DansoKinds extends StatelessWidget {
-  const DansoKinds({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('2')),
     );
   }
 }
