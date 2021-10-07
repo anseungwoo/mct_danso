@@ -24,9 +24,9 @@ class MyPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            TestBlankPage(),
-            TestBlankPage(),
-            TestBlankPage(),
+            MyPageLikeAndRecord(),
+            MyPageLikeAndRecord(),
+            MyPageListen(),
             TestBlankPage(),
             TestBlankPage(),
           ],

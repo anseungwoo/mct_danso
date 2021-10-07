@@ -7,3 +7,5 @@ export 'learning_diralog.dart';
 export 'learning_dialog_icon.dart';
 export 'danso_sub_learning.dart';
 export 'danso_learning.dart';
+export 'my_page_like_and_record.dart';
+export 'my_page_listen.dart';
