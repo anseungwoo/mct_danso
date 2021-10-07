@@ -42,7 +42,7 @@ class _MyPageLikeState extends State<MyPageLike> {
                         ),
                         Spacer(flex: 1),
                         Text(
-                          "${widget.score}",
+                          "${widget.score}점",
                           style: TextStyle(fontSize: 14, color: white),
                         ),
                         SizedBox(width: 6.w),
