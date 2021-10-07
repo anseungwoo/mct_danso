@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/screens/home_menu_2.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/learning_diralog.dart';
-import 'package:project_danso/widgets/widgets.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatelessWidget {
@@ -17,19 +16,35 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: 257.77.h,
-              width: ScreenUtil().screenWidth,
-              color: Color(0xffA5A5A5),
-              child: Center(
-                child: Text('상단 이미지'),
-              ),
+            Stack(
+              children: [
+                Container(
+                  height: 257.77.h,
+                  width: ScreenUtil().screenWidth,
+                  color: Color(0xffA5A5A5),
+                  child: Center(
+                    child: Text('상단 이미지', style: TextStyle()),
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 30,
+                  child: InkWell(
+                    onTap: () => Get.to(MyPage()),
+                    child: Container(
+                      child: Center(
+                        child: Text('마이\n페이지'),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 29.h),
             _homeMenuButton(title: '단소 알아보기', contant: LOOK, page: HomeMenu1()),
             _homeMenuButton(
                 title: '운지법 익히기',
-                page: learningdiralog(),
+                page: learningDialog(),
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(

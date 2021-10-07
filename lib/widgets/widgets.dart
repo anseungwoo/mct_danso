@@ -3,3 +3,7 @@ export 'picture_and_text.dart';
 export 'carousel_list.dart';
 export 'tabbar.dart';
 export 'test_blank_page.dart';
+export 'learning_diralog.dart';
+export 'learning_dialog_icon.dart';
+export 'danso_sub_learning.dart';
+export 'danso_learning.dart';
