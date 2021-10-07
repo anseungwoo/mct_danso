@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageRecord extends StatelessWidget {
   final String songname;
@@ -20,7 +21,9 @@ class MyPageRecord extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.bottomSheet(bottomsheet());
+                },
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),

@@ -5,7 +5,7 @@ import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/learning_diralog.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/test_dialog.dart';
+import 'package:project_danso/widgets/test_bottomsheet.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class Home extends StatelessWidget {
             _homeMenuButton(
                 title: '연주곡 익히기', contant: PLAYLEARN, page: HomeMenu1()),
             _homeMenuButton(
-                title: '질문하기', contant: QUESTIONS, page: TestDialog()),
+                title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
           ],
         ),
       ),

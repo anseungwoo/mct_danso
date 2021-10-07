@@ -69,7 +69,7 @@ class MyPageListen extends StatelessWidget {
                                   child: Text("삭제하기"),
                                   value: 2,
                                 )
-                              ])
+                              ]),
                     ],
                   ),
                 ),
