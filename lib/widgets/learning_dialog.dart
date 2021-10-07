@@ -33,7 +33,7 @@ Widget learningDialog() {
               SizedBox(
                 width: 14.w,
               ),
-              icon(page: TestBlankPage(), text: "단계별 연습"),
+              icon(page: HomeMenu22(), text: "단계별 연습"),
             ],
           ),
         ],
