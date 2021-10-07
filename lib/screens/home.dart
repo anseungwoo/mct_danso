@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/screens.dart';
-import 'package:project_danso/widgets/widgets.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
