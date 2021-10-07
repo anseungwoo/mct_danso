@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DansoLearning extends StatelessWidget {
-  final String subject;
+class DansosubLearning extends StatelessWidget {
   final String explanation;
-  // final Image image;
-  const DansoLearning({
-    Key? key,
-    required this.subject,
-    required this.explanation,
-  }) : super(key: key);
+  const DansosubLearning({Key? key, required this.explanation})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +13,12 @@ class DansoLearning extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 312.h,
-            width: 148.w,
+            height: 340.h,
+            width: 155.w,
             margin: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  subject,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
-                  ),
-                ),
-                SizedBox(height: 12.h),
                 Text(explanation,
                     softWrap: true,
                     style: TextStyle(

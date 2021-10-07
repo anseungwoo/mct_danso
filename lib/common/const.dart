@@ -21,16 +21,24 @@ const Color indiDarkGray = Color(0xff878787);
 // 페이지 인디케이터 밝은 회색
 const Color indiLightGray = Color(0xffCFCFCF);
 
-const String history =
+//단소 페이지안에서의 내용
+const String HISTORY =
     "단소의 역사관한설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명";
-const String subhistory = "단소의 역사추가 설명";
-const String pdanso = "평조 단소 설명을 적어주세요";
-const String kdanso = "경제 단소 설명을 적어주세요";
-const String hdanso = "향조 단소 설명을 적어주세요";
-const String dansocatch = "단소잡는부분을 설명을 적어주세요";
-const String dansosubcatch = "단소잡는부분을 설명을 적어주세요";
-const String play = "단소연주자세의 설명을 적어주세요";
-const String lips = "입술모양의 설명을 적어주세요";
-const String breath = "호흡식의 설명을 적어주세요";
-const String sheet = "율명의 설명을 적어주세요";
-const String subsheet = "율명의 추가 설명을 적어주세요";
+const String SUBHISTORY = "단소의 역사추가 설명";
+const String PDANSO = "평조 단소 설명을 적어주세요";
+const String KDANSO = "경제 단소 설명을 적어주세요";
+const String HDANSO = "향조 단소 설명을 적어주세요";
+const String DANSOCATCH = "단소잡는부분을 설명을 적어주세요";
+const String DANSOSUBCATCH = "단소잡는부분을 설명을 적어주세요";
+const String PALYPOS = "단소연주자세의 설명을 적어주세요";
+const String LIPS = "입술모양의 설명을 적어주세요";
+const String BREATH = "호흡식의 설명을 적어주세요";
+const String SHEET = "율명의 설명을 적어주세요";
+const String SUBSHEET = "율명의 추가 설명을 적어주세요";
+
+//단소메인페이지 내용
+
+const String LOOK = "단소의 역사, 종류에 대해 알아볼까요?";
+const String LEARN = "기초적인 단소의 운지법을 연습해 보아요.";
+const String PLAYLEARN = "전통곡들을 단소로 연습하여 피드백 받으세요.";
+const String QUESTIONS = "단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ";

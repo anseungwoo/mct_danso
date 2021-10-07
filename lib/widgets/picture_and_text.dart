@@ -4,16 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PictureAndText extends StatelessWidget {
   final String subject;
-  final String Explanation;
+  final String explanation;
   // final Image image;
   const PictureAndText(
-      {Key? key, required this.subject, required this.Explanation})
+      {Key? key, required this.subject, required this.explanation})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 30.h),
@@ -38,7 +39,7 @@ class PictureAndText extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10.h),
-                Text(Explanation, style: TextStyle(fontSize: 15.sp)),
+                Text(explanation, style: TextStyle(fontSize: 15.sp)),
               ],
             ),
           ),
