@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 PreferredSizeWidget tabbarAndAppBar(
-    {required String title, required TabBar tabbar}) {
+    {required String title,
+    required TabBar? tabbar,
+    bool enableTabBar = true}) {
   return AppBar(
     title: Text(
       '$title',
@@ -11,12 +13,14 @@ PreferredSizeWidget tabbarAndAppBar(
     centerTitle: true,
     elevation: 1,
     backgroundColor: Color(0xffA5A5A5),
-    bottom: PreferredSize(
-      preferredSize: tabbar.preferredSize,
-      child: ColoredBox(
-        color: Color(0xffECECEC),
-        child: tabbar,
-      ),
-    ),
+    bottom: enableTabBar
+        ? PreferredSize(
+            preferredSize: tabbar!.preferredSize,
+            child: ColoredBox(
+              color: Color(0xffECECEC),
+              child: tabbar,
+            ),
+          )
+        : null,
   );
 }
