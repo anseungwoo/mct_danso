@@ -8,14 +8,14 @@ class HomeMenu1 extends StatelessWidget {
   const HomeMenu1({Key? key}) : super(key: key);
 
   // 예시 위젯
-  Widget testContainer(String Explanation) {
+  Widget testContainer(String explanation) {
     return Container(
       color: Colors.grey,
       height: 150.h,
       width: 331.w,
       child: Center(
           child: Text(
-        Explanation,
+        explanation,
         style: TextStyle(fontSize: 15.sp),
       )),
     );
@@ -44,9 +44,9 @@ class HomeMenu1 extends StatelessWidget {
               carouselList: [
                 // 좌우 스크롤 화면
                 // 화면 1
-                PictureAndText(subject: "단소의 역사", Explanation: history),
+                PictureAndText(subject: "단소의 역사", explanation: HISTORY),
                 // 화면 2
-                testContainer(subhistory),
+                testContainer(SUBHISTORY),
               ],
             ),
             // 두번째 화면
@@ -54,29 +54,15 @@ class HomeMenu1 extends StatelessWidget {
               carouselList: [
                 // 좌우 스크롤 화면
                 // 화면 1
-                PictureAndText(subject: "평조단소", Explanation: pdanso),
+                PictureAndText(subject: "평조단소", explanation: PDANSO),
                 // 화면 2
-                PictureAndText(subject: "경제단소", Explanation: kdanso),
-                PictureAndText(subject: "향제단소", Explanation: hdanso),
+                PictureAndText(subject: "경제단소", explanation: KDANSO),
+                PictureAndText(subject: "향제단소", explanation: HDANSO),
               ],
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-// 예시 화면
-class DansoKinds extends StatelessWidget {
-  const DansoKinds({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('2')),
     );
   }
 }

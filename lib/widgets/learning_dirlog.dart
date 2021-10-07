@@ -4,6 +4,8 @@ import 'package:project_danso/screens/home_menu_2.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'test_blank_page.dart';
+
 Widget learningdirlog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
@@ -34,7 +36,7 @@ Widget learningdirlog() {
               SizedBox(
                 width: 14.w,
               ),
-              Icon(page: HomeMenu1(), text: "단계별 연습"),
+              Icon(page: TestBlankPage(), text: "단계별 연습"),
             ],
           ),
         ],
