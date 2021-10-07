@@ -3,9 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 
-class MyPageLikeAndRecord extends StatelessWidget {
-  const MyPageLikeAndRecord({Key? key}) : super(key: key);
+class MyPageLike extends StatefulWidget {
+  final String songname;
 
+  final int score;
+  const MyPageLike({Key? key, required this.songname, required this.score})
+      : super(key: key);
+
+  @override
+  State<MyPageLike> createState() => _MyPageLikeState();
+}
+
+class _MyPageLikeState extends State<MyPageLike> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,23 +37,24 @@ class MyPageLikeAndRecord extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          'Entry ${index}',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                          '${widget.songname} ${index}',
+                          style: TextStyle(fontSize: 18, color: white),
                         ),
                         Spacer(flex: 1),
                         Text(
-                          "점수",
-                          style: TextStyle(fontSize: 14, color: Colors.white),
+                          "${widget.score}",
+                          style: TextStyle(fontSize: 14, color: white),
                         ),
                         SizedBox(width: 6.w),
-                        Container(
-                          width: 33,
-                          height: 33,
-                          child: Text(
-                            "그래프 디자인",
-                            style: TextStyle(fontSize: 10),
+                        IconButton(
+                          color: white,
+                          padding: EdgeInsets.only(bottom: 22),
+                          icon: Icon(
+                            Icons.favorite,
+                            size: 30,
                           ),
-                        )
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                   ),

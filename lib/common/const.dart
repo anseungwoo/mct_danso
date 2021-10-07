@@ -21,6 +21,9 @@ const Color indiDarkGray = Color(0xff878787);
 // 페이지 인디케이터 밝은 회색
 const Color indiLightGray = Color(0xffCFCFCF);
 
+//마이페이지 글자색
+const Color white = Color(0xffFFFFFF);
+
 //단소 페이지안에서의 내용
 const String HISTORY =
     "단소의 역사관한설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명";

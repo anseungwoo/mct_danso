@@ -3,7 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
 
 class MyPageListen extends StatelessWidget {
-  const MyPageListen({Key? key}) : super(key: key);
+  final String songname;
+  final String date;
+  const MyPageListen({Key? key, required this.songname, required this.date})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,43 +24,53 @@ class MyPageListen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                       color: mediumGray),
                   height: 60.h,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 17, top: 10, right: 17, bottom: 5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Column(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 17, top: 10, right: 17, bottom: 3),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Entry ${index}',
+                              '${songname} ${index}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 fontSize: 18,
-                                color: Colors.white,
+                                color: white,
                               ),
                             ),
                             SizedBox(height: 2),
-                            Text("2021.09.11, 시간"),
+                            Text(
+                              date,
+                              style: TextStyle(fontSize: 14, color: white),
+                            ),
                           ],
                         ),
-                        Spacer(flex: 1),
-                        Text(
-                          "점수",
-                          style: TextStyle(fontSize: 14, color: Colors.white),
-                        ),
-                        SizedBox(width: 10.w),
-                        Container(
-                          width: 33,
-                          height: 33,
-                          child: Text(
-                            "그래프 디자인",
-                            style: TextStyle(fontSize: 10),
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Spacer(flex: 1),
+                      IconButton(
+                          padding: EdgeInsets.only(bottom: 6),
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.play_arrow,
+                            size: 40,
+                          )),
+                      SizedBox(width: 10.w),
+                      PopupMenuButton(
+                          icon: Icon(Icons.more_vert_outlined),
+                          itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  child: Text("공유하기"),
+                                  value: 1,
+                                ),
+                                PopupMenuItem(
+                                  child: Text("삭제하기"),
+                                  value: 2,
+                                )
+                              ])
+                    ],
                   ),
                 ),
               ),
