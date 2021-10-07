@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/danso_learning.dart';
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
+
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu2 extends StatelessWidget {
@@ -37,20 +38,20 @@ class HomeMenu2 extends StatelessWidget {
           children: [
             CarouselListWidget(
               carouselList: [
-                DansoLearning(subject: "단소잡는법과 각부분", Explanation: dansocatch),
-                DansosubLearning(Explanation: dansosubcatch),
-                PictureAndText(subject: "단소연주자세", Explanation: play),
-                PictureAndText(subject: "입술모양", Explanation: lips),
-                PictureAndText(subject: "호흡식", Explanation: breath),
+                DansoLearning(subject: "단소잡는법과 각부분", explanation: DANSOCATCH),
+                DansosubLearning(explanation: DANSOSUBCATCH),
+                PictureAndText(subject: "단소연주자세", explanation: PALYPOS),
+                PictureAndText(subject: "입술모양", explanation: LIPS),
+                PictureAndText(subject: "호흡식", explanation: BREATH),
               ],
             ),
             CarouselListWidget(
               carouselList: [
-                PictureAndText(subject: "율명", Explanation: sheet),
-                PictureAndText(subject: "", Explanation: subsheet),
+                PictureAndText(subject: "율명", explanation: SHEET),
+                PictureAndText(subject: "", explanation: SUBSHEET),
               ],
             ),
-            TestBlankPage(),
+            fingering(),
           ],
         ),
       ),

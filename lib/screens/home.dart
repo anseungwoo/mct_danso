@@ -39,11 +39,16 @@ class Home extends StatelessWidget {
               ],
             ),
             SizedBox(height: 29.h),
-            _homeMenuButton(title: '단소 알아보기', page: HomeMenu1()),
+            _homeMenuButton(title: '단소 알아보기', contant: LOOK, page: HomeMenu1()),
             _homeMenuButton(
-                title: '운지법 익히기', page: learningDialog(), dialog: true),
-            _homeMenuButton(title: '연주곡 익히기', page: HomeMenu1()),
-            _homeMenuButton(title: '질문하기', page: HomeMenu1()),
+                title: '운지법 익히기',
+                page: learningdirlog(),
+                contant: LEARN,
+                dialog: true),
+            _homeMenuButton(
+                title: '연주곡 익히기', contant: PLAYLEARN, page: HomeMenu1()),
+            _homeMenuButton(
+                title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
           ],
         ),
       ),
@@ -51,7 +56,10 @@ class Home extends StatelessWidget {
   }
 
   Widget _homeMenuButton(
-      {required String title, required Widget page, bool dialog = false}) {
+      {required String title,
+      required Widget page,
+      required String contant,
+      bool dialog = false}) {
     return InkWell(
       onTap: () {
         if (dialog) {
@@ -65,8 +73,33 @@ class Home extends StatelessWidget {
         height: 106.h,
         width: 330.w,
         color: Colors.white,
-        child: Center(
-          child: Text('$title'),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CircleAvatar(
+                  backgroundColor: Colors.grey[200],
+                  radius: 39,
+                  child: Text("아이콘영역")),
+              SizedBox(width: 14.w),
+              Container(
+                width: 190.w,
+                height: 80.h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('$title',
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 7.h),
+                    Text(contant, style: TextStyle(fontSize: 14.sp))
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
