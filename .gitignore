@@ -40,5 +40,5 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-#vscode settings
+# vscode settings
 .vscode
