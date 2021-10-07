@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/widgets/danso_learning.dart';
-import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 
 import 'package:project_danso/widgets/widgets.dart';
 

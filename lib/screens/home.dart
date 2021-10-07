@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
             _homeMenuButton(title: '단소 알아보기', contant: LOOK, page: HomeMenu1()),
             _homeMenuButton(
                 title: '운지법 익히기',
-                page: learningdirlog(),
+                page: learningDialog(),
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(
