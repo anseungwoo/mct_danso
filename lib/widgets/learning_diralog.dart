@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'test_blank_page.dart';
 
-Widget learningdirlog() {
+Widget learningdiralog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(

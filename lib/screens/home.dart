@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/home_menu_2.dart';
 import 'package:project_danso/screens/screens.dart';
-import 'package:project_danso/widgets/learning_dirlog.dart';
+import 'package:project_danso/widgets/learning_diralog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
             _homeMenuButton(title: '단소 알아보기', contant: LOOK, page: HomeMenu1()),
             _homeMenuButton(
                 title: '운지법 익히기',
-                page: learningdirlog(),
+                page: learningdiralog(),
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(
