@@ -43,7 +43,7 @@ class MyPageListen extends StatelessWidget {
                             ),
                             SizedBox(height: 2),
                             Text(
-                              '${date}점',
+                              date,
                               style: TextStyle(fontSize: 14, color: white),
                             ),
                           ],

@@ -22,7 +22,8 @@ class MyPageRecord extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 15),
               child: InkWell(
                 onTap: () {
-                  Get.bottomSheet(bottomsheet());
+                  // Get.bottomSheet(bottomsheet());
+                  bottomsheet(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
