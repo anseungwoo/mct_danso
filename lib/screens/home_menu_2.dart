@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
-
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu2 extends StatelessWidget {
