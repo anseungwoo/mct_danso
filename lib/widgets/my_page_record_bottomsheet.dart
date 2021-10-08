@@ -105,7 +105,10 @@ void bottomsheet(BuildContext context) async {
                 children: [
                   Text(
                     "곡 이름",
-                    style: TextStyle(fontSize: 22, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.black,
+                        decoration: TextDecoration.none),
                   ),
                   Container(
                     height: 500.h,
@@ -118,7 +121,9 @@ void bottomsheet(BuildContext context) async {
                               Text(
                                 "날짜",
                                 style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    decoration: TextDecoration.none),
                               ),
                               SizedBox(height: 10.h),
                               Container(
@@ -141,7 +146,9 @@ void bottomsheet(BuildContext context) async {
                                     "점수",
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                        fontSize: 18, color: Colors.black),
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        decoration: TextDecoration.none),
                                   ),
                                 ),
                               ),
