@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeMenu1 extends StatelessWidget {
-  final tabLength;
-  const HomeMenu1({Key? key, this.tabLength}) : super(key: key);
+  const HomeMenu1({Key? key}) : super(key: key);
 
-  Widget testContainer() {
+  // 예시 위젯
+  Widget testContainer(String explanation) {
     return Container(
       color: Colors.grey,
-      height: 100,
-      width: 100,
-      child: Center(child: Text('asdfasdf')),
+      height: 150.h,
+      width: 331.w,
+      child: Center(
+          child: Text(
+        explanation,
+        style: TextStyle(fontSize: 15.sp),
+      )),
     );
   }
 
@@ -33,26 +38,31 @@ class HomeMenu1 extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
+            // 탭바 화면
+            //첫번째 화면
             CarouselListWidget(
-              carouselList: [PictureAndText(), testContainer()],
+              carouselList: [
+                // 좌우 스크롤 화면
+                // 화면 1
+                PictureAndText(subject: "단소의 역사", explanation: HISTORY),
+                // 화면 2
+                testContainer(SUBHISTORY),
+              ],
             ),
-            DansoKinds(),
+            // 두번째 화면
+            CarouselListWidget(
+              carouselList: [
+                // 좌우 스크롤 화면
+                // 화면 1
+                PictureAndText(subject: "평조단소", explanation: PDANSO),
+                // 화면 2
+                PictureAndText(subject: "경제단소", explanation: KDANSO),
+                PictureAndText(subject: "향제단소", explanation: HDANSO),
+              ],
+            ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class DansoKinds extends StatelessWidget {
-  const DansoKinds({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('2')),
     );
   }
 }

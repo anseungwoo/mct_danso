@@ -8,6 +8,7 @@ PreferredSizeWidget tabbarAndAppBar(
       '$title',
       style: TextStyle(color: Colors.white, fontSize: 14.sp),
     ),
+    centerTitle: true,
     elevation: 1,
     backgroundColor: Color(0xffA5A5A5),
     bottom: PreferredSize(

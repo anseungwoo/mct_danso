@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-TabBar defaultTabBar({required List<Tab> tabList}) {
+TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
   return TabBar(
+    isScrollable: scrollable,
     tabs: tabList,
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
