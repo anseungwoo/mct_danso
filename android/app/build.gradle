@@ -44,7 +44,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-    externalNativeBuild {
+    
    
     buildTypes {
         release {
