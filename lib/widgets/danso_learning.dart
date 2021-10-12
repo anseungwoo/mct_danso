@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 
 class DansoLearning extends StatelessWidget {
   final String subject;
@@ -28,15 +29,11 @@ class DansoLearning extends StatelessWidget {
                   subject,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
+                    fontSize: textContantSize.sp,
                   ),
                 ),
                 SizedBox(height: 12.h),
-                Text(explanation,
-                    softWrap: true,
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                    )),
+                Text(explanation, softWrap: true),
               ],
             ),
           ),

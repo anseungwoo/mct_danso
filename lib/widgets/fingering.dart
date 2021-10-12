@@ -13,13 +13,13 @@ Widget fingering() {
             SizedBox(
               width: 7.sp,
             ),
-            Text("왼손", style: TextStyle(fontSize: 15.sp)),
+            Text("왼손"),
             SizedBox(
               width: 7.sp,
             ),
             CircleAvatar(radius: 14, backgroundColor: Colors.grey),
             SizedBox(width: 7.sp),
-            Text("오른손", style: TextStyle(fontSize: 15.sp)),
+            Text("오른손"),
           ],
         ),
       ),

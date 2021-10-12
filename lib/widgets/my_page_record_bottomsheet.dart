@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 // Widget bottomsheet() {
@@ -99,15 +100,15 @@ void bottomsheet(BuildContext context) async {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(basicPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "곡 이름",
                     style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.black,
+                        fontSize: textSingleSize.sp,
+                        color: textBlack,
                         decoration: TextDecoration.none),
                   ),
                   Container(
@@ -121,8 +122,8 @@ void bottomsheet(BuildContext context) async {
                               Text(
                                 "날짜",
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.black,
+                                    fontSize: textContantSize.sp,
+                                    color: textBlack,
                                     decoration: TextDecoration.none),
                               ),
                               SizedBox(height: 10.h),
@@ -146,8 +147,8 @@ void bottomsheet(BuildContext context) async {
                                     "점수",
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black,
+                                        fontSize: textContantSize.sp,
+                                        color: textBlack,
                                         decoration: TextDecoration.none),
                                   ),
                                 ),

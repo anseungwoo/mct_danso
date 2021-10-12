@@ -94,7 +94,8 @@ class Home extends StatelessWidget {
                   children: [
                     Text('$title',
                         style: TextStyle(
-                            fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                            fontSize: textTitleSize.sp,
+                            fontWeight: FontWeight.bold)),
                     SizedBox(height: 7.h),
                     Text(contant, style: TextStyle(fontSize: 14.sp))
                   ],

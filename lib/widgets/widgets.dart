@@ -12,3 +12,4 @@ export 'my_page_listen.dart';
 export 'my_page_like.dart';
 export 'my_page_mysong.dart';
 export 'my_page_record_bottomsheet.dart';
+export 'danso_step_by_step.dart';

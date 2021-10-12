@@ -13,7 +13,7 @@ class MyPageMysong extends StatelessWidget {
           itemCount: 16,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: basicPadding),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: mediumGray),
@@ -25,7 +25,8 @@ class MyPageMysong extends StatelessWidget {
                     children: [
                       Text(
                         'Entry ${index}',
-                        style: TextStyle(fontSize: 18, color: white),
+                        style:
+                            TextStyle(fontSize: textStyleSize.sp, color: white),
                       ),
                       Spacer(flex: 1),
                       PopupMenuButton(

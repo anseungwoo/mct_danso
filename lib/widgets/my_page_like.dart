@@ -19,11 +19,11 @@ class _MyPageLikeState extends State<MyPageLike> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(basicPadding),
           itemCount: 16,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: basicPadding),
               child: InkWell(
                 onTap: () {},
                 child: Container(
@@ -38,12 +38,13 @@ class _MyPageLikeState extends State<MyPageLike> {
                       children: [
                         Text(
                           '${widget.songname} ${index}',
-                          style: TextStyle(fontSize: 18, color: white),
+                          style: TextStyle(
+                              fontSize: textStyleSize.sp, color: white),
                         ),
                         Spacer(flex: 1),
                         Text(
                           "${widget.score}점",
-                          style: TextStyle(fontSize: 14, color: white),
+                          style: TextStyle(color: white),
                         ),
                         SizedBox(width: 6.w),
                         IconButton(

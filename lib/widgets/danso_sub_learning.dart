@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 
 class DansosubLearning extends StatelessWidget {
   final String explanation;
@@ -15,15 +16,11 @@ class DansosubLearning extends StatelessWidget {
           Container(
             height: 340.h,
             width: 155.w,
-            margin: EdgeInsets.symmetric(horizontal: 15),
+            margin: EdgeInsets.symmetric(horizontal: basicPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(explanation,
-                    softWrap: true,
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                    )),
+                Text(explanation, softWrap: true),
               ],
             ),
           ),
