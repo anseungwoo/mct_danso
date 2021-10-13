@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 // 배경색
+
 const Color background = Color(0xffFAF1E6);
+
+const Color backgroundGary = Color(0xffECECEC);
+
 
 // 매우 어두운 회색(상단 탭 텍스트-선택됨)
 const Color ultraDarkGray = Color(0xff636363);
@@ -20,6 +24,7 @@ const Color indiDarkGray = Color(0xff878787);
 
 // 페이지 인디케이터 밝은 회색
 const Color indiLightGray = Color(0xffCFCFCF);
+
 //메인색깔
 const Color mainColor = Color(0xffEFBE50);
 //carousel 색깔
@@ -103,3 +108,4 @@ const String DANSPALYPOSURL = "LBmB3DGxnNk";
 const String DANSOLIPSURL = "LBmB3DGxnNk";
 const String DANSOBREATHURL = "LBmB3DGxnNk";
 const String DANSOSHEETURL = "LBmB3DGxnNk";
+

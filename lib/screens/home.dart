@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/screens.dart';
 
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:project_danso/widgets/widgets.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +54,13 @@ class Home extends StatelessWidget {
                 title: '연주곡 익히기', contant: PLAYLEARN, page: DansoLevel()),
             _homeMenuButton(
                 title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
+
           ],
         ),
       ),
     );
   }
+
 
   Widget _homeMenuButton(
       {@required String title,
@@ -71,10 +75,12 @@ class Home extends StatelessWidget {
           Get.to(page);
         }
       },
+
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         height: 106.h,
         width: 330.w,
+
         decoration: BoxDecoration(
             color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
         child: Padding(
@@ -105,6 +111,7 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
+
         ),
       ),
     );

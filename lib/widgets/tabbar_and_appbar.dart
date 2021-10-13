@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/main.dart';
 
@@ -7,6 +8,7 @@ PreferredSizeWidget tabbarAndAppBar(
     {@required String title,
     @required TabBar tabbar,
     bool enableTabBar = true}) {
+
   return AppBar(
     title: Text(
       '$title',
