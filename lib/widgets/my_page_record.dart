@@ -8,7 +8,7 @@ class MyPageRecord extends StatelessWidget {
   final String songname;
 
   final int score;
-  const MyPageRecord({Key? key, required this.songname, required this.score})
+  const MyPageRecord({Key key, @required this.songname, @required this.score})
       : super(key: key);
 
   @override
@@ -19,10 +19,13 @@ class MyPageRecord extends StatelessWidget {
           itemCount: 16,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(
+                bottom: basicPadding,
+              ),
               child: InkWell(
                 onTap: () {
-                  Get.bottomSheet(bottomsheet());
+                  // Get.bottomSheet(bottomsheet());
+                  // bottomsheet(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -36,12 +39,13 @@ class MyPageRecord extends StatelessWidget {
                       children: [
                         Text(
                           'Entry ${index}',
-                          style: TextStyle(fontSize: 18, color: white),
+                          style: TextStyle(
+                              fontSize: textContantSize.sp, color: white),
                         ),
                         Spacer(flex: 1),
                         Text(
                           "점수",
-                          style: TextStyle(fontSize: 14, color: white),
+                          style: TextStyle(color: white),
                         ),
                         SizedBox(width: 6.w),
                         Container(
@@ -49,7 +53,7 @@ class MyPageRecord extends StatelessWidget {
                           height: 33,
                           child: Text(
                             "그래프 디자인",
-                            style: TextStyle(fontSize: 10),
+                            style: TextStyle(fontSize: 10.sp),
                           ),
                         )
                       ],

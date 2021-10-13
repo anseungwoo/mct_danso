@@ -1,12 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:project_danso/common/const.dart';
+
 
 class CarouselListWidget extends StatefulWidget {
   List<Widget> carouselList = [];
 
-  CarouselListWidget({Key? key, required this.carouselList}) : super(key: key);
+
+  CarouselListWidget({Key key, @required this.carouselList}) : super(key: key);
+
 
   @override
   State<CarouselListWidget> createState() => _CarouselListWidgetState();
@@ -55,8 +59,7 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color:
-                            _current == index ? indiDarkGray : indiLightGray),
+                        color: _current == index ? SelectColor : mainColor),
                   );
                 },
               ).toList(),
@@ -64,6 +67,7 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
           ),
         ),
       ],
+
     );
   }
 }

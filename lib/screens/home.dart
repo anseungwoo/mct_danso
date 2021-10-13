@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/screens.dart';
 
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:project_danso/widgets/widgets.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,19 +51,21 @@ class Home extends StatelessWidget {
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(
-                title: '연주곡 익히기', contant: PLAYLEARN, page: HomeMenu1()),
+                title: '연주곡 익히기', contant: PLAYLEARN, page: DansoLevel()),
             _homeMenuButton(
                 title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
+
           ],
         ),
       ),
     );
   }
 
+
   Widget _homeMenuButton(
-      {required String title,
-      required Widget page,
-      required String contant,
+      {@required String title,
+      @required Widget page,
+      @required String contant,
       bool dialog = false}) {
     return InkWell(
       onTap: () {
@@ -70,11 +75,14 @@ class Home extends StatelessWidget {
           Get.to(page);
         }
       },
+
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         height: 106.h,
         width: 330.w,
-        color: Colors.white,
+
+        decoration: BoxDecoration(
+            color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
@@ -94,7 +102,8 @@ class Home extends StatelessWidget {
                   children: [
                     Text('$title',
                         style: TextStyle(
-                            fontSize: 20.sp, fontWeight: FontWeight.bold)),
+                            fontSize: textTitleSize.sp,
+                            fontWeight: FontWeight.bold)),
                     SizedBox(height: 7.h),
                     Text(contant, style: TextStyle(fontSize: 14.sp))
                   ],
@@ -102,6 +111,7 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
+
         ),
       ),
     );
