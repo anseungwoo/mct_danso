@@ -18,16 +18,31 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.14.0 <3.0.0"
+
+  sdk: ">=2.7.0 <3.0.0"
+
 
 dependencies:
   flutter:
     sdk: flutter
 
+ 
   # 패키지  
-  get: ^4.3.8
-  flutter_screenutil: ^5.0.0+2
-  carousel_slider: ^4.0.0
+  # get: ^4.3.8
+  get: ^3.26.0
+
+  # flutter_screenutil: ^5.0.0+2
+  flutter_screenutil: ^4.0.4+1
+  # carousel_slider: ^4.0.0
+  carousel_slider: ^3.0.0
+
+  # sliding_sheet: ^0.5.0
+  sliding_sheet: ^0.4.1
+  # youtube_player_flutter: ^8.0.0
+  youtube_player_flutter: ^7.0.0+7
+
+ 
+
 
 
 
