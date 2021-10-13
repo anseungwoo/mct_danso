@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 
 class DansoLearning extends StatelessWidget {
   final String subject;
   final String explanation;
   // final Image image;
-  const DansoLearning({
+  DansoLearning({
     Key? key,
     required this.subject,
     required this.explanation,

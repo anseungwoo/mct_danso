@@ -55,8 +55,7 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
                         EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color:
-                            _current == index ? indiDarkGray : indiLightGray),
+                        color: _current == index ? SelectColor : mainColor),
                   );
                 },
               ).toList(),

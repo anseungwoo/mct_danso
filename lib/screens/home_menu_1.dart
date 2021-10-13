@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeMenu1 extends StatelessWidget {
   const HomeMenu1({Key? key}) : super(key: key);
@@ -44,7 +43,10 @@ class HomeMenu1 extends StatelessWidget {
               carouselList: [
                 // 좌우 스크롤 화면
                 // 화면 1
-                PictureAndText(subject: "단소의 역사", explanation: HISTORY),
+                DansoHistroyKind(
+                    subject: "단소의 역사",
+                    explanation: HISTORY,
+                    url: DANSOHISTORYURL),
                 // 화면 2
                 testContainer(SUBHISTORY),
               ],
@@ -54,10 +56,13 @@ class HomeMenu1 extends StatelessWidget {
               carouselList: [
                 // 좌우 스크롤 화면
                 // 화면 1
-                PictureAndText(subject: "평조단소", explanation: PDANSO),
+                DansoHistroyKind(
+                    subject: "평조단소", explanation: PDANSO, url: PDANSOURL),
                 // 화면 2
-                PictureAndText(subject: "경제단소", explanation: KDANSO),
-                PictureAndText(subject: "향제단소", explanation: HDANSO),
+                DansoHistroyKind(
+                    subject: "경제단소", explanation: KDANSO, url: KDANSOURL),
+                DansoHistroyKind(
+                    subject: "향제단소", explanation: HDANSO, url: HDANSOURL),
               ],
             ),
           ],
