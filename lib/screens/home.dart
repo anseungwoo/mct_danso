@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,9 @@ class Home extends StatelessWidget {
   }
 
   Widget _homeMenuButton(
-      {required String title,
-      required Widget page,
-      required String contant,
+      {@required String title,
+      @required Widget page,
+      @required String contant,
       bool dialog = false}) {
     return InkWell(
       onTap: () {

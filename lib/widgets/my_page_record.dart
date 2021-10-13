@@ -8,7 +8,7 @@ class MyPageRecord extends StatelessWidget {
   final String songname;
 
   final int score;
-  const MyPageRecord({Key? key, required this.songname, required this.score})
+  const MyPageRecord({Key key, @required this.songname, @required this.score})
       : super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class MyPageRecord extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // Get.bottomSheet(bottomsheet());
-                  bottomsheet(context);
+                  // bottomsheet(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(

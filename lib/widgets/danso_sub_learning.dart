@@ -4,7 +4,7 @@ import 'package:project_danso/common/const.dart';
 
 class DansosubLearning extends StatelessWidget {
   final String explanation;
-  const DansosubLearning({Key? key, required this.explanation})
+  const DansosubLearning({Key key, @required this.explanation})
       : super(key: key);
 
   @override

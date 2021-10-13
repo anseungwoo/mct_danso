@@ -7,7 +7,7 @@ import 'package:project_danso/widgets/widgets.dart';
 
 class DansoLevel extends StatelessWidget {
   const DansoLevel({
-    Key? key,
+    Key key,
   }) : super(key: key);
 
   @override

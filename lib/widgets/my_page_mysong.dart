@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
 
 class MyPageMysong extends StatelessWidget {
-  const MyPageMysong({Key? key}) : super(key: key);
+  const MyPageMysong({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

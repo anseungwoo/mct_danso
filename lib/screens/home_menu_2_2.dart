@@ -7,7 +7,7 @@ import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu22 extends StatelessWidget {
-  HomeMenu22({Key? key}) : super(key: key);
+  HomeMenu22({Key key}) : super(key: key);
 
   // final SoundController soundController = Get.put(SoundController());
 
@@ -143,11 +143,11 @@ class HomeMenu22 extends StatelessWidget {
 
 class SoundButton extends StatelessWidget {
   final String title;
-  final Function()? onPressed;
+  final Function() onPressed;
   const SoundButton({
-    Key? key,
-    required this.title,
-    required this.onPressed,
+    Key key,
+    @required this.title,
+    @required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -167,11 +167,11 @@ class SoundButton extends StatelessWidget {
 
 class UpDownButton extends StatelessWidget {
   final IconData icons;
-  final Function()? onPressed;
+  final Function() onPressed;
   const UpDownButton({
-    Key? key,
-    required this.icons,
-    required this.onPressed,
+    Key key,
+    @required this.icons,
+    @required this.onPressed,
   }) : super(key: key);
 
   @override

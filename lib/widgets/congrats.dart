@@ -5,7 +5,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class Congrats extends StatelessWidget {
-  const Congrats({Key? key}) : super(key: key);
+  const Congrats({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class Congrats extends StatelessWidget {
                 color: lightGray,
                 width: 120.w,
                 height: 120.h,
-                child: Icon(Icons.fmd_good)),
+                child: Icon(Icons.ac_unit)),
           )),
           Text(
             "너무 잘했어요!!!!!!!!!!!!!!!!!!!!!!!!!!",

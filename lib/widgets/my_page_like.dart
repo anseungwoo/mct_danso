@@ -7,7 +7,7 @@ class MyPageLike extends StatefulWidget {
   final String songname;
 
   final int score;
-  const MyPageLike({Key? key, required this.songname, required this.score})
+  const MyPageLike({Key key, @required this.songname, @required this.score})
       : super(key: key);
 
   @override

@@ -3,7 +3,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu2 extends StatelessWidget {
-  const HomeMenu2({Key? key}) : super(key: key);
+  const HomeMenu2({Key key}) : super(key: key);
 
   // 예시 위젯
   Widget testContainer() {
