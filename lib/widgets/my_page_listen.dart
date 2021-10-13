@@ -5,18 +5,18 @@ import 'package:project_danso/common/const.dart';
 class MyPageListen extends StatelessWidget {
   final String songname;
   final String date;
-  const MyPageListen({Key? key, required this.songname, required this.date})
+  const MyPageListen({Key key, @required this.songname, @required this.date})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(basicPadding),
           itemCount: 16,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: basicPadding),
               child: InkWell(
                 onTap: () {},
                 child: Container(
@@ -37,14 +37,14 @@ class MyPageListen extends StatelessWidget {
                               '${songname} ${index}',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: textStyleSize.sp,
                                 color: white,
                               ),
                             ),
                             SizedBox(height: 2),
                             Text(
                               date,
-                              style: TextStyle(fontSize: 14, color: white),
+                              style: TextStyle(color: white),
                             ),
                           ],
                         ),

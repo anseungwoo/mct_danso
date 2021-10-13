@@ -3,7 +3,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu2 extends StatelessWidget {
-  const HomeMenu2({Key? key}) : super(key: key);
+  const HomeMenu2({Key key}) : super(key: key);
 
   // 예시 위젯
   Widget testContainer() {
@@ -35,17 +35,28 @@ class HomeMenu2 extends StatelessWidget {
           children: [
             CarouselListWidget(
               carouselList: [
-                DansoLearning(subject: "단소잡는법과 각부분", explanation: DANSOCATCH),
+                DansoHistroyKind(
+                  subject: "단소잡는법과 각부분",
+                  explanation: DANSOCATCH,
+                  url: DANSOLIPSURL,
+                ),
                 DansosubLearning(explanation: DANSOSUBCATCH),
-                PictureAndText(subject: "단소연주자세", explanation: PALYPOS),
-                PictureAndText(subject: "입술모양", explanation: LIPS),
-                PictureAndText(subject: "호흡식", explanation: BREATH),
+                DansoHistroyKind(
+                    subject: "단소연주자세",
+                    explanation: PALYPOS,
+                    url: "LBmB3DGxnNk"),
+                DansoHistroyKind(
+                    subject: "입술모양", explanation: LIPS, url: DANSOLIPSURL),
+                DansoHistroyKind(
+                    subject: "호흡식", explanation: BREATH, url: DANSOBREATHURL),
               ],
             ),
             CarouselListWidget(
               carouselList: [
-                PictureAndText(subject: "율명", explanation: SHEET),
-                PictureAndText(subject: "", explanation: SUBSHEET),
+                DansoHistroyKind(
+                    subject: "율명", explanation: SHEET, url: DANSOSHEETURL),
+                DansoHistroyKind(
+                    subject: "", explanation: SUBSHEET, url: DANSOSHEETURL),
               ],
             ),
             fingering(),

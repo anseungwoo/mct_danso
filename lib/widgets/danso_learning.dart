@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:project_danso/common/const.dart';
 
 class DansoLearning extends StatelessWidget {
   final String subject;
   final String explanation;
   // final Image image;
-  const DansoLearning({
-    Key? key,
-    required this.subject,
-    required this.explanation,
+  DansoLearning({
+    Key key,
+    @required this.subject,
+    @required this.explanation,
   }) : super(key: key);
 
   @override
@@ -28,15 +30,11 @@ class DansoLearning extends StatelessWidget {
                   subject,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15.sp,
+                    fontSize: textContantSize.sp,
                   ),
                 ),
                 SizedBox(height: 12.h),
-                Text(explanation,
-                    softWrap: true,
-                    style: TextStyle(
-                      fontSize: 15.sp,
-                    )),
+                Text(explanation, softWrap: true),
               ],
             ),
           ),

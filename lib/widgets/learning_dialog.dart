@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -18,7 +19,7 @@ Widget learningDialog() {
             child: Text(
               '운지법 익히기',
               style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: textTitleSize.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
