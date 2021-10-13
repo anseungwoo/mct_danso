@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
     return ScreenUtilInit(
@@ -26,9 +25,6 @@ class MyApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
 
               scaffoldBackgroundColor: background, // 기본 배경색
-
-              scaffoldBackgroundColor: backgroundGary, // 기본 배경색
-
             ),
             home: Home(),
           );
