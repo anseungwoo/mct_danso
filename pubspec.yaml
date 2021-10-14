@@ -35,12 +35,14 @@ dependencies:
   flutter_screenutil: ^4.0.4+1
   # carousel_slider: ^4.0.0
   carousel_slider: ^3.0.0
-
   # sliding_sheet: ^0.5.0
   sliding_sheet: ^0.4.1
   # youtube_player_flutter: ^8.0.0
   youtube_player_flutter: ^7.0.0+7
-
+  camera: ^0.7.0+4
+  video_player: ^1.0.1
+  path_provider: ^1.6.28
+  danso_function: ^0.0.1
  
 
 
