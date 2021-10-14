@@ -1,11 +1,8 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/main.dart';
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:camera/camera.dart';
-import 'package:video_player/video_player.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongTitle extends StatefulWidget {
