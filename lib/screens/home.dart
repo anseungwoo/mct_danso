@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/screens/home_menu_3.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,26 +19,8 @@ class Home extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  height: 257.77.h,
-                  width: ScreenUtil().screenWidth,
-                  color: Color(0xffA5A5A5),
-                  child: Center(
-                    child: Text('상단 이미지', style: TextStyle()),
-                  ),
-                ),
-                Positioned(
-                  right: 10,
-                  top: 30,
-                  child: InkWell(
-                    onTap: () => Get.to(MyPage()),
-                    child: Container(
-                      child: Center(
-                        child: Text('마이\n페이지'),
-                      ),
-                    ),
-                  ),
-                ),
+                topImage(),
+                myPage(),
               ],
             ),
             SizedBox(height: 29.h),
@@ -48,10 +31,36 @@ class Home extends StatelessWidget {
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(
-                title: '연주곡 익히기', contant: PLAYLEARN, page: DansoLevel()),
+                title: '연주곡 익히기', contant: PLAYLEARN, page: HomeMenu3()),
             _homeMenuButton(
                 title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
           ],
+        ),
+      ),
+    );
+  }
+
+  Container topImage() {
+    return Container(
+      height: 257.77.h,
+      width: ScreenUtil().screenWidth,
+      color: Color(0xffA5A5A5),
+      child: Center(
+        child: Text('상단 이미지', style: TextStyle()),
+      ),
+    );
+  }
+
+  Positioned myPage() {
+    return Positioned(
+      right: 10,
+      top: 30,
+      child: InkWell(
+        onTap: () => Get.to(MyPage()),
+        child: Container(
+          child: Center(
+            child: Text('마이\n페이지'),
+          ),
         ),
       ),
     );
@@ -61,6 +70,7 @@ class Home extends StatelessWidget {
       {@required String title,
       @required Widget page,
       @required String contant,
+      Image image,
       bool dialog = false}) {
     return InkWell(
       onTap: () {

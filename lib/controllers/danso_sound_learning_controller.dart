@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class DansoSoundLearningController extends GetxController {
   bool soundTuningState = false;
-  String buttonTitle = '소리조율';
+  String buttonTitle = '소리내기';
   int soundListUpDown = 0;
   List soundList = ["중", "임", "무", "황", "태"];
   int test = 0;
@@ -12,7 +12,7 @@ class DansoSoundLearningController extends GetxController {
   int listsize = 20;
   void changeSoundTuningState() {
     soundTuningState = !soundTuningState;
-    buttonTitle = soundTuningState ? '종료하기' : '소리조율';
+    buttonTitle = soundTuningState ? '종료하기' : '소리내기';
     update();
   }
 
