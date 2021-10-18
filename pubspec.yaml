@@ -45,7 +45,7 @@ dependencies:
   danso_function: ^0.0.1
   path: ^1.7.0
   gallery_saver: ^2.0.3
-
+  flutter_youtube_view: ^1.1.10
 
 
 

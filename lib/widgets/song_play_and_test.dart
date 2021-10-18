@@ -117,14 +117,104 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                     children: [Text("1.0배속"), Spacer(flex: 1), Text("자진모리장단")],
                   ),
                   Container(
-                      color: Colors.amber,
+                      color: white,
                       width: 330.w,
                       height: 440.h,
-                      child: Text("정간보"))
+                      child: Row(
+                        children: [
+                          vertcal(),
+                          SizedBox(width: 13.w),
+                          vertcal(),
+                          SizedBox(width: 13.w),
+                          vertcal(),
+                          SizedBox(width: 13.w),
+                          vertcal(),
+                          SizedBox(width: 13.w),
+                          vertcal(),
+                        ],
+                      ))
                 ],
               ),
             );
           }),
+    );
+  }
+
+  Column vertcal() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+        Container(
+          width: 55,
+          height: 35,
+          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        ),
+      ],
     );
   }
 

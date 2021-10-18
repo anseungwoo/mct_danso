@@ -1,11 +1,13 @@
 import 'dart:ffi';
 
 import 'package:camera/camera.dart';
+import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+
 import 'screens/screens.dart';
 
 List<CameraDescription> cameras;
@@ -32,7 +34,12 @@ class MyApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
               scaffoldBackgroundColor: background, // 기본 배경색
             ),
-            home: Home(),
+            home: SplashScreen.navigate(
+              name: 'intro',
+              next: (context) => Home(),
+              until: () => Future.delayed(Duration(seconds: 5)),
+              startAnimation: '1',
+            ),
           );
         });
   }

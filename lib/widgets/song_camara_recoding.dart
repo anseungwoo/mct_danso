@@ -64,6 +64,8 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
 
   Future<void> _onStop() async {
     final video = await _controller.stopVideoRecording();
+    print(video);
+
     await GallerySaver.saveVideo(video.path);
     File(video.path).deleteSync();
     setState(() => _isRecording = false);

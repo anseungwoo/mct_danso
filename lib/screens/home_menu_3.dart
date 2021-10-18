@@ -7,8 +7,6 @@ class HomeMenu3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          tabbarAndAppBar(title: '연주곡 익히기', tabbar: null, enableTabBar: false),
       body: DansoLevel(),
     );
   }
