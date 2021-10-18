@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/widgets/tabbar_and_appbar.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu2 extends StatelessWidget {
-  const HomeMenu2({Key? key}) : super(key: key);
+  const HomeMenu2({Key key}) : super(key: key);
 
   // 예시 위젯
   Widget testContainer() {
@@ -30,17 +30,38 @@ class HomeMenu2 extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          CarouselListWidget(
-            carouselList: [
-              PictureAndText(),
-              testContainer(),
-              testContainer(),
-            ],
-          ),
-          TestBlankPage(),
-          TestBlankPage(),
-        ]),
+        body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            CarouselListWidget(
+              carouselList: [
+                DansoHistroyKind(
+                  subject: "단소잡는법과 각부분",
+                  explanation: DANSOCATCH,
+                  url: DANSOLIPSURL,
+                ),
+                DansosubLearning(explanation: DANSOSUBCATCH),
+                DansoHistroyKind(
+                    subject: "단소연주자세",
+                    explanation: PALYPOS,
+                    url: "LBmB3DGxnNk"),
+                DansoHistroyKind(
+                    subject: "입술모양", explanation: LIPS, url: DANSOLIPSURL),
+                DansoHistroyKind(
+                    subject: "호흡식", explanation: BREATH, url: DANSOBREATHURL),
+              ],
+            ),
+            CarouselListWidget(
+              carouselList: [
+                DansoHistroyKind(
+                    subject: "율명", explanation: SHEET, url: DANSOSHEETURL),
+                DansoHistroyKind(
+                    subject: "", explanation: SUBSHEET, url: DANSOSHEETURL),
+              ],
+            ),
+            fingering(),
+          ],
+        ),
       ),
     );
   }
