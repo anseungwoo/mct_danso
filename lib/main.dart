@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 
 import 'screens/screens.dart';
+import 'package:danso_function/danso_function.dart';
 
 List<CameraDescription> cameras;
 
@@ -20,6 +21,7 @@ Future<Void> main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  PitchModel pitchModel;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
