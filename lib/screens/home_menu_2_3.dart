@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu23 extends StatelessWidget {
   const HomeMenu23({Key key}) : super(key: key);
-
-  // 예시 위젯
-  Widget testContainer() {
-    return Container(
-      color: Colors.grey,
-      height: 100,
-      width: 100,
-      child: Center(child: Text('asdfasdf')),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
