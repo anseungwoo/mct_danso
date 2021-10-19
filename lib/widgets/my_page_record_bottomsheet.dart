@@ -75,97 +75,95 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 //   );
 // }
 
-// void bottomsheet(BuildContext context) async {
-//   final result = await showSlidingBottomSheet(
-//       context,
-//       builder: (context) {
-//         return SlidingSheetDialog(
-//           elevation: 8,
-//           cornerRadius: 16,
-//           snapSpec: const SnapSpec(
-//             snap: true,
-//             snappings: [
-//               0.4,
-//               0.8,
-//               1.0,
-//             ],
-//             positioning: SnapPositioning.relativeToAvailableSpace,
-//           ),
-//           builder: (context, state) {
-//             return Container(
-//                 height: 600.h,
-//                 decoration: BoxDecoration(
-//                   color: Colors.white,
-//                   borderRadius: BorderRadius.only(
-//                     topLeft: Radius.circular(20),
-//                     topRight: Radius.circular(20),
-//                   ),
-//                 ),
-//                 child: Padding(
-//                   padding: const EdgeInsets.all(basicPadding),
-//                   child: Column(
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       Text(
-//                         "곡 이름",
-//                         style: TextStyle(
-//                             fontSize: textSingleSize.sp,
-//                             color: textBlack,
-//                             decoration: TextDecoration.none),
-//                       ),
-//                       Container(
-//                         height: 500.h,
-//                         child: ListView.builder(
-//                             itemCount: 10,
-//                             itemBuilder: (BuildContext context, int index) {
-//                               return Column(
-//                                 crossAxisAlignment: CrossAxisAlignment.start,
-//                                 children: [
-//                                   Text(
-//                                     "날짜",
-//                                     style: TextStyle(
-//                                         fontSize: textContantSize.sp,
-//                                         color: textBlack,
-//                                         decoration: TextDecoration.none),
-//                                   ),
-//                                   SizedBox(height: 10.h),
-//                                   Container(
-//                                     width: 330.w,
-//                                     height: 35.h,
-//                                     decoration: BoxDecoration(
-//                                       gradient: LinearGradient(
-//                                         begin: Alignment.topLeft,
-//                                         end: Alignment.bottomRight,
-//                                         colors: [
-//                                           Color(0xffECECEC),
-//                                           Color(0xffD6D6D6),
-//                                           Color(0xff9D9D9D),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     child: Padding(
-//                                       padding: const EdgeInsets.all(5.0),
-//                                       child: Text(
-//                                         "점수",
-//                                         textAlign: TextAlign.right,
-//                                         style: TextStyle(
-//                                             fontSize: textContantSize.sp,
-//                                             color: textBlack,
-//                                             decoration: TextDecoration.none),
-//                                       ),
-//                                     ),
-//                                   ),
-//                                   SizedBox(height: 25.h),
-//                                 ],
-//                               );
-//                             }),
-//                       )
-//                     ],
-//                   ),
-//                 ));
-//           },
-//         );
-//       });
+void bottomsheet(BuildContext context) async {
+  final result = await showSlidingBottomSheet(context, builder: (context) {
+    return SlidingSheetDialog(
+      elevation: 8,
+      cornerRadius: 16,
+      snapSpec: const SnapSpec(
+        snap: true,
+        snappings: [
+          0.4,
+          0.8,
+          1.0,
+        ],
+        positioning: SnapPositioning.relativeToAvailableSpace,
+      ),
+      builder: (context, state) {
+        return Container(
+            height: 600.h,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(basicPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "곡 이름",
+                    style: TextStyle(
+                        fontSize: textSingleSize.sp,
+                        color: textBlack,
+                        decoration: TextDecoration.none),
+                  ),
+                  Container(
+                    height: 500.h,
+                    child: ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "날짜",
+                                style: TextStyle(
+                                    fontSize: textContantSize.sp,
+                                    color: textBlack,
+                                    decoration: TextDecoration.none),
+                              ),
+                              SizedBox(height: 10.h),
+                              Container(
+                                width: 330.w,
+                                height: 35.h,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight,
+                                    colors: [
+                                      Color(0xffECECEC),
+                                      Color(0xffD6D6D6),
+                                      Color(0xff9D9D9D),
+                                    ],
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5.0),
+                                  child: Text(
+                                    "점수",
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                        fontSize: textContantSize.sp,
+                                        color: textBlack,
+                                        decoration: TextDecoration.none),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 25.h),
+                            ],
+                          );
+                        }),
+                  )
+                ],
+              ),
+            ));
+      },
+    );
+  });
 
-//   print(result); // This is the result.
-// }
+  print(result); // This is the result.
+}

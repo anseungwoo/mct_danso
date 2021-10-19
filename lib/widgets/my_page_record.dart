@@ -25,7 +25,7 @@ class MyPageRecord extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   // Get.bottomSheet(bottomsheet());
-                  // bottomsheet(context);
+                  bottomsheet(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(

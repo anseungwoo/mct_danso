@@ -6,7 +6,6 @@ const Color background = Color(0xffFAF1E6);
 
 const Color backgroundGary = Color(0xffECECEC);
 
-
 // 매우 어두운 회색(상단 탭 텍스트-선택됨)
 const Color ultraDarkGray = Color(0xff636363);
 
@@ -100,12 +99,11 @@ const String QUESTIONS = "단소에 대해 궁금하거나 어려움이 있다�
 
 //단소의 역사
 
-const String DANSOHISTORYURL = "LBmB3DGxnNk";
-const String PDANSOURL = "LBmB3DGxnNk";
-const String KDANSOURL = "LBmB3DGxnNk";
-const String HDANSOURL = "LBmB3DGxnNk";
-const String DANSPALYPOSURL = "LBmB3DGxnNk";
-const String DANSOLIPSURL = "LBmB3DGxnNk";
-const String DANSOBREATHURL = "LBmB3DGxnNk";
+const String DANSOHISTORYURL = "Fc9fVi-_DWE";
+const String PDANSOURL = "_epwxDTxa3A";
+const String KDANSOURL = "DyRm_Hxy0xo";
+const String HDANSOURL = "5KLsjhz9jMI";
+const String DANSPALYPOSURL = "bVE1E7FLhS4";
+const String DANSOLIPSURL = "lcg6wekmCRA";
+const String DANSOBREATHURL = "ToxQLPErpKI";
 const String DANSOSHEETURL = "LBmB3DGxnNk";
-

@@ -5,16 +5,6 @@ import 'package:project_danso/widgets/widgets.dart';
 class HomeMenu2 extends StatelessWidget {
   const HomeMenu2({Key key}) : super(key: key);
 
-  // 예시 위젯
-  Widget testContainer() {
-    return Container(
-      color: Colors.grey,
-      height: 100,
-      width: 100,
-      child: Center(child: Text('asdfasdf')),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -30,39 +20,41 @@ class HomeMenu2 extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
-          children: [
-            CarouselListWidget(
-              carouselList: [
-                DansoHistroyKind(
-                  subject: "단소잡는법과 각부분",
-                  explanation: DANSOCATCH,
-                  url: DANSOLIPSURL,
-                ),
-                DansosubLearning(explanation: DANSOSUBCATCH),
-                DansoHistroyKind(
-                    subject: "단소연주자세",
-                    explanation: PALYPOS,
-                    url: "LBmB3DGxnNk"),
-                DansoHistroyKind(
-                    subject: "입술모양", explanation: LIPS, url: DANSOLIPSURL),
-                DansoHistroyKind(
-                    subject: "호흡식", explanation: BREATH, url: DANSOBREATHURL),
-              ],
+        body: dansoLearningTabBarView(),
+      ),
+    );
+  }
+
+  TabBarView dansoLearningTabBarView() {
+    return TabBarView(
+      physics: NeverScrollableScrollPhysics(),
+      children: [
+        CarouselListWidget(
+          carouselList: [
+            DansoHistroyKind(
+              subject: "단소잡는법과 각부분",
+              explanation: DANSOCATCH,
+              url: DANSOLIPSURL,
             ),
-            CarouselListWidget(
-              carouselList: [
-                DansoHistroyKind(
-                    subject: "율명", explanation: SHEET, url: DANSOSHEETURL),
-                DansoHistroyKind(
-                    subject: "", explanation: SUBSHEET, url: DANSOSHEETURL),
-              ],
-            ),
-            fingering(),
+            DansosubLearning(explanation: DANSOSUBCATCH),
+            DansoHistroyKind(
+                subject: "단소연주자세", explanation: PALYPOS, url: "LBmB3DGxnNk"),
+            DansoHistroyKind(
+                subject: "입술모양", explanation: LIPS, url: DANSOLIPSURL),
+            DansoHistroyKind(
+                subject: "호흡식", explanation: BREATH, url: DANSOBREATHURL),
           ],
         ),
-      ),
+        CarouselListWidget(
+          carouselList: [
+            DansoHistroyKind(
+                subject: "율명", explanation: SHEET, url: DANSOSHEETURL),
+            DansoHistroyKind(
+                subject: "", explanation: SUBSHEET, url: DANSOSHEETURL),
+          ],
+        ),
+        fingering(),
+      ],
     );
   }
 }

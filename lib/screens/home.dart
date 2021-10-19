@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/screens/home_menu_3.dart';
 import 'package:project_danso/screens/screens.dart';
-
-
+import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:project_danso/widgets/widgets.dart';
 
 class Home extends StatelessWidget {
   const Home({Key key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,26 +19,8 @@ class Home extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  height: 257.77.h,
-                  width: ScreenUtil().screenWidth,
-                  color: Color(0xffA5A5A5),
-                  child: Center(
-                    child: Text('상단 이미지', style: TextStyle()),
-                  ),
-                ),
-                Positioned(
-                  right: 10,
-                  top: 30,
-                  child: InkWell(
-                    onTap: () => Get.to(MyPage()),
-                    child: Container(
-                      child: Center(
-                        child: Text('마이\n페이지'),
-                      ),
-                    ),
-                  ),
-                ),
+                topImage(),
+                myPage(),
               ],
             ),
             SizedBox(height: 29.h),
@@ -51,21 +31,50 @@ class Home extends StatelessWidget {
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(
-                title: '연주곡 익히기', contant: PLAYLEARN, page: DansoLevel()),
+                title: '연주곡 익히기', contant: PLAYLEARN, page: HomeMenu3()),
             _homeMenuButton(
                 title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
-
           ],
         ),
       ),
     );
   }
 
+  Container topImage() {
+    return Container(
+      color: Color(0xffA5A5A5),
+      height: 257.h,
+      width: ScreenUtil().screenWidth,
+      // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
+      //     color: Color(0xffA5A5A5),
+      //     borderRadius:
+      //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
+      child: Center(
+        child: Text('상단 이미지', style: TextStyle()),
+      ),
+    );
+  }
+
+  Positioned myPage() {
+    return Positioned(
+      right: 10,
+      top: 30,
+      child: InkWell(
+        onTap: () => Get.to(MyPage()),
+        child: Container(
+          child: Center(
+            child: Text('마이\n페이지'),
+          ),
+        ),
+      ),
+    );
+  }
 
   Widget _homeMenuButton(
       {@required String title,
       @required Widget page,
       @required String contant,
+      Image image,
       bool dialog = false}) {
     return InkWell(
       onTap: () {
@@ -75,12 +84,10 @@ class Home extends StatelessWidget {
           Get.to(page);
         }
       },
-
       child: Container(
         margin: EdgeInsets.only(bottom: 10),
         height: 106.h,
         width: 330.w,
-
         decoration: BoxDecoration(
             color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
         child: Padding(
@@ -111,7 +118,6 @@ class Home extends StatelessWidget {
               ),
             ],
           ),
-
         ),
       ),
     );
