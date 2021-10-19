@@ -52,6 +52,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             controller.stateCountUp(2);
                                             print(controller.statecount);
                                           }),
+                                  SizedBox(width: 5),
+                                  songSwapButton(
+                                      text: Text(
+                                          "${controller.speed[controller.speedCount]} 배속"),
+                                      onPressed: () {
+                                        controller.speedState();
+                                      }),
                                 ],
                               )
                             : controller.statecount == 1
@@ -76,11 +83,24 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           ),
                                           SizedBox(width: 5),
                                           songSwapButton(
+                                              text: Text("녹음"),
+                                              onPressed: () {
+                                                print(controller.statecount);
+                                              }),
+                                          SizedBox(width: 5),
+                                          songSwapButton(
                                               text: Text(
                                                   controller.testButtonswap),
                                               onPressed: () {
                                                 controller.stateCountUp(4);
                                                 print(controller.statecount);
+                                              }),
+                                          SizedBox(width: 5),
+                                          songSwapButton(
+                                              text: Text(
+                                                  "${controller.speed[controller.speedCount]} 배속"),
+                                              onPressed: () {
+                                                controller.speedState();
                                               }),
                                         ],
                                       )
@@ -91,9 +111,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                 text:
                                                     Text(controller.buttonSwap),
                                                 onPressed: () {
-                                                  controller
-                                                      .testStartButtonState();
-                                                  controller.previousButton();
+                                                  controller.reset();
+                                                  controller.stateCountUp(0);
                                                   print(controller.statecount);
                                                 },
                                               ),
@@ -108,13 +127,18 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             ],
                                           )
                                         : controller.statecount == 4
-                                            ? SongCamaraRecoding()
+                                            ? SongCamaraRecoding(
+                                                controller: controller)
                                             : Container()
                       ],
                     ),
                   ),
                   Row(
-                    children: [Text("1.0배속"), Spacer(flex: 1), Text("자진모리장단")],
+                    children: [
+                      Text("${controller.speed[controller.speedCount]} 배속"),
+                      Spacer(flex: 1),
+                      Text("자진모리장단")
+                    ],
                   ),
                   Container(
                       color: white,

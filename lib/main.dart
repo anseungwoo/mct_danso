@@ -1,15 +1,12 @@
 import 'dart:ffi';
-
 import 'package:camera/camera.dart';
-import 'package:flare_splash_screen/flare_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-
+import 'package:splashscreen/splashscreen.dart';
 import 'screens/screens.dart';
-import 'package:danso_function/danso_function.dart';
 
 List<CameraDescription> cameras;
 
@@ -21,7 +18,6 @@ Future<Void> main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
-  PitchModel pitchModel;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -36,13 +32,22 @@ class MyApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
               scaffoldBackgroundColor: background, // 기본 배경색
             ),
-            home: SplashScreen.navigate(
-              name: 'intro',
-              next: (context) => Home(),
-              until: () => Future.delayed(Duration(seconds: 5)),
-              startAnimation: '1',
-            ),
+            home: logoSplash(),
           );
         });
+  }
+
+  SplashScreen logoSplash() {
+    return SplashScreen(
+      seconds: 3,
+      navigateAfterSeconds: Home(),
+      title:
+          Text("단소가불고싶니?~~~", style: TextStyle(fontSize: 30, color: textBlack)),
+      image: Image.asset("assets/images/images.png"),
+      backgroundColor: background,
+      photoSize: ScreenUtil().screenWidth * 0.4,
+      loaderColor: Colors.brown,
+      loadingText: Text("들어가는중입니다."),
+    );
   }
 }

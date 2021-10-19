@@ -42,12 +42,13 @@ class Home extends StatelessWidget {
 
   Container topImage() {
     return Container(
+      color: Color(0xffA5A5A5),
       height: 257.h,
       width: ScreenUtil().screenWidth,
-      decoration: BoxDecoration(
-          color: Color(0xffA5A5A5),
-          borderRadius:
-              BorderRadius.vertical(bottom: Radius.elliptical(300, 80))),
+      // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
+      //     color: Color(0xffA5A5A5),
+      //     borderRadius:
+      //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
       child: Center(
         child: Text('상단 이미지', style: TextStyle()),
       ),

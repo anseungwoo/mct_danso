@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:project_danso/widgets/youtube_player.dart';
 
 class DansoHistroyKind extends StatefulWidget {
@@ -29,7 +30,9 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          YoutubePlayers(),
+          YoutubePlayers(
+            url: widget.url,
+          ),
           SizedBox(height: 20.h),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 15),

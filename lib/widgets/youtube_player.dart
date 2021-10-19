@@ -3,6 +3,9 @@ import 'package:flutter_youtube_view/flutter_youtube_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class YoutubePlayers extends StatefulWidget {
+  final String url;
+
+  const YoutubePlayers({Key key, this.url}) : super(key: key);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -58,7 +61,7 @@ class _MyAppState extends State<YoutubePlayers>
           onViewCreated: _onYoutubeCreated,
           listener: this,
           params: YoutubeParam(
-            videoId: 'QCsbVXxY8jw',
+            videoId: widget.url,
             showUI: true,
             showYoutube: false,
             showFullScreen: false,

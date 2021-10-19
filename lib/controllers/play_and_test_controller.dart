@@ -7,6 +7,25 @@ class PlayAndTestController extends GetxController {
   bool testStartState = false;
   String testButtonswap = '연습하기';
   int statecount = 0;
+  List speed = [0.5, 0.7, 1.0, 1.2, 1.5, 2.0];
+  int speedCount = 2;
+  void reset() {
+    platState = false;
+    buttonSwap = '도전하기';
+    testState = false;
+    testStartState = false;
+    testButtonswap = '연습하기';
+    update();
+  }
+
+  void speedState() {
+    speedCount++;
+    if (speedCount == 6) {
+      speedCount = 0;
+    }
+    update();
+  }
+
   void changePlayStopState() {
     platState = !platState;
     buttonSwap = platState ? '중지' : '도전하기';
@@ -16,7 +35,7 @@ class PlayAndTestController extends GetxController {
   void testButtonState() {
     testState = !testState;
     buttonSwap = testState ? '연습시작' : '도전하기';
-    testButtonswap = testState ? '녹화하기' : '연습하기';
+    testButtonswap = testState ? '녹화' : '연습하기';
     update();
   }
 
