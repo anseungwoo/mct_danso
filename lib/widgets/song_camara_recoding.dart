@@ -9,7 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   PlayAndTestController controller;
-  SongCamaraRecoding({Key key, this.controller}) : super(key: key);
+  SongCamaraRecoding(
+      {Key key, this.controller, PlayAndTestController contoller})
+      : super(key: key);
 
   @override
   _SongCamaraRecodingState createState() => _SongCamaraRecodingState();
