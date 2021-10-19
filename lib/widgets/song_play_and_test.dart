@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/song_audio_recorder.dart';
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -85,6 +86,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           songSwapButton(
                                               text: Text("녹음"),
                                               onPressed: () {
+                                                controller.stateCountUp(5);
                                                 print(controller.statecount);
                                               }),
                                           SizedBox(width: 5),
@@ -129,7 +131,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         : controller.statecount == 4
                                             ? SongCamaraRecoding(
                                                 controller: controller)
-                                            : Container()
+                                            : controller.statecount == 5
+                                                ? SongAudioRecorder(
+                                                    controller: controller)
+                                                : Container(),
                       ],
                     ),
                   ),
