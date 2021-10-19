@@ -210,7 +210,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       height: 5.h,
                     ),
                     Text(
-                      "녹화화면을 준비하고 있습니다.",
+                      "녹화화면을 준비하고 있습니다",
                       style: TextStyle(color: white, fontSize: textContantSize),
                     ),
                     Text(
