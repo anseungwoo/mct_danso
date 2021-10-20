@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/main.dart';
 import 'package:camera/camera.dart';
@@ -69,8 +70,11 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   Future<void> _onStop() async {
     final video = await _controller.stopVideoRecording();
     print(video);
+    print(video.path);
 
-    await GallerySaver.saveVideo(video.path);
+    await GallerySaver.saveVideo(
+      "${video.path}+/camaras",
+    );
     File(video.path).deleteSync();
     setState(() => _isRecording = false);
     widget.controller.stateCountUp(2);

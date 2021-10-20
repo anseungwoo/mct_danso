@@ -44,6 +44,8 @@ const double basicPadding = 15;
 const double appBarHeight = 50;
 
 //글자 크기 사이즈
+//작은 사이즈
+const double textSmallSize = 12;
 //기본
 const double textBasicSize = 14;
 //부제목

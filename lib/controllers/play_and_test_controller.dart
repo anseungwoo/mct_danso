@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:get/get.dart';
 
 class PlayAndTestController extends GetxController {
@@ -12,6 +10,9 @@ class PlayAndTestController extends GetxController {
   List speed = [0.5, 0.7, 1.0, 1.2, 1.5, 2.0];
   int speedCount = 2;
   int test = 0;
+  String krButton = '한글버전';
+  bool krChanges = false;
+
   void reset() {
     platState = false;
     buttonSwap = '도전하기';
@@ -26,6 +27,12 @@ class PlayAndTestController extends GetxController {
     if (speedCount == 6) {
       speedCount = 0;
     }
+    update();
+  }
+
+  void changeKrState() {
+    krChanges = !krChanges;
+    krButton = krChanges ? '한자버전' : '한글버전';
     update();
   }
 

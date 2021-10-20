@@ -79,6 +79,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       onPressed: () {
                                         controller.speedState();
                                       }),
+                                  SizedBox(width: 5),
+                                  songSwapButton(
+                                      text: Text(controller.krButton),
+                                      onPressed: () {
+                                        controller.changeKrState();
+                                      }),
                                 ],
                               )
                             : controller.statecount == 1
@@ -167,18 +173,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   ),
                   Container(
                       color: white,
-                      width: 330.w,
+                      width: 307.w,
                       height: 440.h,
                       child: Row(
                         children: [
                           vertcal(),
-                          SizedBox(width: 13.w),
                           vertcal(),
-                          SizedBox(width: 13.w),
                           vertcal(),
-                          SizedBox(width: 13.w),
-                          vertcal(),
-                          SizedBox(width: 13.w),
                           vertcal(),
                         ],
                       ))
@@ -235,84 +236,106 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
       ],
     );
   }
 
-  ElevatedButton songSwapButton({Widget text, Function() onPressed}) {
-    return ElevatedButton(
-      child: text,
-      onPressed: onPressed,
+  Widget songSwapButton({Widget text, Function() onPressed}) {
+    return Container(
+      width: 78.w,
+      height: 30.h,
+      child: ElevatedButton(
+        child: text,
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.all<TextStyle>(
+              TextStyle(fontSize: textSmallSize)),
+        ),
+        onPressed: onPressed,
+      ),
     );
   }
 }
