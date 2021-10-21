@@ -22,7 +22,7 @@ class DansoStepByStep extends StatelessWidget {
                 style: TextStyle(fontSize: textSingleSize, fontWeight: bold),
               ),
             ),
-            vertcal(step),
+            stepJonGanbo(step),
             SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

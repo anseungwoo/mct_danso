@@ -38,6 +38,12 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
+  void soundListTa(int n) {
+    soundListUpDown = 4;
+
+    update();
+  }
+
   void nextpage() {
     if (test < 1) {
       test++;
