@@ -1,69 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class DansoStepByStep extends StatelessWidget {
-  const DansoStepByStep({Key key}) : super(key: key);
+  List step;
+  String level;
+  DansoStepByStep({Key key, this.step, this.level}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.all(basicPadding),
+    return Padding(
+        padding: const EdgeInsets.all(15),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CircleAvatar(radius: 14, backgroundColor: Colors.black),
-                SizedBox(
-                  width: 7.sp,
-                ),
-                Text("왼손"),
-                SizedBox(
-                  width: 7.sp,
-                ),
-                CircleAvatar(radius: 14, backgroundColor: Colors.grey),
-                SizedBox(width: 7.sp),
-                Text("오른손"),
-              ],
+            Center(
+              child: Text(
+                "${level}단계 연습곡",
+                style: TextStyle(fontSize: textSingleSize, fontWeight: bold),
+              ),
             ),
-            SizedBox(height: 31.h),
+            vertcal(step),
+            SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  color: Colors.black26,
-                  height: 400.h,
-                  width: 100,
-                  child: Center(child: Text("단소사진")),
+                    height: 30.h,
+                    width: 105.w,
+                    child:
+                        ElevatedButton(onPressed: () {}, child: Text("시작하기"))),
+                Spacer(
+                  flex: 1,
                 ),
-                SizedBox(
-                  width: basicPadding,
+                Container(
+                    height: 30.h,
+                    width: 105.w,
+                    child:
+                        ElevatedButton(onPressed: () {}, child: Text("종료하기"))),
+                Spacer(
+                  flex: 1,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      color: Colors.black26,
-                      height: 330.h,
-                      width: 130.w,
-                      child: Center(child: Text("전관부 사진???")),
-                    ),
-                    SizedBox(height: 20.h),
-                    Container(
-                        height: 45.h,
-                        width: 130.w,
-                        child: ElevatedButton(
-                            onPressed: () {}, child: Text("시작하기"))),
-                  ],
-                )
+                Container(
+                    height: 30.h,
+                    width: 105.w,
+                    child:
+                        ElevatedButton(onPressed: () {}, child: Text("1배속"))),
               ],
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

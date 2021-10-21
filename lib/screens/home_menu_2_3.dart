@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeMenu23 extends StatelessWidget {
@@ -24,11 +25,11 @@ class HomeMenu23 extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            DansoStepByStep(),
-            DansoStepByStep(),
-            DansoStepByStep(),
-            DansoStepByStep(),
-            DansoStepByStep(),
+            DansoStepByStep(level: "1", step: step1),
+            DansoStepByStep(level: "2", step: step2),
+            DansoStepByStep(level: "3", step: step3),
+            DansoStepByStep(level: "4", step: step4),
+            DansoStepByStep(level: "5", step: step5),
           ],
         ),
       ),
