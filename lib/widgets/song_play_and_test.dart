@@ -77,7 +77,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       text: Text(
                                           "${controller.speed[controller.speedCount]} 배속"),
                                       onPressed: () {
-                                        controller.speedState();
+                                        controller.changespeedState();
                                       }),
                                   SizedBox(width: 5),
                                   songSwapButton(
@@ -128,7 +128,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                               text: Text(
                                                   "${controller.speed[controller.speedCount]} 배속"),
                                               onPressed: () {
-                                                controller.speedState();
+                                                controller.changespeedState();
                                               }),
                                         ],
                                       )
