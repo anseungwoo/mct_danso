@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -15,6 +18,22 @@ class SongPlayAndTest extends StatefulWidget {
 }
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
+  int percent;
+  Future _incrementCounter() async {
+    return Future.delayed(Duration(seconds: 4), () {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void _onPressed(BuildContext context) async {
+    showLoadingIndicator(context);
+    await _incrementCounter();
+    hideOpenDialog();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +77,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       text: Text(
                                           "${controller.speed[controller.speedCount]} 배속"),
                                       onPressed: () {
-                                        controller.speedState();
+                                        controller.changespeedState();
+                                      }),
+                                  SizedBox(width: 5),
+                                  songSwapButton(
+                                      text: Text(controller.krButton),
+                                      onPressed: () {
+                                        controller.changeKrState();
                                       }),
                                 ],
                               )
@@ -95,6 +120,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   controller.testButtonswap),
                                               onPressed: () {
                                                 controller.stateCountUp(4);
+                                                _onPressed(context);
                                                 print(controller.statecount);
                                               }),
                                           SizedBox(width: 5),
@@ -102,7 +128,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                               text: Text(
                                                   "${controller.speed[controller.speedCount]} 배속"),
                                               onPressed: () {
-                                                controller.speedState();
+                                                controller.changespeedState();
                                               }),
                                         ],
                                       )
@@ -147,18 +173,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   ),
                   Container(
                       color: white,
-                      width: 330.w,
+                      width: 307.w,
                       height: 440.h,
                       child: Row(
                         children: [
                           vertcal(),
-                          SizedBox(width: 13.w),
                           vertcal(),
-                          SizedBox(width: 13.w),
                           vertcal(),
-                          SizedBox(width: 13.w),
-                          vertcal(),
-                          SizedBox(width: 13.w),
                           vertcal(),
                         ],
                       ))
@@ -169,88 +190,152 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     );
   }
 
+  void showLoadingIndicator(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.black.withOpacity(0),
+          content: Center(
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(white),
+                    ),
+                    SizedBox(
+                      height: 5.h,
+                    ),
+                    Text(
+                      "녹화화면을 준비하고 있습니다",
+                      style: TextStyle(color: white, fontSize: textContantSize),
+                    ),
+                    Text(
+                      "녹화시작 버튼을 누르고 녹화시작",
+                      style: TextStyle(color: white, fontSize: textContantSize),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void hideOpenDialog() {
+    Get.back();
+  }
+
   Column vertcal() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
-        ),
-        Container(
-          width: 55,
-          height: 35,
-          decoration: BoxDecoration(border: Border.all(color: textBlack)),
+        Row(
+          children: [
+            Container(
+              width: 56,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+            Container(
+              width: 20,
+              height: 82,
+              decoration: BoxDecoration(border: Border.all(color: textBlack)),
+            ),
+          ],
         ),
       ],
     );
   }
 
-  ElevatedButton songSwapButton({Widget text, Function() onPressed}) {
-    return ElevatedButton(
-      child: text,
-      onPressed: onPressed,
+  Widget songSwapButton({Widget text, Function() onPressed}) {
+    return Container(
+      width: 78.w,
+      height: 30.h,
+      child: ElevatedButton(
+        child: text,
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.all<TextStyle>(
+              TextStyle(fontSize: textSmallSize)),
+        ),
+        onPressed: onPressed,
+      ),
     );
   }
 }

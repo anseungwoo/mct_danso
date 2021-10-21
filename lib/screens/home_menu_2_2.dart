@@ -106,6 +106,7 @@ class HomeMenu22 extends StatelessWidget {
                   ? null
                   : () {
                       controller.changeSoundTuningState();
+                      controller.soundListTa(4);
                     },
             ),
             SoundButton(

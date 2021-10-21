@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 
 class DansoSoundLearningController extends GetxController {
@@ -37,6 +35,12 @@ class DansoSoundLearningController extends GetxController {
     if (0 < soundListUpDown) {
       soundListUpDown--;
     }
+    update();
+  }
+
+  void soundListTa(int n) {
+    soundListUpDown = 4;
+
     update();
   }
 

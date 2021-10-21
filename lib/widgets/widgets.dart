@@ -18,3 +18,4 @@ export 'congrats.dart';
 export 'song_camara_recoding.dart';
 export 'song_graph.dart';
 export 'song_play_and_test.dart';
+export 'danso_step_mak_4_by_12.dart';
