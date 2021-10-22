@@ -34,9 +34,9 @@ const Color tapBarColor = Color(0xffC48535);
 //마이페이지 글자색
 const Color white = Color(0xffFFFFFF);
 
-const Color graBlackColor = Color(0xff9D9D9D);
-const Color graWeithColor = Color(0xffD6D6D6);
-const Color graLightColor = Color(0xffECECEC);
+const Color grayBlackColor = Color(0xff9D9D9D);
+const Color grayWeithColor = Color(0xffD6D6D6);
+const Color grayLightColor = Color(0xffECECEC);
 
 //어플리캐이션 기본 크기 설정
 
