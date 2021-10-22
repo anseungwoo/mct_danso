@@ -7,24 +7,19 @@ import 'package:project_danso/common/const.dart';
 TabBar defaultTabBar({@required List<Tab> tabList, bool scrollable = false}) {
   return TabBar(
     isScrollable: scrollable,
-
     tabs: tabList,
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
         width: 1.5,
-
         color: tapBarColor,
-
       ),
-      insets: EdgeInsets.symmetric(horizontal: 15.0),
+      insets: EdgeInsets.symmetric(horizontal: basicPadding),
     ),
-    unselectedLabelColor: Color(0xffBFBFBF),
-
+    unselectedLabelColor: textHiddenGray,
     labelColor: tapBarColor,
-
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 18.sp,
+      fontSize: textStyleSize.sp,
     ),
   );
 }

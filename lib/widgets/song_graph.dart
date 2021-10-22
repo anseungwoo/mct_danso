@@ -12,7 +12,7 @@ class SongGraph extends StatelessWidget {
       appBar: songtabbarAndAppBar(
           title: "노래곡 제목", tabbar: null, enableTabBar: false),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(basicPadding),
         child: Container(
           width: 330.w,
           height: 500.h,

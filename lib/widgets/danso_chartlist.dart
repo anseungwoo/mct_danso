@@ -5,15 +5,15 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class DansoLevel extends StatelessWidget {
-  const DansoLevel({
+class DansoChartlist extends StatelessWidget {
+  const DansoChartlist({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DansoSoundLearningController>(
-        init: DansoSoundLearningController(),
+    return GetBuilder<ChartlistController>(
+        init: ChartlistController(),
         builder: (controller) {
           return Scaffold(
             appBar: tabbarAndAppBar(
@@ -29,7 +29,9 @@ class DansoLevel extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.test == 0 ? null : Get.to(DansoLevel());
+                            controller.test == 0
+                                ? null
+                                : Get.to(DansoChartlist());
                             controller.previouspage();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
@@ -45,7 +47,7 @@ class DansoLevel extends StatelessWidget {
                         IconButton(
                             onPressed: () {
                               controller.nextpage();
-                              Get.to<DansoLevel>(DansoLevel());
+                              Get.to<DansoChartlist>(DansoChartlist());
                             },
                             icon: Icon(Icons.keyboard_arrow_right)),
                       ],

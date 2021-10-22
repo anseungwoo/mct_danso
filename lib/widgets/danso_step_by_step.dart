@@ -7,9 +7,9 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoStepByStep extends StatelessWidget {
-  List step;
-  String level;
-  DansoStepByStep({Key key, this.step, this.level}) : super(key: key);
+  List level;
+  String levelcount;
+  DansoStepByStep({Key key, this.level, this.levelcount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,12 @@ class DansoStepByStep extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      "${level}단계 연습곡",
+                      "${levelcount}단계 연습곡",
                       style: TextStyle(
                           fontSize: textSingleSize.sp, fontWeight: bold),
                     ),
                   ),
-                  stepJonGanbo(step),
+                  levelJonGanbo(level),
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

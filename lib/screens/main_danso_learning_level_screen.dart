@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class HomeMenu23 extends StatelessWidget {
-  const HomeMenu23({Key key}) : super(key: key);
+class MainDansoLearningLevelScreen extends StatelessWidget {
+  const MainDansoLearningLevelScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +25,11 @@ class HomeMenu23 extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
-            DansoStepByStep(level: "1", step: step1),
-            DansoStepByStep(level: "2", step: step2),
-            DansoStepByStep(level: "3", step: step3),
-            DansoStepByStep(level: "4", step: step4),
-            DansoStepByStep(level: "5", step: step5),
+            DansoStepByStep(levelcount: "1", level: level1),
+            DansoStepByStep(levelcount: "2", level: level2),
+            DansoStepByStep(levelcount: "3", level: level3),
+            DansoStepByStep(levelcount: "4", level: level4),
+            DansoStepByStep(levelcount: "5", level: level5),
           ],
         ),
       ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/screens/home_menu_3.dart';
+import 'package:project_danso/screens/main_danso_chartlist_screen.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key key}) : super(key: key);
+class MainScreen extends StatelessWidget {
+  const MainScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +24,23 @@ class Home extends StatelessWidget {
               ],
             ),
             SizedBox(height: 29.h),
-            _homeMenuButton(title: '단소 알아보기', contant: LOOK, page: HomeMenu1()),
+            _homeMenuButton(
+                title: '단소 알아보기',
+                contant: LOOK,
+                page: MainDansoHistoryKindScreen()),
             _homeMenuButton(
                 title: '운지법 익히기',
                 page: learningDialog(),
                 contant: LEARN,
                 dialog: true),
             _homeMenuButton(
-                title: '연주곡 익히기', contant: PLAYLEARN, page: HomeMenu3()),
+                title: '연주곡 익히기',
+                contant: PLAYLEARN,
+                page: MainDansoChartlistScreen()),
             _homeMenuButton(
-                title: '질문하기', contant: QUESTIONS, page: HomeMenu1()),
+                title: '질문하기',
+                contant: QUESTIONS,
+                page: MainDansoHistoryKindScreen()),
           ],
         ),
       ),
@@ -60,7 +67,7 @@ class Home extends StatelessWidget {
       right: 10,
       top: 30,
       child: InkWell(
-        onTap: () => Get.to(MyPage()),
+        onTap: () => Get.to(MyPageScreen()),
         child: Container(
           child: Center(
             child: Text('마이\n페이지'),

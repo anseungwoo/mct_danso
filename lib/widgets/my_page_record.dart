@@ -33,7 +33,7 @@ class MyPageRecord extends StatelessWidget {
                       color: mediumGray),
                   height: 60.h,
                   child: Padding(
-                    padding: const EdgeInsets.all(17.0),
+                    padding: const EdgeInsets.all(stylePadddig),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
