@@ -85,7 +85,6 @@ void bottomsheet(BuildContext context) async {
         snappings: [
           0.4,
           0.8,
-          1.0,
         ],
         positioning: SnapPositioning.relativeToAvailableSpace,
       ),

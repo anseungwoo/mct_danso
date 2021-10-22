@@ -14,7 +14,7 @@ class DansoStepByStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<DansoStepController>(
             init: DansoStepController(),
             builder: (controller) {

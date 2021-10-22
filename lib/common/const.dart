@@ -41,6 +41,7 @@ const Color graLightColor = Color(0xffECECEC);
 //어플리캐이션 기본 크기 설정
 
 const double basicPadding = 15;
+const double stylePadddig = 17;
 const double stepByStepPadding = 28;
 const double appBarHeight = 50;
 
@@ -71,6 +72,8 @@ const FontWeight bold = FontWeight.bold;
 
 const double jonWidth = 62;
 const double jonHeight = 35;
+const double jonListWidth = 61;
+const double jonListHeight = 120;
 
 // 단소 스타일 가이드
 const Color third = Color(0xffc48535);

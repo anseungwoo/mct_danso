@@ -25,7 +25,7 @@ class MyPageScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            MyPageRecord(songname: "곡이름", score: 5), //곡이름에 맞는 점수와 그래프필요함
+            MyPageRecord(songname: "곡이름"), //곡이름에 맞는 점수와 그래프필요함
             MyPageLike(songname: "곡이름"), //곡이름에 맞는 점수와 좋아요 의 유뮤 체크 필요
             MyPageListen(
                 songname: "곡이름",
