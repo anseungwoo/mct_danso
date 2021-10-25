@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget fourBySixJon() {
+Widget fourByEightJon(double width, double height) {
   return Row(
     children: [
       Column(
@@ -10,79 +10,50 @@ Widget fourBySixJon() {
         children: [
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
-            ],
-          ),
-        ],
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
-            ],
-          ),
-          Row(
-            children: [
-              bigfourbysix(),
-              smallfourbysix(),
-            ],
-          ),
-          Row(
-            children: [
-              bigfourbysix(),
-              smallfourbysix(),
-            ],
-          ),
-          Row(
-            children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
         ],
@@ -92,38 +63,50 @@ Widget fourBySixJon() {
         children: [
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
         ],
@@ -133,38 +116,103 @@ Widget fourBySixJon() {
         children: [
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+        ],
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbyEight(width, height),
+              smallfourbyEight(20, height),
             ],
           ),
         ],
@@ -173,7 +221,166 @@ Widget fourBySixJon() {
   );
 }
 
-Widget fourByFourJon() {
+Container smallfourbyEight(double width, double height) {
+  return Container(
+    width: width.w,
+    height: height.h,
+    decoration:
+        BoxDecoration(color: white, border: Border.all(color: textBlack)),
+  );
+}
+
+Container bigfourbyEight(double width, double height) {
+  return Container(
+    width: width.w,
+    height: height.h,
+    decoration:
+        BoxDecoration(color: white, border: Border.all(color: textBlack)),
+  );
+}
+
+// Widget fourByFourJon() {
+//   return Row(
+//     children: [
+//       Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//         ],
+//       ),
+//       Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//         ],
+//       ),
+//       Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//         ],
+//       ),
+//       Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               bigfourbyfour(),
+//               smallfourbyfour(),
+//             ],
+//           ),
+//         ],
+//       ),
+//     ],
+//   );
+// }
+
+// Container smallfourbyfour() {
+//   return Container(
+//     width: 20.w,
+//     height: jonFourHeight.h,
+//     decoration:
+//         BoxDecoration(color: white, border: Border.all(color: textBlack)),
+//   );
+// }
+
+// Container bigfourbyfour() {
+//   return Container(
+//     width: jonFourWidth.w,
+//     height: jonFourHeight.h,
+//     decoration:
+//         BoxDecoration(color: white, border: Border.all(color: textBlack)),
+//   );
+// }
+
+Widget fourBySixJon(double width, double height) {
   return Row(
     children: [
       Column(
@@ -181,55 +388,38 @@ Widget fourByFourJon() {
         children: [
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
-            ],
-          ),
-        ],
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
-            ],
-          ),
-          Row(
-            children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
         ],
@@ -239,26 +429,38 @@ Widget fourByFourJon() {
         children: [
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbysix(),
-              smallfourbysix(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
         ],
@@ -268,26 +470,79 @@ Widget fourByFourJon() {
         children: [
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
           Row(
             children: [
-              bigfourbyfour(),
-              smallfourbyfour(),
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+        ],
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
+            ],
+          ),
+          Row(
+            children: [
+              bigfourbysix(width, height),
+              smallfourbysix(20, height),
             ],
           ),
         ],
@@ -296,34 +551,20 @@ Widget fourByFourJon() {
   );
 }
 
-Container smallfourbysix() {
+Container smallfourbysix(double width, double height) {
   return Container(
-    width: 20.w,
-    height: jonListHeight.h,
-    decoration: BoxDecoration(border: Border.all(color: textBlack)),
+    width: width.w,
+    height: height.h,
+    decoration:
+        BoxDecoration(color: white, border: Border.all(color: textBlack)),
   );
 }
 
-Container bigfourbysix() {
+Container bigfourbysix(double width, double height) {
   return Container(
-    width: jonListWidth.w,
-    height: jonListHeight.h,
-    decoration: BoxDecoration(border: Border.all(color: textBlack)),
-  );
-}
-
-Container smallfourbyfour() {
-  return Container(
-    width: 20.w,
-    height: jonListHeight.h,
-    decoration: BoxDecoration(border: Border.all(color: textBlack)),
-  );
-}
-
-Container bigfourbyfour() {
-  return Container(
-    width: jonListWidth.w,
-    height: jonListHeight.h,
-    decoration: BoxDecoration(border: Border.all(color: textBlack)),
+    width: width.w,
+    height: height.h,
+    decoration:
+        BoxDecoration(color: white, border: Border.all(color: textBlack)),
   );
 }

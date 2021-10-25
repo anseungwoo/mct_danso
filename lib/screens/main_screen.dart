@@ -38,9 +38,7 @@ class MainScreen extends StatelessWidget {
                 contant: PLAYLEARN,
                 page: MainDansoChartlistScreen()),
             _homeMenuButton(
-                title: '질문하기',
-                contant: QUESTIONS,
-                page: MainDansoHistoryKindScreen()),
+                title: '질문하기', contant: QUESTIONS, page: Congrats()),
           ],
         ),
       ),
