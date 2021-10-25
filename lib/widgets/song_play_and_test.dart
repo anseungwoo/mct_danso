@@ -56,7 +56,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             ? Row(
                                 children: [
                                   songSwapButton(
-                                    text: Text(controller.buttonSwap),
+                                    text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.nextButton();
@@ -90,7 +90,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               )
                             : controller.statecount == 1
                                 ? songSwapButton(
-                                    text: Text(controller.buttonSwap),
+                                    text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.previousButton();
@@ -101,7 +101,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     ? Row(
                                         children: [
                                           songSwapButton(
-                                            text: Text(controller.buttonSwap),
+                                            text: Text(
+                                                controller.challengeButtonSwap),
                                             onPressed: () {
                                               controller.testStartButtonState();
                                               controller.nextButton();
@@ -137,8 +138,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         ? Row(
                                             children: [
                                               songSwapButton(
-                                                text:
-                                                    Text(controller.buttonSwap),
+                                                text: Text(controller
+                                                    .challengeButtonSwap),
                                                 onPressed: () {
                                                   controller.reset();
                                                   controller.stateCountUp(0);
@@ -172,7 +173,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       Text("자진모리장단")
                     ],
                   ),
-                  fourByFourJon(),
+                  // fourByFourJon(),
+                  // controller.statecount == 4
+                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
+                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
+                  controller.statecount == 4
+                      ? fourByEightJon(jonEightWidth, jonEightHeight - 4)
+                      : fourByEightJon(jonEightWidth, jonEightHeight),
                 ],
               ),
             );

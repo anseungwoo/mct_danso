@@ -29,10 +29,11 @@ class DansoChartlist extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.test == 0
+                            controller.levelChange == 0
                                 ? null
-                                : Get.to(DansoChartlist());
-                            controller.previouspage();
+                                : Get.off(DansoChartlist(),
+                                    transition: Transition.noTransition);
+                            controller.previousLevel();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
                           iconSize: 30,
@@ -40,14 +41,15 @@ class DansoChartlist extends StatelessWidget {
                         Spacer(flex: 1),
                         CircleAvatar(
                           radius: 35,
-                          child:
-                              Center(child: Text("${controller.test} 아이콘 이미지")),
+                          child: Center(
+                              child: Text("${controller.levelChange} 아이콘 이미지")),
                         ),
                         Spacer(flex: 1),
                         IconButton(
                             onPressed: () {
-                              controller.nextpage();
-                              Get.to<DansoChartlist>(DansoChartlist());
+                              Get.off(DansoChartlist(),
+                                  transition: Transition.noTransition);
+                              controller.nextLevel();
                             },
                             icon: Icon(Icons.keyboard_arrow_right)),
                       ],
@@ -73,7 +75,8 @@ class DansoChartlist extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(basicPadding),
                     child: ListView.builder(
-                        itemCount: controller.list1[controller.test].length,
+                        itemCount:
+                            controller.list1[controller.levelChange].length,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
@@ -101,10 +104,12 @@ class DansoChartlist extends StatelessWidget {
                                         IconButton(
                                           padding: EdgeInsets.all(1),
                                           onPressed: () {
-                                            Get.to(Congrats());
+                                            controller.likeChangeState();
                                           },
                                           icon: Icon(Icons.favorite),
-                                          color: white,
+                                          color: controller.like
+                                              ? Colors.red
+                                              : white,
                                         )
                                       ],
                                     ),

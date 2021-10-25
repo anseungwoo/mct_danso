@@ -3,7 +3,7 @@ import 'dart:io' as io;
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
@@ -19,7 +19,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   FlutterAudioRecorder _recorder;
   Recording _recording;
   Timer _time;
-  Widget _buttonText = Text("녹화오류");
+  Widget _buttonText = Text("녹음오류");
   String _alert;
   String delPath;
   String day;
@@ -80,6 +80,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
 
     _recorder = FlutterAudioRecorder(customPath,
         audioFormat: AudioFormat.WAV, sampleRate: 22050);
+
     await _recorder.initialized;
   }
 
@@ -119,7 +120,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   Future _stopRecording() async {
     var result = await _recorder.stop();
     _time.cancel();
-
+    print(_recording.path);
     setState(() {
       _recording = result;
     });
@@ -147,11 +148,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     switch (status) {
       case RecordingStatus.Initialized:
         {
-          return Text("녹화시작");
+          return Text("녹음시작");
         }
       case RecordingStatus.Recording:
         {
-          return Text("녹화멈춤");
+          return Text("녹음멈춤");
         }
       case RecordingStatus.Stopped:
         {

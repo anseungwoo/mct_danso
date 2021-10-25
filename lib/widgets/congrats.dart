@@ -10,6 +10,21 @@ class Congrats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: background,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: textBlack,
+              ))
+        ],
+      ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: Container(
@@ -17,7 +32,7 @@ class Congrats extends StatelessWidget {
           height: 70.h,
           child: FloatingActionButton(
             onPressed: () {
-              Get.to(SongGraph());
+              Get.off(SongGraph());
             },
             child: Text("그래프아이콘"),
           ),

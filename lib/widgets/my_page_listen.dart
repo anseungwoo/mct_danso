@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/my_page_controller.dart';
+import 'package:project_danso/widgets/my_page_listen_dialog.dart';
 
 class MyPageListen extends StatelessWidget {
   final String songname;
@@ -58,9 +59,12 @@ class MyPageListen extends StatelessWidget {
                             IconButton(
                               padding: EdgeInsets.only(bottom: 6),
                               onPressed: () {
-                                controller.changeStartStopState();
+                                Get.dialog(myPageListenDialog());
                               },
-                              icon: controller.startIcon,
+                              icon: Icon(
+                                Icons.play_arrow,
+                                size: 40,
+                              ),
                             ),
                             SizedBox(width: 10.w),
                             PopupMenuButton(

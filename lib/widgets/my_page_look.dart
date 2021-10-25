@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/my_page_controller.dart';
+import 'package:project_danso/widgets/my_page_look_player.dart';
 
 class MyPageLook extends StatelessWidget {
   final String songname;
@@ -58,9 +59,12 @@ class MyPageLook extends StatelessWidget {
                             IconButton(
                               padding: EdgeInsets.only(bottom: 6),
                               onPressed: () {
-                                controller.changeStartStopState();
+                                // Get.to(VideoApp());
                               },
-                              icon: controller.startIcon,
+                              icon: Icon(
+                                Icons.play_arrow,
+                                size: 40,
+                              ),
                             ),
                             SizedBox(width: 10.w),
                             PopupMenuButton(
