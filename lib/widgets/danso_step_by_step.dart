@@ -9,7 +9,8 @@ import 'package:project_danso/widgets/widgets.dart';
 class DansoStepByStep extends StatelessWidget {
   List level;
   String levelcount;
-  DansoStepByStep({Key key, this.level, this.levelcount}) : super(key: key);
+  DansoStepByStep({Key key, @required this.level, @required this.levelcount})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +20,10 @@ class DansoStepByStep extends StatelessWidget {
             init: DansoStepController(),
             builder: (controller) {
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Center(
                     child: Text(
-                      "${levelcount}단계 연습곡",
+                      "$levelcount단계 연습곡",
                       style: TextStyle(
                           fontSize: textSingleSize.sp, fontWeight: bold),
                     ),
@@ -49,7 +49,9 @@ class DansoStepByStep extends StatelessWidget {
                           width: 160.w,
                           child: ElevatedButton(
                               onPressed: () {
-                                controller.changespeedState();
+                                controller.starStopState
+                                    ? null
+                                    : controller.changespeedState();
                               },
                               child: Text(
                                   "${controller.speed[controller.speedCount]}배속"))),

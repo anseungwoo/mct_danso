@@ -93,7 +93,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Row(
               children: [
-                Container(width: 120.w, height: 70.h, child: _buildCamera()),
+                Container(width: 120.w, height: 60.h, child: _buildCamera()),
                 Spacer(flex: 1),
                 _buildControls(),
               ],

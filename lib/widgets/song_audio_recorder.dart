@@ -19,7 +19,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   FlutterAudioRecorder _recorder;
   Recording _recording;
   Timer _time;
-  Widget _buttonText = Text("녹화오류");
+  Widget _buttonText = Text("녹음오류");
   String _alert;
   String delPath;
   String day;
@@ -147,11 +147,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     switch (status) {
       case RecordingStatus.Initialized:
         {
-          return Text("녹화시작");
+          return Text("녹음시작");
         }
       case RecordingStatus.Recording:
         {
-          return Text("녹화멈춤");
+          return Text("녹음멈춤");
         }
       case RecordingStatus.Stopped:
         {
