@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
   SplashScreen logoSplash() {
     return SplashScreen(
       seconds: 3,
-      navigateAfterSeconds: Home(),
+      navigateAfterSeconds: MainScreen(),
       title:
           Text("단소가불고싶니?~~~", style: TextStyle(fontSize: 30, color: textBlack)),
       image: Image.asset("assets/images/images.png"),

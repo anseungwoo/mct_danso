@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class HomeMenu1 extends StatelessWidget {
-  const HomeMenu1({Key key}) : super(key: key);
+class MainDansoHistoryKindScreen extends StatelessWidget {
+  const MainDansoHistoryKindScreen({Key key}) : super(key: key);
 
   // 예시 위젯
   Widget testContainer(String explanation) {
@@ -47,7 +47,7 @@ class HomeMenu1 extends StatelessWidget {
                 DansoHistroyKind(
                     subject: "단소의 역사",
                     explanation: HISTORY,
-                    url: DANSOHISTORYURL),
+                    url: DANSO_HISTORY_URL),
                 // 화면 2
                 testContainer(SUBHISTORY),
               ],
@@ -58,12 +58,12 @@ class HomeMenu1 extends StatelessWidget {
                 // 좌우 스크롤 화면
                 // 화면 1
                 DansoHistroyKind(
-                    subject: "평조단소", explanation: PDANSO, url: PDANSOURL),
+                    subject: "평조단소", explanation: PDANSO, url: P_DANSO_URL),
                 // 화면 2
                 DansoHistroyKind(
-                    subject: "경제단소", explanation: KDANSO, url: KDANSOURL),
+                    subject: "경제단소", explanation: KDANSO, url: K_DANSO_URL),
                 DansoHistroyKind(
-                    subject: "향제단소", explanation: HDANSO, url: HDANSOURL),
+                    subject: "향제단소", explanation: HDANSO, url: H_DANSO_URL),
               ],
             ),
           ],

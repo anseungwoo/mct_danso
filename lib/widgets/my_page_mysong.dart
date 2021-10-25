@@ -9,7 +9,7 @@ class MyPageMysong extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(basicPadding),
           itemCount: 16,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
@@ -19,7 +19,7 @@ class MyPageMysong extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5), color: mediumGray),
                 height: 60.h,
                 child: Padding(
-                  padding: const EdgeInsets.all(17.0),
+                  padding: const EdgeInsets.all(stylePadddig),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

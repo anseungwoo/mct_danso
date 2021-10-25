@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 
 class PictureAndText extends StatelessWidget {
   const PictureAndText({Key key}) : super(key: key);
@@ -21,7 +22,7 @@ class PictureAndText extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 15),
+            margin: EdgeInsets.symmetric(horizontal: basicPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -35,7 +36,7 @@ class PictureAndText extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Text(
                     '설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명',
-                    style: TextStyle(fontSize: 15.sp)),
+                    style: TextStyle(fontSize: textBasicSize.sp)),
               ],
             ),
           ),

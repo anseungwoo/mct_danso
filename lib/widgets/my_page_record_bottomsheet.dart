@@ -85,7 +85,6 @@ void bottomsheet(BuildContext context) async {
         snappings: [
           0.4,
           0.8,
-          1.0,
         ],
         positioning: SnapPositioning.relativeToAvailableSpace,
       ),
@@ -135,9 +134,9 @@ void bottomsheet(BuildContext context) async {
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      Color(0xffECECEC),
-                                      Color(0xffD6D6D6),
-                                      Color(0xff9D9D9D),
+                                      grayLightColor,
+                                      grayWeithColor,
+                                      grayBlackColor,
                                     ],
                                   ),
                                 ),

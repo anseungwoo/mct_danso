@@ -7,9 +7,7 @@ import 'package:project_danso/widgets/widgets.dart';
 class MyPageRecord extends StatelessWidget {
   final String songname;
 
-  final int score;
-  const MyPageRecord({Key key, @required this.songname, @required this.score})
-      : super(key: key);
+  const MyPageRecord({Key key, @required this.songname}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class MyPageRecord extends StatelessWidget {
                       color: mediumGray),
                   height: 60.h,
                   child: Padding(
-                    padding: const EdgeInsets.all(17.0),
+                    padding: const EdgeInsets.all(stylePadddig),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -43,11 +41,6 @@ class MyPageRecord extends StatelessWidget {
                               fontSize: textContantSize.sp, color: white),
                         ),
                         Spacer(flex: 1),
-                        Text(
-                          "점수",
-                          style: TextStyle(color: white),
-                        ),
-                        SizedBox(width: 6.w),
                         Container(
                           width: 33,
                           height: 33,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:danso_function/danso_function.dart';
+
 // 배경색
 
 const Color background = Color(0xffFAF1E6);
@@ -27,19 +28,20 @@ const Color indiLightGray = Color(0xffCFCFCF);
 //메인색깔
 const Color mainColor = Color(0xffEFBE50);
 //carousel 색깔
-const Color SelectColor = Color(0xffE39D00);
+const Color second = Color(0xffE39D00);
 //텝바 색깔 연한갈색
 const Color tapBarColor = Color(0xffC48535);
 //마이페이지 글자색
 const Color white = Color(0xffFFFFFF);
 
-const Color graBlackColor = Color(0xff9D9D9D);
-const Color graWeithColor = Color(0xffD6D6D6);
-const Color graLightColor = Color(0xffECECEC);
+const Color grayBlackColor = Color(0xff9D9D9D);
+const Color grayWeithColor = Color(0xffD6D6D6);
+const Color grayLightColor = Color(0xffECECEC);
 
 //어플리캐이션 기본 크기 설정
 
 const double basicPadding = 15;
+const double stylePadddig = 17;
 const double stepByStepPadding = 28;
 const double appBarHeight = 50;
 
@@ -70,6 +72,12 @@ const FontWeight bold = FontWeight.bold;
 
 const double jonWidth = 62;
 const double jonHeight = 35;
+const double jonListWidth = 61;
+const double jonListHeight = 120;
+
+// 단소 스타일 가이드
+const Color third = Color(0xffc48535);
+const Color force = Color(0xff7E531D);
 
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
@@ -83,8 +91,8 @@ const String KDANSO = "경제 단소 설명을 적어주세요";
 //향조 설명
 const String HDANSO = "향조 단소 설명을 적어주세요";
 //단소잡는부분 설명
-const String DANSOCATCH = "단소잡는부분을 설명을 적어주세요";
-const String DANSOSUBCATCH = "단소잡는부분을 설명을 적어주세요";
+const String DANSO_CATCH = "단소잡는부분을 설명을 적어주세요";
+const String DANSO_SUBCATCH = "단소잡는부분을 설명을 적어주세요";
 //단소연주자세 설명
 const String PALYPOS = "단소연주자세의 설명을 적어주세요";
 //입술모양 설명
@@ -106,18 +114,21 @@ const String PLAYLEARN = "전통곡들을 단소로 연습하여 피드백 받�
 const String QUESTIONS = "단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ";
 
 //단소의 역사
-
-const String DANSOHISTORYURL = "Fc9fVi-_DWE";
-const String PDANSOURL = "_epwxDTxa3A";
-const String KDANSOURL = "DyRm_Hxy0xo";
-const String HDANSOURL = "5KLsjhz9jMI";
-const String DANSPALYPOSURL = "bVE1E7FLhS4";
-const String DANSOLIPSURL = "lcg6wekmCRA";
-const String DANSOBREATHURL = "ToxQLPErpKI";
-const String DANSOSHEETURL = "LBmB3DGxnNk";
+//youtube URL style
+const double youtubeWidth = 360;
+const double youtubeHeight = 250;
+const String DANSO_HISTORY_URL = "Fc9fVi-_DWE";
+const String P_DANSO_URL = "_epwxDTxa3A";
+const String K_DANSO_URL = "DyRm_Hxy0xo";
+const String H_DANSO_URL = "5KLsjhz9jMI";
+const String DANSO_PALYPOS_URL = "bVE1E7FLhS4";
+const String DANSO_LIPS_URL = "lcg6wekmCRA";
+const String DANSO_BREATH_URL = "ToxQLPErpKI";
+const String DANSO_SHEET_URL = "LBmB3DGxnNk";
 
 //1~5단계 연습 리스트
-const List step1 = [
+// YulmyeongNote(Yulmyeong.tae,ScaleStatus.origin));//  율명하고 스캐일맞으면 참거짓 판명을해준다
+const List level1 = [
   '汰',
   "",
   "",
@@ -167,7 +178,7 @@ const List step1 = [
   "",
   "△"
 ];
-const step2 = [
+const level2 = [
   "無",
   "無",
   "潢",
@@ -217,7 +228,7 @@ const step2 = [
   "",
   "△",
 ];
-const step3 = [
+const level3 = [
   "無",
   "無",
   "潢",
@@ -267,7 +278,7 @@ const step3 = [
   "",
   "△"
 ];
-const step4 = [
+const level4 = [
   "仲",
   "仲",
   "林",
@@ -317,7 +328,7 @@ const step4 = [
   "",
   "△"
 ];
-const step5 = [
+const level5 = [
   "淋",
   "潕",
   "㶂",

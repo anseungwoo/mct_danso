@@ -2,170 +2,90 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget stepJonGanbo(List step) {
+Widget levelJonGanbo(List level) {
   return Row(
     children: [
-      left(step),
-      centerLeft(step),
-      centerRight(step),
-      right(step),
+      left(level),
+      centerLeft(level),
+      centerRight(level),
+      right(level),
     ],
   );
 }
 
-Column right(List step) {
+Column right(List level) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
       Row(
         children: [
-          jonContainer(step, 36),
+          jonContainer(level, 36),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 37),
+          jonContainer(level, 37),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 38),
+          jonContainer(level, 38),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 39),
+          jonContainer(level, 39),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 40),
+          jonContainer(level, 40),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 41),
+          jonContainer(level, 41),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 42),
+          jonContainer(level, 42),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 43),
+          jonContainer(level, 43),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 44),
+          jonContainer(level, 44),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 45),
+          jonContainer(level, 45),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 46),
+          jonContainer(level, 46),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 47),
-          blackContainer(),
-        ],
-      ),
-    ],
-  );
-}
-
-Column centerRight(List step) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Row(
-        children: [
-          jonContainer(step, 24),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 25),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 26),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 27),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 28),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 29),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 30),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 31),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 32),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 33),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 34),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jonContainer(step, 35),
+          jonContainer(level, 47),
           blackContainer(),
         ],
       ),
@@ -173,79 +93,79 @@ Column centerRight(List step) {
   );
 }
 
-Column centerLeft(List step) {
+Column centerRight(List level) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
       Row(
         children: [
-          jonContainer(step, 12),
+          jonContainer(level, 24),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 13),
+          jonContainer(level, 25),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 14),
+          jonContainer(level, 26),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 15),
+          jonContainer(level, 27),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 16),
+          jonContainer(level, 28),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 17),
+          jonContainer(level, 29),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 18),
+          jonContainer(level, 30),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 19),
+          jonContainer(level, 31),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 20),
+          jonContainer(level, 32),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 21),
+          jonContainer(level, 33),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 22),
+          jonContainer(level, 34),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 23),
+          jonContainer(level, 35),
           blackContainer(),
         ],
       ),
@@ -253,79 +173,159 @@ Column centerLeft(List step) {
   );
 }
 
-Column left(List step) {
+Column centerLeft(List level) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
       Row(
         children: [
-          jonContainer(step, 0),
+          jonContainer(level, 12),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 1),
+          jonContainer(level, 13),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 2),
+          jonContainer(level, 14),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 3),
+          jonContainer(level, 15),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 4),
+          jonContainer(level, 16),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 5),
+          jonContainer(level, 17),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 6),
+          jonContainer(level, 18),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 7),
+          jonContainer(level, 19),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 8),
+          jonContainer(level, 20),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 9),
+          jonContainer(level, 21),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 10),
+          jonContainer(level, 22),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(step, 11),
+          jonContainer(level, 23),
+          blackContainer(),
+        ],
+      ),
+    ],
+  );
+}
+
+Column left(List level) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.end,
+    children: [
+      Row(
+        children: [
+          jonContainer(level, 0),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 1),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 2),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 3),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 4),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 5),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 6),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 7),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 8),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 9),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 10),
+          blackContainer(),
+        ],
+      ),
+      Row(
+        children: [
+          jonContainer(level, 11),
           blackContainer(),
         ],
       ),
@@ -343,14 +343,14 @@ Container blackContainer() {
   );
 }
 
-Container jonContainer(List step, int count) {
+Container jonContainer(List level, int count) {
   return Container(
     width: jonWidth.w,
     height: jonHeight.h,
     decoration: BoxDecoration(border: Border.all(color: textBlack)),
     child: Center(
         child: Text(
-      "${step[count]}",
+      "${level[count]}",
       style: TextStyle(fontSize: textSingleSize.sp, fontWeight: bold),
     )),
   );

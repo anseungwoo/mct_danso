@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/song_audio_recorder.dart';
+import 'package:project_danso/widgets/song_list_Jonganbo.dart';
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -171,18 +172,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       Text("자진모리장단")
                     ],
                   ),
-                  Container(
-                      color: white,
-                      width: 307.w,
-                      height: 440.h,
-                      child: Row(
-                        children: [
-                          vertcal(),
-                          vertcal(),
-                          vertcal(),
-                          vertcal(),
-                        ],
-                      ))
+                  fourByFourJon(),
                 ],
               ),
             );
@@ -230,98 +220,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   void hideOpenDialog() {
     Get.back();
-  }
-
-  Column vertcal() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-      ],
-    );
   }
 
   Widget songSwapButton({Widget text, Function() onPressed}) {
