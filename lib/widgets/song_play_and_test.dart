@@ -166,23 +166,20 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Row(
-                      children: [
-                        Text("${controller.speed[controller.speedCount]} 배속"),
-                        Spacer(flex: 1),
-                        Text("자진모리장단")
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Text("${controller.speed[controller.speedCount]} 배속"),
+                      Spacer(flex: 1),
+                      Text("자진모리장단")
+                    ],
                   ),
                   // fourByFourJon(),
-                  controller.statecount == 4
-                      ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
-                      : fourBySixJon(jonSixWidth, jonSixHeight),
                   // controller.statecount == 4
-                  //     ? fourByEightJon(jonEightWidth, jonEightHeight - 4)
-                  //     : fourByEightJon(jonEightWidth, jonEightHeight),
+                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
+                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
+                  controller.statecount == 4
+                      ? fourByEightJon(jonEightWidth, jonEightHeight - 4)
+                      : fourByEightJon(jonEightWidth, jonEightHeight),
                 ],
               ),
             );

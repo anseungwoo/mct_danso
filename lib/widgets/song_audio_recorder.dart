@@ -3,7 +3,7 @@ import 'dart:io' as io;
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
@@ -80,6 +80,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
 
     _recorder = FlutterAudioRecorder(customPath,
         audioFormat: AudioFormat.WAV, sampleRate: 22050);
+
     await _recorder.initialized;
   }
 
@@ -119,7 +120,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   Future _stopRecording() async {
     var result = await _recorder.stop();
     _time.cancel();
-
+    print(_recording.path);
     setState(() {
       _recording = result;
     });

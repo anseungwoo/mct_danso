@@ -1,5 +1,5 @@
+import 'dart:io' as io;
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -71,10 +71,15 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     final video = await _controller.stopVideoRecording();
     print(video);
     print(video.path);
-
-    await GallerySaver.saveVideo(
-      "${video.path}+/camaras",
-    );
+    if (io.Platform.isIOS) {
+      await GallerySaver.saveVideo(
+        "${video.path}+/camaras",
+      );
+    } else {
+      await GallerySaver.saveVideo(
+        video.path,
+      );
+    }
     File(video.path).deleteSync();
     setState(() => _isRecording = false);
     widget.controller.stateCountUp(2);
