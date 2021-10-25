@@ -22,7 +22,7 @@ class DansoLearning extends StatelessWidget {
           Container(
             height: 312.h,
             width: 148.w,
-            margin: EdgeInsets.symmetric(horizontal: 15),
+            margin: EdgeInsets.symmetric(horizontal: basicPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

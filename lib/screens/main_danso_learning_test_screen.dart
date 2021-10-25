@@ -6,8 +6,8 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class HomeMenu22 extends StatelessWidget {
-  HomeMenu22({Key key}) : super(key: key);
+class MainDansoLearningTestScreen extends StatelessWidget {
+  MainDansoLearningTestScreen({Key key}) : super(key: key);
 
   // final SoundController soundController = Get.put(SoundController());
 
@@ -106,6 +106,7 @@ class HomeMenu22 extends StatelessWidget {
                   ? null
                   : () {
                       controller.changeSoundTuningState();
+                      controller.soundListTa(4);
                     },
             ),
             SoundButton(
@@ -123,7 +124,7 @@ class HomeMenu22 extends StatelessWidget {
                   : controller.soundTuningState
                       ? null
                       : () {
-                          Get.to(HomeMenu23());
+                          Get.to(MainDansoLearningLevelScreen());
                         },
             ),
           ],

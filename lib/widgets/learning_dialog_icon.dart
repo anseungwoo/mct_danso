@@ -8,7 +8,7 @@ Widget icon({@required String text, @required Widget page}) {
     children: [
       InkWell(
         onTap: () {
-          Get.to(page);
+          Get.off(page);
         },
         child: Container(
           width: 140.w,

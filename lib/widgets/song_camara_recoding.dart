@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/main.dart';
 import 'package:camera/camera.dart';
@@ -9,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   PlayAndTestController controller;
-  SongCamaraRecoding({Key key, this.controller}) : super(key: key);
+  SongCamaraRecoding(
+      {Key key, this.controller, PlayAndTestController contoller})
+      : super(key: key);
 
   @override
   _SongCamaraRecodingState createState() => _SongCamaraRecodingState();
@@ -67,8 +70,11 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   Future<void> _onStop() async {
     final video = await _controller.stopVideoRecording();
     print(video);
+    print(video.path);
 
-    await GallerySaver.saveVideo(video.path);
+    await GallerySaver.saveVideo(
+      "${video.path}+/camaras",
+    );
     File(video.path).deleteSync();
     setState(() => _isRecording = false);
     widget.controller.stateCountUp(2);

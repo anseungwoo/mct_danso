@@ -9,11 +9,11 @@ PreferredSizeWidget tabbarAndAppBar(
   return AppBar(
     title: Text(
       '$title',
-      style: TextStyle(color: Colors.white, fontSize: 14.sp),
+      style: TextStyle(color: Colors.white, fontSize: textBasicSize.sp),
     ),
     centerTitle: true,
     elevation: 1,
-    backgroundColor: Color(0xffA5A5A5),
+    backgroundColor: darkGray,
     bottom: enableTabBar
         ? PreferredSize(
             preferredSize: tabbar.preferredSize,

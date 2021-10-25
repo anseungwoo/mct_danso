@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube_view/flutter_youtube_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/const.dart';
 
 class YoutubePlayers extends StatefulWidget {
   final String url;
@@ -52,10 +53,9 @@ class _MyAppState extends State<YoutubePlayers>
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 15.sp),
       color: Colors.grey,
-      height: 185.h,
-      width: 330.w,
+      height: youtubeHeight.h,
+      width: youtubeWidth.w,
       child: Center(
         child: FlutterYoutubeView(
           onViewCreated: _onYoutubeCreated,

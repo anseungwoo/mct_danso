@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/my_page_controller.dart';
 
-class MyPageListen extends StatelessWidget {
+class MyPageLook extends StatelessWidget {
   final String songname;
   final String date;
-  const MyPageListen({Key key, @required this.songname, @required this.date})
+  const MyPageLook({Key key, @required this.songname, @required this.date})
       : super(key: key);
 
   @override
