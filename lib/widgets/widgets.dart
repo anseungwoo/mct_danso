@@ -22,3 +22,7 @@ export 'danso_step_mak_4_by_12.dart';
 export 'my_page_delete_dialog.dart';
 export 'my_page_listen.dart';
 export 'my_page_listen_dialog.dart';
+export 'my_page_look_player.dart';
+export 'youtube_player.dart';
+export 'song_audio_recorder.dart';
+export 'song_list_Jonganbo.dart';

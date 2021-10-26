@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/controllers/my_page_controller.dart';
-import 'package:project_danso/widgets/my_page_look_player.dart';
+import 'package:project_danso/controllers/controllers.dart';
+
+import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageLook extends StatelessWidget {
   final String songname;

@@ -2,7 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/controllers/my_page_controller.dart';
+import 'package:project_danso/controllers/controllers.dart';
+
 
 Widget myPageListenDialog() {
   AudioPlayer player = AudioPlayer();

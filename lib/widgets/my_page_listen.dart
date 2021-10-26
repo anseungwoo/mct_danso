@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/controllers/my_page_controller.dart';
-import 'package:project_danso/widgets/my_page_delete_dialog.dart';
-import 'package:project_danso/widgets/my_page_listen_dialog.dart';
+import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageListen extends StatelessWidget {
   final String songname;

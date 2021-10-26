@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/controllers/my_page_controller.dart';
+import 'package:project_danso/controllers/controllers.dart';
+
 
 Widget myPageDeleteDialog() {
   return Dialog(
