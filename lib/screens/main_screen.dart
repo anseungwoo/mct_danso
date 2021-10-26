@@ -5,6 +5,7 @@ import 'package:project_danso/screens/main_danso_chartlist_screen.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/animation_page.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
@@ -38,7 +39,7 @@ class MainScreen extends StatelessWidget {
                 contant: PLAYLEARN,
                 page: MainDansoChartlistScreen()),
             _homeMenuButton(
-                title: '질문하기', contant: QUESTIONS, page: Congrats()),
+                title: '질문하기', contant: QUESTIONS, page: AnimationPage()),
           ],
         ),
       ),

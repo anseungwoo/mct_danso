@@ -40,7 +40,7 @@ class MyPageLook extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${songname} ${index}',
+                                    '$songname $index',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: textStyleSize.sp,
@@ -59,7 +59,7 @@ class MyPageLook extends StatelessWidget {
                             IconButton(
                               padding: EdgeInsets.only(bottom: 6),
                               onPressed: () {
-                                // Get.to(VideoApp());
+                                Get.to(VideoApp());
                               },
                               icon: Icon(
                                 Icons.play_arrow,
@@ -68,6 +68,12 @@ class MyPageLook extends StatelessWidget {
                             ),
                             SizedBox(width: 10.w),
                             PopupMenuButton(
+                                onSelected: (value) {
+                                  if (value == 1) {}
+                                  if (value == 2) {
+                                    Get.dialog(myPageDeleteDialog());
+                                  }
+                                },
                                 icon: Icon(Icons.more_vert_outlined),
                                 itemBuilder: (context) => [
                                       PopupMenuItem(
