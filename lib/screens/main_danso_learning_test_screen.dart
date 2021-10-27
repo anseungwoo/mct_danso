@@ -48,84 +48,90 @@ class MainDansoLearningTestScreen extends StatelessWidget {
   Expanded listeningAndTest(DansoSoundLearningController controller) {
     return Expanded(
       child: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
           children: [
-            Text(controller.listenTunungState
-                ? '소리를 들어보세요'
-                : controller.soundTuningState
-                    ? '단소를 불어보세요'
-                    : ""),
-            SizedBox(height: 30.h),
-            Container(
-              height: 97.w,
-              width: 97.w,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black, width: 3),
-              ),
-              child: Center(
-                  child: Text(
-                "${controller.soundList1[controller.soundListUpDown]}",
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-              )),
+            Positioned(
+              left: 30.w,
+              child: Text(controller.listenTunungState
+                  ? '소리를 들어보세요'
+                  : controller.soundTuningState
+                      ? '단소를 불어보세요'
+                      : ""),
             ),
-            SizedBox(height: 21.h),
-            Text(controller.soundList[controller.soundListUpDown],
-                style: TextStyle(fontSize: textStyleSize.sp)),
-            SizedBox(height: 18.h),
-            Row(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                UpDownButton(
-                  icons: Icons.arrow_upward,
-                  onPressed: () {
-                    controller.listenTunungState
-                        ? null
-                        : controller.soundTuningState
-                            ? null
-                            : controller.soundListUp();
-                  },
+                Container(
+                  height: 97.w,
+                  width: 97.w,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.black, width: 3),
+                  ),
+                  child: Center(
+                      child: Text(
+                    "${controller.soundList1[controller.soundListUpDown]}",
+                    style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                  )),
                 ),
-                SizedBox(width: 12.w),
-                UpDownButton(
-                  icons: Icons.arrow_downward,
-                  onPressed: () {
-                    controller.listenTunungState
-                        ? null
-                        : controller.soundTuningState
+                SizedBox(height: 21.h),
+                Text(controller.soundList[controller.soundListUpDown],
+                    style: TextStyle(fontSize: textStyleSize.sp)),
+                SizedBox(height: 18.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    UpDownButton(
+                      icons: Icons.arrow_upward,
+                      onPressed: () {
+                        controller.listenTunungState
                             ? null
-                            : controller.soundListDown();
-                  },
+                            : controller.soundTuningState
+                                ? null
+                                : controller.soundListUp();
+                      },
+                    ),
+                    SizedBox(width: 12.w),
+                    UpDownButton(
+                      icons: Icons.arrow_downward,
+                      onPressed: () {
+                        controller.listenTunungState
+                            ? null
+                            : controller.soundTuningState
+                                ? null
+                                : controller.soundListDown();
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            SoundButton(
-              title: '${controller.buttonSound}',
-              onPressed: controller.listenTunungState
-                  ? null
-                  : () {
-                      controller.changeSoundTuningState();
-                      controller.soundListTa(4);
-                    },
-            ),
-            SoundButton(
-              title: '${controller.buttonListen}',
-              onPressed: controller.soundTuningState
-                  ? null
-                  : () {
-                      controller.changeSpeakTuningState();
-                    },
-            ),
-            SoundButton(
-              title: '연습하기',
-              onPressed: controller.listenTunungState
-                  ? null
-                  : controller.soundTuningState
+                SoundButton(
+                  title: '${controller.buttonSound}',
+                  onPressed: controller.listenTunungState
                       ? null
                       : () {
-                          Get.to(MainDansoLearningLevelScreen());
+                          controller.changeSoundTuningState();
+                          controller.soundListTa(4);
                         },
+                ),
+                SoundButton(
+                  title: '${controller.buttonListen}',
+                  onPressed: controller.soundTuningState
+                      ? null
+                      : () {
+                          controller.changeSpeakTuningState();
+                        },
+                ),
+                SoundButton(
+                  title: '연습하기',
+                  onPressed: controller.listenTunungState
+                      ? null
+                      : controller.soundTuningState
+                          ? null
+                          : () {
+                              Get.to(MainDansoLearningLevelScreen());
+                            },
+                ),
+              ],
             ),
           ],
         ),

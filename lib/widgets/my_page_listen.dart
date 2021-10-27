@@ -68,23 +68,24 @@ class MyPageListen extends StatelessWidget {
                             ),
                             SizedBox(width: 10.w),
                             PopupMenuButton(
-                                onSelected: (value) {
-                                  if (value == 1) {}
-                                  if (value == 2) {
-                                    Get.dialog(myPageDeleteDialog());
-                                  }
-                                },
-                                icon: Icon(Icons.more_vert_outlined),
-                                itemBuilder: (context) => [
-                                      PopupMenuItem(
-                                        child: Text("공유하기"),
-                                        value: 1,
-                                      ),
-                                      PopupMenuItem(
-                                        child: Text("삭제하기"),
-                                        value: 2,
-                                      )
-                                    ]),
+                              onSelected: (value) {
+                                if (value == 1) {}
+                                if (value == 2) {
+                                  Get.dialog(myPageDeleteDialog());
+                                }
+                              },
+                              icon: Icon(Icons.more_vert_outlined),
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  child: Text("공유하기"),
+                                  value: 1,
+                                ),
+                                PopupMenuItem(
+                                  child: Text("삭제하기"),
+                                  value: 2,
+                                )
+                              ],
+                            ),
                           ],
                         ),
                       ),
