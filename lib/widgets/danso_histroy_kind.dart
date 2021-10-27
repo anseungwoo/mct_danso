@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/widgets/youtube_player.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class DansoHistroyKind extends StatefulWidget {
   final String subject;

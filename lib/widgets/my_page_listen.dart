@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/controllers/my_page_controller.dart';
-import 'package:project_danso/widgets/my_page_listen_dialog.dart';
+import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageListen extends StatelessWidget {
   final String songname;
@@ -40,7 +40,7 @@ class MyPageListen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '${songname} ${index}',
+                                    '$songname $index',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontSize: textStyleSize.sp,
@@ -68,6 +68,12 @@ class MyPageListen extends StatelessWidget {
                             ),
                             SizedBox(width: 10.w),
                             PopupMenuButton(
+                                onSelected: (value) {
+                                  if (value == 1) {}
+                                  if (value == 2) {
+                                    Get.dialog(myPageDeleteDialog());
+                                  }
+                                },
                                 icon: Icon(Icons.more_vert_outlined),
                                 itemBuilder: (context) => [
                                       PopupMenuItem(

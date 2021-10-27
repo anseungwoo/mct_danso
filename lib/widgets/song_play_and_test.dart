@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/song_audio_recorder.dart';
-import 'package:project_danso/widgets/song_list_Jonganbo.dart';
+import 'package:project_danso/widgets/animation_page.dart';
+
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -177,9 +177,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   // controller.statecount == 4
                   //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
                   //     : fourBySixJon(jonSixWidth, jonSixHeight),
-                  controller.statecount == 4
-                      ? fourByEightJon(jonEightWidth, jonEightHeight - 4)
-                      : fourByEightJon(jonEightWidth, jonEightHeight),
+                  Stack(
+                    children: [
+                      controller.statecount == 4
+                          ? fourByEightJon(jonEightWidth, jonEightHeight - 4)
+                          : fourByEightJon(jonEightWidth, jonEightHeight),
+                      AnimationPage(),
+                    ],
+                  ),
                 ],
               ),
             );

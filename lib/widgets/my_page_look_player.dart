@@ -1,61 +1,63 @@
-// import 'dart:io';
+import 'dart:io';
+import 'package:project_danso/widgets/tabbar_and_appbar.dart';
+import 'package:video_player/video_player.dart';
+import 'package:flutter/material.dart';
 
-// import 'package:video_player/video_player.dart';
-// import 'package:flutter/material.dart';
+class VideoApp extends StatefulWidget {
+  @override
+  _VideoAppState createState() => _VideoAppState();
+}
 
-// class VideoApp extends StatefulWidget {
-//   @override
-//   _VideoAppState createState() => _VideoAppState();
-// }
+class _VideoAppState extends State<VideoApp> {
+  VideoPlayerController videoPlayerController;
+  Future<void> videoPlayerFuture;
+  final File file = File(
+      '/data/user/0/com.example.project_danso/cache/REC2329971791378890848.mp4');
 
-// class _VideoAppState extends State<VideoApp> {
-//   VideoPlayerController _controller;
-//   final File file =
-//       File('/storage/emulated/0/Movies/REC8137687907613721318.mp4');
+  void initState() {
+    super.initState();
+    videoPlayerController = VideoPlayerController.file(file);
+    videoPlayerFuture = videoPlayerController.initialize();
+    videoPlayerController.setLooping(true);
+  }
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     _controller = VideoPlayerController.file(file)
-//       ..addListener(() {
-//         setState(() {});
-//       })
-//       ..setLooping(true)
-//       ..initialize().then((value) => _controller.play());
-//   }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar:
+            tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
+        body: FutureBuilder(
+          future: videoPlayerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return AspectRatio(
+                aspectRatio: videoPlayerController.value.aspectRatio,
+                child: VideoPlayer(videoPlayerController),
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              videoPlayerController.value.isPlaying
+                  ? videoPlayerController.pause()
+                  : videoPlayerController.play();
+            });
+          },
+          child: Icon(
+            videoPlayerController.value.isPlaying
+                ? Icons.pause
+                : Icons.play_arrow,
+          ),
+        ));
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Video Demo',
-//       home: Scaffold(
-//         body: Center(
-//           child: _controller.value.initialized
-//               ? AspectRatio(
-//                   aspectRatio: _controller.value.aspectRatio,
-//                   child: VideoPlayer(_controller),
-//                 )
-//               : Container(),
-//         ),
-//         floatingActionButton: FloatingActionButton(
-//           onPressed: () {
-//             setState(() {
-//               _controller.value.isPlaying
-//                   ? _controller.pause()
-//                   : _controller.play();
-//             });
-//           },
-//           child: Icon(
-//             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   @override
-//   void dispose() {
-//     super.dispose();
-//     _controller.dispose();
-//   }
-// }
+  @override
+  void dispose() {
+    super.dispose();
+    videoPlayerController.dispose();
+  }
+}
