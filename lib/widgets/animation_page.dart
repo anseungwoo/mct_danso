@@ -443,7 +443,9 @@ class _AnimationPageState extends State<AnimationPage>
     try {
       await controller.forward().orCancel;
       // await controller.repeat(period: Duration(seconds: 8)).orCancel;
-      await controller.reverse().orCancel;
+      // await controller.reverse().orCancel;
+      controller.reset();
+      _playAnimation();
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
     }
@@ -468,7 +470,7 @@ class _AnimationPageState extends State<AnimationPage>
           return new Center(
               child: Container(
             width: 330,
-            height: 550,
+            height: 520,
             color: Colors.grey.withOpacity(0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

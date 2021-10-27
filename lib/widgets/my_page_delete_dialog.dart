@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
-
 Widget myPageDeleteDialog() {
   return Dialog(
     child: GetBuilder<MyPageController>(
@@ -36,7 +35,9 @@ Widget myPageDeleteDialog() {
                           "취소",
                           style: TextStyle(color: textBlack),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.back();
+                        },
                       ),
                       Spacer(flex: 1),
                       TextButton(
