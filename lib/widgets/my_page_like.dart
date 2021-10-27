@@ -35,7 +35,7 @@ class _MyPageLikeState extends State<MyPageLike> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          '${widget.songname} ${index}',
+                          '${widget.songname} $index',
                           style: TextStyle(
                               fontSize: textStyleSize.sp, color: white),
                         ),
