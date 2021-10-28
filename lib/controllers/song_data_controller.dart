@@ -10,7 +10,8 @@ class SongController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllSongList();
+    // getAllSongList();
+    insertSongToJson();
   }
 
   updateLikeSongList({String songLike, int songId}) async {
@@ -26,14 +27,21 @@ class SongController extends GetxController {
     update();
   }
 
+  // 단소 곡 DB 데이터 체크
   insertSongToJson() async {
-    String jsonString = await rootBundle.loadString('assets/json/song.json');
-    final res = songFromJsonFromJson(jsonString);
-    print(res.songData[0].songJangdan);
-    res.songData.forEach((element) async {
-      await DBHelPer().insertSongData(element);
+    await DBHelPer().getAllSongs().then((value) async {
+      print(value);
+      if (value.length < 1 || value == null || value == []) {
+        String jsonString =
+            await rootBundle.loadString('assets/json/song.json');
+        final res = songFromJsonFromJson(jsonString);
+        res.songData.forEach((element) async {
+          await DBHelPer().insertSongData(element);
+        });
+      } else {
+        getAllSongList();
+      }
     });
-    getAllSongList();
   }
 
   deleteAllSong() async {
