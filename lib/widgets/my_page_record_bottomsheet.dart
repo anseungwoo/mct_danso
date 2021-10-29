@@ -77,21 +77,17 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 
 void bottomsheet(BuildContext context) async {
   final result = await showSlidingBottomSheet(context, builder: (context) {
-    return SlidingSheetDialog(
+    var slidingSheetDialog = SlidingSheetDialog(
       elevation: 8,
       cornerRadius: 16,
       snapSpec: const SnapSpec(
         snap: true,
-        snappings: [
-          0.4,
-          0.8,
-          1.0,
-        ],
+        snappings: [0.4, 0.8, 1.0],
         positioning: SnapPositioning.relativeToAvailableSpace,
       ),
       builder: (context, state) {
         return Container(
-            height: 600.h,
+            height: 500.h,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -112,57 +108,59 @@ void bottomsheet(BuildContext context) async {
                         decoration: TextDecoration.none),
                   ),
                   Container(
-                    height: 500.h,
-                    child: ListView.builder(
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "날짜",
-                                style: TextStyle(
-                                    fontSize: textContantSize.sp,
-                                    color: textBlack,
-                                    decoration: TextDecoration.none),
-                              ),
-                              SizedBox(height: 10.h),
-                              Container(
-                                width: 330.w,
-                                height: 35.h,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [
-                                      Color(0xffECECEC),
-                                      Color(0xffD6D6D6),
-                                      Color(0xff9D9D9D),
-                                    ],
+                    child: Expanded(
+                      child: ListView.builder(
+                          itemCount: 10,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "날짜",
+                                  style: TextStyle(
+                                      fontSize: textContantSize.sp,
+                                      color: textBlack,
+                                      decoration: TextDecoration.none),
+                                ),
+                                SizedBox(height: 10.h),
+                                Container(
+                                  width: 330.w,
+                                  height: 35.h,
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        grayLightColor,
+                                        grayWeithColor,
+                                        grayBlackColor,
+                                      ],
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: Text(
+                                      "점수",
+                                      textAlign: TextAlign.right,
+                                      style: TextStyle(
+                                          fontSize: textContantSize.sp,
+                                          color: textBlack,
+                                          decoration: TextDecoration.none),
+                                    ),
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Text(
-                                    "점수",
-                                    textAlign: TextAlign.right,
-                                    style: TextStyle(
-                                        fontSize: textContantSize.sp,
-                                        color: textBlack,
-                                        decoration: TextDecoration.none),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 25.h),
-                            ],
-                          );
-                        }),
+                                SizedBox(height: 25.h),
+                              ],
+                            );
+                          }),
+                    ),
                   )
                 ],
               ),
             ));
       },
     );
+    return slidingSheetDialog;
   });
 
   print(result); // This is the result.

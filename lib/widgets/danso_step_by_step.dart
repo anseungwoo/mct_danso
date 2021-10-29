@@ -1,69 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class DansoStepByStep extends StatelessWidget {
-  const DansoStepByStep({Key key}) : super(key: key);
+  List level;
+  String levelcount;
+  DansoStepByStep({Key key, @required this.level, @required this.levelcount})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
+    return Padding(
         padding: const EdgeInsets.all(basicPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CircleAvatar(radius: 14, backgroundColor: Colors.black),
-                SizedBox(
-                  width: 7.sp,
-                ),
-                Text("왼손"),
-                SizedBox(
-                  width: 7.sp,
-                ),
-                CircleAvatar(radius: 14, backgroundColor: Colors.grey),
-                SizedBox(width: 7.sp),
-                Text("오른손"),
-              ],
-            ),
-            SizedBox(height: 31.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  color: Colors.black26,
-                  height: 400.h,
-                  width: 100,
-                  child: Center(child: Text("단소사진")),
-                ),
-                SizedBox(
-                  width: basicPadding,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      color: Colors.black26,
-                      height: 330.h,
-                      width: 130.w,
-                      child: Center(child: Text("전관부 사진???")),
+        child: GetBuilder<DansoStepController>(
+            init: DansoStepController(),
+            builder: (controller) {
+              return Column(
+                children: [
+                  Center(
+                    child: Text(
+                      "$levelcount단계 연습곡",
+                      style: TextStyle(
+                          fontSize: textSingleSize.sp, fontWeight: bold),
                     ),
-                    SizedBox(height: 20.h),
-                    Container(
-                        height: 45.h,
-                        width: 130.w,
-                        child: ElevatedButton(
-                            onPressed: () {}, child: Text("시작하기"))),
-                  ],
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+                  ),
+                  levelJonGanbo(level),
+                  SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          height: 30.h,
+                          width: 160.w,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                controller.changeStartStopState();
+                              },
+                              child: Text("${controller.startButton}"))),
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Container(
+                          height: 30.h,
+                          width: 160.w,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                controller.starStopState
+                                    ? null
+                                    : controller.changespeedState();
+                              },
+                              child: Text(
+                                  "${controller.speed[controller.speedCount]}배속"))),
+                    ],
+                  ),
+                ],
+              );
+            }));
   }
 }

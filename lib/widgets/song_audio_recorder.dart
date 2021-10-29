@@ -3,7 +3,7 @@ import 'dart:io' as io;
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-import 'package:audioplayers/audioplayers.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
@@ -19,9 +19,10 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   FlutterAudioRecorder _recorder;
   Recording _recording;
   Timer _time;
-  Widget _buttonText = Text("녹화오류");
+  Widget _buttonText = Text("녹음오류");
   String _alert;
-
+  String delPath;
+  String day;
   @override
   void initState() {
     super.initState();
@@ -52,7 +53,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
         break;
     }
 
-    // 刷新按钮
     setState(() {
       _buttonText = _buttonTextState(_recording.status);
     });
@@ -68,9 +68,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     }
 
     // can add extension like ".mp4" ".wav" ".m4a" ".aac"
+    delPath = appDocDirectory.path + customPath;
     customPath = appDocDirectory.path +
         customPath +
         DateTime.now().millisecondsSinceEpoch.toString();
+    day = DateTime.now().millisecondsSinceEpoch.toString();
 
     // .wav <---> AudioFormat.WAV
     // .mp4 .m4a .aac <---> AudioFormat.AAC
@@ -78,6 +80,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
 
     _recorder = FlutterAudioRecorder(customPath,
         audioFormat: AudioFormat.WAV, sampleRate: 22050);
+
     await _recorder.initialized;
   }
 
@@ -117,27 +120,39 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   Future _stopRecording() async {
     var result = await _recorder.stop();
     _time.cancel();
-
+    print(_recording.path);
     setState(() {
       _recording = result;
     });
     widget.controller.stateCountUp(2);
   }
+//  삭제기능 테스트 함수입니다.
+  // Future _del() async {
+  //   // AudioPlayer player = AudioPlayer();
+  //   // player.play(_recording.path, isLocal: true);
+  //   try {
+  //     print(delPath);
+  //     print(_recording.path);
+  //     print(day);
+  //     final _localFile = io.File('${delPath}${day}.wav');
+  //     print(_localFile);
+  //     final file = await _localFile;
 
-  void _play() {
-    AudioPlayer player = AudioPlayer();
-    player.play(_recording.path, isLocal: true);
-  }
+  //     await file.delete();
+  //   } catch (e) {
+  //     return;
+  //   }
+  // }
 
   Widget _buttonTextState(RecordingStatus status) {
     switch (status) {
       case RecordingStatus.Initialized:
         {
-          return Text("녹화시작");
+          return Text("녹음시작");
         }
       case RecordingStatus.Recording:
         {
-          return Text("녹화멈춤");
+          return Text("녹음멈춤");
         }
       case RecordingStatus.Stopped:
         {

@@ -1,8 +1,6 @@
-import 'dart:io';
-
+import 'dart:io' as io;
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/main.dart';
 import 'package:camera/camera.dart';
@@ -71,11 +69,16 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     final video = await _controller.stopVideoRecording();
     print(video);
     print(video.path);
-
-    await GallerySaver.saveVideo(
-      "${video.path}+/camaras",
-    );
-    File(video.path).deleteSync();
+    if (io.Platform.isIOS) {
+      await GallerySaver.saveVideo(
+        "${video.path}",
+      );
+    } else {
+      await GallerySaver.saveVideo(
+        video.path,
+      );
+    }
+    // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
     setState(() => _isRecording = false);
     widget.controller.stateCountUp(2);
   }
@@ -93,7 +96,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Row(
               children: [
-                Container(width: 120.w, height: 70.h, child: _buildCamera()),
+                Container(width: 120.w, height: 60.h, child: _buildCamera()),
                 Spacer(flex: 1),
                 _buildControls(),
               ],

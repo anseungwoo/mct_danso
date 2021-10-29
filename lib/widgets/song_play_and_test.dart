@@ -1,11 +1,11 @@
 import 'dart:async';
-
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/song_audio_recorder.dart';
+import 'package:project_danso/widgets/animation_page.dart';
 import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -19,6 +19,7 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   int percent;
+
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -38,12 +39,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: "노래곡1 제목", tabbar: null, enableTabBar: false),
+          title: '노래곡1 제목', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
           init: PlayAndTestController(),
           builder: (controller) {
             return Padding(
-              padding: const EdgeInsets.all(basicPadding),
+              padding: const EdgeInsets.symmetric(horizontal: basicPadding),
               child: Column(
                 children: [
                   Container(
@@ -55,7 +56,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             ? Row(
                                 children: [
                                   songSwapButton(
-                                    text: Text(controller.buttonSwap),
+                                    text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.nextButton();
@@ -77,7 +78,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       text: Text(
                                           "${controller.speed[controller.speedCount]} 배속"),
                                       onPressed: () {
-                                        controller.speedState();
+                                        controller.changespeedState();
                                       }),
                                   SizedBox(width: 5),
                                   songSwapButton(
@@ -89,7 +90,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               )
                             : controller.statecount == 1
                                 ? songSwapButton(
-                                    text: Text(controller.buttonSwap),
+                                    text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.previousButton();
@@ -100,7 +101,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     ? Row(
                                         children: [
                                           songSwapButton(
-                                            text: Text(controller.buttonSwap),
+                                            text: Text(
+                                                controller.challengeButtonSwap),
                                             onPressed: () {
                                               controller.testStartButtonState();
                                               controller.nextButton();
@@ -128,7 +130,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                               text: Text(
                                                   "${controller.speed[controller.speedCount]} 배속"),
                                               onPressed: () {
-                                                controller.speedState();
+                                                controller.changespeedState();
                                               }),
                                         ],
                                       )
@@ -136,8 +138,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         ? Row(
                                             children: [
                                               songSwapButton(
-                                                text:
-                                                    Text(controller.buttonSwap),
+                                                text: Text(controller
+                                                    .challengeButtonSwap),
                                                 onPressed: () {
                                                   controller.reset();
                                                   controller.stateCountUp(0);
@@ -164,25 +166,36 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       ],
                     ),
                   ),
-                  Row(
+                  controller.statecount == 4
+                      ? SizedBox(
+                          height: 5,
+                        )
+                      : Row(
+                          children: [
+                            Text(
+                                "${controller.speed[controller.speedCount]} 배속"),
+                            Spacer(flex: 1),
+                            Text("자진모리장단")
+                          ],
+                        ),
+                  // fourByFourJon(),
+                  // controller.statecount == 4
+                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
+                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
+                  Stack(
                     children: [
-                      Text("${controller.speed[controller.speedCount]} 배속"),
-                      Spacer(flex: 1),
-                      Text("자진모리장단")
+                      controller.statecount == 4
+                          ? fourByEightJon(jonEightWidth, jonEightHeight)
+                          : fourByEightJon(jonEightWidth, jonEightHeight),
+                      controller.statecount == 4
+                          ? fourBySixJon(jonSixWidth, jonSixHeight)
+                          : fourBySixJon(jonSixWidth, jonSixHeight),
+                      AnimationPage(
+                        tempo: 100,
+                        jonlenght: 6,
+                      ),
                     ],
                   ),
-                  Container(
-                      color: white,
-                      width: 307.w,
-                      height: 440.h,
-                      child: Row(
-                        children: [
-                          vertcal(),
-                          vertcal(),
-                          vertcal(),
-                          vertcal(),
-                        ],
-                      ))
                 ],
               ),
             );
@@ -230,98 +243,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   void hideOpenDialog() {
     Get.back();
-  }
-
-  Column vertcal() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Container(
-              width: 56,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-            Container(
-              width: 20,
-              height: 82,
-              decoration: BoxDecoration(border: Border.all(color: textBlack)),
-            ),
-          ],
-        ),
-      ],
-    );
   }
 
   Widget songSwapButton({Widget text, Function() onPressed}) {

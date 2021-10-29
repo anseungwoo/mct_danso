@@ -11,11 +11,11 @@ Widget fingering() {
           children: [
             CircleAvatar(radius: 14, backgroundColor: Colors.black),
             SizedBox(
-              width: 7.sp,
+              width: 7.w,
             ),
             Text("왼손"),
             SizedBox(
-              width: 7.sp,
+              width: 7.w,
             ),
             CircleAvatar(radius: 14, backgroundColor: Colors.grey),
             SizedBox(width: 7.sp),

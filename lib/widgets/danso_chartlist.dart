@@ -5,15 +5,15 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class DansoLevel extends StatelessWidget {
-  const DansoLevel({
+class DansoChartlist extends StatelessWidget {
+  const DansoChartlist({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DansoSoundLearningController>(
-        init: DansoSoundLearningController(),
+    return GetBuilder<ChartlistController>(
+        init: ChartlistController(),
         builder: (controller) {
           return Scaffold(
             appBar: tabbarAndAppBar(
@@ -29,8 +29,7 @@ class DansoLevel extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.test == 0 ? null : Get.to(DansoLevel());
-                            controller.previouspage();
+                            controller.previousLevel();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
                           iconSize: 30,
@@ -38,14 +37,13 @@ class DansoLevel extends StatelessWidget {
                         Spacer(flex: 1),
                         CircleAvatar(
                           radius: 35,
-                          child:
-                              Center(child: Text("${controller.test} 아이콘 이미지")),
+                          child: Center(
+                              child: Text("${controller.levelChange} 아이콘 이미지")),
                         ),
                         Spacer(flex: 1),
                         IconButton(
                             onPressed: () {
-                              controller.nextpage();
-                              Get.to<DansoLevel>(DansoLevel());
+                              controller.nextLevel();
                             },
                             icon: Icon(Icons.keyboard_arrow_right)),
                       ],
@@ -71,7 +69,7 @@ class DansoLevel extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(basicPadding),
                     child: ListView.builder(
-                        itemCount: controller.list1[controller.test].length,
+                        itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
@@ -99,10 +97,12 @@ class DansoLevel extends StatelessWidget {
                                         IconButton(
                                           padding: EdgeInsets.all(1),
                                           onPressed: () {
-                                            Get.to(Congrats());
+                                            controller.likeChangeState();
                                           },
                                           icon: Icon(Icons.favorite),
-                                          color: white,
+                                          color: controller.like
+                                              ? Colors.red
+                                              : white,
                                         )
                                       ],
                                     ),

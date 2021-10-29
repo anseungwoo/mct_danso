@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageMysong extends StatelessWidget {
   const MyPageMysong({Key key}) : super(key: key);
@@ -9,7 +11,7 @@ class MyPageMysong extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(basicPadding),
           itemCount: 16,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
@@ -19,7 +21,7 @@ class MyPageMysong extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5), color: mediumGray),
                 height: 60.h,
                 child: Padding(
-                  padding: const EdgeInsets.all(17.0),
+                  padding: const EdgeInsets.all(stylePadddig),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -30,20 +32,24 @@ class MyPageMysong extends StatelessWidget {
                       ),
                       Spacer(flex: 1),
                       PopupMenuButton(
-                          padding: EdgeInsets.only(
-                            bottom: 3,
+                        onSelected: (value) {
+                          if (value == 1) {}
+                          if (value == 2) {
+                            Get.dialog(myPageDeleteDialog());
+                          }
+                        },
+                        icon: Icon(Icons.more_vert_outlined),
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: Text("공유하기"),
+                            value: 1,
                           ),
-                          icon: Icon(Icons.more_vert_outlined),
-                          itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  child: Text("공유하기"),
-                                  value: 1,
-                                ),
-                                PopupMenuItem(
-                                  child: Text("삭제하기"),
-                                  value: 2,
-                                )
-                              ]),
+                          PopupMenuItem(
+                            child: Text("삭제하기"),
+                            value: 2,
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ),

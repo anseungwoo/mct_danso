@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:get/get.dart';
 
 class DansoSoundLearningController extends GetxController {
@@ -9,10 +7,8 @@ class DansoSoundLearningController extends GetxController {
   String buttonListen = '예시듣기';
   int soundListUpDown = 0;
   List soundList = ["중", "임", "무", "황", "태"];
-  List soundList1 = ["仲", "林", "無", "黃", "太"];
+  List soundList1 = ["仲", "林", "無", "潢", "汰"];
 
-  int test = 0;
-  List list1 = ["2", '2,2', '22222', "23232"];
   int listsize = 20;
   void changeSoundTuningState() {
     soundTuningState = !soundTuningState;
@@ -40,18 +36,8 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
-  void nextpage() {
-    if (test < 1) {
-      test++;
-    }
-
-    update();
-  }
-
-  void previouspage() {
-    if (test > 0) {
-      test--;
-    }
+  void soundListTa(int n) {
+    soundListUpDown = 4;
 
     update();
   }

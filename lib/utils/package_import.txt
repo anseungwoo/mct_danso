@@ -8,7 +8,7 @@ import 'package:project_danso/widgets/widgets.dart';
 // 스크린유틸(기기별 사이즈 최적화)
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// getx
+// getx/
 import 'package:get/get.dart';
 
 
