@@ -11,6 +11,7 @@ class SongController extends GetxController {
   void onInit() {
     super.onInit();
     // getAllSongList();
+    // deleteAllSong();
     insertSongToJson();
   }
 
@@ -27,10 +28,16 @@ class SongController extends GetxController {
     update();
   }
 
+  getExerSongList(int exerNum) async {
+    // await DBHelPer().getAllSongs().then((value) => {songList = value});
+    songList.value = DBHelPer().getExerSongs(exerNum);
+    update();
+  }
+
   // 단소 곡 DB 데이터 체크
   insertSongToJson() async {
     await DBHelPer().getAllSongs().then((value) async {
-      print(value);
+      print('현재 음악 데이터 : $value');
       if (value.length < 1 || value == null || value == []) {
         String jsonString =
             await rootBundle.loadString('assets/json/song.json');
@@ -38,6 +45,7 @@ class SongController extends GetxController {
         res.songData.forEach((element) async {
           await DBHelPer().insertSongData(element);
         });
+        print("DB 데이터 insert : $value");
       } else {
         getAllSongList();
       }
