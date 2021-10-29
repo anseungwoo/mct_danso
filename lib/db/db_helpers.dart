@@ -45,6 +45,7 @@ class DBHelPer {
                 song_jangdan  TEXT      NOT NULL, 
                 song_like     TEXT      NOT NULL, 
                 song_diff     INTEGER   NOT NULL, 
+                song_sheet    TEXT      NOT NULL, 
                 PRIMARY KEY (song_id)
             )
           ''');
@@ -104,13 +105,14 @@ class DBHelPer {
   insertSongData(SongDataModel song) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff) VALUES(?,?,?,?,?)',
+        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet) VALUES(?,?,?,?,?,?)',
         [
           song.songTitle,
           song.songPath,
           song.songJangdan,
           song.songLike,
-          song.songDiff
+          song.songDiff,
+          song.songSheet
         ]);
   }
 
@@ -136,6 +138,30 @@ class DBHelPer {
                 songJangdan: value['song_jangdan'],
                 songLike: value['song_like'],
                 songDiff: value['song_diff'],
+                songSheet: value['song_sheet'],
+              ),
+            )
+            .toList()
+        : [];
+    return list;
+  }
+
+  // read exer song data
+  Future<List<SongDataModel>> getExerSongs(int exerNum) async {
+    final db = await database;
+    var res =
+        await db.rawQuery('SELECT * FROM $songTable WHERE song_diff=$exerNum');
+    List<SongDataModel> list = res.isNotEmpty
+        ? res
+            .map(
+              (value) => SongDataModel(
+                songId: value['song_id'],
+                songTitle: value['song_title'],
+                songPath: value['song_path'],
+                songJangdan: value['song_jangdan'],
+                songLike: value['song_like'],
+                songDiff: value['song_diff'],
+                songSheet: value['song_sheet'],
               ),
             )
             .toList()
@@ -160,13 +186,14 @@ class DBHelPer {
   updateSong(SongDataModel song) async {
     final db = await database;
     var res = db.rawUpdate(
-        'UPDATE $songTable SET song_title = ?, song_path = ?, song_jangdan = ?, song_like = ? WHERE song_id = ?',
+        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=? WHERE song_id=?',
         [
           song.songTitle,
           song.songPath,
           song.songJangdan,
           song.songLike,
-          song.songId
+          song.songId,
+          song.songSheet
         ]);
     return res;
   }

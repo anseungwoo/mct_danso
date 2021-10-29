@@ -6,14 +6,17 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoChartlist extends StatelessWidget {
-  const DansoChartlist({
+  DansoChartlist({
     Key key,
   }) : super(key: key);
+
+  final ChartlistController chartlistController =
+      Get.put(ChartlistController());
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ChartlistController>(
-        init: ChartlistController(),
+        init: chartlistController,
         builder: (controller) {
           return Scaffold(
             appBar: tabbarAndAppBar(
@@ -29,10 +32,6 @@ class DansoChartlist extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.levelChange == 0
-                                ? null
-                                : Get.off(DansoChartlist(),
-                                    transition: Transition.noTransition);
                             controller.previousLevel();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
@@ -42,13 +41,12 @@ class DansoChartlist extends StatelessWidget {
                         CircleAvatar(
                           radius: 35,
                           child: Center(
-                              child: Text("${controller.levelChange} 아이콘 이미지")),
+                              child:
+                                  Text("${controller.currentLevel} 아이콘 이미지")),
                         ),
                         Spacer(flex: 1),
                         IconButton(
                             onPressed: () {
-                              Get.off(DansoChartlist(),
-                                  transition: Transition.noTransition);
                               controller.nextLevel();
                             },
                             icon: Icon(Icons.keyboard_arrow_right)),
@@ -75,22 +73,24 @@ class DansoChartlist extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(basicPadding),
                     child: ListView.builder(
-                        itemCount:
-                            controller.list1[controller.levelChange].length,
+                        itemCount: controller.songList.length,
                         itemBuilder: (BuildContext context, int index) {
+                          var item = controller.songList[index];
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: InkWell(
                               onTap: () {
-                                Get.to(SongPlayAndTest());
+                                Get.to(
+                                  SongPlayAndTest(
+                                    appbarTitle: item.songTitle,
+                                  ),
+                                );
                               },
                               child: Container(
                                   decoration: BoxDecoration(
                                     color: mediumGray,
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(
-                                            5.0) //         <--- border radius here
-                                        ),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.0)),
                                   ),
                                   height: 57.h,
                                   width: 330.w,
@@ -98,16 +98,20 @@ class DansoChartlist extends StatelessWidget {
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
                                       children: [
-                                        Text("${index}. 곡리스트",
+                                        Text("$index. ${item.songTitle}",
                                             style: TextStyle(color: white)),
                                         Spacer(flex: 1),
                                         IconButton(
                                           padding: EdgeInsets.all(1),
                                           onPressed: () {
-                                            controller.likeChangeState();
+                                            controller.updateLikeSongList(
+                                              songId: item.songId,
+                                              songLike: item.songLike,
+                                              exerNum: controller.currentLevel,
+                                            );
                                           },
                                           icon: Icon(Icons.favorite),
-                                          color: controller.like
+                                          color: item.songLike == "true"
                                               ? Colors.red
                                               : white,
                                         )

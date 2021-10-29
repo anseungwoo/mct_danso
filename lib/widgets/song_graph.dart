@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/widgets/tabbar_and_appbar.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class SongGraph extends StatelessWidget {
   const SongGraph({Key key}) : super(key: key);

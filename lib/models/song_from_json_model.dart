@@ -32,6 +32,7 @@ class SongDataModel {
     this.songJangdan,
     this.songLike,
     this.songDiff,
+    this.songSheet,
   });
 
   int songId;
@@ -39,7 +40,8 @@ class SongDataModel {
   String songPath;
   String songJangdan;
   String songLike;
-  String songDiff;
+  int songDiff;
+  String songSheet;
 
   factory SongDataModel.fromJson(Map<String, dynamic> json) => SongDataModel(
         songId: json["song_id"],
@@ -48,6 +50,7 @@ class SongDataModel {
         songJangdan: json["song_jangdan"],
         songLike: json["song_like"],
         songDiff: json["song_diff"],
+        songSheet: json["song_sheet"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +60,6 @@ class SongDataModel {
         "song_jangdan": songJangdan,
         "song_like": songLike,
         "song_diff": songDiff,
+        "song_sheet": songSheet,
       };
 }
