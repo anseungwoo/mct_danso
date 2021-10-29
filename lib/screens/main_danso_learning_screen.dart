@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class HomeMenu2 extends StatelessWidget {
-  const HomeMenu2({Key key}) : super(key: key);
+class MainDansoLearningScreen extends StatelessWidget {
+  const MainDansoLearningScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,24 +33,26 @@ class HomeMenu2 extends StatelessWidget {
           carouselList: [
             DansoHistroyKind(
               subject: "단소잡는법과 각부분",
-              explanation: DANSOCATCH,
-              url: DANSOLIPSURL,
+              explanation: DANSO_CATCH,
+              url: DANSO_LIPS_URL,
             ),
-            DansosubLearning(explanation: DANSOSUBCATCH),
+            DansosubLearning(explanation: DANSO_SUBCATCH),
             DansoHistroyKind(
-                subject: "단소연주자세", explanation: PALYPOS, url: "LBmB3DGxnNk"),
+                subject: "단소연주자세",
+                explanation: PALYPOS,
+                url: DANSO_PALYPOS_URL),
             DansoHistroyKind(
-                subject: "입술모양", explanation: LIPS, url: DANSOLIPSURL),
+                subject: "입술모양", explanation: LIPS, url: DANSO_LIPS_URL),
             DansoHistroyKind(
-                subject: "호흡식", explanation: BREATH, url: DANSOBREATHURL),
+                subject: "호흡식", explanation: BREATH, url: DANSO_BREATH_URL),
           ],
         ),
         CarouselListWidget(
           carouselList: [
             DansoHistroyKind(
-                subject: "율명", explanation: SHEET, url: DANSOSHEETURL),
+                subject: "율명", explanation: SHEET, url: DANSO_SHEET_URL),
             DansoHistroyKind(
-                subject: "", explanation: SUBSHEET, url: DANSOSHEETURL),
+                subject: "", explanation: SUBSHEET, url: DANSO_SHEET_URL),
           ],
         ),
         fingering(),

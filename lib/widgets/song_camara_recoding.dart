@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'dart:io' as io;
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -9,7 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   PlayAndTestController controller;
-  SongCamaraRecoding({Key key, this.controller}) : super(key: key);
+  SongCamaraRecoding(
+      {Key key, this.controller, PlayAndTestController contoller})
+      : super(key: key);
 
   @override
   _SongCamaraRecodingState createState() => _SongCamaraRecodingState();
@@ -67,9 +68,17 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   Future<void> _onStop() async {
     final video = await _controller.stopVideoRecording();
     print(video);
-
-    await GallerySaver.saveVideo(video.path);
-    File(video.path).deleteSync();
+    print(video.path);
+    if (io.Platform.isIOS) {
+      await GallerySaver.saveVideo(
+        "${video.path}",
+      );
+    } else {
+      await GallerySaver.saveVideo(
+        video.path,
+      );
+    }
+    // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
     setState(() => _isRecording = false);
     widget.controller.stateCountUp(2);
   }
@@ -87,7 +96,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Row(
               children: [
-                Container(width: 120.w, height: 70.h, child: _buildCamera()),
+                Container(width: 120.w, height: 60.h, child: _buildCamera()),
                 Spacer(flex: 1),
                 _buildControls(),
               ],
