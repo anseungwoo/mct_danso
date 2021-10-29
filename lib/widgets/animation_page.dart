@@ -515,8 +515,8 @@ class _AnimationPageState extends State<AnimationPage>
         builder: (context, child) {
           return new Center(
               child: Container(
-            width: 330,
-            height: 555,
+            width: 330.w,
+            height: 515.h,
             color: Colors.grey.withOpacity(0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

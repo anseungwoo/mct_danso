@@ -480,7 +480,7 @@ Container bigfourbysix(double width, double height, int line) {
               child: Text(
               YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high)
                   .toChineseCharacter(),
-              style: TextStyle(fontSize: 19),
+              style: TextStyle(fontSize: 19.sp),
             ))
           : line == 2
               ? Column(
@@ -489,13 +489,13 @@ Container bigfourbysix(double width, double height, int line) {
                         child: Text(
                       YulmyeongNote(Yulmyeong.joong, ScaleStatus.high)
                           .toChineseCharacter(),
-                      style: TextStyle(fontSize: 19),
+                      style: TextStyle(fontSize: 19.sp),
                     )),
                     Center(
                         child: Text(
                       YulmyeongNote(Yulmyeong.tae, ScaleStatus.high)
                           .toChineseCharacter(),
-                      style: TextStyle(fontSize: 19),
+                      style: TextStyle(fontSize: 19.sp),
                     ))
                   ],
                 )
@@ -506,19 +506,19 @@ Container bigfourbysix(double width, double height, int line) {
                             child: Text(
                           YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin)
                               .toChineseCharacter(),
-                          style: TextStyle(fontSize: 19),
+                          style: TextStyle(fontSize: 19.sp),
                         )),
                         Center(
                             child: Text(
                           YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin)
                               .toChineseCharacter(),
-                          style: TextStyle(fontSize: 19),
+                          style: TextStyle(fontSize: 19.sp),
                         )),
                         Center(
                             child: Text(
                           YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin)
                               .toChineseCharacter(),
-                          style: TextStyle(fontSize: 19),
+                          style: TextStyle(fontSize: 19.sp),
                         ))
                       ],
                     )

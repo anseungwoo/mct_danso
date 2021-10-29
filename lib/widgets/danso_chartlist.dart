@@ -80,9 +80,11 @@ class DansoChartlist extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 10),
                             child: InkWell(
                               onTap: () {
-                                Get.to(SongPlayAndTest(),
-                                    arguments: item.songTitle);
-                                print(item.songTitle);
+                                Get.to(
+                                  SongPlayAndTest(
+                                    appbarTitle: item.songTitle,
+                                  ),
+                                );
                               },
                               child: Container(
                                   decoration: BoxDecoration(
