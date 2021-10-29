@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/widgets/my_page_look.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageScreen extends StatelessWidget {

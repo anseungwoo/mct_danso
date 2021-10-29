@@ -26,3 +26,6 @@ export 'my_page_look_player.dart';
 export 'youtube_player.dart';
 export 'song_audio_recorder.dart';
 export 'song_list_Jonganbo.dart';
+export 'animation_page.dart';
+export 'anumation_class.dart';
+export 'my_page_look.dart';

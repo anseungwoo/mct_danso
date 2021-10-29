@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/animation_page.dart';
-import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongPlayAndTest extends StatefulWidget {
-  const SongPlayAndTest({Key key}) : super(key: key);
+  SongPlayAndTest({Key key}) : super(key: key);
+
+  final songData = Get.arguments;
 
   @override
   _SongPlayAndTestState createState() => _SongPlayAndTestState();
@@ -39,7 +39,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: '노래곡1 제목', tabbar: null, enableTabBar: false),
+          title: '${widget.songData}', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
           init: PlayAndTestController(),
           builder: (controller) {
