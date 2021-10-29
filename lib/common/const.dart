@@ -75,9 +75,9 @@ const double jonHeight = 35;
 // const double jonFourWidth = 61;
 // const double jonFourHeight = 110;
 const double jonSixWidth = 62;
-const double jonSixHeight = 80;
+const double jonSixHeight = 82;
 const double jonEightWidth = 62;
-const double jonEightHeight = 60;
+const double jonEightHeight = 62;
 
 // 단소 스타일 가이드
 const Color third = Color(0xffc48535);

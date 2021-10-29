@@ -29,10 +29,6 @@ class DansoChartlist extends StatelessWidget {
                       children: [
                         IconButton(
                           onPressed: () {
-                            controller.levelChange == 0
-                                ? null
-                                : Get.off(DansoChartlist(),
-                                    transition: Transition.noTransition);
                             controller.previousLevel();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
@@ -47,8 +43,6 @@ class DansoChartlist extends StatelessWidget {
                         Spacer(flex: 1),
                         IconButton(
                             onPressed: () {
-                              Get.off(DansoChartlist(),
-                                  transition: Transition.noTransition);
                               controller.nextLevel();
                             },
                             icon: Icon(Icons.keyboard_arrow_right)),
@@ -75,8 +69,7 @@ class DansoChartlist extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(basicPadding),
                     child: ListView.builder(
-                        itemCount:
-                            controller.list1[controller.levelChange].length,
+                        itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 10),
