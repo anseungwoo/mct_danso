@@ -82,7 +82,7 @@ class DansoChartlist extends StatelessWidget {
                               onTap: () {
                                 Get.to(
                                   SongPlayAndTest(
-                                    appbarTitle: item.songTitle,
+                                    songData: item.songTitle,
                                   ),
                                 );
                               },

@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 class SongAudioRecorder extends StatefulWidget {
-  PlayAndTestController controller;
+  final PlayAndTestController controller;
   SongAudioRecorder({Key key, this.controller, PlayAndTestController contoller})
       : super(key: key);
   @override
@@ -20,7 +20,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   Recording _recording;
   Timer _time;
   Widget _buttonText = Text('녹음오류');
-  String _alert;
+  String alert;
   String delPath;
   String day;
   @override
@@ -92,11 +92,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
       setState(() {
         _recording = result;
         _buttonText = _buttonTextState(_recording.status);
-        _alert = '';
+        alert = '';
       });
     } else {
       setState(() {
-        _alert = 'Permission Required.';
+        alert = 'Permission Required.';
       });
     }
   }
