@@ -6,8 +6,8 @@ class DansoSoundLearningController extends GetxController {
   String buttonSound = '기준음 잡기';
   String buttonListen = '예시듣기';
   int soundListUpDown = 0;
-  List soundList = ["중", "임", "무", "황", "태"];
-  List soundList1 = ["仲", "林", "無", "潢", "汰"];
+  List soundList = ['중', '임', '무', '황', '태'];
+  List soundList1 = ['仲', '林', '無', '潢', '汰'];
 
   int listsize = 20;
   void changeSoundTuningState() {

@@ -56,7 +56,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                   ? '소리를 들어보세요'
                   : controller.soundTuningState
                       ? '단소를 불어보세요'
-                      : ""),
+                      : ''),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                   ),
                   child: Center(
                       child: Text(
-                    "${controller.soundList1[controller.soundListUpDown]}",
+                    '${controller.soundList1[controller.soundListUpDown]}',
                     style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                   )),
                 ),
@@ -160,13 +160,13 @@ class MainDansoLearningTestScreen extends StatelessWidget {
         SizedBox(
           width: 7.sp,
         ),
-        Text("왼손"),
+        Text('왼손'),
         SizedBox(
           width: 7.sp,
         ),
         CircleAvatar(radius: 14, backgroundColor: Colors.grey),
         SizedBox(width: 7.sp),
-        Text("오른손"),
+        Text('오른손'),
       ],
     );
   }

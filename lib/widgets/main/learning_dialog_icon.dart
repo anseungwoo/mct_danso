@@ -16,7 +16,7 @@ Widget icon({@required String text, @required Widget page}) {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10), //모서리를 둥글게
               border: Border.all(color: textHiddenGray, width: 1)),
-          child: Center(child: Text("아이콘 영역")),
+          child: Center(child: Text('아이콘 영역')),
         ),
       ),
       SizedBox(height: 16.h),

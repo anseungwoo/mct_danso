@@ -42,9 +42,9 @@ class MainScreen extends StatelessWidget {
             _homeMenuButton(
                 title: '질문하기',
                 contant: QUESTIONS,
-                page: AnimationPage(
+                page: JungganboColorAnimation(
                   tempo: 100,
-                  jonlenght: 6,
+                  jungganboLength: 6,
                 )),
           ],
         ),
@@ -110,7 +110,7 @@ class MainScreen extends StatelessWidget {
               CircleAvatar(
                   backgroundColor: Colors.grey[200],
                   radius: 39,
-                  child: Text("아이콘영역")),
+                  child: Text('아이콘영역')),
               SizedBox(width: 14.w),
               Container(
                 width: 190.w,

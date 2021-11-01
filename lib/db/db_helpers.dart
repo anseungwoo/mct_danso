@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -25,9 +23,9 @@ class DBHelPer {
     return _database;
   }
 
-  initDB() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'DansoDB.db');
+  Future<dynamic> initDB() async {
+    var documentsDirectory = await getApplicationDocumentsDirectory();
+    var path = join(documentsDirectory.path, 'DansoDB.db');
 
     return await openDatabase(path, version: 2, onCreate: (db, version) async {
       await db.execute('''
@@ -82,7 +80,7 @@ class DBHelPer {
   // frequency query -> TB_USER
   //===========================================================================
 
-  insertFr(UserModel user) async {
+  void insertFr(UserModel user) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO TB_USER (standard_fr) VALUES(?)', [user.standardFr]);
@@ -93,7 +91,7 @@ class DBHelPer {
   //   await db.rawUpdate('UPDATE ');
   // }
 
-  deleteFr() async {
+  void deleteFr() async {
     final db = await database;
     await db.rawDelete('DELETE FROM TB_USER');
   }
@@ -102,7 +100,7 @@ class DBHelPer {
   // song query -> TB_SONG
   //===========================================================================
   // insert song data
-  insertSongData(SongDataModel song) async {
+  void insertSongData(SongDataModel song) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet) VALUES(?,?,?,?,?,?)',
@@ -117,7 +115,7 @@ class DBHelPer {
   }
 
   // read song data
-  readSongData(int id) async {
+  Future<List<Map<String, dynamic>>> readSongData(int id) async {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_id = ?', [id]);
@@ -125,10 +123,10 @@ class DBHelPer {
   }
 
   // read all song data
-  Future<List<SongDataModel>> getAllSongs() async {
+  Future<dynamic> getAllSongs() async {
     final db = await database;
     var res = await db.rawQuery('SELECT * FROM $songTable');
-    List<SongDataModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => SongDataModel(
@@ -151,7 +149,7 @@ class DBHelPer {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_diff=$exerNum');
-    List<SongDataModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => SongDataModel(
@@ -170,20 +168,20 @@ class DBHelPer {
   }
 
   // delete all songs
-  deleteAllSongs() async {
+  void deleteAllSongs() async {
     final db = await database;
-    db.rawDelete('DELETE FROM $songTable');
+    await db.rawDelete('DELETE FROM $songTable');
   }
 
   // delete song
-  deleteSong(int id) async {
+  Future<int> deleteSong(int id) async {
     final db = await database;
     var res = db.rawDelete('DELETE FROM $songTable WHERE song_id = ?', [id]);
     return res;
   }
 
   //Update
-  updateSong(SongDataModel song) async {
+  Future<int> updateSong(SongDataModel song) async {
     final db = await database;
     var res = db.rawUpdate(
         'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=? WHERE song_id=?',
@@ -202,7 +200,7 @@ class DBHelPer {
   // CHALLANGE query -> TB_CHAL
   //===========================================================================
   // insert challange data
-  insertChalData(ChallangeModel chal) async {
+  void insertChalData(ChallangeModel chal) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO $challangeTable (song_id, chal_score) VALUES(?,?)',
@@ -210,7 +208,7 @@ class DBHelPer {
   }
 
   // read challange data
-  readChalData(int id) async {
+  Future<List<Map<String, dynamic>>> readChalData(int id) async {
     final db = await database;
     var res = await db
         .rawQuery('SELECT * FROM $challangeTable WHERE song_id = ?', [id]);
@@ -242,7 +240,7 @@ class DBHelPer {
   // EXERCISE query -> TB_EXER
   //===========================================================================
   // insert exercise data
-  insertExerData(ExerciseModel exer) async {
+  void insertExerData(ExerciseModel exer) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO $exerciseTable (song_id, exer_type, exer_path, exer_time) VALUES(?,?,?,?)',
@@ -253,7 +251,7 @@ class DBHelPer {
     final db = await database;
     var res = await db.rawQuery(
         "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='sound'");
-    List<ExerciseModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => ExerciseModel(
@@ -271,7 +269,7 @@ class DBHelPer {
     final db = await database;
     var res = await db.rawQuery(
         "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='video'");
-    List<ExerciseModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => ExerciseModel(
@@ -293,7 +291,7 @@ class DBHelPer {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT s.song_title, c.song_id FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id GROUP BY s.song_id');
-    List<MyHistoryModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => MyHistoryModel(
@@ -315,7 +313,7 @@ class DBHelPer {
     var res = await db.rawQuery(
         'SELECT chal_score, chal_time FROM $challangeTable WHERE song_id=?',
         [songId]);
-    List<MyHistoryModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => MyHistoryModel(
@@ -337,7 +335,7 @@ class DBHelPer {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_like="true"');
-    List<SongDataModel> list = res.isNotEmpty
+    var list = res.isNotEmpty
         ? res
             .map(
               (value) => SongDataModel(
@@ -352,7 +350,7 @@ class DBHelPer {
   }
 
   // 관심곡 업데이트
-  updateLikeSongList(String songLike, int songId) async {
+  void updateLikeSongList(String songLike, int songId) async {
     final db = await database;
     await db.rawUpdate('UPDATE $songTable SET song_like=? WHERE song_id=?',
         [songLike, songId]);

@@ -42,7 +42,7 @@ class DansoChartlist extends StatelessWidget {
                           radius: 35,
                           child: Center(
                               child:
-                                  Text("${controller.currentLevel} 아이콘 이미지")),
+                                  Text('${controller.currentLevel} 아이콘 이미지')),
                         ),
                         Spacer(flex: 1),
                         IconButton(
@@ -63,7 +63,7 @@ class DansoChartlist extends StatelessWidget {
                   width: 330.w,
                   child: Center(
                       child: Text(
-                    "사용할 율명 표시",
+                    '사용할 율명 표시',
                     style: TextStyle(
                         color: textDarkBlack, fontWeight: FontWeight.bold),
                   )),
@@ -98,7 +98,7 @@ class DansoChartlist extends StatelessWidget {
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
                                       children: [
-                                        Text("$index. ${item.songTitle}",
+                                        Text('$index. ${item.songTitle}',
                                             style: TextStyle(color: white)),
                                         Spacer(flex: 1),
                                         IconButton(
@@ -111,7 +111,7 @@ class DansoChartlist extends StatelessWidget {
                                             );
                                           },
                                           icon: Icon(Icons.favorite),
-                                          color: item.songLike == "true"
+                                          color: item.songLike == 'true'
                                               ? Colors.red
                                               : white,
                                         )

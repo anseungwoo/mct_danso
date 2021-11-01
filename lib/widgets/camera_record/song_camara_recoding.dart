@@ -1,6 +1,7 @@
 import 'dart:io' as io;
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/main.dart';
 import 'package:camera/camera.dart';
@@ -18,9 +19,11 @@ class SongCamaraRecoding extends StatefulWidget {
 
 class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   CameraController _controller;
-  int _cameraIndex = 1;
+  final int _cameraIndex = 1;
   Future<void> _initializeControllerFuture;
   bool _isRecording = false;
+  final size = MediaQuery.of(Get.context).size;
+
   @override
   void initState() {
     _controller =
@@ -40,11 +43,16 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     if (_controller == null || !_controller.value.isInitialized) {
       return Center(child: Text('Loading...'));
     } else {
-      return AspectRatio(
-        // aspectRatio: _controller.value.aspectRatio,
-        aspectRatio: 5 / 4,
-
-        child: CameraPreview(_controller),
+      return Container(
+        height: 68.h,
+        width: 111.w,
+        child: Center(
+          child: AspectRatio(
+            // aspectRatio: _controller.value.aspectRatio,
+            aspectRatio: 4 / 5,
+            child: CameraPreview(_controller),
+          ),
+        ),
       );
     }
   }
@@ -53,12 +61,12 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     return Row(
       children: <Widget>[
         ElevatedButton(
-          child: _isRecording ? Text("녹화중지") : Text("녹화시작"),
+          child: _isRecording ? Text('녹화중지') : Text('녹화시작'),
           onPressed: _isRecording ? _onStop : _onRecord,
         ),
         SizedBox(width: 5),
         ElevatedButton(
-          child: Text("반주만"),
+          child: Text('반주만'),
           onPressed: () {},
         ),
       ],
@@ -71,7 +79,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     print(video.path);
     if (io.Platform.isIOS) {
       await GallerySaver.saveVideo(
-        "${video.path}",
+        '${video.path}',
       );
     } else {
       await GallerySaver.saveVideo(
@@ -96,7 +104,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Row(
               children: [
-                Container(width: 120.w, height: 60.h, child: _buildCamera()),
+                _buildCamera(),
                 Spacer(flex: 1),
                 _buildControls(),
               ],

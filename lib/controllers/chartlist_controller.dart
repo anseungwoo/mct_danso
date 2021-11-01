@@ -7,7 +7,6 @@ class ChartlistController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getExerSongList(1);
   }
@@ -28,7 +27,7 @@ class ChartlistController extends GetxController {
     }
   }
 
-  getExerSongList(int exerNum) async {
+  void getExerSongList(int exerNum) async {
     var data = await DBHelPer().getExerSongs(exerNum);
     if (data.isNotEmpty || data != []) {
       songList.assignAll(data);
@@ -39,9 +38,9 @@ class ChartlistController extends GetxController {
     }
   }
 
-  updateLikeSongList({String songLike, int songId, int exerNum}) async {
+  void updateLikeSongList({String songLike, int songId, int exerNum}) async {
     // var data = await
-    var like = songLike == "true" ? "false" : "true";
+    var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);
     getExerSongList(exerNum);
   }

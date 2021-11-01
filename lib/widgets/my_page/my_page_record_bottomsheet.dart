@@ -34,7 +34,7 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 //                       crossAxisAlignment: CrossAxisAlignment.start,
 //                       children: [
 //                         Text(
-//                           "날짜 2021.10.07 13:20",
+//                           '날짜 2021.10.07 13:20',
 //                           style: TextStyle(
 //                               fontSize: 16.sp, fontWeight: FontWeight.bold),
 //                         ),
@@ -57,7 +57,7 @@ import 'package:sliding_sheet/sliding_sheet.dart';
 //                             padding: const EdgeInsets.only(
 //                                 top: 4, bottom: 4, right: 8),
 //                             child: Text(
-//                               "점수",
+//                               '점수',
 //                               style: TextStyle(
 //                                 fontSize: 18.sp,
 //                               ),
@@ -101,7 +101,7 @@ void bottomsheet(BuildContext context) async {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "곡 이름",
+                    '곡 이름',
                     style: TextStyle(
                         fontSize: textSingleSize.sp,
                         color: textBlack,
@@ -116,7 +116,7 @@ void bottomsheet(BuildContext context) async {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "날짜",
+                                  '날짜',
                                   style: TextStyle(
                                       fontSize: textContantSize.sp,
                                       color: textBlack,
@@ -140,7 +140,7 @@ void bottomsheet(BuildContext context) async {
                                   child: Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: Text(
-                                      "점수",
+                                      '점수',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           fontSize: textContantSize.sp,

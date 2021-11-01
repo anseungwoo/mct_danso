@@ -42,7 +42,7 @@ class MyPageLike extends StatelessWidget {
                         IconButton(
                           padding: EdgeInsets.only(bottom: 22),
                           icon: Icon(Icons.favorite),
-                          color: item.songLike == "true" ? Colors.red : white,
+                          color: item.songLike == 'true' ? Colors.red : white,
                           onPressed: () {
                             likeSongController.updateLikeSongList(
                               songId: item.songId,

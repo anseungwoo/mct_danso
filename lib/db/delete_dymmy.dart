@@ -17,14 +17,14 @@ class DeleteDummy {
   }
 
   // 도전하기 더미 삭제
-  deleteAllChal() async {
+  void deleteAllChal() async {
     final db = await database;
-    db.rawDelete('DELETE FROM TB_CHAL');
+    await db.rawDelete('DELETE FROM TB_CHAL');
   }
 
   // 연습하기 더미 삭제
-  deleteAllExer() async {
+  void deleteAllExer() async {
     final db = await database;
-    db.rawDelete('DELETE FROM TB_EXER');
+    await db.rawDelete('DELETE FROM TB_EXER');
   }
 }

@@ -3,13 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageLook extends StatelessWidget {
+class MyPageListen extends StatelessWidget {
   final String songname;
   final String date;
-  const MyPageLook({Key key, @required this.songname, @required this.date})
+  const MyPageListen({Key key, @required this.songname, @required this.date})
       : super(key: key);
 
   @override
@@ -25,9 +24,7 @@ class MyPageLook extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: basicPadding),
                     child: InkWell(
-                      onTap: () {
-                        Get.to(VideoApp());
-                      },
+                      onTap: () {},
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -59,6 +56,17 @@ class MyPageLook extends StatelessWidget {
                               ),
                             ),
                             Spacer(flex: 1),
+                            IconButton(
+                              padding: EdgeInsets.only(bottom: 6),
+                              onPressed: () {
+                                Get.dialog(myPageListenDialog());
+                              },
+                              icon: Icon(
+                                Icons.play_arrow,
+                                size: 40,
+                              ),
+                            ),
+                            SizedBox(width: 10.w),
                             PopupMenuButton(
                               onSelected: (value) {
                                 if (value == 1) {}
@@ -69,11 +77,11 @@ class MyPageLook extends StatelessWidget {
                               icon: Icon(Icons.more_vert_outlined),
                               itemBuilder: (context) => [
                                 PopupMenuItem(
-                                  child: Text("공유하기"),
+                                  child: Text('공유하기'),
                                   value: 1,
                                 ),
                                 PopupMenuItem(
-                                  child: Text("삭제하기"),
+                                  child: Text('삭제하기'),
                                   value: 2,
                                 )
                               ],

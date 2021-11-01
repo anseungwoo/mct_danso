@@ -14,6 +14,7 @@ class _VideoAppState extends State<VideoApp> {
   final File file = File(
       '/data/user/0/com.example.project_danso/cache/REC2329971791378890848.mp4');
 
+  @override
   void initState() {
     super.initState();
     videoPlayerController = VideoPlayerController.file(file);

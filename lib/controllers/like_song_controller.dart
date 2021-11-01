@@ -8,14 +8,12 @@ class LikeSongController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getLikeSongList();
   }
 
   @override
   void onClose() {
-    // TODO: implement onClose
     super.onClose();
     songController.getAllSongList();
   }
@@ -30,7 +28,7 @@ class LikeSongController extends GetxController {
 
   void updateLikeSongList({String songLike, int songId}) async {
     // var data = await
-    var like = songLike == "true" ? "false" : "true";
+    var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);
     getLikeSongList();
   }

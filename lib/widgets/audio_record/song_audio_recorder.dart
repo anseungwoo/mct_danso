@@ -12,14 +12,14 @@ class SongAudioRecorder extends StatefulWidget {
   SongAudioRecorder({Key key, this.controller, PlayAndTestController contoller})
       : super(key: key);
   @override
-  State<StatefulWidget> createState() => new SongAudioRecorderState();
+  State<StatefulWidget> createState() => SongAudioRecorderState();
 }
 
 class SongAudioRecorderState extends State<SongAudioRecorder> {
   FlutterAudioRecorder _recorder;
   Recording _recording;
   Timer _time;
-  Widget _buttonText = Text("녹음오류");
+  Widget _buttonText = Text('녹음오류');
   String _alert;
   String delPath;
   String day;
@@ -59,7 +59,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   }
 
   Future _init() async {
-    String customPath = '/flutter_audio_recorder_';
+    var customPath = '/flutter_audio_recorder_';
     io.Directory appDocDirectory;
     if (io.Platform.isIOS) {
       appDocDirectory = await getApplicationDocumentsDirectory();
@@ -67,7 +67,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
       appDocDirectory = await getExternalStorageDirectory();
     }
 
-    // can add extension like ".mp4" ".wav" ".m4a" ".aac"
+    // can add extension like '.mp4' '.wav' '.m4a' '.aac'
     delPath = appDocDirectory.path + customPath;
     customPath = appDocDirectory.path +
         customPath +
@@ -92,11 +92,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
       setState(() {
         _recording = result;
         _buttonText = _buttonTextState(_recording.status);
-        _alert = "";
+        _alert = '';
       });
     } else {
       setState(() {
-        _alert = "Permission Required.";
+        _alert = 'Permission Required.';
       });
     }
   }
@@ -148,15 +148,15 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     switch (status) {
       case RecordingStatus.Initialized:
         {
-          return Text("녹음시작");
+          return Text('녹음시작');
         }
       case RecordingStatus.Recording:
         {
-          return Text("녹음멈춤");
+          return Text('녹음멈춤');
         }
       case RecordingStatus.Stopped:
         {
-          return Text("녹화정지");
+          return Text('녹화정지');
         }
       default:
         return Icon(Icons.do_not_disturb_on);
@@ -173,7 +173,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
       SizedBox(width: 5.w),
       ElevatedButton(
         onPressed: () {},
-        child: Text("반주만"),
+        child: Text('반주만'),
       ),
     ]);
 

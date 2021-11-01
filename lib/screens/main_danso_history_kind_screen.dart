@@ -45,7 +45,7 @@ class MainDansoHistoryKindScreen extends StatelessWidget {
                 // 좌우 스크롤 화면
                 // 화면 1
                 DansoHistroyKind(
-                    subject: "단소의 역사",
+                    subject: '단소의 역사',
                     explanation: HISTORY,
                     url: DANSO_HISTORY_URL),
                 // 화면 2
@@ -58,12 +58,12 @@ class MainDansoHistoryKindScreen extends StatelessWidget {
                 // 좌우 스크롤 화면
                 // 화면 1
                 DansoHistroyKind(
-                    subject: "평조단소", explanation: PDANSO, url: P_DANSO_URL),
+                    subject: '평조단소', explanation: PDANSO, url: P_DANSO_URL),
                 // 화면 2
                 DansoHistroyKind(
-                    subject: "경제단소", explanation: KDANSO, url: K_DANSO_URL),
+                    subject: '경제단소', explanation: KDANSO, url: K_DANSO_URL),
                 DansoHistroyKind(
-                    subject: "향제단소", explanation: HDANSO, url: H_DANSO_URL),
+                    subject: '향제단소', explanation: HDANSO, url: H_DANSO_URL),
               ],
             ),
           ],

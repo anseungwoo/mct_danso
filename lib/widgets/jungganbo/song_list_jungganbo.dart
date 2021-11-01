@@ -3,8 +3,8 @@ import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:danso_function/danso_function.dart';
 
-Widget fourByEightJon(double width, double height) {
-  String text = '1';
+Widget fourByEightJung(double width, double height) {
+  var text = '1';
   return Row(
     children: [
       Column(
@@ -244,42 +244,48 @@ Container bigfourbyEight(double width, double height, String text, int line) {
         line == 1
             ? Center(
                 child: Text(
-                '${YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin).toChineseCharacter()}',
-                style: TextStyle(fontSize: 14),
-              ))
+                  '${YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin).toChineseCharacter()}',
+                  style: TextStyle(fontSize: 14),
+                ),
+              )
             : line == 2
                 ? Column(
                     children: [
                       Center(
-                          child: Text(
-                        "淋",
-                        style: TextStyle(fontSize: 14),
-                      )),
+                        child: Text(
+                          '淋',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
                       Center(
-                          child: Text(
-                        "淋",
-                        style: TextStyle(fontSize: 14),
-                      ))
+                        child: Text(
+                          '淋',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      )
                     ],
                   )
                 : line == 3
                     ? Column(
                         children: [
                           Center(
-                              child: Text(
-                            "淋",
-                            style: TextStyle(fontSize: 14),
-                          )),
+                            child: Text(
+                              '淋',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
                           Center(
-                              child: Text(
-                            "淋",
-                            style: TextStyle(fontSize: 14),
-                          )),
+                            child: Text(
+                              '淋',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
                           Center(
-                              child: Text(
-                            "淋",
-                            style: TextStyle(fontSize: 14),
-                          ))
+                            child: Text(
+                              '淋',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
                         ],
                       )
                     : Container(),
@@ -288,7 +294,7 @@ Container bigfourbyEight(double width, double height, String text, int line) {
   );
 }
 
-Widget fourBySixJon(double width, double height) {
+Widget fourBySixJung(double width, double height) {
   return Row(
     children: [
       Column(
@@ -526,7 +532,7 @@ Container bigfourbysix(double width, double height, int line) {
     ]),
   );
 }
-// Widget fourByFourJon() {
+// Widget fourByFourJung() {
 //   return Row(
 //     children: [
 //       Column(
@@ -652,7 +658,7 @@ Container bigfourbysix(double width, double height, int line) {
 // Container smallfourbyfour() {
 //   return Container(
 //     width: 20.w,
-//     height: jonFourHeight.h,
+//     height: jungFourHeight.h,
 //     decoration:
 //         BoxDecoration(color: white, border: Border.all(color: textBlack)),
 //   );
@@ -660,8 +666,8 @@ Container bigfourbysix(double width, double height, int line) {
 
 // Container bigfourbyfour() {
 //   return Container(
-//     width: jonFourWidth.w,
-//     height: jonFourHeight.h,
+//     width: jungFourWidth.w,
+//     height: jungFourHeight.h,
 //     decoration:
 //         BoxDecoration(color: white, border: Border.all(color: textBlack)),
 //   );

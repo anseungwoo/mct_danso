@@ -48,7 +48,7 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
               children: widget.carouselList.map(
                 (v) {
                   //these two lines
-                  int index = widget.carouselList.indexOf(v); //are changed
+                  var index = widget.carouselList.indexOf(v); //are changed
                   return Container(
                     width: 8.0,
                     height: 8.0,

@@ -30,11 +30,11 @@ Widget learningDialog() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              icon(text: "단소 학습 익히기", page: MainDansoLearningScreen()),
+              icon(text: '단소 학습 익히기', page: MainDansoLearningScreen()),
               SizedBox(
                 width: 14.w,
               ),
-              icon(page: MainDansoLearningTestScreen(), text: "단계별 연습"),
+              icon(page: MainDansoLearningTestScreen(), text: '단계별 연습'),
             ],
           ),
         ],

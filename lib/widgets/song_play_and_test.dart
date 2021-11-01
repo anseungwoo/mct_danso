@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -77,7 +76,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   SizedBox(width: 5),
                                   songSwapButton(
                                       text: Text(
-                                          "${controller.speed[controller.speedCount]} 배속"),
+                                          '${controller.speed[controller.speedCount]} 배속'),
                                       onPressed: () {
                                         controller.changespeedState();
                                       }),
@@ -112,7 +111,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           ),
                                           SizedBox(width: 5),
                                           songSwapButton(
-                                              text: Text("녹음"),
+                                              text: Text('녹음'),
                                               onPressed: () {
                                                 controller.stateCountUp(5);
                                                 print(controller.statecount);
@@ -129,7 +128,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           SizedBox(width: 5),
                                           songSwapButton(
                                               text: Text(
-                                                  "${controller.speed[controller.speedCount]} 배속"),
+                                                  '${controller.speed[controller.speedCount]} 배속'),
                                               onPressed: () {
                                                 controller.changespeedState();
                                               }),
@@ -174,26 +173,26 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       : Row(
                           children: [
                             Text(
-                                "${controller.speed[controller.speedCount]} 배속"),
+                                '${controller.speed[controller.speedCount]} 배속'),
                             Spacer(flex: 1),
-                            Text("자진모리장단")
+                            Text('자진모리장단')
                           ],
                         ),
-                  // fourByFourJon(),
+                  // fourByFourJung(),
                   // controller.statecount == 4
-                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
-                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
+                  //     ? fourBySixJung(jungSixWidth, jungSixHeight - 5)
+                  //     : fourBySixJung(jungSixWidth, jungSixHeight),
                   Stack(
                     children: [
                       controller.statecount == 4
-                          ? fourByEightJon(jonEightWidth, jonEightHeight)
-                          : fourByEightJon(jonEightWidth, jonEightHeight),
+                          ? fourByEightJung(jungEightWidth, jungEightHeight)
+                          : fourByEightJung(jungEightWidth, jungEightHeight),
                       controller.statecount == 4
-                          ? fourBySixJon(jonSixWidth, jonSixHeight)
-                          : fourBySixJon(jonSixWidth, jonSixHeight),
-                      AnimationPage(
+                          ? fourBySixJung(jungSixWidth, jungSixHeight)
+                          : fourBySixJung(jungSixWidth, jungSixHeight),
+                      JungganboColorAnimation(
                         tempo: 100,
-                        jonlenght: 6,
+                        jungganboLength: 6,
                       ),
                     ],
                   ),
@@ -225,11 +224,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       height: 5.h,
                     ),
                     Text(
-                      "녹화화면을 준비하고 있습니다",
+                      '녹화화면을 준비하고 있습니다',
                       style: TextStyle(color: white, fontSize: textContantSize),
                     ),
                     Text(
-                      "녹화시작 버튼을 누르고 녹화시작",
+                      '녹화시작 버튼을 누르고 녹화시작',
                       style: TextStyle(color: white, fontSize: textContantSize),
                     ),
                   ],

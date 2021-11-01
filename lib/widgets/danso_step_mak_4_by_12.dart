@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget levelJonGanbo(List level) {
+Widget jungganboFromLevel(List level) {
   return Row(
     children: [
       left(level),
@@ -19,73 +19,73 @@ Column right(List level) {
     children: [
       Row(
         children: [
-          jonContainer(level, 36),
+          jungContainer(level, 36),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 37),
+          jungContainer(level, 37),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 38),
+          jungContainer(level, 38),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 39),
+          jungContainer(level, 39),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 40),
+          jungContainer(level, 40),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 41),
+          jungContainer(level, 41),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 42),
+          jungContainer(level, 42),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 43),
+          jungContainer(level, 43),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 44),
+          jungContainer(level, 44),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 45),
+          jungContainer(level, 45),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 46),
+          jungContainer(level, 46),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 47),
+          jungContainer(level, 47),
           blackContainer(),
         ],
       ),
@@ -99,73 +99,73 @@ Column centerRight(List level) {
     children: [
       Row(
         children: [
-          jonContainer(level, 24),
+          jungContainer(level, 24),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 25),
+          jungContainer(level, 25),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 26),
+          jungContainer(level, 26),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 27),
+          jungContainer(level, 27),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 28),
+          jungContainer(level, 28),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 29),
+          jungContainer(level, 29),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 30),
+          jungContainer(level, 30),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 31),
+          jungContainer(level, 31),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 32),
+          jungContainer(level, 32),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 33),
+          jungContainer(level, 33),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 34),
+          jungContainer(level, 34),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 35),
+          jungContainer(level, 35),
           blackContainer(),
         ],
       ),
@@ -179,73 +179,73 @@ Column centerLeft(List level) {
     children: [
       Row(
         children: [
-          jonContainer(level, 12),
+          jungContainer(level, 12),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 13),
+          jungContainer(level, 13),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 14),
+          jungContainer(level, 14),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 15),
+          jungContainer(level, 15),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 16),
+          jungContainer(level, 16),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 17),
+          jungContainer(level, 17),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 18),
+          jungContainer(level, 18),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 19),
+          jungContainer(level, 19),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 20),
+          jungContainer(level, 20),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 21),
+          jungContainer(level, 21),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 22),
+          jungContainer(level, 22),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 23),
+          jungContainer(level, 23),
           blackContainer(),
         ],
       ),
@@ -259,73 +259,73 @@ Column left(List level) {
     children: [
       Row(
         children: [
-          jonContainer(level, 0),
+          jungContainer(level, 0),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 1),
+          jungContainer(level, 1),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 2),
+          jungContainer(level, 2),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 3),
+          jungContainer(level, 3),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 4),
+          jungContainer(level, 4),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 5),
+          jungContainer(level, 5),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 6),
+          jungContainer(level, 6),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 7),
+          jungContainer(level, 7),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 8),
+          jungContainer(level, 8),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 9),
+          jungContainer(level, 9),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 10),
+          jungContainer(level, 10),
           blackContainer(),
         ],
       ),
       Row(
         children: [
-          jonContainer(level, 11),
+          jungContainer(level, 11),
           blackContainer(),
         ],
       ),
@@ -336,21 +336,21 @@ Column left(List level) {
 Container blackContainer() {
   return Container(
     width: 20.w,
-    height: jonHeight.h,
+    height: jungHeight.h,
     decoration: BoxDecoration(
       border: Border.all(color: textBlack),
     ),
   );
 }
 
-Container jonContainer(List level, int count) {
+Container jungContainer(List level, int count) {
   return Container(
-    width: jonWidth.w,
-    height: jonHeight.h,
+    width: jungWidth.w,
+    height: jungHeight.h,
     decoration: BoxDecoration(border: Border.all(color: textBlack)),
     child: Center(
         child: Text(
-      "${level[count]}",
+      '${level[count]}',
       style: TextStyle(fontSize: textSingleSize.sp, fontWeight: bold),
     )),
   );

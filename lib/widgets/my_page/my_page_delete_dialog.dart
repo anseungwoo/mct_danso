@@ -20,7 +20,7 @@ Widget myPageDeleteDialog() {
                 Padding(
                   padding: const EdgeInsets.all(43.0),
                   child: Text(
-                    "삭제하겠습니까?",
+                    '삭제하겠습니까?',
                     style: TextStyle(fontSize: textStyleSize),
                   ),
                 ),
@@ -32,7 +32,7 @@ Widget myPageDeleteDialog() {
                     children: [
                       TextButton(
                         child: Text(
-                          "취소",
+                          '취소',
                           style: TextStyle(color: textBlack),
                         ),
                         onPressed: () {
@@ -42,7 +42,7 @@ Widget myPageDeleteDialog() {
                       Spacer(flex: 1),
                       TextButton(
                         child: Text(
-                          "확인",
+                          '확인',
                           style: TextStyle(color: textBlack),
                         ),
                         onPressed: () {},
