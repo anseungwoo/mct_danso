@@ -10,8 +10,8 @@ class SongController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // getAllSongList();
-    deleteAllSong();
+
+    deleteAllSong(); // DB 초기화
     insertSongToJson();
   }
 

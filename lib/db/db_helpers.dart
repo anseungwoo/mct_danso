@@ -23,7 +23,7 @@ class DBHelPer {
     return _database;
   }
 
-  Future<dynamic> initDB() async {
+  Future<Database> initDB() async {
     var documentsDirectory = await getApplicationDocumentsDirectory();
     var path = join(documentsDirectory.path, 'DansoDB.db');
 
@@ -80,7 +80,7 @@ class DBHelPer {
   // frequency query -> TB_USER
   //===========================================================================
 
-  void insertFr(UserModel user) async {
+  dynamic insertFr(UserModel user) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO TB_USER (standard_fr) VALUES(?)', [user.standardFr]);
@@ -91,7 +91,7 @@ class DBHelPer {
   //   await db.rawUpdate('UPDATE ');
   // }
 
-  void deleteFr() async {
+  dynamic deleteFr() async {
     final db = await database;
     await db.rawDelete('DELETE FROM TB_USER');
   }
@@ -100,7 +100,7 @@ class DBHelPer {
   // song query -> TB_SONG
   //===========================================================================
   // insert song data
-  void insertSongData(SongDataModel song) async {
+  dynamic insertSongData(SongDataModel song) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet) VALUES(?,?,?,?,?,?)',
@@ -115,7 +115,7 @@ class DBHelPer {
   }
 
   // read song data
-  Future<List<Map<String, dynamic>>> readSongData(int id) async {
+  dynamic readSongData(int id) async {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_id = ?', [id]);
@@ -123,24 +123,27 @@ class DBHelPer {
   }
 
   // read all song data
-  Future<dynamic> getAllSongs() async {
+  Future<List<SongDataModel>> getAllSongs() async {
     final db = await database;
     var res = await db.rawQuery('SELECT * FROM $songTable');
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => SongDataModel(
-                songId: value['song_id'],
-                songTitle: value['song_title'],
-                songPath: value['song_path'],
-                songJangdan: value['song_jangdan'],
-                songLike: value['song_like'],
-                songDiff: value['song_diff'],
-                songSheet: value['song_sheet'],
-              ),
-            )
-            .toList()
-        : [];
+    List<SongDataModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => SongDataModel(
+              songId: value['song_id'],
+              songTitle: value['song_title'],
+              songPath: value['song_path'],
+              songJangdan: value['song_jangdan'],
+              songLike: value['song_like'],
+              songDiff: value['song_diff'],
+              songSheet: value['song_sheet'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     return list;
   }
 
@@ -149,39 +152,42 @@ class DBHelPer {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_diff=$exerNum');
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => SongDataModel(
-                songId: value['song_id'],
-                songTitle: value['song_title'],
-                songPath: value['song_path'],
-                songJangdan: value['song_jangdan'],
-                songLike: value['song_like'],
-                songDiff: value['song_diff'],
-                songSheet: value['song_sheet'],
-              ),
-            )
-            .toList()
-        : [];
+    List<SongDataModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => SongDataModel(
+              songId: value['song_id'],
+              songTitle: value['song_title'],
+              songPath: value['song_path'],
+              songJangdan: value['song_jangdan'],
+              songLike: value['song_like'],
+              songDiff: value['song_diff'],
+              songSheet: value['song_sheet'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     return list;
   }
 
   // delete all songs
-  void deleteAllSongs() async {
+  dynamic deleteAllSongs() async {
     final db = await database;
     await db.rawDelete('DELETE FROM $songTable');
   }
 
   // delete song
-  Future<int> deleteSong(int id) async {
+  dynamic deleteSong(int id) async {
     final db = await database;
     var res = db.rawDelete('DELETE FROM $songTable WHERE song_id = ?', [id]);
     return res;
   }
 
   //Update
-  Future<int> updateSong(SongDataModel song) async {
+  dynamic updateSong(SongDataModel song) async {
     final db = await database;
     var res = db.rawUpdate(
         'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=? WHERE song_id=?',
@@ -200,7 +206,7 @@ class DBHelPer {
   // CHALLANGE query -> TB_CHAL
   //===========================================================================
   // insert challange data
-  void insertChalData(ChallangeModel chal) async {
+  dynamic insertChalData(ChallangeModel chal) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO $challangeTable (song_id, chal_score) VALUES(?,?)',
@@ -208,7 +214,7 @@ class DBHelPer {
   }
 
   // read challange data
-  Future<List<Map<String, dynamic>>> readChalData(int id) async {
+  dynamic readChalData(int id) async {
     final db = await database;
     var res = await db
         .rawQuery('SELECT * FROM $challangeTable WHERE song_id = ?', [id]);
@@ -240,7 +246,7 @@ class DBHelPer {
   // EXERCISE query -> TB_EXER
   //===========================================================================
   // insert exercise data
-  void insertExerData(ExerciseModel exer) async {
+  dynamic insertExerData(ExerciseModel exer) async {
     final db = await database;
     await db.rawInsert(
         'INSERT INTO $exerciseTable (song_id, exer_type, exer_path, exer_time) VALUES(?,?,?,?)',
@@ -251,17 +257,20 @@ class DBHelPer {
     final db = await database;
     var res = await db.rawQuery(
         "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='sound'");
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => ExerciseModel(
-                songTitle: value['song_title'],
-                exerPath: value['exer_path'],
-                exerTime: value['exer_time'],
-              ),
-            )
-            .toList()
-        : [];
+    List<ExerciseModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => ExerciseModel(
+              songTitle: value['song_title'],
+              exerPath: value['exer_path'],
+              exerTime: value['exer_time'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     return list;
   }
 
@@ -269,17 +278,20 @@ class DBHelPer {
     final db = await database;
     var res = await db.rawQuery(
         "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='video'");
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => ExerciseModel(
-                songTitle: value['song_title'],
-                exerPath: value['exer_path'],
-                exerTime: value['exer_time'],
-              ),
-            )
-            .toList()
-        : [];
+    List<ExerciseModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => ExerciseModel(
+              songTitle: value['song_title'],
+              exerPath: value['exer_path'],
+              exerTime: value['exer_time'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     return list;
   }
   //===========================================================================
@@ -287,20 +299,23 @@ class DBHelPer {
   // 마이페이지 - 기록 탭
   //===========================================================================
   //
-  Future<dynamic> readMyHistoryData() async {
+  Future<List<MyHistoryModel>> readMyHistoryData() async {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT s.song_title, c.song_id FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id GROUP BY s.song_id');
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => MyHistoryModel(
-                songTitle: value['song_title'],
-                songId: value['song_id'],
-              ),
-            )
-            .toList()
-        : [];
+    List<MyHistoryModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => MyHistoryModel(
+              songTitle: value['song_title'],
+              songId: value['song_id'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     print(list);
     return list;
   }
@@ -308,21 +323,24 @@ class DBHelPer {
   // 마이페이지 - 기록 탭 - 그래프
   //===========================================================================
   //
-  Future<dynamic> readMyHistoryGraph(int songId) async {
+  Future<List<MyHistoryModel>> readMyHistoryGraph(int songId) async {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT chal_score, chal_time FROM $challangeTable WHERE song_id=?',
         [songId]);
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => MyHistoryModel(
-                chalScore: value['chal_score'],
-                chalTime: value['chal_time'],
-              ),
-            )
-            .toList()
-        : [];
+    List<MyHistoryModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => MyHistoryModel(
+              chalScore: value['chal_score'],
+              chalTime: value['chal_time'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     print(list);
     return list;
   }
@@ -331,26 +349,29 @@ class DBHelPer {
   // 마이페이지 - 관심곡 리스트
   //===========================================================================
   // 관심곡 리스트 불러오기
-  Future<dynamic> readLikeSongList() async {
+  Future<List<SongDataModel>> readLikeSongList() async {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_like="true"');
-    var list = res.isNotEmpty
-        ? res
-            .map(
-              (value) => SongDataModel(
-                songId: value['song_id'],
-                songTitle: value['song_title'],
-                songLike: value['song_like'],
-              ),
-            )
-            .toList()
-        : [];
+    List<SongDataModel> list;
+    if (res.isNotEmpty) {
+      list = res
+          .map(
+            (value) => SongDataModel(
+              songId: value['song_id'],
+              songTitle: value['song_title'],
+              songLike: value['song_like'],
+            ),
+          )
+          .toList();
+    } else {
+      list = [];
+    }
     return list;
   }
 
   // 관심곡 업데이트
-  void updateLikeSongList(String songLike, int songId) async {
+  dynamic updateLikeSongList(String songLike, int songId) async {
     final db = await database;
     await db.rawUpdate('UPDATE $songTable SET song_like=? WHERE song_id=?',
         [songLike, songId]);

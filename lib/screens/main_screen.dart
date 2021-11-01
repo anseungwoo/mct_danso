@@ -1,3 +1,4 @@
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
@@ -15,38 +16,43 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                topImage(),
-                myPage(),
-              ],
-            ),
-            SizedBox(height: 29.h),
-            _homeMenuButton(
-                title: '단소 알아보기',
-                contant: LOOK,
-                page: MainDansoHistoryKindScreen()),
-            _homeMenuButton(
-                title: '운지법 익히기',
-                page: learningDialog(),
-                contant: LEARN,
-                dialog: true),
-            _homeMenuButton(
-                title: '연주곡 익히기',
-                contant: PLAYLEARN,
-                page: MainDansoChartlistScreen()),
-            _homeMenuButton(
-                title: '질문하기',
-                contant: QUESTIONS,
-                page: JungganboColorAnimation(
-                  tempo: 100,
-                  jungganboLength: 6,
-                )),
-          ],
+      body: DoubleBackToCloseApp(
+        snackBar: SnackBar(
+          content: Text('한번 더 누르면 앱이 종료됩니다.'),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Stack(
+                children: [
+                  topImage(),
+                  myPage(),
+                ],
+              ),
+              SizedBox(height: 29.h),
+              _homeMenuButton(
+                  title: '단소 알아보기',
+                  contant: LOOK,
+                  page: MainDansoHistoryKindScreen()),
+              _homeMenuButton(
+                  title: '운지법 익히기',
+                  page: learningDialog(),
+                  contant: LEARN,
+                  dialog: true),
+              _homeMenuButton(
+                  title: '연주곡 익히기',
+                  contant: PLAYLEARN,
+                  page: MainDansoChartlistScreen()),
+              _homeMenuButton(
+                  title: '질문하기',
+                  contant: QUESTIONS,
+                  page: JungganboColorAnimation(
+                    tempo: 100,
+                    jungganboLength: 6,
+                  )),
+            ],
+          ),
         ),
       ),
     );

@@ -8,8 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongPlayAndTest extends StatefulWidget {
-  final String appbarTitle;
-  SongPlayAndTest({Key key, this.appbarTitle}) : super(key: key);
+  final String songData;
+  SongPlayAndTest({Key key, this.songData}) : super(key: key);
 
   // final songData = Get.arguments;
 
@@ -39,7 +39,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
+          title: '${widget.songData}', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
           init: PlayAndTestController(),
           builder: (controller) {

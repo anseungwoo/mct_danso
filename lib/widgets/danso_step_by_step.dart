@@ -6,8 +6,8 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoStepByStep extends StatelessWidget {
-  List level;
-  String currentLevel;
+  final List level;
+  final String currentLevel;
   DansoStepByStep({Key key, @required this.level, @required this.currentLevel})
       : super(key: key);
 

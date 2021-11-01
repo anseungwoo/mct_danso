@@ -30,3 +30,4 @@ export 'animation_page.dart';
 export 'my_page/my_page_look.dart';
 export 'splash_logo.dart';
 export 'main_danso_learning/fingering.dart';
+export 'toast_message.dart';
