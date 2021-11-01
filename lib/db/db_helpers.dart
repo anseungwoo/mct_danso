@@ -287,7 +287,7 @@ class DBHelPer {
   // 마이페이지 - 기록 탭
   //===========================================================================
   //
-  Future<List<MyHistoryModel>> readMyHistoryData() async {
+  Future<dynamic> readMyHistoryData() async {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT s.song_title, c.song_id FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id GROUP BY s.song_id');
@@ -308,7 +308,7 @@ class DBHelPer {
   // 마이페이지 - 기록 탭 - 그래프
   //===========================================================================
   //
-  Future<List<MyHistoryModel>> readMyHistoryGraph(int songId) async {
+  Future<dynamic> readMyHistoryGraph(int songId) async {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT chal_score, chal_time FROM $challangeTable WHERE song_id=?',
@@ -331,7 +331,7 @@ class DBHelPer {
   // 마이페이지 - 관심곡 리스트
   //===========================================================================
   // 관심곡 리스트 불러오기
-  Future<List<SongDataModel>> readLikeSongList() async {
+  Future<dynamic> readLikeSongList() async {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_like="true"');

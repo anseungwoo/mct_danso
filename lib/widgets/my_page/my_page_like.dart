@@ -31,16 +31,15 @@ class MyPageLike extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(stylePadddig),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
                           '${item.songTitle}',
                           style: TextStyle(
                               fontSize: textStyleSize.sp, color: white),
                         ),
-                        Spacer(flex: 1),
                         IconButton(
-                          padding: EdgeInsets.only(bottom: 22),
                           icon: Icon(Icons.favorite),
                           color: item.songLike == 'true' ? Colors.red : white,
                           onPressed: () {

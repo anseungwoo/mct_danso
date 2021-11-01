@@ -27,7 +27,7 @@ class DansoChartlist extends StatelessWidget {
                   padding: const EdgeInsets.all(basicPadding),
                   child: Container(
                     height: 70.h,
-                    width: 330.w,
+                    // width: 330.w,
                     child: Row(
                       children: [
                         IconButton(
@@ -60,7 +60,7 @@ class DansoChartlist extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   ),
                   height: 90.h,
-                  width: 330.w,
+                  // width: 330.w,
                   child: Center(
                       child: Text(
                     '사용할 율명 표시',
@@ -93,16 +93,16 @@ class DansoChartlist extends StatelessWidget {
                                         BorderRadius.all(Radius.circular(5.0)),
                                   ),
                                   height: 57.h,
-                                  width: 330.w,
+                                  // width: 330.w,
                                   child: Padding(
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('$index. ${item.songTitle}',
                                             style: TextStyle(color: white)),
-                                        Spacer(flex: 1),
                                         IconButton(
-                                          padding: EdgeInsets.all(1),
                                           onPressed: () {
                                             controller.updateLikeSongList(
                                               songId: item.songId,
