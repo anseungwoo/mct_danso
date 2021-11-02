@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:project_danso/db/db_helpers.dart';
 
-class ChartlistController extends GetxController {
+class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;
   var songList = [].obs;
 

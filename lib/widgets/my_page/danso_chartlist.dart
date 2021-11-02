@@ -5,18 +5,20 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import '../sheet_test.dart';
+
 class DansoChartlist extends StatelessWidget {
   DansoChartlist({
     Key key,
   }) : super(key: key);
 
-  final ChartlistController chartlistController =
-      Get.put(ChartlistController());
+  final LearningSongAndLevelController learningSongLevelController =
+      Get.put(LearningSongAndLevelController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ChartlistController>(
-        init: chartlistController,
+    return GetBuilder<LearningSongAndLevelController>(
+        init: learningSongLevelController,
         builder: (controller) {
           return Scaffold(
             appBar: tabbarAndAppBar(
@@ -80,11 +82,17 @@ class DansoChartlist extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 10),
                             child: InkWell(
                               onTap: () {
-                                Get.to(
-                                  SongPlayAndTest(
-                                    songData: item.songTitle,
-                                  ),
-                                );
+                                // Get.to(
+                                //   SongPlayAndTest(
+                                //     songTitle: item.songTitle,
+                                //     sheetData: item.songSheet,
+                                //   ),
+                                // );
+                                Get.to(SheetTestScreen(
+                                  sheetData: item.songSheet,
+                                  jangdan: item.songJangdan,
+                                  songTitle: item.songTitle,
+                                ));
                               },
                               child: Container(
                                   decoration: BoxDecoration(
