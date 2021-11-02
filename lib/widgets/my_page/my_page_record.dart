@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -45,7 +44,7 @@ class MyPageRecord extends StatelessWidget {
                           width: 33,
                           height: 33,
                           child: Text(
-                            "그래프 디자인",
+                            '그래프 디자인',
                             style: TextStyle(fontSize: 10.sp),
                           ),
                         )

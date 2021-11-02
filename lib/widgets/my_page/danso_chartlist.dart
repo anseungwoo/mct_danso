@@ -5,18 +5,20 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import '../sheet_test.dart';
+
 class DansoChartlist extends StatelessWidget {
   DansoChartlist({
     Key key,
   }) : super(key: key);
 
-  final ChartlistController chartlistController =
-      Get.put(ChartlistController());
+  final LearningSongAndLevelController learningSongLevelController =
+      Get.put(LearningSongAndLevelController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ChartlistController>(
-        init: chartlistController,
+    return GetBuilder<LearningSongAndLevelController>(
+        init: learningSongLevelController,
         builder: (controller) {
           return Scaffold(
             appBar: tabbarAndAppBar(
@@ -27,7 +29,7 @@ class DansoChartlist extends StatelessWidget {
                   padding: const EdgeInsets.all(basicPadding),
                   child: Container(
                     height: 70.h,
-                    width: 330.w,
+                    // width: 330.w,
                     child: Row(
                       children: [
                         IconButton(
@@ -42,7 +44,7 @@ class DansoChartlist extends StatelessWidget {
                           radius: 35,
                           child: Center(
                               child:
-                                  Text("${controller.currentLevel} 아이콘 이미지")),
+                                  Text('${controller.currentLevel} 아이콘 이미지')),
                         ),
                         Spacer(flex: 1),
                         IconButton(
@@ -60,10 +62,10 @@ class DansoChartlist extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   ),
                   height: 90.h,
-                  width: 330.w,
+                  // width: 330.w,
                   child: Center(
                       child: Text(
-                    "사용할 율명 표시",
+                    '사용할 율명 표시',
                     style: TextStyle(
                         color: textDarkBlack, fontWeight: FontWeight.bold),
                   )),
@@ -85,6 +87,11 @@ class DansoChartlist extends StatelessWidget {
                                     appbarTitle: item.songTitle,
                                   ),
                                 );
+                                // Get.to(SheetTestScreen(
+                                //   sheetData: item.songSheet,
+                                //   jangdan: item.songJangdan,
+                                //   songTitle: item.songTitle,
+                                // ));
                               },
                               child: Container(
                                   decoration: BoxDecoration(
@@ -93,16 +100,16 @@ class DansoChartlist extends StatelessWidget {
                                         BorderRadius.all(Radius.circular(5.0)),
                                   ),
                                   height: 57.h,
-                                  width: 330.w,
+                                  // width: 330.w,
                                   child: Padding(
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("$index. ${item.songTitle}",
+                                        Text('$index. ${item.songTitle}',
                                             style: TextStyle(color: white)),
-                                        Spacer(flex: 1),
                                         IconButton(
-                                          padding: EdgeInsets.all(1),
                                           onPressed: () {
                                             controller.updateLikeSongList(
                                               songId: item.songId,
@@ -111,7 +118,7 @@ class DansoChartlist extends StatelessWidget {
                                             );
                                           },
                                           icon: Icon(Icons.favorite),
-                                          color: item.songLike == "true"
+                                          color: item.songLike == 'true'
                                               ? Colors.red
                                               : white,
                                         )

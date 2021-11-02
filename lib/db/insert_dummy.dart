@@ -21,7 +21,7 @@ class Dummy {
   //===========================================================================
 
   // insert dummy data
-  insertFrDummy(UserModel user) async {
+  void insertFrDummy(UserModel user) async {
     final db = await database;
     await db.rawInsert('INSERT INTO TB_USER (standard_fr) VALUES(223.012345)');
   }
@@ -30,7 +30,7 @@ class Dummy {
   //===========================================================================
 
   // insert song dummy data
-  insertSongDummy() async {
+  void insertSongDummy() async {
     final db = await database;
     await db.rawInsert(
         "INSERT INTO TB_SONG (song_title, song_path, song_jangdan, song_like) VALUES ('song_title 01', 'song_path 01', 'song_jangdan 01', 'song_like 01')");
@@ -58,40 +58,40 @@ class Dummy {
   //===========================================================================
 
   // insert challange dummy data
-  insertChalDummy() async {
+  Future<void> insertChalDummy() async {
     final db = await database;
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (01, 11, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (01, 11, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (01, 100, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (01, 100, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (02, 22, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (02, 22, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (03, 33, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (03, 33, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (04, 44, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (04, 44, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (05, 55, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (05, 55, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (06, 66, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (06, 66, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (07, 77, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (07, 77, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (08, 88, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (08, 88, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (09, 99, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (09, 99, ?);',
         [DateTime.now().toString()]);
     await db.rawInsert(
-        "INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (10, 100, ?);",
+        'INSERT INTO TB_CHAL (song_id, chal_score, chal_time) VALUES (10, 100, ?);',
         [DateTime.now().toString()]);
   }
 
@@ -99,7 +99,7 @@ class Dummy {
   //===========================================================================
 
   // insert exercise dummy data
-  insertExerDummy() async {
+  void insertExerDummy() async {
     final db = await database;
     await db.rawInsert(
         "INSERT INTO TB_EXER (song_id, exer_type, exer_path, exer_time) VALUES (01, 'sound', 'exer_path 01', ?);",

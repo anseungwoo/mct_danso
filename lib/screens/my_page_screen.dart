@@ -24,12 +24,12 @@ class MyPageScreen extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            MyPageRecord(songname: "곡이름"), //곡이름에 맞는 점수와 그래프필요함
-            MyPageLike(songname: "곡이름"), //곡이름에 맞는 점수와 좋아요 의 유뮤 체크 필요
+            MyPageRecord(songname: '곡이름'), //곡이름에 맞는 점수와 그래프필요함
+            MyPageLike(songname: '곡이름'), //곡이름에 맞는 점수와 좋아요 의 유뮤 체크 필요
             MyPageListen(
-                songname: "곡이름",
-                date: "날짜"), //곡이름 날짜,시간 곡에맞는 플레이 파일 공유and삭제기능필요
-            MyPageLook(songname: "곡이름", date: "날짜"),
+                songname: '곡이름',
+                date: '날짜'), //곡이름 날짜,시간 곡에맞는 플레이 파일 공유and삭제기능필요
+            MyPageLook(songname: '곡이름', date: '날짜'),
             MyPageMysong(), //마이곡 이름 공유and삭제기능 필요
           ],
         ),

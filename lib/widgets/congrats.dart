@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class Congrats extends StatelessWidget {
-  const Congrats({Key key}) : super(key: key);
+class ResultScore extends StatelessWidget {
+  const ResultScore({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class Congrats extends StatelessWidget {
             onPressed: () {
               Get.off(SongGraph());
             },
-            child: Text("그래프아이콘"),
+            child: Text('그래프아이콘'),
           ),
         ),
       ),
@@ -51,13 +51,13 @@ class Congrats extends StatelessWidget {
                 child: Icon(Icons.ac_unit)),
           )),
           Text(
-            "너무 잘했어요!!!!!!!!!!!!!!!!!!!!!!!!!!",
+            '너무 잘했어요!!!!!!!!!!!!!!!!!!!!!!!!!!',
             style: TextStyle(
                 fontSize: textSingleSize, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: basicPadding),
           Text(
-            "흠이 없는 실력 이군요",
+            '흠이 없는 실력 이군요',
             style: TextStyle(fontSize: textStyleSize),
           ),
         ],

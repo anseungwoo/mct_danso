@@ -13,41 +13,41 @@ class YoutubePlayers extends StatefulWidget {
 
 class _MyAppState extends State<YoutubePlayers>
     implements YouTubePlayerListener {
-  double _currentVideoSecond = 0.0;
-  String _playerState = "";
-  FlutterYoutubeViewController _controller;
+  var currentVideoSecond = 0.0;
+  var playerState = '';
+  FlutterYoutubeViewController controller;
 
   @override
   void onCurrentSecond(double second) {
-    print("onCurrentSecond second = $second");
-    _currentVideoSecond = second;
+    print('onCurrentSecond second = $second');
+    currentVideoSecond = second;
   }
 
   @override
   void onError(String error) {
-    print("onError error = $error");
+    print('onError error = $error');
   }
 
   @override
   void onReady() {
-    print("onReady");
+    print('onReady');
   }
 
   @override
   void onStateChange(String state) {
-    print("onStateChange state = $state");
+    print('onStateChange state = $state');
     setState(() {
-      _playerState = state;
+      playerState = state;
     });
   }
 
   @override
   void onVideoDuration(double duration) {
-    print("onVideoDuration duration = $duration");
+    print('onVideoDuration duration = $duration');
   }
 
-  void _onYoutubeCreated(FlutterYoutubeViewController controller) {
-    this._controller = controller;
+  void _onYoutubeCreated(FlutterYoutubeViewController viewController) {
+    controller = viewController;
   }
 
   @override

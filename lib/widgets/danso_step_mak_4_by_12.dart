@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget levelJonGanbo(String level) {
+Widget jungganboFromLevel(String level) {
   JungGanBo testJungGanBo = new JungGanBo("도라지타령", "세마치장단", level);
   return Row(
     children: [
@@ -13,7 +13,7 @@ Widget levelJonGanbo(String level) {
           for (var i = 36; i < 48; i++)
             Row(
               children: [
-                jonContainer(
+                jungContainer(
                     testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
                 blackContainer(),
               ],
@@ -26,7 +26,7 @@ Widget levelJonGanbo(String level) {
           for (var i = 24; i < 36; i++)
             Row(
               children: [
-                jonContainer(
+                jungContainer(
                     testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
                 blackContainer(),
               ],
@@ -39,7 +39,7 @@ Widget levelJonGanbo(String level) {
           for (var i = 12; i < 24; i++)
             Row(
               children: [
-                jonContainer(
+                jungContainer(
                     testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
                 blackContainer(),
               ],
@@ -52,7 +52,7 @@ Widget levelJonGanbo(String level) {
           for (var i = 0; i < 12; i++)
             Row(
               children: [
-                jonContainer(
+                jungContainer(
                     testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
                 blackContainer(),
               ],
@@ -66,17 +66,17 @@ Widget levelJonGanbo(String level) {
 Container blackContainer() {
   return Container(
     width: 20.w,
-    height: jonHeight.h,
+    height: jungHeight.h,
     decoration: BoxDecoration(
       border: Border.all(color: textBlack),
     ),
   );
 }
 
-Container jonContainer(String sa) {
+Container jungContainer(String sa) {
   return Container(
-    width: jonWidth.w,
-    height: jonHeight.h,
+    width: jungWidth.w,
+    height: jungHeight.h,
     decoration: BoxDecoration(border: Border.all(color: textBlack)),
     child: Center(
         child: Text(

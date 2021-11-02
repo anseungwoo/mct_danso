@@ -11,12 +11,12 @@ class ChalDataController extends GetxController {
     getMyHistoryList();
   }
 
-  getMyHistoryList() {
+  void getMyHistoryList() {
     myHistoryList.value = DBHelPer().readMyHistoryData();
     update();
   }
 
-  getMyHistoryGraphData(int songId) async {
+  void getMyHistoryGraphData(int songId) async {
     var data = await DBHelPer().readMyHistoryGraph(songId);
     if (data != null) {
       myHistoryGraph.assignAll(data);

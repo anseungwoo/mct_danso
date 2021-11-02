@@ -41,11 +41,11 @@ class MyPageMysong extends StatelessWidget {
                         icon: Icon(Icons.more_vert_outlined),
                         itemBuilder: (context) => [
                           PopupMenuItem(
-                            child: Text("공유하기"),
+                            child: Text('공유하기'),
                             value: 1,
                           ),
                           PopupMenuItem(
-                            child: Text("삭제하기"),
+                            child: Text('삭제하기'),
                             value: 2,
                           )
                         ],
