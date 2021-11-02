@@ -62,7 +62,7 @@ Widget fourByEightJung(double width, double height, int next) {
   );
 }
 
-Widget fourBySixJon(double width, double height) {
+Widget fourBySixJung(double width, double height) {
   JungGanBo testJungGanBo = new JungGanBo("도라지타령", "세마치장단",
       "t|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#");
   return Row(
