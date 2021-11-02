@@ -15,7 +15,7 @@ class ExerDataController extends GetxController {
   }
 
   // 녹음 듣기
-  getMySoundRecord() async {
+  void getMySoundRecord() async {
     var data = await DBHelPer().readExerSoundData();
     print(data);
     if (data != null) {
@@ -24,7 +24,7 @@ class ExerDataController extends GetxController {
   }
 
   // 녹화 보기
-  getMyVideoRecord() async {
+  void getMyVideoRecord() async {
     var data = await DBHelPer().readExerVideoData();
     print(data);
     if (data != null) {

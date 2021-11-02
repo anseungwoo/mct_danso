@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -181,10 +182,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                         ),
                   Stack(
                     children: [
-                      fourByEightJon(jonEightWidth, jonEightHeight, 32),
-                      AnimationPage(
+                      fourByEightJung(jungWidth, jungEightHeight, 0),
+                      JungganboColorAnimation(
                         tempo: 1000,
-                        jonlenght: 8,
+                        jungganboLength: 8,
                       ),
                     ],
                   ),

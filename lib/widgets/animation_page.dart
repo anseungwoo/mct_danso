@@ -6,16 +6,18 @@ import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class AnimationPage extends StatefulWidget {
+class JungganboColorAnimation extends StatefulWidget {
   int tempo;
-  double jonlenght;
-  AnimationPage({@required this.jonlenght, @required this.tempo});
+  double jungganboLength;
+  JungganboColorAnimation(
+      {@required this.jungganboLength, @required this.tempo});
 
   @override
-  _AnimationPageState createState() => new _AnimationPageState();
+  _JungganboColorAnimationState createState() =>
+      _JungganboColorAnimationState();
 }
 
-class _AnimationPageState extends State<AnimationPage>
+class _JungganboColorAnimationState extends State<JungganboColorAnimation>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   SequenceAnimation sequenceAnimation;
@@ -23,466 +25,465 @@ class _AnimationPageState extends State<AnimationPage>
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(vsync: this);
+    controller = AnimationController(vsync: this);
     find();
   }
 
   void find() {
-    var pading = widget.jonlenght == 6 ? jonSixHeight : jonEightHeight;
-    sequenceAnimation = new SequenceAnimationBuilder()
+    var pading = widget.jungganboLength == 6 ? jungSixHeight : jungEightHeight;
+    sequenceAnimation = SequenceAnimationBuilder()
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0.2),
                 end: Colors.blue.withOpacity(0.2)),
             from: Duration(milliseconds: 0),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 6
                     : widget.tempo * 8),
-            tag: "color")
+            tag: 'color')
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0),
                 end: Colors.blue.withOpacity(0)),
             from: Duration(milliseconds: 0),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 5
                     : widget.tempo * 7),
-            tag: "colors")
+            tag: 'colors')
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0.2),
                 end: Colors.blue.withOpacity(0.2)),
             from: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 5
                     : widget.tempo * 7),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 12
                     : widget.tempo * 16),
-            tag: "colors")
+            tag: 'colors')
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0),
                 end: Colors.blue.withOpacity(0)),
             from: Duration(milliseconds: 0),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 11
                     : widget.tempo * 15),
-            tag: "colorss")
+            tag: 'colorss')
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0.2),
                 end: Colors.blue.withOpacity(0.2)),
             from: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 11
                     : widget.tempo * 15),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 18
                     : widget.tempo * 24),
-            tag: "colorss")
+            tag: 'colorss')
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0),
                 end: Colors.blue.withOpacity(0)),
             from: Duration(milliseconds: 0),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 17
                     : widget.tempo * 23),
-            tag: "colorsss")
+            tag: 'colorsss')
         .addAnimatable(
-            animatable: new ColorTween(
+            animatable: ColorTween(
                 begin: Colors.blue.withOpacity(0.2),
                 end: Colors.blue.withOpacity(0.2)),
             from: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 17
                     : widget.tempo * 23),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 24
                     : widget.tempo * 32),
-            tag: "colorsss")
+            tag: 'colorsss')
         //첫번쨰줄 0~9 사이
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0.h),
               end: EdgeInsets.only(top: pading.h),
             ),
             from: Duration(milliseconds: 0),
             to: Duration(
                 milliseconds:
-                    widget.jonlenght == 6 ? widget.tempo : widget.tempo),
+                    widget.jungganboLength == 6 ? widget.tempo : widget.tempo),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading.h),
               end: EdgeInsets.only(top: pading * 2.h),
             ),
             from: Duration(
                 milliseconds:
-                    widget.jonlenght == 6 ? widget.tempo : widget.tempo),
+                    widget.jungganboLength == 6 ? widget.tempo : widget.tempo),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 2
                     : widget.tempo * 2),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 2.h),
               end: EdgeInsets.only(top: pading * 3.h),
             ),
             from: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 2
                     : widget.tempo * 2),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 3
                     : widget.tempo * 3),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 3.h),
               end: EdgeInsets.only(top: pading * 4.h),
             ),
             from: Duration(
-                milliseconds: widget.jonlenght == 6
+                milliseconds: widget.jungganboLength == 6
                     ? widget.tempo * 3
                     : widget.tempo * 3),
             to: Duration(
-                milliseconds: widget.jonlenght == 6
-                    ? widget.tempo * 4
-                    : widget.tempo * 4),
+                milliseconds:
+                    widget.jungganboLength == 6 ? widget.tempo * 4 : widget.tempo * 4),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 4.h),
               end: EdgeInsets.only(top: pading * 5.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 4 : widget.tempo * 4),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 5 : widget.tempo * 5),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 4 : widget.tempo * 4),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 5 : widget.tempo * 5),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 5.h),
               end: EdgeInsets.only(top: pading * 6.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 5 : widget.tempo * 5),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 6 : widget.tempo * 6),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 5 : widget.tempo * 5),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 6 : widget.tempo * 6),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 6.h),
               end: EdgeInsets.only(top: pading * 7.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 6 : widget.tempo * 6),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 7 : widget.tempo * 7),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 6 : widget.tempo * 6),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 7 : widget.tempo * 7),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 7.h),
               end: EdgeInsets.only(top: pading * 8.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 7 : widget.tempo * 7),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 8 : widget.tempo * 8),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 7 : widget.tempo * 7),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 8 : widget.tempo * 8),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 8.h),
               end: EdgeInsets.only(top: pading * 9.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 8 : widget.tempo * 8),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 9 : widget.tempo * 9),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 8 : widget.tempo * 8),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 9 : widget.tempo * 9),
             curve: Curves.ease,
-            tag: "padding")
+            tag: 'padding')
         // 두번째줄 0~9 사이
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0),
               end: EdgeInsets.only(top: 0.0),
             ),
             from: Duration(milliseconds: 0),
             to: Duration(milliseconds: 0),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0),
               end: EdgeInsets.only(top: pading.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 6 : widget.tempo * 8),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 7 : widget.tempo * 9),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 6 : widget.tempo * 8),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 7 : widget.tempo * 9),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading.h),
               end: EdgeInsets.only(top: pading * 2.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 7 : widget.tempo * 9),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 8 : widget.tempo * 10),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 7 : widget.tempo * 9),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 8 : widget.tempo * 10),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 2.h),
               end: EdgeInsets.only(top: pading * 3.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 8 : widget.tempo * 10),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 9 : widget.tempo * 11),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 8 : widget.tempo * 10),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 9 : widget.tempo * 11),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 3.h),
               end: EdgeInsets.only(top: pading * 4.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 9 : widget.tempo * 11),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 10 : widget.tempo * 12),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 9 : widget.tempo * 11),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 10 : widget.tempo * 12),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 4.h),
               end: EdgeInsets.only(top: pading * 5.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 10 : widget.tempo * 12),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 11 : widget.tempo * 13),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 10 : widget.tempo * 12),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 11 : widget.tempo * 13),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 5.h),
               end: EdgeInsets.only(top: pading * 6.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 11 : widget.tempo * 13),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 12 : widget.tempo * 14),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 11 : widget.tempo * 13),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 12 : widget.tempo * 14),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 6.h),
               end: EdgeInsets.only(top: pading * 7.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 12 : widget.tempo * 14),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 13 : widget.tempo * 15),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 12 : widget.tempo * 14),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 13 : widget.tempo * 15),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 7.h),
               end: EdgeInsets.only(top: pading * 8.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 13 : widget.tempo * 15),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 14 : widget.tempo * 16),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 13 : widget.tempo * 15),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 14 : widget.tempo * 16),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 8.h),
               end: EdgeInsets.only(top: pading * 9.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 14 : widget.tempo * 16),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 15 : widget.tempo * 17),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 14 : widget.tempo * 16),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 15 : widget.tempo * 17),
             curve: Curves.ease,
-            tag: "paddings")
+            tag: 'paddings')
         //세번쨰줄 0~9 사이
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0),
               end: EdgeInsets.only(top: 0.0),
             ),
             from: Duration(milliseconds: 0),
             to: Duration(milliseconds: 0),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0),
               end: EdgeInsets.only(top: pading.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 12 : widget.tempo * 16),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 13 : widget.tempo * 17),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 12 : widget.tempo * 16),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 13 : widget.tempo * 17),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading.h),
               end: EdgeInsets.only(top: pading * 2.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 13 : widget.tempo * 17),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 14 : widget.tempo * 18),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 13 : widget.tempo * 17),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 14 : widget.tempo * 18),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 2.h),
               end: EdgeInsets.only(top: pading * 3.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 14 : widget.tempo * 18),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 15 : widget.tempo * 19),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 14 : widget.tempo * 18),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 15 : widget.tempo * 19),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 3.h),
               end: EdgeInsets.only(top: pading * 4.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 15 : widget.tempo * 19),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 16 : widget.tempo * 20),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 15 : widget.tempo * 19),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 16 : widget.tempo * 20),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 4.h),
               end: EdgeInsets.only(top: pading * 5.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 16 : widget.tempo * 20),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 17 : widget.tempo * 21),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 16 : widget.tempo * 20),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 17 : widget.tempo * 21),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 5.h),
               end: EdgeInsets.only(top: pading * 6.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 17 : widget.tempo * 21),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 18 : widget.tempo * 22),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 17 : widget.tempo * 21),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 18 : widget.tempo * 22),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 6.h),
               end: EdgeInsets.only(top: pading * 7.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 18 : widget.tempo * 22),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 19 : widget.tempo * 23),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 18 : widget.tempo * 22),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 19 : widget.tempo * 23),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 7.h),
               end: EdgeInsets.only(top: pading * 8.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 19 : widget.tempo * 23),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 20 : widget.tempo * 24),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 19 : widget.tempo * 23),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 20 : widget.tempo * 24),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 8.h),
               end: EdgeInsets.only(top: pading * 9.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 20 : widget.tempo * 24),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 21 : widget.tempo * 25),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 20 : widget.tempo * 24),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 21 : widget.tempo * 25),
             curve: Curves.ease,
-            tag: "paddingss")
+            tag: 'paddingss')
         //네번쨰줄 0~9 사이
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0),
               end: EdgeInsets.only(top: 0.0),
             ),
             from: Duration(milliseconds: 0),
             to: Duration(milliseconds: 0),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: 0.0),
               end: EdgeInsets.only(top: pading.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 18 : widget.tempo * 24),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 19 : widget.tempo * 25),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 18 : widget.tempo * 24),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 19 : widget.tempo * 25),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading.h),
               end: EdgeInsets.only(top: pading * 2.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 19 : widget.tempo * 25),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 20 : widget.tempo * 26),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 19 : widget.tempo * 25),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 20 : widget.tempo * 26),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 2.h),
               end: EdgeInsets.only(top: pading * 3.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 20 : widget.tempo * 26),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 21 : widget.tempo * 27),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 20 : widget.tempo * 26),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 21 : widget.tempo * 27),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 3.h),
               end: EdgeInsets.only(top: pading * 4.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 21 : widget.tempo * 27),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 22 : widget.tempo * 28),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 21 : widget.tempo * 27),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 22 : widget.tempo * 28),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 4.h),
               end: EdgeInsets.only(top: pading * 5.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 22 : widget.tempo * 28),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 23 : widget.tempo * 29),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 22 : widget.tempo * 28),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 23 : widget.tempo * 29),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 5.h),
               end: EdgeInsets.only(top: pading * 6.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 23 : widget.tempo * 29),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 30),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 23 : widget.tempo * 29),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 30),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 6.h),
               end: EdgeInsets.only(top: pading * 7.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 30),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 31),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 30),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 31),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 7.h),
               end: EdgeInsets.only(top: pading * 8.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 31),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 32),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 31),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 32),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .addAnimatable(
-            animatable: new EdgeInsetsTween(
+            animatable: EdgeInsetsTween(
               begin: EdgeInsets.only(top: pading * 8.h),
               end: EdgeInsets.only(top: pading * 9.h),
             ),
-            from: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 32),
-            to: Duration(milliseconds: widget.jonlenght == 6 ? widget.tempo * 24 : widget.tempo * 33),
+            from: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 32),
+            to: Duration(milliseconds: widget.jungganboLength == 6 ? widget.tempo * 24 : widget.tempo * 33),
             curve: Curves.ease,
-            tag: "paddingsss")
+            tag: 'paddingsss')
         .animate(controller);
   }
 
@@ -494,6 +495,7 @@ class _AnimationPageState extends State<AnimationPage>
       controller.reset();
 
       _playAnimation();
+
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
     }
@@ -508,14 +510,14 @@ class _AnimationPageState extends State<AnimationPage>
 
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
+    return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
         _playAnimation();
       },
-      child: new AnimatedBuilder(
+      child: AnimatedBuilder(
         builder: (context, child) {
-          return new Center(
+          return Center(
               child: Container(
             width: 330.w,
             height: 500.h,
@@ -525,56 +527,56 @@ class _AnimationPageState extends State<AnimationPage>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: sequenceAnimation["paddingsss"].value,
-                  child: new Container(
-                    height: widget.jonlenght == 6
-                        ? jonSixHeight.h
-                        : jonEightHeight.h,
+                  padding: sequenceAnimation['paddingsss'].value,
+                  child: Container(
+                    height: widget.jungganboLength == 6
+                        ? jungSixHeight.h
+                        : jungEightHeight.h,
                     width: 82.w,
                     decoration: BoxDecoration(
-                        color: sequenceAnimation["colorsss"].value,
+                        color: sequenceAnimation['colorsss'].value,
                         border: Border.symmetric(
                             vertical:
                                 BorderSide(width: 4, color: Colors.blue))),
                   ),
                 ),
                 Container(
-                  padding: sequenceAnimation["paddingss"].value,
-                  child: new Container(
-                    height: widget.jonlenght == 6
-                        ? jonSixHeight.h
-                        : jonEightHeight.h,
+                  padding: sequenceAnimation['paddingss'].value,
+                  child: Container(
+                    height: widget.jungganboLength == 6
+                        ? jungSixHeight.h
+                        : jungEightHeight.h,
                     width: 82.w,
                     decoration: BoxDecoration(
-                        color: sequenceAnimation["colorss"].value,
+                        color: sequenceAnimation['colorss'].value,
                         border: Border.symmetric(
                             vertical:
                                 BorderSide(width: 4, color: Colors.blue))),
                   ),
                 ),
                 Container(
-                  padding: sequenceAnimation["paddings"].value,
-                  child: new Container(
-                    height: widget.jonlenght == 6
-                        ? jonSixHeight.h
-                        : jonEightHeight.h,
+                  padding: sequenceAnimation['paddings'].value,
+                  child: Container(
+                    height: widget.jungganboLength == 6
+                        ? jungSixHeight.h
+                        : jungEightHeight.h,
                     width: 82.w,
                     decoration: BoxDecoration(
-                        color: sequenceAnimation["colors"].value,
+                        color: sequenceAnimation['colors'].value,
                         border: Border.symmetric(
                             vertical:
                                 BorderSide(width: 4, color: Colors.blue))),
                   ),
                 ),
                 Container(
-                  padding: sequenceAnimation["padding"].value,
-                  child: new Container(
-                    height: widget.jonlenght == 6
-                        ? jonSixHeight.h
-                        : jonEightHeight.h,
+                  padding: sequenceAnimation['padding'].value,
+                  child: Container(
+                    height: widget.jungganboLength == 6
+                        ? jungSixHeight.h
+                        : jungEightHeight.h,
                     width: 82.w,
                     decoration: BoxDecoration(
-                        color: sequenceAnimation["color"].value,
+                        color: sequenceAnimation['color'].value,
                         border: Border.symmetric(
                             vertical:
                                 BorderSide(width: 4, color: Colors.blue))),

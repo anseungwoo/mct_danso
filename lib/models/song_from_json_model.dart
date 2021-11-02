@@ -16,11 +16,11 @@ class SongFromJson {
 
   factory SongFromJson.fromJson(Map<String, dynamic> json) => SongFromJson(
         songData: List<SongDataModel>.from(
-            json["song_data"].map((x) => SongDataModel.fromJson(x))),
+            json['song_data'].map((x) => SongDataModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "song_data": List<dynamic>.from(songData.map((x) => x.toJson())),
+        'song_data': List<dynamic>.from(songData.map((x) => x.toJson())),
       };
 }
 
@@ -44,22 +44,22 @@ class SongDataModel {
   String songSheet;
 
   factory SongDataModel.fromJson(Map<String, dynamic> json) => SongDataModel(
-        songId: json["song_id"],
-        songTitle: json["song_title"],
-        songPath: json["song_path"],
-        songJangdan: json["song_jangdan"],
-        songLike: json["song_like"],
-        songDiff: json["song_diff"],
-        songSheet: json["song_sheet"],
+        songId: json['song_id'],
+        songTitle: json['song_title'],
+        songPath: json['song_path'],
+        songJangdan: json['song_jangdan'],
+        songLike: json['song_like'],
+        songDiff: json['song_diff'],
+        songSheet: json['song_sheet'],
       );
 
   Map<String, dynamic> toJson() => {
-        "song_id": songId,
-        "song_title": songTitle,
-        "song_path": songPath,
-        "song_jangdan": songJangdan,
-        "song_like": songLike,
-        "song_diff": songDiff,
-        "song_sheet": songSheet,
+        'song_id': songId,
+        'song_title': songTitle,
+        'song_path': songPath,
+        'song_jangdan': songJangdan,
+        'song_like': songLike,
+        'song_diff': songDiff,
+        'song_sheet': songSheet,
       };
 }

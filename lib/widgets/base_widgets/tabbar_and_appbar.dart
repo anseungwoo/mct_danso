@@ -34,7 +34,7 @@ PreferredSizeWidget songtabbarAndAppBar(
     title: Text(
       '$title',
       style: TextStyle(
-          color: textBlack, fontSize: 36.sp, fontWeight: FontWeight.bold),
+          color: textBlack, fontSize: 23.sp, fontWeight: FontWeight.bold),
     ),
     iconTheme: IconThemeData(color: textBlack),
     centerTitle: true,

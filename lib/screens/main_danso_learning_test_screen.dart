@@ -182,13 +182,13 @@ class MainDansoLearningTestScreen extends StatelessWidget {
         SizedBox(
           width: 7.sp,
         ),
-        Text("왼손"),
+        Text('왼손'),
         SizedBox(
           width: 7.sp,
         ),
         CircleAvatar(radius: 14, backgroundColor: Colors.grey),
         SizedBox(width: 7.sp),
-        Text("오른손"),
+        Text('오른손'),
       ],
     );
   }

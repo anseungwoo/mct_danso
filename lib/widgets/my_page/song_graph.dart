@@ -10,7 +10,7 @@ class SongGraph extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: "노래곡 제목", tabbar: null, enableTabBar: false),
+          title: '노래곡 제목', tabbar: null, enableTabBar: false),
       body: Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: Container(
@@ -26,7 +26,7 @@ class SongGraph extends StatelessWidget {
                       padding:
                           const EdgeInsets.symmetric(vertical: basicPadding),
                       child: Text(
-                        "2021.09.10 14:13",
+                        '2021.09.10 14:13',
                         style: TextStyle(fontSize: textContantSize),
                       ),
                     ),
@@ -48,7 +48,7 @@ class SongGraph extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: basicPadding),
                         child: Text(
-                          "100점",
+                          '100점',
                           style: TextStyle(fontSize: textStyleSize),
                         ),
                       ),
