@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/main_danso_chartlist_screen.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/animation_page.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key key}) : super(key: key);
+  MainScreen({Key key}) : super(key: key);
+  final SongController songController = Get.put(SongController());
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 

@@ -5,13 +5,14 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/animation_page.dart';
-import 'package:project_danso/widgets/tabbar_and_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongPlayAndTest extends StatefulWidget {
-  const SongPlayAndTest({Key key}) : super(key: key);
+  final String appbarTitle;
+  SongPlayAndTest({Key key, this.appbarTitle}) : super(key: key);
+
+  // final songData = Get.arguments;
 
   @override
   _SongPlayAndTestState createState() => _SongPlayAndTestState();
@@ -39,7 +40,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: '노래곡1 제목', tabbar: null, enableTabBar: false),
+          title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
           init: PlayAndTestController(),
           builder: (controller) {
@@ -178,21 +179,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             Text("자진모리장단")
                           ],
                         ),
-                  // fourByFourJon(),
-                  // controller.statecount == 4
-                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
-                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
                   Stack(
                     children: [
-                      controller.statecount == 4
-                          ? fourByEightJon(jonEightWidth, jonEightHeight)
-                          : fourByEightJon(jonEightWidth, jonEightHeight),
-                      controller.statecount == 4
-                          ? fourBySixJon(jonSixWidth, jonSixHeight)
-                          : fourBySixJon(jonSixWidth, jonSixHeight),
+                      fourByEightJon(jonEightWidth, jonEightHeight, 32),
                       AnimationPage(
-                        tempo: 100,
-                        jonlenght: 6,
+                        tempo: 1000,
+                        jonlenght: 8,
                       ),
                     ],
                   ),
