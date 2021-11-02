@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
 
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class AnimationPage extends StatefulWidget {
   int tempo;
@@ -491,6 +492,7 @@ class _AnimationPageState extends State<AnimationPage>
       // await controller.repeat(period: Duration(seconds: 8)).orCancel;
       // await controller.reverse().orCancel;
       controller.reset();
+
       _playAnimation();
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
@@ -516,7 +518,7 @@ class _AnimationPageState extends State<AnimationPage>
           return new Center(
               child: Container(
             width: 330.w,
-            height: 515.h,
+            height: 500.h,
             color: Colors.grey.withOpacity(0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,

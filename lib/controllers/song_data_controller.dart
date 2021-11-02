@@ -11,7 +11,6 @@ class SongController extends GetxController {
   void onInit() {
     super.onInit();
     // getAllSongList();
-    // asasa
     deleteAllSong();
     insertSongToJson();
   }

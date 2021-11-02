@@ -179,21 +179,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             Text("자진모리장단")
                           ],
                         ),
-                  // fourByFourJon(),
-                  // controller.statecount == 4
-                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
-                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
                   Stack(
                     children: [
-                      controller.statecount == 4
-                          ? fourByEightJon(jonEightWidth, jonEightHeight)
-                          : fourByEightJon(jonEightWidth, jonEightHeight),
-                      controller.statecount == 4
-                          ? fourBySixJon(jonSixWidth, jonSixHeight)
-                          : fourBySixJon(jonSixWidth, jonSixHeight),
+                      fourByEightJon(jonEightWidth, jonEightHeight, 32),
                       AnimationPage(
-                        tempo: 100,
-                        jonlenght: 6,
+                        tempo: 1000,
+                        jonlenght: 8,
                       ),
                     ],
                   ),

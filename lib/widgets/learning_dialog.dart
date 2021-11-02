@@ -8,7 +8,7 @@ Widget learningDialog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
-      height: 278.h,
+      height: 230.h,
       width: 330.w,
       child: Column(
         children: [
