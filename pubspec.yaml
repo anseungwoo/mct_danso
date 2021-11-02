@@ -60,7 +60,7 @@ dependencies:
   just_audio: ^0.6.15+1
 
   double_back_to_close_app: ^1.2.0
-  fluttertoast: any
+  fluttertoast: ^7.1.8
 
 
 

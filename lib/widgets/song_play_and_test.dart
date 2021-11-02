@@ -1,16 +1,17 @@
 import 'dart:async';
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongPlayAndTest extends StatefulWidget {
-  final String songTitle;
-  final String sheetData;
-  SongPlayAndTest({Key key, this.songTitle, this.sheetData}) : super(key: key);
+  final String appbarTitle;
+  SongPlayAndTest({Key key, this.appbarTitle}) : super(key: key);
 
   // final songData = Get.arguments;
 
@@ -27,7 +28,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   @override
   void initState() {
-    print(widget.sheetData);
     super.initState();
   }
 
@@ -41,7 +41,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: '${widget.songTitle}', tabbar: null, enableTabBar: false),
+          title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
           init: PlayAndTestController(),
           builder: (controller) {
@@ -78,7 +78,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   SizedBox(width: 5),
                                   songSwapButton(
                                       text: Text(
-                                          '${controller.speed[controller.speedCount]} 배속'),
+                                          "${controller.speed[controller.speedCount]} 배속"),
                                       onPressed: () {
                                         controller.changespeedState();
                                       }),
@@ -113,7 +113,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           ),
                                           SizedBox(width: 5),
                                           songSwapButton(
-                                              text: Text('녹음'),
+                                              text: Text("녹음"),
                                               onPressed: () {
                                                 controller.stateCountUp(5);
                                                 print(controller.statecount);
@@ -130,7 +130,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           SizedBox(width: 5),
                                           songSwapButton(
                                               text: Text(
-                                                  '${controller.speed[controller.speedCount]} 배속'),
+                                                  "${controller.speed[controller.speedCount]} 배속"),
                                               onPressed: () {
                                                 controller.changespeedState();
                                               }),
@@ -175,26 +175,17 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       : Row(
                           children: [
                             Text(
-                                '${controller.speed[controller.speedCount]} 배속'),
+                                "${controller.speed[controller.speedCount]} 배속"),
                             Spacer(flex: 1),
-                            Text('자진모리장단')
+                            Text("자진모리장단")
                           ],
                         ),
-                  // fourByFourJung(),
-                  // controller.statecount == 4
-                  //     ? fourBySixJung(jungSixWidth, jungSixHeight - 5)
-                  //     : fourBySixJung(jungSixWidth, jungSixHeight),
                   Stack(
                     children: [
-                      controller.statecount == 4
-                          ? fourByEightJung(jungEightWidth, jungEightHeight)
-                          : fourByEightJung(jungEightWidth, jungEightHeight),
-                      controller.statecount == 4
-                          ? fourBySixJung(jungSixWidth, jungSixHeight)
-                          : fourBySixJung(jungSixWidth, jungSixHeight),
+                      fourByEightJung(jungWidth, jungEightHeight, 0),
                       JungganboColorAnimation(
-                        tempo: 100,
-                        jungganboLength: 6,
+                        tempo: 1000,
+                        jungganboLength: 8,
                       ),
                     ],
                   ),
@@ -226,11 +217,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       height: 5.h,
                     ),
                     Text(
-                      '녹화화면을 준비하고 있습니다',
+                      "녹화화면을 준비하고 있습니다",
                       style: TextStyle(color: white, fontSize: textContantSize),
                     ),
                     Text(
-                      '녹화시작 버튼을 누르고 녹화시작',
+                      "녹화시작 버튼을 누르고 녹화시작",
                       style: TextStyle(color: white, fontSize: textContantSize),
                     ),
                   ],

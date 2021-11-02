@@ -1,332 +1,62 @@
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget jungganboFromLevel(List level) {
+Widget jungganboFromLevel(String level) {
+  JungGanBo testJungGanBo = new JungGanBo("도라지타령", "세마치장단", level);
   return Row(
     children: [
-      left(level),
-      centerLeft(level),
-      centerRight(level),
-      right(level),
-    ],
-  );
-}
-
-Column right(List level) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Row(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          jungContainer(level, 36),
-          blackContainer(),
+          for (var i = 36; i < 48; i++)
+            Row(
+              children: [
+                jungContainer(
+                    testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
+                blackContainer(),
+              ],
+            ),
         ],
       ),
-      Row(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          jungContainer(level, 37),
-          blackContainer(),
+          for (var i = 24; i < 36; i++)
+            Row(
+              children: [
+                jungContainer(
+                    testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
+                blackContainer(),
+              ],
+            ),
         ],
       ),
-      Row(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          jungContainer(level, 38),
-          blackContainer(),
+          for (var i = 12; i < 24; i++)
+            Row(
+              children: [
+                jungContainer(
+                    testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
+                blackContainer(),
+              ],
+            ),
         ],
       ),
-      Row(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          jungContainer(level, 39),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 40),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 41),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 42),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 43),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 44),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 45),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 46),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 47),
-          blackContainer(),
-        ],
-      ),
-    ],
-  );
-}
-
-Column centerRight(List level) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Row(
-        children: [
-          jungContainer(level, 24),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 25),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 26),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 27),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 28),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 29),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 30),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 31),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 32),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 33),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 34),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 35),
-          blackContainer(),
-        ],
-      ),
-    ],
-  );
-}
-
-Column centerLeft(List level) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Row(
-        children: [
-          jungContainer(level, 12),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 13),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 14),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 15),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 16),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 17),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 18),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 19),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 20),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 21),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 22),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 23),
-          blackContainer(),
-        ],
-      ),
-    ],
-  );
-}
-
-Column left(List level) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.end,
-    children: [
-      Row(
-        children: [
-          jungContainer(level, 0),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 1),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 2),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 3),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 4),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 5),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 6),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 7),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 8),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 9),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 10),
-          blackContainer(),
-        ],
-      ),
-      Row(
-        children: [
-          jungContainer(level, 11),
-          blackContainer(),
+          for (var i = 0; i < 12; i++)
+            Row(
+              children: [
+                jungContainer(
+                    testJungGanBo.sheet[i].yulmyeongs[0].toChineseCharacter()),
+                blackContainer(),
+              ],
+            ),
         ],
       ),
     ],
@@ -343,14 +73,14 @@ Container blackContainer() {
   );
 }
 
-Container jungContainer(List level, int count) {
+Container jungContainer(String sa) {
   return Container(
     width: jungWidth.w,
     height: jungHeight.h,
     decoration: BoxDecoration(border: Border.all(color: textBlack)),
     child: Center(
         child: Text(
-      '${level[count]}',
+      sa,
       style: TextStyle(fontSize: textSingleSize.sp, fontWeight: bold),
     )),
   );

@@ -82,17 +82,16 @@ class DansoChartlist extends StatelessWidget {
                             padding: const EdgeInsets.only(bottom: 10),
                             child: InkWell(
                               onTap: () {
-                                // Get.to(
-                                //   SongPlayAndTest(
-                                //     songTitle: item.songTitle,
-                                //     sheetData: item.songSheet,
-                                //   ),
-                                // );
-                                Get.to(SheetTestScreen(
-                                  sheetData: item.songSheet,
-                                  jangdan: item.songJangdan,
-                                  songTitle: item.songTitle,
-                                ));
+                                Get.to(
+                                  SongPlayAndTest(
+                                    appbarTitle: item.songTitle,
+                                  ),
+                                );
+                                // Get.to(SheetTestScreen(
+                                //   sheetData: item.songSheet,
+                                //   jangdan: item.songJangdan,
+                                //   songTitle: item.songTitle,
+                                // ));
                               },
                               child: Container(
                                   decoration: BoxDecoration(
