@@ -58,17 +58,51 @@ class LearningSongList extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: lightGray,
+                    color: white,
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   ),
-                  height: 90.h,
-                  // width: 330.w,
-                  child: Center(
-                      child: Text(
-                    '사용할 율명 표시',
-                    style: TextStyle(
-                        color: textDarkBlack, fontWeight: FontWeight.bold),
-                  )),
+                  height: 66.h,
+                  width: 330.w,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          for (var i = 0; i < 10; i++)
+                            Container(
+                              width: 33.w,
+                              height: 33.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: textBlack)),
+                              child: Center(
+                                child: Text(
+                                    "${controller.hangeul[controller.currentLevel][i]}",
+                                    style: TextStyle(fontSize: textStyleSize)),
+                              ),
+                            )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          for (var i = 0; i < 10; i++)
+                            Container(
+                              width: 33.w,
+                              height: 33.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: textBlack)),
+                              child: Center(
+                                child: Text(
+                                    "${controller.hanja[controller.currentLevel][i]}",
+                                    style: TextStyle(fontSize: textStyleSize)),
+                              ),
+                            )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 20.h),
                 Expanded(
