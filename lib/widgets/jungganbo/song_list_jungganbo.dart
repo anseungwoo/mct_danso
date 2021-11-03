@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:danso_function/danso_function.dart';
 
 Widget fourByEightJung(double width, double height, int next) {
-  JungGanBo testJungGanBo = new JungGanBo("도라지타령", "세마치장단",
-      "t|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#");
-  String text = "1";
+  var testJungGanBo = JungGanBo('도라지타령', '세마치장단',
+      't|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#');
+  var text = '1';
 
   return Row(
     children: [
@@ -62,7 +62,7 @@ Widget fourByEightJung(double width, double height, int next) {
   );
 }
 
-Widget fourBySixJon(double width, double height) {
+Widget fourBySixJung(double width, double height) {
   JungGanBo testJungGanBo = new JungGanBo("도라지타령", "세마치장단",
       "t|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#");
   return Row(

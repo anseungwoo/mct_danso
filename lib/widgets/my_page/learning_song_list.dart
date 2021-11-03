@@ -7,8 +7,8 @@ import 'package:project_danso/widgets/widgets.dart';
 
 import '../sheet_test.dart';
 
-class DansoChartlist extends StatelessWidget {
-  DansoChartlist({
+class LearningSongList extends StatelessWidget {
+  LearningSongList({
     Key key,
   }) : super(key: key);
 
