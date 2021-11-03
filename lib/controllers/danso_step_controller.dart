@@ -23,16 +23,24 @@ class DansoStepController extends GetxController {
 
   int i = 0;
   int flashcount = -1;
+  void stop() {
+    flashcount = -1;
+    i = 0;
+    update();
+  }
+
   void start() {
     interval(new Duration(milliseconds: 1000), (timer) {
-      if (i < 48) {
+      if (i < 48 && starStopState) {
         flashCount();
         i++;
       } else {
         timer.cancel();
+        stop();
         return;
       }
     });
+
     update();
   }
 

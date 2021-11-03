@@ -31,7 +31,9 @@ class DansoStepByStep extends StatelessWidget {
                   Stack(
                     children: [
                       jungganboFromLevel(level),
-                      jungganboFromLevelFlash(controller),
+                      controller.starStopState
+                          ? jungganboFromLevelFlash(controller)
+                          : Container(),
                     ],
                   ),
                   SizedBox(height: 5),
@@ -44,7 +46,9 @@ class DansoStepByStep extends StatelessWidget {
                           child: ElevatedButton(
                               onPressed: () {
                                 controller.changeStartStopState();
-                                controller.start();
+                                controller.starStopState
+                                    ? controller.start()
+                                    : controller.stop();
                               },
                               child: Text('${controller.startButton}'))),
                       Spacer(
