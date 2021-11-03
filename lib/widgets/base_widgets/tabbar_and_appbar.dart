@@ -13,7 +13,7 @@ PreferredSizeWidget tabbarAndAppBar(
     ),
     centerTitle: true,
     elevation: 1,
-    backgroundColor: darkGray,
+    backgroundColor: appBarColor,
     bottom: enableTabBar
         ? PreferredSize(
             preferredSize: tabbar.preferredSize,

@@ -1,6 +1,12 @@
+import 'package:danso_function/common/classes/YulmyeongNote.dart';
+import 'package:danso_function/common/functions/JungGanBoPlayer.dart';
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pitchdetector/pitchdetector.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
@@ -8,9 +14,8 @@ import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoLearningTestScreen extends StatelessWidget {
   MainDansoLearningTestScreen({Key key}) : super(key: key);
-
-  // final SoundController soundController = Get.put(SoundController());
-
+  final DansoSoundLearningController dansoSoundLearningController =
+      Get.put(DansoSoundLearningController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +30,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
               leftLightCicleAvatarAndText(),
               SizedBox(height: 70.h),
               GetBuilder<DansoSoundLearningController>(
-                  init: DansoSoundLearningController(),
+                  init: dansoSoundLearningController,
                   builder: (controller) {
                     return Container(
                       // color: Colors.lightGreenAccent,
@@ -141,6 +146,9 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                       ? null
                       : () {
                           controller.changeSpeakTuningState();
+                          controller.listenTunungState
+                              ? controller.palySound()
+                              : null;
                         },
             ),
             SoundButton(

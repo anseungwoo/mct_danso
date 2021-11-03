@@ -18,7 +18,7 @@ export 'congrats.dart';
 export 'camera_record/song_camara_recoding.dart';
 export 'my_page/song_graph.dart';
 export 'song_play_and_test.dart';
-export 'danso_step_mak_4_by_12.dart';
+export 'danso_step_make_4_by_12.dart';
 export 'my_page/my_page_delete_dialog.dart';
 export 'my_page/my_page_listen.dart';
 export 'my_page/my_page_listen_dialog.dart';

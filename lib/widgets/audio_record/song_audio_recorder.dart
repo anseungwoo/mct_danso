@@ -3,6 +3,7 @@ import 'dart:io' as io;
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
+import 'package:get/get_state_manager/src/simple/list_notifier.dart';
 import 'package:pitchdetector/pitchdetector.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -27,9 +28,14 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      _prepare();
-    });
+
+    _prepare();
+  }
+
+  @override
+  void dispose() {
+    _stopRecording();
+    super.dispose();
   }
 
   void _changeState() async {
@@ -39,7 +45,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
           if (wait) {
             wait = false;
             await _startRecording();
-            Future.delayed(Duration(seconds: 10), () {
+            Future.delayed(Duration(seconds: 1), () {
               wait = true;
             });
           }
@@ -49,6 +55,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
         {
           if (wait) {
             await _stopRecording();
+            await _prepare();
           }
 
           break;
@@ -62,10 +69,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
       default:
         break;
     }
-
-    setState(() {
-      _buttonText = _buttonTextState(_recording.status);
-    });
+    if (mounted) {
+      setState(() {
+        _buttonText = _buttonTextState(_recording.status);
+      });
+    }
   }
 
   Future _init() async {
@@ -99,15 +107,19 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     if (hasPermission) {
       await _init();
       var result = await _recorder.current();
-      setState(() {
-        _recording = result;
-        _buttonText = _buttonTextState(_recording.status);
-        _alert = '';
-      });
-    } else {
-      setState(() {
-        _alert = 'Permission Required.';
-      });
+      if (mounted) {
+        setState(() {
+          _recording = result;
+          _buttonText = _buttonTextState(_recording.status);
+          _alert = '';
+        });
+      } else {
+        if (mounted) {
+          setState(() {
+            _alert = 'Permission Required.';
+          });
+        }
+      }
     }
   }
 
@@ -120,10 +132,12 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
 
     _time = Timer.periodic(Duration(milliseconds: 10), (Timer t) async {
       var current = await _recorder.current();
-      setState(() {
-        _recording = current;
-        _time = t;
-      });
+      if (mounted) {
+        setState(() {
+          _recording = current;
+          _time = t;
+        });
+      }
     });
   }
 
@@ -131,9 +145,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     var result = await _recorder.stop();
     _time.cancel();
     print(_recording.path);
-    setState(() {
-      _recording = result;
-    });
+    if (mounted) {
+      setState(() {
+        _recording = result;
+      });
+    }
     widget.controller.stateCountUp(2);
   }
 //  삭제기능 테스트 함수입니다.

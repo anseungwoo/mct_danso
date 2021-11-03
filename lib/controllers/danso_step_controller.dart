@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 class DansoStepController extends GetxController {
@@ -17,5 +19,37 @@ class DansoStepController extends GetxController {
       speedCount = 0;
     }
     update();
+  }
+
+  int i = 0;
+  int flashcount = -1;
+  void start() {
+    interval(new Duration(milliseconds: 1000), (timer) {
+      if (i < 48) {
+        flashCount();
+        i++;
+      } else {
+        timer.cancel();
+        return;
+      }
+    });
+    update();
+  }
+
+  void flashCount() {
+    flashcount++;
+    update();
+  }
+
+  Timer interval(Duration duration, func) {
+    Timer function() {
+      Timer timer = new Timer(duration, function);
+
+      func(timer);
+
+      return timer;
+    }
+
+    return new Timer(duration, function);
   }
 }

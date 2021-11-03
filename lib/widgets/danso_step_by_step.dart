@@ -3,13 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/flash_controller.dart';
+import 'package:project_danso/widgets/danso_setp_make_flash_4_by_12.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoStepByStep extends StatelessWidget {
   String level;
   String currentLevel;
   DansoStepByStep({Key key, @required this.level, @required this.currentLevel});
-
+  FlashController flashController;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +28,12 @@ class DansoStepByStep extends StatelessWidget {
                           fontSize: textSingleSize.sp, fontWeight: bold),
                     ),
                   ),
-                  jungganboFromLevel(level),
+                  Stack(
+                    children: [
+                      jungganboFromLevel(level),
+                      jungganboFromLevelFlash(controller),
+                    ],
+                  ),
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -37,6 +44,7 @@ class DansoStepByStep extends StatelessWidget {
                           child: ElevatedButton(
                               onPressed: () {
                                 controller.changeStartStopState();
+                                controller.start();
                               },
                               child: Text('${controller.startButton}'))),
                       Spacer(
