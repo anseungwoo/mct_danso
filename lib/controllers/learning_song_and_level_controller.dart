@@ -4,7 +4,20 @@ import 'package:project_danso/db/db_helpers.dart';
 class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;
   var songList = [].obs;
-
+  List hanja = [
+    '',
+    ['汰', '潢', '無', '', '', '', '', '', '', ''],
+    ['無', '潢', '汰', '㳞', '淋', '', '', '', '', ''],
+    ['仲', '林', '無', '潢', '汰', '㳞', '淋', '', '', ''],
+    ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲']
+  ];
+  List hangeul = [
+    '',
+    ['태', '황', '무', '', '', '', '', '', '', ''],
+    ['무', '황', '태', '중', '임', '', '', '', '', ''],
+    ['중', '임', '무', '황', '태', '중', '임', '', '', ''],
+    ['중', '임', '무', '황', '태', '중', '임', '무', '황', '태']
+  ];
   @override
   void onInit() {
     super.onInit();
