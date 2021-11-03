@@ -39,7 +39,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
           if (wait) {
             wait = false;
             await _startRecording();
-            Future.delayed(Duration(seconds: 5), () {
+            Future.delayed(Duration(seconds: 10), () {
               wait = true;
             });
           }
@@ -50,7 +50,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
           if (wait) {
             await _stopRecording();
           }
-          ;
 
           break;
         }
