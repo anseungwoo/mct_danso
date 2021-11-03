@@ -14,8 +14,19 @@ class DansoSoundLearningController extends GetxController {
   String buttonListen = '예시듣기';
   String buttonPlay = '불어보기';
   int soundListUpDown = 0;
-  List soundList = ['중', '임', '무', '황', '태'];
-  List soundList1 = ['仲', '林', '無', '潢', '汰'];
+  List soundList = [
+    '중',
+    '임',
+    '무',
+    '황',
+    '태',
+    '높은 중',
+    '높은 임',
+    '높은 무',
+    '높은 황',
+    '높은 태',
+  ];
+  List soundList1 = ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲'];
   final _flutterMidi = FlutterMidi();
   @override
   void onInit() {
@@ -49,6 +60,30 @@ class DansoSoundLearningController extends GetxController {
       case 3:
         playOneYulmyeongNote(
             YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin), 2000);
+        break;
+      case 4:
+        playOneYulmyeongNote(
+            YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin), 2000);
+        break;
+      case 5:
+        playOneYulmyeongNote(
+            YulmyeongNote(Yulmyeong.joong, ScaleStatus.high), 2000);
+        break;
+      case 6:
+        playOneYulmyeongNote(
+            YulmyeongNote(Yulmyeong.yim, ScaleStatus.high), 2000);
+        break;
+      case 7:
+        playOneYulmyeongNote(
+            YulmyeongNote(Yulmyeong.moo, ScaleStatus.high), 2000);
+        break;
+      case 8:
+        playOneYulmyeongNote(
+            YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high), 2000);
+        break;
+      case 9:
+        playOneYulmyeongNote(
+            YulmyeongNote(Yulmyeong.tae, ScaleStatus.high), 2000);
         break;
       default:
     }
