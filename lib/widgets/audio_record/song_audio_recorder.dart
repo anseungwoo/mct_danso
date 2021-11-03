@@ -3,7 +3,7 @@ import 'dart:io' as io;
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-
+import 'package:pitchdetector/pitchdetector.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
@@ -21,6 +21,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   Timer _time;
   Widget _buttonText = Text('녹음오류');
   String _alert;
+  bool wait = true;
   String delPath;
   String day;
   @override
@@ -35,12 +36,22 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     switch (_recording.status) {
       case RecordingStatus.Initialized:
         {
-          await _startRecording();
+          if (wait) {
+            wait = false;
+            await _startRecording();
+            Future.delayed(Duration(seconds: 5), () {
+              wait = true;
+            });
+          }
           break;
         }
       case RecordingStatus.Recording:
         {
-          await _stopRecording();
+          if (wait) {
+            await _stopRecording();
+          }
+          ;
+
           break;
         }
       case RecordingStatus.Stopped:
