@@ -121,6 +121,8 @@ class DansoChartlist extends StatelessWidget {
                                 Get.to(
                                   SongPlayAndTest(
                                     appbarTitle: item.songTitle,
+                                    jangdan: item.songJangdan,
+                                    sheetData: item.songSheet,
                                   ),
                                 );
                                 // Get.to(SheetTestScreen(

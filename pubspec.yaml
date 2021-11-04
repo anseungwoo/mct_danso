@@ -61,6 +61,7 @@ dependencies:
   pitchdetector: ^0.0.3+6
   double_back_to_close_app: ^1.2.0
   fluttertoast: ^7.1.8
+  enum_to_string: ^1.0.14
 
 
 

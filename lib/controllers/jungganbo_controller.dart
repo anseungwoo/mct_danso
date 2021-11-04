@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
-class DansoStepController extends GetxController {
+class JungganboController extends GetxController {
   bool starStopState = false;
   String startButton = '시작하기';
   int speedCount = 2;
@@ -23,20 +23,20 @@ class DansoStepController extends GetxController {
 
   int i = 0;
   int flashcount = -1;
-  void stop() {
+  void stepStop() {
     flashcount = -1;
     i = 0;
     update();
   }
 
-  void start() {
+  void stepStart() {
     interval(new Duration(milliseconds: 1000), (timer) {
       if (i < 48 && starStopState) {
         flashCount();
         i++;
       } else {
         timer.cancel();
-        stop();
+        stepStop();
         return;
       }
     });

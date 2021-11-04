@@ -1,9 +1,11 @@
-import 'dart:async';
-
 import 'package:danso_function/danso_function.dart';
+import 'package:enum_to_string/enum_to_string.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
+import 'package:pitchdetector/pitchdetector.dart';
+import 'package:project_danso/common/const.dart';
 
 class DansoSoundLearningController extends GetxController {
   bool soundTuningState = false;
@@ -28,9 +30,37 @@ class DansoSoundLearningController extends GetxController {
   ];
   List soundList1 = ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲'];
   final _flutterMidi = FlutterMidi();
+  //디텍터
+  PitchModelInterface pitchModelInterface = new PitchModel();
+  Pitchdetector detector;
+  double pitch;
+  bool isRecording = false;
+  bool isAdjust = false;
+  Pitchdetector detectorAdjust;
+  String yulmyeong;
+  String pitchStatus;
+  Text isMacthing = Text("");
+  double userInputForAdjust;
   @override
   void onInit() {
     load('assets/Dan.sf2');
+    detector = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
+    isRecording = isRecording;
+
+    detector.onRecorderStateChanged.listen((event) {
+      pitch = event["pitch"];
+      yulmyeong = EnumToString.convertToString(
+          pitchModelInterface.getYulmyeongByFrequency(pitch).yulmyeong);
+      pitchStatus = EnumToString.convertToString(
+          pitchModelInterface.getYulmyeongByFrequency(pitch).scaleStatus);
+
+      update();
+    });
+    detectorAdjust = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
+    detectorAdjust.onRecorderStateChanged.listen((event) {
+      userInputForAdjust = event["pitch"];
+      update();
+    });
     super.onInit();
   }
 
@@ -124,6 +154,191 @@ class DansoSoundLearningController extends GetxController {
 
   void soundListTa(int n) {
     soundListUpDown = 4;
+
+    update();
+  }
+
+  Widget soundMatch(double scl) {
+    switch (soundListUpDown) {
+      case 0:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 1:
+        if (pitchModelInterface.isCorrectPitch(
+            pitch, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
+          return Text(
+            "음과 일치합니다${scl}",
+            style: TextStyle(color: textHiddenGray),
+          );
+        } else {
+          return Text("음이 달라요ㅠㅠ${scl}");
+        }
+        break;
+      case 2:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 3:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 4:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 5:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 6:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 7:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 8:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      case 9:
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))) {
+            return Text(
+              "음과 일치합니다${scl}",
+              style: TextStyle(color: textHiddenGray),
+            );
+          } else {
+            return Text("음이 달라요ㅠㅠ${scl}");
+          }
+        } catch (er) {
+          return Text("");
+        }
+        break;
+      default:
+    }
+  }
+
+  void startAdjust() async {
+    await detectorAdjust.startRecording();
+    if (detectorAdjust.isRecording) {
+      isAdjust = true;
+    }
+    update();
+  }
+
+  void stopAdjust() {
+    detector.stopRecording();
+    isAdjust = false;
+    pitchModelInterface.settingAdjust(userInputForAdjust);
+    update();
+  }
+
+  void startRecording() async {
+    await detector.startRecording();
+    if (detector.isRecording) {
+      isRecording = true;
+    }
+
+    update();
+  }
+
+  void stopRecording() async {
+    detector.stopRecording();
+
+    isRecording = false;
+    pitch = detector.pitch;
 
     update();
   }

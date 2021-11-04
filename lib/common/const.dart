@@ -71,11 +71,7 @@ const FontWeight bold = FontWeight.bold;
 
 const double jungWidth = 62;
 const double jungHeight = 35;
-// const double jungFourWidth = 61;
-// const double jungFourHeight = 110;
-const double jungSixWidth = 62;
 const double jungSixHeight = 82;
-const double jungEightWidth = 62;
 const double jungEightHeight = 62;
 
 // 단소 스타일 가이드

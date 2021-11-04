@@ -1,9 +1,6 @@
-import 'package:danso_function/common/classes/YulmyeongNote.dart';
-import 'package:danso_function/common/functions/JungGanBoPlayer.dart';
 import 'package:danso_function/danso_function.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pitchdetector/pitchdetector.dart';
@@ -11,11 +8,28 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'package:pitchdetector/pitchdetector.dart';
 
-class MainDansoLearningTestScreen extends StatelessWidget {
+class MainDansoLearningTestScreen extends StatefulWidget {
   MainDansoLearningTestScreen({Key key}) : super(key: key);
+
+  @override
+  _MainDansoLearningTestScreenState createState() =>
+      _MainDansoLearningTestScreenState();
+}
+
+class _MainDansoLearningTestScreenState
+    extends State<MainDansoLearningTestScreen> {
   final DansoSoundLearningController dansoSoundLearningController =
       Get.put(DansoSoundLearningController());
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +53,14 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                         children: [
                           Positioned(
                             right: 30.w,
-                            child: Text(controller.listenTunungState
-                                ? '소리를 들어보세요'
+                            child: controller.listenTunungState
+                                ? Text('소리를 들어보세요')
                                 : controller.soundTuningState
-                                    ? '단소를 불어보세요'
+                                    ? Text('${controller.userInputForAdjust}')
                                     : controller.playTunungState
-                                        ? "단소를 불어보세요"
-                                        : ""),
+                                        ? controller
+                                            .soundMatch(controller.pitch)
+                                        : Text(""),
                           ),
                           Row(
                             children: [
@@ -117,6 +132,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                 ),
               ],
             ),
+            //기준음
             SoundButton(
               title: '${controller.buttonSound}',
               onPressed: controller.listenTunungState
@@ -126,8 +142,12 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                       : () {
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
+                          controller.isAdjust
+                              ? controller.stopAdjust()
+                              : controller.startAdjust();
                         },
             ),
+            //불어보기
             SoundButton(
               title: '${controller.buttonPlay}',
               onPressed: controller.listenTunungState
@@ -136,8 +156,12 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                       ? null
                       : () {
                           controller.changePlayState();
+                          controller.isRecording
+                              ? controller.stopRecording()
+                              : controller.startRecording();
                         },
             ),
+            //예시듣기
             SoundButton(
               title: '${controller.buttonListen}',
               onPressed: controller.soundTuningState
@@ -151,6 +175,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                               : null;
                         },
             ),
+            //연습하기
             SoundButton(
               title: '연습하기',
               onPressed: controller.listenTunungState
