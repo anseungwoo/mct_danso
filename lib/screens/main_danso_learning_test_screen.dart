@@ -9,7 +9,7 @@ import 'package:project_danso/widgets/widgets.dart';
 class MainDansoLearningTestScreen extends StatelessWidget {
   MainDansoLearningTestScreen({Key key}) : super(key: key);
 
-  // final SoundController soundController = Get.put(SoundController());
+  final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
               leftLightCicleAvatarAndText(),
               SizedBox(height: 70.h),
               GetBuilder<DansoSoundLearningController>(
-                  init: DansoSoundLearningController(),
+                  init: dansoSoundLearningController,
                   builder: (controller) {
                     return Container(
                       // color: Colors.lightGreenAccent,
@@ -34,13 +34,13 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                         children: [
                           Positioned(
                             right: 30.w,
-                            child: Text(controller.listenTunungState
+                            child: Text(controller.listenTuningState
                                 ? '소리를 들어보세요'
                                 : controller.soundTuningState
                                     ? '단소를 불어보세요'
-                                    : controller.playTunungState
-                                        ? "단소를 불어보세요"
-                                        : ""),
+                                    : controller.playTuningState
+                                        ? '단소를 불어보세요'
+                                        : ''),
                           ),
                           Row(
                             children: [
@@ -74,11 +74,12 @@ class MainDansoLearningTestScreen extends StatelessWidget {
               ),
               child: Center(
                   child: Text(
-                "${controller.soundList1[controller.soundListUpDown]}",
+                '${controller.soundList1[controller.soundListUpDown]}',
                 style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
               )),
             ),
             SizedBox(height: 21.h),
+            Text('${controller.userInputForAdjust}'),
             Text(controller.soundList[controller.soundListUpDown],
                 style: TextStyle(fontSize: textStyleSize.sp)),
             SizedBox(height: 18.h),
@@ -88,11 +89,11 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                 UpDownButton(
                   icons: Icons.arrow_upward,
                   onPressed: () {
-                    controller.listenTunungState
+                    controller.listenTuningState
                         ? null
                         : controller.soundTuningState
                             ? null
-                            : controller.playTunungState
+                            : controller.playTuningState
                                 ? null
                                 : controller.soundListUp();
                   },
@@ -101,11 +102,11 @@ class MainDansoLearningTestScreen extends StatelessWidget {
                 UpDownButton(
                   icons: Icons.arrow_downward,
                   onPressed: () {
-                    controller.listenTunungState
+                    controller.listenTuningState
                         ? null
                         : controller.soundTuningState
                             ? null
-                            : controller.playTunungState
+                            : controller.playTuningState
                                 ? null
                                 : controller.soundListDown();
                   },
@@ -113,19 +114,22 @@ class MainDansoLearningTestScreen extends StatelessWidget {
               ],
             ),
             SoundButton(
-              title: '${controller.buttonSound}',
-              onPressed: controller.listenTunungState
+              title: '${controller.tunningButtonText}',
+              onPressed: controller.listenTuningState
                   ? null
-                  : controller.playTunungState
+                  : controller.playTuningState
                       ? null
                       : () {
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
+                          controller.isRecording
+                              ? controller.stopRecording()
+                              : controller.startRecording();
                         },
             ),
             SoundButton(
               title: '${controller.buttonPlay}',
-              onPressed: controller.listenTunungState
+              onPressed: controller.listenTuningState
                   ? null
                   : controller.soundTuningState
                       ? null
@@ -137,7 +141,7 @@ class MainDansoLearningTestScreen extends StatelessWidget {
               title: '${controller.buttonListen}',
               onPressed: controller.soundTuningState
                   ? null
-                  : controller.playTunungState
+                  : controller.playTuningState
                       ? null
                       : () {
                           controller.changeSpeakTuningState();
@@ -145,11 +149,11 @@ class MainDansoLearningTestScreen extends StatelessWidget {
             ),
             SoundButton(
               title: '연습하기',
-              onPressed: controller.listenTunungState
+              onPressed: controller.listenTuningState
                   ? null
                   : controller.soundTuningState
                       ? null
-                      : controller.playTunungState
+                      : controller.playTuningState
                           ? null
                           : () {
                               Get.to(MainDansoLearningLevelScreen());

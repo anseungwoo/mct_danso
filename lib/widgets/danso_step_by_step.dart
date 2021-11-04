@@ -5,10 +5,39 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class DansoStepByStep extends StatelessWidget {
-  String level;
-  String currentLevel;
+class DansoStepByStep extends StatefulWidget {
+  final String level;
+  final String currentLevel;
+
   DansoStepByStep({Key key, @required this.level, @required this.currentLevel});
+
+  @override
+  _DansoStepByStepState createState() => _DansoStepByStepState();
+}
+
+class _DansoStepByStepState extends State<DansoStepByStep> {
+  final dansoStepController = Get.put(DansoStepController());
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('didChangeDependencies');
+    dansoStepController.starStopState = false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('iniit');
+    dansoStepController.starStopState = false;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose');
+    dansoStepController.starStopState = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +50,12 @@ class DansoStepByStep extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      '$currentLevel레벨 연습곡',
+                      '${widget.currentLevel}레벨 연습곡',
                       style: TextStyle(
                           fontSize: textSingleSize.sp, fontWeight: bold),
                     ),
                   ),
-                  jungganboFromLevel(level),
+                  jungganboFromLevel(widget.level),
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
