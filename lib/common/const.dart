@@ -71,16 +71,12 @@ const FontWeight bold = FontWeight.bold;
 
 const double jungWidth = 62;
 const double jungHeight = 35;
-// const double jungFourWidth = 61;
-// const double jungFourHeight = 110;
-const double jungSixWidth = 62;
 const double jungSixHeight = 82;
-const double jungEightWidth = 62;
 const double jungEightHeight = 62;
 
 // 단소 스타일 가이드
 const Color third = Color(0xffc48535);
-const Color force = Color(0xff7E531D);
+const Color appBarColor = Color(0xff302414);
 
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명

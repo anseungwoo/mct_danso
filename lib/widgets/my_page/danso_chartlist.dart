@@ -74,7 +74,8 @@ class DansoChartlist extends StatelessWidget {
                               width: 33.w,
                               height: 33.h,
                               decoration: BoxDecoration(
-                                  border: Border.all(color: textBlack)),
+                                  border:
+                                      Border.all(color: textBlack, width: 0.5)),
                               child: Center(
                                 child: Text(
                                     "${controller.hangeul[controller.currentLevel][i]}",
@@ -92,7 +93,8 @@ class DansoChartlist extends StatelessWidget {
                               width: 33.w,
                               height: 33.h,
                               decoration: BoxDecoration(
-                                  border: Border.all(color: textBlack)),
+                                  border:
+                                      Border.all(color: textBlack, width: 0.5)),
                               child: Center(
                                 child: Text(
                                     "${controller.hanja[controller.currentLevel][i]}",
@@ -119,6 +121,8 @@ class DansoChartlist extends StatelessWidget {
                                 Get.to(
                                   SongPlayAndTest(
                                     appbarTitle: item.songTitle,
+                                    jangdan: item.songJangdan,
+                                    sheetData: item.songSheet,
                                   ),
                                 );
                                 // Get.to(SheetTestScreen(

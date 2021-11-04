@@ -11,7 +11,11 @@ import 'package:project_danso/widgets/widgets.dart';
 
 class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;
-  SongPlayAndTest({Key key, this.appbarTitle}) : super(key: key);
+  final String sheetData;
+  final String jangdan;
+
+  SongPlayAndTest({Key key, this.appbarTitle, this.jangdan, this.sheetData})
+      : super(key: key);
 
   // final songData = Get.arguments;
 
@@ -21,7 +25,6 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   int percent;
-
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -39,6 +42,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   @override
   Widget build(BuildContext context) {
+    JungGanBo testJungGanBo =
+        new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
@@ -182,11 +187,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                         ),
                   Stack(
                     children: [
-                      fourByEightJung(jungWidth, jungEightHeight, 0),
-                      JungganboColorAnimation(
-                        tempo: 1000,
-                        jungganboLength: 8,
-                      ),
+                      jungganbo(6, testJungGanBo),
+                      // JungganboColorAnimation(
+                      //   tempo: 1000,
+                      //   jungganboLength: 8,
+                      // ),
                     ],
                   ),
                 ],
