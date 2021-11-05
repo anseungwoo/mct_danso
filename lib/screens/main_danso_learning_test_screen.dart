@@ -1,16 +1,10 @@
-import 'package:danso_function/danso_function.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pitchdetector/pitchdetector.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
-import 'package:pitchdetector/pitchdetector.dart';
 
 class MainDansoLearningTestScreen extends StatefulWidget {
   MainDansoLearningTestScreen({Key key}) : super(key: key);

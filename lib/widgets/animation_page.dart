@@ -2,9 +2,7 @@ import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sequence_animation/flutter_sequence_animation.dart';
-
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/widgets/widgets.dart';
 
 class JungganboColorAnimation extends StatefulWidget {
   int tempo;
@@ -495,7 +493,6 @@ class _JungganboColorAnimationState extends State<JungganboColorAnimation>
       controller.reset();
 
       _playAnimation();
-
     } on TickerCanceled {
       // the animation got canceled, probably because we were disposed
     }

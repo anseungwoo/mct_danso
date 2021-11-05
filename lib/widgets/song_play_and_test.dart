@@ -113,6 +113,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       controller.changePlayStopState();
 
                                       controller.previousButton();
+                                      controller.platState
+                                          ? Get.find<JungganboController>()
+                                              .stepStart()
+                                          : Get.find<JungganboController>()
+                                              .stepStop();
                                       print(controller.statecount);
                                     },
                                   )
@@ -197,25 +202,28 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             Text("자진모리장단")
                           ],
                         ),
-                  Stack(
-                    children: [
-                      // jungganbo(6, testJungGanBo),
-                      // controller.platState
-                      //     ? jungganboFromFlash(
-                      //         6, Get.find<JungganboController>(), testJungGanBo)
-                      //     : Container(),
+                  GetBuilder<JungganboController>(
+                      init: JungganboController(),
+                      builder: (jungcontroller) {
+                        return Stack(
+                          children: [
+                            // jungganbo(6, testJungGanBo),
+                            // controller.platState
+                            //     ? jungganboFromFlash(
+                            //         6, Get.find<JungganboController>(), testJungGanBo)
+                            //     : Container(),
 
-                      jungganbo(
-                          6, Get.find<JungganboController>(), testJungGanBo),
-                      jungganboFromFlash(
-                          6, Get.find<JungganboController>(), testJungGanBo),
-                      jungganboScreen(6),
-                      // JungganboColorAnimation(
-                      //   tempo: 1000,
-                      //   jungganboLength: 8,
-                      // ),
-                    ],
-                  ),
+                            jungganbo(6, jungcontroller, testJungGanBo),
+                            jungganboFromFlash(
+                                6, jungcontroller, testJungGanBo),
+                            jungganboScreen(6),
+                            // JungganboColorAnimation(
+                            //   tempo: 1000,
+                            //   jungganboLength: 8,
+                            // ),
+                          ],
+                        );
+                      }),
                 ],
               ),
             );
