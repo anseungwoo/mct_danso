@@ -33,9 +33,7 @@ class DansoStepByStep extends StatelessWidget {
                     ),
                   ),
                   Stack(
-                    children: [
-                      jungganboFromFlash(12, controller, testJungGanBo)
-                    ],
+                    children: [jungganbo(12, controller, testJungGanBo)],
                   ),
                   SizedBox(height: 5),
                   Row(
