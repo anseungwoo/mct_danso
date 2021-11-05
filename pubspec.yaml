@@ -42,7 +42,7 @@ dependencies:
   camera: ^0.7.0+4
   video_player: ^1.0.1
   path_provider: ^1.6.28
-  danso_function: ^0.0.6
+  danso_function: ^1.0.0
   path: ^1.7.0
   gallery_saver: ^2.0.3
   flutter_youtube_view: ^1.1.10
