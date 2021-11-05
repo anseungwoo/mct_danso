@@ -34,11 +34,7 @@ class DansoStepByStep extends StatelessWidget {
                   ),
                   Stack(
                     children: [
-                      jungganbo(12, testJungGanBo),
-                      controller.starStopState
-                          ? jungganboFromFlash(
-                              jungHeight, 12, controller, testJungGanBo)
-                          : Container(),
+                      jungganboFromFlash(12, controller, testJungGanBo)
                     ],
                   ),
                   SizedBox(height: 5),

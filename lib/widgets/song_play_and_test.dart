@@ -25,6 +25,7 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   int percent;
+
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -67,6 +68,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.nextButton();
+                                      Get.find<JungganboController>()
+                                          .changeStartStopState();
+                                      controller.platState
+                                          ? Get.find<JungganboController>()
+                                              .stepStart()
+                                          : Get.find<JungganboController>()
+                                              .stepStop();
+
                                       print(controller.statecount);
                                     },
                                   ),
@@ -100,6 +109,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
+
                                       controller.previousButton();
                                       print(controller.statecount);
                                     },
@@ -187,7 +197,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                         ),
                   Stack(
                     children: [
-                      jungganbo(6, testJungGanBo),
+                      // jungganbo(6, testJungGanBo),
+                      // controller.platState
+                      //     ? jungganboFromFlash(
+                      //         6, Get.find<JungganboController>(), testJungGanBo)
+                      //     : Container(),
+                      jungganbo(
+                          6, Get.find<JungganboController>(), testJungGanBo)
                       // JungganboColorAnimation(
                       //   tempo: 1000,
                       //   jungganboLength: 8,

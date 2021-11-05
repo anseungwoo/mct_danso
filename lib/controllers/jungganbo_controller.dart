@@ -31,7 +31,7 @@ class JungganboController extends GetxController {
 
   void stepStart() {
     interval(new Duration(milliseconds: 1000), (timer) {
-      if (i < 48 && starStopState) {
+      if (i < 24 && starStopState) {
         flashCount();
         i++;
       } else {

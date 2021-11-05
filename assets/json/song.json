@@ -6,7 +6,7 @@
             "song_jangdan": "세마치장단",
             "song_like": "false",
             "song_diff": 1,
-            "song_sheet": "t|-h|m|h|t|t|t|o|h|h|h|o|t|t|t|o|t|-h|m|h|t|t|t|o|h|h|t|-h|m|o|o|^|"
+            "song_sheet": "t|-h|m|h#t|t|t|o#h|h|h|o#t|t|t|o#t|-h|m|h#t|t|t|o#h|h|t|-h#m|o|o|^#"
         },
         {
             "song_title": "산들바람",

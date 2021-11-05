@@ -119,12 +119,15 @@ class DansoChartlist extends StatelessWidget {
                             child: InkWell(
                               onTap: () {
                                 Get.to(
-                                  SongPlayAndTest(
-                                    appbarTitle: item.songTitle,
-                                    jangdan: item.songJangdan,
-                                    sheetData: item.songSheet,
-                                  ),
-                                );
+                                    SongPlayAndTest(
+                                      appbarTitle: item.songTitle,
+                                      jangdan: item.songJangdan,
+                                      sheetData: item.songSheet,
+                                    ), binding:
+                                        BindingsBuilder<JungganboController>(
+                                            () {
+                                  Get.put(JungganboController());
+                                }));
                                 // Get.to(SheetTestScreen(
                                 //   sheetData: item.songSheet,
                                 //   jangdan: item.songJangdan,
