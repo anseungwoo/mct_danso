@@ -8,6 +8,8 @@ import 'package:project_danso/controllers/flash_controller.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import 'jungganbo/jungganbo_screen.dart';
+
 class DansoStepByStep extends StatelessWidget {
   final String sheetData;
   String currentLevel;
@@ -33,7 +35,13 @@ class DansoStepByStep extends StatelessWidget {
                     ),
                   ),
                   Stack(
-                    children: [jungganbo(12, controller, testJungGanBo)],
+                    children: [
+                      jungganbo(
+                          12, Get.find<JungganboController>(), testJungGanBo),
+                      jungganboFromFlash(
+                          12, Get.find<JungganboController>(), testJungGanBo),
+                      jungganboScreen(12),
+                    ],
                   ),
                   SizedBox(height: 5),
                   Row(

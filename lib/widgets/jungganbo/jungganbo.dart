@@ -12,7 +12,7 @@ Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
   int j = 0;
   return Row(
     children: [
-      for (var c = 0; c < 4; c++)
+      for (var c = 3; c >= 0; c--)
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -20,13 +20,13 @@ Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
               Row(
                 children: [
                   testJungGanBo.sheet[i].yulmyeongs.length == 1
-                      ? jungFlashContainer(height, controller.flashcount, i, j,
+                      ? jungContainer(height, controller.flashcount, i, j,
                           heightNumber, testJungGanBo)
                       : testJungGanBo.sheet[i].yulmyeongs.length == 2
                           ? Column(
                               children: [
                                 for (var j = 0; j < 2; j++)
-                                  jungFlashContainer(
+                                  jungContainer(
                                       height / 2,
                                       controller.flashcount,
                                       i,
@@ -39,7 +39,7 @@ Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
                               ? Column(
                                   children: [
                                     for (var j = 0; j < 3; j++)
-                                      jungFlashContainer(
+                                      jungContainer(
                                           height / 3,
                                           controller.flashcount,
                                           i,
@@ -62,18 +62,16 @@ Container blankContainer(double height) {
   return Container(
     width: 20.w,
     height: height.h,
-    decoration:
-        BoxDecoration(color: white, border: Border.all(color: textBlack)),
+    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
   );
 }
 
-Container jungFlashContainer(double height, int a, int i, int j,
-    int heightNumber, JungGanBo testJungGanBo) {
+Container jungContainer(double height, int a, int i, int j, int heightNumber,
+    JungGanBo testJungGanBo) {
   return Container(
     width: jungWidth.w,
     height: height.h,
-    decoration:
-        BoxDecoration(color: white, border: Border.all(color: textBlack)),
+    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

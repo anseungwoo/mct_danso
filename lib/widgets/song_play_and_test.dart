@@ -9,6 +9,8 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import 'jungganbo/jungganbo_screen.dart';
+
 class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;
   final String sheetData;
@@ -202,8 +204,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       //     ? jungganboFromFlash(
                       //         6, Get.find<JungganboController>(), testJungGanBo)
                       //     : Container(),
+
                       jungganbo(
-                          6, Get.find<JungganboController>(), testJungGanBo)
+                          6, Get.find<JungganboController>(), testJungGanBo),
+                      jungganboFromFlash(
+                          6, Get.find<JungganboController>(), testJungGanBo),
+                      jungganboScreen(6),
                       // JungganboColorAnimation(
                       //   tempo: 1000,
                       //   jungganboLength: 8,
