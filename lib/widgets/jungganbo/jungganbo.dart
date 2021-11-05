@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
+Widget jungganbo(
+    int heightNumber, controller, JungGanBo testJungGanBo, bool krState) {
   double height = heightNumber == 12
       ? jungHeight
       : heightNumber == 8
@@ -21,7 +22,7 @@ Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
                 children: [
                   testJungGanBo.sheet[i].yulmyeongs.length == 1
                       ? jungContainer(height, controller.flashcount, i, j,
-                          heightNumber, testJungGanBo)
+                          heightNumber, testJungGanBo, krState)
                       : testJungGanBo.sheet[i].yulmyeongs.length == 2
                           ? Column(
                               children: [
@@ -32,7 +33,8 @@ Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
                                       i,
                                       j,
                                       heightNumber,
-                                      testJungGanBo)
+                                      testJungGanBo,
+                                      krState)
                               ],
                             )
                           : testJungGanBo.sheet[i].yulmyeongs.length == 3
@@ -45,7 +47,8 @@ Widget jungganbo(int heightNumber, controller, JungGanBo testJungGanBo) {
                                           i,
                                           j,
                                           heightNumber,
-                                          testJungGanBo)
+                                          testJungGanBo,
+                                          krState)
                                   ],
                                 )
                               : Container(),
@@ -67,7 +70,7 @@ Container blankContainer(double height) {
 }
 
 Container jungContainer(double height, int a, int i, int j, int heightNumber,
-    JungGanBo testJungGanBo) {
+    JungGanBo testJungGanBo, bool krState) {
   return Container(
     width: jungWidth.w,
     height: height.h,
@@ -76,10 +79,18 @@ Container jungContainer(double height, int a, int i, int j, int heightNumber,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
-            child: Text(
-          testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
-          style: TextStyle(fontSize: heightNumber == 12 ? 25.sp : 14.sp),
-        )),
+          child: krState
+              ? Text(
+                  testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
+                  style:
+                      TextStyle(fontSize: heightNumber == 12 ? 25.sp : 14.sp),
+                )
+              : Text(
+                  testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
+                  style:
+                      TextStyle(fontSize: heightNumber == 12 ? 25.sp : 14.sp),
+                ),
+        ),
       ],
     ),
   );

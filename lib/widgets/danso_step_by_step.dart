@@ -36,8 +36,8 @@ class DansoStepByStep extends StatelessWidget {
                   ),
                   Stack(
                     children: [
-                      jungganbo(
-                          12, Get.find<JungganboController>(), testJungGanBo),
+                      jungganbo(12, Get.find<JungganboController>(),
+                          testJungGanBo, true),
                       jungganboFromFlash(
                           12, Get.find<JungganboController>(), testJungGanBo),
                       jungganboScreen(12),

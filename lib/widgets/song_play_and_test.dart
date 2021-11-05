@@ -213,7 +213,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             //         6, Get.find<JungganboController>(), testJungGanBo)
                             //     : Container(),
 
-                            jungganbo(6, jungcontroller, testJungGanBo),
+                            jungganbo(6, jungcontroller, testJungGanBo,
+                                controller.krChanges),
                             jungganboFromFlash(
                                 6, jungcontroller, testJungGanBo),
                             jungganboScreen(6),
