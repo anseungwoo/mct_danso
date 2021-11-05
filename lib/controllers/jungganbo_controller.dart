@@ -7,6 +7,14 @@ class JungganboController extends GetxController {
   String startButton = '시작하기';
   int speedCount = 2;
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
+  @override
+  void onInit() {
+    super.onInit();
+    starStopState = false;
+    startButton = '시작하기';
+    stepStop();
+  }
+
   void changeStartStopState() {
     starStopState = !starStopState;
     startButton = starStopState ? '종료하기' : '시작하기';
