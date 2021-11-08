@@ -254,11 +254,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                     ),
                     Text(
                       "녹화화면을 준비하고 있습니다",
-                      style: TextStyle(color: white, fontSize: textContantSize),
+                      style: TextStyle(color: white, fontSize: textEightSize),
                     ),
                     Text(
                       "녹화시작 버튼을 누르고 녹화시작",
-                      style: TextStyle(color: white, fontSize: textContantSize),
+                      style: TextStyle(color: white, fontSize: textEightSize),
                     ),
                   ],
                 ),

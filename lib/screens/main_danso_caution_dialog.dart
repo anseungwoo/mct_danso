@@ -24,7 +24,7 @@ Widget mainDansoCautionDialog() {
               padding: const EdgeInsets.all(20),
               child: Text(
                 "연주 시 주의사항",
-                style: TextStyle(fontSize: textContantSize, fontWeight: bold),
+                style: TextStyle(fontSize: textSevenSize, fontWeight: bold),
               ),
             ),
             Text("단소의 바람이 마이크로 들어가지 않게 해 주세요"),

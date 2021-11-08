@@ -28,7 +28,7 @@ class MyPageMysong extends StatelessWidget {
                       Text(
                         'Entry ${index}',
                         style:
-                            TextStyle(fontSize: textStyleSize.sp, color: white),
+                            TextStyle(fontSize: textEightSize.sp, color: white),
                       ),
                       Spacer(flex: 1),
                       PopupMenuButton(

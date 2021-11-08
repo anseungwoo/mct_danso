@@ -19,7 +19,7 @@ TabBar defaultTabBar({@required List<Tab> tabList, bool scrollable = false}) {
     labelColor: tapBarColor,
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: textStyleSize.sp,
+      fontSize: textEightSize.sp,
     ),
   );
 }

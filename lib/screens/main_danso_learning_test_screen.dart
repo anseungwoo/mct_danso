@@ -92,7 +92,7 @@ class _MainDansoLearningTestScreenState
             ),
             SizedBox(height: 21.h),
             Text(controller.soundList[controller.soundListUpDown],
-                style: TextStyle(fontSize: textStyleSize.sp)),
+                style: TextStyle(fontSize: textEightSize.sp)),
             SizedBox(height: 18.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

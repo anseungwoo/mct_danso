@@ -73,7 +73,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 controller.starStopState
                                     ? controller.stepStart()
                                     : controller.stepStop();
-                                jungGanBoPlayer.play(testJungGanBo);
+                                controller.starStopState
+                                    ? jungGanBoPlayer.play(testJungGanBo)
+                                    : null;
                               },
                               child: Text('${controller.startButton}'))),
                       Spacer(

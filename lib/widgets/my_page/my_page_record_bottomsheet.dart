@@ -118,7 +118,7 @@ void bottomsheet(BuildContext context) async {
                                 Text(
                                   '날짜',
                                   style: TextStyle(
-                                      fontSize: textContantSize.sp,
+                                      fontSize: textEightSize.sp,
                                       color: textBlack,
                                       decoration: TextDecoration.none),
                                 ),
@@ -143,7 +143,7 @@ void bottomsheet(BuildContext context) async {
                                       '점수',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                          fontSize: textContantSize.sp,
+                                          fontSize: textEightSize.sp,
                                           color: textBlack,
                                           decoration: TextDecoration.none),
                                     ),

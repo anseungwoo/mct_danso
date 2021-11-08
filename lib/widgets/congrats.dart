@@ -58,7 +58,7 @@ class ResultScore extends StatelessWidget {
           SizedBox(height: basicPadding),
           Text(
             '흠이 없는 실력 이군요',
-            style: TextStyle(fontSize: textStyleSize),
+            style: TextStyle(fontSize: textEightSize.sp),
           ),
         ],
       ),
