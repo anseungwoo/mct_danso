@@ -51,7 +51,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   Stack(
                     children: [
                       jungganbo(12, Get.find<JungganboController>(),
-                          testJungGanBo, true),
+                          testJungGanBo, controller.krState),
                       jungganboFromFlash(
                           12, Get.find<JungganboController>(), testJungGanBo),
                       jungganboScreen(12),
@@ -62,8 +62,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                          height: 30.h,
-                          width: 160.w,
+                          width: 105.w,
+                          height: 37.h,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: buttonColorOrang,
@@ -78,12 +78,10 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                     : null;
                               },
                               child: Text('${controller.startButton}'))),
-                      Spacer(
-                        flex: 1,
-                      ),
+                      SizedBox(width: 8.w),
                       Container(
-                          height: 30.h,
-                          width: 160.w,
+                          width: 105.w,
+                          height: 37.h,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: buttonColorOrang,
@@ -95,6 +93,20 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               },
                               child: Text(
                                   '${controller.speed[controller.speedCount]}배속'))),
+                      SizedBox(width: 7.w),
+                      Container(
+                          width: 105.w,
+                          height: 37.h,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: buttonColorOrang,
+                                  onSurface: unButtonColorOrang),
+                              onPressed: () {
+                                controller.starStopState
+                                    ? null
+                                    : controller.changekrState();
+                              },
+                              child: Text('${controller.krButton}'))),
                     ],
                   ),
                 ],

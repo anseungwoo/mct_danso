@@ -6,6 +6,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/main_danso_caution_dialog.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/test_dialog.dart';
 import 'package:project_danso/widgets/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -144,6 +145,12 @@ class _MainDansoLearningTestScreenState
                           await Get.dialog(Dialog(
                             child: LoadingIndicator(),
                           ));
+                          if (controller.userInputForAdjust < 400 ||
+                              controller.userInputForAdjust > 700) {
+                            await Get.dialog(testDialog(FAIL_SVG, "다시시도해주세요"));
+                          } else {
+                            await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
+                          }
                         },
             ),
             //불어보기

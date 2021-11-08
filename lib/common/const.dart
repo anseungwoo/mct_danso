@@ -86,8 +86,11 @@ const Color buttonColorOrang = Color(0xffF19929);
 const Color unButtonColorOrang = Color(0xffFEC782);
 const Color matchColor = Color(0xff00A8F2);
 const Color unMatchColor = Color(0xffFE0000);
-
+const String BOLW_SVG = 'assets/images/ic_blow.svg';
 const String LOGO_SVG = 'assets/images/ic_logo.svg';
+const String SUCCESS_SVG = 'assets/images/ic_success.svg';
+const String FAIL_SVG = 'assets/images/ic_failure.svg';
+
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
 const String HISTORY =
