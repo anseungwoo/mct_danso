@@ -23,7 +23,6 @@ class MainDansoLearningLevelScreen extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
           children: [
             DansoStepByStep(currentLevel: '1', sheetData: level1),
             DansoStepByStep(currentLevel: '2', sheetData: level2),

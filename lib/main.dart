@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: background, // 기본 배경색
             ),
             debugShowCheckedModeBanner: false,
-            home: splashLogo(),
+            home: SplashScreen(),
           );
         });
   }

@@ -3,8 +3,6 @@ import 'dart:io' as io;
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
-import 'package:get/get_state_manager/src/simple/list_notifier.dart';
-import 'package:pitchdetector/pitchdetector.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 

@@ -9,6 +9,8 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import 'jungganbo/jungganbo_screen.dart';
+
 class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;
   final String sheetData;
@@ -25,6 +27,7 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   int percent;
+
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -67,6 +70,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.nextButton();
+                                      Get.find<JungganboController>()
+                                          .changeStartStopState();
+                                      controller.platState
+                                          ? Get.find<JungganboController>()
+                                              .stepStart()
+                                          : Get.find<JungganboController>()
+                                              .stepStop();
+
                                       print(controller.statecount);
                                     },
                                   ),
@@ -100,7 +111,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
+
                                       controller.previousButton();
+                                      controller.platState
+                                          ? Get.find<JungganboController>()
+                                              .stepStart()
+                                          : Get.find<JungganboController>()
+                                              .stepStop();
                                       print(controller.statecount);
                                     },
                                   )
@@ -185,15 +202,29 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             Text("자진모리장단")
                           ],
                         ),
-                  Stack(
-                    children: [
-                      jungganbo(6, testJungGanBo),
-                      // JungganboColorAnimation(
-                      //   tempo: 1000,
-                      //   jungganboLength: 8,
-                      // ),
-                    ],
-                  ),
+                  GetBuilder<JungganboController>(
+                      init: JungganboController(),
+                      builder: (jungcontroller) {
+                        return Stack(
+                          children: [
+                            // jungganbo(6, testJungGanBo),
+                            // controller.platState
+                            //     ? jungganboFromFlash(
+                            //         6, Get.find<JungganboController>(), testJungGanBo)
+                            //     : Container(),
+
+                            jungganbo(6, jungcontroller, testJungGanBo,
+                                controller.krChanges),
+                            jungganboFromFlash(
+                                6, jungcontroller, testJungGanBo),
+                            jungganboScreen(6),
+                            // JungganboColorAnimation(
+                            //   tempo: 1000,
+                            //   jungganboLength: 8,
+                            // ),
+                          ],
+                        );
+                      }),
                 ],
               ),
             );

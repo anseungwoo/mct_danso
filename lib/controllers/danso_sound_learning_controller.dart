@@ -33,6 +33,7 @@ class DansoSoundLearningController extends GetxController {
   //디텍터
   PitchModelInterface pitchModelInterface = new PitchModel();
   Pitchdetector detector;
+  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   double pitch;
   bool isRecording = false;
   bool isAdjust = false;
@@ -43,7 +44,6 @@ class DansoSoundLearningController extends GetxController {
   double userInputForAdjust;
   @override
   void onInit() {
-    load('assets/Dan.sf2');
     detector = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
     isRecording = isRecording;
 
@@ -64,55 +64,46 @@ class DansoSoundLearningController extends GetxController {
     super.onInit();
   }
 
-  void load(String asset) async {
-    print('Loading File...');
-    _flutterMidi.unmute();
-    ByteData _byte = await rootBundle.load(asset);
-    //assets/sf2/SmallTimGM6mb.sf2
-    //assets/sf2/Piano.SF2
-    _flutterMidi.prepare(sf2: _byte, name: "hi");
-  }
-
   void palySound() {
     switch (soundListUpDown) {
       case 0:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin), 2000);
         break;
       case 1:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin), 2000);
         break;
       case 2:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin), 2000);
         break;
       case 3:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin), 2000);
         break;
       case 4:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin), 2000);
         break;
       case 5:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.joong, ScaleStatus.high), 2000);
         break;
       case 6:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.yim, ScaleStatus.high), 2000);
         break;
       case 7:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.moo, ScaleStatus.high), 2000);
         break;
       case 8:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high), 2000);
         break;
       case 9:
-        playOneYulmyeongNote(
+        jungGanBoPlayer.playOneNoteDurationTime(
             YulmyeongNote(Yulmyeong.tae, ScaleStatus.high), 2000);
         break;
       default:
