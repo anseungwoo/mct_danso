@@ -89,10 +89,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               onPressed: () {
                                 controller.starStopState
                                     ? null
-                                    : controller.changespeedState();
+                                    : controller.changekrState();
                               },
-                              child: Text(
-                                  '${controller.speed[controller.speedCount]}배속'))),
+                              child: Text('${controller.krButton}'))),
                       SizedBox(width: 7.w),
                       Container(
                           width: 105.w,
@@ -104,9 +103,10 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               onPressed: () {
                                 controller.starStopState
                                     ? null
-                                    : controller.changekrState();
+                                    : controller.changespeedState();
                               },
-                              child: Text('${controller.krButton}'))),
+                              child: Text(
+                                  '${controller.speed[controller.speedCount]}배속'))),
                     ],
                   ),
                 ],
