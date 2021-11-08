@@ -50,7 +50,6 @@ class _MainDansoLearningTestScreenState
                         children: [
                           dansoImage(controller),
                           listeningAndTest(controller)
-
                         ],
                       ),
                     );
@@ -68,11 +67,11 @@ class _MainDansoLearningTestScreenState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            controller.listenTunungState
+            controller.listenTuningState
                 ? Text('소리를 들어보세요')
                 : controller.soundTuningState
                     ? Text('${controller.userInputForAdjust}')
-                    : controller.playTunungState
+                    : controller.playTuningState
                         ? controller.soundMatch(controller.pitch)
                         : Text(""),
             Padding(
@@ -90,16 +89,8 @@ class _MainDansoLearningTestScreenState
                   style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                 )),
               ),
-
-              child: Center(
-                  child: Text(
-                '${controller.soundList1[controller.soundListUpDown]}',
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-              )),
-
             ),
             SizedBox(height: 21.h),
-            Text('${controller.userInputForAdjust}'),
             Text(controller.soundList[controller.soundListUpDown],
                 style: TextStyle(fontSize: textStyleSize.sp)),
             SizedBox(height: 18.h),
@@ -140,14 +131,7 @@ class _MainDansoLearningTestScreenState
                   ? null
                   : controller.playTuningState
                       ? null
-
-                      : () {
-                          controller.soundTuningState
-                              ? null
-                              : Get.dialog(mainDansoCautionDialog());
-
                       : () async {
-
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
                           await Get.dialog(Dialog(child: TimerWidget()));
@@ -170,7 +154,7 @@ class _MainDansoLearningTestScreenState
                   : controller.soundTuningState
                       ? null
                       : () {
-                          controller.playTunungState
+                          controller.playTuningState
                               ? null
                               : Get.dialog(mainDansoCautionDialog());
                           controller.changePlayState();
@@ -216,11 +200,17 @@ class _MainDansoLearningTestScreenState
   Expanded dansoImage(DansoSoundLearningController controller) {
     return Expanded(
       child: Center(
-        child: Container(
-          width: 47.w,
-          height: 420.h,
-          color: Colors.brown,
-          child: Center(child: Text('단소 이미지${controller.soundListUpDown} 변경')),
+        child: Column(
+          children: [
+            Text("${controller.userInputForAdjust}"),
+            Container(
+              width: 47.w,
+              height: 420.h,
+              color: Colors.brown,
+              child:
+                  Center(child: Text('단소 이미지${controller.soundListUpDown} 변경')),
+            ),
+          ],
         ),
       ),
     );
