@@ -24,17 +24,13 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   FlashController flashController;
 
   JungganboController jungganboController = Get.put(JungganboController());
+
   @override
   void initState() {
     jungganboController.onInit();
     super.initState();
   }
 
-  @override
-  _DansoStepByStepState createState() => _DansoStepByStepState();
-}
-
-class _DansoStepByStepState extends State<DansoStepByStep> {
   @override
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('도라지타령', '세마치장단', widget.sheetData);
