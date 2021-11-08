@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'package:project_danso/controllers/audio_record/audio_record_controller.dart';
+import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 class SongAudioRecorder extends StatefulWidget {

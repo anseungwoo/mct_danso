@@ -52,8 +52,7 @@ class DansoSoundLearningController extends GetxController {
 
   @override
   void onInit() {
-    load123();
-    detector = Pitchdetector(sampleRate: 44100, sampleSize: 4096);
+    detector = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
     isRecording = isRecording;
     detectorAdjust = Pitchdetector(sampleRate: 44100, sampleSize: 4096);
     detectorAdjust.onRecorderStateChanged.listen((event) {

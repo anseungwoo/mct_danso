@@ -8,12 +8,27 @@ import 'package:project_danso/controllers/flash_controller.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import 'jungganbo/jungganbo_screen.dart';
+
 class DansoStepByStep extends StatefulWidget {
   final String sheetData;
   final String currentLevel;
   DansoStepByStep(
       {Key key, @required this.sheetData, @required this.currentLevel});
+
+  @override
+  _DansoStepByStepState createState() => _DansoStepByStepState();
+}
+
+class _DansoStepByStepState extends State<DansoStepByStep> {
   FlashController flashController;
+
+  JungganboController jungganboController = Get.put(JungganboController());
+  @override
+  void initState() {
+    jungganboController.onInit();
+    super.initState();
+  }
 
   @override
   _DansoStepByStepState createState() => _DansoStepByStepState();
@@ -26,7 +41,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<JungganboController>(
-            init: JungganboController(),
+            init: jungganboController,
             builder: (controller) {
               return Column(
                 children: [
@@ -39,11 +54,11 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   ),
                   Stack(
                     children: [
-                      jungganbo(12, testJungGanBo),
-                      controller.starStopState
-                          ? jungganboFromFlash(
-                              jungHeight, 12, controller, testJungGanBo)
-                          : Container(),
+                      jungganbo(12, Get.find<JungganboController>(),
+                          testJungGanBo, true),
+                      jungganboFromFlash(
+                          12, Get.find<JungganboController>(), testJungGanBo),
+                      jungganboScreen(12),
                     ],
                   ),
                   SizedBox(height: 5),

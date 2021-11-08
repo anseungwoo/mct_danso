@@ -1,13 +1,9 @@
-import 'dart:io' as io;
 import 'package:flutter/material.dart';
-import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/controllers/camera_record/camera_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/main.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   final PlayAndTestController controller;

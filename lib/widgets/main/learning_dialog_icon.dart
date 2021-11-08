@@ -12,9 +12,14 @@ Widget icon({@required String text, @required Widget page}) {
       width: 140.w,
       height: 140.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), //모서리를 둥글게
-          border: Border.all(color: textHiddenGray, width: 1)),
-      child: Center(child: Text("아이콘 영역")),
+        color: logoColor,
+        borderRadius: BorderRadius.circular(10), //모서리를 둥글게
+      ),
+      child: Center(
+          child: Text(
+        text,
+        style: TextStyle(color: white),
+      )),
     ),
   );
 }
