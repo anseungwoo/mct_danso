@@ -22,7 +22,7 @@ class DansoStepByStep extends StatefulWidget {
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
   FlashController flashController;
-
+  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
 
   @override
@@ -65,11 +65,15 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                           height: 30.h,
                           width: 160.w,
                           child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: buttonColorOrang,
+                                  onSurface: unButtonColorOrang),
                               onPressed: () {
                                 controller.changeStartStopState();
                                 controller.starStopState
                                     ? controller.stepStart()
                                     : controller.stepStop();
+                                jungGanBoPlayer.play(testJungGanBo);
                               },
                               child: Text('${controller.startButton}'))),
                       Spacer(
@@ -79,6 +83,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                           height: 30.h,
                           width: 160.w,
                           child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: buttonColorOrang,
+                                  onSurface: unButtonColorOrang),
                               onPressed: () {
                                 controller.starStopState
                                     ? null

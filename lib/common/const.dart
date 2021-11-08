@@ -78,6 +78,9 @@ const double jungEightHeight = 62;
 const Color third = Color(0xffc48535);
 const Color appBarColor = Color(0xff302414);
 const Color logoColor = Color(0xffEFBE50);
+const Color buttonColorOrang = Color(0xffF19929);
+const Color unButtonColorOrang = Color(0xffFEC782);
+const Color matchColor = Color(0xff00A8F2);
 const String LOGO_SVG = 'assets/images/ic_logo.svg';
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명

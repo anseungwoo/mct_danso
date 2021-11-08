@@ -49,7 +49,10 @@ class MainDansoHistoryKindScreen extends StatelessWidget {
                     explanation: HISTORY,
                     url: DANSO_HISTORY_URL),
                 // 화면 2
-                testContainer(SUBHISTORY),
+                DansoHistroyKind(
+                    subject: '단소의 역사',
+                    explanation: HISTORY,
+                    url: DANSO_HISTORY_URL),
               ],
             ),
             // 두번째 화면
