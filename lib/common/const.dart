@@ -23,6 +23,7 @@ const Color indiDarkGray = Color(0xff878787);
 
 // 페이지 인디케이터 밝은 회색
 const Color indiLightGray = Color(0xffCFCFCF);
+//빨간색
 
 //메인색깔
 const Color mainColor = Color(0xffEFBE50);
@@ -84,6 +85,8 @@ const Color logoColor = Color(0xffEFBE50);
 const Color buttonColorOrang = Color(0xffF19929);
 const Color unButtonColorOrang = Color(0xffFEC782);
 const Color matchColor = Color(0xff00A8F2);
+const Color unMatchColor = Color(0xffFE0000);
+
 const String LOGO_SVG = 'assets/images/ic_logo.svg';
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명

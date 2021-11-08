@@ -47,7 +47,7 @@ class DansoSoundLearningController extends GetxController {
 
   var dbFr;
   Pitchdetector detectorAdjust;
-  Text isMacthing = Text("");
+  Text isMacthing = Text("불러보세요");
 
   @override
   void onInit() {
@@ -182,13 +182,13 @@ class DansoSoundLearningController extends GetxController {
       if (pitchModelInterface.isCorrectPitch(
           userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
         return Text(
-          '음과 일치합니다 $userInputForAdjust',
-          style: TextStyle(color: Colors.black),
+          '음과 일치합니다. $userInputForAdjust',
+          style: TextStyle(color: matchColor),
         );
       } else {
         return Text(
           '음이 달라요ㅠㅠ $userInputForAdjust',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: unMatchColor),
         );
       }
     } catch (er) {
@@ -236,152 +236,222 @@ class DansoSoundLearningController extends GetxController {
     switch (soundListUpDown) {
       case 0:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Center(child: Text("불어 보세요"));
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 1:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              pitch, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 2:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 3:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 4:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 5:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 6:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 7:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 8:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       case 9:
         try {
-          if (pitchModelInterface.isCorrectPitch(
-              scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))) {
-            return Text(
-              "음과 일치합니다",
-              style: TextStyle(color: matchColor),
-            );
+          if (scl > 2000 || scl < 300) {
+            return Text("불러보세요");
           } else {
-            return Text("불어 보세요");
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))) {
+              return Text(
+                "음과 일치합니다.",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("음이 다릅니다.",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
           }
         } catch (er) {
-          return Text("");
+          return Text("불러보세요");
         }
         break;
       default:

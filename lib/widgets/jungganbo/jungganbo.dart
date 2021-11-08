@@ -83,12 +83,12 @@ Container jungContainer(double height, int a, int i, int j, int heightNumber,
               ? Text(
                   testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
                   style:
-                      TextStyle(fontSize: heightNumber == 12 ? 25.sp : 14.sp),
+                      TextStyle(fontSize: heightNumber == 12 ? 23.sp : 14.sp),
                 )
               : Text(
                   testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
                   style:
-                      TextStyle(fontSize: heightNumber == 12 ? 25.sp : 14.sp),
+                      TextStyle(fontSize: heightNumber == 12 ? 23.sp : 14.sp),
                 ),
         ),
       ],
