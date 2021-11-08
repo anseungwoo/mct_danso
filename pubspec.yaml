@@ -63,6 +63,7 @@ dependencies:
   double_back_to_close_app: ^1.2.0
   fluttertoast: ^7.1.8
   enum_to_string: ^1.0.14
+  syncfusion_flutter_gauges: any
 
 
 

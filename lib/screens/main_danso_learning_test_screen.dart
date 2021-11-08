@@ -5,6 +5,8 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/main_danso_caution_dialog.dart';
 import 'package:project_danso/screens/screens.dart';
+import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoLearningTestScreen extends StatefulWidget {
@@ -17,8 +19,7 @@ class MainDansoLearningTestScreen extends StatefulWidget {
 
 class _MainDansoLearningTestScreenState
     extends State<MainDansoLearningTestScreen> {
-  final DansoSoundLearningController dansoSoundLearningController =
-      Get.put(DansoSoundLearningController());
+  final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
   @override
   void initState() {
@@ -34,20 +35,22 @@ class _MainDansoLearningTestScreenState
         child: Padding(
           padding: const EdgeInsets.all(basicPadding),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               leftLightCicleAvatarAndText(),
-              SizedBox(height: 70.h),
+              // SizedBox(height: 70.h),
               GetBuilder<DansoSoundLearningController>(
                   init: dansoSoundLearningController,
                   builder: (controller) {
                     return Container(
                       // color: Colors.lightGreenAccent,
+
                       height: 440.h,
                       child: Row(
                         children: [
                           dansoImage(controller),
                           listeningAndTest(controller)
+
                         ],
                       ),
                     );
@@ -87,8 +90,16 @@ class _MainDansoLearningTestScreenState
                   style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                 )),
               ),
+
+              child: Center(
+                  child: Text(
+                '${controller.soundList1[controller.soundListUpDown]}',
+                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+              )),
+
             ),
             SizedBox(height: 21.h),
+            Text('${controller.userInputForAdjust}'),
             Text(controller.soundList[controller.soundListUpDown],
                 style: TextStyle(fontSize: textStyleSize.sp)),
             SizedBox(height: 18.h),
@@ -98,11 +109,11 @@ class _MainDansoLearningTestScreenState
                 UpDownButton(
                   icons: Icons.arrow_upward,
                   onPressed: () {
-                    controller.listenTunungState
+                    controller.listenTuningState
                         ? null
                         : controller.soundTuningState
                             ? null
-                            : controller.playTunungState
+                            : controller.playTuningState
                                 ? null
                                 : controller.soundListUp();
                   },
@@ -111,11 +122,11 @@ class _MainDansoLearningTestScreenState
                 UpDownButton(
                   icons: Icons.arrow_downward,
                   onPressed: () {
-                    controller.listenTunungState
+                    controller.listenTuningState
                         ? null
                         : controller.soundTuningState
                             ? null
-                            : controller.playTunungState
+                            : controller.playTuningState
                                 ? null
                                 : controller.soundListDown();
                   },
@@ -124,26 +135,37 @@ class _MainDansoLearningTestScreenState
             ),
             //기준음
             SoundButton(
-              title: '${controller.buttonSound}',
-              onPressed: controller.listenTunungState
+              title: '${controller.tuningButtonText}',
+              onPressed: controller.listenTuningState
                   ? null
-                  : controller.playTunungState
+                  : controller.playTuningState
                       ? null
+
                       : () {
                           controller.soundTuningState
                               ? null
                               : Get.dialog(mainDansoCautionDialog());
+
+                      : () async {
+
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
+                          await Get.dialog(Dialog(child: TimerWidget()));
+                          // await Future.delayed(
+                          //     const Duration(milliseconds: 3500));
+                          // Get.back();
                           controller.isAdjust
                               ? controller.stopAdjust()
                               : controller.startAdjust();
+                          await Get.dialog(Dialog(
+                            child: LoadingIndicator(),
+                          ));
                         },
             ),
             //불어보기
             SoundButton(
               title: '${controller.buttonPlay}',
-              onPressed: controller.listenTunungState
+              onPressed: controller.listenTuningState
                   ? null
                   : controller.soundTuningState
                       ? null
@@ -162,11 +184,12 @@ class _MainDansoLearningTestScreenState
               title: '${controller.buttonListen}',
               onPressed: controller.soundTuningState
                   ? null
-                  : controller.playTunungState
+                  : controller.playTuningState
                       ? null
                       : () {
+                          // controller.load();
                           controller.changeSpeakTuningState();
-                          controller.listenTunungState
+                          controller.listenTuningState
                               ? controller.palySound()
                               : null;
                         },
@@ -174,11 +197,11 @@ class _MainDansoLearningTestScreenState
             //연습하기
             SoundButton(
               title: '연습하기',
-              onPressed: controller.listenTunungState
+              onPressed: controller.listenTuningState
                   ? null
                   : controller.soundTuningState
                       ? null
-                      : controller.playTunungState
+                      : controller.playTuningState
                           ? null
                           : () {
                               Get.to(MainDansoLearningLevelScreen());

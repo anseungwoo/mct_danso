@@ -1,5 +1,5 @@
 class UserModel {
-  final double standardFr;
+  final standardFr;
 
   UserModel({this.standardFr});
 }

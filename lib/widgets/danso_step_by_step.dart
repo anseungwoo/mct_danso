@@ -12,7 +12,7 @@ import 'jungganbo/jungganbo_screen.dart';
 
 class DansoStepByStep extends StatefulWidget {
   final String sheetData;
-  String currentLevel;
+  final String currentLevel;
   DansoStepByStep(
       {Key key, @required this.sheetData, @required this.currentLevel});
 
@@ -24,6 +24,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   FlashController flashController;
   JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
+
   @override
   void initState() {
     jungganboController.onInit();
@@ -32,7 +33,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   Widget build(BuildContext context) {
-    JungGanBo testJungGanBo = new JungGanBo("도라지타령", "세마치장단", widget.sheetData);
+    var testJungGanBo = JungGanBo('도라지타령', '세마치장단', widget.sheetData);
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<JungganboController>(
