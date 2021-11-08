@@ -1,9 +1,6 @@
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/services.dart';
-
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:pitchdetector/pitchdetector.dart';
@@ -38,9 +35,9 @@ class DansoSoundLearningController extends GetxController {
   List soundList1 = ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲'];
   final _flutterMidi = FlutterMidi();
   //디텍터
-  PitchModelInterface pitchModelInterface = new PitchModel();
+  PitchModelInterface pitchModelInterface = PitchModel();
   Pitchdetector detector;
-  JungGanBoPlayer jungGanBoPlayer;
+  JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   double pitch;
   bool isRecording = false;
   bool isAdjust = false;
@@ -83,15 +80,6 @@ class DansoSoundLearningController extends GetxController {
     await Get.dialog(Dialog(
       child: LoadingIndicator(),
     ));
-  }
-
-  void load123() async {
-    print('Loading File...');
-    _flutterMidi.unmute();
-    ByteData _byte = await rootBundle.load('assets/Dan.sf2');
-    //assets/sf2/SmallTimGM6mb.sf2
-    //assets/sf2/Piano.SF2
-    _flutterMidi.prepare(sf2: _byte, name: "Dan.sf2");
   }
 
   void palySound() {
