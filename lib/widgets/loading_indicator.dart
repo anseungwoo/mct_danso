@@ -47,6 +47,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: 330.w,
       height: 330.h,
@@ -59,6 +60,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
             padding: const EdgeInsets.all(8.0),
             child: Text("5초간 태(汰) 불어주세요"),
           ),
+
           Container(
               height: 120,
               width: 120,
