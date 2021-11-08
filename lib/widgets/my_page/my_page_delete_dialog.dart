@@ -21,7 +21,7 @@ Widget myPageDeleteDialog() {
                   padding: const EdgeInsets.all(43.0),
                   child: Text(
                     '삭제하겠습니까?',
-                    style: TextStyle(fontSize: textStyleSize),
+                    style: TextStyle(fontSize: textEightSize.sp),
                   ),
                 ),
                 Padding(

@@ -50,9 +50,12 @@ const double textSmallSize = 12;
 //기본
 const double textBasicSize = 14;
 //부제목
-const double textContantSize = 17;
+const double textFiveSize = 15;
+const double textSixSize = 16;
+const double textSevenSize = 17;
+
 //
-const double textStyleSize = 18;
+const double textEightSize = 18;
 //타이틀
 const double textTitleSize = 20;
 //단일크기

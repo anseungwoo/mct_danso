@@ -46,7 +46,7 @@ class MyPageLook extends StatelessWidget {
                                     '$songname $index',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      fontSize: textStyleSize.sp,
+                                      fontSize: textEightSize.sp,
                                       color: white,
                                     ),
                                   ),

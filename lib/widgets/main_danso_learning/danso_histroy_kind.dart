@@ -23,7 +23,6 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
   @override
   Widget build(BuildContext context) {
     return Container(
-
       child: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Column(
@@ -43,9 +42,8 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
                     widget.subject,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: textContantSize.sp,
+                      fontSize: textSevenSize.sp,
                     ),
-
                   ),
                   SizedBox(height: 10.h),
                   Text(widget.explanation,

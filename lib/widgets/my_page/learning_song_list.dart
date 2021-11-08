@@ -79,7 +79,8 @@ class LearningSongList extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                     "${controller.hangeul[controller.currentLevel][i]}",
-                                    style: TextStyle(fontSize: textStyleSize)),
+                                    style:
+                                        TextStyle(fontSize: textEightSize.sp)),
                               ),
                             )
                         ],
@@ -98,7 +99,8 @@ class LearningSongList extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                     "${controller.hanja[controller.currentLevel][i]}",
-                                    style: TextStyle(fontSize: textStyleSize)),
+                                    style:
+                                        TextStyle(fontSize: textEightSize.sp)),
                               ),
                             )
                         ],

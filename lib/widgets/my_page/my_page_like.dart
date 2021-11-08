@@ -37,7 +37,7 @@ class MyPageLike extends StatelessWidget {
                         Text(
                           '${item.songTitle}',
                           style: TextStyle(
-                              fontSize: textStyleSize.sp, color: white),
+                              fontSize: textEightSize.sp, color: white),
                         ),
                         IconButton(
                           icon: Icon(Icons.favorite),

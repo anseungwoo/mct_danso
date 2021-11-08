@@ -30,15 +30,15 @@ class JungganboController extends GetxController {
   }
 
   int i = 0;
-  int flashcount = 0;
+  int flashcount = -1;
   void stepStop() {
-    flashcount = 0;
+    flashcount = -1;
     i = 0;
     update();
   }
 
   void stepStart() {
-    interval(new Duration(milliseconds: 700), (timer) {
+    interval(Duration(milliseconds: 610), (timer) {
       if (i < 48 && starStopState) {
         flashCount();
         i++;
@@ -59,13 +59,13 @@ class JungganboController extends GetxController {
 
   Timer interval(Duration duration, func) {
     Timer function() {
-      Timer timer = new Timer(duration, function);
+      Timer timer = Timer(duration, function);
 
       func(timer);
 
       return timer;
     }
 
-    return new Timer(duration, function);
+    return Timer(duration, function);
   }
 }

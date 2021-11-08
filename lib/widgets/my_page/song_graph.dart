@@ -27,7 +27,7 @@ class SongGraph extends StatelessWidget {
                           const EdgeInsets.symmetric(vertical: basicPadding),
                       child: Text(
                         '2021.09.10 14:13',
-                        style: TextStyle(fontSize: textContantSize),
+                        style: TextStyle(fontSize: textEightSize.sp),
                       ),
                     ),
                     Container(
@@ -49,7 +49,7 @@ class SongGraph extends StatelessWidget {
                             horizontal: basicPadding),
                         child: Text(
                           '100점',
-                          style: TextStyle(fontSize: textStyleSize),
+                          style: TextStyle(fontSize: textSevenSize.sp),
                         ),
                       ),
                     )

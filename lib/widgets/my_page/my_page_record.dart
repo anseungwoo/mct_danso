@@ -37,7 +37,7 @@ class MyPageRecord extends StatelessWidget {
                         Text(
                           'Entry ${index}',
                           style: TextStyle(
-                              fontSize: textContantSize.sp, color: white),
+                              fontSize: textEightSize.sp, color: white),
                         ),
                         Spacer(flex: 1),
                         Container(

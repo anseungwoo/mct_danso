@@ -29,7 +29,7 @@ class DansoLearning extends StatelessWidget {
                   subject,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: textContantSize.sp,
+                    fontSize: textSevenSize.sp,
                   ),
                 ),
                 SizedBox(height: 12.h),
