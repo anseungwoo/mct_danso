@@ -47,10 +47,7 @@ class MainScreen extends StatelessWidget {
               _homeMenuButton(
                   title: '질문하기',
                   contant: QUESTIONS,
-                  page: JungganboColorAnimation(
-                    tempo: 100,
-                    jungganboLength: 6,
-                  )),
+                  page: MainDansoHistoryKindScreen()),
             ],
           ),
         ),

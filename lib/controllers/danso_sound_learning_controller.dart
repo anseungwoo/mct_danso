@@ -1,6 +1,7 @@
 import 'package:danso_function/danso_function.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
@@ -156,25 +157,29 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Center(child: Text("불어 보세요"));
           }
         } catch (er) {
           return Text("");
         }
         break;
       case 1:
-        if (pitchModelInterface.isCorrectPitch(
-            pitch, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
-          return Text(
-            "음과 일치합니다${scl}",
-            style: TextStyle(color: textHiddenGray),
-          );
-        } else {
-          return Text("음이 달라요ㅠㅠ${scl}");
+        try {
+          if (pitchModelInterface.isCorrectPitch(
+              pitch, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
+            return Text(
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
+            );
+          } else {
+            return Text("불어 보세요");
+          }
+        } catch (er) {
+          return Text("");
         }
         break;
       case 2:
@@ -182,11 +187,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -197,11 +202,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -212,11 +217,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -227,11 +232,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -242,11 +247,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -257,11 +262,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -272,11 +277,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");
@@ -287,11 +292,11 @@ class DansoSoundLearningController extends GetxController {
           if (pitchModelInterface.isCorrectPitch(
               scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))) {
             return Text(
-              "음과 일치합니다${scl}",
-              style: TextStyle(color: textHiddenGray),
+              "음과 일치합니다",
+              style: TextStyle(color: matchColor),
             );
           } else {
-            return Text("음이 달라요ㅠㅠ${scl}");
+            return Text("불어 보세요");
           }
         } catch (er) {
           return Text("");

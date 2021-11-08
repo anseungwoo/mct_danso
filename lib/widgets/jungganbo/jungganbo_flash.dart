@@ -66,6 +66,6 @@ Container jungFlashContainer(
   return Container(
     width: jungWidth.w,
     height: height.h,
-    color: a == i ? Colors.black : null,
+    color: a == i ? Colors.blue[100].withOpacity(0.5) : null,
   );
 }

@@ -36,7 +36,11 @@ class MainDansoLearningScreen extends StatelessWidget {
               explanation: DANSO_CATCH,
               url: DANSO_LIPS_URL,
             ),
-            DansosubLearning(explanation: DANSO_SUBCATCH),
+            DansoHistroyKind(
+              subject: '단소잡는법과 각부분',
+              explanation: DANSO_CATCH,
+              url: DANSO_LIPS_URL,
+            ),
             DansoHistroyKind(
                 subject: '단소연주자세',
                 explanation: PALYPOS,

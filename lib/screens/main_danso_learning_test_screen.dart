@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/screens/main_danso_caution_dialog.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -43,25 +44,10 @@ class _MainDansoLearningTestScreenState
                     return Container(
                       // color: Colors.lightGreenAccent,
                       height: 440.h,
-                      child: Stack(
+                      child: Row(
                         children: [
-                          Positioned(
-                            right: 30.w,
-                            child: controller.listenTunungState
-                                ? Text('소리를 들어보세요')
-                                : controller.soundTuningState
-                                    ? Text('${controller.userInputForAdjust}')
-                                    : controller.playTunungState
-                                        ? controller
-                                            .soundMatch(controller.pitch)
-                                        : Text(""),
-                          ),
-                          Row(
-                            children: [
-                              dansoImage(controller),
-                              listeningAndTest(controller)
-                            ],
-                          ),
+                          dansoImage(controller),
+                          listeningAndTest(controller)
                         ],
                       ),
                     );
@@ -79,18 +65,28 @@ class _MainDansoLearningTestScreenState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 97.w,
-              width: 97.w,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.black, width: 3),
+            controller.listenTunungState
+                ? Text('소리를 들어보세요')
+                : controller.soundTuningState
+                    ? Text('${controller.userInputForAdjust}')
+                    : controller.playTunungState
+                        ? controller.soundMatch(controller.pitch)
+                        : Text(""),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Container(
+                height: 97.w,
+                width: 97.w,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black, width: 3),
+                ),
+                child: Center(
+                    child: Text(
+                  "${controller.soundList1[controller.soundListUpDown]}",
+                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+                )),
               ),
-              child: Center(
-                  child: Text(
-                "${controller.soundList1[controller.soundListUpDown]}",
-                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-              )),
             ),
             SizedBox(height: 21.h),
             Text(controller.soundList[controller.soundListUpDown],
@@ -134,6 +130,9 @@ class _MainDansoLearningTestScreenState
                   : controller.playTunungState
                       ? null
                       : () {
+                          controller.soundTuningState
+                              ? null
+                              : Get.dialog(mainDansoCautionDialog());
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
                           controller.isAdjust
@@ -149,6 +148,9 @@ class _MainDansoLearningTestScreenState
                   : controller.soundTuningState
                       ? null
                       : () {
+                          controller.playTunungState
+                              ? null
+                              : Get.dialog(mainDansoCautionDialog());
                           controller.changePlayState();
                           controller.isRecording
                               ? controller.stopRecording()
@@ -238,6 +240,8 @@ class SoundButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(title),
         style: ElevatedButton.styleFrom(
+          onSurface: unButtonColorOrang,
+          primary: buttonColorOrang,
           minimumSize: Size(130.w, 45.h),
         ),
       ),
@@ -260,6 +264,8 @@ class UpDownButton extends StatelessWidget {
       onPressed: onPressed,
       child: Icon(icons),
       style: ElevatedButton.styleFrom(
+        onSurface: unButtonColorOrang,
+        primary: buttonColorOrang,
         minimumSize: Size(59.w, 35.h),
       ),
     );
