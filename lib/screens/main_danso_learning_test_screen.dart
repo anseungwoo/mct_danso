@@ -134,16 +134,23 @@ class _MainDansoLearningTestScreenState
                       : () async {
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
-                          await Get.dialog(Dialog(child: TimerWidget()));
+                          await Get.dialog(mainDansoCautionDialog());
+                          await Get.dialog(
+                            Dialog(child: TimerWidget()),
+                            barrierDismissible: false,
+                          );
                           // await Future.delayed(
                           //     const Duration(milliseconds: 3500));
                           // Get.back();
                           controller.isAdjust
                               ? controller.stopAdjust()
                               : controller.startAdjust();
-                          await Get.dialog(Dialog(
-                            child: LoadingIndicator(),
-                          ));
+                          await Get.dialog(
+                            Dialog(
+                              child: LoadingIndicator(),
+                            ),
+                            barrierDismissible: false,
+                          );
                         },
             ),
             //불어보기
