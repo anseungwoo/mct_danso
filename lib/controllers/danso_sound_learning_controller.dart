@@ -1,18 +1,23 @@
 import 'package:danso_function/danso_function.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
-import 'package:flutter/services.dart';
 import 'package:pitchdetector/pitchdetector.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/models/models.dart';
+import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
+  List dansoPitchAdjustList = [];
   bool soundTuningState = false;
-  bool listenTunungState = false;
-  bool playTunungState = false;
+  bool listenTuningState = false;
+  bool playTuningState = false;
   PitchModel pitchModel;
-  String buttonSound = '기준음 잡기';
+  String tuningButtonText = '기준음 잡기';
   String buttonListen = '예시듣기';
   String buttonPlay = '불어보기';
   int soundListUpDown = 0;
@@ -33,35 +38,58 @@ class DansoSoundLearningController extends GetxController {
   //디텍터
   PitchModelInterface pitchModelInterface = new PitchModel();
   Pitchdetector detector;
-  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
+  JungGanBoPlayer jungGanBoPlayer;
   double pitch;
   bool isRecording = false;
   bool isAdjust = false;
-  Pitchdetector detectorAdjust;
   String yulmyeong;
   String pitchStatus;
+  double userInputForAdjust = F_FREQ;
+
+  var dbFr;
+  Pitchdetector detectorAdjust;
   Text isMacthing = Text("");
-  double userInputForAdjust;
+
   @override
   void onInit() {
     detector = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
     isRecording = isRecording;
-
-    detector.onRecorderStateChanged.listen((event) {
-      pitch = event["pitch"];
-      yulmyeong = EnumToString.convertToString(
-          pitchModelInterface.getYulmyeongByFrequency(pitch).yulmyeong);
-      pitchStatus = EnumToString.convertToString(
-          pitchModelInterface.getYulmyeongByFrequency(pitch).scaleStatus);
-
-      update();
-    });
-    detectorAdjust = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
+    detectorAdjust = Pitchdetector(sampleRate: 44100, sampleSize: 4096);
     detectorAdjust.onRecorderStateChanged.listen((event) {
-      userInputForAdjust = event["pitch"];
-      update();
+      pitch = event['pitch'];
+      if (pitch > 150) {
+        userInputForAdjust = event['pitch'];
+        print(userInputForAdjust);
+        dansoPitchAdjustList.add(userInputForAdjust);
+        update();
+      }
     });
     super.onInit();
+  }
+
+  void delayDialog(var dialog) {
+    Future.delayed(const Duration(milliseconds: 3000), () {
+      update();
+      Get.dialog(Dialog(
+        child: LoadingIndicator(),
+      ));
+    });
+  }
+
+  Future delayDialog1() async {
+    await Future.delayed(const Duration(milliseconds: 3000));
+    await Get.dialog(Dialog(
+      child: LoadingIndicator(),
+    ));
+  }
+
+  void load123() async {
+    print('Loading File...');
+    _flutterMidi.unmute();
+    ByteData _byte = await rootBundle.load('assets/Dan.sf2');
+    //assets/sf2/SmallTimGM6mb.sf2
+    //assets/sf2/Piano.SF2
+    _flutterMidi.prepare(sf2: _byte, name: "Dan.sf2");
   }
 
   void palySound() {
@@ -112,21 +140,29 @@ class DansoSoundLearningController extends GetxController {
 
   void changeSoundTuningState() {
     soundTuningState = !soundTuningState;
-    buttonSound = soundTuningState ? '종료하기' : '기준음 잡기';
+    tuningButtonText = soundTuningState ? '종료하기' : '기준음 잡기';
     update();
   }
 
   void changePlayState() {
-    playTunungState = !playTunungState;
-    buttonPlay = playTunungState ? '종료하기' : '불어보기';
+    playTuningState = !playTuningState;
+    buttonPlay = playTuningState ? '종료하기' : '불어보기';
     update();
   }
 
   void changeSpeakTuningState() {
-    listenTunungState = !listenTunungState;
-    buttonListen = listenTunungState ? '종료하기' : '예시듣기';
+    listenTuningState = !listenTuningState;
+    buttonListen = listenTuningState ? '종료하기' : '예시듣기';
 
     update();
+  }
+
+  bool isCorrectPitch({Yulmyeong yulmyeong, bool isHighPitch = false}) {
+    var pitch = isHighPitch ? ScaleStatus.high : ScaleStatus.origin;
+    getDbFr();
+    var result = pitchModelInterface.isCorrectPitch(
+        dbFr, YulmyeongNote(yulmyeong, pitch));
+    return result;
   }
 
   void soundListUp() {
@@ -148,6 +184,63 @@ class DansoSoundLearningController extends GetxController {
 
     update();
   }
+
+  Widget isCorrectMethod(Yulmyeong yulmyeong, bool isHigh) {
+    var scale = isHigh ? ScaleStatus.high : ScaleStatus.origin;
+    // getDbFr();
+    try {
+      if (pitchModelInterface.isCorrectPitch(
+          userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
+        return Text(
+          '음과 일치합니다 $userInputForAdjust',
+          style: TextStyle(color: Colors.black),
+        );
+      } else {
+        return Text(
+          '음이 달라요ㅠㅠ $userInputForAdjust',
+          style: TextStyle(color: Colors.black),
+        );
+      }
+    } catch (er) {
+      return Text('error');
+    }
+  }
+
+  // Widget soundMatch() {
+  //   switch (soundListUpDown) {
+  //     case 0:
+  //       isCorrectMethod(Yulmyeong.joong, false);
+  //       break;
+  //     case 1:
+  //       isCorrectMethod(Yulmyeong.yim, false);
+  //       break;
+  //     case 2:
+  //       isCorrectMethod(Yulmyeong.moo, false);
+  //       break;
+  //     case 3:
+  //       isCorrectMethod(Yulmyeong.hwang, false);
+  //       break;
+  //     case 4:
+  //       isCorrectMethod(Yulmyeong.tae, false);
+  //       break;
+  //     case 5:
+  //       isCorrectMethod(Yulmyeong.joong, true);
+  //       break;
+  //     case 6:
+  //       isCorrectMethod(Yulmyeong.yim, true);
+  //       break;
+  //     case 7:
+  //       isCorrectMethod(Yulmyeong.moo, true);
+  //       break;
+  //     case 8:
+  //       isCorrectMethod(Yulmyeong.hwang, true);
+  //       break;
+  //     case 9:
+  //       isCorrectMethod(Yulmyeong.tae, true);
+  //       break;
+  //     default:
+  //   }
+  // }
 
   Widget soundMatch(double scl) {
     switch (soundListUpDown) {
@@ -301,19 +394,35 @@ class DansoSoundLearningController extends GetxController {
     }
   }
 
-  void startAdjust() async {
-    await detectorAdjust.startRecording();
-    if (detectorAdjust.isRecording) {
-      isAdjust = true;
-    }
-    update();
+  void getDbFr() async {
+    dbFr = await DBHelPer().getUserFr();
+    print(dbFr);
   }
 
-  void stopAdjust() {
+  void startAdjust() async {
+    await detector.startRecording();
+    if (detector.isRecording) {
+      isAdjust = true;
+      dansoPitchAdjustList.clear();
+      print('듣기 시작');
+      update();
+    }
+  }
+
+  void stopAdjust() async {
     detector.stopRecording();
     isAdjust = false;
-    pitchModelInterface.settingAdjust(userInputForAdjust);
-    update();
+    print('듣기 종료');
+    if (userInputForAdjust < 400 || userInputForAdjust > 700) {
+      showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
+    } else {
+      await DBHelPer().deleteFr();
+      await DBHelPer().insertFr(UserModel(standardFr: userInputForAdjust));
+      pitchModelInterface.settingAdjust(userInputForAdjust);
+      // await getDbFr();
+      showToast(message: '$userInputForAdjust DB에 저장됨.');
+      update();
+    }
   }
 
   void startRecording() async {
@@ -325,9 +434,8 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
-  void stopRecording() async {
+  void stopRecording() {
     detector.stopRecording();
-
     isRecording = false;
     pitch = detector.pitch;
 

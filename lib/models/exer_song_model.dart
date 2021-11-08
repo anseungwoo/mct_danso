@@ -18,30 +18,38 @@ class ExerSongModel {
 
   factory ExerSongModel.fromJson(Map<String, dynamic> json) => ExerSongModel(
         songData: List<SongData>.from(
-            json['song_data'].map((x) => SongData.fromJson(x))),
+            json["song_data"].map((x) => SongData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        'song_data': List<dynamic>.from(songData.map((x) => x.toJson())),
+        "song_data": List<dynamic>.from(songData.map((x) => x.toJson())),
       };
 }
 
 class SongData {
   SongData({
-    this.level,
-    this.sheet,
+    this.id,
+    this.learnLevel,
+    this.learnSheet,
+    this.learnPath,
   });
 
-  int level;
-  String sheet;
+  int id;
+  int learnLevel;
+  String learnSheet;
+  String learnPath;
 
   factory SongData.fromJson(Map<String, dynamic> json) => SongData(
-        level: json['level'],
-        sheet: json['sheet'],
+        id: json["id"],
+        learnLevel: json["learn_level"],
+        learnSheet: json["learn_sheet"],
+        learnPath: json["learn_path"],
       );
 
   Map<String, dynamic> toJson() => {
-        'level': level,
-        'sheet': sheet,
+        "id": id,
+        "learn_level": learnLevel,
+        "learn_sheet": learnSheet,
+        "learn_path": learnPath,
       };
 }

@@ -86,6 +86,12 @@ class DBHelPer {
         'INSERT INTO TB_USER (standard_fr) VALUES(?)', [user.standardFr]);
   }
 
+  dynamic getUserFr() async {
+    final db = await database;
+    var res = await db.rawQuery('SELECT * FROM $userTable');
+    return res[0]['standard_fr'];
+  }
+
   // updateFr() async {
   //   final db = await database;
   //   await db.rawUpdate('UPDATE ');

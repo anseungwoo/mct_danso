@@ -27,6 +27,7 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
         crossAxisAlignment: CrossAxisAlignment.start,
         // mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: 20.h),
           YoutubePlayers(
             url: widget.url,
           ),
