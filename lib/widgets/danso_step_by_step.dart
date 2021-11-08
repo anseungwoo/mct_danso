@@ -78,7 +78,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                     : null;
                               },
                               child: Text('${controller.startButton}'))),
-                      SizedBox(width: 8.w),
+                      SizedBox(width: 7.w),
                       Container(
                           width: 105.w,
                           height: 37.h,
@@ -92,7 +92,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                     : controller.changekrState();
                               },
                               child: Text('${controller.krButton}'))),
-                      SizedBox(width: 7.w),
+                      SizedBox(width: 8.w),
                       Container(
                           width: 105.w,
                           height: 37.h,
