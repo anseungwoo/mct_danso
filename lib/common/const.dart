@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:danso_function/danso_function.dart';
 
 // 배경색
 
@@ -70,315 +69,73 @@ const Color textHiddenGray = Color(0xffBFBFBF);
 //정간보세로,가로
 const FontWeight bold = FontWeight.bold;
 
-const double jonWidth = 62;
-const double jonHeight = 35;
-// const double jonFourWidth = 61;
-// const double jonFourHeight = 110;
-const double jonSixWidth = 62;
-const double jonSixHeight = 82;
-const double jonEightWidth = 62;
-const double jonEightHeight = 62;
+const double jungWidth = 62;
+const double jungHeight = 35;
+const double jungSixHeight = 82;
+const double jungEightHeight = 62;
 
 // 단소 스타일 가이드
 const Color third = Color(0xffc48535);
-const Color force = Color(0xff7E531D);
-
+const Color appBarColor = Color(0xff302414);
+const Color logoColor = Color(0xffEFBE50);
+const String LOGO_SVG = 'assets/images/ic_logo.svg';
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
 const String HISTORY =
-    "단소의 역사관한설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명";
-const String SUBHISTORY = "단소의 역사추가 설명";
+    '단소의 역사관한설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명';
+const String SUBHISTORY = '단소의 역사추가 설명';
 //평조 설명
-const String PDANSO = "평조 단소 설명을 적어주세요";
+const String PDANSO = '평조 단소 설명을 적어주세요';
 //경제 설명
-const String KDANSO = "경제 단소 설명을 적어주세요";
+const String KDANSO = '경제 단소 설명을 적어주세요';
 //향조 설명
-const String HDANSO = "향조 단소 설명을 적어주세요";
+const String HDANSO = '향조 단소 설명을 적어주세요';
 //단소잡는부분 설명
-const String DANSO_CATCH = "단소잡는부분을 설명을 적어주세요";
-const String DANSO_SUBCATCH = "단소잡는부분을 설명을 적어주세요";
+const String DANSO_CATCH = '단소잡는부분을 설명을 적어주세요';
+const String DANSO_SUBCATCH = '단소잡는부분을 설명을 적어주세요';
 //단소연주자세 설명
-const String PALYPOS = "단소연주자세의 설명을 적어주세요";
+const String PALYPOS = '단소연주자세의 설명을 적어주세요';
 //입술모양 설명
-const String LIPS = "입술모양의 설명을 적어주세요";
+const String LIPS = '입술모양의 설명을 적어주세요';
 //호흡식 설명
-const String BREATH = "호흡식의 설명을 적어주세요";
+const String BREATH = '호흡식의 설명을 적어주세요';
 //율명 설명
-const String SHEET = "율명의 설명을 적어주세요";
-const String SUBSHEET = "율명의 추가 설명을 적어주세요";
+const String SHEET = '율명의 설명을 적어주세요';
+const String SUBSHEET = '율명의 추가 설명을 적어주세요';
 
 //단소메인페이지 내용
 //단소알아보기 설명
-const String LOOK = "단소의 역사, 종류에 대해 알아볼까요?";
+const String LOOK = '단소의 역사, 종류에 대해 알아볼까요?';
 //운지법 익히기 설명
-const String LEARN = "기초적인 단소의 운지법을 연습해 보아요.";
+const String LEARN = '기초적인 단소의 운지법을 연습해 보아요.';
 //연주곡 익히기 설명
-const String PLAYLEARN = "전통곡들을 단소로 연습하여 피드백 받으세요.";
+const String PLAYLEARN = '전통곡들을 단소로 연습하여 피드백 받으세요.';
 //질문하기 설명
-const String QUESTIONS = "단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ";
+const String QUESTIONS = '단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ';
 
 //단소의 역사
 //youtube URL style
 const double youtubeWidth = 360;
 const double youtubeHeight = 250;
-const String DANSO_HISTORY_URL = "Fc9fVi-_DWE";
-const String P_DANSO_URL = "_epwxDTxa3A";
-const String K_DANSO_URL = "DyRm_Hxy0xo";
-const String H_DANSO_URL = "5KLsjhz9jMI";
-const String DANSO_PALYPOS_URL = "bVE1E7FLhS4";
-const String DANSO_LIPS_URL = "lcg6wekmCRA";
-const String DANSO_BREATH_URL = "ToxQLPErpKI";
-const String DANSO_SHEET_URL = "LBmB3DGxnNk";
+const String DANSO_HISTORY_URL = 'Fc9fVi-_DWE';
+const String P_DANSO_URL = '_epwxDTxa3A';
+const String K_DANSO_URL = 'DyRm_Hxy0xo';
+const String H_DANSO_URL = '5KLsjhz9jMI';
+const String DANSO_PALYPOS_URL = 'bVE1E7FLhS4';
+const String DANSO_LIPS_URL = 'lcg6wekmCRA';
+const String DANSO_BREATH_URL = 'ToxQLPErpKI';
+const String DANSO_SHEET_URL = 'LBmB3DGxnNk';
 
 //1~5단계 연습 리스트
 // YulmyeongNote(Yulmyeong.tae,ScaleStatus.origin));//  율명하고 스캐일맞으면 참거짓 판명을해준다
-const List level1 = [
-  '汰',
-  "",
-  "",
-  '汰',
-  "",
-  "汰",
-  "汰",
-  "汰",
-  "汰",
-  "汰",
-  "",
-  "△",
-  "汰",
-  "汰",
-  "",
-  "汰",
-  "汰",
-  "",
-  "汰",
-  "汰",
-  "",
-  "汰",
-  "",
-  "△",
-  "汰",
-  "",
-  "汰",
-  "汰",
-  "",
-  "汰",
-  "汰",
-  "",
-  "汰",
-  "汰",
-  "",
-  "△",
-  "汰",
-  "",
-  "",
-  "汰",
-  "",
-  "",
-  "汰",
-  "",
-  "",
-  "汰",
-  "",
-  "△"
-];
-const level2 = [
-  "無",
-  "無",
-  "潢",
-  "潢",
-  "",
-  "△",
-  "汰",
-  "",
-  "汰",
-  "汰",
-  "",
-  "△",
-  "潢",
-  "汰",
-  "汰",
-  "潢",
-  "",
-  "△",
-  "汰",
-  "汰",
-  "潢",
-  "無",
-  "",
-  "△",
-  "汰",
-  "潢",
-  "無",
-  "潢",
-  "汰",
-  "△",
-  "無",
-  "潢",
-  "汰",
-  "潢",
-  "無",
-  "△",
-  "汰",
-  "",
-  "",
-  "潢",
-  "",
-  "",
-  "無",
-  "",
-  "",
-  "潢",
-  "",
-  "△",
-];
-const level3 = [
-  "無",
-  "無",
-  "潢",
-  "潢",
-  "汰",
-  "汰",
-  "㳞",
-  "㳞",
-  "淋",
-  "淋",
-  "",
-  "△",
-  "無",
-  "潢",
-  "汰",
-  "㳞",
-  "淋",
-  "△",
-  "淋",
-  "㳞",
-  "汰",
-  "潢",
-  "無",
-  "△",
-  "汰",
-  "㳞",
-  "淋",
-  "㳞",
-  "汰",
-  "潢",
-  "無",
-  "潢",
-  "汰",
-  "",
-  "",
-  "△",
-  "汰",
-  "潢",
-  "無",
-  "潢",
-  "汰",
-  "㳞",
-  "淋",
-  "㳞",
-  "汰",
-  "",
-  "",
-  "△"
-];
-const level4 = [
-  "仲",
-  "仲",
-  "林",
-  "林",
-  "無",
-  "無",
-  "潢",
-  "汰",
-  "㳞",
-  "淋",
-  "",
-  "△",
-  "仲",
-  "林",
-  "無",
-  "潢",
-  "汰",
-  "△",
-  "㳞",
-  "淋",
-  "㳞",
-  "汰",
-  "潢",
-  "△",
-  "潢",
-  "汰",
-  "㳞",
-  "淋",
-  "㳞",
-  "汰",
-  "潢",
-  "無",
-  "林",
-  "仲",
-  "",
-  "△",
-  "潢",
-  "無",
-  "林",
-  "仲",
-  "林",
-  "無",
-  "潢",
-  "汰",
-  "㳞",
-  "淋",
-  "",
-  "△"
-];
-const level5 = [
-  "淋",
-  "潕",
-  "㶂",
-  "潕",
-  "㶂",
-  "㳲",
-  "㶂",
-  "潕",
-  "淋",
-  "㳞",
-  "",
-  "△",
-  "仲",
-  "林",
-  "無",
-  "林",
-  "無",
-  "潢",
-  "汰",
-  "㳞",
-  "淋",
-  "潕",
-  "",
-  "△",
-  "淋",
-  "潕",
-  "㶂",
-  "㳲",
-  "",
-  "△",
-  "㳲",
-  "㶂",
-  "潕",
-  "淋",
-  "㳞",
-  "△",
-  "汰",
-  "潢",
-  "無",
-  "林",
-  "仲",
-  "△",
-  "仲",
-  "林",
-  "無",
-  "潢",
-  "汰",
-  "㳞"
-];
+
+const String level1 =
+    "t|o|o#t|o|o#t|o|o#t|o|^#t|o|t#t|o|t#t|o|t#t|o|^#t|t|o#t|t|o#t|t|o#t|o|^#t|o|o#t|o|t#t|t|t#t|o|^#";
+const String level2 =
+    "t|o|o#h|o|o#m|o|o#h|o|^#t|h|m#h|t|^#m|h|t#h|m|^#h|t|t#h|o|^#t|t|h#m|o|^#m|m|h#h|o|^#t|o|t#t|o|^#";
+const String level3 =
+    "t|h|m#h|t|J#Y|J|t#o|o|^#t|J|Y#J|t|h#m|h|t#o|o|^#m|h|t#J|Y|^#Y|J|t#h|m|^#m|m|h#h|t|t#J|J|Y#Y|o|^#";
+const String level4 =
+    "h|m|y#j|y|m#h|t|J#Y|o|^#h|t|J#Y|J|t#h|m|y#j|o|^#j|y|m#h|t|^#J|Y|J#t|h|^#j|j|y#y|m|m#h|t|J#Y|o|^#";
+const String level5 =
+    "t|h|m#y|j|^#j|y|m#h|t|J#Y|M|H#T|o|^#T|H|M#Y|J|^#j|y|m#y|m|h#t|J|Y#M|o|^#Y|M|H#M|H|T#H|M|Y#J|o|^#";

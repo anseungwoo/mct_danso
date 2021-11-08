@@ -4,12 +4,26 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
+import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoLearningTestScreen extends StatelessWidget {
+class MainDansoLearningTestScreen extends StatefulWidget {
   MainDansoLearningTestScreen({Key key}) : super(key: key);
 
-  // final SoundController soundController = Get.put(SoundController());
+  @override
+  _MainDansoLearningTestScreenState createState() =>
+      _MainDansoLearningTestScreenState();
+}
+
+class _MainDansoLearningTestScreenState
+    extends State<MainDansoLearningTestScreen> {
+  final dansoSoundLearningController = Get.put(DansoSoundLearningController());
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +34,51 @@ class MainDansoLearningTestScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(basicPadding),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               leftLightCicleAvatarAndText(),
-              SizedBox(height: 31.h),
+              // SizedBox(height: 70.h),
               GetBuilder<DansoSoundLearningController>(
-                  init: DansoSoundLearningController(),
+                  init: dansoSoundLearningController,
                   builder: (controller) {
                     return Container(
                       // color: Colors.lightGreenAccent,
-                      height: 420.h,
-                      child: Row(
+                      // height: 440.h,
+                      child: Stack(
                         children: [
-                          dansoImage(controller),
-                          listeningAndTest(controller)
+                          // Positioned(.0
+                          //   // right: 30.w,
+                          //   child: controller.listenTuningState
+                          //       ? Text('소리를 들어보세요')
+                          //       : controller.soundTuningState
+                          //           ? Text('${controller.userInputForAdjust}')
+                          //           : controller.playTuningState
+                          //               ? controller.soundMatch()
+                          //               : Container(),
+                          // ),
+                          Column(
+                            children: [
+                              Container(
+                                // right: 30.w,
+                                child: controller.listenTuningState
+                                    ? Text('소리를 들어보세요')
+                                    : controller.soundTuningState
+                                        ? Text(
+                                            '${controller.userInputForAdjust}')
+                                        : controller.playTuningState
+                                            ? controller
+                                                .soundMatch(controller.pitch)
+                                            : Text('asdf'),
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  dansoImage(controller),
+                                  listeningAndTest(controller)
+                                ],
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     );
@@ -48,90 +93,120 @@ class MainDansoLearningTestScreen extends StatelessWidget {
   Expanded listeningAndTest(DansoSoundLearningController controller) {
     return Expanded(
       child: Container(
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Positioned(
-              left: 30.w,
-              child: Text(controller.listenTunungState
-                  ? '소리를 들어보세요'
-                  : controller.soundTuningState
-                      ? '단소를 불어보세요'
-                      : ""),
+            Container(
+              height: 97.w,
+              width: 97.w,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.black, width: 3),
+              ),
+              child: Center(
+                  child: Text(
+                '${controller.soundList1[controller.soundListUpDown]}',
+                style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
+              )),
             ),
-            Column(
+            SizedBox(height: 21.h),
+            Text('${controller.userInputForAdjust}'),
+            Text(controller.soundList[controller.soundListUpDown],
+                style: TextStyle(fontSize: textStyleSize.sp)),
+            SizedBox(height: 18.h),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  height: 97.w,
-                  width: 97.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black, width: 3),
-                  ),
-                  child: Center(
-                      child: Text(
-                    "${controller.soundList1[controller.soundListUpDown]}",
-                    style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-                  )),
-                ),
-                SizedBox(height: 21.h),
-                Text(controller.soundList[controller.soundListUpDown],
-                    style: TextStyle(fontSize: textStyleSize.sp)),
-                SizedBox(height: 18.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    UpDownButton(
-                      icons: Icons.arrow_upward,
-                      onPressed: () {
-                        controller.listenTunungState
+                UpDownButton(
+                  icons: Icons.arrow_upward,
+                  onPressed: () {
+                    controller.listenTuningState
+                        ? null
+                        : controller.soundTuningState
                             ? null
-                            : controller.soundTuningState
+                            : controller.playTuningState
                                 ? null
                                 : controller.soundListUp();
-                      },
-                    ),
-                    SizedBox(width: 12.w),
-                    UpDownButton(
-                      icons: Icons.arrow_downward,
-                      onPressed: () {
-                        controller.listenTunungState
+                  },
+                ),
+                SizedBox(width: 12.w),
+                UpDownButton(
+                  icons: Icons.arrow_downward,
+                  onPressed: () {
+                    controller.listenTuningState
+                        ? null
+                        : controller.soundTuningState
                             ? null
-                            : controller.soundTuningState
+                            : controller.playTuningState
                                 ? null
                                 : controller.soundListDown();
-                      },
-                    ),
-                  ],
+                  },
                 ),
-                SoundButton(
-                  title: '${controller.buttonSound}',
-                  onPressed: controller.listenTunungState
+              ],
+            ),
+            //기준음
+            SoundButton(
+              title: '${controller.tuningButtonText}',
+              onPressed: controller.listenTuningState
+                  ? null
+                  : controller.playTuningState
                       ? null
-                      : () {
+                      : () async {
                           controller.changeSoundTuningState();
                           controller.soundListTa(4);
+                          await Get.dialog(Dialog(child: TimerWidget()));
+                          // await Future.delayed(
+                          //     const Duration(milliseconds: 3500));
+                          // Get.back();
+                          controller.isAdjust
+                              ? controller.stopAdjust()
+                              : controller.startAdjust();
+                          await Get.dialog(Dialog(
+                            child: LoadingIndicator(),
+                          ));
                         },
-                ),
-                SoundButton(
-                  title: '${controller.buttonListen}',
-                  onPressed: controller.soundTuningState
+            ),
+            //불어보기
+            SoundButton(
+              title: '${controller.buttonPlay}',
+              onPressed: controller.listenTuningState
+                  ? null
+                  : controller.soundTuningState
                       ? null
                       : () {
-                          controller.changeSpeakTuningState();
+                          controller.changePlayState();
+                          controller.isRecording
+                              ? controller.stopRecording()
+                              : controller.startRecording();
                         },
-                ),
-                SoundButton(
-                  title: '연습하기',
-                  onPressed: controller.listenTunungState
+            ),
+            //예시듣기
+            SoundButton(
+              title: '${controller.buttonListen}',
+              onPressed: controller.soundTuningState
+                  ? null
+                  : controller.playTuningState
                       ? null
-                      : controller.soundTuningState
+                      : () {
+                          // controller.load();
+                          controller.changeSpeakTuningState();
+                          controller.listenTuningState
+                              ? controller.palySound()
+                              : null;
+                        },
+            ),
+            //연습하기
+            SoundButton(
+              title: '연습하기',
+              onPressed: controller.listenTuningState
+                  ? null
+                  : controller.soundTuningState
+                      ? null
+                      : controller.playTuningState
                           ? null
                           : () {
                               Get.to(MainDansoLearningLevelScreen());
                             },
-                ),
-              ],
             ),
           ],
         ),
@@ -160,13 +235,13 @@ class MainDansoLearningTestScreen extends StatelessWidget {
         SizedBox(
           width: 7.sp,
         ),
-        Text("왼손"),
+        Text('왼손'),
         SizedBox(
           width: 7.sp,
         ),
         CircleAvatar(radius: 14, backgroundColor: Colors.grey),
         SizedBox(width: 7.sp),
-        Text("오른손"),
+        Text('오른손'),
       ],
     );
   }

@@ -4,13 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import 'jungganbo/jungganbo_screen.dart';
+
 class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;
-  SongPlayAndTest({Key key, this.appbarTitle}) : super(key: key);
+  final String sheetData;
+  final String jangdan;
+
+  SongPlayAndTest({Key key, this.appbarTitle, this.jangdan, this.sheetData})
+      : super(key: key);
 
   // final songData = Get.arguments;
 
@@ -38,6 +45,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   @override
   Widget build(BuildContext context) {
+    JungGanBo testJungGanBo =
+        new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
@@ -61,6 +70,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () {
                                       controller.changePlayStopState();
                                       controller.nextButton();
+                                      Get.find<JungganboController>()
+                                          .changeStartStopState();
+                                      controller.platState
+                                          ? Get.find<JungganboController>()
+                                              .stepStart()
+                                          : Get.find<JungganboController>()
+                                              .stepStop();
+
                                       print(controller.statecount);
                                     },
                                   ),
@@ -94,7 +111,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     text: Text(controller.challengeButtonSwap),
                                     onPressed: () {
                                       controller.changePlayStopState();
+
                                       controller.previousButton();
+                                      controller.platState
+                                          ? Get.find<JungganboController>()
+                                              .stepStart()
+                                          : Get.find<JungganboController>()
+                                              .stepStop();
                                       print(controller.statecount);
                                     },
                                   )
@@ -179,24 +202,29 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             Text("자진모리장단")
                           ],
                         ),
-                  // fourByFourJon(),
-                  // controller.statecount == 4
-                  //     ? fourBySixJon(jonSixWidth, jonSixHeight - 5)
-                  //     : fourBySixJon(jonSixWidth, jonSixHeight),
-                  Stack(
-                    children: [
-                      controller.statecount == 4
-                          ? fourByEightJon(jonEightWidth, jonEightHeight)
-                          : fourByEightJon(jonEightWidth, jonEightHeight),
-                      controller.statecount == 4
-                          ? fourBySixJon(jonSixWidth, jonSixHeight)
-                          : fourBySixJon(jonSixWidth, jonSixHeight),
-                      AnimationPage(
-                        tempo: 100,
-                        jonlenght: 6,
-                      ),
-                    ],
-                  ),
+                  GetBuilder<JungganboController>(
+                      init: JungganboController(),
+                      builder: (jungcontroller) {
+                        return Stack(
+                          children: [
+                            // jungganbo(6, testJungGanBo),
+                            // controller.platState
+                            //     ? jungganboFromFlash(
+                            //         6, Get.find<JungganboController>(), testJungGanBo)
+                            //     : Container(),
+
+                            jungganbo(6, jungcontroller, testJungGanBo,
+                                controller.krChanges),
+                            jungganboFromFlash(
+                                6, jungcontroller, testJungGanBo),
+                            jungganboScreen(6),
+                            // JungganboColorAnimation(
+                            //   tempo: 1000,
+                            //   jungganboLength: 8,
+                            // ),
+                          ],
+                        );
+                      }),
                 ],
               ),
             );
