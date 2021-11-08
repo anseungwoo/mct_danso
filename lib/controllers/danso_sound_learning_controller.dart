@@ -11,7 +11,7 @@ import 'package:project_danso/widgets/loading_indicator.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
-  List dansoPitchAdjustList = [];
+  List<double> dansoPitchAdjustList = [];
   bool soundTuningState = false;
   bool listenTuningState = false;
   bool playTuningState = false;
@@ -66,16 +66,7 @@ class DansoSoundLearningController extends GetxController {
     super.onInit();
   }
 
-  void delayDialog(var dialog) {
-    Future.delayed(const Duration(milliseconds: 3000), () {
-      update();
-      Get.dialog(Dialog(
-        child: LoadingIndicator(),
-      ));
-    });
-  }
-
-  Future delayDialog1() async {
+  Future delayDialog() async {
     await Future.delayed(const Duration(milliseconds: 3000));
     await Get.dialog(Dialog(
       child: LoadingIndicator(),
@@ -477,14 +468,16 @@ class DansoSoundLearningController extends GetxController {
     detector.stopRecording();
     isAdjust = false;
     print('듣기 종료');
-    if (userInputForAdjust < 400 || userInputForAdjust > 700) {
+    if (userInputForAdjust < 400 || userInputForAdjust > 900) {
       showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
     } else {
       await DBHelPer().deleteFr();
       await DBHelPer().insertFr(UserModel(standardFr: userInputForAdjust));
       pitchModelInterface.settingAdjust(userInputForAdjust);
+      var pitchResult = pitchModelInterface
+          .getModerateAverageFrequencyByListOfPitches(dansoPitchAdjustList);
       // await getDbFr();
-      showToast(message: '$userInputForAdjust DB에 저장됨.');
+      showToast(message: '$pitchResult DB에 저장됨.');
       update();
     }
   }
