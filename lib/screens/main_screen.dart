@@ -60,7 +60,7 @@ class MainScreen extends StatelessWidget {
 
   Container topImage() {
     return Container(
-      color: Color(0xffA5A5A5),
+      color: appBarColor,
       height: 257.h,
       width: ScreenUtil().screenWidth,
       // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
@@ -68,20 +68,23 @@ class MainScreen extends StatelessWidget {
       //     borderRadius:
       //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
       child: Center(
-        child: Text('상단 이미지', style: TextStyle()),
+        child: Text('상단 이미지??', style: TextStyle(color: white)),
       ),
     );
   }
 
   Positioned myPage() {
     return Positioned(
-      right: 10,
-      top: 30,
+      top: 200.h,
+      right: 140.w,
       child: InkWell(
         onTap: () => Get.to(MyPageScreen()),
         child: Container(
           child: Center(
-            child: Text('마이\n페이지'),
+            child: Text(
+              '마이페이지',
+              style: TextStyle(color: white),
+            ),
           ),
         ),
       ),

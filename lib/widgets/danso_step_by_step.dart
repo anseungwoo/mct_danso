@@ -1,50 +1,32 @@
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/flash_controller.dart';
+import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoStepByStep extends StatefulWidget {
-  final String level;
+  final String sheetData;
   final String currentLevel;
-
-  DansoStepByStep({Key key, @required this.level, @required this.currentLevel});
+  DansoStepByStep(
+      {Key key, @required this.sheetData, @required this.currentLevel});
+  FlashController flashController;
 
   @override
   _DansoStepByStepState createState() => _DansoStepByStepState();
 }
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
-  final dansoStepController = Get.put(DansoStepController());
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('didChangeDependencies');
-    dansoStepController.starStopState = false;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    print('iniit');
-    dansoStepController.starStopState = false;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print('dispose');
-    dansoStepController.starStopState = false;
-  }
-
   @override
   Widget build(BuildContext context) {
+    var testJungGanBo = JungGanBo('도라지타령', '세마치장단', widget.sheetData);
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
-        child: GetBuilder<DansoStepController>(
-            init: DansoStepController(),
+        child: GetBuilder<JungganboController>(
+            init: JungganboController(),
             builder: (controller) {
               return Column(
                 children: [
@@ -55,7 +37,15 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                           fontSize: textSingleSize.sp, fontWeight: bold),
                     ),
                   ),
-                  jungganboFromLevel(widget.level),
+                  Stack(
+                    children: [
+                      jungganbo(12, testJungGanBo),
+                      controller.starStopState
+                          ? jungganboFromFlash(
+                              jungHeight, 12, controller, testJungGanBo)
+                          : Container(),
+                    ],
+                  ),
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -66,6 +56,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                           child: ElevatedButton(
                               onPressed: () {
                                 controller.changeStartStopState();
+                                controller.starStopState
+                                    ? controller.stepStart()
+                                    : controller.stepStop();
                               },
                               child: Text('${controller.startButton}'))),
                       Spacer(
