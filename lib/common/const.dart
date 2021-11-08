@@ -90,6 +90,7 @@ const String BOLW_SVG = 'assets/images/ic_blow.svg';
 const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
+const String WARNING_SVG = 'assets/images/ic_warning.svg';
 
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명

@@ -18,7 +18,7 @@ Widget testDialog(String assetName, String text) {
           children: [
             SvgPicture.asset(
               assetName,
-              color: Colors.yellow,
+              color: unButtonColorOrang,
             ),
             Padding(
               padding: const EdgeInsets.all(30),

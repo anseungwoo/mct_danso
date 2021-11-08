@@ -152,12 +152,11 @@ class _MainDansoLearningTestScreenState
                           ));
                           if (controller.userInputForAdjust < 400 ||
                               controller.userInputForAdjust > 700) {
-                            await Get.dialog(testDialog(FAIL_SVG, "다시시도해주세요"));
+                            await Get.dialog(
+                                testDialog(FAIL_SVG, "다시 시도 해주세요"));
                           } else {
                             await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
                           }
-
-
                         },
             ),
             //불어보기

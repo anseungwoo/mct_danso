@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/screens.dart';
@@ -15,10 +16,9 @@ Widget mainDansoCautionDialog() {
         padding: const EdgeInsets.all(25),
         child: Column(
           children: [
-            Icon(
-              Icons.warning_amber_rounded,
-              size: 60,
-              color: Colors.yellow,
+            SvgPicture.asset(
+              WARNING_SVG,
+              color: unButtonColorOrang,
             ),
             Padding(
               padding: const EdgeInsets.all(20),
