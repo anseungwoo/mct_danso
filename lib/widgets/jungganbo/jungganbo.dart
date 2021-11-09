@@ -2,9 +2,10 @@ import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/controllers/jungganbo_controller.dart';
 
-Widget jungganbo(
-    int heightNumber, controller, JungGanBo testJungGanBo, bool krState) {
+Widget jungganbo(int heightNumber, JungganboController controller,
+    JungGanBo testJungGanBo, bool krState) {
   double height = heightNumber == 12
       ? jungHeight
       : heightNumber == 8
@@ -13,7 +14,7 @@ Widget jungganbo(
   int j = 0;
   return Row(
     children: [
-      for (var c = 3; c >= 0; c--)
+      for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [

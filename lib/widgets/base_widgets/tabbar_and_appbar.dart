@@ -18,7 +18,7 @@ PreferredSizeWidget tabbarAndAppBar(
     backgroundColor: appBarColor,
     actions: [
       IconButton(
-          icon: Icon(Icons.home),
+          icon: Icon(Icons.home_filled),
           onPressed: () {
             Get.offAll(MainScreen());
           })

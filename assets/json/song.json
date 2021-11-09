@@ -24,7 +24,7 @@
             "song_jangdan": "중중모리장단",
             "song_like": "false",
             "song_diff": 1,
-            "song_sheet": "m|t|o#t|o|t#t|--h|m#h|o|^#t|o|m#h|o|t#h|--m|h#h|o|^#m|o|t#h|t|o#h|--t|h#m|o|",
+            "song_sheet": "m|t|o#t|o|t#t|--h|m#h|o|^#t|o|m#h|o|t#h|--m|h#h|o|^#m|o|t#h|t|o#h|--t|h#m|o|o#",
             "song_sheet_length":6
         },
         {
@@ -33,7 +33,7 @@
             "song_jangdan": "4박장단",
             "song_like": "false",
             "song_diff": 2,
-            "song_sheet": "t|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#",
+            "song_sheet": "t|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#",
             "song_sheet_length":8
         },
         {

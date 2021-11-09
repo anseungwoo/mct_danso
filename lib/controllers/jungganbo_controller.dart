@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:get/get.dart';
 
 class JungganboController extends GetxController {
@@ -9,6 +10,8 @@ class JungganboController extends GetxController {
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
   bool krState = false;
   String krButton = "한자";
+  int next = 0;
+  int next2 = 0;
 
   @override
   void onInit() {
@@ -46,14 +49,18 @@ class JungganboController extends GetxController {
   void stepStop() {
     flashcount = -1;
     i = 0;
-
+    next = 0;
+    next2 = 0;
     j = 0;
     update();
   }
 
-  void stepStart(int mill) {
+  void stepStart(int mill, JungGanBo jungGanBo) {
     interval(Duration(milliseconds: mill), (timer) {
-      if (i < 48 && starStopState) {
+      if (i < jungGanBo.sheet.length && starStopState) {
+        if (i == 24) {
+          flashCount2();
+        }
         flashCount();
         i++;
       } else {
@@ -62,12 +69,12 @@ class JungganboController extends GetxController {
         return;
       }
     });
-
     update();
   }
 
   void flashCount2() {
-    flashcount2++;
+    next = 4;
+    next2 = 2;
     update();
   }
 

@@ -76,7 +76,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 controller.changeStartStopState();
                                 controller.starStopState
                                     ? controller.stepStart(
-                                        testJungGanBo.jangDan.milliSecond)
+                                        testJungGanBo.jangDan.milliSecond,
+                                        testJungGanBo)
                                     : controller.stepStop();
                                 controller.starStopState
                                     ? jungGanBoPlayer.play(testJungGanBo)
