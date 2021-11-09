@@ -43,7 +43,8 @@ class DBHelPer {
                 song_jangdan  TEXT      NOT NULL, 
                 song_like     TEXT      NOT NULL, 
                 song_diff     INTEGER   NOT NULL, 
-                song_sheet    TEXT      NOT NULL, 
+                song_sheet    TEXT      NOT NULL,
+                song_sheet_length INTEGER NOT NULL, 
                 PRIMARY KEY (song_id)
             )
           ''');
@@ -109,14 +110,15 @@ class DBHelPer {
   dynamic insertSongData(SongDataModel song) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet) VALUES(?,?,?,?,?,?)',
+        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet,song_sheet_length) VALUES(?,?,?,?,?,?,?)',
         [
           song.songTitle,
           song.songPath,
           song.songJangdan,
           song.songLike,
           song.songDiff,
-          song.songSheet
+          song.songSheet,
+          song.songSheetLength
         ]);
   }
 
@@ -144,6 +146,7 @@ class DBHelPer {
               songLike: value['song_like'],
               songDiff: value['song_diff'],
               songSheet: value['song_sheet'],
+              songSheetLength: value['song_sheet_length'],
             ),
           )
           .toList();
@@ -170,6 +173,7 @@ class DBHelPer {
               songLike: value['song_like'],
               songDiff: value['song_diff'],
               songSheet: value['song_sheet'],
+              songSheetLength: value['song_sheet_length'],
             ),
           )
           .toList();
@@ -196,14 +200,15 @@ class DBHelPer {
   dynamic updateSong(SongDataModel song) async {
     final db = await database;
     var res = db.rawUpdate(
-        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=? WHERE song_id=?',
+        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=?,song_sheet_length=? WHERE song_id=?',
         [
           song.songTitle,
           song.songPath,
           song.songJangdan,
           song.songLike,
           song.songId,
-          song.songSheet
+          song.songSheet,
+          song.songSheetLength
         ]);
     return res;
   }

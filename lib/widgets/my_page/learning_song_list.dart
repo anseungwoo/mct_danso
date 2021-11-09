@@ -56,57 +56,57 @@ class LearningSongList extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: white,
-                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  ),
-                  height: 66.h,
-                  width: 330.w,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          for (var i = 0; i < 10; i++)
-                            Container(
-                              width: 33.w,
-                              height: 33.h,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: textBlack, width: 0.5)),
-                              child: Center(
-                                child: Text(
-                                    "${controller.hangeul[controller.currentLevel][i]}",
-                                    style:
-                                        TextStyle(fontSize: textEightSize.sp)),
-                              ),
-                            )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          for (var i = 0; i < 10; i++)
-                            Container(
-                              width: 33.w,
-                              height: 33.h,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: textBlack, width: 0.5)),
-                              child: Center(
-                                child: Text(
-                                    "${controller.hanja[controller.currentLevel][i]}",
-                                    style:
-                                        TextStyle(fontSize: textEightSize.sp)),
-                              ),
-                            )
-                        ],
-                      ),
-                    ],
-                  ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        for (int i = 0;
+                            i <
+                                controller
+                                    .yulmyeong[controller.currentLevel].length;
+                            i++)
+                          Container(
+                            width: 33.w,
+                            height: 33.h,
+                            decoration: BoxDecoration(
+                                color: white,
+                                border:
+                                    Border.all(color: textBlack, width: 0.5)),
+                            child: Center(
+                              child: Text(
+                                  "${controller.yulmyeong[controller.currentLevel][i].toHangeul()}",
+                                  style: TextStyle(fontSize: textEightSize.sp)),
+                            ),
+                          )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        for (var i = 0;
+                            i <
+                                controller
+                                    .yulmyeong[controller.currentLevel].length;
+                            i++)
+                          Container(
+                            width: 33.w,
+                            height: 33.h,
+                            decoration: BoxDecoration(
+                                color: white,
+                                border:
+                                    Border.all(color: textBlack, width: 0.5)),
+                            child: Center(
+                              child: Text(
+                                  "${controller.yulmyeong[controller.currentLevel][i].toChineseCharacter()}",
+                                  style: TextStyle(fontSize: textEightSize.sp)),
+                            ),
+                          )
+                      ],
+                    ),
+                  ],
                 ),
                 SizedBox(height: 20.h),
                 Expanded(
@@ -125,6 +125,7 @@ class LearningSongList extends StatelessWidget {
                                     appbarTitle: item.songTitle,
                                     jangdan: item.songJangdan,
                                     sheetData: item.songSheet,
+                                    sheetLength: item.songSheetLength,
                                   ),
                                 );
                                 // Get.to(SheetTestScreen(

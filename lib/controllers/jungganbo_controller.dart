@@ -9,6 +9,7 @@ class JungganboController extends GetxController {
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
   bool krState = false;
   String krButton = "한자";
+
   @override
   void onInit() {
     super.onInit();
@@ -39,15 +40,23 @@ class JungganboController extends GetxController {
 
   int i = 0;
   int flashcount = -1;
+  int flashcount2 = -1;
+
+  int j = 0;
   void stepStop() {
     flashcount = -1;
     i = 0;
+
+    j = 0;
     update();
   }
 
-  void stepStart() {
-    interval(Duration(milliseconds: 610), (timer) {
+  void stepStart(int mill) {
+    interval(Duration(milliseconds: mill), (timer) {
       if (i < 48 && starStopState) {
+        if (j < 3) {
+          flashCount2();
+        }
         flashCount();
         i++;
       } else {
@@ -57,6 +66,11 @@ class JungganboController extends GetxController {
       }
     });
 
+    update();
+  }
+
+  void flashCount2() {
+    flashcount2++;
     update();
   }
 
