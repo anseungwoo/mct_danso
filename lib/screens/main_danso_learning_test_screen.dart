@@ -146,7 +146,6 @@ class _MainDansoLearningTestScreenState
                           controller.isAdjust
                               ? controller.stopAdjust()
                               : controller.startAdjust();
-
                           await Get.dialog(Dialog(
                             child: LoadingIndicator(),
                           ));
