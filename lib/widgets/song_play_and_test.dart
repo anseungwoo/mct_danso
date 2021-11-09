@@ -33,7 +33,7 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   int percent;
-
+  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -87,6 +87,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                     testJungGanBo
                                                         .jangDan.milliSecond)
                                                 : jungcontroller.stepStop();
+                                            jungcontroller.starStopState
+                                                ? jungGanBoPlayer
+                                                    .play(testJungGanBo)
+                                                : null;
 
                                             print(controller.statecount);
                                           },
@@ -140,6 +144,18 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   onPressed: () {
                                                     controller
                                                         .testStartButtonState();
+                                                    controller.testStartState
+                                                        ? jungcontroller
+                                                            .stepStart(
+                                                                testJungGanBo
+                                                                    .jangDan
+                                                                    .milliSecond)
+                                                        : jungcontroller
+                                                            .stepStop();
+                                                    jungcontroller.starStopState
+                                                        ? jungGanBoPlayer
+                                                            .play(testJungGanBo)
+                                                        : null;
                                                     controller.nextButton();
                                                     print(
                                                         controller.statecount);
