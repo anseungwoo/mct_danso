@@ -53,8 +53,12 @@ class _TimerWidgetState extends State<TimerWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
+            '태(汰)를 부를 준비하세요.',
+            style: TextStyle(fontSize: 20),
+          ),
+          Text(
             '$_start초',
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 35),
           ),
           Text('뒤에 시작합니다'),
         ],

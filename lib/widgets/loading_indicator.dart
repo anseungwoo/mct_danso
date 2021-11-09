@@ -45,35 +45,45 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 120,
-        width: 120,
-        child: SfRadialGauge(axes: <RadialAxis>[
-          RadialAxis(
-            minimum: 0,
-            maximum: 50,
-            showLabels: false,
-            showTicks: false,
-            startAngle: 270,
-            endAngle: 270,
-            radiusFactor: 0.8,
-            axisLineStyle: AxisLineStyle(
-              thickness: 0.05,
-              color: const Color.fromARGB(100, 0, 169, 181),
-              thicknessUnit: GaugeSizeUnit.factor,
-            ),
-            pointers: <GaugePointer>[
-              RangePointer(
-                value: progressValue,
-                width: 0.95,
-                pointerOffset: 0.05,
-                sizeUnit: GaugeSizeUnit.factor,
-                enableAnimation: true,
-                animationType: AnimationType.linear,
-                animationDuration: 50,
-              )
-            ],
-          )
-        ]));
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('태(汰)를 5초간 불러주세요'),
+          Container(
+              height: 120,
+              width: 120,
+              child: SfRadialGauge(axes: <RadialAxis>[
+                RadialAxis(
+                  minimum: 0,
+                  maximum: 50,
+                  showLabels: false,
+                  showTicks: false,
+                  startAngle: 270,
+                  endAngle: 270,
+                  radiusFactor: 0.8,
+                  axisLineStyle: AxisLineStyle(
+                    thickness: 0.05,
+                    color: const Color.fromARGB(100, 0, 169, 181),
+                    thicknessUnit: GaugeSizeUnit.factor,
+                  ),
+                  pointers: <GaugePointer>[
+                    RangePointer(
+                      value: progressValue,
+                      width: 0.95,
+                      pointerOffset: 0.05,
+                      sizeUnit: GaugeSizeUnit.factor,
+                      enableAnimation: true,
+                      animationType: AnimationType.linear,
+                      animationDuration: 50,
+                    )
+                  ],
+                )
+              ])),
+        ],
+      ),
+    );
   }
 }

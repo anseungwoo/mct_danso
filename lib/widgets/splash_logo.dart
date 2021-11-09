@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/permissioin_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,6 +16,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final PermissionController permissionController =
+      Get.put(PermissionController());
+
   @override
   void initState() {
     // TODO: implement initState
@@ -23,9 +27,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   startTime() async {
-    var _duration = Duration(seconds: 4);
-    return Timer(_duration, () {
-      Get.to(MainScreen());
+    var _duration = Duration(seconds: 3);
+    return Timer(_duration, () async {
+      await permissionController.permission();
+      await Get.off(MainScreen());
     });
   }
 
