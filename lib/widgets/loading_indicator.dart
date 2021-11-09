@@ -1,7 +1,9 @@
 import 'dart:async';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -45,13 +47,21 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
+    return Container(
+      width: 330.w,
+      height: 330.h,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          Text('태(汰)를 5초간 불러주세요'),
+          SvgPicture.asset(
+            BOLW_SVG,
+            color: unButtonColorOrang,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("5초간 태(汰) 불어주세요"),
+          ),
           Container(
               height: 120,
               width: 120,

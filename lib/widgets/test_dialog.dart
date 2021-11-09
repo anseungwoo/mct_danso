@@ -6,39 +6,29 @@ import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-Widget mainDansoCautionDialog() {
+Widget testDialog(String assetName, String text) {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
-      height: 260.h,
+      height: 210.h,
       width: 330.w,
       child: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.only(top: 24, bottom: 15),
         child: Column(
           children: [
             SvgPicture.asset(
-              WARNING_SVG,
+              assetName,
               color: unButtonColorOrang,
             ),
             Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                "연주 시 주의사항",
-                style: TextStyle(fontSize: textSevenSize, fontWeight: bold),
-              ),
+              padding: const EdgeInsets.all(30),
+              child: Text(text),
             ),
-            Text("단소의 바람이 마이크로 들어가지 않게 해 주세요"),
-            SizedBox(height: 5.h),
-            Text("소음이 적은 장소에서 연주해 주세요"),
-            SizedBox(height: 15.h),
             TextButton(
                 onPressed: () {
                   Get.back();
                 },
-                child: Text(
-                  "확인",
-                  style: TextStyle(color: textBlack),
-                )),
+                child: Text("확인"))
           ],
         ),
       ),

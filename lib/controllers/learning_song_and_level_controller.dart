@@ -1,23 +1,48 @@
+import 'package:danso_function/common/classes/YulmyeongNote.dart';
+import 'package:danso_function/danso_function.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/db/db_helpers.dart';
 
 class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;
   var songList = [].obs;
-  List hanja = [
+  List yulmyeong = [
     '',
-    ['汰', '潢', '無', '', '', '', '', '', '', ''],
-    ['無', '潢', '汰', '㳞', '淋', '', '', '', '', ''],
-    ['仲', '林', '無', '潢', '汰', '㳞', '淋', '', '', ''],
-    ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲']
+    [
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
+    ],
+    [
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+    ]
   ];
-  List hangeul = [
-    '',
-    ['태', '황', '무', '', '', '', '', '', '', ''],
-    ['무', '황', '태', '중', '임', '', '', '', '', ''],
-    ['중', '임', '무', '황', '태', '중', '임', '', '', ''],
-    ['중', '임', '무', '황', '태', '중', '임', '무', '황', '태']
-  ];
+
   @override
   void onInit() {
     super.onInit();

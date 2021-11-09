@@ -13,8 +13,12 @@ import 'jungganbo/jungganbo_screen.dart';
 class DansoStepByStep extends StatefulWidget {
   final String sheetData;
   final String currentLevel;
+  final String jangdan;
   DansoStepByStep(
-      {Key key, @required this.sheetData, @required this.currentLevel});
+      {Key key,
+      @required this.sheetData,
+      @required this.currentLevel,
+      this.jangdan});
 
   @override
   _DansoStepByStepState createState() => _DansoStepByStepState();
@@ -33,7 +37,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   Widget build(BuildContext context) {
-    var testJungGanBo = JungGanBo('도라지타령', '세마치장단', widget.sheetData);
+    var testJungGanBo = JungGanBo('도라지타령', widget.jangdan, widget.sheetData);
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<JungganboController>(
@@ -51,7 +55,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   Stack(
                     children: [
                       jungganbo(12, Get.find<JungganboController>(),
-                          testJungGanBo, true),
+                          testJungGanBo, controller.krState),
                       jungganboFromFlash(
                           12, Get.find<JungganboController>(), testJungGanBo),
                       jungganboScreen(12),
@@ -62,8 +66,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                          height: 30.h,
-                          width: 160.w,
+                          width: 105.w,
+                          height: 37.h,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: buttonColorOrang,
@@ -71,19 +75,32 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               onPressed: () {
                                 controller.changeStartStopState();
                                 controller.starStopState
-                                    ? controller.stepStart()
+                                    ? controller.stepStart(
+                                        testJungGanBo.jangDan.milliSecond)
                                     : controller.stepStop();
                                 controller.starStopState
                                     ? jungGanBoPlayer.play(testJungGanBo)
                                     : null;
                               },
                               child: Text('${controller.startButton}'))),
-                      Spacer(
-                        flex: 1,
-                      ),
+                      SizedBox(width: 7.w),
                       Container(
-                          height: 30.h,
-                          width: 160.w,
+                          width: 105.w,
+                          height: 37.h,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: buttonColorOrang,
+                                  onSurface: unButtonColorOrang),
+                              onPressed: () {
+                                controller.starStopState
+                                    ? null
+                                    : controller.changekrState();
+                              },
+                              child: Text('${controller.krButton}'))),
+                      SizedBox(width: 8.w),
+                      Container(
+                          width: 105.w,
+                          height: 37.h,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: buttonColorOrang,

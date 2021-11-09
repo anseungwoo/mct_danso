@@ -21,34 +21,22 @@ Widget jungganbo(
               Row(
                 children: [
                   testJungGanBo.sheet[i].yulmyeongs.length == 1
-                      ? jungContainer(height, controller.flashcount, i, j,
-                          heightNumber, testJungGanBo, krState)
+                      ? jungContainer(
+                          height, i, j, heightNumber, testJungGanBo, krState)
                       : testJungGanBo.sheet[i].yulmyeongs.length == 2
                           ? Column(
                               children: [
                                 for (var j = 0; j < 2; j++)
-                                  jungContainer(
-                                      height / 2,
-                                      controller.flashcount,
-                                      i,
-                                      j,
-                                      heightNumber,
-                                      testJungGanBo,
-                                      krState)
+                                  jungContainer(height / 2, i, j, heightNumber,
+                                      testJungGanBo, krState)
                               ],
                             )
                           : testJungGanBo.sheet[i].yulmyeongs.length == 3
                               ? Column(
                                   children: [
                                     for (var j = 0; j < 3; j++)
-                                      jungContainer(
-                                          height / 3,
-                                          controller.flashcount,
-                                          i,
-                                          j,
-                                          heightNumber,
-                                          testJungGanBo,
-                                          krState)
+                                      jungContainer(height / 3, i, j,
+                                          heightNumber, testJungGanBo, krState)
                                   ],
                                 )
                               : Container(),
@@ -69,7 +57,7 @@ Container blankContainer(double height) {
   );
 }
 
-Container jungContainer(double height, int a, int i, int j, int heightNumber,
+Container jungContainer(double height, int i, int j, int heightNumber,
     JungGanBo testJungGanBo, bool krState) {
   return Container(
     width: jungWidth.w,
@@ -83,12 +71,12 @@ Container jungContainer(double height, int a, int i, int j, int heightNumber,
               ? Text(
                   testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
                   style:
-                      TextStyle(fontSize: heightNumber == 12 ? 23.sp : 14.sp),
+                      TextStyle(fontSize: heightNumber == 12 ? 18.sp : 14.sp),
                 )
               : Text(
                   testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
                   style:
-                      TextStyle(fontSize: heightNumber == 12 ? 23.sp : 14.sp),
+                      TextStyle(fontSize: heightNumber == 12 ? 18.sp : 14.sp),
                 ),
         ),
       ],
