@@ -6,7 +6,8 @@ import 'package:project_danso/common/const.dart';
 Widget icon({@required String text, @required Widget page}) {
   return InkWell(
     onTap: () {
-      Get.off(page);
+      // Get.to(page);
+      Navigator.of(Get.context).push(MaterialPageRoute(builder: (_) => page));
     },
     child: Container(
       width: 140.w,

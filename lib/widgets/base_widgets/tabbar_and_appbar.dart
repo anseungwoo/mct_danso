@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/screens/main_screen.dart';
 
 PreferredSizeWidget tabbarAndAppBar(
     {@required String title,
@@ -14,6 +16,13 @@ PreferredSizeWidget tabbarAndAppBar(
     centerTitle: true,
     elevation: 1,
     backgroundColor: appBarColor,
+    actions: [
+      IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Get.offAll(MainScreen());
+          })
+    ],
     bottom: enableTabBar
         ? PreferredSize(
             preferredSize: tabbar.preferredSize,

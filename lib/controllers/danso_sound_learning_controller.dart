@@ -8,6 +8,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/test_dialog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
@@ -468,8 +469,9 @@ class DansoSoundLearningController extends GetxController {
     detector.stopRecording();
     isAdjust = false;
     print('듣기 종료');
-    if (userInputForAdjust < 400 || userInputForAdjust > 900) {
-      showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
+    if (userInputForAdjust < 400 || userInputForAdjust > 700) {
+      // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
+
     } else {
       await DBHelPer().deleteFr();
       await DBHelPer().insertFr(UserModel(standardFr: userInputForAdjust));
@@ -477,7 +479,7 @@ class DansoSoundLearningController extends GetxController {
       var pitchResult = pitchModelInterface
           .getModerateAverageFrequencyByListOfPitches(dansoPitchAdjustList);
       // await getDbFr();
-      showToast(message: '$pitchResult DB에 저장됨.');
+      // showToast(message: '$userInputForAdjust DB에 저장됨.');
       update();
     }
   }
