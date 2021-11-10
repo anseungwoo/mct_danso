@@ -18,7 +18,7 @@ class JungganboController extends GetxController {
     super.onInit();
     starStopState = false;
     startButton = '시작하기';
-    stepStop();
+    // stepStop();
   }
 
   void changekrState() {
