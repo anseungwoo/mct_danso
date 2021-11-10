@@ -86,6 +86,7 @@ const Color buttonColorOrang = Color(0xffF19929);
 const Color unButtonColorOrang = Color(0xffFEC782);
 const Color matchColor = Color(0xff00A8F2);
 const Color unMatchColor = Color(0xffFE0000);
+const String HOME_SVG = 'assets/images/ic_home.svg';
 const String BOLW_SVG = 'assets/images/ic_blow.svg';
 const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
@@ -125,6 +126,8 @@ const String LEARN = '기초적인 단소의 운지법을 연습해 보아요.';
 const String PLAYLEARN = '전통곡들을 단소로 연습하여 피드백 받으세요.';
 //질문하기 설명
 const String QUESTIONS = '단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ';
+//기준은잡기
+const String VOLUMECONTROL = '단소마다 음이 다를수 있어요,나의 단소 음을 조정 해보세요';
 
 //단소의 역사
 //youtube URL style

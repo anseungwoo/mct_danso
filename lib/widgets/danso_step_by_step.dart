@@ -58,7 +58,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                       //     testJungGanBo, controller.krState),
                       // jungganboFromFlash(
                       //     12, Get.find<JungganboController>(), testJungGanBo),
-                      // jungganboScreen(12),
+                      jungganboScreen(12),
                     ],
                   ),
                   SizedBox(height: 5),

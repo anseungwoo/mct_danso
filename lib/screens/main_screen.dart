@@ -35,6 +35,10 @@ class MainScreen extends StatelessWidget {
                   contant: LOOK,
                   page: MainDansoHistoryKindScreen()),
               _homeMenuButton(
+                  title: '내 단소 소리 조절 하기',
+                  contant: VOLUMECONTROL,
+                  page: MainDansoHistoryKindScreen()),
+              _homeMenuButton(
                   title: '운지법 익히기',
                   page: learningDialog(),
                   contant: LEARN,
@@ -44,9 +48,7 @@ class MainScreen extends StatelessWidget {
                   contant: PLAYLEARN,
                   page: MainDansoChartlistScreen()),
               _homeMenuButton(
-                  title: '질문하기',
-                  contant: QUESTIONS,
-                  page: MainDansoHistoryKindScreen()),
+                  title: 'Q&A', contant: QUESTIONS, page: QuestionsPage()),
             ],
           ),
         ),
