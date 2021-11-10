@@ -132,7 +132,7 @@ class LearningSongList extends StatelessWidget {
                                 // Get.to(SheetTestScreen(
                                 //   sheetData: item.songSheet,
                                 //   jangdan: item.songJangdan,
-                                //   songTitle: item.songTitle,sasasasasasa
+                                //   songTitle: item.songTitle,
                                 // ));
                               },
                               child: Container(
