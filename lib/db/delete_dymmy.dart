@@ -7,13 +7,13 @@ class DeleteDummy {
   static final DeleteDummy _db = DeleteDummy._();
   factory DeleteDummy() => _db;
 
-  static Database _database;
+  static Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database;
+    if (_database != null) return _database!;
 
     _database = await DBHelPer().initDB();
-    return _database;
+    return _database!;
   }
 
   // 도전하기 더미 삭제

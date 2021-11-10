@@ -15,7 +15,8 @@ class SongController extends GetxController {
     insertSongToJson();
   }
 
-  void updateLikeSongList({String songLike, int songId}) async {
+  void updateLikeSongList(
+      {required String songLike, required int songId}) async {
     // var data = await
     var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);
@@ -41,7 +42,7 @@ class SongController extends GetxController {
       if (value.isEmpty || value == null || value == []) {
         var jsonString = await rootBundle.loadString('assets/json/song.json');
         final res = songFromJsonFromJson(jsonString);
-        res.songData.forEach((element) async {
+        res.songData!.forEach((element) async {
           await DBHelPer().insertSongData(element);
         });
         print('DB 데이터 insert : $value');
@@ -57,7 +58,7 @@ class SongController extends GetxController {
   }
 
   void insertSongDummyData() async {
-    await Dummy().insertSongDummy();
+    Dummy().insertSongDummy();
     getAllSongList();
     // update();
   }

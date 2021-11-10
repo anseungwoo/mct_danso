@@ -6,7 +6,7 @@ import 'package:project_danso/common/const.dart';
 class YoutubePlayers extends StatefulWidget {
   final String url;
 
-  const YoutubePlayers({Key key, this.url}) : super(key: key);
+  const YoutubePlayers({Key? key, required this.url}) : super(key: key);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -15,7 +15,7 @@ class _MyAppState extends State<YoutubePlayers>
     implements YouTubePlayerListener {
   var currentVideoSecond = 0.0;
   var playerState = '';
-  FlutterYoutubeViewController controller;
+  late FlutterYoutubeViewController controller;
 
   @override
   void onCurrentSecond(double second) {

@@ -11,7 +11,7 @@ import 'package:project_danso/widgets/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoLearningTestScreen extends StatefulWidget {
-  MainDansoLearningTestScreen({Key key}) : super(key: key);
+  MainDansoLearningTestScreen({Key? key}) : super(key: key);
 
   @override
   _MainDansoLearningTestScreenState createState() =>
@@ -68,13 +68,14 @@ class _MainDansoLearningTestScreenState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            controller.listenTuningState
-                ? Text('소리를 들어보세요')
-                : controller.soundTuningState
-                    ? Text('${controller.userInputForAdjust}')
-                    : controller.playTuningState
-                        ? controller.soundMatch(controller.pitch)
-                        : Text(""),
+            // if (controller.listenTuningState)
+            //   Text('소리를 들어보세요')
+            // else if (controller.soundTuningState)
+            //   Text('${controller.userInputForAdjust}')
+            // else if (controller.playTuningState)
+            //   controller.soundMatch(controller.pitch)!
+            // else
+            //   Text(""),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Container(
@@ -143,19 +144,19 @@ class _MainDansoLearningTestScreenState
                           // await Future.delayed(
                           //     const Duration(milliseconds: 3500));
                           // Get.back();
-                          controller.isAdjust
-                              ? controller.stopAdjust()
-                              : controller.startAdjust();
-                          await Get.dialog(Dialog(
-                            child: LoadingIndicator(),
-                          ));
-                          if (controller.userInputForAdjust < 400 ||
-                              controller.userInputForAdjust > 700) {
-                            await Get.dialog(
-                                testDialog(FAIL_SVG, "다시 시도 해주세요"));
-                          } else {
-                            await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
-                          }
+                          // controller.isAdjust
+                          //     ? controller.stopAdjust()
+                          //     : controller.startAdjust();
+                          // await Get.dialog(Dialog(
+                          //   child: LoadingIndicator(),
+                          // ));
+                          // if (controller.userInputForAdjust < 400 ||
+                          //     controller.userInputForAdjust > 700) {
+                          //   await Get.dialog(
+                          //       testDialog(FAIL_SVG, "다시 시도 해주세요"));
+                          // } else {
+                          //   await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
+                          // }
                         },
             ),
             //불어보기
@@ -185,9 +186,9 @@ class _MainDansoLearningTestScreenState
                       : () {
                           // controller.load();
                           controller.changeSpeakTuningState();
-                          controller.listenTuningState
-                              ? controller.palySound()
-                              : null;
+                          // controller.listenTuningState
+                          //     ? controller.palySound()
+                          //     : null;
                         },
             ),
             //연습하기
@@ -214,7 +215,7 @@ class _MainDansoLearningTestScreenState
       child: Center(
         child: Column(
           children: [
-            Text("${controller.userInputForAdjust}"),
+            // Text("${controller.userInputForAdjust}"),
             Container(
               width: 47.w,
               height: 420.h,
@@ -250,11 +251,11 @@ class _MainDansoLearningTestScreenState
 
 class SoundButton extends StatelessWidget {
   final String title;
-  final Function() onPressed;
+  final Function()? onPressed;
   const SoundButton({
-    Key key,
-    @required this.title,
-    @required this.onPressed,
+    Key? key,
+    required this.title,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -276,11 +277,11 @@ class SoundButton extends StatelessWidget {
 
 class UpDownButton extends StatelessWidget {
   final IconData icons;
-  final Function() onPressed;
+  final Function()? onPressed;
   const UpDownButton({
-    Key key,
-    @required this.icons,
-    @required this.onPressed,
+    Key? key,
+    required this.icons,
+    this.onPressed,
   }) : super(key: key);
 
   @override

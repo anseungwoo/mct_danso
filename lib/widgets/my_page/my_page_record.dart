@@ -6,7 +6,7 @@ import 'package:project_danso/widgets/widgets.dart';
 class MyPageRecord extends StatelessWidget {
   final String songname;
 
-  const MyPageRecord({Key key, @required this.songname}) : super(key: key);
+  const MyPageRecord({Key? key, required this.songname}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

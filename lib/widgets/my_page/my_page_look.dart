@@ -9,7 +9,7 @@ import 'package:project_danso/widgets/widgets.dart';
 class MyPageLook extends StatelessWidget {
   final String songname;
   final String date;
-  const MyPageLook({Key key, @required this.songname, @required this.date})
+  const MyPageLook({Key? key, required this.songname, required this.date})
       : super(key: key);
 
   @override

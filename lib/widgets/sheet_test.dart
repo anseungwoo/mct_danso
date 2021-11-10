@@ -3,7 +3,11 @@ import 'package:get/get.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 class SheetTestScreen extends StatefulWidget {
-  SheetTestScreen({Key key, this.sheetData, this.songTitle, this.jangdan})
+  SheetTestScreen(
+      {Key? key,
+      required this.sheetData,
+      required this.songTitle,
+      required this.jangdan})
       : super(key: key);
   final String sheetData;
   final String songTitle;
@@ -19,17 +23,17 @@ class _SheetTestScreenState extends State<SheetTestScreen> {
   @override
   void initState() {
     super.initState();
-    sheetController.jungGanBoSheet(
-      songTitle: widget.songTitle,
-      jangdan: widget.jangdan,
-      songSheet: widget.sheetData,
-    );
+    // sheetController.jungGanBoSheet(
+    //   songTitle: widget.songTitle,
+    //   jangdan: widget.jangdan,
+    //   songSheet: widget.sheetData,
+    // );
   }
 
   @override
   void dispose() {
     super.dispose();
-    sheetController.deleteList();
+    // sheetController.deleteList();
   }
 
   @override
@@ -48,7 +52,7 @@ class _SheetTestScreenState extends State<SheetTestScreen> {
               init: sheetController,
               builder: (controller) {
                 return ListView.builder(
-                  itemCount: sheetController.koSheet.length ?? 0,
+                  itemCount: sheetController.koSheet.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Center(
                         child: Text('${sheetController.koSheet[index]}'));

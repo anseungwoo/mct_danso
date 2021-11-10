@@ -7,8 +7,7 @@ import 'package:project_danso/common/const.dart';
 class JungganboColorAnimation extends StatefulWidget {
   int tempo;
   double jungganboLength;
-  JungganboColorAnimation(
-      {@required this.jungganboLength, @required this.tempo});
+  JungganboColorAnimation({required this.jungganboLength, required this.tempo});
 
   @override
   _JungganboColorAnimationState createState() =>
@@ -17,8 +16,8 @@ class JungganboColorAnimation extends StatefulWidget {
 
 class _JungganboColorAnimationState extends State<JungganboColorAnimation>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  SequenceAnimation sequenceAnimation;
+  late AnimationController controller;
+  late SequenceAnimation sequenceAnimation;
 
   @override
   void initState() {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageScreen extends StatelessWidget {
-  const MyPageScreen({Key key}) : super(key: key);
+  const MyPageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

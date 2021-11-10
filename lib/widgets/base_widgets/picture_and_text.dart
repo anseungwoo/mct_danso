@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
 
 class PictureAndText extends StatelessWidget {
-  const PictureAndText({Key key}) : super(key: key);
+  const PictureAndText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

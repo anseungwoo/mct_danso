@@ -5,12 +5,11 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/main_danso_chartlist_screen.dart';
 import 'package:project_danso/screens/screens.dart';
-import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreen({Key key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
   final SongController songController = Get.put(SongController());
 
   @override
@@ -89,10 +88,10 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _homeMenuButton(
-      {@required String title,
-      @required Widget page,
-      @required String contant,
-      Image image,
+      {required String title,
+      required Widget page,
+      required String contant,
+      Image? image,
       bool dialog = false}) {
     return InkWell(
       onTap: () {

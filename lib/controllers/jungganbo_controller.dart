@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
+// import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:get/get.dart';
 
 class JungganboController extends GetxController {
@@ -55,28 +55,19 @@ class JungganboController extends GetxController {
     update();
   }
 
-  void stepStart(int mill, JungGanBo jungGanBo) {
-    interval(Duration(milliseconds: mill), (timer) {
-      if (i < jungGanBo.sheet.length && starStopState) {
-        if (i == 24) {
-          flashCount2();
-        }
-        flashCount();
-        i++;
-      } else {
-        timer.cancel();
-        stepStop();
-        return;
-      }
-    });
-    update();
-  }
-
-  void flashCount2() {
-    next = 4;
-    next2 = 2;
-    update();
-  }
+  // void stepStart(int mill, JungGanBo jungGanBo, int sheetHorizontal) {
+  //   interval(Duration(milliseconds: mill), (timer) {
+  //     if (i < jungGanBo.sheet.length && starStopState) {
+  //       flashCount();
+  //       i++;
+  //     } else {
+  //       timer.cancel();
+  //       stepStop();
+  //       return;
+  //     }
+  //   });
+  //   update();
+  // }
 
   void flashCount() {
     flashcount++;

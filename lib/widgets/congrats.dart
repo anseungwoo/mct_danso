@@ -5,7 +5,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class ResultScore extends StatelessWidget {
-  const ResultScore({Key key}) : super(key: key);
+  const ResultScore({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

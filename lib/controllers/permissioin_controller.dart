@@ -13,7 +13,7 @@ class PermissionController extends GetxController {
 
     if (!micPermission.isGranted || !cameraPermission.isGranted) {
       await showDialog(
-        context: Get.context,
+        context: Get.context!,
         builder: (BuildContext context) => CupertinoAlertDialog(
           title: Text('Camera Permission'),
           content: Text('카메라 또는 마이크 권한이 허용되지 않았습니다.'),

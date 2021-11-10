@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:project_danso/common/const.dart';
 
-TabBar defaultTabBar({@required List<Tab> tabList, bool scrollable = false}) {
+TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
   return TabBar(
     isScrollable: scrollable,
     tabs: tabList,

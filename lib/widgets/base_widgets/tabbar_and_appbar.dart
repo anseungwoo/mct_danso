@@ -5,9 +5,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/main_screen.dart';
 
 PreferredSizeWidget tabbarAndAppBar(
-    {@required String title,
-    @required TabBar tabbar,
-    bool enableTabBar = true}) {
+    {required String title, TabBar? tabbar, bool enableTabBar = true}) {
   return AppBar(
     title: Text(
       '$title',
@@ -25,7 +23,7 @@ PreferredSizeWidget tabbarAndAppBar(
     ],
     bottom: enableTabBar
         ? PreferredSize(
-            preferredSize: tabbar.preferredSize,
+            preferredSize: tabbar!.preferredSize,
             child: ColoredBox(
               color: background,
               child: tabbar,
@@ -36,9 +34,7 @@ PreferredSizeWidget tabbarAndAppBar(
 }
 
 PreferredSizeWidget songtabbarAndAppBar(
-    {@required String title,
-    @required TabBar tabbar,
-    bool enableTabBar = true}) {
+    {required String title, TabBar? tabbar, bool enableTabBar = true}) {
   return AppBar(
     title: Text(
       '$title',
@@ -51,7 +47,7 @@ PreferredSizeWidget songtabbarAndAppBar(
     backgroundColor: background,
     bottom: enableTabBar
         ? PreferredSize(
-            preferredSize: tabbar.preferredSize,
+            preferredSize: tabbar!.preferredSize,
             child: ColoredBox(
               color: background,
               child: tabbar,

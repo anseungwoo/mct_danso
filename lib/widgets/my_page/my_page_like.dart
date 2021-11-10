@@ -7,7 +7,7 @@ import 'package:project_danso/controllers/controllers.dart';
 class MyPageLike extends StatelessWidget {
   final String songname;
 
-  MyPageLike({Key key, @required this.songname}) : super(key: key);
+  MyPageLike({Key? key, required this.songname}) : super(key: key);
 
   final LikeSongController likeSongController = Get.put(LikeSongController());
 

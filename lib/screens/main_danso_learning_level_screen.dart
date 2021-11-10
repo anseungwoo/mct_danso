@@ -3,7 +3,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoLearningLevelScreen extends StatelessWidget {
-  const MainDansoLearningLevelScreen({Key key}) : super(key: key);
+  const MainDansoLearningLevelScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

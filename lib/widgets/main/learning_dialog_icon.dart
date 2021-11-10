@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 
-Widget icon({@required String text, @required Widget page}) {
+Widget icon({required String text, required Widget page}) {
   return InkWell(
     onTap: () {
       // Get.to(page);
-      Navigator.of(Get.context).push(MaterialPageRoute(builder: (_) => page));
+      Navigator.of(Get.context!).push(MaterialPageRoute(builder: (_) => page));
     },
     child: Container(
       width: 140.w,

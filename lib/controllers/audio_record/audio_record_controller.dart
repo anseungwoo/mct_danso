@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
+import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -10,13 +10,13 @@ import 'package:project_danso/controllers/controllers.dart';
 class AudioRecordController extends GetxController {
   final _playAndTestController = Get.put(PlayAndTestController());
 
-  FlutterAudioRecorder recorder;
-  Recording _recording;
-  Timer time;
+  late FlutterAudioRecorder2 recorder;
+  late Recording _recording;
+  late Timer time;
   Widget buttonText = Text('녹음오류');
-  String alert;
-  String delPath;
-  String day;
+  late String alert;
+  late String delPath;
+  late String day;
 
   @override
   void onInit() {
@@ -67,7 +67,7 @@ class AudioRecordController extends GetxController {
         break;
     }
 
-    buttonText = _buttonTextState(_recording.status);
+    buttonText = _buttonTextState(_recording.status!);
     update();
   }
 
@@ -77,7 +77,7 @@ class AudioRecordController extends GetxController {
     if (Platform.isIOS) {
       appDocDirectory = await getApplicationDocumentsDirectory();
     } else {
-      appDocDirectory = await getExternalStorageDirectory();
+      appDocDirectory = (await getExternalStorageDirectory())!;
     }
 
     // can add extension like '.mp4' '.wav' '.m4a' '.aac'
@@ -91,7 +91,7 @@ class AudioRecordController extends GetxController {
     // .mp4 .m4a .aac <---> AudioFormat.AAC
     // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
 
-    recorder = FlutterAudioRecorder(customPath,
+    recorder = FlutterAudioRecorder2(customPath,
         audioFormat: AudioFormat.WAV, sampleRate: 22050);
     print(customPath);
 
@@ -100,12 +100,12 @@ class AudioRecordController extends GetxController {
   }
 
   Future _prepare() async {
-    var hasPermission = await FlutterAudioRecorder.hasPermissions;
-    if (hasPermission) {
+    var hasPermission = await FlutterAudioRecorder2.hasPermissions;
+    if (hasPermission!) {
       await _init();
       var result = await recorder.current();
-      _recording = result;
-      buttonText = _buttonTextState(_recording.status);
+      _recording = result!;
+      buttonText = _buttonTextState(_recording.status!);
       alert = '';
       update();
     } else {
@@ -117,11 +117,11 @@ class AudioRecordController extends GetxController {
   Future _startRecording() async {
     await recorder.start();
     var current = await recorder.current();
-    _recording = current;
+    _recording = current!;
 
     time = Timer.periodic(Duration(milliseconds: 10), (Timer t) async {
       var current = await recorder.current();
-      _recording = current;
+      _recording = current!;
       time = t;
       update();
     });
@@ -132,7 +132,7 @@ class AudioRecordController extends GetxController {
     var result = await recorder.stop();
     time.cancel();
     print(_recording.path);
-    _recording = result;
+    _recording = result!;
     _playAndTestController.stateCountUp(2);
     update();
   }

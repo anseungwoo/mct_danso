@@ -4,7 +4,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongGraph extends StatelessWidget {
-  const SongGraph({Key key}) : super(key: key);
+  const SongGraph({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

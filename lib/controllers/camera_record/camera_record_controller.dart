@@ -8,9 +8,9 @@ import 'package:project_danso/main.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class CameraRecordController extends GetxController {
-  CameraController controller;
+  late CameraController controller;
   final int cameraIndex = 1;
-  Future<void> initializeControllerFuture;
+  late Future<void> initializeControllerFuture;
   bool isRecording = false;
 
   final _playAndTestController = Get.put(PlayAndTestController());
@@ -19,7 +19,7 @@ class CameraRecordController extends GetxController {
     super.onInit();
     print('call onInit method');
     controller =
-        CameraController(cameras[cameraIndex], ResolutionPreset.medium);
+        CameraController(cameras![cameraIndex], ResolutionPreset.medium);
     initializeControllerFuture = controller.initialize();
   }
 

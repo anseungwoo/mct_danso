@@ -8,14 +8,14 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class LoadingIndicator extends StatefulWidget {
-  const LoadingIndicator({Key key}) : super(key: key);
+  const LoadingIndicator({Key? key}) : super(key: key);
 
   @override
   _LoadingIndicatorState createState() => _LoadingIndicatorState();
 }
 
 class _LoadingIndicatorState extends State<LoadingIndicator> {
-  Timer _timer;
+  late Timer _timer;
   double progressValue = 0;
 
   final DansoSoundLearningController dansoSoundLearningController =
@@ -28,7 +28,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
         if (progressValue == 50) {
           _timer.cancel();
           dansoSoundLearningController.changeSoundTuningState();
-          dansoSoundLearningController.stopAdjust();
+          // dansoSoundLearningController.stopAdjust();
           print(dansoSoundLearningController.dansoPitchAdjustList);
           Get.back();
         }
@@ -41,7 +41,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
     // dansoSoundLearningController.stopAdjust();
     dansoSoundLearningController.soundTuningState = false;
     dansoSoundLearningController.isAdjust = false;
-    dansoSoundLearningController.detector.stopRecording();
+    // dansoSoundLearningController.detector.stopRecording();
     super.dispose();
   }
 

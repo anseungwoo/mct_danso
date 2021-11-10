@@ -7,7 +7,7 @@ import 'package:project_danso/common/const.dart';
 class CarouselListWidget extends StatefulWidget {
   List<Widget> carouselList = [];
 
-  CarouselListWidget({Key key, @required this.carouselList}) : super(key: key);
+  CarouselListWidget({Key? key, required this.carouselList}) : super(key: key);
 
   @override
   State<CarouselListWidget> createState() => _CarouselListWidgetState();

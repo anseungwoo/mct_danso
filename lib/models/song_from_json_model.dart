@@ -12,7 +12,7 @@ class SongFromJson {
     this.songData,
   });
 
-  List<SongDataModel> songData;
+  List<SongDataModel>? songData;
 
   factory SongFromJson.fromJson(Map<String, dynamic> json) => SongFromJson(
         songData: List<SongDataModel>.from(
@@ -20,30 +20,32 @@ class SongFromJson {
       );
 
   Map<String, dynamic> toJson() => {
-        'song_data': List<dynamic>.from(songData.map((x) => x.toJson())),
+        'song_data': List<dynamic>.from(songData!.map((x) => x.toJson())),
       };
 }
 
 class SongDataModel {
-  SongDataModel({
-    this.songId,
-    this.songTitle,
-    this.songPath,
-    this.songJangdan,
-    this.songLike,
-    this.songDiff,
-    this.songSheet,
-    this.songSheetLength,
-  });
+  SongDataModel(
+      {this.songId,
+      this.songTitle,
+      this.songPath,
+      this.songJangdan,
+      this.songLike,
+      this.songDiff,
+      this.songSheet,
+      this.songSheetVertical,
+      this.songSheetHorizontal});
 
-  int songId;
-  String songTitle;
-  String songPath;
-  String songJangdan;
-  String songLike;
-  int songDiff;
-  String songSheet;
-  int songSheetLength;
+  int? songId;
+  String? songTitle;
+  String? songPath;
+  String? songJangdan;
+  String? songLike;
+  int? songDiff;
+  String? songSheet;
+  int? songSheetVertical;
+  int? songSheetHorizontal;
+
   factory SongDataModel.fromJson(Map<String, dynamic> json) => SongDataModel(
         songId: json['song_id'],
         songTitle: json['song_title'],
@@ -52,7 +54,8 @@ class SongDataModel {
         songLike: json['song_like'],
         songDiff: json['song_diff'],
         songSheet: json['song_sheet'],
-        songSheetLength: json['song_sheet_length'],
+        songSheetVertical: json['song_sheet_vertical'],
+        songSheetHorizontal: json['song_sheet_horizontal'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -63,6 +66,7 @@ class SongDataModel {
         'song_like': songLike,
         'song_diff': songDiff,
         'song_sheet': songSheet,
-        'song_sheet_length': songSheetLength,
+        'song_sheet_vertical': songSheetVertical,
+        'song_sheet_horizontal': songSheetHorizontal,
       };
 }

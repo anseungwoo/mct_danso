@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TimerWidget extends StatefulWidget {
-  const TimerWidget({Key key}) : super(key: key);
+  const TimerWidget({Key? key}) : super(key: key);
 
   @override
   _TimerWidgetState createState() => _TimerWidgetState();
 }
 
 class _TimerWidgetState extends State<TimerWidget> {
-  Timer _timer;
+  late Timer _timer;
   int _start = 3;
 
   @override

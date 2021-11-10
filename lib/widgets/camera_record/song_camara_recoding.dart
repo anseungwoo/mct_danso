@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   final PlayAndTestController controller;
-  SongCamaraRecoding({Key key, this.controller}) : super(key: key);
+  SongCamaraRecoding({Key? key, required this.controller}) : super(key: key);
 
   @override
   _SongCamaraRecodingState createState() => _SongCamaraRecodingState();
@@ -31,7 +31,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   //   super.dispose();
   // }
 
-  Widget _buildCamera({CameraRecordController caController}) {
+  Widget _buildCamera({required CameraRecordController caController}) {
     if (cameraRecordcontroller.controller == null ||
         !cameraRecordcontroller.controller.value.isInitialized) {
       return Center(child: Text('Loading...'));
@@ -50,7 +50,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     }
   }
 
-  Widget _buildControls({CameraRecordController caController}) {
+  Widget _buildControls({required CameraRecordController caController}) {
     return Row(
       children: <Widget>[
         ElevatedButton(
