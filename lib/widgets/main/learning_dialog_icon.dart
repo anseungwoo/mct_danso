@@ -14,7 +14,7 @@ Widget icon({required String text, required Widget page}) {
       height: 140.h,
       decoration: BoxDecoration(
         color: logoColor,
-        borderRadius: BorderRadius.circular(10), //모서리를 둥글게
+        borderRadius: BorderRadius.circular(10), //모서리를 둥글게as
       ),
       child: Center(
           child: Text(
