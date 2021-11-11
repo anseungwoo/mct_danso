@@ -1,4 +1,4 @@
-// import 'package:danso_function/danso_function.dart';
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_midi/flutter_midi.dart';
@@ -36,9 +36,9 @@ class DansoSoundLearningController extends GetxController {
   List soundList1 = ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲'];
   final _flutterMidi = FlutterMidi();
   //디텍터
-  // PitchModelInterface pitchModelInterface = PitchModel();
-  // // late Pitchdetector detector;
-  // JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
+  PitchModelInterface pitchModelInterface = PitchModel();
+  // late Pitchdetector detector;
+  JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   late double pitch;
   bool isRecording = false;
   bool isAdjust = false;
@@ -53,7 +53,7 @@ class DansoSoundLearningController extends GetxController {
   @override
   void onInit() {
     // detector = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
-    // isRecording = isRecording;
+    isRecording = isRecording;
     // detectorAdjust = Pitchdetector(sampleRate: 44100, sampleSize: 4096);
     // detectorAdjust.onRecorderStateChanged.listen((event) {
     //   // pitch = event['pitch'];
@@ -74,51 +74,51 @@ class DansoSoundLearningController extends GetxController {
     ));
   }
 
-  // void palySound() {
-  //   switch (soundListUpDown) {
-  //     case 0:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin), 2000);
-  //       break;
-  //     case 1:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin), 2000);
-  //       break;
-  //     case 2:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin), 2000);
-  //       break;
-  //     case 3:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin), 2000);
-  //       break;
-  //     case 4:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin), 2000);
-  //       break;
-  //     case 5:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.joong, ScaleStatus.high), 2000);
-  //       break;
-  //     case 6:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.yim, ScaleStatus.high), 2000);
-  //       break;
-  //     case 7:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.moo, ScaleStatus.high), 2000);
-  //       break;
-  //     case 8:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high), 2000);
-  //       break;
-  //     case 9:
-  //       jungGanBoPlayer.playOneNoteDurationTime(
-  //           YulmyeongNote(Yulmyeong.tae, ScaleStatus.high), 2000);
-  //       break;
-  //     default:
-  //   }
-  // }
+  void palySound() {
+    switch (soundListUpDown) {
+      case 0:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin), 2000);
+        break;
+      case 1:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin), 2000);
+        break;
+      case 2:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin), 2000);
+        break;
+      case 3:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin), 2000);
+        break;
+      case 4:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin), 2000);
+        break;
+      case 5:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.joong, ScaleStatus.high), 2000);
+        break;
+      case 6:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.yim, ScaleStatus.high), 2000);
+        break;
+      case 7:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.moo, ScaleStatus.high), 2000);
+        break;
+      case 8:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high), 2000);
+        break;
+      case 9:
+        jungGanBoPlayer.playOneNoteDurationTime(
+            YulmyeongNote(Yulmyeong.tae, ScaleStatus.high), 2000);
+        break;
+      default:
+    }
+  }
 
   void changeSoundTuningState() {
     soundTuningState = !soundTuningState;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -46,7 +47,7 @@ class _MainDansoLearningTestScreenState
                     return Container(
                       // color: Colors.lightGreenAccent,
 
-                      height: 440.h,
+                      height: 460.h,
                       child: Row(
                         children: [
                           dansoImage(controller),
@@ -184,11 +185,10 @@ class _MainDansoLearningTestScreenState
                   : controller.playTuningState
                       ? null
                       : () {
-                          // controller.load();
                           controller.changeSpeakTuningState();
-                          // controller.listenTuningState
-                          //     ? controller.palySound()
-                          //     : null;
+                          controller.listenTuningState
+                              ? controller.palySound()
+                              : null;
                         },
             ),
             //연습하기
@@ -216,13 +216,7 @@ class _MainDansoLearningTestScreenState
         child: Column(
           children: [
             // Text("${controller.userInputForAdjust}"),
-            Container(
-              width: 47.w,
-              height: 420.h,
-              color: Colors.brown,
-              child:
-                  Center(child: Text('단소 이미지${controller.soundListUpDown} 변경')),
-            ),
+            SvgPicture.asset(DANSO_SVG_LIST[controller.soundListUpDown]),
           ],
         ),
       ),

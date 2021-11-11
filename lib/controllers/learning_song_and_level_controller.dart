@@ -1,47 +1,47 @@
-// import 'package:danso_function/common/classes/YulmyeongNote.dart';
-// import 'package:danso_function/danso_function.dart';
+import 'package:danso_function/common/classes/YulmyeongNote.dart';
+import 'package:danso_function/danso_function.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/db/db_helpers.dart';
 
 class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;
   var songList = [].obs;
-  // List yulmyeong = [
-  //   '',
-  //   [
-  //     YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
-  //   ],
-  //   [
-  //     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
-  //   ],
-  //   [
-  //     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
-  //   ],
-  //   [
-  //     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
-  //     YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
-  //   ]
-  // ];
+  List yulmyeong = [
+    '',
+    [
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
+    ],
+    [
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+    ]
+  ];
 
   @override
   void onInit() {

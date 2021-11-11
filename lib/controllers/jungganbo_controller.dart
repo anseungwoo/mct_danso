@@ -1,6 +1,6 @@
 import 'dart:async';
 
-// import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
+import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:get/get.dart';
 
 class JungganboController extends GetxController {
@@ -18,7 +18,7 @@ class JungganboController extends GetxController {
     super.onInit();
     starStopState = false;
     startButton = '시작하기';
-    // stepStop();
+    stepStop();
   }
 
   void changekrState() {
@@ -43,11 +43,12 @@ class JungganboController extends GetxController {
 
   int i = 0;
   int flashcount = -1;
-  int flashcount2 = -1;
+  int flashcount2 = 0;
 
   int j = 0;
   void stepStop() {
     flashcount = -1;
+    flashcount2 = 0;
     i = 0;
     next = 0;
     next2 = 0;
@@ -55,19 +56,24 @@ class JungganboController extends GetxController {
     update();
   }
 
-  // void stepStart(int mill, JungGanBo jungGanBo, int sheetHorizontal) {
-  //   interval(Duration(milliseconds: mill), (timer) {
-  //     if (i < jungGanBo.sheet.length && starStopState) {
-  //       flashCount();
-  //       i++;
-  //     } else {
-  //       timer.cancel();
-  //       stepStop();
-  //       return;
-  //     }
-  //   });
-  //   update();
-  // }
+  void stepStart(int mill, JungGanBo jungGanBo, int sheetHorizontal) {
+    interval(Duration(milliseconds: mill), (timer) {
+      if (i < jungGanBo.sheet.length &&
+          j == jungGanBo.sheet[i].yulmyeongs.length - 1) {
+        i++;
+        j = 0;
+      } else {
+        j++;
+      }
+      if (starStopState == false) {
+        timer.cancel();
+        stepStop();
+        return;
+      }
+      update();
+    });
+    update();
+  }
 
   void flashCount() {
     flashcount++;

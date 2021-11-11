@@ -1,4 +1,4 @@
-// import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
+import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

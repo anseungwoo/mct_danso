@@ -23,17 +23,17 @@ class _SheetTestScreenState extends State<SheetTestScreen> {
   @override
   void initState() {
     super.initState();
-    // sheetController.jungGanBoSheet(
-    //   songTitle: widget.songTitle,
-    //   jangdan: widget.jangdan,
-    //   songSheet: widget.sheetData,
-    // );
+    sheetController.jungGanBoSheet(
+      songTitle: widget.songTitle,
+      jangdan: widget.jangdan,
+      songSheet: widget.sheetData,
+    );
   }
 
   @override
   void dispose() {
     super.dispose();
-    // sheetController.deleteList();
+    sheetController.deleteList();
   }
 
   @override

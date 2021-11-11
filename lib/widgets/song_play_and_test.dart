@@ -1,5 +1,5 @@
 import 'dart:async';
-// import 'package:danso_function/danso_function.dart';
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +36,7 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   late int percent;
-  // JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
+  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -54,8 +54,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   @override
   Widget build(BuildContext context) {
-    // JungGanBo testJungGanBo =
-    //     new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
+    JungGanBo testJungGanBo =
+        new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
@@ -85,13 +85,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             controller.nextButton();
                                             jungcontroller
                                                 .changeStartStopState();
-                                            // controller.platState
-                                            //     ? jungcontroller.stepStart(
-                                            //         testJungGanBo
-                                            //             .jangDan.milliSecond,
-                                            //         testJungGanBo,
-                                            //         widget.sheetHorizontal)
-                                            //     : jungcontroller.stepStop();
+                                            controller.platState
+                                                ? jungcontroller.stepStart(
+                                                    testJungGanBo
+                                                        .jangDan.milliSecond,
+                                                    testJungGanBo,
+                                                    widget.sheetHorizontal)
+                                                : jungcontroller.stepStop();
                                             // jungcontroller.starStopState
                                             //     ? jungGanBoPlayer
                                             //         .play(testJungGanBo)
@@ -134,6 +134,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             controller.changePlayStopState();
 
                                             controller.previousButton();
+                                            jungcontroller
+                                                .changeStartStopState();
                                             controller.platState
                                                 ? null
                                                 : jungcontroller.stepStop();
@@ -149,16 +151,16 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   onPressed: () {
                                                     controller
                                                         .testStartButtonState();
-                                                    // controller.testStartState
-                                                    //     ? jungcontroller.stepStart(
-                                                    //         testJungGanBo
-                                                    //             .jangDan
-                                                    //             .milliSecond,
-                                                    //         testJungGanBo,
-                                                    //         widget
-                                                    //             .sheetHorizontal)
-                                                    //     : jungcontroller
-                                                    //         .stepStop();
+                                                    controller.testStartState
+                                                        ? jungcontroller.stepStart(
+                                                            testJungGanBo
+                                                                .jangDan
+                                                                .milliSecond,
+                                                            testJungGanBo,
+                                                            widget
+                                                                .sheetHorizontal)
+                                                        : jungcontroller
+                                                            .stepStop();
                                                     // jungcontroller.starStopState
                                                     //     ? jungGanBoPlayer
                                                     //         .play(testJungGanBo)
@@ -254,13 +256,15 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             // jungganbo(6, testJungGanBo),
                             // controller.platState
                             //     ? jungganboFromFlash(
-                            //         6, Get.find<JungganboController>(), testJungGanBo)
+                            //         6,
+                            //         Get.find<JungganboController>(),
+                            //         testJungGanBo)
                             //     : Container(),
 
-                            // jungganbo(widget.sheetVertical, jungcontroller,
-                            //     testJungGanBo, controller.krChanges),
-                            // jungganboFromFlash(widget.sheetVertical,
-                            //     jungcontroller, testJungGanBo),
+                            jungganbo(widget.sheetVertical, jungcontroller,
+                                testJungGanBo, controller.krChanges),
+                            jungganboFromFlash(widget.sheetVertical,
+                                jungcontroller, testJungGanBo),
                             jungganboScreen(widget.sheetVertical),
                             // JungganboColorAnimation(
                             //   tempo: 1000,

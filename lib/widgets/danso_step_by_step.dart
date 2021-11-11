@@ -1,4 +1,4 @@
-// import 'package:danso_function/danso_function.dart';
+import 'package:danso_function/danso_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,7 +26,7 @@ class DansoStepByStep extends StatefulWidget {
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
   late FlashController flashController;
-  // JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
+  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
 
   @override
@@ -37,7 +37,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   Widget build(BuildContext context) {
-    // var testJungGanBo = JungGanBo('도라지타령', widget.jangdan, widget.sheetData);
+    var testJungGanBo = JungGanBo('도라지타령', widget.jangdan, widget.sheetData);
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<JungganboController>(
@@ -54,10 +54,10 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   ),
                   Stack(
                     children: [
-                      // jungganbo(12, Get.find<JungganboController>(),
-                      //     testJungGanBo, controller.krState),
-                      // jungganboFromFlash(
-                      //     12, Get.find<JungganboController>(), testJungGanBo),
+                      jungganbo(12, Get.find<JungganboController>(),
+                          testJungGanBo, controller.krState),
+                      jungganboFromFlash(
+                          12, Get.find<JungganboController>(), testJungGanBo),
                       jungganboScreen(12),
                     ],
                   ),
@@ -65,6 +65,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      //시작하기
                       Container(
                           width: 105.w,
                           height: 37.h,
@@ -74,18 +75,19 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                   onSurface: unButtonColorOrang),
                               onPressed: () {
                                 controller.changeStartStopState();
-                                // controller.starStopState
-                                //     ? controller.stepStart(
-                                //         testJungGanBo.jangDan.milliSecond,
-                                //         testJungGanBo,
-                                //         4)
-                                //     : controller.stepStop();
-                                // controller.starStopState
-                                //     ? jungGanBoPlayer.play(testJungGanBo)
-                                //     : null;
+                                controller.starStopState
+                                    ? controller.stepStart(
+                                        testJungGanBo.jangDan.milliSecond,
+                                        testJungGanBo,
+                                        4)
+                                    : controller.stepStop();
+                                controller.starStopState
+                                    ? jungGanBoPlayer.play(testJungGanBo)
+                                    : null;
                               },
                               child: Text('${controller.startButton}'))),
                       SizedBox(width: 7.w),
+                      //한글한자
                       Container(
                           width: 105.w,
                           height: 37.h,
@@ -100,6 +102,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               },
                               child: Text('${controller.krButton}'))),
                       SizedBox(width: 8.w),
+                      //배속
                       Container(
                           width: 105.w,
                           height: 37.h,

@@ -155,3 +155,16 @@ const String level4 =
     "h|m|y#j|y|m#h|t|J#Y|o|^#h|t|J#Y|J|t#h|m|y#j|o|^#j|y|m#h|t|^#J|Y|J#t|h|^#j|j|y#y|m|m#h|t|J#Y|o|^#";
 const String level5 =
     "t|h|m#y|j|^#j|y|m#h|t|J#Y|M|H#T|o|^#T|H|M#Y|J|^#j|y|m#y|m|h#t|J|Y#M|o|^#Y|M|H#M|H|T#H|M|Y#J|o|^#";
+
+const List<String> DANSO_SVG_LIST = [
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg',
+  'assets/images/ic_danso.svg'
+];
