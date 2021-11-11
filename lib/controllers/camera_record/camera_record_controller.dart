@@ -12,6 +12,7 @@ class CameraRecordController extends GetxController {
   final int cameraIndex = 1;
   late Future<void> initializeControllerFuture;
   bool isRecording = false;
+  String recordingText = "녹화시작";
 
   final _playAndTestController = Get.put(PlayAndTestController());
   @override
@@ -36,6 +37,12 @@ class CameraRecordController extends GetxController {
     print('call dispose method');
   }
 
+  void isRecordingState() {
+    isRecording = !isRecording;
+    recordingText = isRecording ? "녹화중지" : "녹화시작";
+    update();
+  }
+
   Future<void> onStop() async {
     final video = await controller.stopVideoRecording();
     print(video);
@@ -52,7 +59,7 @@ class CameraRecordController extends GetxController {
       showToast(message: '녹화가 완료되었습니다.');
     }
     // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
-    isRecording = false;
+
     _playAndTestController.stateCountUp(2);
     update();
   }
@@ -60,7 +67,7 @@ class CameraRecordController extends GetxController {
   Future<void> onRecord() async {
     await controller.startVideoRecording();
     showToast(message: '녹화를 시작합니다.');
-    isRecording = true;
+
     update();
   }
 }

@@ -6,8 +6,10 @@ import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
-  final PlayAndTestController controller;
-  SongCamaraRecoding({Key? key, required this.controller}) : super(key: key);
+  final JungganboController controller;
+  final String jandan;
+  SongCamaraRecoding({Key? key, required this.controller, required this.jandan})
+      : super(key: key);
 
   @override
   _SongCamaraRecodingState createState() => _SongCamaraRecodingState();
@@ -42,7 +44,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
         child: Center(
           child: AspectRatio(
             // aspectRatio: cameraRecordcontroller.controller.value.aspectRatio,
-            aspectRatio: 4 / 5,
+            aspectRatio: 4 / 6,
             child: CameraPreview(cameraRecordcontroller.controller),
           ),
         ),
@@ -51,19 +53,32 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   }
 
   Widget _buildControls({required CameraRecordController caController}) {
-    return Row(
-      children: <Widget>[
-        ElevatedButton(
-          child: caController.isRecording ? Text('녹화중지') : Text('녹화시작'),
-          onPressed: caController.isRecording
-              ? caController.onStop
-              : caController.onRecord,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Row(
+          children: <Widget>[
+            ElevatedButton(
+                child: Text(caController.recordingText),
+                onPressed: () {
+                  caController.isRecordingState();
+                  caController.isRecording
+                      ? caController.onRecord()
+                      : caController.onStop();
+
+                  widget.controller.changeStartStopState();
+                  widget.controller.starStopState
+                      ? widget.controller.stepStart()
+                      : widget.controller.stepStop();
+                }),
+            SizedBox(width: 5),
+            ElevatedButton(
+              child: Text('반주만'),
+              onPressed: () {},
+            ),
+          ],
         ),
-        SizedBox(width: 5),
-        ElevatedButton(
-          child: Text('반주만'),
-          onPressed: () {},
-        ),
+        Text(widget.jandan),
       ],
     );
   }

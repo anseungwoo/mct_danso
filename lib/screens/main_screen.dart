@@ -37,7 +37,7 @@ class MainScreen extends StatelessWidget {
               _homeMenuButton(
                   title: '내 단소 소리 조절 하기',
                   contant: VOLUMECONTROL,
-                  page: MainDansoHistoryKindScreen()),
+                  page: AdjustMyDanso()),
               _homeMenuButton(
                   title: '운지법 익히기',
                   page: learningDialog(),

@@ -43,6 +43,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
         child: GetBuilder<JungganboController>(
             init: jungganboController,
             builder: (controller) {
+              controller.mill = testJungGanBo.jangDan.milliSecond;
+              controller.jungGanBo = testJungGanBo;
+              controller.sheetHorizontal = 4;
               return Column(
                 children: [
                   Center(
@@ -76,14 +79,11 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               onPressed: () {
                                 controller.changeStartStopState();
                                 controller.starStopState
-                                    ? controller.stepStart(
-                                        testJungGanBo.jangDan.milliSecond,
-                                        testJungGanBo,
-                                        4)
+                                    ? controller.stepStart()
                                     : controller.stepStop();
-                                controller.starStopState
-                                    ? jungGanBoPlayer.play(testJungGanBo)
-                                    : null;
+                                // controller.starStopState
+                                //     ? jungGanBoPlayer.play(testJungGanBo)
+                                //     : null;
                               },
                               child: Text('${controller.startButton}'))),
                       SizedBox(width: 7.w),

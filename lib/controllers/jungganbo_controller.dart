@@ -12,12 +12,12 @@ class JungganboController extends GetxController {
   String krButton = "한자";
   int next = 0;
   int next2 = 0;
-
+  late int mill;
+  late JungGanBo jungGanBo;
+  late int sheetHorizontal;
   @override
   void onInit() {
     super.onInit();
-    starStopState = false;
-    startButton = '시작하기';
     stepStop();
   }
 
@@ -42,21 +42,18 @@ class JungganboController extends GetxController {
   }
 
   int i = 0;
-  int flashcount = -1;
-  int flashcount2 = 0;
 
   int j = 0;
   void stepStop() {
-    flashcount = -1;
-    flashcount2 = 0;
     i = 0;
     next = 0;
     next2 = 0;
     j = 0;
-    update();
+    starStopState = false;
+    startButton = '시작하기';
   }
 
-  void stepStart(int mill, JungGanBo jungGanBo, int sheetHorizontal) {
+  void stepStart() {
     interval(Duration(milliseconds: mill), (timer) {
       if (i < jungGanBo.sheet.length &&
           j == jungGanBo.sheet[i].yulmyeongs.length - 1) {
@@ -70,13 +67,11 @@ class JungganboController extends GetxController {
         stepStop();
         return;
       }
+      if (i == jungGanBo.sheet.length) {
+        stepStop();
+      }
       update();
     });
-    update();
-  }
-
-  void flashCount() {
-    flashcount++;
     update();
   }
 

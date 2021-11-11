@@ -21,19 +21,19 @@ class DansoSoundLearningController extends GetxController {
   String buttonListen = '예시듣기';
   String buttonPlay = '불어보기';
   int soundListUpDown = 0;
-  List soundList = [
-    '중',
-    '임',
-    '무',
-    '황',
-    '태',
-    '높은 중',
-    '높은 임',
-    '높은 무',
-    '높은 황',
-    '높은 태',
+  List hanJaAndGel = [
+    YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+    YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+    YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+    YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+    YulmyeongNote(Yulmyeong.joong, ScaleStatus.high),
+    YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+    YulmyeongNote(Yulmyeong.moo, ScaleStatus.high),
+    YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high),
+    YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
   ];
-  List soundList1 = ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲'];
+
   final _flutterMidi = FlutterMidi();
   //디텍터
   PitchModelInterface pitchModelInterface = PitchModel();
@@ -149,7 +149,7 @@ class DansoSoundLearningController extends GetxController {
   // }
 
   void soundListUp() {
-    if (soundListUpDown < soundList.length - 1) {
+    if (soundListUpDown < hanJaAndGel.length - 1) {
       soundListUpDown++;
     }
     update();

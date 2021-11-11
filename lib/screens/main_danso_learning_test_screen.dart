@@ -88,13 +88,14 @@ class _MainDansoLearningTestScreenState
                 ),
                 child: Center(
                     child: Text(
-                  "${controller.soundList1[controller.soundListUpDown]}",
+                  controller.hanJaAndGel[controller.soundListUpDown]
+                      .toChineseCharacter(),
                   style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                 )),
               ),
             ),
             SizedBox(height: 21.h),
-            Text(controller.soundList[controller.soundListUpDown],
+            Text(controller.hanJaAndGel[controller.soundListUpDown].toHangeul(),
                 style: TextStyle(fontSize: textEightSize.sp)),
             SizedBox(height: 18.h),
             Row(

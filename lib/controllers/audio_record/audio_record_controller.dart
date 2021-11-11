@@ -13,10 +13,11 @@ class AudioRecordController extends GetxController {
   late FlutterAudioRecorder2 recorder;
   late Recording _recording;
   late Timer time;
-  Widget buttonText = Text('녹음오류');
+  Widget buttonText = Text('녹음시작');
   late String alert;
   late String delPath;
   late String day;
+  bool isRecording = false;
 
   @override
   void onInit() {
@@ -26,48 +27,9 @@ class AudioRecordController extends GetxController {
     });
   }
 
-  Widget _buttonTextState(RecordingStatus status) {
-    switch (status) {
-      case RecordingStatus.Initialized:
-        {
-          return Text('녹음시작');
-        }
-      case RecordingStatus.Recording:
-        {
-          return Text('녹음멈춤');
-        }
-      case RecordingStatus.Stopped:
-        {
-          return Text('녹음정지');
-        }
-      default:
-        return Icon(Icons.do_not_disturb_on);
-    }
-  }
-
-  void changeState() async {
-    switch (_recording.status) {
-      case RecordingStatus.Initialized:
-        {
-          await _startRecording();
-          break;
-        }
-      case RecordingStatus.Recording:
-        {
-          await _stopRecording();
-          break;
-        }
-      case RecordingStatus.Stopped:
-        {
-          await _prepare();
-          break;
-        }
-
-      default:
-        break;
-    }
-
-    buttonText = _buttonTextState(_recording.status!);
+  void isRecordingState() {
+    isRecording = !isRecording;
+    buttonText = isRecording ? Text('녹음중지') : Text('녹음시작');
     update();
   }
 
@@ -105,7 +67,7 @@ class AudioRecordController extends GetxController {
       await _init();
       var result = await recorder.current();
       _recording = result!;
-      buttonText = _buttonTextState(_recording.status!);
+
       alert = '';
       update();
     } else {
@@ -114,7 +76,7 @@ class AudioRecordController extends GetxController {
     }
   }
 
-  Future _startRecording() async {
+  Future startRecording() async {
     await recorder.start();
     var current = await recorder.current();
     _recording = current!;
@@ -128,7 +90,7 @@ class AudioRecordController extends GetxController {
     update();
   }
 
-  Future _stopRecording() async {
+  Future stopRecording() async {
     var result = await recorder.stop();
     time.cancel();
     print(_recording.path);

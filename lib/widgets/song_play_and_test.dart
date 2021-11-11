@@ -72,6 +72,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                     child: GetBuilder<JungganboController>(
                         init: JungganboController(),
                         builder: (jungcontroller) {
+                          jungcontroller.mill =
+                              testJungGanBo.jangDan.milliSecond;
+                          jungcontroller.jungGanBo = testJungGanBo;
+                          jungcontroller.sheetHorizontal =
+                              widget.sheetHorizontal;
                           return Stack(
                             children: [
                               controller.statecount == 0
@@ -86,11 +91,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             jungcontroller
                                                 .changeStartStopState();
                                             controller.platState
-                                                ? jungcontroller.stepStart(
-                                                    testJungGanBo
-                                                        .jangDan.milliSecond,
-                                                    testJungGanBo,
-                                                    widget.sheetHorizontal)
+                                                ? jungcontroller.stepStart()
                                                 : jungcontroller.stepStop();
                                             // jungcontroller.starStopState
                                             //     ? jungGanBoPlayer
@@ -151,16 +152,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   onPressed: () {
                                                     controller
                                                         .testStartButtonState();
+                                                    jungcontroller
+                                                        .changeStartStopState();
                                                     controller.testStartState
-                                                        ? jungcontroller.stepStart(
-                                                            testJungGanBo
-                                                                .jangDan
-                                                                .milliSecond,
-                                                            testJungGanBo,
-                                                            widget
-                                                                .sheetHorizontal)
-                                                        : jungcontroller
-                                                            .stepStop();
+                                                        ? jungcontroller
+                                                            .stepStart()
+                                                        : null;
                                                     // jungcontroller.starStopState
                                                     //     ? jungGanBoPlayer
                                                     //         .play(testJungGanBo)
@@ -208,6 +205,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                           .challengeButtonSwap),
                                                       onPressed: () {
                                                         controller.reset();
+                                                        jungcontroller
+                                                            .changeStartStopState();
+                                                        controller
+                                                                .testStartState
+                                                            ? null
+                                                            : jungcontroller
+                                                                .stepStop();
                                                         controller
                                                             .stateCountUp(0);
                                                         print(controller
@@ -226,11 +230,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                 )
                                               : controller.statecount == 4
                                                   ? SongCamaraRecoding(
-                                                      controller: controller)
+                                                      controller:
+                                                          jungcontroller,
+                                                      jandan: widget.jangdan,
+                                                    )
                                                   : controller.statecount == 5
                                                       ? SongAudioRecorder(
                                                           controller:
-                                                              controller)
+                                                              jungcontroller)
                                                       : Container(),
                             ],
                           );
