@@ -65,7 +65,7 @@ Container jungFlashContainer(
     height: height.h,
     decoration: BoxDecoration(
       color: controller.i == i && controller.j == j
-          ? Colors.blue[100]!.withOpacity(0.5)
+          ? Colors.red[100]!.withOpacity(0.5)
           : null,
     ),
   );

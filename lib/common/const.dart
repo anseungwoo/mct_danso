@@ -41,7 +41,8 @@ const Color grayLightColor = Color(0xffECECEC);
 //어플리캐이션 기본 크기 설정
 
 const double basicPadding = 15;
-const double stylePadddig = 17;
+const double svenPadddig = 17;
+const double iconPadding = 30;
 const double stepByStepPadding = 28;
 const double appBarHeight = 50;
 

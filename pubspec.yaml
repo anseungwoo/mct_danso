@@ -64,6 +64,7 @@ dependencies:
   fluttertoast: ^8.0.8
   enum_to_string: ^2.0.1
   syncfusion_flutter_gauges: ^19.3.48
+  hexagon: ^0.2.0-nullsafety.1
 
 
 

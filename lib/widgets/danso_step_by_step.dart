@@ -37,7 +37,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   Widget build(BuildContext context) {
-    var testJungGanBo = JungGanBo('도라지타령', widget.jangdan, widget.sheetData);
+    var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<JungganboController>(

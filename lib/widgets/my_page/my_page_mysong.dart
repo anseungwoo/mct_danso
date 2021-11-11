@@ -21,7 +21,7 @@ class MyPageMysong extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5), color: mediumGray),
                 height: 60.h,
                 child: Padding(
-                  padding: const EdgeInsets.all(stylePadddig),
+                  padding: const EdgeInsets.all(svenPadddig),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [

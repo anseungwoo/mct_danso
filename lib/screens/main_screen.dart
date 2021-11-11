@@ -25,7 +25,7 @@ class MainScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  topImage(),
+                  topImage(context),
                   myPage(),
                 ],
               ),
@@ -56,24 +56,40 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Container topImage() {
+  Container topImage(BuildContext context) {
     return Container(
-      color: appBarColor,
-      height: 257.h,
-      width: ScreenUtil().screenWidth,
-      // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
-      //     color: Color(0xffA5A5A5),
-      //     borderRadius:
-      //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
-      child: Center(
-        child: Text('상단 이미지??', style: TextStyle(color: white)),
-      ),
-    );
+        height: 250.h,
+        width: ScreenUtil().screenWidth,
+        // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
+        //     color: Color(0xffA5A5A5),
+        //     borderRadius:
+        //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
+        child: ClipPath(
+            clipper: MyClipper(),
+            child: Container(
+              //margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
+              height: ScreenUtil().screenHeight * 0.2,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: appBarColor,
+              ),
+            )));
   }
+  // 기존 타이틀
+  // Container topImage() {
+  //   return Container(
+  //     color: appBarColor,
+  //     height: 257.h,
+  //     width: ScreenUtil().screenWidth,
+  //     child: Center(
+  //       child: Text('상단 이미지??', style: TextStyle(color: white)),
+  //     ),
+  //   );
+  // }
 
   Positioned myPage() {
     return Positioned(
-      top: 200.h,
+      top: 150.h,
       right: 140.w,
       child: InkWell(
         onTap: () => Get.to(MyPageScreen()),
@@ -140,5 +156,23 @@ class MainScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 70);
+    path.quadraticBezierTo(
+        size.width / 2, size.height, size.width, size.height - 70);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

@@ -29,7 +29,7 @@ class MyPageLike extends StatelessWidget {
                       color: mediumGray),
                   height: 60.h,
                   child: Padding(
-                    padding: const EdgeInsets.all(stylePadddig),
+                    padding: const EdgeInsets.all(svenPadddig),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,

@@ -59,7 +59,15 @@ class MainDansoLearningScreen extends StatelessWidget {
                 subject: '', explanation: SUBSHEET, url: DANSO_SHEET_URL),
           ],
         ),
-        fingering(),
+        CarouselListWidget(
+          carouselList: [
+            fingering(),
+            fingering(),
+            fingering(),
+            fingering(),
+            fingering(),
+          ],
+        )
       ],
     );
   }

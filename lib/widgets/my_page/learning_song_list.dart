@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
-
+import 'package:hexagon/hexagon.dart';
 import '../sheet_test.dart';
 
 class LearningSongList extends StatelessWidget {
@@ -25,8 +25,9 @@ class LearningSongList extends StatelessWidget {
                 title: '연주곡 익히기', tabbar: null, enableTabBar: false),
             body: Column(
               children: [
+                SizedBox(height: 30),
                 Padding(
-                  padding: const EdgeInsets.all(basicPadding),
+                  padding: const EdgeInsets.all(5),
                   child: Container(
                     height: 70.h,
                     // width: 330.w,
@@ -37,25 +38,31 @@ class LearningSongList extends StatelessWidget {
                             controller.previousLevel();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
-                          iconSize: 30,
+                          iconSize: 50,
                         ),
                         Spacer(flex: 1),
-                        CircleAvatar(
-                          radius: 35,
-                          child: Center(
-                              child:
-                                  Text('${controller.currentLevel} 아이콘 이미지')),
+                        HexagonWidget.pointy(
+                          width: 70.w,
+                          color: Colors.black,
+                          elevation: 8,
+                          child: Text(
+                            '${controller.currentLevel} 아이콘 이미지',
+                            style: TextStyle(color: white),
+                          ),
                         ),
                         Spacer(flex: 1),
                         IconButton(
-                            onPressed: () {
-                              controller.nextLevel();
-                            },
-                            icon: Icon(Icons.keyboard_arrow_right)),
+                          onPressed: () {
+                            controller.nextLevel();
+                          },
+                          icon: Icon(Icons.keyboard_arrow_right),
+                          iconSize: 50,
+                        ),
                       ],
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
                 Column(
                   children: [
                     Row(
