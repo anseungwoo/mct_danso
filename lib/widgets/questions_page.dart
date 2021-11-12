@@ -24,9 +24,15 @@ class QuestionsPage extends StatelessWidget {
                       width: 330.w,
                       height: 60.h,
                       decoration: BoxDecoration(
+                          color: grayBlackColor,
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(5)),
-                      child: Center(child: Text("질문내용이에얏!!")),
+                      child: Center(
+                          child: Text(
+                        "질문내용이에얏!!",
+                        style:
+                            TextStyle(color: white, fontSize: textEightSize.sp),
+                      )),
                     )),
               );
             }),

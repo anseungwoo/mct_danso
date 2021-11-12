@@ -20,7 +20,11 @@ class SongAudioRecorder extends StatefulWidget {
 
 class SongAudioRecorderState extends State<SongAudioRecorder> {
   final audioRecordController = Get.put(AudioRecordController());
-
+  @override
+  void dispose() {
+    audioRecordController.stopRecording();
+    super.dispose();
+  }
   // late FlutterAudioRecorder2 _recorder;
   // late Recording _recording;
   // late Timer _time;

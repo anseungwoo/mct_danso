@@ -41,33 +41,32 @@ class JungganboController extends GetxController {
     update();
   }
 
-  int i = 0;
-
-  int j = 0;
+  int line = 0;
+  int row = 0;
   void stepStop() {
-    i = 0;
+    line = 0;
     next = 0;
     next2 = 0;
-    j = 0;
+    row = 0;
     starStopState = false;
     startButton = '시작하기';
   }
 
   void stepStart() {
     interval(Duration(milliseconds: mill), (timer) {
-      if (i < jungGanBo.sheet.length &&
-          j == jungGanBo.sheet[i].yulmyeongs.length - 1) {
-        i++;
-        j = 0;
+      if (line < jungGanBo.sheet.length &&
+          row == jungGanBo.sheet[line].yulmyeongs.length - 1) {
+        line++;
+        row = 0;
       } else {
-        j++;
+        row++;
       }
       if (starStopState == false) {
         timer.cancel();
         stepStop();
         return;
       }
-      if (i == jungGanBo.sheet.length) {
+      if (line == jungGanBo.sheet.length) {
         stepStop();
       }
       update();

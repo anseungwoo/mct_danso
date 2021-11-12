@@ -81,7 +81,7 @@ Container jungContainer(double height, controller, int i, int j,
                       fontSize: heightNumber == 12
                           ? textEightSize.sp
                           : textBasicSize.sp,
-                      color: controller.i == i && controller.j == j
+                      color: controller.line == i && controller.row == j
                           ? Colors.blue
                           : null),
                 )
@@ -91,7 +91,7 @@ Container jungContainer(double height, controller, int i, int j,
                       fontSize: heightNumber == 12
                           ? textEightSize.sp
                           : textBasicSize.sp,
-                      color: controller.i == i && controller.j == j
+                      color: controller.line == i && controller.row == j
                           ? Colors.blue
                           : null),
                 ),

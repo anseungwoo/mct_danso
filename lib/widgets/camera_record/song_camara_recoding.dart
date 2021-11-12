@@ -27,11 +27,11 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   //   super.initState();
   // }
 
-  // @override
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    cameraRecordcontroller.onStop();
+    super.dispose();
+  }
 
   Widget _buildCamera({required CameraRecordController caController}) {
     if (cameraRecordcontroller.controller == null ||

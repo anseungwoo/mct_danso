@@ -87,12 +87,6 @@ const Color buttonColorOrang = Color(0xffF19929);
 const Color unButtonColorOrang = Color(0xffFEC782);
 const Color matchColor = Color(0xff00A8F2);
 const Color unMatchColor = Color(0xffFE0000);
-const String HOME_SVG = 'assets/images/ic_home.svg';
-const String BOLW_SVG = 'assets/images/ic_blow.svg';
-const String LOGO_SVG = 'assets/images/ic_logo.svg';
-const String SUCCESS_SVG = 'assets/images/ic_success.svg';
-const String FAIL_SVG = 'assets/images/ic_failure.svg';
-const String WARNING_SVG = 'assets/images/ic_warning.svg';
 
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
@@ -156,7 +150,7 @@ const String level4 =
     "h|m|y#j|y|m#h|t|J#Y|o|^#h|t|J#Y|J|t#h|m|y#j|o|^#j|y|m#h|t|^#J|Y|J#t|h|^#j|j|y#y|m|m#h|t|J#Y|o|^#";
 const String level5 =
     "t|h|m#y|j|^#j|y|m#h|t|J#Y|M|H#T|o|^#T|H|M#Y|J|^#j|y|m#y|m|h#t|J|Y#M|o|^#Y|M|H#M|H|T#H|M|Y#J|o|^#";
-
+//에셋(assets) 가져오기
 const List<String> DANSO_SVG_LIST = [
   'assets/images/ic_danso.svg',
   'assets/images/ic_danso.svg',
@@ -169,3 +163,11 @@ const List<String> DANSO_SVG_LIST = [
   'assets/images/ic_danso.svg',
   'assets/images/ic_danso.svg'
 ];
+const String HOME_SVG = 'assets/images/ic_home.svg';
+const String BOLW_SVG = 'assets/images/ic_blow.svg';
+const String LOGO_SVG = 'assets/images/ic_logo.svg';
+const String SUCCESS_SVG = 'assets/images/ic_success.svg';
+const String FAIL_SVG = 'assets/images/ic_failure.svg';
+const String WARNING_SVG = 'assets/images/ic_warning.svg';
+const String SILVER_SVG = 'assets/images/ic_1_step.svg';
+const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';

@@ -6,6 +6,7 @@ import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class AudioRecordController extends GetxController {
   final _playAndTestController = Get.put(PlayAndTestController());
@@ -25,6 +26,13 @@ class AudioRecordController extends GetxController {
     Future.microtask(() {
       _prepare();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    print('call dispose method');
   }
 
   void isRecordingState() {
@@ -78,10 +86,11 @@ class AudioRecordController extends GetxController {
 
   Future startRecording() async {
     await recorder.start();
+    showToast(message: '녹음을 시작합니다.');
     var current = await recorder.current();
     _recording = current!;
 
-    time = Timer.periodic(Duration(milliseconds: 10), (Timer t) async {
+    time = Timer.periodic(Duration(milliseconds: 3), (Timer t) async {
       var current = await recorder.current();
       _recording = current!;
       time = t;
@@ -92,6 +101,7 @@ class AudioRecordController extends GetxController {
 
   Future stopRecording() async {
     var result = await recorder.stop();
+    showToast(message: '녹음이 완료되었습니다.');
     time.cancel();
     print(_recording.path);
     _recording = result!;

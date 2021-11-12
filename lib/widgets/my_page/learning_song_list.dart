@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -41,15 +42,7 @@ class LearningSongList extends StatelessWidget {
                           iconSize: 50,
                         ),
                         Spacer(flex: 1),
-                        HexagonWidget.pointy(
-                          width: 70.w,
-                          color: Colors.black,
-                          elevation: 8,
-                          child: Text(
-                            '${controller.currentLevel} 아이콘 이미지',
-                            style: TextStyle(color: white),
-                          ),
-                        ),
+                        SvgPicture.asset(SILVER_SVG),
                         Spacer(flex: 1),
                         IconButton(
                           onPressed: () {
@@ -153,11 +146,12 @@ class LearningSongList extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('$index. ${item.songTitle}',
+                                        SvgPicture.asset(SILVER_LIST_SVG),
+                                        SizedBox(width: 15.w),
+                                        Text('${item.songTitle}',
                                             style: TextStyle(color: white)),
+                                        Spacer(flex: 1),
                                         IconButton(
                                           onPressed: () {
                                             controller.updateLikeSongList(

@@ -14,6 +14,13 @@ PreferredSizeWidget tabbarAndAppBar(
     centerTitle: true,
     elevation: 1,
     backgroundColor: appBarColor,
+    leading: IconButton(
+      splashRadius: 15,
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Get.back();
+      },
+    ),
     actions: [
       IconButton(
           icon: Icon(Icons.home_filled),
@@ -45,14 +52,12 @@ PreferredSizeWidget songtabbarAndAppBar(
     centerTitle: true,
     elevation: 0,
     backgroundColor: background,
-    bottom: enableTabBar
-        ? PreferredSize(
-            preferredSize: tabbar!.preferredSize,
-            child: ColoredBox(
-              color: background,
-              child: tabbar,
-            ),
-          )
-        : null,
+    leading: IconButton(
+      splashRadius: 15,
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Get.back();
+      },
+    ),
   );
 }
