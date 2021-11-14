@@ -128,37 +128,52 @@ class _MainDansoLearningTestScreenState
                 ),
               ],
             ),
-            //기준음
+            // //기준음
+            // SoundButton(
+            //   title: '${controller.tuningButtonText}',
+            //   onPressed: controller.listenTuningState
+            //       ? null
+            //       : controller.playTuningState
+            //           ? null
+            //           : () async {
+            //               controller.changeSoundTuningState();
+            //               controller.soundListTa(4);
+            //               await Get.dialog(mainDansoCautionDialog());
+            //               await Get.dialog(
+            //                 Dialog(child: TimerWidget()),
+            //                 barrierDismissible: false,
+            //               );
+            //               // await Future.delayed(
+            //               //     const Duration(milliseconds: 3500));
+            //               // Get.back();
+            //               // controller.isAdjust
+            //               //     ? controller.stopAdjust()
+            //               //     : controller.startAdjust();
+            //               // await Get.dialog(Dialog(
+            //               //   child: LoadingIndicator(),
+            //               // ));
+            //               // if (controller.userInputForAdjust < 400 ||
+            //               //     controller.userInputForAdjust > 700) {
+            //               //   await Get.dialog(
+            //               //       testDialog(FAIL_SVG, "다시 시도 해주세요"));
+            //               // } else {
+            //               //   await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
+            //               // }
+            //             },
+            // ),
+
+            //예시듣기
             SoundButton(
-              title: '${controller.tuningButtonText}',
-              onPressed: controller.listenTuningState
+              title: '${controller.buttonListen}',
+              onPressed: controller.soundTuningState
                   ? null
                   : controller.playTuningState
                       ? null
-                      : () async {
-                          controller.changeSoundTuningState();
-                          controller.soundListTa(4);
-                          await Get.dialog(mainDansoCautionDialog());
-                          await Get.dialog(
-                            Dialog(child: TimerWidget()),
-                            barrierDismissible: false,
-                          );
-                          // await Future.delayed(
-                          //     const Duration(milliseconds: 3500));
-                          // Get.back();
-                          // controller.isAdjust
-                          //     ? controller.stopAdjust()
-                          //     : controller.startAdjust();
-                          // await Get.dialog(Dialog(
-                          //   child: LoadingIndicator(),
-                          // ));
-                          // if (controller.userInputForAdjust < 400 ||
-                          //     controller.userInputForAdjust > 700) {
-                          //   await Get.dialog(
-                          //       testDialog(FAIL_SVG, "다시 시도 해주세요"));
-                          // } else {
-                          //   await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
-                          // }
+                      : () {
+                          controller.changeSpeakTuningState();
+                          controller.listenTuningState
+                              ? controller.palySound()
+                              : null;
                         },
             ),
             //불어보기
@@ -176,20 +191,6 @@ class _MainDansoLearningTestScreenState
                           controller.isRecording
                               ? controller.stopRecording()
                               : controller.startRecording();
-                        },
-            ),
-            //예시듣기
-            SoundButton(
-              title: '${controller.buttonListen}',
-              onPressed: controller.soundTuningState
-                  ? null
-                  : controller.playTuningState
-                      ? null
-                      : () {
-                          controller.changeSpeakTuningState();
-                          controller.listenTuningState
-                              ? controller.palySound()
-                              : null;
                         },
             ),
             //연습하기

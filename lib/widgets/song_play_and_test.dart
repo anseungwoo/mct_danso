@@ -272,7 +272,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                 testJungGanBo, controller.krChanges),
                             jungganboFromFlash(widget.sheetVertical,
                                 jungcontroller, testJungGanBo),
-                            jungganboScreen(widget.sheetVertical),
+                            jungganboScreen(
+                                widget.sheetVertical, jungcontroller),
                             // JungganboColorAnimation(
                             //   tempo: 1000,
                             //   jungganboLength: 8,

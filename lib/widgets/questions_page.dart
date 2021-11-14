@@ -29,7 +29,7 @@ class QuestionsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5)),
                       child: Center(
                           child: Text(
-                        "질문내용이에얏!!",
+                        "질문내용이에요",
                         style:
                             TextStyle(color: white, fontSize: textEightSize.sp),
                       )),

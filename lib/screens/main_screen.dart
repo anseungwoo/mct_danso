@@ -1,5 +1,6 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -30,26 +31,32 @@ class MainScreen extends StatelessWidget {
                   myPage(),
                 ],
               ),
-              SizedBox(height: 29.h),
               _homeMenuButton(
+                  assetName: INFOR_SVG,
                   title: '단소 알아보기',
                   contant: LOOK,
                   page: MainDansoHistoryKindScreen()),
               _homeMenuButton(
-                  title: '내 단소 소리 조절 하기',
+                  assetName: DANSO_TUNING_SVG,
+                  title: '내 단소 소리 잡기',
                   contant: VOLUMECONTROL,
                   page: AdjustMyDanso()),
               _homeMenuButton(
+                  assetName: STUDY_SVG,
                   title: '운지법 익히기',
                   page: learningDialog(),
                   contant: LEARN,
                   dialog: true),
               _homeMenuButton(
+                  assetName: TUNE_SVG,
                   title: '연주곡 익히기',
                   contant: PLAYLEARN,
                   page: MainDansoChartlistScreen()),
               _homeMenuButton(
-                  title: 'Q&A', contant: QUESTIONS, page: QuestionsPage()),
+                  assetName: QandA_SVG,
+                  title: 'Q&A',
+                  contant: QUESTIONS,
+                  page: QuestionsPage()),
             ],
           ),
         ),
@@ -68,8 +75,8 @@ class MainScreen extends StatelessWidget {
         child: ClipPath(
             clipper: MyClipper(),
             child: Container(
-              //margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
-              height: ScreenUtil().screenHeight * 0.2,
+              margin: EdgeInsets.only(bottom: 0),
+              height: ScreenUtil().screenHeight * 0.1,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: appBarColor,
@@ -91,7 +98,7 @@ class MainScreen extends StatelessWidget {
   Positioned myPage() {
     return Positioned(
       top: 150.h,
-      right: 140.w,
+      right: 150.w,
       child: InkWell(
         onTap: () => Get.to(MyPageScreen()),
         child: Container(
@@ -110,6 +117,7 @@ class MainScreen extends StatelessWidget {
       {required String title,
       required Widget page,
       required String contant,
+      required String assetName,
       Image? image,
       bool dialog = false}) {
     return InkWell(
@@ -131,10 +139,7 @@ class MainScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CircleAvatar(
-                  backgroundColor: Colors.grey[200],
-                  radius: 39,
-                  child: Text('아이콘영역')),
+              SvgPicture.asset(assetName),
               SizedBox(width: 14.w),
               Container(
                 width: 190.w,
@@ -164,9 +169,9 @@ class MyClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    path.lineTo(0, size.height - 70);
+    path.lineTo(0, size.height - 40);
     path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 70);
+        size.width / 2, size.height, size.width, size.height - 40.h);
     path.lineTo(size.width, 0);
     path.close();
     return path;

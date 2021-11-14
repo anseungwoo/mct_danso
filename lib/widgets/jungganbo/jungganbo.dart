@@ -64,8 +64,8 @@ Container blankContainer(double height) {
   );
 }
 
-Container jungContainer(double height, controller, int i, int j,
-    int heightNumber, JungGanBo testJungGanBo, bool krState) {
+Widget jungContainer(double height, controller, int i, int j, int heightNumber,
+    JungGanBo testJungGanBo, bool krState) {
   return Container(
     width: jungWidth.w,
     height: height.h,
@@ -82,8 +82,10 @@ Container jungContainer(double height, controller, int i, int j,
                           ? textEightSize.sp
                           : textBasicSize.sp,
                       color: controller.line == i && controller.row == j
-                          ? Colors.blue
-                          : null),
+                          ? controller.gameState
+                              ? Colors.blue
+                              : Colors.red
+                          : Colors.black),
                 )
               : Text(
                   testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
@@ -92,8 +94,10 @@ Container jungContainer(double height, controller, int i, int j,
                           ? textEightSize.sp
                           : textBasicSize.sp,
                       color: controller.line == i && controller.row == j
-                          ? Colors.blue
-                          : null),
+                          ? controller.gameState
+                              ? Colors.blue
+                              : Colors.red
+                          : Colors.black),
                 ),
         ),
       ],

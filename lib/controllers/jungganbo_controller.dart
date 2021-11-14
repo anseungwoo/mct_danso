@@ -15,10 +15,17 @@ class JungganboController extends GetxController {
   late int mill;
   late JungGanBo jungGanBo;
   late int sheetHorizontal;
+  bool gameState = false;
   @override
   void onInit() {
     super.onInit();
     stepStop();
+  }
+
+  void changegameState() {
+    gameState = !gameState;
+
+    update();
   }
 
   void changekrState() {

@@ -122,7 +122,7 @@ const String PLAYLEARN = '전통곡들을 단소로 연습하여 피드백 받�
 //질문하기 설명
 const String QUESTIONS = '단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ';
 //기준은잡기
-const String VOLUMECONTROL = '단소마다 음이 다를수 있어요,나의 단소 음을 조정 해보세요';
+const String VOLUMECONTROL = '단소를 불기 전에 필수로 소리를 맞춰보아요.';
 
 //단소의 역사
 //youtube URL style
@@ -171,3 +171,8 @@ const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
 const String SILVER_SVG = 'assets/images/ic_1_step.svg';
 const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';
+const String DANSO_TUNING_SVG = 'assets/images/ic_danso_tuning.svg';
+const String INFOR_SVG = 'assets/images/ic_infor.svg';
+const String QandA_SVG = 'assets/images/ic_q&a.svg';
+const String STUDY_SVG = 'assets/images/ic_study.svg';
+const String TUNE_SVG = 'assets/images/ic_tune.svg';
