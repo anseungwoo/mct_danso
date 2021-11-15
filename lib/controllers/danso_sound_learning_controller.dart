@@ -175,12 +175,12 @@ class DansoSoundLearningController extends GetxController {
   //     if (pitchModelInterface.isCorrectPitch(
   //         userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
   //       return Text(
-  //         '음과 일치합니다. $userInputForAdjust',
+  //         '잘 불렀어요!! $userInputForAdjust',
   //         style: TextStyle(color: matchColor),
   //       );
   //     } else {
   //       return Text(
-  //         '음이 달라요ㅠㅠ $userInputForAdjust',
+  //         '다시 불러보세요! $userInputForAdjust',
   //         style: TextStyle(color: unMatchColor),
   //       );
   //     }
@@ -230,23 +230,23 @@ class DansoSoundLearningController extends GetxController {
   //     case 0:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를 불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를 불러보세요");
   //       }
   //       break;
   //     case 1:

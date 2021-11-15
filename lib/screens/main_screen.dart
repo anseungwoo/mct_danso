@@ -39,32 +39,12 @@ class MainScreen extends StatelessWidget {
                   title: '단소 알아보기',
                   contant: LOOK,
                   page: MainDansoHistoryKindScreen()),
-              _homeMenuButton2(
+              _homeMenuButton(
                   assetName: DANSO_TUNING_SVG,
                   title: '내 단소 기준음 잡기',
                   contant: VOLUMECONTROL,
-                  onPressed: () async {
-                    await Get.dialog(mainDansoCautionDialog());
-                    await Get.dialog(
-                      Dialog(child: TimerWidget()),
-                      barrierDismissible: false,
-                    );
-                    // await Future.delayed(const Duration(milliseconds: 3500));
-                    // Get.back();
-                    // controller.isAdjust
-                    //     ? controller.stopAdjust()
-                    //     : controller.startAdjust();
-                    await Get.dialog(Dialog(
-                      child: LoadingIndicator(),
-                    ));
-                    // if (controller.userInputForAdjust < 400 ||
-                    //     controller.userInputForAdjust > 700) {
-                    //   await Get.dialog(
-                    //       testDialog(FAIL_SVG, "다시 시도 해주세요"));
-                    // } else {
-                    //   await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
-                    // }
-                  }),
+                  page: mainDansoCautionDialog(),
+                  dialog: true),
               _homeMenuButton(
                   assetName: STUDY_SVG,
                   title: '운지법 익히기',
@@ -184,49 +164,6 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget _homeMenuButton2(
-    {required String title,
-    required String contant,
-    required String assetName,
-    required Function() onPressed}) {
-  return InkWell(
-    onTap: onPressed,
-    child: Container(
-      margin: EdgeInsets.only(bottom: 10),
-      height: 106.h,
-      width: 330.w,
-      decoration: BoxDecoration(
-          color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SvgPicture.asset(assetName),
-            SizedBox(width: 14.w),
-            Container(
-              width: 190.w,
-              height: 80.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('$title',
-                      style: TextStyle(
-                          fontSize: textTitleSize.sp,
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(height: 7.h),
-                  Text(contant, style: TextStyle(fontSize: 14.sp))
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
 }
 
 class MyClipper extends CustomClipper<Path> {

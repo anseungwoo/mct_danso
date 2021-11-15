@@ -39,7 +39,7 @@ const Color grayWeithColor = Color(0xffD6D6D6);
 const Color grayLightColor = Color(0xffECECEC);
 
 //어플리캐이션 기본 크기 설정
-
+const double eightPadding = 8;
 const double basicPadding = 15;
 const double svenPadddig = 17;
 const double iconPadding = 30;
