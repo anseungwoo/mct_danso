@@ -48,8 +48,8 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 330.w,
-      height: 330.h,
+      width: 200.w,
+      height: 200.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -58,14 +58,11 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
             BOLW_SVG,
             color: unButtonColorOrang,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("5초간 태(汰) 불어주세요"),
-          ),
           Container(
-              height: 120,
-              width: 120,
-              child: SfRadialGauge(axes: <RadialAxis>[
+            height: 120,
+            width: 120,
+            child: SfRadialGauge(
+              axes: <RadialAxis>[
                 RadialAxis(
                   minimum: 0,
                   maximum: 50,
@@ -91,7 +88,13 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
                     )
                   ],
                 )
-              ])),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("5초간 단소로 태(汰) 불어주세요."),
+          ),
         ],
       ),
     );

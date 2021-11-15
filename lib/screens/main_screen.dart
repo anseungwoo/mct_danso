@@ -4,10 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/screens/main_danso_caution_dialog.dart';
 import 'package:project_danso/screens/main_danso_chartlist_screen.dart';
 
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
@@ -36,11 +39,32 @@ class MainScreen extends StatelessWidget {
                   title: '단소 알아보기',
                   contant: LOOK,
                   page: MainDansoHistoryKindScreen()),
-              _homeMenuButton(
+              _homeMenuButton2(
                   assetName: DANSO_TUNING_SVG,
-                  title: '내 단소 소리 잡기',
+                  title: '내 단소 기준음 잡기',
                   contant: VOLUMECONTROL,
-                  page: AdjustMyDanso()),
+                  onPressed: () async {
+                    await Get.dialog(mainDansoCautionDialog());
+                    await Get.dialog(
+                      Dialog(child: TimerWidget()),
+                      barrierDismissible: false,
+                    );
+                    // await Future.delayed(const Duration(milliseconds: 3500));
+                    // Get.back();
+                    // controller.isAdjust
+                    //     ? controller.stopAdjust()
+                    //     : controller.startAdjust();
+                    await Get.dialog(Dialog(
+                      child: LoadingIndicator(),
+                    ));
+                    // if (controller.userInputForAdjust < 400 ||
+                    //     controller.userInputForAdjust > 700) {
+                    //   await Get.dialog(
+                    //       testDialog(FAIL_SVG, "다시 시도 해주세요"));
+                    // } else {
+                    //   await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
+                    // }
+                  }),
               _homeMenuButton(
                   assetName: STUDY_SVG,
                   title: '운지법 익히기',
@@ -68,10 +92,6 @@ class MainScreen extends StatelessWidget {
     return Container(
         height: 250.h,
         width: ScreenUtil().screenWidth,
-        // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
-        //     color: Color(0xffA5A5A5),
-        //     borderRadius:
-        //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
         child: ClipPath(
             clipper: MyClipper(),
             child: Container(
@@ -118,10 +138,11 @@ class MainScreen extends StatelessWidget {
       required Widget page,
       required String contant,
       required String assetName,
-      Image? image,
-      bool dialog = false}) {
+      bool dialog = false,
+      Function()? onPressed}) {
     return InkWell(
       onTap: () {
+        onPressed;
         if (dialog) {
           Get.dialog(page);
         } else {
@@ -163,6 +184,49 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _homeMenuButton2(
+    {required String title,
+    required String contant,
+    required String assetName,
+    required Function() onPressed}) {
+  return InkWell(
+    onTap: onPressed,
+    child: Container(
+      margin: EdgeInsets.only(bottom: 10),
+      height: 106.h,
+      width: 330.w,
+      decoration: BoxDecoration(
+          color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SvgPicture.asset(assetName),
+            SizedBox(width: 14.w),
+            Container(
+              width: 190.w,
+              height: 80.h,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('$title',
+                      style: TextStyle(
+                          fontSize: textTitleSize.sp,
+                          fontWeight: FontWeight.bold)),
+                  SizedBox(height: 7.h),
+                  Text(contant, style: TextStyle(fontSize: 14.sp))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class MyClipper extends CustomClipper<Path> {

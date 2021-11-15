@@ -128,7 +128,7 @@ class _MainDansoLearningTestScreenState
                 ),
               ],
             ),
-            // //기준음
+            //기준음
             // SoundButton(
             //   title: '${controller.tuningButtonText}',
             //   onPressed: controller.listenTuningState
