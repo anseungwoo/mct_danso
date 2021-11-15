@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/base_widgets/tabbar_and_appbar.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class QuestionsPage extends StatelessWidget {
   const QuestionsPage({Key? key}) : super(key: key);
@@ -19,7 +21,9 @@ class QuestionsPage extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(basicPadding),
                 child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(ResultScore());
+                    },
                     child: Container(
                       width: 330.w,
                       height: 60.h,

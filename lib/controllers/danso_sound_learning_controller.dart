@@ -48,7 +48,7 @@ class DansoSoundLearningController extends GetxController {
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
-  Text isMacthing = Text("불러보세요");
+  Text isMacthing = Text("단소를불러보세요");
 
   @override
   void onInit() {
@@ -180,7 +180,7 @@ class DansoSoundLearningController extends GetxController {
   //       );
   //     } else {
   //       return Text(
-  //         '다시 불러보세요! $userInputForAdjust',
+  //         '음이 달라요ㅠㅠ $userInputForAdjust',
   //         style: TextStyle(color: unMatchColor),
   //       );
   //     }
@@ -230,7 +230,7 @@ class DansoSoundLearningController extends GetxController {
   //     case 0:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를 불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
@@ -246,205 +246,205 @@ class DansoSoundLearningController extends GetxController {
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("단소를 불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 1:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 2:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 3:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 4:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 5:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 6:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 7:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 8:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     case 9:
   //       try {
   //         if (scl > 2000 || scl < 300) {
-  //           return Text("불러보세요");
+  //           return Text("단소를불러보세요");
   //         } else {
   //           if (pitchModelInterface.isCorrectPitch(
   //               scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))) {
   //             return Text(
-  //               "음과 일치합니다.",
+  //               "잘 불렀어요!!",
   //               style: TextStyle(color: matchColor),
   //             );
   //           } else {
-  //             return Text("음이 다릅니다.",
+  //             return Text("다시 불러보세요!",
   //                 style: TextStyle(
   //                   color: unMatchColor,
   //                 ));
   //           }
   //         }
   //       } catch (er) {
-  //         return Text("불러보세요");
+  //         return Text("단소를불러보세요");
   //       }
   //       break;
   //     default:

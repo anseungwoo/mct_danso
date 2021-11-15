@@ -31,6 +31,7 @@ class _MainDansoLearningTestScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar:
           tabbarAndAppBar(title: '단계별 연습', tabbar: null, enableTabBar: false),
       body: Padding(

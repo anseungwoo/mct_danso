@@ -48,16 +48,16 @@ class ResultScore extends StatelessWidget {
                 color: lightGray,
                 width: 120.w,
                 height: 120.h,
-                child: Icon(Icons.ac_unit)),
+                child: Icon(Icons.add_chart_sharp)),
           )),
           Text(
-            '너무 잘했어요!!!!!!!!!!!!!!!!!!!!!!!!!!',
+            '점수(점수)',
             style: TextStyle(
                 fontSize: textSingleSize, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: basicPadding),
           Text(
-            '흠이 없는 실력 이군요',
+            '완벽해요!',
             style: TextStyle(fontSize: textEightSize.sp),
           ),
         ],
