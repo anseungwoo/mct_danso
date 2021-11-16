@@ -37,6 +37,7 @@ class SongPlayAndTest extends StatefulWidget {
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   late int percent;
   JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
+  JungganboController jungganboController = JungganboController();
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -70,13 +71,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                     // height: 30.h,
                     width: 330.w,
                     child: GetBuilder<JungganboController>(
-                        init: JungganboController(),
+                        init: jungganboController,
                         builder: (jungcontroller) {
                           jungcontroller.mill =
                               testJungGanBo.jangDan.milliSecond;
                           jungcontroller.jungGanBo = testJungGanBo;
                           jungcontroller.sheetHorizontal =
                               widget.sheetHorizontal;
+                          jungcontroller.sheetVertical = widget.sheetVertical;
                           return Stack(
                             children: [
                               controller.statecount == 0
@@ -256,7 +258,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                           ],
                         ),
                   GetBuilder<JungganboController>(
-                      init: JungganboController(),
+                      init: jungganboController,
                       builder: (jungcontroller) {
                         return Stack(
                           children: [

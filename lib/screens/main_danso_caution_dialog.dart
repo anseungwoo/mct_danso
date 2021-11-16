@@ -59,9 +59,12 @@ Widget mainDansoCautionDialog() {
                         // controller.isAdjust
                         //     ? controller.stopAdjust()
                         //     : controller.startAdjust();
-                        await Get.dialog(Dialog(
-                          child: LoadingIndicator(),
-                        ));
+                        await Get.dialog(
+                          Dialog(
+                            child: LoadingIndicator(),
+                          ),
+                          barrierDismissible: false,
+                        );
                         // if (controller.userInputForAdjust < 400 ||
                         //     controller.userInputForAdjust > 700) {
                         //   await Get.dialog(

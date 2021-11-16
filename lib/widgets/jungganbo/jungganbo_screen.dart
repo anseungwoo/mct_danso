@@ -40,7 +40,7 @@ Container jungBlankContainer(
   );
 }
 
-Widget jungBigContainer(double height, controller) {
+Widget jungBigContainer(double height, JungganboController controller) {
   return InkWell(
     onTap: () {
       controller.changegameState();

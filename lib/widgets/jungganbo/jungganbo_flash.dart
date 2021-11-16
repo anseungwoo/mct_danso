@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/controllers/controllers.dart';
 
 Widget jungganboFromFlash(
-    int heightNumber, controller, JungGanBo testJungGanBo) {
+    int heightNumber, JungganboController controller, JungGanBo testJungGanBo) {
   double height = heightNumber == 12
       ? jungHeight
       : heightNumber == 8
@@ -15,7 +16,7 @@ Widget jungganboFromFlash(
   int j = 0;
   return Row(
     children: [
-      for (var c = 3; c >= 0; c--)
+      for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -58,8 +59,8 @@ Container beenContainer(double height) {
   );
 }
 
-Container jungFlashContainer(
-    double height, controller, int i, int j, int heightNumber) {
+Container jungFlashContainer(double height, JungganboController controller,
+    int i, int j, int heightNumber) {
   return Container(
     width: jungWidth.w,
     height: height.h,

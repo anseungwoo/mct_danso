@@ -46,6 +46,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
               controller.mill = testJungGanBo.jangDan.milliSecond;
               controller.jungGanBo = testJungGanBo;
               controller.sheetHorizontal = 4;
+              controller.sheetVertical = 12;
               return Column(
                 children: [
                   Center(
@@ -57,10 +58,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   ),
                   Stack(
                     children: [
-                      jungganbo(12, Get.find<JungganboController>(),
-                          testJungGanBo, controller.krState),
-                      jungganboFromFlash(
-                          12, Get.find<JungganboController>(), testJungGanBo),
+                      jungganbo(
+                          12, controller, testJungGanBo, controller.krState),
+                      jungganboFromFlash(12, controller, testJungGanBo),
                       jungganboScreen(12, jungganboController),
                     ],
                   ),

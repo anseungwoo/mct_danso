@@ -64,8 +64,8 @@ Container blankContainer(double height) {
   );
 }
 
-Widget jungContainer(double height, controller, int i, int j, int heightNumber,
-    JungGanBo testJungGanBo, bool krState) {
+Widget jungContainer(double height, JungganboController controller, int i,
+    int j, int heightNumber, JungGanBo testJungGanBo, bool krState) {
   return Container(
     width: jungWidth.w,
     height: height.h,
