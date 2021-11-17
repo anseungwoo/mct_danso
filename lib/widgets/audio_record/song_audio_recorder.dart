@@ -22,7 +22,9 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   final audioRecordController = Get.put(AudioRecordController());
   @override
   void dispose() {
-    audioRecordController.stopRecording();
+    audioRecordController.isRecording
+        ? audioRecordController.stopRecording()
+        : audioRecordController.getBack();
     super.dispose();
   }
   // late FlutterAudioRecorder2 _recorder;

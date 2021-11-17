@@ -108,4 +108,9 @@ class AudioRecordController extends GetxController {
     _playAndTestController.stateCountUp(2);
     update();
   }
+
+  void getBack() {
+    _playAndTestController.stateCountUp(2);
+    update();
+  }
 }

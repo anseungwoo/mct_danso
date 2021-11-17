@@ -29,7 +29,9 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
 
   @override
   void dispose() {
-    cameraRecordcontroller.onStop();
+    cameraRecordcontroller.isRecording
+        ? cameraRecordcontroller.onStop()
+        : cameraRecordcontroller.getBack();
     super.dispose();
   }
 

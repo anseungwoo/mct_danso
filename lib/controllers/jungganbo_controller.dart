@@ -13,14 +13,14 @@ class JungganboController extends GetxController {
 
   late int mill;
   late JungGanBo jungGanBo;
-  int sheetHorizontal = 0;
+
   late int sheetVertical;
   bool gameState = false;
-  late int ssheetHorizontal;
+
   @override
   void onInit() {
     super.onInit();
-    ssheetHorizontal = sheetHorizontal;
+
     stepStop();
   }
 
@@ -55,7 +55,7 @@ class JungganboController extends GetxController {
   int next = 0;
   int next2 = 0;
   int pagenext = 1;
-
+  int sheetHorizontal = 0;
   void stepStop() {
     pagenext = 1;
     line = 0;
@@ -67,7 +67,7 @@ class JungganboController extends GetxController {
   }
 
   void stepStart() {
-    print("결과값 $ssheetHorizontal");
+    print("결과값 $sheetHorizontal");
     interval(Duration(milliseconds: mill), (timer) {
       if (line < jungGanBo.sheet.length &&
           row == jungGanBo.sheet[line].yulmyeongs.length - 1) {
@@ -77,52 +77,44 @@ class JungganboController extends GetxController {
       } else {
         row++;
       }
-      if (ssheetHorizontal >= 4 &&
-          line == 32 * pagenext &&
-          sheetVertical == 8) {
+      if (sheetHorizontal >= 4 && line == 32 * pagenext && sheetVertical == 8) {
         next += 4;
         next2 += 4;
         pagenext++;
-        ssheetHorizontal -= 2;
+        sheetHorizontal -= 2;
 
-        print("결과값4 $ssheetHorizontal");
+        print("결과값4 $sheetHorizontal");
         print("n1 $next");
         print("n2 $next2");
         print("np $pagenext");
       }
-      if (ssheetHorizontal >= 4 &&
-          line == 24 * pagenext &&
-          sheetVertical == 6) {
+      if (sheetHorizontal >= 4 && line == 24 * pagenext && sheetVertical == 6) {
         next += 4;
         next2 += 4;
         pagenext++;
-        ssheetHorizontal -= 2;
+        sheetHorizontal -= 2;
 
-        print("결과값4 $ssheetHorizontal");
+        print("결과값4 $sheetHorizontal");
         print("n1 $next");
         print("n2 $next2");
         print("np $pagenext");
       }
-      if (ssheetHorizontal == 3 &&
-          line == 24 * pagenext &&
-          sheetVertical == 6) {
+      if (sheetHorizontal == 3 && line == 24 * pagenext && sheetVertical == 6) {
         next += 4;
         next2 += 2;
         pagenext++;
 
-        print("결과값3 $ssheetHorizontal");
+        print("결과값3 $sheetHorizontal");
         print("n1 $next");
         print("n2 $next2");
         print("np $pagenext");
       }
-      if (ssheetHorizontal == 3 &&
-          line == 32 * pagenext &&
-          sheetVertical == 8) {
+      if (sheetHorizontal == 3 && line == 32 * pagenext && sheetVertical == 8) {
         next += 4;
         next2 += 2;
         pagenext++;
 
-        print("결과값3 $ssheetHorizontal");
+        print("결과값3 $sheetHorizontal");
         print("n1 $next");
         print("n2 $next2");
         print("np $pagenext");

@@ -65,6 +65,11 @@ class CameraRecordController extends GetxController {
     update();
   }
 
+  void getBack() {
+    _playAndTestController.stateCountUp(2);
+    update();
+  }
+
   Future<void> onRecord() async {
     await controller.startVideoRecording();
     showToast(message: '녹화를 시작합니다.');

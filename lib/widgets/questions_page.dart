@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/base_widgets/tabbar_and_appbar.dart';
+import 'package:project_danso/widgets/pitch.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class QuestionsPage extends StatelessWidget {
@@ -22,7 +23,8 @@ class QuestionsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(basicPadding),
                 child: InkWell(
                     onTap: () {
-                      Get.to(ResultScore());
+                      // Get.to(ResultScore());
+                      Get.to(Pitch(title: '피치'));
                     },
                     child: Container(
                       width: 330.w,

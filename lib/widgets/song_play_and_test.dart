@@ -55,6 +55,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   @override
   Widget build(BuildContext context) {
+    jungganboController.sheetHorizontal = widget.sheetHorizontal;
     JungGanBo testJungGanBo =
         new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
@@ -76,8 +77,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                           jungcontroller.mill =
                               testJungGanBo.jangDan.milliSecond;
                           jungcontroller.jungGanBo = testJungGanBo;
-                          jungcontroller.sheetHorizontal =
-                              widget.sheetHorizontal;
                           jungcontroller.sheetVertical = widget.sheetVertical;
                           return Stack(
                             children: [
@@ -260,27 +259,20 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   GetBuilder<JungganboController>(
                       init: jungganboController,
                       builder: (jungcontroller) {
-                        return Stack(
-                          children: [
-                            // jungganbo(6, testJungGanBo),
-                            // controller.platState
-                            //     ? jungganboFromFlash(
-                            //         6,
-                            //         Get.find<JungganboController>(),
-                            //         testJungGanBo)
-                            //     : Container(),
-
-                            jungganbo(widget.sheetVertical, jungcontroller,
-                                testJungGanBo, controller.krChanges),
-                            jungganboFromFlash(widget.sheetVertical,
-                                jungcontroller, testJungGanBo),
-                            jungganboScreen(
-                                widget.sheetVertical, jungcontroller),
-                            // JungganboColorAnimation(
-                            //   tempo: 1000,
-                            //   jungganboLength: 8,
-                            // ),
-                          ],
+                        return Container(
+                          width: (jungWidth.w + 20.w) * 4.w,
+                          height: jungEightHeight.w * 9.w,
+                          color: white,
+                          child: Stack(
+                            children: [
+                              jungganbo(widget.sheetVertical, jungcontroller,
+                                  testJungGanBo, controller.krChanges),
+                              jungganboFromFlash(widget.sheetVertical,
+                                  jungcontroller, testJungGanBo),
+                              jungganboScreen(
+                                  widget.sheetVertical, jungcontroller),
+                            ],
+                          ),
                         );
                       }),
                 ],
