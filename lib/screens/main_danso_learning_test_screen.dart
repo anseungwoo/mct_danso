@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/main_danso_caution_dialog.dart';
+
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/loading_indicator.dart';
 import 'package:project_danso/widgets/test_dialog.dart';

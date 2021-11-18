@@ -8,14 +8,13 @@ class MainDansoLearningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: tabbarAndAppBar(
           title: '단소 학습 익히기',
           tabbar: defaultTabBar(
             tabList: [
-              Tab(text: '연주자세'),
-              Tab(text: '율명'),
+              Tab(text: '기초 학습'),
               Tab(text: '운지법'),
             ],
           ),
@@ -32,31 +31,29 @@ class MainDansoLearningScreen extends StatelessWidget {
         CarouselListWidget(
           carouselList: [
             DansoHistroyKind(
-              subject: '단소잡는법과 각부분',
+              subject: DANSO_CATCH_TITLE,
               explanation: DANSO_CATCH,
               url: DANSO_LIPS_URL,
             ),
             DansoHistroyKind(
-              subject: '단소잡는법과 각부분',
-              explanation: DANSO_CATCH,
-              url: DANSO_LIPS_URL,
+              subject: DANSO_CATCH2_TITLE,
+              explanation: DANSO_CATCH2,
+              url: DANSO_LIPS2_URL,
             ),
             DansoHistroyKind(
-                subject: '단소연주자세',
-                explanation: PALYPOS,
-                url: DANSO_PALYPOS_URL),
+                subject: BREATH_TITLE,
+                explanation: BREATH,
+                url: DANSO_BREATH_URL),
             DansoHistroyKind(
-                subject: '입술모양', explanation: LIPS, url: DANSO_LIPS_URL),
+                subject: BREATH2_TITLE,
+                explanation: BREATH2,
+                url: DANSO_BREATH2_URL),
             DansoHistroyKind(
-                subject: '호흡식', explanation: BREATH, url: DANSO_BREATH_URL),
-          ],
-        ),
-        CarouselListWidget(
-          carouselList: [
+                subject: SOUND_HL_TITLE,
+                explanation: SOUND_HL,
+                url: DANSO_SOUND_HL_URL),
             DansoHistroyKind(
-                subject: '율명', explanation: SHEET, url: DANSO_SHEET_URL),
-            DansoHistroyKind(
-                subject: '', explanation: SUBSHEET, url: DANSO_SHEET_URL),
+                subject: SOUND_TITLE, explanation: SOUND, url: DANSO_SOUND_URL),
           ],
         ),
         CarouselListWidget(

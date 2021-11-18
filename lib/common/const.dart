@@ -100,14 +100,29 @@ const String KDANSO = '경제 단소 설명을 적어주세요';
 //향조 설명
 const String HDANSO = '향조 단소 설명을 적어주세요';
 //단소잡는부분 설명
-const String DANSO_CATCH = '단소잡는부분을 설명을 적어주세요';
+const String DANSO_CATCH =
+    '단소 운지법, 율명, 악기 잡는 법, 중임무황태의 기본적인 소리내는 방법에 관한 영상입니다.';
+const String DANSO_CATCH2 =
+    '단소 소리를 처음 내보려고 하는 학생들을 위한 영상으로단소 소리 내기에 관한 기초적이면서도 중요한 내용입니다.';
+const String DANSO_CATCH_TITLE = '단소의 기본';
+const String DANSO_CATCH2_TITLE = '단소 기초 소리 내기';
+
 const String DANSO_SUBCATCH = '단소잡는부분을 설명을 적어주세요';
 //단소연주자세 설명
 const String PALYPOS = '단소연주자세의 설명을 적어주세요';
 //입술모양 설명
-const String LIPS = '입술모양의 설명을 적어주세요';
+const String SOUND =
+    '단소라는 악기는 음정을 유지하기가 상당히 힘듭니다. 이 악기의 소리를 크게 또는 작게 불되 음정을 맞추는 방법을 익혀봅시다.';
+const String SOUND_TITLE = '단소 소리조절';
+const String SOUND_HL = '단소에서 높은 음, 낮은 음이 잘 안나는 학생들을 위한 영상입니다.';
+const String SOUND_HL_TITLE = '단소 소리 높낮이';
 //호흡식 설명
-const String BREATH = '호흡식의 설명을 적어주세요';
+const String BREATH =
+    '단소 소리가 여전히 안 나는 학생들을 위한 영상입니다.입술위치, 떠는 소리 내는 법, 호흡법과 관련된 내용이 담겨있습니다.';
+const String BREATH_TITLE = '단소 호흡법';
+const String BREATH2 =
+    '단소를 불다 보면 호흡에 문제가 생겨서 완주하는데 어려움을 겪는분들이 많습니다. 그런 분들을 위한 장기적인 호흡 연습 방법에 관한내용입니다.';
+const String BREATH2_TITLE = '복식호흡';
 //율명 설명
 const String SHEET = '율명의 설명을 적어주세요';
 const String SUBSHEET = '율명의 추가 설명을 적어주세요';
@@ -133,9 +148,13 @@ const String P_DANSO_URL = '_epwxDTxa3A';
 const String K_DANSO_URL = 'DyRm_Hxy0xo';
 const String H_DANSO_URL = '5KLsjhz9jMI';
 const String DANSO_PALYPOS_URL = 'bVE1E7FLhS4';
-const String DANSO_LIPS_URL = 'lcg6wekmCRA';
-const String DANSO_BREATH_URL = 'ToxQLPErpKI';
-const String DANSO_SHEET_URL = 'LBmB3DGxnNk';
+//
+const String DANSO_LIPS_URL = 'Cuc3e0v1Dc0';
+const String DANSO_LIPS2_URL = 'aoqaQKH3iZg';
+const String DANSO_BREATH_URL = 'opQtzo9zXJE';
+const String DANSO_BREATH2_URL = 'k-PYlJKY8Uc';
+const String DANSO_SOUND_URL = 'CIBSc8cgUu0';
+const String DANSO_SOUND_HL_URL = 'CIBSc8cgUu0';
 
 //1~5단계 연습 리스트
 // YulmyeongNote(Yulmyeong.tae,ScaleStatus.origin));//  율명하고 스캐일맞으면 참거짓 판명을해준다
@@ -176,3 +195,28 @@ const String INFOR_SVG = 'assets/images/ic_infor.svg';
 const String QandA_SVG = 'assets/images/ic_q&a.svg';
 const String STUDY_SVG = 'assets/images/ic_study.svg';
 const String TUNE_SVG = 'assets/images/ic_tune.svg';
+
+const List Q_AND_A_SUB_CONTANT = [
+  '[🐰단소5탄] 단소 소리가 났다 안났다 해요 / 집에선 잘 되는데학교에선 안나요 / 입술 모양을 잘 모르겠어요 / 각도가 헷갈려요',
+  '모든 손가락을 다 뗀 운지(태)는 소리가 잘 나는데 구먹을 막으면 소리가 안 나는 학생들을 위한 교육 내용을 담은 영상입니다',
+  '단소 소리가 맑지 않아서 고민이 많은 분들이 많습니다. 이번 영상은 악기 소리를 보다 깔끔하게 낼 수 있는 방법에 관한 내용입니다.',
+  '곡 연주를 위한 매일 연습 팁을 담은 영상입니다. 여러 음을 연결하는 연습 방법에 관한 내용인데, 이 부분을 꾸준히 연습하면 보다 부드러운 소리로 아름다운 음악을 만드는 데 도움이 될 것입니다.',
+  '단소 소리는 나기 시작했는데, 소리가 유지가 안 되는 학생들을  위한 영상입니다. 유지가 되지 않는 원인을 찾고, 함께 해결해봅시다.',
+];
+const List Q_AND_A_URL = [
+  'PBAZnJNcYVY',
+  'z2afsvDPhd8',
+  '4U_cOC6f66A',
+  'EghU5mA8KTw',
+  'JHVGwgMXfAo',
+];
+const List Q_AND_A_TITLE = [
+  '단소 소리가 안나요',
+  '단소 구멍을 막으면 소리가 안나요',
+  '맑은 소리를 내고싶어요!',
+  '매일 매일 연습하려면 어떻게 해야하나요?',
+  '복식호흡 유지를 어떻게 하나요?'
+];
+const List Q_AND_A_TIME = [0.0, 0.0, 0.0, 0.0, 0.0];
+
+enum SongSpeed { eight, nine, ten, eleven, twelve }

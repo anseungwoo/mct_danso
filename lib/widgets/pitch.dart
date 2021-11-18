@@ -24,6 +24,8 @@ class _PitchState extends State<Pitch> {
   var pitch;
   @override
   void dispose() {
+    _stopCapture();
+
     super.dispose();
   }
 

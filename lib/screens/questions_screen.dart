@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/widgets/base_widgets/tabbar_and_appbar.dart';
 import 'package:project_danso/widgets/pitch.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class QuestionsPage extends StatelessWidget {
-  const QuestionsPage({Key? key}) : super(key: key);
+class QuestionsScreen extends StatelessWidget {
+  const QuestionsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +16,18 @@ class QuestionsPage extends StatelessWidget {
         width: ScreenUtil().screenWidth,
         height: ScreenUtil().screenHeight,
         child: ListView.builder(
-            itemCount: 60,
+            itemCount: Q_AND_A_TITLE.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(basicPadding),
                 child: InkWell(
                     onTap: () {
-                      // Get.to(ResultScore());
-                      Get.to(Pitch(title: '피치'));
+                      Get.to(QAndAPAGE(
+                        subject: Q_AND_A_TITLE[index],
+                        explanation: Q_AND_A_SUB_CONTANT[index],
+                        url: Q_AND_A_URL[index],
+                        startSecond: Q_AND_A_TIME[index],
+                      ));
                     },
                     child: Container(
                       width: 330.w,
@@ -35,7 +38,7 @@ class QuestionsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5)),
                       child: Center(
                           child: Text(
-                        "질문내용이에요",
+                        Q_AND_A_TITLE[index],
                         style:
                             TextStyle(color: white, fontSize: textEightSize.sp),
                       )),
