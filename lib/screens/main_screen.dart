@@ -6,8 +6,6 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/loading_indicator.dart';
-import 'package:project_danso/widgets/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
@@ -80,17 +78,6 @@ class MainScreen extends StatelessWidget {
               ),
             )));
   }
-  // 기존 타이틀
-  // Container topImage() {
-  //   return Container(
-  //     color: appBarColor,
-  //     height: 257.h,
-  //     width: ScreenUtil().screenWidth,
-  //     child: Center(
-  //       child: Text('상단 이미지??', style: TextStyle(color: white)),
-  //     ),
-  //   );
-  // }
 
   Positioned myPage() {
     return Positioned(
@@ -169,7 +156,7 @@ class MyClipper extends CustomClipper<Path> {
     var path = Path();
     path.lineTo(0, size.height - 40);
     path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 40.h);
+        size.width / 2, size.height, size.width, size.height - 35.h);
     path.lineTo(size.width, 0);
     path.close();
     return path;

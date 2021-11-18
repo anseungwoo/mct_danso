@@ -6,8 +6,6 @@ class MainDansoChartlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: LearningSongList(),
-    );
+    return LearningSongList();
   }
 }

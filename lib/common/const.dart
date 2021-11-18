@@ -27,6 +27,7 @@ const Color indiLightGray = Color(0xffCFCFCF);
 
 //메인색깔
 const Color mainColor = Color(0xffEFBE50);
+const Color expColor = Color(0xffFCDF9C);
 //carousel 색깔
 const Color second = Color(0xffE39D00);
 //텝바 색깔 연한갈색
@@ -190,11 +191,19 @@ const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
 const String SILVER_SVG = 'assets/images/ic_1_step.svg';
 const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';
-const String DANSO_TUNING_SVG = 'assets/images/ic_danso_tuning.svg';
-const String INFOR_SVG = 'assets/images/ic_infor.svg';
-const String QandA_SVG = 'assets/images/ic_q&a.svg';
-const String STUDY_SVG = 'assets/images/ic_study.svg';
-const String TUNE_SVG = 'assets/images/ic_tune.svg';
+const String DANSO_TUNING_SVG = 'assets/images/mainImage/ic_danso_tuning.svg';
+const String INFOR_SVG = 'assets/images/mainImage/ic_infor.svg';
+const String QandA_SVG = 'assets/images/mainImage/ic_q&a.svg';
+const String STUDY_SVG = 'assets/images/mainImage/ic_study.svg';
+const String TUNE_SVG = 'assets/images/mainImage/ic_tune.svg';
+const List TEAR_SVG_LIST = [
+  'assets/images/tear/ic_unranked.svg',
+  'assets/images/tear/ic_bronze.svg',
+  'assets/images/tear/ic_silver.svg',
+  'assets/images/tear/ic_gold.svg',
+  'assets/images/tear/ic_platinum.svg',
+  'assets/images/tear/ic_master.svg',
+];
 
 const List Q_AND_A_SUB_CONTANT = [
   '[🐰단소5탄] 단소 소리가 났다 안났다 해요 / 집에선 잘 되는데학교에선 안나요 / 입술 모양을 잘 모르겠어요 / 각도가 헷갈려요',

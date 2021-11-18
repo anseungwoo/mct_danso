@@ -54,10 +54,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            BOLW_SVG,
-            color: unButtonColorOrang,
-          ),
           Container(
             height: 120,
             width: 120,
@@ -73,11 +69,13 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
                   radiusFactor: 0.8,
                   axisLineStyle: AxisLineStyle(
                     thickness: 0.05,
-                    color: const Color.fromARGB(100, 0, 169, 181),
+                    color: Colors.white,
                     thicknessUnit: GaugeSizeUnit.factor,
                   ),
                   pointers: <GaugePointer>[
+                    //239, 190, 80
                     RangePointer(
+                      color: unButtonColorOrang,
                       value: progressValue,
                       width: 0.95,
                       pointerOffset: 0.05,

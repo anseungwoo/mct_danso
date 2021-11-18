@@ -32,3 +32,5 @@ export 'main_danso_learning/fingering.dart';
 export 'base_widgets/toast_message.dart';
 export 'jungganbo/jungganbo_flash.dart';
 export 'main_danso_learning/q_and_a_page.dart';
+export './main/loading_indicator.dart';
+export './main/timer_widget.dart';

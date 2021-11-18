@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
-import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/main/loading_indicator.dart';
 import 'package:project_danso/widgets/test_dialog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 

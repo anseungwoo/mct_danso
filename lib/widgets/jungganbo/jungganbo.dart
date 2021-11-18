@@ -74,33 +74,26 @@ Widget jungContainer(double height, JungganboController controller, int i,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
-          child: krState
-              ? Text(
-                  testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
-                  style: TextStyle(
-                      fontSize: heightNumber == 12
-                          ? textEightSize.sp
-                          : textBasicSize.sp,
-                      color: controller.line == i && controller.row == j
-                          ? controller.gameState
-                              ? Colors.blue
-                              : Colors.red
-                          : Colors.black),
-                )
-              : Text(
-                  testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
-                  style: TextStyle(
-                      fontSize: heightNumber == 12
-                          ? textEightSize.sp
-                          : textBasicSize.sp,
-                      color: controller.line == i && controller.row == j
-                          ? controller.gameState
-                              ? Colors.blue
-                              : Colors.red
-                          : Colors.black),
-                ),
-        ),
+            child: krState
+                ? changeTextColor(testJungGanBo, i, j, heightNumber, controller,
+                    testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter())
+                : changeTextColor(testJungGanBo, i, j, heightNumber, controller,
+                    testJungGanBo.sheet[i].yulmyeongs[j].toHangeul())),
       ],
     ),
+  );
+}
+
+Text changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
+    JungganboController controller, String text) {
+  return Text(
+    text,
+    style: TextStyle(
+        fontSize: heightNumber == 12 ? textEightSize.sp : textBasicSize.sp,
+        color: controller.line == i && controller.row == j
+            ? controller.gameState
+                ? Colors.blue
+                : Colors.red
+            : Colors.black),
   );
 }

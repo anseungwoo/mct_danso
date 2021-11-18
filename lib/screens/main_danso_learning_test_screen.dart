@@ -6,9 +6,9 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 import 'package:project_danso/screens/screens.dart';
-import 'package:project_danso/widgets/loading_indicator.dart';
+import 'package:project_danso/widgets/main/loading_indicator.dart';
 import 'package:project_danso/widgets/test_dialog.dart';
-import 'package:project_danso/widgets/timer_widget.dart';
+import 'package:project_danso/widgets/main/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoLearningTestScreen extends StatefulWidget {
