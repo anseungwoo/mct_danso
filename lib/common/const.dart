@@ -28,6 +28,9 @@ const Color indiLightGray = Color(0xffCFCFCF);
 //메인색깔
 const Color mainColor = Color(0xffEFBE50);
 const Color expColor = Color(0xffFCDF9C);
+const Color buttonColorYellow = Color(0xffFFB85E);
+const Color graColorYellow = Color(0xffFFFBDE);
+
 //carousel 색깔
 const Color second = Color(0xffE39D00);
 //텝바 색깔 연한갈색
@@ -108,27 +111,21 @@ const String DANSO_CATCH2 =
 const String DANSO_CATCH_TITLE = '단소의 기본';
 const String DANSO_CATCH2_TITLE = '단소 기초 소리 내기';
 
-const String DANSO_SUBCATCH = '단소잡는부분을 설명을 적어주세요';
 //단소연주자세 설명
-const String PALYPOS = '단소연주자세의 설명을 적어주세요';
-//입술모양 설명
+
 const String SOUND =
     '단소라는 악기는 음정을 유지하기가 상당히 힘듭니다. 이 악기의 소리를 크게 또는 작게 불되 음정을 맞추는 방법을 익혀봅시다.';
 const String SOUND_TITLE = '단소 소리조절';
 const String SOUND_HL = '단소에서 높은 음, 낮은 음이 잘 안나는 학생들을 위한 영상입니다.';
 const String SOUND_HL_TITLE = '단소 소리 높낮이';
-//호흡식 설명
 const String BREATH =
     '단소 소리가 여전히 안 나는 학생들을 위한 영상입니다.입술위치, 떠는 소리 내는 법, 호흡법과 관련된 내용이 담겨있습니다.';
 const String BREATH_TITLE = '단소 호흡법';
 const String BREATH2 =
     '단소를 불다 보면 호흡에 문제가 생겨서 완주하는데 어려움을 겪는분들이 많습니다. 그런 분들을 위한 장기적인 호흡 연습 방법에 관한내용입니다.';
 const String BREATH2_TITLE = '복식호흡';
-//율명 설명
-const String SHEET = '율명의 설명을 적어주세요';
-const String SUBSHEET = '율명의 추가 설명을 적어주세요';
 
-//단소메인페이지 내용
+//단소 메인페이지 내용
 //단소알아보기 설명
 const String LOOK = '단소의 역사, 종류에 대해 알아볼까요?';
 //운지법 익히기 설명
@@ -149,7 +146,7 @@ const String P_DANSO_URL = '_epwxDTxa3A';
 const String K_DANSO_URL = 'DyRm_Hxy0xo';
 const String H_DANSO_URL = '5KLsjhz9jMI';
 const String DANSO_PALYPOS_URL = 'bVE1E7FLhS4';
-//
+//아래쪽은 선생님들url
 const String DANSO_LIPS_URL = 'Cuc3e0v1Dc0';
 const String DANSO_LIPS2_URL = 'aoqaQKH3iZg';
 const String DANSO_BREATH_URL = 'opQtzo9zXJE';
@@ -183,19 +180,32 @@ const List<String> DANSO_SVG_LIST = [
   'assets/images/ic_danso.svg',
   'assets/images/ic_danso.svg'
 ];
+//main svg 기준음잡디 메인페이지 아이콘
 const String HOME_SVG = 'assets/images/ic_home.svg';
 const String BOLW_SVG = 'assets/images/ic_blow.svg';
 const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
-const String SILVER_SVG = 'assets/images/ic_1_step.svg';
+const List STEP_SVG = [
+  "",
+  'assets/images/step/ic_step_1.svg',
+  'assets/images/step/ic_step_2.svg',
+  'assets/images/step/ic_step_3.svg',
+  'assets/images/step/ic_step_4.svg',
+];
+const List STAR_SVG = [
+  'assets/images/star/ic_star_1.svg',
+  'assets/images/star/ic_star_2.svg',
+  'assets/images/star/ic_star_3.svg',
+];
 const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';
 const String DANSO_TUNING_SVG = 'assets/images/mainImage/ic_danso_tuning.svg';
 const String INFOR_SVG = 'assets/images/mainImage/ic_infor.svg';
 const String QandA_SVG = 'assets/images/mainImage/ic_q&a.svg';
 const String STUDY_SVG = 'assets/images/mainImage/ic_study.svg';
 const String TUNE_SVG = 'assets/images/mainImage/ic_tune.svg';
+//티어별 svg
 const List TEAR_SVG_LIST = [
   'assets/images/tear/ic_unranked.svg',
   'assets/images/tear/ic_bronze.svg',
@@ -204,7 +214,15 @@ const List TEAR_SVG_LIST = [
   'assets/images/tear/ic_platinum.svg',
   'assets/images/tear/ic_master.svg',
 ];
-
+const List TEAR_NAME = [
+  '단소 입문자',
+  '단소 초급자',
+  '단소 중급자',
+  '단소 상급자',
+  '단소 숙련자',
+  '단소 마스터',
+];
+//질문하기 페이지 부분
 const List Q_AND_A_SUB_CONTANT = [
   '[🐰단소5탄] 단소 소리가 났다 안났다 해요 / 집에선 잘 되는데학교에선 안나요 / 입술 모양을 잘 모르겠어요 / 각도가 헷갈려요',
   '모든 손가락을 다 뗀 운지(태)는 소리가 잘 나는데 구먹을 막으면 소리가 안 나는 학생들을 위한 교육 내용을 담은 영상입니다',

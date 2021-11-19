@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import 'package:hexagon/hexagon.dart';
 import '../sheet_test.dart';
 
 class LearningSongList extends StatelessWidget {
@@ -42,7 +41,7 @@ class LearningSongList extends StatelessWidget {
                           iconSize: 50,
                         ),
                         Spacer(flex: 1),
-                        SvgPicture.asset(SILVER_SVG),
+                        SvgPicture.asset(STEP_SVG[controller.currentLevel]),
                         Spacer(flex: 1),
                         IconButton(
                           onPressed: () {
@@ -137,7 +136,7 @@ class LearningSongList extends StatelessWidget {
                               },
                               child: Container(
                                   decoration: BoxDecoration(
-                                    color: mediumGray,
+                                    color: buttonColorYellow,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5.0)),
                                   ),

@@ -58,7 +58,7 @@
             "song_diff": 2,
             "song_sheet": "Y|o|o#Y|o|o#Y|o|Y#J|o|o#t|o|o#t|o|o#t|o|t#h|o|o#Y|o|o#Y|o|o#Y|o|Y#J|o|o#t|o|o#t|o|o#t|o|t#h|o|o#Y|o|Y#Y|o|Y#Y|o|Y#J|o|o#t|o|t#t|o|t#t|o|t#h|o|o#Y|o|Y#Y|o|Y#Y|o|Y#J|o|o#t|o|t#t|o|t#t|o|t#h|o|o#Y|o|Y#Y|o|Y#Y|o|Y#J|o|o#t|o|t#t|o|t#t|o|t#h|o|o#Y|o|Y#Y|o|Y#Y|o|Y#J|o|o#t|o|t#t|o|t#t|o|t#h|o|o#",
             "song_sheet_vertical":6,
-            "song_sheet_horizontal":4
+            "song_sheet_horizontal":12
         },
         {
             "song_title": "아리랑",
@@ -87,8 +87,8 @@
             "song_like": "false",
             "song_diff": 3,
             "song_sheet": "YY-|JYJ|t#YY-|JYJ|t#YY-|JYJ|tht#J|--o|Y-J#tt-|h-m|ym#tt-|h-J|t-h#m|mhm|y-j#y|--m|y#y-j|y-m|y#y-j|y-m|y#YY-|JYJ|tht#J|--o|Y-J#tt-|h-m|ym-#tt-|h-J|t-h#m|mhm|y-j#y|--m|y#",
-            "song_sheet_vertical":8,
-            "song_sheet_horizontal":4
+            "song_sheet_vertical":6,
+            "song_sheet_horizontal":3
         },
         {
             "song_title": "도라지타령",
@@ -186,9 +186,9 @@
             "song_jangdan": "세마치장단",
             "song_like": "false",
             "song_diff": 4,
-            "song_sheet": "t|t|o|Y|Y|o|Y|Y|o|Y|M|o|Y|Y|o|Y|M|o|Y|Y|J|t|t|o|Y|H|o|H|H|M|M|Y|o|Y|M|o|M|Y|o|Y|M|o|Y|Y|J|t|t|o|Y|H|o|H|H|M|M|Y|o|Y|M|o|M|Y|o|Y|M|o|Y|Y|J|t|t|o|t|t|o|Y|Y|o|Y|Y|o|Y|J|o|Y|Y|o|Y|M|o|Y|Y|J|t|t|o|",
+            "song_sheet": "t|t|o#Y|Y|o#Y|Y|o#Y|M|o#Y|Y|o#Y|M|o#Y|Y|J#t|t|o#Y|H|o#H|H|M#M|Y|o#Y|M|o#M|Y|o#Y|M|o#Y|Y|J#t|t|o#Y|H|o#H|H|M#M|Y|o#Y|M|o#M|Y|o#Y|M|o#Y|Y|J#t|t|o#t|t|o#Y|Y|o#Y|Y|o#Y|J|o#Y|Y|o#Y|M|o#Y|Y|J#t|t|o#",
             "song_sheet_vertical":6,
-            "song_sheet_horizontal":6
+            "song_sheet_horizontal":8
         },
         {
             "song_title": "제주도 타령",

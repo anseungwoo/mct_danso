@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -45,10 +46,9 @@ class ResultScore extends StatelessWidget {
               child: Padding(
             padding: const EdgeInsets.all(basicPadding),
             child: Container(
-                color: lightGray,
-                width: 120.w,
+                width: 150.w,
                 height: 120.h,
-                child: Icon(Icons.add_chart_sharp)),
+                child: SvgPicture.asset(STAR_SVG[0])),
           )),
           Text(
             '점수(점수)',

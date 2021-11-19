@@ -247,7 +247,11 @@ class _MainDansoLearningTestScreenState
           SizedBox(
             width: 7.sp,
           ),
-          Text('왼손'),
+          InkWell(
+              onTap: () {
+                Get.to(ResultScore());
+              },
+              child: Text('왼손')),
           SizedBox(
             width: 7.sp,
           ),

@@ -23,12 +23,12 @@ class MyPageScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.all(20),
                 child: SvgPicture.asset(
-                  TEAR_SVG_LIST[0],
+                  TEAR_SVG_LIST[5],
                   width: 100.w,
                   height: 100.h,
                 )),
             Text(
-              "단소 초급자",
+              TEAR_NAME[5],
               style: TextStyle(fontSize: textEightSize, fontWeight: bold),
             ),
             Column(
