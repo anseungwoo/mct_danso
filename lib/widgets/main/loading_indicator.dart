@@ -25,7 +25,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
     _timer = Timer.periodic(const Duration(milliseconds: 50), (Timer _timer) {
       setState(() {
         progressValue++;
-        if (progressValue == 50) {
+        if (progressValue == 75) {
           _timer.cancel();
           dansoSoundLearningController.changeSoundTuningState();
           // dansoSoundLearningController.stopAdjust();
@@ -42,7 +42,35 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
     dansoSoundLearningController.soundTuningState = false;
     dansoSoundLearningController.isAdjust = false;
     // dansoSoundLearningController.detector.stopRecording();
+
+    _timer2.cancel();
     super.dispose();
+  }
+
+  late Timer _timer2;
+  int _start = 4;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    const oneSec = Duration(milliseconds: 1000);
+    _timer2 = Timer.periodic(oneSec, (Timer timer) {
+      if (_start == 0) {
+        setState(() {
+          timer.cancel();
+          Navigator.pop(context);
+        });
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
   }
 
   @override
@@ -61,7 +89,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
               axes: <RadialAxis>[
                 RadialAxis(
                   minimum: 0,
-                  maximum: 50,
+                  maximum: 75,
                   showLabels: false,
                   showTicks: false,
                   startAngle: 270,
@@ -91,7 +119,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("5초간 단소로 태(汰) 불어주세요."),
+            child: Text("$_start초간 단소로 태(汰) 불어주세요."),
           ),
         ],
       ),
