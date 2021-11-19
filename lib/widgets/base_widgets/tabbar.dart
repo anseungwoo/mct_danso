@@ -11,11 +11,11 @@ TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
         width: 1.5,
-        color: tapBarColor,
+        color: buttonColorOrang,
       ),
       insets: EdgeInsets.symmetric(horizontal: basicPadding),
     ),
-    unselectedLabelColor: textHiddenGray,
+    unselectedLabelColor: unSelectColor,
     labelColor: tapBarColor,
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,

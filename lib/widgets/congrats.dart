@@ -40,16 +40,13 @@ class ResultScore extends StatelessWidget {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: 50.h),
           Center(
-              child: Padding(
-            padding: const EdgeInsets.all(basicPadding),
-            child: Container(
-                width: 150.w,
-                height: 120.h,
-                child: SvgPicture.asset(STAR_SVG[0])),
-          )),
+              child: Container(
+                  width: 250.w,
+                  height: 250.h,
+                  child: SvgPicture.asset(STAR_SVG[0]))),
           Text(
             '점수(점수)',
             style: TextStyle(

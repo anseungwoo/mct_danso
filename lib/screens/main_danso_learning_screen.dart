@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -19,12 +20,12 @@ class MainDansoLearningScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: dansoLearningTabBarView(),
+        body: dansoLearningTabBarView(context),
       ),
     );
   }
 
-  TabBarView dansoLearningTabBarView() {
+  TabBarView dansoLearningTabBarView(BuildContext context) {
     return TabBarView(
       physics: NeverScrollableScrollPhysics(),
       children: [
@@ -58,11 +59,11 @@ class MainDansoLearningScreen extends StatelessWidget {
         ),
         CarouselListWidget(
           carouselList: [
-            fingering(),
-            fingering(),
-            fingering(),
-            fingering(),
-            fingering(),
+            fingering(context),
+            TestBlankPage(),
+            TestBlankPage(),
+            TestBlankPage(),
+            TestBlankPage(),
           ],
         )
       ],

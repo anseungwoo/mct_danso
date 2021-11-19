@@ -36,12 +36,15 @@ class QuestionsScreen extends StatelessWidget {
                           color: grayBlackColor,
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(5)),
-                      child: Center(
-                          child: Text(
-                        Q_AND_A_TITLE[index],
-                        style:
-                            TextStyle(color: white, fontSize: textEightSize.sp),
-                      )),
+                      child: Padding(
+                        padding: const EdgeInsets.all(svenPadddig),
+                        child: Text(
+                          Q_AND_A_TITLE[index],
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              color: white, fontSize: textEightSize.sp),
+                        ),
+                      ),
                     )),
               );
             }),

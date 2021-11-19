@@ -146,7 +146,7 @@ class LearningSongList extends StatelessWidget {
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
                                       children: [
-                                        SvgPicture.asset(SILVER_LIST_SVG),
+                                        SvgPicture.asset(COUNT_LIST_SVG[index]),
                                         SizedBox(width: 15.w),
                                         Text('${item.songTitle}',
                                             style: TextStyle(color: white)),

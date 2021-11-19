@@ -196,9 +196,6 @@ class _MainDansoLearningTestScreenState
                       : controller.soundTuningState
                           ? null
                           : () {
-                              controller.playTuningState
-                                  ? null
-                                  : Get.dialog(mainDansoCautionDialog());
                               controller.changePlayState();
                               controller.isRecording
                                   ? controller.stopRecording()
@@ -227,12 +224,15 @@ class _MainDansoLearningTestScreenState
   }
 
   Widget dansoImage(DansoSoundLearningController controller) {
-    return Center(
-      child: Column(
-        children: [
-          // Text("${controller.userInputForAdjust}"),
-          SvgPicture.asset(DANSO_SVG_LIST[controller.soundListUpDown]),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Center(
+        child: Column(
+          children: [
+            // Text("${controller.userInputForAdjust}"),
+            SvgPicture.asset(DANSO_SVG_LIST[controller.soundListUpDown]),
+          ],
+        ),
       ),
     );
   }
@@ -255,7 +255,7 @@ class _MainDansoLearningTestScreenState
           SizedBox(
             width: 7.sp,
           ),
-          CircleAvatar(radius: 14, backgroundColor: Colors.grey),
+          CircleAvatar(radius: 14, backgroundColor: leftColor),
           SizedBox(width: 7.sp),
           Text('오른손'),
         ],

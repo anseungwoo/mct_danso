@@ -91,6 +91,8 @@ const Color buttonColorOrang = Color(0xffF19929);
 const Color unButtonColorOrang = Color(0xffFEC782);
 const Color matchColor = Color(0xff00A8F2);
 const Color unMatchColor = Color(0xffFE0000);
+const Color leftColor = Color(0xffE6C387);
+const Color unSelectColor = Color(0xffFBCF98);
 
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
@@ -151,7 +153,7 @@ const String DANSO_LIPS_URL = 'Cuc3e0v1Dc0';
 const String DANSO_LIPS2_URL = 'aoqaQKH3iZg';
 const String DANSO_BREATH_URL = 'opQtzo9zXJE';
 const String DANSO_BREATH2_URL = 'k-PYlJKY8Uc';
-const String DANSO_SOUND_URL = 'CIBSc8cgUu0';
+const String DANSO_SOUND_URL = 'GiFWeblNJc';
 const String DANSO_SOUND_HL_URL = 'CIBSc8cgUu0';
 
 //1~5단계 연습 리스트
@@ -169,16 +171,16 @@ const String level5 =
     "t|h|m#y|j|^#j|y|m#h|t|J#Y|M|H#T|o|^#T|H|M#Y|J|^#j|y|m#y|m|h#t|J|Y#M|o|^#Y|M|H#M|H|T#H|M|Y#J|o|^#";
 //에셋(assets) 가져오기
 const List<String> DANSO_SVG_LIST = [
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg',
-  'assets/images/ic_danso.svg'
+  'assets/images/danso_code/ic_jung.svg',
+  'assets/images/danso_code/ic_lim.svg',
+  'assets/images/danso_code/ic_mu.svg',
+  'assets/images/danso_code/ic_hwang.svg',
+  'assets/images/danso_code/ic_tea.svg',
+  'assets/images/danso_code/ic_jung.svg',
+  'assets/images/danso_code/ic_lim.svg',
+  'assets/images/danso_code/ic_mu.svg',
+  'assets/images/danso_code/ic_hwang.svg',
+  'assets/images/danso_code/ic_tea.svg',
 ];
 //main svg 기준음잡디 메인페이지 아이콘
 const String HOME_SVG = 'assets/images/ic_home.svg';
@@ -187,6 +189,7 @@ const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
+//연주곡 익히기부분
 const List STEP_SVG = [
   "",
   'assets/images/step/ic_step_1.svg',
@@ -194,11 +197,22 @@ const List STEP_SVG = [
   'assets/images/step/ic_step_3.svg',
   'assets/images/step/ic_step_4.svg',
 ];
+const List COUNT_LIST_SVG = [
+  'assets/images/step/ic_music_list_1.svg',
+  'assets/images/step/ic_music_list_2.svg',
+  'assets/images/step/ic_music_list_3.svg',
+  'assets/images/step/ic_music_list_4.svg',
+  'assets/images/step/ic_music_list_5.svg',
+  'assets/images/step/ic_music_list_6.svg',
+  'assets/images/step/ic_music_list_7.svg',
+];
+//노래끝난후 축하부분
 const List STAR_SVG = [
   'assets/images/star/ic_star_1.svg',
   'assets/images/star/ic_star_2.svg',
   'assets/images/star/ic_star_3.svg',
 ];
+//메인 아이콘
 const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';
 const String DANSO_TUNING_SVG = 'assets/images/mainImage/ic_danso_tuning.svg';
 const String INFOR_SVG = 'assets/images/mainImage/ic_infor.svg';
@@ -214,6 +228,7 @@ const List TEAR_SVG_LIST = [
   'assets/images/tear/ic_platinum.svg',
   'assets/images/tear/ic_master.svg',
 ];
+
 const List TEAR_NAME = [
   '단소 입문자',
   '단소 초급자',
