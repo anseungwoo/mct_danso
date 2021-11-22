@@ -67,6 +67,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: basicPadding),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
                     // height: 30.h,
@@ -259,20 +260,21 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   GetBuilder<JungganboController>(
                       init: jungganboController,
                       builder: (jungcontroller) {
-                        return Container(
-                          width: (jungWidth.w + 20.w) * 4.w,
-                          height: jungEightHeight.w * 9.w,
-                          color: white,
-                          child: Stack(
-                            children: [
-                              jungganbo(widget.sheetVertical, jungcontroller,
-                                  testJungGanBo, controller.krChanges),
-                              jungganboFromFlash(widget.sheetVertical,
-                                  jungcontroller, testJungGanBo),
-                              jungganboScreen(
-                                  widget.sheetVertical, jungcontroller),
-                            ],
-                          ),
+                        return Stack(
+                          children: [
+                            Container(
+                              color: white,
+                              child: jungganbo(
+                                  widget.sheetVertical,
+                                  jungcontroller,
+                                  testJungGanBo,
+                                  controller.krChanges),
+                            ),
+                            jungganboFromFlash(widget.sheetVertical,
+                                jungcontroller, testJungGanBo),
+                            jungganboScreen(
+                                widget.sheetVertical, jungcontroller),
+                          ],
                         );
                       }),
                 ],

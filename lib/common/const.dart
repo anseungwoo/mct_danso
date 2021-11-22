@@ -97,14 +97,33 @@ const Color unSelectColor = Color(0xffFBCF98);
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
 const String HISTORY =
-    '단소의 역사관한설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명설명';
-const String SUBHISTORY = '단소의 역사추가 설명';
+    '단소가 역사책에 기록된 것은 그렇게 오래 되지 않았지만, 조상들의 삶 속에서 널리 연주되었던 악기 입니다.';
+const String HISTORY_TITLE = '단소의 역사';
 //평조 설명
-const String PDANSO = '평조 단소 설명을 적어주세요';
-//경제 설명
-const String KDANSO = '경제 단소 설명을 적어주세요';
-//향조 설명
-const String HDANSO = '향조 단소 설명을 적어주세요';
+const String DANSO_KIND =
+    '단소는 경제단소와 평조단소로 나누어 집니다. 경제단소는 표준으로 사용하는 단소이고, 평조단소는 경제단소보다 길고 전체적으로 음정이4도 낮습니다.';
+const String DANSO_KIND_TITLE = '단소의  종류';
+
+const String DANSO_PALY =
+    '단소를 연주할 때  운지법(손가락 사용법)의 유의사항을 알아보고, 올바른 방법으로  연주 해 봅시다.';
+
+const String DANSO_PALY_TITLE = '단소 연주시 운지법';
+
+const String DANSO_UNM =
+    '단소를 잘 불기 위해서는 입김의 세기, 양, 속도를 어떻게 해야 하는지 알아 봅시다. 단소의 음들을 어떻게 분류할 수 있는지 알아 보고 연주 해 봅시다.';
+
+const String DANSO_UNM_TITLE = '단소 음의 성질';
+
+const String DANSO_SAME_UNM =
+    '단소 연주를 할 때, 같은 음이 반복되는 경우가 있습니다. 입김을 끊어서 연주 하지 않으면서 같은 음을 구분하여 연주 하는 방법을 익혀 봅시다.';
+
+const String DANSO_SAME_UNM_TITLE = '단소의 동일음 주법';
+
+const String DANSO_UNM_TEST =
+    '단소 연주를 잘 하기 위해 연습하는 방법을 알아 봅시다. 차례가기, 두음 뛰어 가기, 옥타브 연습 등 여러 가지 방법으로 연습 해 봅시다.';
+
+const String DANSO_UNM_TEST_TITLE = '단소음 연습 방법';
+
 //단소잡는부분 설명
 const String DANSO_CATCH =
     '단소 운지법, 율명, 악기 잡는 법, 중임무황태의 기본적인 소리내는 방법에 관한 영상입니다.';
@@ -143,18 +162,19 @@ const String VOLUMECONTROL = '단소를 불기 전에 필수로 소리를 맞춰
 //youtube URL style
 const double youtubeWidth = 360;
 const double youtubeHeight = 250;
-const String DANSO_HISTORY_URL = 'Fc9fVi-_DWE';
-const String P_DANSO_URL = '_epwxDTxa3A';
-const String K_DANSO_URL = 'DyRm_Hxy0xo';
-const String H_DANSO_URL = '5KLsjhz9jMI';
-const String DANSO_PALYPOS_URL = 'bVE1E7FLhS4';
+const String DANSO_HISTORY_URL = 'j_XrCCOwBe8';
+const String DANSO_KIND_URL = 'AvH2NGdYLjk';
+const String DANSO_PALY_URL = 'hogSau50f64';
+const String DANSO_UNM_URL = 'rg5oT4VLA14';
+const String DANSO_SAME_UNM_TITLE_URL = 'o8MulHBatrM';
+const String DANSO_UNM_TEST_URL = 'C-utyYK-FDI';
 //아래쪽은 선생님들url
 const String DANSO_LIPS_URL = 'Cuc3e0v1Dc0';
 const String DANSO_LIPS2_URL = 'aoqaQKH3iZg';
 const String DANSO_BREATH_URL = 'opQtzo9zXJE';
 const String DANSO_BREATH2_URL = 'k-PYlJKY8Uc';
-const String DANSO_SOUND_URL = 'GiFWeblNJc';
-const String DANSO_SOUND_HL_URL = 'CIBSc8cgUu0';
+const String DANSO_SOUND_URL = 'CIBSc8cgUu0';
+const String DANSO_SOUND_HL_URL = 'GiFWeblNJc8';
 
 //1~5단계 연습 리스트
 // YulmyeongNote(Yulmyeong.tae,ScaleStatus.origin));//  율명하고 스캐일맞으면 참거짓 판명을해준다
