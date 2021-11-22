@@ -72,7 +72,10 @@ class MyPageLook extends StatelessWidget {
                                       Get.dialog(myPageDeleteDialog());
                                     }
                                   },
-                                  child: SvgPicture.asset(SEE_MORE_SVG),
+                                  child: Container(
+                                      width: 30.w,
+                                      height: 30.h,
+                                      child: SvgPicture.asset(SEE_MORE_SVG)),
                                   itemBuilder: (context) => [
                                     PopupMenuItem(
                                       child: Text('공유하기'),

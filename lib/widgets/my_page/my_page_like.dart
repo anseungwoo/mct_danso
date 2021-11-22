@@ -43,7 +43,8 @@ class MyPageLike extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: textEightSize.sp, color: white),
                           ),
-                          GestureDetector(
+                          InkWell(
+                            radius: 40.r,
                             onTap: () {
                               likeSongController.updateLikeSongList(
                                 songId: item.songId,

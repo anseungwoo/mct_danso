@@ -151,7 +151,8 @@ class LearningSongList extends StatelessWidget {
                                         Text('${item.songTitle}',
                                             style: TextStyle(color: white)),
                                         Spacer(flex: 1),
-                                        GestureDetector(
+                                        InkWell(
+                                          radius: 40.r,
                                           onTap: () {
                                             controller.updateLikeSongList(
                                               songId: item.songId,
