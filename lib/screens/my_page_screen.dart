@@ -43,7 +43,7 @@ class MyPageScreen extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 5),
                   width: 330.w,
-                  height: 7.h,
+                  height: 5.h,
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     child: LinearProgressIndicator(
@@ -55,7 +55,6 @@ class MyPageScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10.h),
             myPageButton(Icon(Icons.local_fire_department), "내기록",
                 MyPageRecord(songname: '곡이름')),
             myPageButton(
