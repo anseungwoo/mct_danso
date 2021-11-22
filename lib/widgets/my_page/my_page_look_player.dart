@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class _VideoAppState extends State<VideoApp> {
           },
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: buttonColorOrang,
           onPressed: () {
             setState(() {
               videoPlayerController.value.isPlaying

@@ -22,7 +22,7 @@ Widget mainDansoCautionDialog() {
               padding: const EdgeInsets.all(basicPadding),
               child: SvgPicture.asset(
                 WARNING_SVG,
-                color: unButtonColorOrang,
+                color: buttonColorYellow,
               ),
             ),
             Text(

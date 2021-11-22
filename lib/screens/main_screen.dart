@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -19,73 +20,96 @@ class MainScreen extends StatelessWidget {
         snackBar: SnackBar(
           content: Text('한번 더 누르면 앱이 종료됩니다.'),
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Stack(
-                children: [
-                  topImage(context),
-                  myPage(),
-                ],
-              ),
-              _homeMenuButton(
-                  assetName: INFOR_SVG,
-                  title: '단소 알아보기',
-                  contant: LOOK,
-                  page: MainDansoHistoryKindScreen()),
-              _homeMenuButton(
-                  assetName: DANSO_TUNING_SVG,
-                  title: '내 단소 기준음 잡기',
-                  contant: VOLUMECONTROL,
-                  page: mainDansoCautionDialog(),
-                  dialog: true),
-              _homeMenuButton(
-                  assetName: STUDY_SVG,
-                  title: '운지법 익히기',
-                  page: learningDialog(),
-                  contant: LEARN,
-                  dialog: true),
-              _homeMenuButton(
-                  assetName: TUNE_SVG,
-                  title: '연주곡 익히기',
-                  contant: PLAYLEARN,
-                  page: MainDansoChartlistScreen()),
-              _homeMenuButton(
-                  assetName: QandA_SVG,
-                  title: 'Q&A',
-                  contant: QUESTIONS,
-                  page: QuestionsScreen()),
-            ],
-          ),
-        ),
+        child: GetBuilder<MainScreenController>(
+            init: MainScreenController(),
+            builder: (controller) {
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Stack(
+                      children: [
+                        topImage(controller),
+                        imageChange(controller),
+                        myPage(),
+                      ],
+                    ),
+                    SizedBox(height: 10.h),
+                    _homeMenuButton(
+                        assetName: INFOR_SVG,
+                        title: '단소 알아보기',
+                        contant: LOOK,
+                        page: MainDansoHistoryKindScreen()),
+                    _homeMenuButton(
+                        assetName: DANSO_TUNING_SVG,
+                        title: '내 단소 기준음 잡기',
+                        contant: VOLUMECONTROL,
+                        page: mainDansoCautionDialog(),
+                        dialog: true),
+                    _homeMenuButton(
+                        assetName: STUDY_SVG,
+                        title: '운지법 익히기',
+                        page: learningDialog(),
+                        contant: LEARN,
+                        dialog: true),
+                    _homeMenuButton(
+                        assetName: TUNE_SVG,
+                        title: '연주곡 익히기',
+                        contant: PLAYLEARN,
+                        page: MainDansoChartlistScreen()),
+                    _homeMenuButton(
+                        assetName: QandA_SVG,
+                        title: 'Q&A',
+                        contant: QUESTIONS,
+                        page: QuestionsScreen()),
+                  ],
+                ),
+              );
+            }),
       ),
     );
   }
 
-  Container topImage(BuildContext context) {
+  Widget imageChange(MainScreenController controller) {
+    return Positioned(
+        top: 90,
+        left: 50,
+        child: Container(
+          width: 100.w,
+          height: 100.h,
+          child: InkWell(
+            onTap: () {
+              controller.SvgStateChange();
+            },
+            child: Text(
+              "",
+              style: TextStyle(color: textBlack),
+            ),
+          ),
+        ));
+  }
+
+  Container topImage(MainScreenController controller) {
     return Container(
         height: 250.h,
         width: ScreenUtil().screenWidth,
-        child: ClipPath(
-            clipper: MyClipper(),
-            child: Container(
-              margin: EdgeInsets.only(bottom: 0),
-              height: ScreenUtil().screenHeight * 0.1,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: appBarColor,
-              ),
-            )));
+        child: controller.svgState
+            ? SvgPicture.asset(MAIN_ILL2_SVG)
+            : SvgPicture.asset(MAIN_ILL1_SVG));
   }
 
   Positioned myPage() {
     return Positioned(
-      top: 150.h,
-      right: 150.w,
+      top: 190.h,
+      right: 100.w,
       child: InkWell(
         onTap: () => Get.to(MyPageScreen()),
         child: Container(
+          width: 150.w,
+          height: 30.h,
+          decoration: BoxDecoration(
+              color: buttonColorYellow,
+              borderRadius: BorderRadius.circular(40)),
           child: Center(
             child: Text(
               '마이페이지',

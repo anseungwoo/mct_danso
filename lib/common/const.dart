@@ -209,6 +209,9 @@ const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
+const String MAIN_ILL1_SVG = 'assets/images/mainImage/main_illeoseuteu(1).svg';
+const String MAIN_ILL2_SVG = 'assets/images/mainImage/main_illeoseuteu(2).svg';
+
 //마이 페이지 아이콘
 const String BOOKMARK_SVG = 'assets/images/my_page/ic_bookmark.svg';
 const String GRAPH_SVG = 'assets/images/my_page/ic_graph.svg';
