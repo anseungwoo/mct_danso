@@ -12,7 +12,7 @@ class _VideoAppState extends State<VideoApp> {
   late VideoPlayerController videoPlayerController;
   late Future<void> videoPlayerFuture;
   final File file = File(
-      '/data/user/0/com.example.project_danso/cache/REC2329971791378890848.mp4');
+      '/data/user/0/com.mct.projectDanso1/cache/REC2329971791378890848.mp4');
 
   @override
   void initState() {

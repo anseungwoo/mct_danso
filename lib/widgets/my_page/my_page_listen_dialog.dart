@@ -7,7 +7,7 @@ import 'package:project_danso/controllers/controllers.dart';
 Widget myPageListenDialog() {
   var player = AudioPlayer();
   final _recording =
-      '/storage/emulated/0/Android/data/com.example.project_danso/files/flutter_audio_recorder_1635144151751.wav';
+      '/storage/emulated/0/Android/data/com.mct.projectDanso1/files/flutter_audio_recorder_1635144151751.wav';
   void _play() {
     player.play(_recording, isLocal: true);
   }
