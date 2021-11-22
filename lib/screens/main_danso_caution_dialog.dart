@@ -33,7 +33,7 @@ Widget mainDansoCautionDialog() {
             Text("단소의 바람이 마이크로 들어가지 않게 해 주세요"),
             SizedBox(height: 5.h),
             Text("소음이 적은 장소에서 연주해 주세요"),
-            SizedBox(height: 30.h),
+            SizedBox(height: 15.h),
             Padding(
               padding: const EdgeInsets.only(left: 37, right: 37),
               child: Row(

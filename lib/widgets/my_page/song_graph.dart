@@ -40,9 +40,8 @@ class SongGraph extends StatelessWidget {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                grayLightColor,
-                                grayWeithColor,
-                                grayBlackColor
+                                graColorYellow,
+                                logoColor,
                               ])),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(

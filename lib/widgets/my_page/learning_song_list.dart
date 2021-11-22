@@ -151,19 +151,21 @@ class LearningSongList extends StatelessWidget {
                                         Text('${item.songTitle}',
                                             style: TextStyle(color: white)),
                                         Spacer(flex: 1),
-                                        IconButton(
-                                          onPressed: () {
+                                        GestureDetector(
+                                          onTap: () {
                                             controller.updateLikeSongList(
                                               songId: item.songId,
                                               songLike: item.songLike,
                                               exerNum: controller.currentLevel,
                                             );
                                           },
-                                          icon: Icon(Icons.favorite),
-                                          color: item.songLike == 'true'
-                                              ? Colors.red
-                                              : white,
-                                        )
+                                          child: SvgPicture.asset(
+                                            BOOKMARK_SVG,
+                                            color: item.songLike == 'true'
+                                                ? Colors.red
+                                                : white,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   )),

@@ -209,6 +209,20 @@ const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
+//마이 페이지 아이콘
+const String BOOKMARK_SVG = 'assets/images/my_page/ic_bookmark.svg';
+const String GRAPH_SVG = 'assets/images/my_page/ic_graph.svg';
+const String MP3_SVG = 'assets/images/my_page/ic_mp3.svg';
+const String MY_MUSIC_SVG = 'assets/images/my_page/ic_my_music.svg';
+const String PLAY_STOP_SVG = 'assets/images/my_page/ic_play_stop.svg';
+const String PLAY_SVG = 'assets/images/my_page/ic_play.svg';
+const String MY_RECORD_SVG = 'assets/images/my_page/ic_my_record.svg';
+const String SEE_MORE_SVG = 'assets/images/my_page/ic_see_more.svg';
+const String VIDEO_SVG = 'assets/images/my_page/ic_video.svg';
+//녹음 녹화 아이콘
+const String RECORD_SVG = 'assets/images/ic_record.svg';
+const String TRANSCRIPTION_SVG = 'assets/images/ic_transcription.svg';
+
 //연주곡 익히기부분
 const List STEP_SVG = [
   "",
@@ -233,7 +247,7 @@ const List STAR_SVG = [
   'assets/images/star/ic_star_3.svg',
 ];
 //메인 아이콘
-const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';
+
 const String DANSO_TUNING_SVG = 'assets/images/mainImage/ic_danso_tuning.svg';
 const String INFOR_SVG = 'assets/images/mainImage/ic_infor.svg';
 const String QandA_SVG = 'assets/images/mainImage/ic_q&a.svg';

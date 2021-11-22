@@ -55,29 +55,28 @@ class MyPageScreen extends StatelessWidget {
                 ),
               ],
             ),
-            myPageButton(Icon(Icons.local_fire_department), "내기록",
+            myPageButton(SvgPicture.asset(MY_RECORD_SVG), "내기록",
                 MyPageRecord(songname: '곡이름')),
-            myPageButton(
-                Icon(Icons.favorite), "관심곡", MyPageLike(songname: '곡이름')),
-            myPageButton(Icon(Icons.music_note), "연주듣기",
+            myPageButton(SvgPicture.asset(BOOKMARK_SVG), "관심곡",
+                MyPageLike(songname: '곡이름')),
+            myPageButton(SvgPicture.asset(MP3_SVG), "연주듣기",
                 MyPageListen(songname: '곡이름', date: '날짜')),
-            myPageButton(Icon(Icons.play_circle_fill_outlined), "연주보기",
+            myPageButton(SvgPicture.asset(VIDEO_SVG), "연주보기",
                 MyPageLook(songname: '곡이름', date: '날짜')),
-            myPageButton(
-                Icon(Icons.leaderboard_outlined), "마이곡", MyPageMysong()),
+            myPageButton(SvgPicture.asset(MY_MUSIC_SVG), "마이곡", MyPageMysong()),
           ],
         ),
       ),
     );
   }
 
-  Widget myPageButton(Icon myicon, String title, Widget page) => Padding(
+  Widget myPageButton(SvgPicture myicon, String title, Widget page) => Padding(
         padding: const EdgeInsets.all(7),
         child: Container(
           width: 330.w,
           height: 60.h,
           child: ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: grayBlackColor),
+              style: ElevatedButton.styleFrom(primary: buttonColorYellow),
               onPressed: () {
                 Get.to(page);
               },

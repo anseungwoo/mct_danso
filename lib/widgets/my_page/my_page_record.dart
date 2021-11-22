@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -29,7 +30,7 @@ class MyPageRecord extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: mediumGray),
+                        color: buttonColorYellow),
                     height: 60.h,
                     child: Padding(
                       padding: const EdgeInsets.all(svenPadddig),
@@ -43,13 +44,9 @@ class MyPageRecord extends StatelessWidget {
                           ),
                           Spacer(flex: 1),
                           Container(
-                            width: 33,
-                            height: 33,
-                            child: Text(
-                              '그래프 디자인',
-                              style: TextStyle(fontSize: 10.sp),
-                            ),
-                          )
+                              width: 33,
+                              height: 33,
+                              child: SvgPicture.asset(GRAPH_SVG))
                         ],
                       ),
                     ),

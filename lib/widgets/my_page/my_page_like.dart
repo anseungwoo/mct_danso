@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -29,7 +30,7 @@ class MyPageLike extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: mediumGray),
+                        color: buttonColorOrang),
                     height: 60.h,
                     child: Padding(
                       padding: const EdgeInsets.all(svenPadddig),
@@ -42,15 +43,18 @@ class MyPageLike extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: textEightSize.sp, color: white),
                           ),
-                          IconButton(
-                            icon: Icon(Icons.favorite),
-                            color: item.songLike == 'true' ? Colors.red : white,
-                            onPressed: () {
+                          GestureDetector(
+                            onTap: () {
                               likeSongController.updateLikeSongList(
                                 songId: item.songId,
                                 songLike: item.songLike,
                               );
                             },
+                            child: SvgPicture.asset(
+                              BOOKMARK_SVG,
+                              color:
+                                  item.songLike == 'true' ? Colors.red : white,
+                            ),
                           ),
                         ],
                       ),

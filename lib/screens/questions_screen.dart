@@ -33,7 +33,7 @@ class QuestionsScreen extends StatelessWidget {
                       width: 330.w,
                       height: 60.h,
                       decoration: BoxDecoration(
-                          color: grayBlackColor,
+                          color: buttonColorYellow,
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(5)),
                       child: Padding(

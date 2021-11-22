@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -33,7 +34,7 @@ class MyPageLook extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: mediumGray),
+                              color: buttonColorYellow),
                           height: 60.h,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -61,24 +62,28 @@ class MyPageLook extends StatelessWidget {
                                 ),
                               ),
                               Spacer(flex: 1),
-                              PopupMenuButton(
-                                onSelected: (value) {
-                                  if (value == 1) {}
-                                  if (value == 2) {
-                                    Get.dialog(myPageDeleteDialog());
-                                  }
-                                },
-                                icon: Icon(Icons.more_vert_outlined),
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    child: Text('공유하기'),
-                                    value: 1,
-                                  ),
-                                  PopupMenuItem(
-                                    child: Text('삭제하기'),
-                                    value: 2,
-                                  )
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: iconPadding),
+                                child: PopupMenuButton(
+                                  onSelected: (value) {
+                                    if (value == 1) {}
+                                    if (value == 2) {
+                                      Get.dialog(myPageDeleteDialog());
+                                    }
+                                  },
+                                  child: SvgPicture.asset(SEE_MORE_SVG),
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      child: Text('공유하기'),
+                                      value: 1,
+                                    ),
+                                    PopupMenuItem(
+                                      child: Text('삭제하기'),
+                                      value: 2,
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),
