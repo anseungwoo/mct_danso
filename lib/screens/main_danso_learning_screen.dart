@@ -60,10 +60,22 @@ class MainDansoLearningScreen extends StatelessWidget {
         CarouselListWidget(
           carouselList: [
             fingering(context),
-            TestBlankPage(),
-            TestBlankPage(),
-            TestBlankPage(),
-            TestBlankPage(),
+            DansoHistroyKind(
+                subject: DANSO_PALY_TITLE,
+                explanation: DANSO_PALY,
+                url: DANSO_PALY_URL),
+            DansoHistroyKind(
+                subject: DANSO_UNM_TITLE,
+                explanation: DANSO_UNM,
+                url: DANSO_UNM_URL),
+            DansoHistroyKind(
+                subject: DANSO_SAME_UNM_TITLE,
+                explanation: DANSO_SAME_UNM,
+                url: DANSO_SAME_UNM_TITLE_URL),
+            DansoHistroyKind(
+                subject: DANSO_UNM_TEST_TITLE,
+                explanation: DANSO_UNM_TEST,
+                url: DANSO_UNM_TEST_URL),
           ],
         )
       ],
