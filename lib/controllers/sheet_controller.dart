@@ -6,7 +6,9 @@ class SheetController extends GetxController {
   var chiSheet = [];
 
   void jungGanBoSheet(
-      {String songTitle, String jangdan, String songSheet}) async {
+      {required String songTitle,
+      required String jangdan,
+      required String songSheet}) async {
     var createJungGanBo = JungGanBo(songTitle, jangdan, songSheet);
 
     createJungGanBo.sheet[0].yulmyeongs[0];

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/screens/main_screen.dart';
 
 PreferredSizeWidget tabbarAndAppBar(
-    {@required String title,
-    @required TabBar tabbar,
-    bool enableTabBar = true}) {
+    {required String title, TabBar? tabbar, bool enableTabBar = true}) {
   return AppBar(
     title: Text(
       '$title',
@@ -16,16 +15,28 @@ PreferredSizeWidget tabbarAndAppBar(
     centerTitle: true,
     elevation: 1,
     backgroundColor: appBarColor,
+    leading: IconButton(
+      splashRadius: 15,
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Get.back();
+      },
+    ),
     actions: [
-      IconButton(
-          icon: Icon(Icons.home),
-          onPressed: () {
-            Get.offAll(MainScreen());
-          })
+      Padding(
+        padding: const EdgeInsets.all(basicPadding),
+        child: InkWell(
+            onTap: () {
+              Get.offAll(MainScreen());
+            },
+            child: SvgPicture.asset(
+              HOME_SVG,
+            )),
+      ),
     ],
     bottom: enableTabBar
         ? PreferredSize(
-            preferredSize: tabbar.preferredSize,
+            preferredSize: tabbar!.preferredSize,
             child: ColoredBox(
               color: background,
               child: tabbar,
@@ -36,9 +47,7 @@ PreferredSizeWidget tabbarAndAppBar(
 }
 
 PreferredSizeWidget songtabbarAndAppBar(
-    {@required String title,
-    @required TabBar tabbar,
-    bool enableTabBar = true}) {
+    {required String title, TabBar? tabbar, bool enableTabBar = true}) {
   return AppBar(
     title: Text(
       '$title',
@@ -49,14 +58,12 @@ PreferredSizeWidget songtabbarAndAppBar(
     centerTitle: true,
     elevation: 0,
     backgroundColor: background,
-    bottom: enableTabBar
-        ? PreferredSize(
-            preferredSize: tabbar.preferredSize,
-            child: ColoredBox(
-              color: background,
-              child: tabbar,
-            ),
-          )
-        : null,
+    leading: IconButton(
+      splashRadius: 15,
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Get.back();
+      },
+    ),
   );
 }

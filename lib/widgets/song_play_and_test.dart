@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:danso_function/danso_function.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -15,14 +16,16 @@ class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;
   final String sheetData;
   final String jangdan;
-  final int sheetLength;
+  final int sheetVertical;
+  final int sheetHorizontal;
 
   SongPlayAndTest(
-      {Key key,
-      this.appbarTitle,
-      this.jangdan,
-      this.sheetData,
-      this.sheetLength})
+      {Key? key,
+      required this.appbarTitle,
+      required this.jangdan,
+      required this.sheetData,
+      required this.sheetVertical,
+      required this.sheetHorizontal})
       : super(key: key);
 
   // final songData = Get.arguments;
@@ -32,8 +35,9 @@ class SongPlayAndTest extends StatefulWidget {
 }
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
-  int percent;
-
+  late int percent;
+  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
+  JungganboController jungganboController = JungganboController();
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -51,6 +55,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   @override
   Widget build(BuildContext context) {
+    jungganboController.sheetHorizontal = widget.sheetHorizontal;
     JungGanBo testJungGanBo =
         new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
@@ -67,8 +72,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                     // height: 30.h,
                     width: 330.w,
                     child: GetBuilder<JungganboController>(
-                        init: JungganboController(),
+                        init: jungganboController,
                         builder: (jungcontroller) {
+                          jungcontroller.mill =
+                              testJungGanBo.jangDan.milliSecond;
+                          jungcontroller.jungGanBo = testJungGanBo;
+                          jungcontroller.sheetVertical = widget.sheetVertical;
                           return Stack(
                             children: [
                               controller.statecount == 0
@@ -83,10 +92,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             jungcontroller
                                                 .changeStartStopState();
                                             controller.platState
-                                                ? jungcontroller.stepStart(
-                                                    testJungGanBo
-                                                        .jangDan.milliSecond)
+                                                ? jungcontroller.stepStart()
                                                 : jungcontroller.stepStop();
+                                            // jungcontroller.starStopState
+                                            //     ? jungGanBoPlayer
+                                            //         .play(testJungGanBo)
+                                            //     : null;
 
                                             print(controller.statecount);
                                           },
@@ -125,6 +136,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             controller.changePlayStopState();
 
                                             controller.previousButton();
+                                            jungcontroller
+                                                .changeStartStopState();
                                             controller.platState
                                                 ? null
                                                 : jungcontroller.stepStop();
@@ -140,6 +153,16 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   onPressed: () {
                                                     controller
                                                         .testStartButtonState();
+                                                    jungcontroller
+                                                        .changeStartStopState();
+                                                    controller.testStartState
+                                                        ? jungcontroller
+                                                            .stepStart()
+                                                        : null;
+                                                    // jungcontroller.starStopState
+                                                    //     ? jungGanBoPlayer
+                                                    //         .play(testJungGanBo)
+                                                    //     : null;
                                                     controller.nextButton();
                                                     print(
                                                         controller.statecount);
@@ -183,6 +206,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                           .challengeButtonSwap),
                                                       onPressed: () {
                                                         controller.reset();
+                                                        jungcontroller
+                                                            .changeStartStopState();
+                                                        controller
+                                                                .testStartState
+                                                            ? null
+                                                            : jungcontroller
+                                                                .stepStop();
                                                         controller
                                                             .stateCountUp(0);
                                                         print(controller
@@ -201,11 +231,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                 )
                                               : controller.statecount == 4
                                                   ? SongCamaraRecoding(
-                                                      controller: controller)
+                                                      controller:
+                                                          jungcontroller,
+                                                      jandan: widget.jangdan,
+                                                    )
                                                   : controller.statecount == 5
                                                       ? SongAudioRecorder(
                                                           controller:
-                                                              controller)
+                                                              jungcontroller)
                                                       : Container(),
                             ],
                           );
@@ -224,26 +257,22 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                           ],
                         ),
                   GetBuilder<JungganboController>(
-                      init: JungganboController(),
+                      init: jungganboController,
                       builder: (jungcontroller) {
-                        return Stack(
-                          children: [
-                            // jungganbo(6, testJungGanBo),
-                            // controller.platState
-                            //     ? jungganboFromFlash(
-                            //         6, Get.find<JungganboController>(), testJungGanBo)
-                            //     : Container(),
-
-                            jungganbo(widget.sheetLength, jungcontroller,
-                                testJungGanBo, controller.krChanges),
-                            jungganboFromFlash(widget.sheetLength,
-                                jungcontroller, testJungGanBo),
-                            jungganboScreen(widget.sheetLength),
-                            // JungganboColorAnimation(
-                            //   tempo: 1000,
-                            //   jungganboLength: 8,
-                            // ),
-                          ],
+                        return Container(
+                          width: (jungWidth.w + 20.w) * 4.w,
+                          height: jungEightHeight.w * 9.w,
+                          color: white,
+                          child: Stack(
+                            children: [
+                              jungganbo(widget.sheetVertical, jungcontroller,
+                                  testJungGanBo, controller.krChanges),
+                              jungganboFromFlash(widget.sheetVertical,
+                                  jungcontroller, testJungGanBo),
+                              jungganboScreen(
+                                  widget.sheetVertical, jungcontroller),
+                            ],
+                          ),
                         );
                       }),
                 ],
@@ -295,7 +324,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     Get.back();
   }
 
-  Widget songSwapButton({Widget text, Function() onPressed}) {
+  Widget songSwapButton({Widget? text, Function()? onPressed}) {
     return Container(
       width: 78.w,
       height: 30.h,

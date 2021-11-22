@@ -131,9 +131,8 @@ void bottomsheet(BuildContext context) async {
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
                                       colors: [
-                                        grayLightColor,
-                                        grayWeithColor,
-                                        grayBlackColor,
+                                        graColorYellow,
+                                        logoColor,
                                       ],
                                     ),
                                   ),

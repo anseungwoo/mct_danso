@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:get/get.dart';
 
 class JungganboController extends GetxController {
@@ -10,12 +11,23 @@ class JungganboController extends GetxController {
   bool krState = false;
   String krButton = "한자";
 
+  late int mill;
+  late JungGanBo jungGanBo;
+
+  late int sheetVertical;
+  bool gameState = false;
+
   @override
   void onInit() {
     super.onInit();
-    starStopState = false;
-    startButton = '시작하기';
+
     stepStop();
+  }
+
+  void changegameState() {
+    gameState = !gameState;
+
+    update();
   }
 
   void changekrState() {
@@ -38,45 +50,81 @@ class JungganboController extends GetxController {
     update();
   }
 
-  int i = 0;
-  int flashcount = -1;
-  int flashcount2 = -1;
-
-  int j = 0;
+  int line = 0;
+  int row = 0;
+  int next = 0;
+  int next2 = 0;
+  int pagenext = 1;
+  int sheetHorizontal = 0;
   void stepStop() {
-    flashcount = -1;
-    i = 0;
-
-    j = 0;
-    update();
+    pagenext = 1;
+    line = 0;
+    next = 0;
+    next2 = 0;
+    row = 0;
+    starStopState = false;
+    startButton = '시작하기';
   }
 
-  void stepStart(int mill) {
+  void stepStart() {
+    print("결과값 $sheetHorizontal");
     interval(Duration(milliseconds: mill), (timer) {
-      if (i < 48 && starStopState) {
-        if (j < 3) {
-          flashCount2();
-        }
-        flashCount();
-        i++;
+      if (line < jungGanBo.sheet.length &&
+          row == jungGanBo.sheet[line].yulmyeongs.length - 1) {
+        line++;
+
+        row = 0;
       } else {
-        timer.cancel();
-        stepStop();
-        return;
+        row++;
       }
+      if (sheetHorizontal >= 4 && line == 32 * pagenext && sheetVertical == 8) {
+        next += 4;
+        next2 += 4;
+        pagenext++;
+        sheetHorizontal -= 2;
+
+        print("결과값4 $sheetHorizontal");
+        print("n1 $next");
+        print("n2 $next2");
+        print("np $pagenext");
+      }
+      if (sheetHorizontal >= 4 && line == 24 * pagenext && sheetVertical == 6) {
+        next += 4;
+        next2 += 4;
+        pagenext++;
+        sheetHorizontal -= 2;
+
+        print("결과값4 $sheetHorizontal");
+        print("n1 $next");
+        print("n2 $next2");
+        print("np $pagenext");
+      }
+      if (sheetHorizontal == 3 && line == 24 * pagenext && sheetVertical == 6) {
+        next += 4;
+        next2 += 2;
+        pagenext++;
+
+        print("결과값3 $sheetHorizontal");
+        print("n1 $next");
+        print("n2 $next2");
+        print("np $pagenext");
+      }
+      if (sheetHorizontal == 3 && line == 32 * pagenext && sheetVertical == 8) {
+        next += 4;
+        next2 += 2;
+        pagenext++;
+
+        print("결과값3 $sheetHorizontal");
+        print("n1 $next");
+        print("n2 $next2");
+        print("np $pagenext");
+      }
+      if (starStopState == false || line == jungGanBo.sheet.length) {
+        stepStop();
+        timer.cancel();
+      }
+      update();
     });
-
-    update();
-  }
-
-  void flashCount2() {
-    flashcount2++;
-    update();
-  }
-
-  void flashCount() {
-    flashcount++;
-    update();
   }
 
   Timer interval(Duration duration, func) {

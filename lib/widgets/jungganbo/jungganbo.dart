@@ -2,9 +2,10 @@ import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/controllers/jungganbo_controller.dart';
 
-Widget jungganbo(
-    int heightNumber, controller, JungGanBo testJungGanBo, bool krState) {
+Widget jungganbo(int heightNumber, JungganboController controller,
+    JungGanBo testJungGanBo, bool krState) {
   double height = heightNumber == 12
       ? jungHeight
       : heightNumber == 8
@@ -13,7 +14,7 @@ Widget jungganbo(
   int j = 0;
   return Row(
     children: [
-      for (var c = 3; c >= 0; c--)
+      for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -21,22 +22,28 @@ Widget jungganbo(
               Row(
                 children: [
                   testJungGanBo.sheet[i].yulmyeongs.length == 1
-                      ? jungContainer(
-                          height, i, j, heightNumber, testJungGanBo, krState)
+                      ? jungContainer(height, controller, i, j, heightNumber,
+                          testJungGanBo, krState)
                       : testJungGanBo.sheet[i].yulmyeongs.length == 2
                           ? Column(
                               children: [
                                 for (var j = 0; j < 2; j++)
-                                  jungContainer(height / 2, i, j, heightNumber,
-                                      testJungGanBo, krState)
+                                  jungContainer(height / 2, controller, i, j,
+                                      heightNumber, testJungGanBo, krState)
                               ],
                             )
                           : testJungGanBo.sheet[i].yulmyeongs.length == 3
                               ? Column(
                                   children: [
                                     for (var j = 0; j < 3; j++)
-                                      jungContainer(height / 3, i, j,
-                                          heightNumber, testJungGanBo, krState)
+                                      jungContainer(
+                                          height / 3,
+                                          controller,
+                                          i,
+                                          j,
+                                          heightNumber,
+                                          testJungGanBo,
+                                          krState)
                                   ],
                                 )
                               : Container(),
@@ -57,8 +64,8 @@ Container blankContainer(double height) {
   );
 }
 
-Container jungContainer(double height, int i, int j, int heightNumber,
-    JungGanBo testJungGanBo, bool krState) {
+Widget jungContainer(double height, JungganboController controller, int i,
+    int j, int heightNumber, JungGanBo testJungGanBo, bool krState) {
   return Container(
     width: jungWidth.w,
     height: height.h,
@@ -67,19 +74,26 @@ Container jungContainer(double height, int i, int j, int heightNumber,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Center(
-          child: krState
-              ? Text(
-                  testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
-                  style:
-                      TextStyle(fontSize: heightNumber == 12 ? 18.sp : 14.sp),
-                )
-              : Text(
-                  testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
-                  style:
-                      TextStyle(fontSize: heightNumber == 12 ? 18.sp : 14.sp),
-                ),
-        ),
+            child: krState
+                ? changeTextColor(testJungGanBo, i, j, heightNumber, controller,
+                    testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter())
+                : changeTextColor(testJungGanBo, i, j, heightNumber, controller,
+                    testJungGanBo.sheet[i].yulmyeongs[j].toHangeul())),
       ],
     ),
+  );
+}
+
+Text changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
+    JungganboController controller, String text) {
+  return Text(
+    text,
+    style: TextStyle(
+        fontSize: heightNumber == 12 ? textEightSize.sp : textBasicSize.sp,
+        color: controller.line == i && controller.row == j
+            ? controller.gameState
+                ? Colors.blue
+                : Colors.red
+            : Colors.black),
   );
 }

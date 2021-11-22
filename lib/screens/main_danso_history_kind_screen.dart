@@ -5,7 +5,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoHistoryKindScreen extends StatelessWidget {
-  const MainDansoHistoryKindScreen({Key key}) : super(key: key);
+  const MainDansoHistoryKindScreen({Key? key}) : super(key: key);
 
   // 예시 위젯
   Widget testContainer(String explanation) {

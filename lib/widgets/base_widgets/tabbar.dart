@@ -4,18 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:project_danso/common/const.dart';
 
-TabBar defaultTabBar({@required List<Tab> tabList, bool scrollable = false}) {
+TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
   return TabBar(
     isScrollable: scrollable,
     tabs: tabList,
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
         width: 1.5,
-        color: tapBarColor,
+        color: buttonColorOrang,
       ),
       insets: EdgeInsets.symmetric(horizontal: basicPadding),
     ),
-    unselectedLabelColor: textHiddenGray,
+    unselectedLabelColor: unSelectColor,
     labelColor: tapBarColor,
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,

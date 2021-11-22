@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
-
 import '../sheet_test.dart';
 
 class LearningSongList extends StatelessWidget {
   LearningSongList({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   final LearningSongAndLevelController learningSongLevelController =
@@ -25,8 +25,9 @@ class LearningSongList extends StatelessWidget {
                 title: '연주곡 익히기', tabbar: null, enableTabBar: false),
             body: Column(
               children: [
+                SizedBox(height: 30),
                 Padding(
-                  padding: const EdgeInsets.all(basicPadding),
+                  padding: const EdgeInsets.all(5),
                   child: Container(
                     height: 70.h,
                     // width: 330.w,
@@ -37,25 +38,23 @@ class LearningSongList extends StatelessWidget {
                             controller.previousLevel();
                           },
                           icon: Icon(Icons.keyboard_arrow_left),
-                          iconSize: 30,
+                          iconSize: 50,
                         ),
                         Spacer(flex: 1),
-                        CircleAvatar(
-                          radius: 35,
-                          child: Center(
-                              child:
-                                  Text('${controller.currentLevel} 아이콘 이미지')),
-                        ),
+                        SvgPicture.asset(STEP_SVG[controller.currentLevel]),
                         Spacer(flex: 1),
                         IconButton(
-                            onPressed: () {
-                              controller.nextLevel();
-                            },
-                            icon: Icon(Icons.keyboard_arrow_right)),
+                          onPressed: () {
+                            controller.nextLevel();
+                          },
+                          icon: Icon(Icons.keyboard_arrow_right),
+                          iconSize: 50,
+                        ),
                       ],
                     ),
                   ),
                 ),
+                SizedBox(height: 20),
                 Column(
                   children: [
                     Row(
@@ -125,7 +124,8 @@ class LearningSongList extends StatelessWidget {
                                     appbarTitle: item.songTitle,
                                     jangdan: item.songJangdan,
                                     sheetData: item.songSheet,
-                                    sheetLength: item.songSheetLength,
+                                    sheetVertical: item.songSheetVertical,
+                                    sheetHorizontal: item.songSheetHorizontal,
                                   ),
                                 );
                                 // Get.to(SheetTestScreen(
@@ -136,7 +136,7 @@ class LearningSongList extends StatelessWidget {
                               },
                               child: Container(
                                   decoration: BoxDecoration(
-                                    color: mediumGray,
+                                    color: buttonColorYellow,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5.0)),
                                   ),
@@ -145,11 +145,12 @@ class LearningSongList extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('$index. ${item.songTitle}',
+                                        SvgPicture.asset(COUNT_LIST_SVG[index]),
+                                        SizedBox(width: 15.w),
+                                        Text('${item.songTitle}',
                                             style: TextStyle(color: white)),
+                                        Spacer(flex: 1),
                                         IconButton(
                                           onPressed: () {
                                             controller.updateLikeSongList(

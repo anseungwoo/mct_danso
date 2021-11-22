@@ -72,3 +72,5 @@ class PlayAndTestController extends GetxController {
     update();
   }
 }
+
+enum SongSpeed { eight, nine, ten, eleven, twelve }

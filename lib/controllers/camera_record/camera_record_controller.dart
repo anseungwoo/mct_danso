@@ -8,10 +8,11 @@ import 'package:project_danso/main.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class CameraRecordController extends GetxController {
-  CameraController controller;
+  late CameraController controller;
   final int cameraIndex = 1;
-  Future<void> initializeControllerFuture;
+  late Future<void> initializeControllerFuture;
   bool isRecording = false;
+  String recordingText = "녹화시작";
 
   final _playAndTestController = Get.put(PlayAndTestController());
   @override
@@ -19,13 +20,14 @@ class CameraRecordController extends GetxController {
     super.onInit();
     print('call onInit method');
     controller =
-        CameraController(cameras[cameraIndex], ResolutionPreset.medium);
+        CameraController(cameras![cameraIndex], ResolutionPreset.medium);
     initializeControllerFuture = controller.initialize();
   }
 
   @override
   void onClose() {
     super.onClose();
+
     print('call onClose method');
   }
 
@@ -34,6 +36,12 @@ class CameraRecordController extends GetxController {
     super.dispose();
     controller.dispose();
     print('call dispose method');
+  }
+
+  void isRecordingState() {
+    isRecording = !isRecording;
+    recordingText = isRecording ? "녹화중지" : "녹화시작";
+    update();
   }
 
   Future<void> onStop() async {
@@ -52,7 +60,12 @@ class CameraRecordController extends GetxController {
       showToast(message: '녹화가 완료되었습니다.');
     }
     // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
-    isRecording = false;
+
+    _playAndTestController.stateCountUp(2);
+    update();
+  }
+
+  void getBack() {
     _playAndTestController.stateCountUp(2);
     update();
   }
@@ -60,7 +73,7 @@ class CameraRecordController extends GetxController {
   Future<void> onRecord() async {
     await controller.startVideoRecording();
     showToast(message: '녹화를 시작합니다.');
-    isRecording = true;
+
     update();
   }
 }

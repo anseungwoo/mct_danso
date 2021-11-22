@@ -7,9 +7,9 @@ class DansoLearning extends StatelessWidget {
   final String explanation;
   // final Image image;
   DansoLearning({
-    Key key,
-    @required this.subject,
-    @required this.explanation,
+    Key? key,
+    required this.subject,
+    required this.explanation,
   }) : super(key: key);
 
   @override

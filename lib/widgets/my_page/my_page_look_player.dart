@@ -9,8 +9,8 @@ class VideoApp extends StatefulWidget {
 }
 
 class _VideoAppState extends State<VideoApp> {
-  VideoPlayerController videoPlayerController;
-  Future<void> videoPlayerFuture;
+  late VideoPlayerController videoPlayerController;
+  late Future<void> videoPlayerFuture;
   final File file = File(
       '/data/user/0/com.example.project_danso/cache/REC2329971791378890848.mp4');
 

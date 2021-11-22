@@ -9,10 +9,10 @@ class DansoHistroyKind extends StatefulWidget {
   final String url;
   // final Image image;
   DansoHistroyKind(
-      {Key key,
-      @required this.subject,
-      @required this.explanation,
-      @required this.url})
+      {Key? key,
+      required this.subject,
+      required this.explanation,
+      required this.url})
       : super(key: key);
 
   @override

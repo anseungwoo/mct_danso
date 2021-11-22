@@ -9,7 +9,7 @@ import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   startTime() async {
     var _duration = Duration(seconds: 3);
     return Timer(_duration, () async {
-      await permissionController.permission();
+      permissionController.permission();
       await Get.off(MainScreen());
     });
   }

@@ -14,13 +14,13 @@ class DBHelPer {
   static final DBHelPer _db = DBHelPer._();
   factory DBHelPer() => _db;
 
-  static Database _database;
+  static Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database;
+    if (_database != null) return _database!;
 
     _database = await initDB();
-    return _database;
+    return _database!;
   }
 
   Future<Database> initDB() async {
@@ -44,7 +44,8 @@ class DBHelPer {
                 song_like     TEXT      NOT NULL, 
                 song_diff     INTEGER   NOT NULL, 
                 song_sheet    TEXT      NOT NULL,
-                song_sheet_length INTEGER NOT NULL, 
+                song_sheet_vertical INTEGER NOT NULL,
+                song_sheet_horizontal INTEGER NOT NULL,
                 PRIMARY KEY (song_id)
             )
           ''');
@@ -110,7 +111,7 @@ class DBHelPer {
   dynamic insertSongData(SongDataModel song) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet,song_sheet_length) VALUES(?,?,?,?,?,?,?)',
+        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet,song_sheet_vertical,song_sheet_horizontal) VALUES(?,?,?,?,?,?,?,?)',
         [
           song.songTitle,
           song.songPath,
@@ -118,7 +119,8 @@ class DBHelPer {
           song.songLike,
           song.songDiff,
           song.songSheet,
-          song.songSheetLength
+          song.songSheetVertical,
+          song.songSheetHorizontal,
         ]);
   }
 
@@ -138,7 +140,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => SongDataModel(
+            (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
               songPath: value['song_path'],
@@ -146,7 +148,8 @@ class DBHelPer {
               songLike: value['song_like'],
               songDiff: value['song_diff'],
               songSheet: value['song_sheet'],
-              songSheetLength: value['song_sheet_length'],
+              songSheetVertical: value['song_sheet_vertical'],
+              songSheetHorizontal: value['song_sheet_horizontal'],
             ),
           )
           .toList();
@@ -165,7 +168,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => SongDataModel(
+            (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
               songPath: value['song_path'],
@@ -173,7 +176,8 @@ class DBHelPer {
               songLike: value['song_like'],
               songDiff: value['song_diff'],
               songSheet: value['song_sheet'],
-              songSheetLength: value['song_sheet_length'],
+              songSheetVertical: value['song_sheet_vertical'],
+              songSheetHorizontal: value['song_sheet_horizontal'],
             ),
           )
           .toList();
@@ -200,7 +204,7 @@ class DBHelPer {
   dynamic updateSong(SongDataModel song) async {
     final db = await database;
     var res = db.rawUpdate(
-        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=?,song_sheet_length=? WHERE song_id=?',
+        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=?,song_sheet_vertical=? WHERE song_id=?',
         [
           song.songTitle,
           song.songPath,
@@ -208,7 +212,7 @@ class DBHelPer {
           song.songLike,
           song.songId,
           song.songSheet,
-          song.songSheetLength
+          song.songSheetVertical
         ]);
     return res;
   }
@@ -233,13 +237,13 @@ class DBHelPer {
   }
 
   // read all challange data
-  Future<List<ChallangeModel>> getAllChal() async {
+  Future<List<SongDataModel>> getAllChal() async {
     final db = await database;
     var res = await db.rawQuery('SELECT * FROM $challangeTable');
-    List<ChallangeModel> list = res.isNotEmpty
+    List<SongDataModel> list = res.isNotEmpty
         ? res
             .map(
-              (value) => SongDataModel(
+              (Map<String, dynamic> value) => SongDataModel(
                 songId: value['song_id'],
                 songTitle: value['song_title'],
                 songPath: value['song_path'],
@@ -272,7 +276,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => ExerciseModel(
+            (Map<String, dynamic> value) => ExerciseModel(
               songTitle: value['song_title'],
               exerPath: value['exer_path'],
               exerTime: value['exer_time'],
@@ -293,7 +297,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => ExerciseModel(
+            (Map<String, dynamic> value) => ExerciseModel(
               songTitle: value['song_title'],
               exerPath: value['exer_path'],
               exerTime: value['exer_time'],
@@ -318,7 +322,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => MyHistoryModel(
+            (Map<String, dynamic> value) => MyHistoryModel(
               songTitle: value['song_title'],
               songId: value['song_id'],
             ),
@@ -343,7 +347,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => MyHistoryModel(
+            (Map<String, dynamic> value) => MyHistoryModel(
               chalScore: value['chal_score'],
               chalTime: value['chal_time'],
             ),
@@ -368,7 +372,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => SongDataModel(
+            (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
               songLike: value['song_like'],

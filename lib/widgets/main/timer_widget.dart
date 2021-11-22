@@ -1,17 +1,18 @@
 import 'dart:async';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/common/const.dart';
 
 class TimerWidget extends StatefulWidget {
-  const TimerWidget({Key key}) : super(key: key);
+  const TimerWidget({Key? key}) : super(key: key);
 
   @override
   _TimerWidgetState createState() => _TimerWidgetState();
 }
 
 class _TimerWidgetState extends State<TimerWidget> {
-  Timer _timer;
+  late Timer _timer;
   int _start = 3;
 
   @override
@@ -47,20 +48,40 @@ class _TimerWidgetState extends State<TimerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 200,
+      height: 200.h,
+      width: 200.w,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Stack(
+            children: [
+              SizedBox(
+                width: 100.w,
+                height: 100.h,
+                child: CircularProgressIndicator(
+                  color: unButtonColorOrang,
+                  strokeWidth: 5,
+                ),
+              ),
+              SizedBox(
+                width: 100.w,
+                height: 100.h,
+                child: Center(
+                  child: Text(
+                    '$_start',
+                    style: TextStyle(fontSize: 30, color: unButtonColorOrang),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 30.h,
+          ),
           Text(
-            '태(汰)를 부를 준비하세요.',
+            '태(汰)를 부를 준비하세요....',
             style: TextStyle(fontSize: 20),
           ),
-          Text(
-            '$_start초',
-            style: TextStyle(fontSize: 35),
-          ),
-          Text('뒤에 시작합니다'),
         ],
       ),
     );

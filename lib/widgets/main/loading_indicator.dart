@@ -8,14 +8,14 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class LoadingIndicator extends StatefulWidget {
-  const LoadingIndicator({Key key}) : super(key: key);
+  const LoadingIndicator({Key? key}) : super(key: key);
 
   @override
   _LoadingIndicatorState createState() => _LoadingIndicatorState();
 }
 
 class _LoadingIndicatorState extends State<LoadingIndicator> {
-  Timer _timer;
+  late Timer _timer;
   double progressValue = 0;
 
   final DansoSoundLearningController dansoSoundLearningController =
@@ -25,10 +25,10 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
     _timer = Timer.periodic(const Duration(milliseconds: 50), (Timer _timer) {
       setState(() {
         progressValue++;
-        if (progressValue == 50) {
+        if (progressValue == 75) {
           _timer.cancel();
           dansoSoundLearningController.changeSoundTuningState();
-          dansoSoundLearningController.stopAdjust();
+          // dansoSoundLearningController.stopAdjust();
           print(dansoSoundLearningController.dansoPitchAdjustList);
           Get.back();
         }
@@ -41,34 +41,55 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
     // dansoSoundLearningController.stopAdjust();
     dansoSoundLearningController.soundTuningState = false;
     dansoSoundLearningController.isAdjust = false;
-    dansoSoundLearningController.detector.stopRecording();
+    // dansoSoundLearningController.detector.stopRecording();
+
+    _timer2.cancel();
     super.dispose();
+  }
+
+  late Timer _timer2;
+  int _start = 4;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    const oneSec = Duration(milliseconds: 1000);
+    _timer2 = Timer.periodic(oneSec, (Timer timer) {
+      if (_start == 0) {
+        setState(() {
+          timer.cancel();
+          Navigator.pop(context);
+        });
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 330.w,
-      height: 330.h,
+      width: 200.w,
+      height: 200.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(
-            BOLW_SVG,
-            color: unButtonColorOrang,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("5초간 태(汰) 불어주세요"),
-          ),
           Container(
-              height: 120,
-              width: 120,
-              child: SfRadialGauge(axes: <RadialAxis>[
+            height: 120,
+            width: 120,
+            child: SfRadialGauge(
+              axes: <RadialAxis>[
                 RadialAxis(
                   minimum: 0,
-                  maximum: 50,
+                  maximum: 75,
                   showLabels: false,
                   showTicks: false,
                   startAngle: 270,
@@ -76,11 +97,13 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
                   radiusFactor: 0.8,
                   axisLineStyle: AxisLineStyle(
                     thickness: 0.05,
-                    color: const Color.fromARGB(100, 0, 169, 181),
+                    color: Colors.white,
                     thicknessUnit: GaugeSizeUnit.factor,
                   ),
                   pointers: <GaugePointer>[
+                    //239, 190, 80
                     RangePointer(
+                      color: unButtonColorOrang,
                       value: progressValue,
                       width: 0.95,
                       pointerOffset: 0.05,
@@ -91,7 +114,13 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
                     )
                   ],
                 )
-              ])),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("$_start초간 단소로 태(汰) 불어주세요."),
+          ),
         ],
       ),
     );

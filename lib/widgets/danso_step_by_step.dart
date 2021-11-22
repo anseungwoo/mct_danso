@@ -15,17 +15,17 @@ class DansoStepByStep extends StatefulWidget {
   final String currentLevel;
   final String jangdan;
   DansoStepByStep(
-      {Key key,
-      @required this.sheetData,
-      @required this.currentLevel,
-      this.jangdan});
+      {Key? key,
+      required this.sheetData,
+      required this.currentLevel,
+      required this.jangdan});
 
   @override
   _DansoStepByStepState createState() => _DansoStepByStepState();
 }
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
-  FlashController flashController;
+  late FlashController flashController;
   JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
 
@@ -37,12 +37,16 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   Widget build(BuildContext context) {
-    var testJungGanBo = JungGanBo('도라지타령', widget.jangdan, widget.sheetData);
+    var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     return Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: GetBuilder<JungganboController>(
             init: jungganboController,
             builder: (controller) {
+              controller.mill = testJungGanBo.jangDan.milliSecond;
+              controller.jungGanBo = testJungGanBo;
+              controller.sheetHorizontal = 4;
+              controller.sheetVertical = 12;
               return Column(
                 children: [
                   Center(
@@ -54,17 +58,17 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   ),
                   Stack(
                     children: [
-                      jungganbo(12, Get.find<JungganboController>(),
-                          testJungGanBo, controller.krState),
-                      jungganboFromFlash(
-                          12, Get.find<JungganboController>(), testJungGanBo),
-                      jungganboScreen(12),
+                      jungganbo(
+                          12, controller, testJungGanBo, controller.krState),
+                      jungganboFromFlash(12, controller, testJungGanBo),
+                      jungganboScreen(12, jungganboController),
                     ],
                   ),
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      //시작하기
                       Container(
                           width: 105.w,
                           height: 37.h,
@@ -75,15 +79,15 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               onPressed: () {
                                 controller.changeStartStopState();
                                 controller.starStopState
-                                    ? controller.stepStart(
-                                        testJungGanBo.jangDan.milliSecond)
+                                    ? controller.stepStart()
                                     : controller.stepStop();
-                                controller.starStopState
-                                    ? jungGanBoPlayer.play(testJungGanBo)
-                                    : null;
+                                // controller.starStopState
+                                //     ? jungGanBoPlayer.play(testJungGanBo)
+                                //     : null;
                               },
                               child: Text('${controller.startButton}'))),
                       SizedBox(width: 7.w),
+                      //한글한자
                       Container(
                           width: 105.w,
                           height: 37.h,
@@ -98,6 +102,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               },
                               child: Text('${controller.krButton}'))),
                       SizedBox(width: 8.w),
+                      //배속
                       Container(
                           width: 105.w,
                           height: 37.h,

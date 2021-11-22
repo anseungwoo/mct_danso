@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/controllers/controllers.dart';
 
 Widget jungganboFromFlash(
-    int heightNumber, controller, JungGanBo testJungGanBo) {
+    int heightNumber, JungganboController controller, JungGanBo testJungGanBo) {
   double height = heightNumber == 12
       ? jungHeight
       : heightNumber == 8
           ? jungEightHeight
           : jungSixHeight;
+
   int j = 0;
   return Row(
     children: [
-      for (var c = 3; c >= 0; c--)
+      for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
@@ -23,25 +25,21 @@ Widget jungganboFromFlash(
                 children: [
                   testJungGanBo.sheet[i].yulmyeongs.length == 1
                       ? jungFlashContainer(
-                          height, controller.flashcount, i, j, heightNumber)
+                          height, controller, i, j, heightNumber)
                       : testJungGanBo.sheet[i].yulmyeongs.length == 2
                           ? Column(
                               children: [
                                 for (var j = 0; j < 2; j++)
-                                  jungFlashContainer(height / 2,
-                                      controller.flashcount, i, j, heightNumber)
+                                  jungFlashContainer(height / 2, controller, i,
+                                      j, heightNumber)
                               ],
                             )
                           : testJungGanBo.sheet[i].yulmyeongs.length == 3
                               ? Column(
                                   children: [
                                     for (var j = 0; j < 3; j++)
-                                      jungFlashContainer(
-                                          height / 3,
-                                          controller.flashcount,
-                                          i,
-                                          j,
-                                          heightNumber)
+                                      jungFlashContainer(height / 3, controller,
+                                          i, j, heightNumber)
                                   ],
                                 )
                               : Container(),
@@ -61,11 +59,15 @@ Container beenContainer(double height) {
   );
 }
 
-Container jungFlashContainer(
-    double height, int a, int i, int j, int heightNumber) {
+Container jungFlashContainer(double height, JungganboController controller,
+    int i, int j, int heightNumber) {
   return Container(
     width: jungWidth.w,
     height: height.h,
-    color: a == i ? Colors.blue[100].withOpacity(0.5) : null,
+    decoration: BoxDecoration(
+      color: controller.line == i && controller.row == j
+          ? Colors.red[100]!.withOpacity(0.5)
+          : null,
+    ),
   );
 }

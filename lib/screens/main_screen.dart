@@ -1,16 +1,15 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/main_danso_chartlist_screen.dart';
 import 'package:project_danso/screens/screens.dart';
-import 'package:flutter_screenutil/screen_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainScreen extends StatelessWidget {
-  MainScreen({Key key}) : super(key: key);
+  MainScreen({Key? key}) : super(key: key);
   final SongController songController = Get.put(SongController());
 
   @override
@@ -26,28 +25,37 @@ class MainScreen extends StatelessWidget {
             children: [
               Stack(
                 children: [
-                  topImage(),
+                  topImage(context),
                   myPage(),
                 ],
               ),
-              SizedBox(height: 29.h),
               _homeMenuButton(
+                  assetName: INFOR_SVG,
                   title: '단소 알아보기',
                   contant: LOOK,
                   page: MainDansoHistoryKindScreen()),
               _homeMenuButton(
+                  assetName: DANSO_TUNING_SVG,
+                  title: '내 단소 기준음 잡기',
+                  contant: VOLUMECONTROL,
+                  page: mainDansoCautionDialog(),
+                  dialog: true),
+              _homeMenuButton(
+                  assetName: STUDY_SVG,
                   title: '운지법 익히기',
                   page: learningDialog(),
                   contant: LEARN,
                   dialog: true),
               _homeMenuButton(
+                  assetName: TUNE_SVG,
                   title: '연주곡 익히기',
                   contant: PLAYLEARN,
                   page: MainDansoChartlistScreen()),
               _homeMenuButton(
-                  title: '질문하기',
+                  assetName: QandA_SVG,
+                  title: 'Q&A',
                   contant: QUESTIONS,
-                  page: MainDansoHistoryKindScreen()),
+                  page: QuestionsScreen()),
             ],
           ),
         ),
@@ -55,25 +63,26 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Container topImage() {
+  Container topImage(BuildContext context) {
     return Container(
-      color: appBarColor,
-      height: 257.h,
-      width: ScreenUtil().screenWidth,
-      // decoration: BoxDecoration( // 타원모양시도 해보았으나 별루임
-      //     color: Color(0xffA5A5A5),
-      //     borderRadius:
-      //         BorderRadius.vertical(bottom: Radius.elliptical(200, 45))),
-      child: Center(
-        child: Text('상단 이미지??', style: TextStyle(color: white)),
-      ),
-    );
+        height: 250.h,
+        width: ScreenUtil().screenWidth,
+        child: ClipPath(
+            clipper: MyClipper(),
+            child: Container(
+              margin: EdgeInsets.only(bottom: 0),
+              height: ScreenUtil().screenHeight * 0.1,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: appBarColor,
+              ),
+            )));
   }
 
   Positioned myPage() {
     return Positioned(
-      top: 200.h,
-      right: 140.w,
+      top: 150.h,
+      right: 150.w,
       child: InkWell(
         onTap: () => Get.to(MyPageScreen()),
         child: Container(
@@ -89,13 +98,15 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _homeMenuButton(
-      {@required String title,
-      @required Widget page,
-      @required String contant,
-      Image image,
-      bool dialog = false}) {
+      {required String title,
+      required Widget page,
+      required String contant,
+      required String assetName,
+      bool dialog = false,
+      Function()? onPressed}) {
     return InkWell(
       onTap: () {
+        onPressed;
         if (dialog) {
           Get.dialog(page);
         } else {
@@ -113,10 +124,7 @@ class MainScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CircleAvatar(
-                  backgroundColor: Colors.grey[200],
-                  radius: 39,
-                  child: Text('아이콘영역')),
+              SvgPicture.asset(assetName),
               SizedBox(width: 14.w),
               Container(
                 width: 190.w,
@@ -139,5 +147,23 @@ class MainScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, size.height - 40);
+    path.quadraticBezierTo(
+        size.width / 2, size.height, size.width, size.height - 35.h);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
