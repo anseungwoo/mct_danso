@@ -1,4 +1,4 @@
-package com.example.project_danso
+package com.mct.projectDanso1
 
 import io.flutter.embedding.android.FlutterActivity
 
