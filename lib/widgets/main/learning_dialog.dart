@@ -8,7 +8,7 @@ Widget learningDialog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
-      height: 278.h,
+      height: 230.h,
       width: 330.w,
       child: Column(
         children: [
@@ -30,7 +30,7 @@ Widget learningDialog() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              icon(text: '단소 학습 익히기', page: MainDansoLearningScreen()),
+              icon(text: '단소 기초 학습', page: MainDansoLearningScreen()),
               SizedBox(
                 width: 14.w,
               ),

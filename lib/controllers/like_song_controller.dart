@@ -26,7 +26,8 @@ class LikeSongController extends GetxController {
     // update();
   }
 
-  void updateLikeSongList({String songLike, int songId}) async {
+  void updateLikeSongList(
+      {required String songLike, required int songId}) async {
     // var data = await
     var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);

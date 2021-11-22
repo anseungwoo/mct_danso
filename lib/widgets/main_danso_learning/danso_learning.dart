@@ -7,9 +7,9 @@ class DansoLearning extends StatelessWidget {
   final String explanation;
   // final Image image;
   DansoLearning({
-    Key key,
-    @required this.subject,
-    @required this.explanation,
+    Key? key,
+    required this.subject,
+    required this.explanation,
   }) : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class DansoLearning extends StatelessWidget {
                   subject,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: textContantSize.sp,
+                    fontSize: textSevenSize.sp,
                   ),
                 ),
                 SizedBox(height: 12.h),

@@ -7,9 +7,9 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-List<CameraDescription> cameras;
+List<CameraDescription>? cameras;
 
-Future<Void> main() async {
+Future<Void?> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
   runApp(MyApp());
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: background, // 기본 배경색
             ),
             debugShowCheckedModeBanner: false,
-            home: splashLogo(),
+            home: SplashScreen(),
           );
         });
   }

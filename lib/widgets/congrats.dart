@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class ResultScore extends StatelessWidget {
-  const ResultScore({Key key}) : super(key: key);
+  const ResultScore({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,26 +40,22 @@ class ResultScore extends StatelessWidget {
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          SizedBox(height: 50.h),
           Center(
-              child: Padding(
-            padding: const EdgeInsets.all(basicPadding),
-            child: Container(
-                color: lightGray,
-                width: 120.w,
-                height: 120.h,
-                child: Icon(Icons.ac_unit)),
-          )),
+              child: Container(
+                  width: 250.w,
+                  height: 250.h,
+                  child: SvgPicture.asset(STAR_SVG[0]))),
           Text(
-            '너무 잘했어요!!!!!!!!!!!!!!!!!!!!!!!!!!',
+            '점수(점수)',
             style: TextStyle(
                 fontSize: textSingleSize, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: basicPadding),
           Text(
-            '흠이 없는 실력 이군요',
-            style: TextStyle(fontSize: textStyleSize),
+            '완벽해요!',
+            style: TextStyle(fontSize: textEightSize.sp),
           ),
         ],
       ),

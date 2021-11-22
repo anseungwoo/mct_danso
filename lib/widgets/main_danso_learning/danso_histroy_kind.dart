@@ -9,10 +9,10 @@ class DansoHistroyKind extends StatefulWidget {
   final String url;
   // final Image image;
   DansoHistroyKind(
-      {Key key,
-      @required this.subject,
-      @required this.explanation,
-      @required this.url})
+      {Key? key,
+      required this.subject,
+      required this.explanation,
+      required this.url})
       : super(key: key);
 
   @override
@@ -23,33 +23,36 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          YoutubePlayers(
-            url: widget.url,
-          ),
-          SizedBox(height: 20.h),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: basicPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.subject,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: textContantSize.sp,
-                  ),
-                ),
-                SizedBox(height: 10.h),
-                Text(widget.explanation,
-                    style: TextStyle(fontSize: textBasicSize.sp)),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            YoutubePlayers(
+              url: widget.url,
             ),
-          ),
-        ],
+            SizedBox(height: 20.h),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: basicPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.subject,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: textSevenSize.sp,
+                    ),
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(widget.explanation,
+                      style: TextStyle(fontSize: textBasicSize.sp)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

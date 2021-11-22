@@ -4,7 +4,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongGraph extends StatelessWidget {
-  const SongGraph({Key key}) : super(key: key);
+  const SongGraph({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class SongGraph extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(basicPadding),
         child: Container(
-          width: 330.w,
-          height: 500.h,
+          width: ScreenUtil().screenWidth,
+          height: ScreenUtil().screenHeight,
           child: ListView.builder(
               itemCount: 10,
               itemBuilder: (BuildContext context, int index) {
@@ -27,7 +27,7 @@ class SongGraph extends StatelessWidget {
                           const EdgeInsets.symmetric(vertical: basicPadding),
                       child: Text(
                         '2021.09.10 14:13',
-                        style: TextStyle(fontSize: textContantSize),
+                        style: TextStyle(fontSize: textEightSize.sp),
                       ),
                     ),
                     Container(
@@ -49,7 +49,7 @@ class SongGraph extends StatelessWidget {
                             horizontal: basicPadding),
                         child: Text(
                           '100점',
-                          style: TextStyle(fontSize: textStyleSize),
+                          style: TextStyle(fontSize: textSevenSize.sp),
                         ),
                       ),
                     )
