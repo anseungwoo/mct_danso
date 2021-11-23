@@ -14,7 +14,7 @@ class QuestionsScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: tabbarAndAppBar(
-            title: "Q&A",
+            title: "Q&A와 팁",
             tabbar: defaultTabBar(tabList: [
               Tab(text: "Q&A"),
               Tab(text: "팁"),
@@ -62,17 +62,17 @@ class QuestionsScreen extends StatelessWidget {
               width: ScreenUtil().screenWidth,
               height: ScreenUtil().screenHeight,
               child: ListView.builder(
-                  itemCount: Q_AND_A_TITLE.length,
+                  itemCount: TIP_TITLE.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(basicPadding),
                       child: InkWell(
                           onTap: () {
                             Get.to(QAndAPAGE(
-                              subject: Q_AND_A_TITLE[index],
-                              explanation: Q_AND_A_SUB_CONTANT[index],
-                              url: Q_AND_A_URL[index],
-                              startSecond: Q_AND_A_TIME[index],
+                              subject: TIP_TITLE[index],
+                              explanation: TIP_SUB_CONTANT[index],
+                              url: TIP_URL[index],
+                              startSecond: TIP_TIME[index],
                             ));
                           },
                           child: Container(
@@ -85,7 +85,7 @@ class QuestionsScreen extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(svenPadddig),
                               child: Text(
-                                Q_AND_A_TITLE[index],
+                                TIP_TITLE[index],
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                     color: white, fontSize: textEightSize.sp),

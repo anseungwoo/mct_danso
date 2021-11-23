@@ -50,21 +50,6 @@ class MainDansoLearningScreen extends StatelessWidget {
                 explanation: BREATH2,
                 url: DANSO_BREATH2_URL),
             DansoHistroyKind(
-                subject: SOUND_HL_TITLE,
-                explanation: SOUND_HL,
-                url: DANSO_SOUND_HL_URL),
-            DansoHistroyKind(
-                subject: SOUND_TITLE, explanation: SOUND, url: DANSO_SOUND_URL),
-          ],
-        ),
-        CarouselListWidget(
-          carouselList: [
-            fingering(context),
-            DansoHistroyKind(
-                subject: DANSO_PALY_TITLE,
-                explanation: DANSO_PALY,
-                url: DANSO_PALY_URL),
-            DansoHistroyKind(
                 subject: DANSO_UNM_TITLE,
                 explanation: DANSO_UNM,
                 url: DANSO_UNM_URL),
@@ -76,6 +61,15 @@ class MainDansoLearningScreen extends StatelessWidget {
                 subject: DANSO_UNM_TEST_TITLE,
                 explanation: DANSO_UNM_TEST,
                 url: DANSO_UNM_TEST_URL),
+          ],
+        ),
+        CarouselListWidget(
+          carouselList: [
+            fingering(context),
+            DansoHistroyKind(
+                subject: DANSO_PALY_TITLE,
+                explanation: DANSO_PALY,
+                url: DANSO_PALY_URL),
           ],
         )
       ],

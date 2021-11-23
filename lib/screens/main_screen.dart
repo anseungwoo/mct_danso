@@ -152,20 +152,22 @@ class MainScreen extends StatelessWidget {
   }
 
   Positioned myPage() {
-    return Positioned(
-      top: 190.h,
-      right: 100.w,
-      child: InkWell(
-        onTap: () => Get.to(MyPageScreen()),
-        child: Container(
-          width: 150.w,
-          height: 30.h,
-          decoration: BoxDecoration(
-              color: logoColor, borderRadius: BorderRadius.circular(40)),
-          child: Center(
-            child: Text(
-              '마이페이지',
-              style: TextStyle(color: white),
+    return Positioned.fill(
+      bottom: 50.w,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: InkWell(
+          onTap: () => Get.to(MyPageScreen()),
+          child: Container(
+            width: 150.w,
+            height: 30.h,
+            decoration: BoxDecoration(
+                color: logoColor, borderRadius: BorderRadius.circular(40)),
+            child: Center(
+              child: Text(
+                '마이페이지',
+                style: TextStyle(color: white),
+              ),
             ),
           ),
         ),
