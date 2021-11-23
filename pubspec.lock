@@ -605,12 +605,12 @@ packages:
     source: hosted
     version: "3.0.1+1"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.2"
+    version: "0.27.3"
   shelf:
     dependency: transitive
     description:

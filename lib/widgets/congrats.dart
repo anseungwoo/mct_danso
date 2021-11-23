@@ -32,10 +32,19 @@ class ResultScore extends StatelessWidget {
           width: 70.w,
           height: 70.h,
           child: FloatingActionButton(
+            elevation: 0,
+            backgroundColor: buttonColorOrang,
             onPressed: () {
               Get.off(SongGraph());
             },
-            child: Text('그래프아이콘'),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SvgPicture.asset(
+                GRAPH_SVG,
+                height: 24.h,
+              ),
+              Text('그래프')
+            ]),
           ),
         ),
       ),

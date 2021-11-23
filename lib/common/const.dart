@@ -189,6 +189,8 @@ const String level4 =
     "h|m|y#j|y|m#h|t|J#Y|o|^#h|t|J#Y|J|t#h|m|y#j|o|^#j|y|m#h|t|^#J|Y|J#t|h|^#j|j|y#y|m|m#h|t|J#Y|o|^#";
 const String level5 =
     "t|h|m#y|j|^#j|y|m#h|t|J#Y|M|H#T|o|^#T|H|M#Y|J|^#j|y|m#y|m|h#t|J|Y#M|o|^#Y|M|H#M|H|T#H|M|Y#J|o|^#";
+// 배경음
+const String backMusic = 'assets/music/danso_arirang_mixed.mp3';
 //에셋(assets) 가져오기
 const List<String> DANSO_SVG_LIST = [
   'assets/images/danso_code/ic_jung.svg',
@@ -209,6 +211,24 @@ const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
+const String MAIN_ILL1_SVG = 'assets/images/mainImage/main_illeoseuteu(1).svg';
+const String MAIN_ILL2_SVG = 'assets/images/mainImage/main_illeoseuteu(2).svg';
+const String ON_SVG = 'assets/images/mainImage/ic_on.svg';
+const String OFF_SVG = 'assets/images/mainImage/ic_off.svg';
+//마이 페이지 아이콘
+const String BOOKMARK_SVG = 'assets/images/my_page/ic_bookmark.svg';
+const String GRAPH_SVG = 'assets/images/my_page/ic_graph.svg';
+const String MP3_SVG = 'assets/images/my_page/ic_mp3.svg';
+const String MY_MUSIC_SVG = 'assets/images/my_page/ic_my_music.svg';
+const String PLAY_STOP_SVG = 'assets/images/my_page/ic_play_stop.svg';
+const String PLAY_SVG = 'assets/images/my_page/ic_play.svg';
+const String MY_RECORD_SVG = 'assets/images/my_page/ic_my_record.svg';
+const String SEE_MORE_SVG = 'assets/images/my_page/ic_see_more.svg';
+const String VIDEO_SVG = 'assets/images/my_page/ic_video.svg';
+//녹음 녹화 아이콘
+const String RECORD_SVG = 'assets/images/ic_record.svg';
+const String TRANSCRIPTION_SVG = 'assets/images/ic_transcription.svg';
+
 //연주곡 익히기부분
 const List STEP_SVG = [
   "",
@@ -233,7 +253,7 @@ const List STAR_SVG = [
   'assets/images/star/ic_star_3.svg',
 ];
 //메인 아이콘
-const String SILVER_LIST_SVG = 'assets/images/ic_1_turn.svg';
+
 const String DANSO_TUNING_SVG = 'assets/images/mainImage/ic_danso_tuning.svg';
 const String INFOR_SVG = 'assets/images/mainImage/ic_infor.svg';
 const String QandA_SVG = 'assets/images/mainImage/ic_q&a.svg';

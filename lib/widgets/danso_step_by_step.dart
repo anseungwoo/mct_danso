@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/controllers/flash_controller.dart';
+import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -25,7 +25,6 @@ class DansoStepByStep extends StatefulWidget {
 }
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
-  late FlashController flashController;
   JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
 

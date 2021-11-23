@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
@@ -171,7 +172,16 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                 ),
                                                 SizedBox(width: 5),
                                                 songSwapButton(
-                                                    text: Text("녹음"),
+                                                    text: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        SvgPicture.asset(
+                                                            TRANSCRIPTION_SVG),
+                                                        Text("녹음"),
+                                                      ],
+                                                    ),
                                                     onPressed: () {
                                                       controller
                                                           .stateCountUp(5);
@@ -180,22 +190,23 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                     }),
                                                 SizedBox(width: 5),
                                                 songSwapButton(
-                                                    text: Text(controller
-                                                        .testButtonswap),
+                                                    text: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        SvgPicture.asset(
+                                                            RECORD_SVG),
+                                                        Text(controller
+                                                            .testButtonswap),
+                                                      ],
+                                                    ),
                                                     onPressed: () {
                                                       controller
                                                           .stateCountUp(4);
                                                       _onPressed(context);
                                                       print(controller
                                                           .statecount);
-                                                    }),
-                                                SizedBox(width: 5),
-                                                songSwapButton(
-                                                    text: Text(
-                                                        "${controller.speed[controller.speedCount]} 배속"),
-                                                    onPressed: () {
-                                                      controller
-                                                          .changespeedState();
                                                     }),
                                               ],
                                             )
@@ -332,10 +343,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       height: 30.h,
       child: ElevatedButton(
         child: text,
-        style: ButtonStyle(
-          textStyle: MaterialStateProperty.all<TextStyle>(
-              TextStyle(fontSize: textSmallSize)),
-        ),
+        style: ElevatedButton.styleFrom(
+            elevation: 0,
+            primary: white,
+            onPrimary: buttonColorOrang,
+            side: BorderSide(color: buttonColorOrang),
+            textStyle: TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
         onPressed: onPressed,
       ),
     );
