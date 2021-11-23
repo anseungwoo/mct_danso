@@ -7,6 +7,7 @@ import 'package:project_danso/controllers/controllers.dart';
 
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/main/loading_indicator.dart';
+import 'package:project_danso/widgets/music.dart';
 import 'package:project_danso/widgets/test_dialog.dart';
 import 'package:project_danso/widgets/main/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -257,7 +258,11 @@ class _MainDansoLearningTestScreenState
           ),
           CircleAvatar(radius: 14, backgroundColor: leftColor),
           SizedBox(width: 7.sp),
-          Text('오른손'),
+          InkWell(
+              onTap: () {
+                // Get.to(Music());
+              },
+              child: Text('오른손')),
         ],
       ),
     );

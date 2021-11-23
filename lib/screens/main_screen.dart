@@ -49,10 +49,6 @@ class MainScreen extends StatelessWidget {
                                         ProcessingState.completed) {
                                       controller.player.pause();
                                     }
-                                    // Get.to(Music());
-                                    // controller.musicState
-                                    //     ? controller.player.play()
-                                    //     : controller.player.pause();
                                   },
                                   controller: controller.musicState),
                               imageChange(controller),
@@ -85,7 +81,7 @@ class MainScreen extends StatelessWidget {
                         page: MainDansoChartlistScreen()),
                     _homeMenuButton(
                         assetName: QandA_SVG,
-                        title: 'Q&A',
+                        title: 'Q&A와 팁',
                         contant: QUESTIONS,
                         page: QuestionsScreen()),
                   ],
@@ -98,8 +94,8 @@ class MainScreen extends StatelessWidget {
 
   Widget stateButton({Function()? onPressed, required bool controller}) {
     return Positioned(
-      top: 40,
-      left: 10,
+      top: 40.h,
+      left: 10.w,
       child: Container(
           width: 80.w,
           height: 22.h,
@@ -134,6 +130,7 @@ class MainScreen extends StatelessWidget {
           width: 100.w,
           height: 100.h,
           child: InkWell(
+            enableFeedback: false,
             onTap: () {
               controller.SvgStateChange();
             },
