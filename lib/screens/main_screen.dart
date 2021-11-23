@@ -2,12 +2,15 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/music.dart';
 import 'package:project_danso/widgets/widgets.dart';
+import 'package:just_audio/just_audio.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -27,14 +30,37 @@ class MainScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Stack(
-                      children: [
-                        topImage(controller),
-                        imageChange(controller),
-                        myPage(),
-                      ],
-                    ),
-                    SizedBox(height: 10.h),
+                    StreamBuilder<PlayerState>(
+                        stream: controller.player.playerStateStream,
+                        builder: (context, snapshot) {
+                          final playerState = snapshot.data;
+                          final processingState = playerState?.processingState;
+                          final playing = playerState?.playing;
+                          return Stack(
+                            children: [
+                              topImage(controller),
+                              stateButton(
+                                  onPressed: () {
+                                    controller.MusicStateChange();
+
+                                    if (playing != true) {
+                                      controller.player.play();
+                                    } else if (processingState !=
+                                        ProcessingState.completed) {
+                                      controller.player.pause();
+                                    }
+                                    // Get.to(Music());
+                                    // controller.musicState
+                                    //     ? controller.player.play()
+                                    //     : controller.player.pause();
+                                  },
+                                  controller: controller.musicState),
+                              imageChange(controller),
+                              myPage(),
+                            ],
+                          );
+                        }),
+                    SizedBox(height: 5),
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -67,6 +93,36 @@ class MainScreen extends StatelessWidget {
               );
             }),
       ),
+    );
+  }
+
+  Widget stateButton({Function()? onPressed, required bool controller}) {
+    return Positioned(
+      top: 40,
+      left: 10,
+      child: Container(
+          width: 80.w,
+          height: 22.h,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  primary: logoColor.withOpacity(0),
+                  side: BorderSide(color: white),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50))),
+              onPressed: onPressed,
+              child: Row(
+                children: [
+                  controller
+                      ? SvgPicture.asset(OFF_SVG)
+                      : SvgPicture.asset(ON_SVG),
+                  SizedBox(width: 3),
+                  Text(
+                    "배경음",
+                    style: TextStyle(fontSize: 10.sp),
+                  ),
+                ],
+              ))),
     );
   }
 
@@ -108,8 +164,7 @@ class MainScreen extends StatelessWidget {
           width: 150.w,
           height: 30.h,
           decoration: BoxDecoration(
-              color: buttonColorYellow,
-              borderRadius: BorderRadius.circular(40)),
+              color: logoColor, borderRadius: BorderRadius.circular(40)),
           child: Center(
             child: Text(
               '마이페이지',

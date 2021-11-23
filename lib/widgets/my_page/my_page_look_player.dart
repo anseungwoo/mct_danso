@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_svg/svg.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
@@ -50,11 +51,12 @@ class _VideoAppState extends State<VideoApp> {
                   : videoPlayerController.play();
             });
           },
-          child: Icon(
-            videoPlayerController.value.isPlaying
-                ? Icons.pause
-                : Icons.play_arrow,
-          ),
+          child: videoPlayerController.value.isPlaying
+              ? SvgPicture.asset(
+                  PLAY_STOP_SVG,
+                  color: white,
+                )
+              : SvgPicture.asset(PLAY_SVG),
         ));
   }
 

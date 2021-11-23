@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -10,7 +11,12 @@ class MyPageMysong extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabbarAndAppBar(title: "내기록", tabbar: null, enableTabBar: false),
+      appBar: tabbarAndAppBar(title: "마이곡", tabbar: null, enableTabBar: false),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: logoColor,
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       body: Container(
         child: ListView.builder(
             padding: const EdgeInsets.all(basicPadding),
@@ -21,27 +27,34 @@ class MyPageMysong extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: mediumGray),
+                      color: buttonColorYellow),
                   height: 60.h,
-                  child: Padding(
-                    padding: const EdgeInsets.all(svenPadddig),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(svenPadddig),
+                        child: Text(
                           'Entry ${index}',
                           style: TextStyle(
                               fontSize: textEightSize.sp, color: white),
                         ),
-                        Spacer(flex: 1),
-                        PopupMenuButton(
+                      ),
+                      Spacer(flex: 1),
+                      Padding(
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: iconPadding),
+                        child: PopupMenuButton(
                           onSelected: (value) {
                             if (value == 1) {}
                             if (value == 2) {
                               Get.dialog(myPageDeleteDialog());
                             }
                           },
-                          icon: Icon(Icons.more_vert_outlined),
+                          child: Container(
+                              width: 20.w,
+                              height: 20.h,
+                              child: SvgPicture.asset(SEE_MORE_SVG)),
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               child: Text('공유하기'),
@@ -53,8 +66,8 @@ class MyPageMysong extends StatelessWidget {
                             )
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               );

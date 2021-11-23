@@ -16,7 +16,7 @@ class MyPageLook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabbarAndAppBar(title: "내기록", tabbar: null, enableTabBar: false),
+      appBar: tabbarAndAppBar(title: "연주보기", tabbar: null, enableTabBar: false),
       body: GetBuilder<MyPageController>(
           init: MyPageController(),
           builder: (controller) {
