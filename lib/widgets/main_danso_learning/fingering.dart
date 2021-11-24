@@ -21,7 +21,7 @@ Widget fingering(BuildContext context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            CircleAvatar(radius: 14, backgroundColor: Colors.black),
+            CircleAvatar(radius: 14.r, backgroundColor: Colors.black),
             SizedBox(
               width: 7.sp,
             ),
@@ -29,7 +29,7 @@ Widget fingering(BuildContext context) {
             SizedBox(
               width: 7.sp,
             ),
-            CircleAvatar(radius: 14, backgroundColor: leftColor),
+            CircleAvatar(radius: 14.r, backgroundColor: leftColor),
             SizedBox(width: 7.sp),
             Text('오른손', style: TextStyle(fontSize: 15.sp)),
           ],
@@ -50,7 +50,7 @@ Widget fingering(BuildContext context) {
 
 Container dansoyun(List<dynamic> Yum, bool kr, bool textState) {
   return Container(
-    width: 330.w,
+    width: ScreenUtil().screenWidth.w,
     child: Row(
       mainAxisAlignment: textState
           ? MainAxisAlignment.spaceAround

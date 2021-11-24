@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
@@ -18,11 +20,17 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final PermissionController permissionController =
       Get.put(PermissionController());
+  FlutterMidi flutterMidi = FlutterMidi();
+  void load() async {
+    ByteData byteData = await rootBundle.load('assets/Dan.sf2');
+    flutterMidi.prepare(sf2: byteData);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    load();
     startTime();
   }
 

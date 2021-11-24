@@ -76,7 +76,8 @@ class MyPageScreen extends StatelessWidget {
           width: 330.w,
           height: 60.h,
           child: ElevatedButton(
-              style: ElevatedButton.styleFrom(primary: buttonColorYellow),
+              style: ElevatedButton.styleFrom(
+                  primary: buttonColorYellow, elevation: 0),
               onPressed: () {
                 Get.to(page);
               },

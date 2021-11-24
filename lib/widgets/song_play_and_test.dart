@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -39,13 +41,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   late int percent;
   JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
   JungganboController jungganboController = JungganboController();
+  FlutterMidi flutterMidi = FlutterMidi();
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   void _onPressed(BuildContext context) async {
@@ -72,7 +70,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                 children: [
                   Container(
                     // height: 30.h,
-                    width: 330.w,
                     child: GetBuilder<JungganboController>(
                         init: jungganboController,
                         builder: (jungcontroller) {
@@ -96,15 +93,15 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             controller.platState
                                                 ? jungcontroller.stepStart()
                                                 : jungcontroller.stepStop();
-                                            // jungcontroller.starStopState
-                                            //     ? jungGanBoPlayer
-                                            //         .play(testJungGanBo)
-                                            //     : null;
+                                            jungcontroller.starStopState
+                                                ? jungGanBoPlayer
+                                                    .play(testJungGanBo)
+                                                : null;
 
                                             print(controller.statecount);
                                           },
                                         ),
-                                        SizedBox(width: 5),
+                                        SizedBox(width: 5.w),
                                         controller.platState
                                             ? Container()
                                             : songSwapButton(
@@ -115,14 +112,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   controller.stateCountUp(2);
                                                   print(controller.statecount);
                                                 }),
-                                        SizedBox(width: 5),
+                                        SizedBox(width: 5.w),
                                         songSwapButton(
                                             text: Text(
                                                 "${controller.speed[controller.speedCount]} 배속"),
                                             onPressed: () {
                                               controller.changespeedState();
                                             }),
-                                        SizedBox(width: 5),
+                                        SizedBox(width: 5.w),
                                         songSwapButton(
                                             text: Text(controller.krButton),
                                             onPressed: () {
@@ -148,6 +145,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         )
                                       : controller.statecount == 2
                                           ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               children: [
                                                 songSwapButton(
                                                   text: Text(controller
@@ -161,10 +160,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                         ? jungcontroller
                                                             .stepStart()
                                                         : null;
-                                                    // jungcontroller.starStopState
-                                                    //     ? jungGanBoPlayer
-                                                    //         .play(testJungGanBo)
-                                                    //     : null;
+                                                    jungcontroller.starStopState
+                                                        ? jungGanBoPlayer
+                                                            .play(testJungGanBo)
+                                                        : null;
                                                     controller.nextButton();
                                                     print(
                                                         controller.statecount);

@@ -306,6 +306,7 @@ class SoundButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(title),
         style: ElevatedButton.styleFrom(
+          elevation: 0,
           onSurface: unButtonColorOrang,
           primary: buttonColorOrang,
           minimumSize: Size(130.w, 45.h),
@@ -330,6 +331,7 @@ class UpDownButton extends StatelessWidget {
       onPressed: onPressed,
       child: Icon(icons),
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         onSurface: unButtonColorOrang,
         primary: buttonColorOrang,
         minimumSize: Size(59.w, 35.h),

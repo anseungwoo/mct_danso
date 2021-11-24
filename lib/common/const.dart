@@ -143,15 +143,15 @@ const String BREATH2_TITLE = '복식호흡';
 
 //단소 메인페이지 내용
 //단소알아보기 설명
-const String LOOK = '단소의 역사, 종류에 대해 알아볼까요?';
+const List LOOK = ['단소의 역사, 종류에 대해', '알아볼까요?'];
 //운지법 익히기 설명
-const String LEARN = '기초적인 단소의 운지법을 연습해 보아요.';
+const List LEARN = ['기초적인 단소의 운지법을', '연습해 보아요.'];
 //연주곡 익히기 설명
-const String PLAYLEARN = '전통곡들을 단소로 연습하여 피드백 받으세요.';
+const List PLAYLEARN = ['각 연주곡들을 연습하며 도전하고', '피드백을 받으세요'];
 //질문하기 설명
-const String QUESTIONS = '단소에 대해 궁금하거나 어려움이 있다면 질문해보세요. ';
+const List QUESTIONS = ['단소에 대해 궁금하거나 어려움이', '있다면 이 곳에서 찾아보세요.'];
 //기준은잡기
-const String VOLUMECONTROL = '단소를 불기 전에 필수로 소리를 맞춰보아요.';
+const List VOLUMECONTROL = ['단소를 불기 전에 필수로', '소리를 맞춰보아요.'];
 
 //단소의 역사
 //youtube URL style
@@ -208,6 +208,8 @@ const String MAIN_ILL1_SVG = 'assets/images/mainImage/main_illeoseuteu(1).svg';
 const String MAIN_ILL2_SVG = 'assets/images/mainImage/main_illeoseuteu(2).svg';
 const String ON_SVG = 'assets/images/mainImage/ic_on.svg';
 const String OFF_SVG = 'assets/images/mainImage/ic_off.svg';
+const String Q_AND_A_SVG = 'assets/images/q&a_sp.svg';
+const String TIP_SVG = 'assets/images/tip_sp.svg';
 //마이 페이지 아이콘
 const String BOOKMARK_SVG = 'assets/images/my_page/ic_bookmark.svg';
 const String GRAPH_SVG = 'assets/images/my_page/ic_graph.svg';
@@ -272,35 +274,66 @@ const List TEAR_NAME = [
 ];
 //질문하기 페이지 부분
 const List Q_AND_A_SUB_CONTANT = [
-  '단소에서 높은 음, 낮은 음이 잘 안나는 학생들을 위한 영상입니다.',
   '단소 소리는 나기 시작했는데, 소리가 유지가 안 되는 학생들을 위한 영상입니다. 유지가 되지 않는 원인을 찾고, 함께 해결해봅시다.',
+  '연습을 통해서 소리가 났다 안 났다 거리는 게 소리를 나게 만드는 빈도를 올리는 과정입니다. 사람마다 입모양과 부는 스타일이 다 다르기 때문에 소리가 안 난다고 포기 내지 말고 꾸준히 스스로 분석하여 연습해야 합니다.',
+  '단소는 바람을 전부 넣으면 소리가 나지 않습니다. 바람을 부는 각도를 대각선으로 맞추고 바람은 반은 나가고 반은 악기 속으로 들어가게 해야 소리가 잘 납니다.',
+  '사람마다 입술의 모양이 다르기 때문에 입술을 내밀어야 소리가 나는 사람이 있어요. 그러기에 소리가 나면 상관이 없습니다.',
+  '보편적으로 45도를 추천하지만 사람마다 입술의 모양이 다르기 때문에 자신에게 맞는 각도를 찾아서 불면 됩니다.단소 소리가 나면 상관이 없습니다.',
+  '거울을 보면서 스스로 자신의 잘못된 부분을 찾고 고치는 게 나아갈 수 있게 하는 장기적으로 성장할 수 있습니다. 영상을 보면서도 잘 안되는 부분이 있다면 스스로 고민하고 관찰하여 찾는 것이 좋습니다.',
+  '처음에 불 때에는 입모양을 소리가 나는 입모양으로 잘 불렀지만 숨을 쉬면서 모양이 흐트려지기 때문입니다. 거울로 입모양과 각도, 바람세기 등 어디가 잘못되었는지 체크하여 입술 모양을 유지해 봅시다.',
+  '집과 학교는 건물 내의 부피 공간이 다르기 때문에 집보다 넓은 학교에서는 소리가 퍼지기 때문에 소리가 작게 들리는 것입니다.',
 ];
 const List Q_AND_A_URL = [
-  'GiFWeblNJc8',
   'JHVGwgMXfAo',
+  'PBAZnJNcYVY',
+  'PBAZnJNcYVY',
+  'PBAZnJNcYVY',
+  'PBAZnJNcYVY',
+  'PBAZnJNcYVY',
+  'PBAZnJNcYVY',
+  'PBAZnJNcYVY',
 ];
 const List Q_AND_A_TITLE = [
-  '단소 소리 높낮이',
   '복식호흡 유지를 어떻게 하나요?',
+  '소리가 났다 안 났다 해요.',
+  '악기에 바람을 어디다 넣나요?',
+  '입술이 앞으로 나와도 되나요?',
+  '각도를 다르게 해서 불어도 되나요?',
+  '주변에 봐 줄 사람이없어요',
+  '잘 불다가 숨쉬고 불면 소리가 안 나요',
+  '집에선 잘 나는데 학교에선 잘 안나요.',
 ];
-const List Q_AND_A_TIME = [0.0, 0.0, 0.0, 0.0, 0.0];
+const List Q_AND_A_TIME = [
+  0.0,
+  0.0,
+  38.0,
+  211.0,
+  308.0,
+  351.0,
+  378.0,
+  527.0,
+  616.0
+];
 const List TIP_SUB_CONTANT = [
+  '단소에서 높은 음, 낮은 음이 잘 안나는 학생들을 위한 영상입니다.',
   '단소 초급 탈출을 위한 장기적이고 스스로 할 수 있는 연습 방법과방향성에 대한 내용입니다.',
   '모든 손가락을 다 뗀 운지(태)는 소리가 잘 나는데 구먹을 막으면 소리가 안 나는 학생들을 위한 교육 내용을 담은 영상입니다.',
   '단소 소리가 맑지 않아서 고민이 많은 분들이 많습니다. 이번 영상은 악기 소리를 보다 깔끔하게 낼 수 있는 방법에 관한 내용입니다.',
   '곡 연주를 위한 매일 연습 팁을 담은 영상입니다. 여러 음을 연결하는 연습 방법에 관한 내용인데, 이 부분을 꾸준히 연습하면 보다 부드러운 소리로 아름다운 음악을 만드는 데 도움이 될 것입니다.',
 ];
 const List TIP_URL = [
+  'GiFWeblNJc8',
   'TDprjZyakoQ',
   'z2afsvDPhd8',
   '4U_cOC6f66A',
   'EghU5mA8KTw',
 ];
 const List TIP_TITLE = [
+  '단소 소리 높낮이',
   '단소 초급 탈출하는 법!',
   '구멍을 막을때 소리가 안 난다면?',
   '맑은 소리를 내고싶어요!',
   '매일매일 연습하는 팁!',
 ];
-const List TIP_TIME = [0.0, 0.0, 0.0, 0.0, 0.0];
+const List TIP_TIME = [0.0, 0.0, 0.0, 0.0];
 enum SongSpeed { eight, nine, ten, eleven, twelve }

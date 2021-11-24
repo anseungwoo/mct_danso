@@ -66,8 +66,9 @@ class JungganboController extends GetxController {
     startButton = '시작하기';
   }
 
-  void stepStart() {
+  void stepStart() async {
     print("결과값 $sheetHorizontal");
+    await Future.delayed(Duration(milliseconds: mill));
     interval(Duration(milliseconds: mill), (timer) {
       if (line < jungGanBo.sheet.length &&
           row == jungGanBo.sheet[line].yulmyeongs.length - 1) {

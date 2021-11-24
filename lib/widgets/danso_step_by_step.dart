@@ -38,7 +38,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     return Padding(
-        padding: const EdgeInsets.all(basicPadding),
+        padding: const EdgeInsets.symmetric(horizontal: basicPadding),
         child: GetBuilder<JungganboController>(
             init: jungganboController,
             builder: (controller) {
@@ -47,6 +47,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
               controller.sheetHorizontal = 4;
               controller.sheetVertical = 12;
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(
                     child: Text(
@@ -65,61 +67,61 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                   ),
                   SizedBox(height: 5),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       //시작하기
-                      Container(
-                          width: 105.w,
-                          height: 37.h,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: buttonColorOrang,
-                                  onSurface: unButtonColorOrang),
-                              onPressed: () {
-                                controller.changeStartStopState();
-                                controller.starStopState
-                                    ? controller.stepStart()
-                                    : controller.stepStop();
-                                // controller.starStopState
-                                //     ? jungGanBoPlayer.play(testJungGanBo)
-                                //     : null;
-                              },
-                              child: Text('${controller.startButton}'))),
-                      SizedBox(width: 7.w),
+                      levelButton(
+                          controller: controller,
+                          text: '${controller.startButton}',
+                          onPressed: () {
+                            controller.changeStartStopState();
+                            controller.starStopState
+                                ? controller.stepStart()
+                                : controller.stepStop();
+                            controller.starStopState
+                                ? jungGanBoPlayer.play(testJungGanBo)
+                                : null;
+                          }),
+
                       //한글한자
-                      Container(
-                          width: 105.w,
-                          height: 37.h,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: buttonColorOrang,
-                                  onSurface: unButtonColorOrang),
-                              onPressed: () {
-                                controller.starStopState
-                                    ? null
-                                    : controller.changekrState();
-                              },
-                              child: Text('${controller.krButton}'))),
-                      SizedBox(width: 8.w),
+                      levelButton(
+                          controller: controller,
+                          text: '${controller.krButton}',
+                          onPressed: () {
+                            controller.starStopState
+                                ? null
+                                : controller.changekrState();
+                          }),
+
                       //배속
-                      Container(
-                          width: 105.w,
-                          height: 37.h,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: buttonColorOrang,
-                                  onSurface: unButtonColorOrang),
-                              onPressed: () {
-                                controller.starStopState
-                                    ? null
-                                    : controller.changespeedState();
-                              },
-                              child: Text(
-                                  '${controller.speed[controller.speedCount]}배속'))),
+                      levelButton(
+                          controller: controller,
+                          text: '${controller.speed[controller.speedCount]}배속',
+                          onPressed: () {
+                            controller.starStopState
+                                ? null
+                                : controller.changespeedState();
+                          }),
                     ],
                   ),
                 ],
               );
             }));
+  }
+
+  Widget levelButton(
+      {required JungganboController controller,
+      required Function() onPressed,
+      required String text}) {
+    return Container(
+        width: 105.w,
+        height: 37.h,
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                elevation: 0,
+                primary: buttonColorOrang,
+                onSurface: unButtonColorOrang),
+            onPressed: onPressed,
+            child: Text(text)));
   }
 }
