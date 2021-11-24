@@ -227,13 +227,13 @@ class _MainDansoLearningTestScreenState
   Widget dansoImage(DansoSoundLearningController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Center(
-        child: Column(
-          children: [
-            // Text("${controller.userInputForAdjust}"),
-            SvgPicture.asset(DANSO_SVG_LIST[controller.soundListUpDown]),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Text("${controller.userInputForAdjust}"),
+          SvgPicture.asset(DANSO_SVG_LIST[controller.soundListUpDown]),
+        ],
       ),
     );
   }

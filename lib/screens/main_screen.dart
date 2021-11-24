@@ -29,7 +29,6 @@ class MainScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-<<<<<<< HEAD
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Stack(
@@ -45,35 +44,6 @@ class MainScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-=======
-                    StreamBuilder<PlayerState>(
-                        stream: controller.player.playerStateStream,
-                        builder: (context, snapshot) {
-                          final playerState = snapshot.data;
-                          final processingState = playerState?.processingState;
-                          final playing = playerState?.playing;
-                          return Stack(
-                            children: [
-                              topImage(controller),
-                              stateButton(
-                                  onPressed: () {
-                                    controller.MusicStateChange();
-
-                                    if (playing != true) {
-                                      controller.player.play();
-                                    } else if (processingState !=
-                                        ProcessingState.completed) {
-                                      controller.player.pause();
-                                    }
-                                  },
-                                  controller: controller.musicState),
-                              imageChange(controller),
-                              myPage(),
-                            ],
-                          );
-                        }),
-                    SizedBox(height: 20.h),
->>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -159,22 +129,23 @@ class MainScreen extends StatelessWidget {
         ));
   }
 
+  // Widget topImage(MainScreenController controller) {
+  //   return Container(
+  //     width: ScreenUtil().screenWidth.w,
+  //     height: 258.h,
+  //     child: controller.svgState
+  //         ? SvgPicture.asset(
+  //             MAIN_ILL2_SVG,
+  //             fit: BoxFit.fill,
+  //           )
+  //         : SvgPicture.asset(
+  //             MAIN_ILL1_SVG,
+  //             fit: BoxFit.fill,
+  //           ),
+  //   );
+  // }
   Widget topImage(MainScreenController controller) {
     return Container(
-<<<<<<< HEAD
-      width: ScreenUtil().screenWidth.w,
-      height: 258.h,
-      child: controller.svgState
-          ? SvgPicture.asset(
-              MAIN_ILL2_SVG,
-              fit: BoxFit.fill,
-            )
-          : SvgPicture.asset(
-              MAIN_ILL1_SVG,
-              fit: BoxFit.fill,
-            ),
-    );
-=======
         child: controller.svgState
             ? SvgPicture.asset(
                 MAIN_ILL2_SVG,
@@ -186,16 +157,11 @@ class MainScreen extends StatelessWidget {
                 fit: BoxFit.fitWidth,
                 width: ScreenUtil().screenWidth,
               ));
->>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
   }
 
   Positioned myPage() {
     return Positioned.fill(
-<<<<<<< HEAD
-      bottom: 30.w,
-=======
-      bottom: Get.statusBarHeight - 95.h,
->>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
+      bottom: Get.statusBarHeight - 50.h,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
