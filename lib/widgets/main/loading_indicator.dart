@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class LoadingIndicator extends StatefulWidget {
@@ -17,6 +18,7 @@ class LoadingIndicator extends StatefulWidget {
 class _LoadingIndicatorState extends State<LoadingIndicator> {
   late Timer _timer;
   double progressValue = 0;
+  var controller = Get.find<MainScreenController>();
 
   final DansoSoundLearningController dansoSoundLearningController =
       Get.put(DansoSoundLearningController());
@@ -44,6 +46,10 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
     // dansoSoundLearningController.detector.stopRecording();
 
     _timer2.cancel();
+
+    if (controller.muteButtonState) {
+      controller.assetsAudioPlayer.play();
+    }
     super.dispose();
   }
 

@@ -46,10 +46,10 @@ packages:
   audioplayers:
     dependency: "direct main"
     description:
-      name: audioplayers
+      name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.20.1"
+    version: "2.8.1"
   boolean_selector:
     dependency: transitive
     description:

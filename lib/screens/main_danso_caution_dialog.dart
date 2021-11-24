@@ -2,27 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/main/loading_indicator.dart';
 import 'package:project_danso/widgets/main/timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-Widget mainDansoCautionDialog() {
-  return Dialog(
-    insetPadding: EdgeInsets.zero,
-    child: Container(
-      height: 260.h,
-      width: 330.w,
-      child: Padding(
-        padding: const EdgeInsets.all(basicPadding),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(basicPadding),
-              child: SvgPicture.asset(
-                WARNING_SVG,
-                color: buttonColorYellow,
+class FixDansoPitchDialog extends StatefulWidget {
+  const FixDansoPitchDialog({Key? key}) : super(key: key);
+
+  @override
+  _FixDansoPitchDialogState createState() => _FixDansoPitchDialogState();
+}
+
+class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      insetPadding: EdgeInsets.zero,
+      child: Container(
+        height: 260.h,
+        width: 330.w,
+        child: Padding(
+          padding: const EdgeInsets.all(basicPadding),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(basicPadding),
+                child: SvgPicture.asset(
+                  WARNING_SVG,
+                  color: buttonColorYellow,
+                ),
               ),
             ),
             Text(
@@ -81,10 +98,15 @@ Widget mainDansoCautionDialog() {
                       )),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
+
+// Widget mainDansoCautionDialog() {
+//   return 
+// }
+

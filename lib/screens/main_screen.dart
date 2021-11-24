@@ -1,18 +1,21 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/music.dart';
 import 'package:project_danso/widgets/widgets.dart';
+// import 'package:just_audio/just_audio.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
-  final SongController songController = Get.put(SongController());
+  // final SongController songController = Get.put(SongController());
+  MainScreenController mainScreenController =
+      Get.put(MainScreenController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
@@ -29,51 +32,33 @@ class MainScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-<<<<<<< HEAD
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Stack(
-                        children: [
-                          topImage(controller),
-                          stateButton(
-                              onPressed: () {
-                                controller.MusicStateChange();
-                              },
-                              controller: controller.musicState),
-                          imageChange(controller),
-                          myPage(),
-                        ],
-                      ),
+                      children: [
+                        topImage(controller),
+                        stateButton(
+                            onPressed: () {
+                              controller.playOrPause();
+                              controller.ChangeMuteButtonState();
+                              // controller.MusicStateChange();
+                              // if (playing != true) {
+                              //   controller.player.play();
+                              // } else if (processingState !=
+                              //     ProcessingState.completed) {
+                              //   controller.player.pause();
+                              // }
+                              // Get.to(Music());
+                              // controller.musicState
+                              //     ? controller.player.play()
+                              //     : controller.player.pause();
+                            },
+                            musicState: controller.musicState),
+                        imageChange(controller),
+                        myPage(),
+                      ],
                     ),
-=======
-                    StreamBuilder<PlayerState>(
-                        stream: controller.player.playerStateStream,
-                        builder: (context, snapshot) {
-                          final playerState = snapshot.data;
-                          final processingState = playerState?.processingState;
-                          final playing = playerState?.playing;
-                          return Stack(
-                            children: [
-                              topImage(controller),
-                              stateButton(
-                                  onPressed: () {
-                                    controller.MusicStateChange();
-
-                                    if (playing != true) {
-                                      controller.player.play();
-                                    } else if (processingState !=
-                                        ProcessingState.completed) {
-                                      controller.player.pause();
-                                    }
-                                  },
-                                  controller: controller.musicState),
-                              imageChange(controller),
-                              myPage(),
-                            ],
-                          );
-                        }),
-                    SizedBox(height: 20.h),
->>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
+                    // }),
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -83,7 +68,7 @@ class MainScreen extends StatelessWidget {
                         assetName: DANSO_TUNING_SVG,
                         title: '내 단소 기준음 잡기',
                         contant: VOLUMECONTROL,
-                        page: mainDansoCautionDialog(),
+                        page: FixDansoPitchDialog(),
                         dialog: true),
                     _homeMenuButton(
                         assetName: STUDY_SVG,
@@ -95,10 +80,10 @@ class MainScreen extends StatelessWidget {
                         assetName: TUNE_SVG,
                         title: '연주곡 익히기',
                         contant: PLAYLEARN,
-                        page: MainDansoChartlistScreen()),
+                        page: LearningSongListScreen()),
                     _homeMenuButton(
                         assetName: QandA_SVG,
-                        title: 'Q&A와 팁',
+                        title: 'Q&A',
                         contant: QUESTIONS,
                         page: QuestionsScreen()),
                   ],
@@ -109,7 +94,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget stateButton({Function()? onPressed, required bool controller}) {
+  Widget stateButton({Function()? onPressed, required bool musicState}) {
     return Positioned(
       top: 30.h,
       left: 10.w,
@@ -126,7 +111,7 @@ class MainScreen extends StatelessWidget {
               onPressed: onPressed,
               child: Row(
                 children: [
-                  controller
+                  musicState
                       ? SvgPicture.asset(OFF_SVG)
                       : SvgPicture.asset(ON_SVG),
                   SizedBox(width: 3),
@@ -147,7 +132,6 @@ class MainScreen extends StatelessWidget {
           width: 100.w,
           height: 100.h,
           child: InkWell(
-            enableFeedback: false,
             onTap: () {
               controller.SvgStateChange();
             },
@@ -161,20 +145,6 @@ class MainScreen extends StatelessWidget {
 
   Widget topImage(MainScreenController controller) {
     return Container(
-<<<<<<< HEAD
-      width: ScreenUtil().screenWidth.w,
-      height: 258.h,
-      child: controller.svgState
-          ? SvgPicture.asset(
-              MAIN_ILL2_SVG,
-              fit: BoxFit.fill,
-            )
-          : SvgPicture.asset(
-              MAIN_ILL1_SVG,
-              fit: BoxFit.fill,
-            ),
-    );
-=======
         child: controller.svgState
             ? SvgPicture.asset(
                 MAIN_ILL2_SVG,
@@ -186,16 +156,11 @@ class MainScreen extends StatelessWidget {
                 fit: BoxFit.fitWidth,
                 width: ScreenUtil().screenWidth,
               ));
->>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
   }
 
   Positioned myPage() {
     return Positioned.fill(
-<<<<<<< HEAD
-      bottom: 30.w,
-=======
       bottom: Get.statusBarHeight - 95.h,
->>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
@@ -226,6 +191,13 @@ class MainScreen extends StatelessWidget {
       Function()? onPressed}) {
     return InkWell(
       onTap: () {
+        var controller = Get.find<MainScreenController>();
+        if (controller.muteButtonState) {
+          // 아예 정지
+          // Get.find<MainScreenController>().disposeAudioPlayer();
+          // 일시 정지
+          controller.assetsAudioPlayer.pause();
+        }
         onPressed;
         if (dialog) {
           Get.dialog(page);
