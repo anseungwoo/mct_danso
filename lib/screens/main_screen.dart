@@ -26,8 +26,10 @@ class MainScreen extends StatelessWidget {
             builder: (controller) {
               return SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+<<<<<<< HEAD
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Stack(
@@ -43,6 +45,35 @@ class MainScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+=======
+                    StreamBuilder<PlayerState>(
+                        stream: controller.player.playerStateStream,
+                        builder: (context, snapshot) {
+                          final playerState = snapshot.data;
+                          final processingState = playerState?.processingState;
+                          final playing = playerState?.playing;
+                          return Stack(
+                            children: [
+                              topImage(controller),
+                              stateButton(
+                                  onPressed: () {
+                                    controller.MusicStateChange();
+
+                                    if (playing != true) {
+                                      controller.player.play();
+                                    } else if (processingState !=
+                                        ProcessingState.completed) {
+                                      controller.player.pause();
+                                    }
+                                  },
+                                  controller: controller.musicState),
+                              imageChange(controller),
+                              myPage(),
+                            ],
+                          );
+                        }),
+                    SizedBox(height: 20.h),
+>>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -100,7 +131,7 @@ class MainScreen extends StatelessWidget {
                       : SvgPicture.asset(ON_SVG),
                   SizedBox(width: 3),
                   Text(
-                    "배경음",
+                    '배경음',
                     style: TextStyle(fontSize: 10.sp),
                   ),
                 ],
@@ -121,7 +152,7 @@ class MainScreen extends StatelessWidget {
               controller.SvgStateChange();
             },
             child: Text(
-              "",
+              '',
               style: TextStyle(color: textBlack),
             ),
           ),
@@ -130,6 +161,7 @@ class MainScreen extends StatelessWidget {
 
   Widget topImage(MainScreenController controller) {
     return Container(
+<<<<<<< HEAD
       width: ScreenUtil().screenWidth.w,
       height: 258.h,
       child: controller.svgState
@@ -142,11 +174,28 @@ class MainScreen extends StatelessWidget {
               fit: BoxFit.fill,
             ),
     );
+=======
+        child: controller.svgState
+            ? SvgPicture.asset(
+                MAIN_ILL2_SVG,
+                fit: BoxFit.fitWidth,
+                width: ScreenUtil().screenWidth,
+              )
+            : SvgPicture.asset(
+                MAIN_ILL1_SVG,
+                fit: BoxFit.fitWidth,
+                width: ScreenUtil().screenWidth,
+              ));
+>>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
   }
 
   Positioned myPage() {
     return Positioned.fill(
+<<<<<<< HEAD
       bottom: 30.w,
+=======
+      bottom: Get.statusBarHeight - 95.h,
+>>>>>>> 551b5bc3b56199d751632cadd5e803259a95bbfa
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
