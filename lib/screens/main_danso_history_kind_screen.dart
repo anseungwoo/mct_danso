@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoHistoryKindScreen extends StatelessWidget {
+class MainDansoHistoryKindScreen extends StatefulWidget {
   const MainDansoHistoryKindScreen({Key? key}) : super(key: key);
 
-  // 예시 위젯
+  @override
+  State<MainDansoHistoryKindScreen> createState() =>
+      _MainDansoHistoryKindScreenState();
+}
+
+class _MainDansoHistoryKindScreenState
+    extends State<MainDansoHistoryKindScreen> {
+  var controller = Get.find<MainScreenController>();
+
   Widget testContainer(String explanation) {
     return Container(
       color: Colors.grey,
@@ -19,6 +29,17 @@ class MainDansoHistoryKindScreen extends StatelessWidget {
         style: TextStyle(fontSize: 15.sp),
       )),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    if (controller.muteButtonState) {
+      controller.assetsAudioPlayer.play();
+    }
+    ;
   }
 
   @override

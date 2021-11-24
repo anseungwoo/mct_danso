@@ -1,10 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoLearningScreen extends StatelessWidget {
+class MainDansoLearningScreen extends StatefulWidget {
   const MainDansoLearningScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MainDansoLearningScreen> createState() =>
+      _MainDansoLearningScreenState();
+}
+
+class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
+  var controller = Get.find<MainScreenController>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (controller.muteButtonState) {
+      // 아예 정지
+      // Get.find<MainScreenController>().disposeAudioPlayer();
+      // 일시 정지
+      controller.assetsAudioPlayer.pause();
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    if (controller.muteButtonState) {
+      controller.assetsAudioPlayer.play();
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
