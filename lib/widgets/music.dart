@@ -68,7 +68,6 @@
 //       _player.stop();
 //     }
 //   }
-
 //   Stream<PositionData> get _positionDataStream =>
 //       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
 //           _player.positionStream,

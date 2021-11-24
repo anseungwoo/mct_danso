@@ -28,7 +28,8 @@ class MainScreen extends StatelessWidget {
             builder: (controller) {
               return SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     StreamBuilder<PlayerState>(
                         stream: controller.player.playerStateStream,
@@ -56,7 +57,7 @@ class MainScreen extends StatelessWidget {
                             ],
                           );
                         }),
-                    SizedBox(height: 5),
+                    SizedBox(height: 20.h),
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -94,7 +95,7 @@ class MainScreen extends StatelessWidget {
 
   Widget stateButton({Function()? onPressed, required bool controller}) {
     return Positioned(
-      top: 40.h,
+      top: 30.h,
       left: 10.w,
       child: Container(
           width: 80.w,
@@ -114,7 +115,7 @@ class MainScreen extends StatelessWidget {
                       : SvgPicture.asset(ON_SVG),
                   SizedBox(width: 3),
                   Text(
-                    "배경음",
+                    '배경음',
                     style: TextStyle(fontSize: 10.sp),
                   ),
                 ],
@@ -135,7 +136,7 @@ class MainScreen extends StatelessWidget {
               controller.SvgStateChange();
             },
             child: Text(
-              "",
+              '',
               style: TextStyle(color: textBlack),
             ),
           ),
@@ -144,16 +145,22 @@ class MainScreen extends StatelessWidget {
 
   Container topImage(MainScreenController controller) {
     return Container(
-        height: 250.h,
-        width: ScreenUtil().screenWidth,
         child: controller.svgState
-            ? SvgPicture.asset(MAIN_ILL2_SVG)
-            : SvgPicture.asset(MAIN_ILL1_SVG));
+            ? SvgPicture.asset(
+                MAIN_ILL2_SVG,
+                fit: BoxFit.fitWidth,
+                width: ScreenUtil().screenWidth,
+              )
+            : SvgPicture.asset(
+                MAIN_ILL1_SVG,
+                fit: BoxFit.fitWidth,
+                width: ScreenUtil().screenWidth,
+              ));
   }
 
   Positioned myPage() {
     return Positioned.fill(
-      bottom: 50.w,
+      bottom: Get.statusBarHeight - 95.h,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
