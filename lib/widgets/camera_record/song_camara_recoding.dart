@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/camera_record/camera_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
@@ -60,23 +61,45 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
       children: [
         Row(
           children: <Widget>[
-            ElevatedButton(
-                child: Text(caController.recordingText),
-                onPressed: () {
-                  caController.isRecordingState();
-                  caController.isRecording
-                      ? caController.onRecord()
-                      : caController.onStop();
+            Container(
+              width: 78.w,
+              height: 30.h,
+              child: ElevatedButton(
+                  child: Text(caController.recordingText),
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      primary: white,
+                      onPrimary: buttonColorOrang,
+                      side: BorderSide(color: buttonColorOrang),
+                      textStyle:
+                          TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                  onPressed: () {
+                    caController.isRecordingState();
+                    caController.isRecording
+                        ? caController.onRecord()
+                        : caController.onStop();
 
-                  widget.controller.changeStartStopState();
-                  widget.controller.starStopState
-                      ? widget.controller.stepStart()
-                      : widget.controller.stepStop();
-                }),
+                    widget.controller.changeStartStopState();
+                    widget.controller.starStopState
+                        ? widget.controller.stepStart()
+                        : widget.controller.stepStop();
+                  }),
+            ),
             SizedBox(width: 5),
-            ElevatedButton(
-              child: Text('반주만'),
-              onPressed: () {},
+            Container(
+              width: 78.w,
+              height: 30.h,
+              child: ElevatedButton(
+                child: Text('반주만'),
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    primary: white,
+                    onPrimary: buttonColorOrang,
+                    side: BorderSide(color: buttonColorOrang),
+                    textStyle:
+                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                onPressed: () {},
+              ),
             ),
           ],
         ),

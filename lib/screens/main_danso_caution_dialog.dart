@@ -27,7 +27,7 @@ Widget mainDansoCautionDialog() {
             ),
             Text(
               "연주 시 주의사항",
-              style: TextStyle(fontSize: textSevenSize, fontWeight: bold),
+              style: TextStyle(fontSize: textSevenSize.sp, fontWeight: bold),
             ),
             SizedBox(height: 15.h),
             Text("단소의 바람이 마이크로 들어가지 않게 해 주세요"),
@@ -37,6 +37,8 @@ Widget mainDansoCautionDialog() {
             Padding(
               padding: const EdgeInsets.only(left: 37, right: 37),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TextButton(
                       onPressed: () {

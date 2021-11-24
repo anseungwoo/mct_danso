@@ -1,12 +1,8 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_record/audio_record_controller.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 class SongAudioRecorder extends StatefulWidget {
@@ -51,23 +47,45 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
       builder: (audioController) {
         return Row(
           children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                audioRecordController.isRecordingState();
-                audioRecordController.isRecording
-                    ? audioRecordController.startRecording()
-                    : audioRecordController.stopRecording();
-                widget.controller.changeStartStopState();
-                widget.controller.starStopState
-                    ? widget.controller.stepStart()
-                    : widget.controller.stepStop();
-              },
-              child: audioRecordController.buttonText,
+            Container(
+              width: 78.w,
+              height: 30.h,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    primary: white,
+                    onPrimary: buttonColorOrang,
+                    side: BorderSide(color: buttonColorOrang),
+                    textStyle:
+                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                onPressed: () {
+                  audioRecordController.isRecordingState();
+                  audioRecordController.isRecording
+                      ? audioRecordController.startRecording()
+                      : audioRecordController.stopRecording();
+                  widget.controller.changeStartStopState();
+                  widget.controller.starStopState
+                      ? widget.controller.stepStart()
+                      : widget.controller.stepStop();
+                },
+                child: audioRecordController.buttonText,
+              ),
             ),
             SizedBox(width: 5.w),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('반주만'),
+            Container(
+              width: 78.w,
+              height: 30.h,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    elevation: 0,
+                    primary: white,
+                    onPrimary: buttonColorOrang,
+                    side: BorderSide(color: buttonColorOrang),
+                    textStyle:
+                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                onPressed: () {},
+                child: Text('반주만'),
+              ),
             ),
           ],
         );

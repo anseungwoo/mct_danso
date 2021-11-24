@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:project_danso/common/const.dart';
 
-class MyPageController extends GetxController {
+class MyPageMusicController extends GetxController {
   bool starStopState = false;
   double currentSliderValue = 20;
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
@@ -16,13 +16,14 @@ class MyPageController extends GetxController {
   );
   @override
   void onInit() async {
+    await assetsAudioPlayer.open(
+      Audio(backMusic),
+      autoStart: false,
+    );
     super.onInit();
   }
 
   void playMusic() async {
-    await assetsAudioPlayer.open(
-      Audio(backMusic),
-    );
     assetsAudioPlayer.play();
   }
 

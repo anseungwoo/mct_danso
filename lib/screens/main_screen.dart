@@ -2,7 +2,6 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/main_screen_controller.dart';
@@ -10,7 +9,6 @@ import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/music.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import 'package:just_audio/just_audio.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -30,33 +28,21 @@ class MainScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    StreamBuilder<PlayerState>(
-                        stream: controller.player.playerStateStream,
-                        builder: (context, snapshot) {
-                          final playerState = snapshot.data;
-                          final processingState = playerState?.processingState;
-                          final playing = playerState?.playing;
-                          return Stack(
-                            children: [
-                              topImage(controller),
-                              stateButton(
-                                  onPressed: () {
-                                    controller.MusicStateChange();
-
-                                    if (playing != true) {
-                                      controller.player.play();
-                                    } else if (processingState !=
-                                        ProcessingState.completed) {
-                                      controller.player.pause();
-                                    }
-                                  },
-                                  controller: controller.musicState),
-                              imageChange(controller),
-                              myPage(),
-                            ],
-                          );
-                        }),
-                    SizedBox(height: 5),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Stack(
+                        children: [
+                          topImage(controller),
+                          stateButton(
+                              onPressed: () {
+                                controller.MusicStateChange();
+                              },
+                              controller: controller.musicState),
+                          imageChange(controller),
+                          myPage(),
+                        ],
+                      ),
+                    ),
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -94,7 +80,7 @@ class MainScreen extends StatelessWidget {
 
   Widget stateButton({Function()? onPressed, required bool controller}) {
     return Positioned(
-      top: 40.h,
+      top: 30.h,
       left: 10.w,
       child: Container(
           width: 80.w,
@@ -124,8 +110,8 @@ class MainScreen extends StatelessWidget {
 
   Widget imageChange(MainScreenController controller) {
     return Positioned(
-        top: 90,
-        left: 50,
+        top: 85.h,
+        left: 50.w,
         child: Container(
           width: 100.w,
           height: 100.h,
@@ -142,18 +128,25 @@ class MainScreen extends StatelessWidget {
         ));
   }
 
-  Container topImage(MainScreenController controller) {
+  Widget topImage(MainScreenController controller) {
     return Container(
-        height: 250.h,
-        width: ScreenUtil().screenWidth,
-        child: controller.svgState
-            ? SvgPicture.asset(MAIN_ILL2_SVG)
-            : SvgPicture.asset(MAIN_ILL1_SVG));
+      width: ScreenUtil().screenWidth.w,
+      height: 258.h,
+      child: controller.svgState
+          ? SvgPicture.asset(
+              MAIN_ILL2_SVG,
+              fit: BoxFit.fill,
+            )
+          : SvgPicture.asset(
+              MAIN_ILL1_SVG,
+              fit: BoxFit.fill,
+            ),
+    );
   }
 
   Positioned myPage() {
     return Positioned.fill(
-      bottom: 50.w,
+      bottom: 30.w,
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
@@ -178,7 +171,7 @@ class MainScreen extends StatelessWidget {
   Widget _homeMenuButton(
       {required String title,
       required Widget page,
-      required String contant,
+      required List contant,
       required String assetName,
       bool dialog = false,
       Function()? onPressed}) {
@@ -205,8 +198,6 @@ class MainScreen extends StatelessWidget {
               SvgPicture.asset(assetName),
               SizedBox(width: 14.w),
               Container(
-                width: 190.w,
-                height: 80.h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -216,7 +207,13 @@ class MainScreen extends StatelessWidget {
                             fontSize: textTitleSize.sp,
                             fontWeight: FontWeight.bold)),
                     SizedBox(height: 7.h),
-                    Text(contant, style: TextStyle(fontSize: 14.sp))
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (int i = 0; i < 2; i++)
+                          Text(contant[i], style: TextStyle(fontSize: 14.sp)),
+                      ],
+                    )
                   ],
                 ),
               ),
