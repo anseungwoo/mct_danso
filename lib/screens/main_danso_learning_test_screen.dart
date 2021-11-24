@@ -24,9 +24,29 @@ class _MainDansoLearningTestScreenState
     extends State<MainDansoLearningTestScreen> {
   final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
+  var controller = Get.find<MainScreenController>();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    if (controller.muteButtonState) {
+      controller.assetsAudioPlayer.play();
+    }
+    ;
+  }
+
   @override
   void initState() {
     super.initState();
+
+    if (controller.muteButtonState) {
+      // 아예 정지
+      // Get.find<MainScreenController>().disposeAudioPlayer();
+      // 일시 정지
+      controller.assetsAudioPlayer.pause();
+    }
   }
 
   @override

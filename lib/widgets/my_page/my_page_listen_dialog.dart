@@ -1,19 +1,19 @@
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 Widget myPageListenDialog() {
-  var player = AudioPlayer();
+  // var player = AudioPlayer();
   final _recording =
       '/storage/emulated/0/Android/data/com.mct.projectDanso1/files/flutter_audio_recorder_1635144151751.wav';
   void _play() {
-    player.play(_recording, isLocal: true);
+    // player.play(_recording, isLocal: true);
   }
 
   void _stop() {
-    player.stop();
+    // player.stop();
   }
 
   return Dialog(

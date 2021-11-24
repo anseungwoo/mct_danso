@@ -5,15 +5,32 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import '../sheet_test.dart';
+import '../widgets/sheet_test.dart';
 
-class LearningSongList extends StatelessWidget {
-  LearningSongList({
+class LearningSongListScreen extends StatefulWidget {
+  LearningSongListScreen({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<LearningSongListScreen> createState() => _LearningSongListScreenState();
+}
+
+class _LearningSongListScreenState extends State<LearningSongListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
+  var controller = Get.find<MainScreenController>();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    if (controller.muteButtonState) {
+      controller.assetsAudioPlayer.play();
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {

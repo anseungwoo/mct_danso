@@ -13,7 +13,7 @@ export 'my_page/my_page_like.dart';
 export 'my_page/my_page_mysong.dart';
 export 'my_page/my_page_record_bottomsheet.dart';
 export 'danso_step_by_step.dart';
-export 'my_page/learning_song_list.dart';
+export '../screens/learning_song_list_screen.dart';
 export 'congrats.dart';
 export 'camera_record/song_camara_recoding.dart';
 export 'my_page/song_graph.dart';
