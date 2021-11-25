@@ -58,7 +58,10 @@ class MainScreen extends StatelessWidget {
                         myPage(),
                       ],
                     ),
+<<<<<<< HEAD
+=======
                     // }),
+>>>>>>> 38baeb8a7bf609714e670856a28d156bc798df4d
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -143,6 +146,21 @@ class MainScreen extends StatelessWidget {
         ));
   }
 
+  // Widget topImage(MainScreenController controller) {
+  //   return Container(
+  //     width: ScreenUtil().screenWidth.w,
+  //     height: 258.h,
+  //     child: controller.svgState
+  //         ? SvgPicture.asset(
+  //             MAIN_ILL2_SVG,
+  //             fit: BoxFit.fill,
+  //           )
+  //         : SvgPicture.asset(
+  //             MAIN_ILL1_SVG,
+  //             fit: BoxFit.fill,
+  //           ),
+  //   );
+  // }
   Widget topImage(MainScreenController controller) {
     return Container(
         child: controller.svgState
@@ -160,7 +178,11 @@ class MainScreen extends StatelessWidget {
 
   Positioned myPage() {
     return Positioned.fill(
+<<<<<<< HEAD
+      bottom: Get.statusBarHeight - 50.h,
+=======
       bottom: Get.statusBarHeight - 95.h,
+>>>>>>> 38baeb8a7bf609714e670856a28d156bc798df4d
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
