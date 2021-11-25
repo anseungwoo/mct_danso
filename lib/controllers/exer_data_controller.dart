@@ -18,17 +18,13 @@ class ExerDataController extends GetxController {
   void getMySoundRecord() async {
     var data = await DBHelPer().readExerSoundData();
     print(data);
-    if (data != null) {
-      mySoundRecord.assignAll(data);
-    }
+    mySoundRecord.assignAll(data);
   }
 
   // 녹화 보기
   void getMyVideoRecord() async {
     var data = await DBHelPer().readExerVideoData();
     print(data);
-    if (data != null) {
-      myVideoRecord.assignAll(data);
-    }
+    myVideoRecord.assignAll(data);
   }
 }

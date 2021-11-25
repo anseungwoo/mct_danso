@@ -8,6 +8,7 @@ final String songTable = 'TB_SONG';
 final String exerciseTable = 'TB_EXER';
 final String challangeTable = 'TB_CHAL';
 final String userTable = 'TB_USER';
+final String levelTable = 'TB_LEVEL';
 
 class DBHelPer {
   DBHelPer._();
@@ -31,7 +32,13 @@ class DBHelPer {
       await db.execute('''
             CREATE TABLE $userTable
             (
-                standard_fr DOUBLE NOT NULL
+                standard_fr DOUBLE  NOT NULL
+            )
+          ''');
+      await db.execute('''
+            CREATE TABLE $levelTable
+            (
+                level_exp INTEGER NOT NULL DEFAULT 0
             )
           ''');
       await db.execute('''
@@ -85,7 +92,7 @@ class DBHelPer {
   dynamic insertFr(UserModel user) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO TB_USER (standard_fr) VALUES(?)', [user.standardFr]);
+        'INSERT INTO $userTable (standard_fr) VALUES(?)', [user.standardFr]);
   }
 
   dynamic getUserFr() async {

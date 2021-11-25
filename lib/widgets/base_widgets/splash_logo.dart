@@ -22,19 +22,18 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(PermissionController());
   FlutterMidi flutterMidi = FlutterMidi();
   void load() async {
-    ByteData byteData = await rootBundle.load('assets/Dan.sf2');
-    flutterMidi.prepare(sf2: byteData);
+    var byteData = await rootBundle.load('assets/Dan.sf2');
+    await flutterMidi.prepare(sf2: byteData);
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     load();
     startTime();
   }
 
-  startTime() async {
+  dynamic startTime() async {
     var _duration = Duration(seconds: 3);
     return Timer(_duration, () async {
       permissionController.permission();

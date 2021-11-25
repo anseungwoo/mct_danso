@@ -47,7 +47,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
     _timer2.cancel();
 
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
     super.dispose();

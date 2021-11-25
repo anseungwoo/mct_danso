@@ -12,7 +12,7 @@ class CameraRecordController extends GetxController {
   final int cameraIndex = 1;
   late Future<void> initializeControllerFuture;
   bool isRecording = false;
-  String recordingText = "녹화시작";
+  String recordingText = '녹화시작';
 
   final _playAndTestController = Get.put(PlayAndTestController());
   @override
@@ -40,7 +40,7 @@ class CameraRecordController extends GetxController {
 
   void isRecordingState() {
     isRecording = !isRecording;
-    recordingText = isRecording ? "녹화중지" : "녹화시작";
+    recordingText = isRecording ? '녹화중지' : '녹화시작';
     update();
   }
 
