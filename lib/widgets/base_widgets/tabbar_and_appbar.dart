@@ -10,7 +10,10 @@ PreferredSizeWidget tabbarAndAppBar(
   return AppBar(
     title: Text(
       '$title',
-      style: TextStyle(color: Colors.white, fontSize: textBasicSize.sp),
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: textBasicSize.sp,
+          fontFamily: NOTO_MEDIUM),
     ),
     centerTitle: true,
     elevation: 1,
@@ -52,7 +55,10 @@ PreferredSizeWidget songtabbarAndAppBar(
     title: Text(
       '$title',
       style: TextStyle(
-          color: textBlack, fontSize: 23.sp, fontWeight: FontWeight.bold),
+          color: textBlack,
+          fontSize: 23.sp,
+          fontWeight: FontWeight.bold,
+          fontFamily: NOTO_REGULAR),
     ),
     iconTheme: IconThemeData(color: textBlack),
     centerTitle: true,

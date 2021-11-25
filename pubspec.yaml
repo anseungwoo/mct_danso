@@ -71,6 +71,8 @@ dependencies:
   rxdart: ^0.27.3
   assets_audio_player: ^3.0.3+6
   device_preview: ^0.8.0
+  flutter_neumorphic: ^3.2.0
+  google_fonts: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -101,6 +103,8 @@ flutter:
     - assets/images/my_page/
     - assets/json/
     - assets/images/danso_code/
+    - assets/fonts/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

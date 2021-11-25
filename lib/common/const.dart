@@ -204,12 +204,19 @@ const String LOGO_SVG = 'assets/images/ic_logo.svg';
 const String SUCCESS_SVG = 'assets/images/ic_success.svg';
 const String FAIL_SVG = 'assets/images/ic_failure.svg';
 const String WARNING_SVG = 'assets/images/ic_warning.svg';
-const String MAIN_ILL1_SVG = 'assets/images/mainImage/main_illeoseuteu(1).svg';
-const String MAIN_ILL2_SVG = 'assets/images/mainImage/main_illeoseuteu(2).svg';
+const String MAIN_ILL1_SVG =
+    'assets/images/mainImage/main_illeoseuteu_music(1).svg';
+const String MAIN_ILL2_SVG =
+    'assets/images/mainImage/main_illeoseuteu_music(2).svg';
 const String ON_SVG = 'assets/images/mainImage/ic_on.svg';
 const String OFF_SVG = 'assets/images/mainImage/ic_off.svg';
 const String Q_AND_A_SVG = 'assets/images/q&a_sp.svg';
 const String TIP_SVG = 'assets/images/tip_sp.svg';
+const String DANSO_LESSON_SVG = 'assets/images/ic_danso_lesson.svg';
+const String DANSO_STUDY_SVG = 'assets/images/ic_danso_study.svg';
+const String NOTO_BOLD = 'assets/font/NotoSansKR-Bold.otf';
+const String NOTO_MEDIUM = 'assets/font/NotoSansKR-Medium.otf';
+const String NOTO_REGULAR = 'assets/font/NotoSansKR-Regular.otf';
 //마이 페이지 아이콘
 const String BOOKMARK_SVG = 'assets/images/my_page/ic_bookmark.svg';
 const String GRAPH_SVG = 'assets/images/my_page/ic_graph.svg';

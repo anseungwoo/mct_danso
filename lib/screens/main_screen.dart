@@ -35,33 +35,30 @@ class MainScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Stack(
-                      children: [
-                        topImage(controller),
-                        stateButton(
-                            onPressed: () {
-                              controller.playOrPause();
-                              controller.ChangeMuteButtonState();
-                              // controller.MusicStateChange();
-                              // if (playing != true) {
-                              //   controller.player.play();
-                              // } else if (processingState !=
-                              //     ProcessingState.completed) {
-                              //   controller.player.pause();
-                              // }
-                              // Get.to(Music());
-                              // controller.musicState
-                              //     ? controller.player.play()
-                              //     : controller.player.pause();
-                            },
-                            musicState: controller.musicState),
-                        imageChange(controller),
-                        myPage(),
-                      ],
+                        children: [
+                          topImage(controller),
+                          stateButton(
+                              onPressed: () {
+                                controller.playOrPause();
+                                controller.ChangeMuteButtonState();
+                                // controller.MusicStateChange();
+                                // if (playing != true) {
+                                //   controller.player.play();
+                                // } else if (processingState !=
+                                //     ProcessingState.completed) {
+                                //   controller.player.pause();
+                                // }
+                                // Get.to(Music());
+                                // controller.musicState
+                                //     ? controller.player.play()
+                                //     : controller.player.pause();
+                              },
+                              musicState: controller.musicState),
+                          imageChange(controller),
+                          myPage(),
+                        ],
+                      ),
                     ),
-<<<<<<< HEAD
-=======
-                    // }),
->>>>>>> 38baeb8a7bf609714e670856a28d156bc798df4d
                     _homeMenuButton(
                         assetName: INFOR_SVG,
                         title: '단소 알아보기',
@@ -120,7 +117,7 @@ class MainScreen extends StatelessWidget {
                   SizedBox(width: 3),
                   Text(
                     '배경음',
-                    style: TextStyle(fontSize: 10.sp),
+                    style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
                   ),
                 ],
               ))),
@@ -178,11 +175,7 @@ class MainScreen extends StatelessWidget {
 
   Positioned myPage() {
     return Positioned.fill(
-<<<<<<< HEAD
       bottom: Get.statusBarHeight - 50.h,
-=======
-      bottom: Get.statusBarHeight - 95.h,
->>>>>>> 38baeb8a7bf609714e670856a28d156bc798df4d
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
@@ -195,7 +188,7 @@ class MainScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 '마이페이지',
-                style: TextStyle(color: white),
+                style: TextStyle(color: white, fontFamily: NOTO_MEDIUM),
               ),
             ),
           ),
@@ -248,13 +241,16 @@ class MainScreen extends StatelessWidget {
                     Text('$title',
                         style: TextStyle(
                             fontSize: textTitleSize.sp,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: NOTO_BOLD)),
                     SizedBox(height: 7.h),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         for (int i = 0; i < 2; i++)
-                          Text(contant[i], style: TextStyle(fontSize: 14.sp)),
+                          Text(contant[i],
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
                       ],
                     )
                   ],

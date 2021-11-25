@@ -262,9 +262,14 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       : Row(
                           children: [
                             Text(
-                                "${controller.speed[controller.speedCount]} 배속"),
+                              "${controller.speed[controller.speedCount]} 배속",
+                              style: TextStyle(fontFamily: NOTO_REGULAR),
+                            ),
                             Spacer(flex: 1),
-                            Text("${widget.jangdan}")
+                            Text(
+                              "${widget.jangdan}",
+                              style: TextStyle(fontFamily: NOTO_REGULAR),
+                            )
                           ],
                         ),
                   GetBuilder<JungganboController>(
@@ -347,7 +352,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
             primary: white,
             onPrimary: buttonColorOrang,
             side: BorderSide(color: buttonColorOrang),
-            textStyle: TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+            textStyle: TextStyle(
+                fontSize: 12.sp,
+                color: buttonColorOrang,
+                fontFamily: NOTO_REGULAR)),
         onPressed: onPressed,
       ),
     );

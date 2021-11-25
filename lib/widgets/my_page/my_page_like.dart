@@ -41,7 +41,9 @@ class MyPageLike extends StatelessWidget {
                           Text(
                             '${item.songTitle}',
                             style: TextStyle(
-                                fontSize: textEightSize.sp, color: white),
+                                fontSize: textEightSize.sp,
+                                color: white,
+                                fontFamily: NOTO_MEDIUM),
                           ),
                           InkWell(
                             radius: 40.r,

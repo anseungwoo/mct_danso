@@ -43,12 +43,21 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
               ),
               Text(
                 "연주 시 주의사항",
-                style: TextStyle(fontSize: textSevenSize.sp, fontWeight: bold),
+                style: TextStyle(
+                    fontSize: textSevenSize.sp,
+                    fontWeight: bold,
+                    fontFamily: NOTO_BOLD),
               ),
               SizedBox(height: 15.h),
-              Text("단소의 바람이 마이크로 들어가지 않게 해 주세요"),
+              Text(
+                "단소의 바람이 마이크로 들어가지 않게 해 주세요",
+                style: TextStyle(fontFamily: NOTO_REGULAR),
+              ),
               SizedBox(height: 5.h),
-              Text("소음이 적은 장소에서 연주해 주세요"),
+              Text(
+                "소음이 적은 장소에서 연주해 주세요",
+                style: TextStyle(fontFamily: NOTO_REGULAR),
+              ),
               SizedBox(height: 15.h),
               Padding(
                 padding: const EdgeInsets.only(left: 37, right: 37),
@@ -62,7 +71,8 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
                         },
                         child: Text(
                           "취소",
-                          style: TextStyle(color: textBlack),
+                          style: TextStyle(
+                              color: textBlack, fontFamily: NOTO_REGULAR),
                         )),
                     Spacer(flex: 1),
                     TextButton(
@@ -93,7 +103,8 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
                         },
                         child: Text(
                           "확인",
-                          style: TextStyle(color: textBlack),
+                          style: TextStyle(
+                              color: textBlack, fontFamily: NOTO_REGULAR),
                         )),
                   ],
                 ),

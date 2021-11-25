@@ -29,7 +29,10 @@ class MyPageScreen extends StatelessWidget {
                 )),
             Text(
               TEAR_NAME[5],
-              style: TextStyle(fontSize: textEightSize, fontWeight: bold),
+              style: TextStyle(
+                  fontSize: textEightSize,
+                  fontWeight: bold,
+                  fontFamily: NOTO_BOLD),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -37,8 +40,7 @@ class MyPageScreen extends StatelessWidget {
                 Text(
                   '다음 랭크까지',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontWeight: FontWeight.bold, fontFamily: NOTO_REGULAR),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 5),
@@ -55,6 +57,7 @@ class MyPageScreen extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(height: 31.h),
             myPageButton(SvgPicture.asset(MY_RECORD_SVG), "내기록",
                 MyPageRecord(songname: '곡이름')),
             myPageButton(SvgPicture.asset(BOOKMARK_SVG), "관심곡",
@@ -63,7 +66,6 @@ class MyPageScreen extends StatelessWidget {
                 MyPageListen(songname: '곡이름', date: '날짜')),
             myPageButton(SvgPicture.asset(VIDEO_SVG), "연주보기",
                 MyPageLook(songname: '곡이름', date: '날짜')),
-            myPageButton(SvgPicture.asset(MY_MUSIC_SVG), "마이곡", MyPageMysong()),
           ],
         ),
       ),
@@ -87,7 +89,8 @@ class MyPageScreen extends StatelessWidget {
                   SizedBox(width: 27.w),
                   Text(
                     title,
-                    style: TextStyle(fontSize: textEightSize.sp),
+                    style: TextStyle(
+                        fontSize: textEightSize.sp, fontFamily: NOTO_MEDIUM),
                   ),
                 ],
               )),
