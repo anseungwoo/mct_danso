@@ -105,7 +105,9 @@ class MainScreen extends StatelessWidget {
                       : SvgPicture.asset(ON_SVG),
                   Text(
                     '배경음',
-                    style: TextStyle(fontSize: 11.sp),
+
+                    style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
+
                   ),
                 ],
               ))),
@@ -163,7 +165,9 @@ class MainScreen extends StatelessWidget {
 
   Positioned myPage() {
     return Positioned.fill(
+
       bottom: 28.w,
+
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
@@ -176,10 +180,9 @@ class MainScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 '마이페이지',
-                style: TextStyle(
-                  color: white,
-                  fontSize: 15.sp,
-                ),
+
+                style: TextStyle(color: white, fontFamily: NOTO_MEDIUM),
+
               ),
             ),
           ),
@@ -232,13 +235,16 @@ class MainScreen extends StatelessWidget {
                     Text('$title',
                         style: TextStyle(
                             fontSize: textTitleSize.sp,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: NOTO_BOLD)),
                     SizedBox(height: 7.h),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         for (int i = 0; i < 2; i++)
-                          Text(contant[i], style: TextStyle(fontSize: 14.sp)),
+                          Text(contant[i],
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
                       ],
                     )
                   ],

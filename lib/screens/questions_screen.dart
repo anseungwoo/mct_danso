@@ -78,7 +78,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: white,
-                                          fontSize: textSixSize.sp),
+                                          fontSize: textSixSize.sp,
+                                          fontFamily: NOTO_MEDIUM),
                                     ),
                                   ],
                                 ),
@@ -125,7 +126,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: white,
-                                          fontSize: textSixSize.sp),
+                                          fontSize: textSixSize.sp,
+                                          fontFamily: NOTO_MEDIUM),
                                     ),
                                   ],
                                 ),

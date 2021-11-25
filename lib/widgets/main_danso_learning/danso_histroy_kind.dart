@@ -41,13 +41,15 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
                   Text(
                     widget.subject,
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: textSevenSize.sp,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        fontSize: textSevenSize.sp,
+                        fontFamily: NOTO_BOLD),
                   ),
                   SizedBox(height: 10.h),
                   Text(widget.explanation,
-                      style: TextStyle(fontSize: textBasicSize.sp)),
+                      style: TextStyle(
+                          fontSize: textBasicSize.sp,
+                          fontFamily: NOTO_REGULAR)),
                 ],
               ),
             ),

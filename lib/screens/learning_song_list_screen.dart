@@ -93,7 +93,9 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                             child: Center(
                               child: Text(
                                   "${controller.yulmyeong[controller.currentLevel][i].toHangeul()}",
-                                  style: TextStyle(fontSize: textEightSize.sp)),
+                                  style: TextStyle(
+                                      fontSize: textEightSize.sp,
+                                      fontFamily: NOTO_REGULAR)),
                             ),
                           )
                       ],
@@ -117,7 +119,9 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                             child: Center(
                               child: Text(
                                   "${controller.yulmyeong[controller.currentLevel][i].toChineseCharacter()}",
-                                  style: TextStyle(fontSize: textEightSize.sp)),
+                                  style: TextStyle(
+                                      fontSize: textEightSize.sp,
+                                      fontFamily: NOTO_REGULAR)),
                             ),
                           )
                       ],
@@ -166,7 +170,9 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                         SvgPicture.asset(COUNT_LIST_SVG[index]),
                                         SizedBox(width: 15.w),
                                         Text('${item.songTitle}',
-                                            style: TextStyle(color: white)),
+                                            style: TextStyle(
+                                                color: white,
+                                                fontFamily: NOTO_MEDIUM)),
                                         Spacer(flex: 1),
                                         InkWell(
                                           radius: 40.r,

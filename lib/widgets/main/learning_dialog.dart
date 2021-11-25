@@ -19,9 +19,9 @@ Widget learningDialog() {
             child: Text(
               '운지법 익히기',
               style: TextStyle(
-                fontSize: textTitleSize.sp,
-                fontWeight: FontWeight.bold,
-              ),
+                  fontSize: textTitleSize.sp,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: NOTO_BOLD),
             ),
           ),
           SizedBox(
@@ -30,11 +30,17 @@ Widget learningDialog() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              icon(text: '단소 기초 학습', page: MainDansoLearningScreen()),
+              icon(
+                  text: '단소 기초 학습',
+                  page: MainDansoLearningScreen(),
+                  assetName: DANSO_LESSON_SVG),
               SizedBox(
                 width: 14.w,
               ),
-              icon(page: MainDansoLearningTestScreen(), text: '단계별 연습'),
+              icon(
+                  page: MainDansoLearningTestScreen(),
+                  text: '단계별 연습',
+                  assetName: DANSO_STUDY_SVG),
             ],
           ),
         ],

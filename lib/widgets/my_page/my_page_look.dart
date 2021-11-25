@@ -49,9 +49,9 @@ class MyPageLook extends StatelessWidget {
                                       '$songname $index',
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
-                                        fontSize: textEightSize.sp,
-                                        color: white,
-                                      ),
+                                          fontSize: textEightSize.sp,
+                                          color: white,
+                                          fontFamily: NOTO_MEDIUM),
                                     ),
                                     SizedBox(height: 2),
                                     Text(
@@ -78,11 +78,19 @@ class MyPageLook extends StatelessWidget {
                                       child: SvgPicture.asset(SEE_MORE_SVG)),
                                   itemBuilder: (context) => [
                                     PopupMenuItem(
-                                      child: Text('공유하기'),
+                                      child: Text(
+                                        '공유하기',
+                                        style:
+                                            TextStyle(fontFamily: NOTO_REGULAR),
+                                      ),
                                       value: 1,
                                     ),
                                     PopupMenuItem(
-                                      child: Text('삭제하기'),
+                                      child: Text(
+                                        '삭제하기',
+                                        style:
+                                            TextStyle(fontFamily: NOTO_REGULAR),
+                                      ),
                                       value: 2,
                                     )
                                   ],

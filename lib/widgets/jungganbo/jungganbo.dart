@@ -89,6 +89,7 @@ Text changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
   return Text(
     text,
     style: TextStyle(
+        fontFamily: NOTO_REGULAR,
         fontSize: heightNumber == 12 ? textEightSize.sp : textBasicSize.sp,
         color: controller.line == i && controller.row == j
             ? controller.gameState

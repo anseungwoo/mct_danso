@@ -59,12 +59,15 @@ class ResultScore extends StatelessWidget {
           Text(
             '점수(점수)',
             style: TextStyle(
-                fontSize: textSingleSize, fontWeight: FontWeight.bold),
+                fontSize: textSingleSize,
+                fontWeight: FontWeight.bold,
+                fontFamily: NOTO_MEDIUM),
           ),
           SizedBox(height: basicPadding),
           Text(
             '완벽해요!',
-            style: TextStyle(fontSize: textEightSize.sp),
+            style:
+                TextStyle(fontSize: textEightSize.sp, fontFamily: NOTO_REGULAR),
           ),
         ],
       ),
