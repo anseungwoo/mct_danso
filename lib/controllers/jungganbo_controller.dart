@@ -9,7 +9,7 @@ class JungganboController extends GetxController {
   int speedCount = 2;
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
   bool krState = false;
-  String krButton = "한자";
+  String krButton = '한자';
 
   late int mill;
   late JungGanBo jungGanBo;
@@ -67,7 +67,7 @@ class JungganboController extends GetxController {
   }
 
   void stepStart() async {
-    print("결과값 $sheetHorizontal");
+    print('결과값 $sheetHorizontal');
     await Future.delayed(Duration(milliseconds: mill));
     interval(Duration(milliseconds: mill), (timer) {
       if (line < jungGanBo.sheet.length &&
@@ -84,10 +84,10 @@ class JungganboController extends GetxController {
         pagenext++;
         sheetHorizontal -= 2;
 
-        print("결과값4 $sheetHorizontal");
-        print("n1 $next");
-        print("n2 $next2");
-        print("np $pagenext");
+        print('결과값4 $sheetHorizontal');
+        print('n1 $next');
+        print('n2 $next2');
+        print('np $pagenext');
       }
       if (sheetHorizontal >= 4 && line == 24 * pagenext && sheetVertical == 6) {
         next += 4;
@@ -95,30 +95,30 @@ class JungganboController extends GetxController {
         pagenext++;
         sheetHorizontal -= 2;
 
-        print("결과값4 $sheetHorizontal");
-        print("n1 $next");
-        print("n2 $next2");
-        print("np $pagenext");
+        print('결과값4 $sheetHorizontal');
+        print('n1 $next');
+        print('n2 $next2');
+        print('np $pagenext');
       }
       if (sheetHorizontal == 3 && line == 24 * pagenext && sheetVertical == 6) {
         next += 4;
         next2 += 2;
         pagenext++;
 
-        print("결과값3 $sheetHorizontal");
-        print("n1 $next");
-        print("n2 $next2");
-        print("np $pagenext");
+        print('결과값3 $sheetHorizontal');
+        print('n1 $next');
+        print('n2 $next2');
+        print('np $pagenext');
       }
       if (sheetHorizontal == 3 && line == 32 * pagenext && sheetVertical == 8) {
         next += 4;
         next2 += 2;
         pagenext++;
 
-        print("결과값3 $sheetHorizontal");
-        print("n1 $next");
-        print("n2 $next2");
-        print("np $pagenext");
+        print('결과값3 $sheetHorizontal');
+        print('n1 $next');
+        print('n2 $next2');
+        print('np $pagenext');
       }
       if (starStopState == false || line == jungGanBo.sheet.length) {
         stepStop();
@@ -130,7 +130,7 @@ class JungganboController extends GetxController {
 
   Timer interval(Duration duration, func) {
     Timer function() {
-      Timer timer = Timer(duration, function);
+      var timer = Timer(duration, function);
 
       func(timer);
 

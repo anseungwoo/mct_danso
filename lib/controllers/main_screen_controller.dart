@@ -1,81 +1,56 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:audio_session/audio_session.dart';
-// import 'package:just_audio/just_audio.dart';
-import 'package:project_danso/common/const.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreenController extends GetxController with WidgetsBindingObserver {
-  bool svgState = false;
-  bool musicState = false;
-  bool muteButtonState = true;
-
-  // AudioPlayer player = AudioPlayer();
   final assetsAudioPlayer = AssetsAudioPlayer();
-  // final bool playing = assetsAudioPlayer.isPlaying.value;
+  bool svgState = false;
+  late bool musicState;
 
   @override
   void onInit() {
     super.onInit();
-    // player.play();
-    // _init();
-
-    assetsAudioPlayer.open(
-      Audio('assets/music/arirang_shel.wav'),
-      loopMode: LoopMode.single,
-      autoStart: true,
-    );
-
-    // playOrPause();
+    getMusicState();
   }
 
-  // Future<void> _init() async {
-  //   final session = await AudioSession.instance;
-  //   await session.configure(AudioSessionConfiguration.speech());
-  //   await player.setLoopMode(LoopMode.one);
+  void getMusicState() async {
+    final getBgmState = await SharedPreferences.getInstance();
+    musicState = getBgmState.getBool('music_state') ?? true;
+    playOrPause();
+    update();
+  }
 
-  //   await player.setAsset(backMusic);
-  // }
-
-  void playOrPause() {
-    assetsAudioPlayer.playOrPause();
-    musicState = assetsAudioPlayer.isPlaying.value;
+  void playOrPause() async {
+    final getBgmState = await SharedPreferences.getInstance();
+    if (musicState) {
+      await assetsAudioPlayer.open(
+        Audio('assets/music/arirang_shel.wav'),
+        loopMode: LoopMode.single,
+      );
+      await getBgmState.setBool('music_state', musicState);
+      assetsAudioPlayer.play();
+    } else if (!musicState) {
+      await getBgmState.setBool('music_state', musicState);
+      assetsAudioPlayer.stop();
+    }
     print('isplaying : $musicState');
-
     update();
   }
 
   void ChangeMuteButtonState() {
-    // true : 재생, false : 일시정지/정지
-    muteButtonState = !muteButtonState;
-    // musicState = assetsAudioPlayer.isPlaying.value;
-
-    print('button state : $muteButtonState');
+    musicState = !musicState;
     update();
   }
 
   @override
   void dispose() {
-    // player.dispose();
     assetsAudioPlayer.dispose();
     super.dispose();
-  }
-
-  void disposeAudioPlayer() {
-    assetsAudioPlayer.stop();
-    // assetsAudioPlayer.dispose();
   }
 
   void SvgStateChange() {
     svgState = !svgState;
     update();
   }
-
-  // void MusicStateChange() {
-  //   musicState = !musicState;
-  //   update();
-  // }
 }

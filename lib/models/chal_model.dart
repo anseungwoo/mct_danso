@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class ChallangeModel {
   final int chalId;
   final int? songId;

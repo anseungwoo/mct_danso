@@ -22,7 +22,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     // TODO: implement dispose
     super.dispose();
 
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
     ;
