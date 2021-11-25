@@ -87,14 +87,14 @@ extension FormatString on Duration {
 Widget myPageListenDialog(BuildContext context) {
   final _recording =
       '/storage/emulated/0/Android/data/com.mct.projectDanso1/files/flutter_audio_recorder_1635144151751.wav';
-  MyPageMusicController myPageController = Get.put(MyPageMusicController());
-
+  MyPageMusicController myPageMusicController =
+      Get.put(MyPageMusicController());
   return Dialog(
     child: Container(
       width: 330.w,
       height: 200.h,
       child: GetBuilder<MyPageMusicController>(
-          init: myPageController,
+          init: myPageMusicController,
           builder: (controller) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,

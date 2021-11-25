@@ -37,23 +37,10 @@ class MainScreen extends StatelessWidget {
                       child: Stack(
                         children: [
                           topImage(controller),
-                          stateButton(
-                              onPressed: () {
-                                controller.playOrPause();
-                                controller.ChangeMuteButtonState();
-                                // controller.MusicStateChange();
-                                // if (playing != true) {
-                                //   controller.player.play();
-                                // } else if (processingState !=
-                                //     ProcessingState.completed) {
-                                //   controller.player.pause();
-                                // }
-                                // Get.to(Music());
-                                // controller.musicState
-                                //     ? controller.player.play()
-                                //     : controller.player.pause();
-                              },
-                              musicState: controller.musicState),
+                          stateButton(onPressed: () {
+                            controller.playOrPause();
+                            controller.ChangeMuteButtonState();
+                          }),
                           imageChange(controller),
                           myPage(),
                         ],
@@ -94,12 +81,12 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget stateButton({Function()? onPressed, required bool musicState}) {
+  Widget stateButton({Function()? onPressed}) {
     return Positioned(
-      top: 30.h,
+      top: 40.h,
       left: 10.w,
       child: Container(
-          width: 80.w,
+          width: 85.w,
           height: 22.h,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -110,14 +97,17 @@ class MainScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50))),
               onPressed: onPressed,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  musicState
+                  !mainScreenController.musicState
                       ? SvgPicture.asset(OFF_SVG)
                       : SvgPicture.asset(ON_SVG),
-                  SizedBox(width: 3),
                   Text(
                     '배경음',
+
                     style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
+
                   ),
                 ],
               ))),
@@ -175,7 +165,9 @@ class MainScreen extends StatelessWidget {
 
   Positioned myPage() {
     return Positioned.fill(
-      bottom: Get.statusBarHeight - 50.h,
+
+      bottom: 28.w,
+
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
@@ -188,7 +180,9 @@ class MainScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 '마이페이지',
+
                 style: TextStyle(color: white, fontFamily: NOTO_MEDIUM),
+
               ),
             ),
           ),
@@ -207,7 +201,7 @@ class MainScreen extends StatelessWidget {
     return InkWell(
       onTap: () {
         var controller = Get.find<MainScreenController>();
-        if (controller.muteButtonState) {
+        if (controller.musicState) {
           // 아예 정지
           // Get.find<MainScreenController>().disposeAudioPlayer();
           // 일시 정지

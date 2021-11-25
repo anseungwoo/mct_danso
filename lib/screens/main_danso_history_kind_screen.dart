@@ -36,7 +36,7 @@ class _MainDansoHistoryKindScreenState
     // TODO: implement dispose
     super.dispose();
 
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
     ;

@@ -31,7 +31,7 @@ class _MainDansoLearningTestScreenState
     // TODO: implement dispose
     super.dispose();
 
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
     ;
@@ -41,7 +41,7 @@ class _MainDansoLearningTestScreenState
   void initState() {
     super.initState();
 
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
       // 일시 정지

@@ -3,18 +3,18 @@ import 'dart:typed_data';
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
+=======
+>>>>>>> fe73347163d97a77e1301aac0cad4e9e913dcb5a
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 
-import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
-import 'package:project_danso/models/models.dart';
 import 'package:project_danso/widgets/main/loading_indicator.dart';
-import 'package:project_danso/widgets/test_dialog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
@@ -40,7 +40,6 @@ class DansoSoundLearningController extends GetxController {
     YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
   ];
 
-  final _flutterMidi = FlutterMidi();
   //디텍터
   PitchModelInterface pitchModelInterface = PitchModel();
   // late Pitchdetector detector;
@@ -59,7 +58,7 @@ class DansoSoundLearningController extends GetxController {
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
-  Text isMacthing = Text("단소를불러보세요");
+  Text isMacthing = Text('단소를불러보세요');
 
   @override
   void onInit() {

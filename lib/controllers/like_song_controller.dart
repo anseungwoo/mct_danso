@@ -20,9 +20,7 @@ class LikeSongController extends GetxController {
 
   void getLikeSongList() async {
     var data = await DBHelPer().readLikeSongList();
-    if (data != null) {
-      likeSongList.assignAll(data);
-    }
+    likeSongList.assignAll(data);
     // update();
   }
 

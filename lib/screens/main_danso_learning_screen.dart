@@ -20,7 +20,7 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
       // 일시 정지
@@ -33,7 +33,7 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
     // TODO: implement dispose
     super.dispose();
 
-    if (controller.muteButtonState) {
+    if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
     ;
