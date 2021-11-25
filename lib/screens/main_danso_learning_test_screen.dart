@@ -210,9 +210,9 @@ class _MainDansoLearningTestScreenState
                       ? null
                       : () {
                           controller.changeSpeakTuningState();
-                          // controller.listenTuningState
-                          //     ? controller.palySound()
-                          //     : null;
+                          controller.listenTuningState
+                              ? controller.palySound()
+                              : null;
                         },
             ),
             //불어보기

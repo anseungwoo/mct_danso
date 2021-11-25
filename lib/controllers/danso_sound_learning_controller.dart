@@ -1,8 +1,14 @@
+import 'dart:typed_data';
+
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
+import 'package:pitch_detector_dart/pitch_detector.dart';
+import 'package:pitchupdart/instrument_type.dart';
+import 'package:pitchupdart/pitch_handler.dart';
 
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
@@ -45,6 +51,11 @@ class DansoSoundLearningController extends GetxController {
   late String yulmyeong;
   late String pitchStatus;
   // double userInputForAdjust = F_FREQ;
+  final _audioRecorder = FlutterAudioCapture();
+  final pitchDetectorDart = PitchDetector(44100, 2000);
+  final pitchupDart = PitchHandler(InstrumentType.guitar);
+  var note = "";
+  var status = "Click on start";
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
@@ -67,11 +78,43 @@ class DansoSoundLearningController extends GetxController {
     super.onInit();
   }
 
-  Future delayDialog() async {
-    await Future.delayed(const Duration(milliseconds: 3000));
-    await Get.dialog(Dialog(
-      child: LoadingIndicator(),
-    ));
+  Future<void> _startCapture() async {
+    await _audioRecorder.start(listener, onError,
+        sampleRate: 44100, bufferSize: 3000);
+    note = "";
+    status = "Play something";
+    update();
+  }
+
+  Future<void> _stopCapture() async {
+    await _audioRecorder.stop();
+
+    note = "";
+    status = "Click on start";
+    update();
+  }
+
+  void listener(dynamic obj) {
+    //Gets the audio sample
+    var buffer = Float64List.fromList(obj.cast<double>());
+    final List<double> audioSample = buffer.toList();
+    //Uses pitch_detector_dart library to detect a pitch from the audio sample
+    final result = pitchDetectorDart.getPitch(audioSample);
+    //If there is a pitch - evaluate it
+    if (result.pitched) {
+      //Uses the pitchupDart library to check a given pitch for a Guitar
+      final handledPitchResult = pitchupDart.handlePitch(result.pitch);
+      //Updates the state with the result
+
+      note = handledPitchResult.note;
+      pitch = handledPitchResult.expectedFrequency;
+      status = handledPitchResult.tuningStatus.toString();
+    }
+    update();
+  }
+
+  void onError(Object e) {
+    print(e);
   }
 
   void palySound() {
