@@ -3,11 +3,42 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageScreen extends StatelessWidget {
+class MyPageScreen extends StatefulWidget {
   const MyPageScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MyPageScreen> createState() => _MyPageScreenState();
+}
+
+class _MyPageScreenState extends State<MyPageScreen> {
+  var controller = Get.find<MainScreenController>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if (controller.musicState) {
+      // 아예 정지
+      // Get.find<MainScreenController>().disposeAudioPlayer();
+      // 일시 정지
+      controller.assetsAudioPlayer.pause();
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    if (controller.musicState) {
+      controller.assetsAudioPlayer.play();
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
