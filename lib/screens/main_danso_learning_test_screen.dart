@@ -92,6 +92,8 @@ class _MainDansoLearningTestScreenState
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text('${controller.pitchValue}'),
+
             if (controller.listenTuningState)
               Column(
                 children: [
@@ -110,8 +112,7 @@ class _MainDansoLearningTestScreenState
               // Text('${controller.userInputForAdjust}')
               Text("data")
             else if (controller.playTuningState)
-              // controller.soundMatch(controller.pitch)!
-              Text("data")
+              controller.soundMatch(controller.pitchValue)!
             else
               Text(""),
             SizedBox(height: 20.h),
@@ -167,39 +168,6 @@ class _MainDansoLearningTestScreenState
                 ),
               ],
             ),
-            //기준음
-            // SoundButton(
-            //   title: '${controller.tuningButtonText}',
-            //   onPressed: controller.listenTuningState
-            //       ? null
-            //       : controller.playTuningState
-            //           ? null
-            //           : () async {
-            //               controller.changeSoundTuningState();
-            //               controller.soundListTa(4);
-            //               await Get.dialog(mainDansoCautionDialog());
-            //               await Get.dialog(
-            //                 Dialog(child: TimerWidget()),
-            //                 barrierDismissible: false,
-            //               );
-            //               // await Future.delayed(
-            //               //     const Duration(milliseconds: 3500));
-            //               // Get.back();
-            //               // controller.isAdjust
-            //               //     ? controller.stopAdjust()
-            //               //     : controller.startAdjust();
-            //               // await Get.dialog(Dialog(
-            //               //   child: LoadingIndicator(),
-            //               // ));
-            //               // if (controller.userInputForAdjust < 400 ||
-            //               //     controller.userInputForAdjust > 700) {
-            //               //   await Get.dialog(
-            //               //       testDialog(FAIL_SVG, "다시 시도 해주세요"));
-            //               // } else {
-            //               //   await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
-            //               // }
-            //             },
-            // ),
 
             //예시듣기
             SoundButton(
@@ -224,9 +192,10 @@ class _MainDansoLearningTestScreenState
                       ? null
                       : () {
                           controller.changePlayState();
+                          controller.isRecordstate();
                           controller.isRecording
-                              ? controller.stopRecording()
-                              : controller.startRecording();
+                              ? controller.startCapture()
+                              : controller.stopCapture();
                         },
             ),
             //연습하기
