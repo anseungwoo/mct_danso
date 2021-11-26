@@ -102,9 +102,6 @@ Widget myPageListenDialog(BuildContext context) {
               children: <Widget>[
                 controller.assetsAudioPlayer.builderCurrent(
                     builder: (context, Playing? playing) {
-                  if (playing == null) {
-                    return Text('data');
-                  }
                   return Column(
                     children: <Widget>[
                       controller.assetsAudioPlayer.builderLoopMode(
@@ -116,18 +113,8 @@ Widget myPageListenDialog(BuildContext context) {
                                   loopMode: LoopMode.single,
                                   isPlaying: isPlaying,
                                   isPlaylist: false,
-                                  toggleLoop: () {
-                                    controller.assetsAudioPlayer.toggleLoop();
-                                  },
                                   onPlay: () {
                                     controller.assetsAudioPlayer.playOrPause();
-                                  },
-                                  onNext: () {
-                                    //controller.assetsAudioPlayer.forward(Duration(seconds: 10));
-                                    controller.assetsAudioPlayer.next();
-                                  },
-                                  onPrevious: () {
-                                    controller.assetsAudioPlayer.previous();
                                   },
                                 );
                               });
@@ -135,13 +122,10 @@ Widget myPageListenDialog(BuildContext context) {
                       ),
                       controller.assetsAudioPlayer.builderRealtimePlayingInfos(
                           builder: (context, RealtimePlayingInfos? infos) {
-                        if (infos == null) {
-                          return Text('data');
-                        }
                         return Column(
                           children: [
                             PositionSeekWidget(
-                              currentPosition: infos.currentPosition,
+                              currentPosition: infos!.currentPosition,
                               duration: infos.duration,
                               seekTo: (to) {
                                 controller.assetsAudioPlayer.seek(to);

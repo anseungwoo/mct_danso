@@ -3,18 +3,18 @@ import 'dart:typed_data';
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
-=======
->>>>>>> fe73347163d97a77e1301aac0cad4e9e913dcb5a
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
+import 'package:project_danso/common/const.dart';
 
 import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/models/models.dart';
 import 'package:project_danso/widgets/main/loading_indicator.dart';
+import 'package:project_danso/widgets/test_dialog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
@@ -39,6 +39,7 @@ class DansoSoundLearningController extends GetxController {
     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high),
     YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
   ];
+  double pitchValue = 0;
 
   //디텍터
   PitchModelInterface pitchModelInterface = PitchModel();
@@ -49,12 +50,13 @@ class DansoSoundLearningController extends GetxController {
   bool isAdjust = false;
   late String yulmyeong;
   late String pitchStatus;
-  // double userInputForAdjust = F_FREQ;
+  double userInputForAdjust = F_FREQ;
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
   var note = "";
   var status = "Click on start";
+  var isCapture = false;
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
@@ -62,22 +64,16 @@ class DansoSoundLearningController extends GetxController {
 
   @override
   void onInit() {
-    // detector = new Pitchdetector(sampleRate: 44100, sampleSize: 4096);
-    isRecording = isRecording;
-    // detectorAdjust = Pitchdetector(sampleRate: 44100, sampleSize: 4096);
-    // detectorAdjust.onRecorderStateChanged.listen((event) {
-    //   // pitch = event['pitch'];
-    //   if (pitch > 150) {
-    //     // userInputForAdjust = event['pitch'];
-    //     print(userInputForAdjust);
-    //     dansoPitchAdjustList!.add(userInputForAdjust);
-    //     update();
-    //   }
-    // });
     super.onInit();
   }
 
-  Future<void> _startCapture() async {
+  void isRecordstate() {
+    isRecording = !isRecording;
+    update();
+  }
+
+  Future<void> startCapture() async {
+    isCapture = true;
     await _audioRecorder.start(listener, onError,
         sampleRate: 44100, bufferSize: 3000);
     note = "";
@@ -85,8 +81,9 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
-  Future<void> _stopCapture() async {
+  Future<void> stopCapture() async {
     await _audioRecorder.stop();
+    isCapture = false;
 
     note = "";
     status = "Click on start";
@@ -104,12 +101,14 @@ class DansoSoundLearningController extends GetxController {
       //Uses the pitchupDart library to check a given pitch for a Guitar
       final handledPitchResult = pitchupDart.handlePitch(result.pitch);
       //Updates the state with the result
-
+      userInputForAdjust = result.pitch;
+      dansoPitchAdjustList.add(userInputForAdjust);
+      pitchValue = result.pitch;
       note = handledPitchResult.note;
       pitch = handledPitchResult.expectedFrequency;
       status = handledPitchResult.tuningStatus.toString();
+      update();
     }
-    update();
   }
 
   void onError(Object e) {
@@ -267,231 +266,231 @@ class DansoSoundLearningController extends GetxController {
   //   }
   // }
 
-  // Text? soundMatch(double scl) {
-  //   switch (soundListUpDown) {
-  //     case 0:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 1:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 2:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 3:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 4:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 5:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 6:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 7:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 8:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     case 9:
-  //       try {
-  //         if (scl > 2000 || scl < 300) {
-  //           return Text("단소를불러보세요");
-  //         } else {
-  //           if (pitchModelInterface.isCorrectPitch(
-  //               scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))) {
-  //             return Text(
-  //               "잘 불렀어요!!",
-  //               style: TextStyle(color: matchColor),
-  //             );
-  //           } else {
-  //             return Text("다시 불러보세요!",
-  //                 style: TextStyle(
-  //                   color: unMatchColor,
-  //                 ));
-  //           }
-  //         }
-  //       } catch (er) {
-  //         return Text("단소를불러보세요");
-  //       }
-  //       break;
-  //     default:
-  //   }
-  // }
+  Text? soundMatch(double scl) {
+    switch (soundListUpDown) {
+      case 0:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 1:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 2:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 3:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 4:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 5:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 6:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 7:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 8:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      case 9:
+        try {
+          if (scl > 2000 || scl < 300) {
+            return Text("단소를불러보세요");
+          } else {
+            if (pitchModelInterface.isCorrectPitch(
+                scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))!) {
+              return Text(
+                "잘 불렀어요!!",
+                style: TextStyle(color: matchColor),
+              );
+            } else {
+              return Text("다시 불러보세요!",
+                  style: TextStyle(
+                    color: unMatchColor,
+                  ));
+            }
+          }
+        } catch (er) {
+          return Text("단소를불러보세요");
+        }
+        break;
+      default:
+    }
+  }
 
   void getDbFr() async {
     dbFr = await DBHelPer().getUserFr();
@@ -499,48 +498,34 @@ class DansoSoundLearningController extends GetxController {
   }
 
   void startAdjust() async {
-    // await detector.startRecording();
-    // if (detector.isRecording) {
-    //   isAdjust = true;
-    //   dansoPitchAdjustList.clear();
-    //   print('듣기 시작');
-    //   update();
-    // }
+    await startCapture();
+    if (isCapture) {
+      isAdjust = true;
+      dansoPitchAdjustList.clear();
+      print('듣기 시작');
+      update();
+    }
     update();
   }
 
-  // void stopAdjust() async {
-  //   // detector.stopRecording();
-  //   isAdjust = false;
-  //   print('듣기 종료');
-  //   if (userInputForAdjust < 400 || userInputForAdjust > 900) {
-  //     showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
-  //   } else {
-  //     await DBHelPer().deleteFr();
-  //     await DBHelPer().insertFr(UserModel(standardFr: userInputForAdjust));
-  //     pitchModelInterface.settingAdjust(userInputForAdjust);
-  //     var pitchResult = pitchModelInterface
-  //         .getModerateAverageFrequencyByListOfPitches(dansoPitchAdjustList);
-  //     // await getDbFr();
-  //     showToast(message: '$pitchResult DB에 저장됨.');
-  //     update();
-  //   }
-  // }
-
-  void startRecording() async {
-    // await detector.startRecording();
-    // if (detector.isRecording) {
-    //   isRecording = true;
-    // }
-
-    update();
-  }
-
-  void stopRecording() {
+  void stopAdjust() async {
     // detector.stopRecording();
-    // isRecording = false;
-    // pitch = detector.pitch;
+    isAdjust = false;
+    print('듣기 종료');
+    if (userInputForAdjust < 400 || userInputForAdjust > 900) {
+      // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
+      await Get.dialog(testDialog(FAIL_SVG, "다시 시도 해주세요"));
+    } else {
+      var pitchResult = pitchModelInterface
+          .getModerateAverageFrequencyByListOfPitches(dansoPitchAdjustList);
+      // await getDbFr();
+      pitchModelInterface.settingAdjust(pitchResult ?? F_FREQ);
 
-    update();
+      await DBHelPer().deleteFr();
+      await DBHelPer().insertFr(UserModel(standardFr: pitchResult ?? F_FREQ));
+      // showToast(message: '$pitchResult DB에 저장됨.');
+      await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
+      update();
+    }
   }
 }
