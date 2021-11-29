@@ -38,7 +38,7 @@ class DBHelPer {
       await db.execute('''
             CREATE TABLE $levelTable
             (
-                level_exp INTEGER NOT NULL DEFAULT 0
+                level_exp DOUBLE NOT NULL DEFAULT 0.0
             )
           ''');
       await db.execute('''
@@ -108,7 +108,35 @@ class DBHelPer {
 
   dynamic deleteFr() async {
     final db = await database;
-    await db.rawDelete('DELETE FROM TB_USER');
+    await db.rawDelete('DELETE FROM $userTable');
+  }
+  //===========================================================================
+
+  // tear query -> TB_LEVEL
+  //===========================================================================
+
+  dynamic insertExp(LevelModel exp) async {
+    final db = await database;
+    await db.rawInsert(
+        'INSERT INTO $levelTable (level_exp) VALUES(?)', [exp.levelExp]);
+  }
+
+  dynamic getExp() async {
+    final db = await database;
+    var res = await db.rawQuery('SELECT * FROM $levelTable');
+    return res[0]['level_exp'];
+    // return res[0]['level_exp'];
+  }
+
+  dynamic updateExp(double levelExp) async {
+    final db = await database;
+    await db.rawUpdate('UPDATE $levelTable SET level_exp=?', [levelExp]);
+    // 'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=?,song_sheet_vertical=? WHERE song_id=?',
+  }
+
+  void deleteExp() async {
+    final db = await database;
+    await db.rawDelete('DELETE FROM $levelTable');
   }
   //===========================================================================
 

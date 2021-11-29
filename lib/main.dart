@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
             locale: DevicePreview.locale(context),
             title: 'Flutter Demo',
             theme: ThemeData(
-              textTheme: GoogleFonts.latoTextTheme(
-                Theme.of(context).textTheme,
-              ),
+              // textTheme: GoogleFonts.latoTextTheme(
+              //   Theme.of(context).textTheme,
+              // ),
 
               primarySwatch: Colors.blue,
               visualDensity: VisualDensity.adaptivePlatformDensity,
