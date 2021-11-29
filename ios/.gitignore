@@ -33,3 +33,4 @@ Runner/GeneratedPluginRegistrant.*
 
 # flutter 2.5 ignore dgph
 **/dgph
+**/dgph~

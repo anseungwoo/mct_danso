@@ -1,5 +1,5 @@
 class LevelModel {
-  final levelEp;
+  final levelExp;
 
-  LevelModel({this.levelEp});
+  LevelModel({this.levelExp});
 }

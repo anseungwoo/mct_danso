@@ -511,21 +511,40 @@ class DansoSoundLearningController extends GetxController {
   void stopAdjust() async {
     // detector.stopRecording();
     isAdjust = false;
+    var pitchResult;
     print('듣기 종료');
-    if (userInputForAdjust < 400 || userInputForAdjust > 900) {
-      // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
-      await Get.dialog(testDialog(FAIL_SVG, "다시 시도 해주세요"));
-    } else {
-      var pitchResult = pitchModelInterface
-          .getModerateAverageFrequencyByListOfPitches(dansoPitchAdjustList);
-      // await getDbFr();
-      pitchModelInterface.settingAdjust(pitchResult ?? F_FREQ);
 
-      await DBHelPer().deleteFr();
-      await DBHelPer().insertFr(UserModel(standardFr: pitchResult ?? F_FREQ));
-      // showToast(message: '$pitchResult DB에 저장됨.');
-      await Get.dialog(testDialog(SUCCESS_SVG, "성공입니다."));
-      update();
+    if (dansoPitchAdjustList.isEmpty) {
+      print('pitchResult : $pitchResult');
+      print('pitch list isEmpty');
+      await Get.dialog(testDialog(FAIL_SVG, '다시 시도 해주세요'));
+    } else {
+      print('pitch list isNotEmpty');
+
+      pitchResult =
+          pitchModelInterface.getModerateAverageFrequencyByListOfPitches(
+                  dansoPitchAdjustList) ??
+              100;
+      print(dansoPitchAdjustList);
+
+      if (pitchResult > 700.0 || pitchResult < 400.0) {
+        // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
+        print('음이 높거나 낮음');
+        await Get.dialog(testDialog(FAIL_SVG, '다시 시도 해주세요'));
+      } else if (pitchResult < 700.0 || pitchResult > 400.0) {
+        print('pitch 정상범위');
+        pitchModelInterface.settingAdjust(pitchResult);
+        await DBHelPer().deleteFr();
+        await DBHelPer().insertFr(UserModel(standardFr: pitchResult));
+        // showToast(message: '$pitchResult DB에 저장됨.');
+        await Get.dialog(testDialog(SUCCESS_SVG, '성공입니다.'));
+        update();
+      } else {
+        await Get.dialog(testDialog(FAIL_SVG, '다시 시도 해주세요'));
+      }
     }
+    // await getDbFr();
+
+    update();
   }
 }

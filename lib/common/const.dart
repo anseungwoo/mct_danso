@@ -286,6 +286,7 @@ const String INFOR_SVG = 'assets/images/mainImage/ic_infor.svg';
 const String QandA_SVG = 'assets/images/mainImage/ic_q&a.svg';
 const String STUDY_SVG = 'assets/images/mainImage/ic_study.svg';
 const String TUNE_SVG = 'assets/images/mainImage/ic_tune.svg';
+
 //티어별 svg
 const List TEAR_SVG_LIST = [
   'assets/images/tear/ic_unranked.svg',
