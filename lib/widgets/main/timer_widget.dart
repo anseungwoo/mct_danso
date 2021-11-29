@@ -57,7 +57,7 @@ class _TimerWidgetState extends State<TimerWidget> {
             children: [
               SizedBox(
                 width: 100.w,
-                height: 100.h,
+                height: 100.w,
                 child: CircularProgressIndicator(
                   color: unButtonColorOrang,
                   strokeWidth: 5,
@@ -65,7 +65,7 @@ class _TimerWidgetState extends State<TimerWidget> {
               ),
               SizedBox(
                 width: 100.w,
-                height: 100.h,
+                height: 100.w,
                 child: Center(
                   child: Text(
                     '$_start',
@@ -80,7 +80,7 @@ class _TimerWidgetState extends State<TimerWidget> {
           ),
           Text(
             '태(汰)를 부를 준비하세요....',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20.sp),
           ),
         ],
       ),

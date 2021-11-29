@@ -271,7 +271,7 @@ class DansoSoundLearningController extends GetxController {
       case 0:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text("단소를 불러보세요");
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))!) {
@@ -530,17 +530,17 @@ class DansoSoundLearningController extends GetxController {
       if (pitchResult > 700.0 || pitchResult < 400.0) {
         // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
         print('음이 높거나 낮음');
-        await Get.dialog(testDialog(FAIL_SVG, '다시 시도 해주세요'));
+        await Get.dialog(testDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
       } else if (pitchResult < 700.0 || pitchResult > 400.0) {
         print('pitch 정상범위');
         pitchModelInterface.settingAdjust(pitchResult);
         await DBHelPer().deleteFr();
         await DBHelPer().insertFr(UserModel(standardFr: pitchResult));
         // showToast(message: '$pitchResult DB에 저장됨.');
-        await Get.dialog(testDialog(SUCCESS_SVG, '성공입니다.'));
+        await Get.dialog(testDialog(SUCCESS_SVG, '성공하였습니다.'));
         update();
       } else {
-        await Get.dialog(testDialog(FAIL_SVG, '다시 시도 해주세요'));
+        await Get.dialog(testDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
       }
     }
     // await getDbFr();

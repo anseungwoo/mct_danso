@@ -31,6 +31,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   @override
   void initState() {
     jungganboController.onInit();
+    jungganboController.sheetHorizontal = 4;
+
     super.initState();
   }
 
@@ -44,7 +46,6 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
             builder: (controller) {
               controller.mill = testJungGanBo.jangDan.milliSecond;
               controller.jungGanBo = testJungGanBo;
-              controller.sheetHorizontal = 4;
               controller.sheetVertical = 12;
               return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
