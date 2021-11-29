@@ -29,10 +29,10 @@ class MainScreenController extends GetxController with WidgetsBindingObserver {
         loopMode: LoopMode.single,
       );
       await getBgmState.setBool('music_state', musicState);
-      assetsAudioPlayer.play();
+      await assetsAudioPlayer.play();
     } else if (!musicState) {
       await getBgmState.setBool('music_state', musicState);
-      assetsAudioPlayer.stop();
+      await assetsAudioPlayer.stop();
     }
     print('isplaying : $musicState');
     update();

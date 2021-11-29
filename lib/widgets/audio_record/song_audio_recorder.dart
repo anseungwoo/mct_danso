@@ -64,7 +64,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                       ? audioRecordController.startRecording()
                       : audioRecordController.stopRecording();
                   widget.controller.changeStartStopState();
-                  widget.controller.starStopState
+                  widget.controller.startStopState
                       ? widget.controller.stepStart()
                       : widget.controller.stepStop();
                 },

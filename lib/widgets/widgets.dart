@@ -34,3 +34,4 @@ export 'jungganbo/jungganbo_flash.dart';
 export 'main_danso_learning/q_and_a_page.dart';
 export './main/loading_indicator.dart';
 export './main/timer_widget.dart';
+export './base_widgets/picture_and_text.dart';
