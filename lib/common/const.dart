@@ -93,7 +93,7 @@ const Color matchColor = Color(0xff00A8F2);
 const Color unMatchColor = Color(0xffFE0000);
 const Color leftColor = Color(0xffE6C387);
 const Color unSelectColor = Color(0xffFBCF98);
-
+const Color rightColor = Color(0xff54452A);
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
 const String HISTORY =
@@ -196,6 +196,31 @@ const List<String> DANSO_SVG_LIST = [
   'assets/images/danso_code/ic_mu.svg',
   'assets/images/danso_code/ic_hwang.svg',
   'assets/images/danso_code/ic_tea.svg',
+];
+//운지법
+const List DANSO_CODE_PNG = [
+  'assets/images/danso_code/중.png',
+  'assets/images/danso_code/임.png',
+  'assets/images/danso_code/무.png',
+  'assets/images/danso_code/황.png',
+  'assets/images/danso_code/태.png',
+  'assets/images/danso_code/높은_태.png'
+];
+const List DANSO_CODE_TITLE = [
+  '仲 & 㳞(중)',
+  '林 & 淋(임)',
+  '無 & 潕(무)',
+  '潢 & 㶂(황)',
+  '汰(태)',
+  '㳲(태)'
+];
+const List DANSO_CODE_CONTANT = [
+  '1~4공까지의 지공을 막고, 5공은 열고 소리를 냅니다. 仲은 "낮은소리"를 낼 때의 입김으로,  㳞은 "가운데소리"를 낼 때의 입김으로 연주합니다.',
+  '1~3공까지의  지공을 막고, 4공과 5공은 열고 소리를 냅니다. 林은 "낮은소리"를 낼 때의 입김으로,  淋은 "가운데소리"를 낼 때의 입김으로 연주합니다.',
+  '1~2공까지의  지공을 막고, 3~5공은 열고 소리를 냅니다. 無는 "가운데소리"를 낼 때의 입김으로,  潕는 "높은소리"를 낼 때의 입김으로 연주합니다.',
+  '1공의  지공을 막고, 2~5공은 열고 소리를 냅니다. 潢은 "가운데소리"를 낼 때의 입김으로,  㶂은 "높은소리"를 낼 때의 입김으로 연주합니다.',
+  '1~5공의 지공을 모두 열고  소리를 냅니다. 汰는 "가운데소리"를 낼 때의 입김으로 연주합니다.',
+  '1공과 3공은 막고, 2공과 4공, 5공은 열고 소리를 냅니다. 㳲는 "높은소리"를 낼 때의 입김으로 연주합니다.'
 ];
 //main svg 기준음잡디 메인페이지 아이콘
 const String HOME_SVG = 'assets/images/ic_home.svg';

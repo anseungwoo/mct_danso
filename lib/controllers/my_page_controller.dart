@@ -23,7 +23,7 @@ class MyPageController extends GetxController {
     await assetsAudioPlayer.open(
       Audio(backMusic),
     );
-    assetsAudioPlayer.play();
+    await assetsAudioPlayer.play();
   }
 
   @override

@@ -21,7 +21,7 @@ Widget fingering(BuildContext context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            CircleAvatar(radius: 14.r, backgroundColor: Colors.black),
+            CircleAvatar(radius: 14.r, backgroundColor: rightColor),
             SizedBox(
               width: 7.sp,
             ),

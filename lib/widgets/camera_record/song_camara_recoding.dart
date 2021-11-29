@@ -80,7 +80,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         : caController.onStop();
 
                     widget.controller.changeStartStopState();
-                    widget.controller.starStopState
+                    widget.controller.startStopState
                         ? widget.controller.stepStart()
                         : widget.controller.stepStop();
                   }),

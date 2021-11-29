@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class JungganboController extends GetxController {
-  bool starStopState = false;
+  bool startStopState = false;
   String startButton = '시작하기';
   int speedCount = 2;
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
@@ -37,8 +38,8 @@ class JungganboController extends GetxController {
   }
 
   void changeStartStopState() {
-    starStopState = !starStopState;
-    startButton = starStopState ? '종료하기' : '시작하기';
+    startStopState = !startStopState;
+    startButton = startStopState ? '종료하기' : '시작하기';
     update();
   }
 
@@ -51,92 +52,89 @@ class JungganboController extends GetxController {
   }
 
   int line = 0;
-  int row = 0;
+  int jungSection = 0;
   int next = 0;
   int next2 = 0;
   int pagenext = 1;
-  int sheetHorizontal = 0;
+  late int sheetHorizontal;
+  int copySheetHorizontal = 0;
+
   void stepStop() {
     pagenext = 1;
     line = 0;
     next = 0;
     next2 = 0;
-    row = 0;
-    starStopState = false;
+    jungSection = 0;
+    startStopState = false;
+    copySheetHorizontal = sheetHorizontal;
     startButton = '시작하기';
   }
 
   void stepStart() async {
-    print('결과값 $sheetHorizontal');
+    print('결과값 $copySheetHorizontal');
     await Future.delayed(Duration(milliseconds: mill));
-    interval(Duration(milliseconds: mill), (timer) {
-      if (line < jungGanBo.sheet.length &&
-          row == jungGanBo.sheet[line].yulmyeongs.length - 1) {
-        line++;
-
-        row = 0;
-      } else {
-        row++;
+    for (line; line < jungGanBo.sheet.length - 1; line++) {
+      if (line != 31 * pagenext || line != 23 * pagenext) {
+        await Future.delayed(Duration(milliseconds: (mill - 3).toInt()));
+        update();
       }
-      if (sheetHorizontal >= 4 && line == 32 * pagenext && sheetVertical == 8) {
+
+      if (copySheetHorizontal >= 4 &&
+          line == 31 * pagenext &&
+          sheetVertical == 8) {
         next += 4;
         next2 += 4;
         pagenext++;
-        sheetHorizontal -= 2;
+        copySheetHorizontal -= 2;
 
-        print('결과값4 $sheetHorizontal');
+        print('결과값4 $copySheetHorizontal');
         print('n1 $next');
         print('n2 $next2');
         print('np $pagenext');
       }
-      if (sheetHorizontal >= 4 && line == 24 * pagenext && sheetVertical == 6) {
+      if (copySheetHorizontal >= 4 &&
+          line == 23 * pagenext &&
+          sheetVertical == 6) {
         next += 4;
         next2 += 4;
         pagenext++;
-        sheetHorizontal -= 2;
+        copySheetHorizontal -= 2;
 
-        print('결과값4 $sheetHorizontal');
+        print('결과값4 $copySheetHorizontal');
         print('n1 $next');
         print('n2 $next2');
         print('np $pagenext');
       }
-      if (sheetHorizontal == 3 && line == 24 * pagenext && sheetVertical == 6) {
+      if (copySheetHorizontal == 3 &&
+          line == 23 * pagenext &&
+          sheetVertical == 6) {
         next += 4;
         next2 += 2;
         pagenext++;
 
-        print('결과값3 $sheetHorizontal');
+        print('결과값3 $copySheetHorizontal');
         print('n1 $next');
         print('n2 $next2');
         print('np $pagenext');
       }
-      if (sheetHorizontal == 3 && line == 32 * pagenext && sheetVertical == 8) {
+      if (copySheetHorizontal == 3 &&
+          line == 31 * pagenext &&
+          sheetVertical == 8) {
         next += 4;
         next2 += 2;
         pagenext++;
 
-        print('결과값3 $sheetHorizontal');
+        print('결과값3 $copySheetHorizontal');
         print('n1 $next');
         print('n2 $next2');
         print('np $pagenext');
       }
-      if (starStopState == false || line == jungGanBo.sheet.length) {
+
+      if (startStopState == false || line == jungGanBo.sheet.length - 1) {
         stepStop();
-        timer.cancel();
       }
       update();
-    });
-  }
-
-  Timer interval(Duration duration, func) {
-    Timer function() {
-      var timer = Timer(duration, function);
-
-      func(timer);
-
-      return timer;
     }
-
-    return Timer(duration, function);
+    update();
   }
 }

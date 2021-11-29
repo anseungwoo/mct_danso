@@ -93,7 +93,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             controller.platState
                                                 ? jungcontroller.stepStart()
                                                 : jungcontroller.stepStop();
-                                            jungcontroller.starStopState
+                                            jungcontroller.startStopState
                                                 ? jungGanBoPlayer
                                                     .play(testJungGanBo)
                                                 : null;
@@ -160,7 +160,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                         ? jungcontroller
                                                             .stepStart()
                                                         : null;
-                                                    jungcontroller.starStopState
+                                                    jungcontroller
+                                                            .startStopState
                                                         ? jungGanBoPlayer
                                                             .play(testJungGanBo)
                                                         : null;

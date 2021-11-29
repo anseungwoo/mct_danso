@@ -71,10 +71,10 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               text: '${controller.startButton}',
                               onPressed: () {
                                 controller.changeStartStopState();
-                                controller.starStopState
+                                controller.startStopState
                                     ? controller.stepStart()
                                     : controller.stepStop();
-                                controller.starStopState
+                                controller.startStopState
                                     ? jungGanBoPlayer.play(testJungGanBo)
                                     : null;
                               }),
@@ -84,7 +84,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               controller: controller,
                               text: '${controller.krButton}',
                               onPressed: () {
-                                controller.starStopState
+                                controller.startStopState
                                     ? null
                                     : controller.changekrState();
                               }),
@@ -95,7 +95,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               text:
                                   '${controller.speed[controller.speedCount]} 배속',
                               onPressed: () {
-                                controller.starStopState
+                                controller.startStopState
                                     ? null
                                     : controller.changespeedState();
                               }),

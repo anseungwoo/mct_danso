@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -98,11 +97,41 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
         ),
         CarouselListWidget(
           carouselList: [
-            fingering(context),
             DansoHistroyKind(
                 subject: DANSO_PALY_TITLE,
                 explanation: DANSO_PALY,
                 url: DANSO_PALY_URL),
+            PictureAndText(
+              title: DANSO_CODE_TITLE[0],
+              contant: DANSO_CODE_CONTANT[0],
+              image: DANSO_CODE_PNG[0],
+            ),
+            PictureAndText(
+              title: DANSO_CODE_TITLE[1],
+              contant: DANSO_CODE_CONTANT[1],
+              image: DANSO_CODE_PNG[1],
+            ),
+            PictureAndText(
+              title: DANSO_CODE_TITLE[2],
+              contant: DANSO_CODE_CONTANT[2],
+              image: DANSO_CODE_PNG[2],
+            ),
+            PictureAndText(
+              title: DANSO_CODE_TITLE[3],
+              contant: DANSO_CODE_CONTANT[3],
+              image: DANSO_CODE_PNG[3],
+            ),
+            PictureAndText(
+              title: DANSO_CODE_TITLE[4],
+              contant: DANSO_CODE_CONTANT[4],
+              image: DANSO_CODE_PNG[4],
+            ),
+            PictureAndText(
+              title: DANSO_CODE_TITLE[5],
+              contant: DANSO_CODE_CONTANT[5],
+              image: DANSO_CODE_PNG[5],
+            ),
+            fingering(context),
           ],
         )
       ],

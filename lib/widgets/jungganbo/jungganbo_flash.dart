@@ -23,26 +23,7 @@ Widget jungganboFromFlash(
             for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
               Row(
                 children: [
-                  testJungGanBo.sheet[i].yulmyeongs.length == 1
-                      ? jungFlashContainer(
-                          height, controller, i, j, heightNumber)
-                      : testJungGanBo.sheet[i].yulmyeongs.length == 2
-                          ? Column(
-                              children: [
-                                for (var j = 0; j < 2; j++)
-                                  jungFlashContainer(height / 2, controller, i,
-                                      j, heightNumber)
-                              ],
-                            )
-                          : testJungGanBo.sheet[i].yulmyeongs.length == 3
-                              ? Column(
-                                  children: [
-                                    for (var j = 0; j < 3; j++)
-                                      jungFlashContainer(height / 3, controller,
-                                          i, j, heightNumber)
-                                  ],
-                                )
-                              : Container(),
+                  jungFlashContainer(height, controller, i, j, heightNumber),
                   beenContainer(height),
                 ],
               ),
@@ -65,7 +46,7 @@ Container jungFlashContainer(double height, JungganboController controller,
     width: jungWidth.w,
     height: height.h,
     decoration: BoxDecoration(
-      color: controller.line == i && controller.row == j
+      color: controller.line == i && controller.jungSection == j
           ? Colors.red[100]!.withOpacity(0.5)
           : null,
     ),
