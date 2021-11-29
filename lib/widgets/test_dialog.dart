@@ -10,27 +10,30 @@ Widget testDialog(String assetName, String text) {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
-      height: 210.h,
+      // height: 210.h,
       width: 330.w,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 24, bottom: 15),
-        child: Column(
-          children: [
-            SvgPicture.asset(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: SvgPicture.asset(
               assetName,
               color: unButtonColorOrang,
             ),
-            Padding(
-              padding: const EdgeInsets.all(30),
-              child: Text(text),
-            ),
-            TextButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text("확인"))
-          ],
-        ),
+          ),
+          Text(text),
+          SizedBox(height: 30.h),
+          TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text(
+                "확인",
+                style: TextStyle(color: textBlack),
+              ))
+        ],
       ),
     ),
   );

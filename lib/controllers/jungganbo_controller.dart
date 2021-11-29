@@ -56,7 +56,7 @@ class JungganboController extends GetxController {
   int next = 0;
   int next2 = 0;
   int pagenext = 1;
-  late int sheetHorizontal;
+  int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
 
   void stepStop() {
