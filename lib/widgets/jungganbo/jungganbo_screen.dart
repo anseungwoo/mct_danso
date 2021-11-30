@@ -12,10 +12,10 @@ Widget jungganboScreen(int heightNumber, JungganboController controller) {
           : jungSixHeight;
 
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       for (var c = 3; c >= 0; c--)
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
               Row(

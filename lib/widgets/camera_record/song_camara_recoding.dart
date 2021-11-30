@@ -103,7 +103,11 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
             ),
           ],
         ),
-        Text(widget.jandan),
+        SizedBox(height: 5),
+        Text(
+          widget.jandan,
+          style: TextStyle(fontSize: textBasicSize.sp),
+        ),
       ],
     );
   }

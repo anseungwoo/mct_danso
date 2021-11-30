@@ -78,7 +78,7 @@ const Color textHiddenGray = Color(0xffBFBFBF);
 //정간보세로,가로
 const FontWeight bold = FontWeight.bold;
 
-const double jungWidth = 62;
+const double jungWidth = 64;
 const double jungHeight = 35;
 const double jungSixHeight = 82;
 const double jungEightHeight = 62;

@@ -39,74 +39,74 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   @override
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
-    return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: GetBuilder<JungganboController>(
-            init: jungganboController,
-            builder: (controller) {
-              controller.mill = testJungGanBo.jangDan.milliSecond;
-              controller.jungGanBo = testJungGanBo;
-              controller.sheetVertical = 12;
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Stack(
-                    children: [
-                      jungganbo(
-                          12, controller, testJungGanBo, controller.krState),
-                      jungganboFromFlash(12, controller, testJungGanBo),
-                      jungganboScreen(12, jungganboController),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15),
-                    child: Container(
-                      width: 330.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          //시작하기
-                          levelButton(
-                              controller: controller,
-                              text: '${controller.startButton}',
-                              onPressed: () {
-                                controller.changeStartStopState();
-                                controller.startStopState
-                                    ? controller.stepStart()
-                                    : controller.stepStop();
-                                controller.startStopState
-                                    ? jungGanBoPlayer.play(testJungGanBo)
-                                    : null;
-                              }),
+    return GetBuilder<JungganboController>(
+        init: jungganboController,
+        builder: (controller) {
+          controller.mill = testJungGanBo.jangDan.milliSecond;
+          controller.jungGanBo = testJungGanBo;
+          controller.sheetVertical = 12;
+          return Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    jungganbo(
+                        12, controller, testJungGanBo, controller.krState),
+                    jungganboFromFlash(12, controller, testJungGanBo),
+                    // jungganboScreen(12, jungganboController),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        //시작하기
+                        levelButton(
+                            controller: controller,
+                            text: '${controller.startButton}',
+                            onPressed: () {
+                              controller.changeStartStopState();
+                              controller.startStopState
+                                  ? controller.stepStart()
+                                  : controller.stepStop();
+                              controller.startStopState
+                                  ? jungGanBoPlayer.play(testJungGanBo)
+                                  : null;
+                            }),
 
-                          //한글한자
-                          levelButton(
-                              controller: controller,
-                              text: '${controller.krButton}',
-                              onPressed: () {
-                                controller.startStopState
-                                    ? null
-                                    : controller.changekrState();
-                              }),
+                        //한글한자
+                        levelButton(
+                            controller: controller,
+                            text: '${controller.krButton}',
+                            onPressed: () {
+                              controller.startStopState
+                                  ? null
+                                  : controller.changekrState();
+                            }),
 
-                          //배속
-                          levelButton(
-                              controller: controller,
-                              text:
-                                  '${controller.speed[controller.speedCount]} 배속',
-                              onPressed: () {
-                                controller.startStopState
-                                    ? null
-                                    : controller.changespeedState();
-                              }),
-                        ],
-                      ),
+                        //배속
+                        levelButton(
+                            controller: controller,
+                            text:
+                                '${controller.speed[controller.speedCount]} 배속',
+                            onPressed: () {
+                              controller.startStopState
+                                  ? null
+                                  : controller.changespeedState();
+                            }),
+                      ],
                     ),
                   ),
-                ],
-              );
-            }));
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget levelButton(
@@ -122,6 +122,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                 primary: buttonColorOrang,
                 onSurface: unButtonColorOrang),
             onPressed: onPressed,
-            child: Text(text, style: TextStyle(fontFamily: NOTO_REGULAR))));
+            child: Text(text,
+                style: TextStyle(
+                    fontSize: textBasicSize.sp, fontFamily: NOTO_REGULAR))));
   }
 }

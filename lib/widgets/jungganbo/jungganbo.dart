@@ -13,10 +13,10 @@ Widget jungganbo(int heightNumber, JungganboController controller,
           : jungSixHeight;
   int j = 0;
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
               Row(
@@ -66,25 +66,37 @@ Container blankContainer(double height) {
 
 Widget jungContainer(double height, JungganboController controller, int i,
     int j, int heightNumber, JungGanBo testJungGanBo, bool krState) {
-  return Container(
-    width: jungWidth.w,
-    height: height.h,
-    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-            child: krState
-                ? changeTextColor(testJungGanBo, i, j, heightNumber, controller,
-                    testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter())
-                : changeTextColor(testJungGanBo, i, j, heightNumber, controller,
-                    testJungGanBo.sheet[i].yulmyeongs[j].toHangeul())),
-      ],
+  return Center(
+    child: Container(
+      width: jungWidth.w,
+      height: height.h,
+      decoration: BoxDecoration(color: white, border: Border.all(color: white)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+              child: krState
+                  ? changeTextColor(
+                      testJungGanBo,
+                      i,
+                      j,
+                      heightNumber,
+                      controller,
+                      testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter())
+                  : changeTextColor(
+                      testJungGanBo,
+                      i,
+                      j,
+                      heightNumber,
+                      controller,
+                      testJungGanBo.sheet[i].yulmyeongs[j].toHangeul())),
+        ],
+      ),
     ),
   );
 }
 
-Text changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
+Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
     JungganboController controller, String text) {
   return Text(
     text,

@@ -63,24 +63,26 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       body: GetBuilder<PlayAndTestController>(
           init: PlayAndTestController(),
           builder: (controller) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: basicPadding),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    // height: 30.h,
-                    child: GetBuilder<JungganboController>(
-                        init: jungganboController,
-                        builder: (jungcontroller) {
-                          jungcontroller.mill =
-                              testJungGanBo.jangDan.milliSecond;
-                          jungcontroller.jungGanBo = testJungGanBo;
-                          jungcontroller.sheetVertical = widget.sheetVertical;
-                          return Stack(
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  // height: 30.h,
+                  child: GetBuilder<JungganboController>(
+                      init: jungganboController,
+                      builder: (jungcontroller) {
+                        jungcontroller.mill = testJungGanBo.jangDan.milliSecond;
+                        jungcontroller.jungGanBo = testJungGanBo;
+                        jungcontroller.sheetVertical = widget.sheetVertical;
+                        return Container(
+                          width: 340.w,
+                          child: Stack(
                             children: [
                               controller.statecount == 0
                                   ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         songSwapButton(
                                           text: Text(
@@ -130,7 +132,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   : controller.statecount == 1
                                       ? songSwapButton(
                                           text: Text(
-                                              controller.challengeButtonSwap),
+                                            controller.challengeButtonSwap,
+                                          ),
                                           onPressed: () {
                                             controller.changePlayStopState();
 
@@ -253,48 +256,49 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                               jungcontroller)
                                                       : Container(),
                             ],
-                          );
-                        }),
-                  ),
-                  controller.statecount == 4
-                      ? SizedBox(
-                          height: 5,
-                        )
-                      : Row(
+                          ),
+                        );
+                      }),
+                ),
+                controller.statecount == 4
+                    ? SizedBox(
+                        height: 5,
+                      )
+                    : Container(
+                        width: 335.w,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               "${controller.speed[controller.speedCount]} 배속",
-                              style: TextStyle(fontFamily: NOTO_REGULAR),
+                              style: TextStyle(
+                                  fontSize: textBasicSize.sp,
+                                  fontFamily: NOTO_REGULAR),
                             ),
-                            Spacer(flex: 1),
                             Text(
                               "${widget.jangdan}",
-                              style: TextStyle(fontFamily: NOTO_REGULAR),
+                              style: TextStyle(
+                                  fontSize: textBasicSize.sp,
+                                  fontFamily: NOTO_REGULAR),
                             )
                           ],
                         ),
-                  GetBuilder<JungganboController>(
-                      init: jungganboController,
-                      builder: (jungcontroller) {
-                        return Stack(
-                          children: [
-                            Container(
-                              color: white,
-                              child: jungganbo(
-                                  widget.sheetVertical,
-                                  jungcontroller,
-                                  testJungGanBo,
-                                  controller.krChanges),
-                            ),
-                            jungganboFromFlash(widget.sheetVertical,
-                                jungcontroller, testJungGanBo),
-                            jungganboScreen(
-                                widget.sheetVertical, jungcontroller),
-                          ],
-                        );
-                      }),
-                ],
-              ),
+                      ),
+                GetBuilder<JungganboController>(
+                    init: jungganboController,
+                    builder: (jungcontroller) {
+                      return Stack(
+                        children: [
+                          jungganbo(widget.sheetVertical, jungcontroller,
+                              testJungGanBo, controller.krChanges),
+                          jungganboFromFlash(widget.sheetVertical,
+                              jungcontroller, testJungGanBo),
+                          // jungganboScreen(
+                          //     widget.sheetVertical, jungcontroller),
+                        ],
+                      );
+                    }),
+              ],
             );
           }),
     );
@@ -344,7 +348,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
   Widget songSwapButton({Widget? text, Function()? onPressed}) {
     return Container(
-      width: 78.w,
+      width: 81.w,
       height: 30.h,
       child: ElevatedButton(
         child: text,
