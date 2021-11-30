@@ -1,21 +1,33 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/music.dart';
 import 'package:project_danso/widgets/widgets.dart';
 // import 'package:just_audio/just_audio.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
-  // final SongController songController = Get.put(SongController());
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   MainScreenController mainScreenController =
       Get.put(MainScreenController(), permanent: true);
+
+  TearController tearController = Get.put(TearController());
+
+  @override
+  void initState() {
+    super.initState();
+    tearController.getTearInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +48,24 @@ class MainScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 20),
                       child: Stack(
                         children: [
-                          topImage(controller),
-                          stateButton(onPressed: () {
+                          headerImage(controller),
+                          bgmOnOffButton(onPressed: () {
                             controller.playOrPause();
                             controller.ChangeMuteButtonState();
                           }),
-                          imageChange(controller),
-                          myPage(),
+                          Obx(
+                            () => Positioned(
+                              top: 40.h,
+                              right: 10.w,
+                              child: SvgPicture.asset(
+                                tearController.emblemAsset.value,
+                                width: 30.w,
+                                height: 30.w,
+                              ),
+                            ),
+                          ),
+                          headerChangeButton(controller),
+                          myPageButton(),
                         ],
                       ),
                     ),
@@ -62,16 +85,22 @@ class MainScreen extends StatelessWidget {
                         title: '운지법 익히기',
                         page: learningDialog(),
                         contant: LEARN,
+                        svgHeight: 60,
+                        svgWidth: 60,
                         dialog: true),
                     _homeMenuButton(
                         assetName: TUNE_SVG,
                         title: '연주곡 익히기',
                         contant: PLAYLEARN,
+                        svgHeight: 65,
+                        svgWidth: 65,
                         page: LearningSongListScreen()),
                     _homeMenuButton(
                         assetName: QandA_SVG,
                         title: 'Q&A',
                         contant: QUESTIONS,
+                        svgHeight: 60,
+                        svgWidth: 60,
                         page: QuestionsScreen()),
                   ],
                 ),
@@ -81,7 +110,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget stateButton({Function()? onPressed}) {
+  Widget bgmOnOffButton({Function()? onPressed}) {
     return Positioned(
       top: 40.h,
       left: 10.w,
@@ -120,7 +149,7 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget imageChange(MainScreenController controller) {
+  Widget headerChangeButton(MainScreenController controller) {
     return Positioned(
         top: 85.h,
         left: 50.w,
@@ -139,22 +168,7 @@ class MainScreen extends StatelessWidget {
         ));
   }
 
-  // Widget topImage(MainScreenController controller) {
-  //   return Container(
-  //     width: ScreenUtil().screenWidth.w,
-  //     height: 258.h,
-  //     child: controller.svgState
-  //         ? SvgPicture.asset(
-  //             MAIN_ILL2_SVG,
-  //             fit: BoxFit.fill,
-  //           )
-  //         : SvgPicture.asset(
-  //             MAIN_ILL1_SVG,
-  //             fit: BoxFit.fill,
-  //           ),
-  //   );
-  // }
-  Widget topImage(MainScreenController controller) {
+  Widget headerImage(MainScreenController controller) {
     return Container(
         child: controller.svgState
             ? SvgPicture.asset(
@@ -169,7 +183,7 @@ class MainScreen extends StatelessWidget {
               ));
   }
 
-  Positioned myPage() {
+  Positioned myPageButton() {
     return Positioned.fill(
       bottom: 28.w,
       child: Align(
@@ -177,17 +191,19 @@ class MainScreen extends StatelessWidget {
         child: InkWell(
           onTap: () => Get.to(MyPageScreen()),
           child: Container(
-            width: 150.w,
-            height: 30.h,
+            width: 174.w,
+            height: 36.w,
             decoration: BoxDecoration(
                 color: logoColor, borderRadius: BorderRadius.circular(40)),
             child: Center(
               child: Text(
                 '마이페이지',
+
                 style: TextStyle(
                     color: white,
                     fontFamily: NOTO_MEDIUM,
                     fontSize: textFiveSize.sp),
+
               ),
             ),
           ),
@@ -201,6 +217,8 @@ class MainScreen extends StatelessWidget {
       required Widget page,
       required List contant,
       required String assetName,
+      double svgHeight = 45,
+      double svgWidth = 45,
       bool dialog = false,
       Function()? onPressed}) {
     return InkWell(
@@ -220,11 +238,12 @@ class MainScreen extends StatelessWidget {
         }
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: 10),
-        height: 106.h,
-        width: 330.w,
+        margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+        height: 106.w,
+        // width: 330.w,
         decoration: BoxDecoration(
             color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
+
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
@@ -258,9 +277,34 @@ class MainScreen extends StatelessWidget {
                     )
                   ],
                 ),
+
               ),
-            ],
-          ),
+            ),
+            // SizedBox(width: 14.w),
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('$title',
+                      style: TextStyle(
+                          fontSize: textTitleSize.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: NOTO_BOLD)),
+                  SizedBox(height: 7.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (int i = 0; i < 2; i++)
+                        Text(contant[i],
+                            style: TextStyle(
+                                fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

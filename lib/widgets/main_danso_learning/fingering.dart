@@ -1,4 +1,3 @@
-import 'package:camera/camera.dart';
 import 'package:danso_function/common/classes/YulmyeongNote.dart';
 import 'package:danso_function/common/constants/PitchConst.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:project_danso/common/const.dart';
 
 Widget fingering(BuildContext context) {
-  final List Yum = [
+  final Yum = [
     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),

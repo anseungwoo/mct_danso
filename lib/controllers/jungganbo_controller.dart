@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class JungganboController extends GetxController {

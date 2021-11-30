@@ -16,7 +16,7 @@ class MyPageLike extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabbarAndAppBar(title: "관심곡", tabbar: null, enableTabBar: false),
+      appBar: tabbarAndAppBar(title: '관심곡', tabbar: null, enableTabBar: false),
       body: Obx(
         () => ListView.builder(
             padding: const EdgeInsets.all(basicPadding),

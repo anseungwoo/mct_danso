@@ -25,7 +25,7 @@ class _QAndAPAGEState extends State<QAndAPAGE> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabbarAndAppBar(title: "Q&A", tabbar: null, enableTabBar: false),
+      appBar: tabbarAndAppBar(title: 'Q&A', tabbar: null, enableTabBar: false),
       body: Container(
         child: Padding(
           padding: const EdgeInsets.only(top: 20),

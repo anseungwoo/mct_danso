@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
@@ -54,7 +53,7 @@ class TearController extends GetxController {
     await DBHelPer().updateExp(result);
   }
 
-  void changeTear() {
+  void getTearInfo() {
     var path = 'assets/images/tear/ic_';
     getUserExp();
     if (userExp.value <= 5) {

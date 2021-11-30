@@ -18,7 +18,6 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (controller.musicState) {
       // 아예 정지
@@ -30,7 +29,6 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     if (controller.musicState) {

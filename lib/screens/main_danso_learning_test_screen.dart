@@ -23,7 +23,6 @@ class _MainDansoLearningTestScreenState
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     if (controller.musicState) {
@@ -275,15 +274,21 @@ class SoundButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 7),
       child: ElevatedButton(
         onPressed: onPressed,
+
         child: Text(
           title,
           style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: textFiveSize.sp),
         ),
+
         style: ElevatedButton.styleFrom(
           elevation: 0,
           onSurface: unButtonColorOrang,
           primary: buttonColorOrang,
           minimumSize: Size(130.w, 45.h),
+        ),
+        child: Text(
+          title,
+          style: TextStyle(fontFamily: NOTO_REGULAR),
         ),
       ),
     );
@@ -303,17 +308,20 @@ class UpDownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+
       child: SvgPicture.asset(
         assetName,
         width: 20.w,
         height: 12.h,
       ),
+
       style: ElevatedButton.styleFrom(
         elevation: 0,
         onSurface: unButtonColorOrang,
         primary: buttonColorOrang,
         minimumSize: Size(59.w, 35.h),
       ),
+      child: Icon(icons),
     );
   }
 }

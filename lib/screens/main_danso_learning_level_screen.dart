@@ -26,15 +26,15 @@ class MainDansoLearningLevelScreen extends StatelessWidget {
           physics: NeverScrollableScrollPhysics(),
           children: [
             DansoStepByStep(
-                currentLevel: '1', sheetData: level1, jangdan: "4박장단"),
+                currentLevel: '1', sheetData: level1, jangdan: '4박장단'),
             DansoStepByStep(
-                currentLevel: '2', sheetData: level2, jangdan: "중중모리장단"),
+                currentLevel: '2', sheetData: level2, jangdan: '중중모리장단'),
             DansoStepByStep(
-                currentLevel: '3', sheetData: level3, jangdan: "자진모리장단"),
+                currentLevel: '3', sheetData: level3, jangdan: '자진모리장단'),
             DansoStepByStep(
-                currentLevel: '4', sheetData: level4, jangdan: "굿거리장단"),
+                currentLevel: '4', sheetData: level4, jangdan: '굿거리장단'),
             DansoStepByStep(
-                currentLevel: '5', sheetData: level5, jangdan: "세마치장단"),
+                currentLevel: '5', sheetData: level5, jangdan: '세마치장단'),
           ],
         ),
       ),
