@@ -303,7 +303,11 @@ class UpDownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: SvgPicture.asset(assetName),
+      child: SvgPicture.asset(
+        assetName,
+        width: 20.w,
+        height: 12.h,
+      ),
       style: ElevatedButton.styleFrom(
         elevation: 0,
         onSurface: unButtonColorOrang,
