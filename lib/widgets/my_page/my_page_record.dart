@@ -48,7 +48,11 @@ class MyPageRecord extends StatelessWidget {
                           Container(
                               width: 33,
                               height: 33,
-                              child: SvgPicture.asset(GRAPH_SVG))
+                              child: SvgPicture.asset(
+                                GRAPH_SVG,
+                                width: 24.w,
+                                height: 24.h,
+                              ))
                         ],
                       ),
                     ),

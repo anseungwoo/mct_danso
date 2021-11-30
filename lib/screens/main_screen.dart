@@ -130,8 +130,16 @@ class _MainScreenState extends State<MainScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   !mainScreenController.musicState
-                      ? SvgPicture.asset(OFF_SVG)
-                      : SvgPicture.asset(ON_SVG),
+                      ? SvgPicture.asset(
+                          OFF_SVG,
+                          width: 10.w,
+                          height: 10.h,
+                        )
+                      : SvgPicture.asset(
+                          ON_SVG,
+                          width: 10.w,
+                          height: 10.h,
+                        ),
                   Text(
                     '배경음',
                     style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
@@ -190,7 +198,12 @@ class _MainScreenState extends State<MainScreen> {
             child: Center(
               child: Text(
                 '마이페이지',
-                style: TextStyle(color: white, fontFamily: NOTO_MEDIUM),
+
+                style: TextStyle(
+                    color: white,
+                    fontFamily: NOTO_MEDIUM,
+                    fontSize: textFiveSize.sp),
+
               ),
             ),
           ),
@@ -230,17 +243,41 @@ class _MainScreenState extends State<MainScreen> {
         // width: 330.w,
         decoration: BoxDecoration(
             color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: 103.w,
-              // height: 103.w,
-              child: SvgPicture.asset(
+
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SvgPicture.asset(
                 assetName,
-                height: svgHeight.w,
-                width: svgWidth.w,
-                // fit: BoxFit.fill,
+                width: 50.w,
+                height: 50.h,
+              ),
+              SizedBox(width: 14.w),
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('$title',
+                        style: TextStyle(
+                            fontSize: textTitleSize.sp,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: NOTO_BOLD)),
+                    SizedBox(height: 7.h),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (int i = 0; i < 2; i++)
+                          Text(contant[i],
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
+                      ],
+                    )
+                  ],
+                ),
+
               ),
             ),
             // SizedBox(width: 14.w),

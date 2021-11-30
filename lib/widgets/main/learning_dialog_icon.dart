@@ -21,7 +21,11 @@ Widget icon(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(assetName),
+          SvgPicture.asset(
+            assetName,
+            width: 70.w,
+            height: 50.h,
+          ),
           Text(
             text,
             style: TextStyle(

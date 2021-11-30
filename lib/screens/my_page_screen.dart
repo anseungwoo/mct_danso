@@ -62,7 +62,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
               Text(
                 tearController.tearName.value,
                 style: TextStyle(
-                    fontSize: textEightSize,
+                    fontSize: textEightSize.sp,
                     fontWeight: bold,
                     fontFamily: NOTO_BOLD),
               ),
@@ -74,6 +74,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     Text(
                       '다음 랭크까지',
                       style: TextStyle(
+                          fontSize: textBasicSize.sp,
                           fontWeight: FontWeight.bold,
                           fontFamily: NOTO_REGULAR),
                     ),
@@ -94,8 +95,14 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('${tearController.userExp.value}'),
-                        Text('${tearController.nextTearExp.value}'),
+                        Text(
+                          '${tearController.userExp.value}',
+                          style: TextStyle(fontSize: textBasicSize.sp),
+                        ),
+                        Text(
+                          '${tearController.nextTearExp.value}',
+                          style: TextStyle(fontSize: textBasicSize.sp),
+                        ),
                       ],
                     )
                   ],
@@ -103,14 +110,12 @@ class _MyPageScreenState extends State<MyPageScreen> {
               ),
               SizedBox(height: 31.h),
               // const Spacer(),
-              myPageButton(SvgPicture.asset(MY_RECORD_SVG), '내기록',
-                  MyPageRecord(songname: '곡이름')),
-              myPageButton(SvgPicture.asset(BOOKMARK_SVG), '관심곡',
-                  MyPageLike(songname: '곡이름')),
-              myPageButton(SvgPicture.asset(MP3_SVG), '연주듣기',
-                  MyPageListen(songname: '곡이름', date: '날짜')),
-              myPageButton(SvgPicture.asset(VIDEO_SVG), '연주보기',
-                  MyPageLook(songname: '곡이름', date: '날짜')),
+              myPageButton(MY_RECORD_SVG, '내기록', MyPageRecord(songname: '곡이름')),
+              myPageButton(BOOKMARK_SVG, '관심곡', MyPageLike(songname: '곡이름')),
+              myPageButton(
+                  MP3_SVG, '연주듣기', MyPageListen(songname: '곡이름', date: '날짜')),
+              myPageButton(
+                  VIDEO_SVG, '연주보기', MyPageLook(songname: '곡이름', date: '날짜')),
             ],
           ),
         ),
@@ -118,8 +123,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
     );
   }
 
-  Widget myPageButton(SvgPicture myicon, String title, Widget page) => Padding(
-        padding: const EdgeInsets.all(7),
+  Widget myPageButton(String assetName, String title, Widget page) => Padding(
+        padding: const EdgeInsets.all(10),
         child: Container(
           width: 330.w,
           height: 60.h,
@@ -131,8 +136,14 @@ class _MyPageScreenState extends State<MyPageScreen> {
               },
               child: Row(
                 children: [
-                  myicon,
-                  SizedBox(width: 27.w),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: SvgPicture.asset(
+                      assetName,
+                      height: 25.h,
+                      width: 25.w,
+                    ),
+                  ),
                   Text(
                     title,
                     style: TextStyle(

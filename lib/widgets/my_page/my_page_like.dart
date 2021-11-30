@@ -55,6 +55,8 @@ class MyPageLike extends StatelessWidget {
                             },
                             child: SvgPicture.asset(
                               BOOKMARK_SVG,
+                              width: 20.w,
+                              height: 20.h,
                               color:
                                   item.songLike == 'true' ? Colors.red : white,
                             ),

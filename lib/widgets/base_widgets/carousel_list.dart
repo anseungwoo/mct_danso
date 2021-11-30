@@ -52,8 +52,8 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: Container(
-                      width: 8.0,
-                      height: 8.0,
+                      width: 8.0.w,
+                      height: 8.0.w,
                       margin:
                           EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                       decoration: BoxDecoration(

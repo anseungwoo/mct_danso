@@ -72,10 +72,11 @@ class MyPageLook extends StatelessWidget {
                                       Get.dialog(myPageDeleteDialog());
                                     }
                                   },
-                                  child: Container(
-                                      width: 30.w,
-                                      height: 30.h,
-                                      child: SvgPicture.asset(SEE_MORE_SVG)),
+                                  child: SvgPicture.asset(
+                                    SEE_MORE_SVG,
+                                    width: 30.w,
+                                    height: 30.h,
+                                  ),
                                   itemBuilder: (context) => [
                                     PopupMenuItem(
                                       value: 1,

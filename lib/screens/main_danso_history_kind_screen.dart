@@ -50,8 +50,8 @@ class _MainDansoHistoryKindScreenState
           title: '단소 알아보기',
           tabbar: defaultTabBar(
             tabList: [
-              Tab(text: '역사'),
-              Tab(text: '종류'),
+              TabText('역사'),
+              TabText('종류'),
             ],
           ),
         ),

@@ -40,6 +40,8 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
                 children: [
                   SvgPicture.asset(
                     WARNING_SVG,
+                    width: 60.w,
+                    height: 60.h,
                     color: buttonColorYellow,
                   ),
                   SizedBox(height: 10.h),

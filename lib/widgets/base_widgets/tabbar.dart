@@ -10,7 +10,7 @@ TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
     tabs: tabList,
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
-        width: 1.5,
+        width: 1.0,
         color: buttonColorOrang,
       ),
       insets: EdgeInsets.symmetric(horizontal: basicPadding),
@@ -21,5 +21,12 @@ TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
       fontWeight: FontWeight.bold,
       fontSize: textEightSize.sp,
     ),
+  );
+}
+
+Tab TabText(String text) {
+  return Tab(
+    text: text,
+    height: 30.h,
   );
 }

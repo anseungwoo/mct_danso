@@ -109,8 +109,12 @@ class _MainDansoLearningTestScreenState
             ),
           if (controller.playTuningState)
             Expanded(
-                child: Center(
-                    child: controller.soundMatch(controller.pitchValue)!)),
+                child: Column(
+              children: [
+                Center(child: Text('${controller.pitchValue}')),
+                Center(child: controller.soundMatch(controller.pitchValue)!),
+              ],
+            )),
           Container(
             height: 97.w,
             width: 97.w,
@@ -123,7 +127,7 @@ class _MainDansoLearningTestScreenState
               controller.hanJaAndGel[controller.soundListUpDown]
                   .toChineseCharacter(),
               style: TextStyle(
-                  fontSize: 45,
+                  fontSize: 45.sp,
                   fontWeight: FontWeight.bold,
                   fontFamily: NOTO_BOLD),
             )),
@@ -137,7 +141,7 @@ class _MainDansoLearningTestScreenState
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               UpDownButton(
-                icons: Icons.arrow_upward,
+                assetName: UP_SVG,
                 onPressed: () {
                   controller.listenTuningState
                       ? null
@@ -150,7 +154,7 @@ class _MainDansoLearningTestScreenState
               ),
               SizedBox(width: 12.w),
               UpDownButton(
-                icons: Icons.arrow_downward,
+                assetName: DOWN_SVG,
                 onPressed: () {
                   controller.listenTuningState
                       ? null
@@ -270,6 +274,12 @@ class SoundButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 7),
       child: ElevatedButton(
         onPressed: onPressed,
+
+        child: Text(
+          title,
+          style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: textFiveSize.sp),
+        ),
+
         style: ElevatedButton.styleFrom(
           elevation: 0,
           onSurface: unButtonColorOrang,
@@ -286,18 +296,25 @@ class SoundButton extends StatelessWidget {
 }
 
 class UpDownButton extends StatelessWidget {
-  final IconData icons;
   final Function()? onPressed;
+  final String assetName;
   const UpDownButton({
     Key? key,
-    required this.icons,
     this.onPressed,
+    required this.assetName,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
+
+      child: SvgPicture.asset(
+        assetName,
+        width: 20.w,
+        height: 12.h,
+      ),
+
       style: ElevatedButton.styleFrom(
         elevation: 0,
         onSurface: unButtonColorOrang,

@@ -195,8 +195,19 @@ const List<String> DANSO_SVG_LIST = [
   'assets/images/danso_code/ic_lim.svg',
   'assets/images/danso_code/ic_mu.svg',
   'assets/images/danso_code/ic_hwang.svg',
-  'assets/images/danso_code/ic_tea.svg',
+  'assets/images/danso_code/ic_ high_tea.svg',
 ];
+const List<String> DANSO_CODE_SVG_LIST = [
+  'assets/images/danso_code/ic_jung.svg',
+  'assets/images/danso_code/ic_lim.svg',
+  'assets/images/danso_code/ic_mu.svg',
+  'assets/images/danso_code/ic_hwang.svg',
+  'assets/images/danso_code/ic_tea.svg',
+  'assets/images/danso_code/ic_ high_tea.svg',
+];
+//업 다운 svg
+const String UP_SVG = 'assets/images/ic_up.svg';
+const String DOWN_SVG = 'assets/images/ic_down.svg';
 //운지법
 const List DANSO_CODE_PNG = [
   'assets/images/danso_code/중.png',
@@ -273,6 +284,8 @@ const List COUNT_LIST_SVG = [
   'assets/images/step/ic_music_list_6.svg',
   'assets/images/step/ic_music_list_7.svg',
 ];
+const String LEFT_SVG = 'assets/images/step/ic_left.svg';
+const String RIGHT_SVG = 'assets/images/step/ic_right.svg';
 //노래끝난후 축하부분
 const List STAR_SVG = [
   'assets/images/star/ic_star_1.svg',
