@@ -10,6 +10,7 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
@@ -54,13 +55,13 @@ class DansoSoundLearningController extends GetxController {
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
-  var note = "";
-  var status = "Click on start";
+  var note = '';
+  var status = 'Click on start';
   var isCapture = false;
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
-  Text isMacthing = Text('단소를불러보세요');
+  Text isMacthing = Text('단, style: TextStyle(fontSize: 14.sp)소를 불러보세요');
 
   @override
   void onInit() {
@@ -76,8 +77,8 @@ class DansoSoundLearningController extends GetxController {
     isCapture = true;
     await _audioRecorder.start(listener, onError,
         sampleRate: 44100, bufferSize: 3000);
-    note = "";
-    status = "Play something";
+    note = '';
+    status = 'Play something';
     update();
   }
 
@@ -85,8 +86,8 @@ class DansoSoundLearningController extends GetxController {
     await _audioRecorder.stop();
     isCapture = false;
 
-    note = "";
-    status = "Click on start";
+    note = '';
+    status = 'Click on start';
     update();
   }
 
@@ -217,7 +218,7 @@ class DansoSoundLearningController extends GetxController {
   //         userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
   //       return Text(
   //         '잘 불렀어요!! $userInputForAdjust',
-  //         style: TextStyle(color: matchColor),
+  //         style: TextStyle(color: matchColor, fontSize: 14.sp),
   //       );
   //     } else {
   //       return Text(
@@ -271,221 +272,234 @@ class DansoSoundLearningController extends GetxController {
       case 0:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를 불러보세요");
+            return Text('단소를 불러보세요',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 1:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 2:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 3:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 4:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 5:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 6:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 7:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 8:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       case 9:
         try {
           if (scl > 2000 || scl < 300) {
-            return Text("단소를불러보세요");
+            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
           } else {
             if (pitchModelInterface.isCorrectPitch(
                 scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))!) {
               return Text(
-                "잘 불렀어요!!",
-                style: TextStyle(color: matchColor),
+                '잘 불렀어요!!',
+                style: TextStyle(color: matchColor, fontSize: 14.sp),
               );
             } else {
-              return Text("다시 불러보세요!",
+              return Text('다시 불러보세요!',
                   style: TextStyle(
+                    fontSize: 14.sp,
                     color: unMatchColor,
                   ));
             }
           }
         } catch (er) {
-          return Text("단소를불러보세요");
+          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
         break;
       default:

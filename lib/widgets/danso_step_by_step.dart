@@ -50,14 +50,16 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: [
-                    jungganbo(
-                        12, controller, testJungGanBo, controller.krState),
-                    jungganboFromFlash(12, controller, testJungGanBo),
-                    // jungganboScreen(12, jungganboController),
-                  ],
+                Container(
+                  padding: EdgeInsets.only(right: 12.w),
+                  child: Stack(
+                    children: [
+                      jungganboScreen(12, jungganboController),
+                      jungganbo(
+                          12, controller, testJungGanBo, controller.krState),
+                      jungganboFromFlash(12, controller, testJungGanBo),
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 15),

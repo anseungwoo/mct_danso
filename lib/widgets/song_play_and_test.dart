@@ -284,20 +284,26 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                           ],
                         ),
                       ),
-                GetBuilder<JungganboController>(
-                    init: jungganboController,
-                    builder: (jungcontroller) {
-                      return Stack(
-                        children: [
-                          jungganbo(widget.sheetVertical, jungcontroller,
-                              testJungGanBo, controller.krChanges),
-                          jungganboFromFlash(widget.sheetVertical,
-                              jungcontroller, testJungGanBo),
-                          // jungganboScreen(
-                          //     widget.sheetVertical, jungcontroller),
-                        ],
-                      );
-                    }),
+                Container(
+                  margin: EdgeInsets.only(right: 12.w),
+                  // color: Colors.white,
+                  // width: ScreenUtil().screenWidth,
+                  // alignment: Alignment.center,
+                  child: GetBuilder<JungganboController>(
+                      init: jungganboController,
+                      builder: (jungcontroller) {
+                        return Stack(
+                          children: [
+                            jungganboScreen(
+                                widget.sheetVertical, jungcontroller),
+                            jungganbo(widget.sheetVertical, jungcontroller,
+                                testJungGanBo, controller.krChanges),
+                            jungganboFromFlash(widget.sheetVertical,
+                                jungcontroller, testJungGanBo),
+                          ],
+                        );
+                      }),
+                ),
               ],
             );
           }),

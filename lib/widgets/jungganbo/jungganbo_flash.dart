@@ -15,8 +15,7 @@ Widget jungganboFromFlash(
 
   int j = 0;
   return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.end,
     children: [
       for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
@@ -36,11 +35,12 @@ Widget jungganboFromFlash(
 
 Container beenContainer(double height) {
   return Container(
-      width: 20.w,
-      height: height.h,
-      decoration: BoxDecoration(
-        border: Border.all(color: textBlack),
-      ));
+    width: 20.w,
+    height: height.h,
+    decoration: BoxDecoration(
+      border: Border.all(color: textBlack),
+    ),
+  );
 }
 
 Container jungFlashContainer(double height, JungganboController controller,

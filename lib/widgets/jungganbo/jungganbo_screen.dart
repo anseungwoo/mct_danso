@@ -11,22 +11,24 @@ Widget jungganboScreen(int heightNumber, JungganboController controller) {
           ? jungEightHeight
           : jungSixHeight;
 
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      for (var c = 3; c >= 0; c--)
-        Column(
-          children: [
-            for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
-              Row(
-                children: [
-                  jungBigContainer(height, controller),
-                  jungBlankContainer(height),
-                ],
-              ),
-          ],
-        ),
-    ],
+  return Container(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        for (var c = 3; c >= 0; c--)
+          Column(
+            children: [
+              for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
+                Row(
+                  children: [
+                    jungBigContainer(height, controller),
+                    jungBlankContainer(height),
+                  ],
+                ),
+            ],
+          ),
+      ],
+    ),
   );
 }
 
@@ -36,7 +38,10 @@ Container jungBlankContainer(
   return Container(
     width: 20.w,
     height: height.h,
-    decoration: BoxDecoration(border: Border.all(color: textBlack)),
+    decoration: BoxDecoration(
+      border: Border.all(color: textBlack),
+      color: Colors.white,
+    ),
   );
 }
 
@@ -48,7 +53,10 @@ Widget jungBigContainer(double height, JungganboController controller) {
     child: Container(
       width: jungWidth.w,
       height: height.h,
-      decoration: BoxDecoration(border: Border.all(color: textBlack)),
+      decoration: BoxDecoration(
+        border: Border.all(color: textBlack),
+        color: Colors.white,
+      ),
     ),
   );
 }
