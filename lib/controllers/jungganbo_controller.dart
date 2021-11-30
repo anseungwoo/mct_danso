@@ -75,7 +75,7 @@ class JungganboController extends GetxController {
     await Future.delayed(Duration(milliseconds: mill));
     for (line; line < jungGanBo.sheet.length - 1; line++) {
       if (line != 31 * pagenext || line != 23 * pagenext) {
-        await Future.delayed(Duration(milliseconds: (mill - 3).toInt()));
+        await Future.delayed(Duration(milliseconds: (mill - 4).toInt()));
         update();
       }
 

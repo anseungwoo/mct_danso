@@ -87,7 +87,6 @@ class _MainDansoLearningTestScreenState
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Text('${controller.pitchValue}'),
           if (controller.listenTuningState)
@@ -107,7 +106,6 @@ class _MainDansoLearningTestScreenState
           if (controller.playTuningState)
             controller.soundMatch(controller.pitchValue)!,
 
-          SizedBox(height: 20.h),
           Container(
             height: 97.w,
             width: 97.w,
@@ -217,32 +215,36 @@ class _MainDansoLearningTestScreenState
   }
 
   Widget leftLightCicleAvatarAndText() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        CircleAvatar(radius: 14, backgroundColor: rightColor),
-        SizedBox(
-          width: 7.sp,
-        ),
-        InkWell(
-            onTap: () {
-              Get.to(ResultScore());
-            },
-            child: Text(
-              '왼손',
-              style: TextStyle(fontFamily: NOTO_REGULAR),
-            )),
-        SizedBox(
-          width: 7.sp,
-        ),
-        CircleAvatar(radius: 14, backgroundColor: leftColor),
-        SizedBox(width: 7.sp),
-        InkWell(
-            onTap: () {
-              // Get.to(Music());
-            },
-            child: Text('오른손', style: TextStyle(fontFamily: NOTO_REGULAR))),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          CircleAvatar(radius: 14.r, backgroundColor: rightColor),
+          SizedBox(
+            width: 7.sp,
+          ),
+          InkWell(
+              onTap: () {
+                Get.to(ResultScore());
+              },
+              child: Text(
+                '왼손',
+                style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR),
+              )),
+          SizedBox(
+            width: 7.sp,
+          ),
+          CircleAvatar(radius: 14.r, backgroundColor: leftColor),
+          SizedBox(width: 7.sp),
+          InkWell(
+              onTap: () {
+                // Get.to(Music());
+              },
+              child: Text('오른손',
+                  style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR))),
+        ],
+      ),
     );
   }
 }
