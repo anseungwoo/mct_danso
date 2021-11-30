@@ -13,6 +13,7 @@ Widget fingering(BuildContext context) {
     YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
     YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+    YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
   ];
   return Column(
     children: [
@@ -25,49 +26,77 @@ Widget fingering(BuildContext context) {
             SizedBox(
               width: 7.sp,
             ),
-            Text('왼손', style: TextStyle(fontSize: 15.sp)),
+            Text('왼손',
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontFamily: NOTO_REGULAR,
+                )),
             SizedBox(
               width: 7.sp,
             ),
             CircleAvatar(radius: 14.r, backgroundColor: leftColor),
             SizedBox(width: 7.sp),
-            Text('오른손', style: TextStyle(fontSize: 15.sp)),
+            Text('오른손',
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  fontFamily: NOTO_REGULAR,
+                )),
           ],
         ),
       ),
-      dansoyun(Yum, false, true),
-      Padding(
-        padding: const EdgeInsets.only(top: 10, bottom: 20),
-        child: dansoyun(Yum, true, true),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: dansoyun(Yum, true, false),
+      Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    for (var i = 0; i < 6; i++)
+                      Text('${Yum[i].toChineseCharacter()}',
+                          style: TextStyle(
+                            fontSize: textTitleSize.sp,
+                            fontFamily: NOTO_REGULAR,
+                          )),
+                  ],
+                ),
+                SizedBox(height: 5.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    for (var i = 0; i < 5; i++)
+                      Text('${Yum[i].toHangeul()}',
+                          style: TextStyle(
+                            fontSize: textTitleSize.sp,
+                            fontFamily: NOTO_REGULAR,
+                          )),
+                    Text('태',
+                        style: TextStyle(
+                          fontSize: textTitleSize.sp,
+                          fontFamily: NOTO_REGULAR,
+                        )),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                for (var i = 0; i < 6; i++)
+                  SvgPicture.asset(
+                    DANSO_CODE_SVG_LIST[i],
+                    height: ScreenUtil().screenHeight * 0.5,
+                    fit: BoxFit.fitHeight,
+                  ),
+              ],
+            ),
+            SizedBox(
+              height: 27.h,
+            )
+          ],
+        ),
       ),
     ],
-  );
-}
-
-Container dansoyun(List<dynamic> Yum, bool kr, bool textState) {
-  return Container(
-    width: ScreenUtil().screenWidth.w,
-    child: Row(
-      mainAxisAlignment: textState
-          ? MainAxisAlignment.spaceAround
-          : MainAxisAlignment.spaceEvenly,
-      children: [
-        for (var i = 0; i < 5; i++)
-          textState
-              ? Text(
-                  kr
-                      ? '${Yum[i].toHangeul()}'
-                      : '${Yum[i].toChineseCharacter()}',
-                  style: TextStyle(
-                    fontSize: textTitleSize.sp,
-                  ))
-              : Container(
-                  height: 320.h, child: SvgPicture.asset(DANSO_SVG_LIST[i])),
-      ],
-    ),
   );
 }

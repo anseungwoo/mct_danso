@@ -43,7 +43,10 @@ class ResultScore extends StatelessWidget {
                 GRAPH_SVG,
                 height: 24.h,
               ),
-              Text('그래프')
+              Text(
+                '그래프',
+                style: TextStyle(fontSize: textBasicSize.sp),
+              )
             ]),
           ),
         ),
@@ -59,7 +62,7 @@ class ResultScore extends StatelessWidget {
           Text(
             '점수(점수)',
             style: TextStyle(
-                fontSize: textSingleSize,
+                fontSize: 26.sp,
                 fontWeight: FontWeight.bold,
                 fontFamily: NOTO_MEDIUM),
           ),

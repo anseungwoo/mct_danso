@@ -62,7 +62,11 @@ class MyPageListen extends StatelessWidget {
                                 onTap: () {
                                   Get.dialog(myPageListenDialog(context));
                                 },
-                                child: SvgPicture.asset(PLAY_SVG)),
+                                child: SvgPicture.asset(
+                                  PLAY_SVG,
+                                  width: 15.w,
+                                  height: 15.h,
+                                )),
                             SizedBox(width: 10.w),
                             Padding(
                               padding: const EdgeInsets.symmetric(
@@ -75,9 +79,11 @@ class MyPageListen extends StatelessWidget {
                                   }
                                 },
                                 child: Container(
-                                    width: 30.w,
-                                    height: 30.h,
-                                    child: SvgPicture.asset(SEE_MORE_SVG)),
+                                    child: SvgPicture.asset(
+                                  SEE_MORE_SVG,
+                                  width: 30.w,
+                                  height: 30.h,
+                                )),
                                 itemBuilder: (context) => [
                                   PopupMenuItem(
                                     child: Text(

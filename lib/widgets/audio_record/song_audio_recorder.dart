@@ -48,7 +48,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
         return Row(
           children: <Widget>[
             Container(
-              width: 78.w,
+              width: 81.w,
               height: 30.h,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -84,7 +84,8 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     textStyle:
                         TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
                 onPressed: () {},
-                child: Text('반주만'),
+                child:
+                    Text('반주만', style: TextStyle(fontSize: textSmallSize.sp)),
               ),
             ),
           ],

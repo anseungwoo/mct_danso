@@ -101,13 +101,19 @@ class MainScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   !mainScreenController.musicState
-                      ? SvgPicture.asset(OFF_SVG)
-                      : SvgPicture.asset(ON_SVG),
+                      ? SvgPicture.asset(
+                          OFF_SVG,
+                          width: 10.w,
+                          height: 10.h,
+                        )
+                      : SvgPicture.asset(
+                          ON_SVG,
+                          width: 10.w,
+                          height: 10.h,
+                        ),
                   Text(
                     '배경음',
-
                     style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
-
                   ),
                 ],
               ))),
@@ -165,9 +171,7 @@ class MainScreen extends StatelessWidget {
 
   Positioned myPage() {
     return Positioned.fill(
-
       bottom: 28.w,
-
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
@@ -180,9 +184,10 @@ class MainScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 '마이페이지',
-
-                style: TextStyle(color: white, fontFamily: NOTO_MEDIUM),
-
+                style: TextStyle(
+                    color: white,
+                    fontFamily: NOTO_MEDIUM,
+                    fontSize: textFiveSize.sp),
               ),
             ),
           ),
@@ -225,7 +230,11 @@ class MainScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SvgPicture.asset(assetName),
+              SvgPicture.asset(
+                assetName,
+                width: 50.w,
+                height: 50.h,
+              ),
               SizedBox(width: 14.w),
               Container(
                 child: Column(

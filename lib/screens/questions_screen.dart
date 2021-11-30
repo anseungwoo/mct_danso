@@ -36,8 +36,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         appBar: tabbarAndAppBar(
             title: "Q&A와 팁",
             tabbar: defaultTabBar(tabList: [
-              Tab(text: "Q&A"),
-              Tab(text: "팁"),
+              TabText('Q&A'),
+              TabText('팁'),
             ])),
         body: TabBarView(
           children: [
@@ -71,7 +71,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                 padding: const EdgeInsets.all(svenPadddig),
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(Q_AND_A_SVG),
+                                    SvgPicture.asset(
+                                      Q_AND_A_SVG,
+                                      width: 20.w,
+                                      height: 20.h,
+                                    ),
                                     SizedBox(width: basicPadding),
                                     Text(
                                       '${Q_AND_A_TITLE[index]}',
@@ -119,7 +123,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                 padding: const EdgeInsets.all(svenPadddig),
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset(TIP_SVG),
+                                    SvgPicture.asset(
+                                      TIP_SVG,
+                                      width: 20.w,
+                                      height: 20.h,
+                                    ),
                                     SizedBox(width: basicPadding),
                                     Text(
                                       TIP_TITLE[index],

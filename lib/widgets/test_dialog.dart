@@ -20,10 +20,15 @@ Widget testDialog(String assetName, String text) {
             padding: const EdgeInsets.symmetric(vertical: 24),
             child: SvgPicture.asset(
               assetName,
+              width: 60.w,
+              height: 60.h,
               color: unButtonColorOrang,
             ),
           ),
-          Text(text),
+          Text(
+            text,
+            style: TextStyle(fontSize: textFiveSize.sp),
+          ),
           SizedBox(height: 30.h),
           TextButton(
               onPressed: () {
@@ -31,7 +36,7 @@ Widget testDialog(String assetName, String text) {
               },
               child: Text(
                 "확인",
-                style: TextStyle(color: textBlack),
+                style: TextStyle(color: textBlack, fontSize: textBasicSize.sp),
               ))
         ],
       ),

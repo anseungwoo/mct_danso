@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -47,8 +48,8 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
           title: '단소 학습 익히기',
           tabbar: defaultTabBar(
             tabList: [
-              Tab(text: '기초 학습'),
-              Tab(text: '운지법'),
+              TabText('기초 학습'),
+              TabText('운지법'),
             ],
           ),
         ),

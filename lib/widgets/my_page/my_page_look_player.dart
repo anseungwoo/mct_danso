@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -42,21 +43,31 @@ class _VideoAppState extends State<VideoApp> {
             }
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: buttonColorOrang,
-          onPressed: () {
-            setState(() {
-              videoPlayerController.value.isPlaying
-                  ? videoPlayerController.pause()
-                  : videoPlayerController.play();
-            });
-          },
-          child: videoPlayerController.value.isPlaying
-              ? SvgPicture.asset(
-                  PLAY_STOP_SVG,
-                  color: white,
-                )
-              : SvgPicture.asset(PLAY_SVG),
+        floatingActionButton: Container(
+          width: 60.w,
+          height: 60.h,
+          child: FloatingActionButton(
+            backgroundColor: buttonColorOrang,
+            onPressed: () {
+              setState(() {
+                videoPlayerController.value.isPlaying
+                    ? videoPlayerController.pause()
+                    : videoPlayerController.play();
+              });
+            },
+            child: videoPlayerController.value.isPlaying
+                ? SvgPicture.asset(
+                    PLAY_STOP_SVG,
+                    width: 20.w,
+                    height: 20.h,
+                    color: white,
+                  )
+                : SvgPicture.asset(
+                    PLAY_SVG,
+                    width: 20.w,
+                    height: 20.h,
+                  ),
+          ),
         ));
   }
 

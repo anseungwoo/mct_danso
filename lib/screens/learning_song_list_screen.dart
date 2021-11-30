@@ -43,28 +43,38 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
               children: [
                 SizedBox(height: 30),
                 Padding(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(15),
                   child: Container(
                     height: 70.h,
                     // width: 330.w,
                     child: Row(
                       children: [
-                        IconButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             controller.previousLevel();
                           },
-                          icon: Icon(Icons.keyboard_arrow_left),
-                          iconSize: 50,
+                          child: SvgPicture.asset(
+                            LEFT_SVG,
+                            width: 20.w,
+                            height: 30.h,
+                          ),
                         ),
                         Spacer(flex: 1),
-                        SvgPicture.asset(STEP_SVG[controller.currentLevel]),
+                        SvgPicture.asset(
+                          STEP_SVG[controller.currentLevel],
+                          width: 90.w,
+                          height: 80.h,
+                        ),
                         Spacer(flex: 1),
-                        IconButton(
-                          onPressed: () {
+                        InkWell(
+                          onTap: () {
                             controller.nextLevel();
                           },
-                          icon: Icon(Icons.keyboard_arrow_right),
-                          iconSize: 50,
+                          child: SvgPicture.asset(
+                            RIGHT_SVG,
+                            width: 20.w,
+                            height: 30.h,
+                          ),
                         ),
                       ],
                     ),
@@ -166,10 +176,15 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                     padding: const EdgeInsets.all(basicPadding),
                                     child: Row(
                                       children: [
-                                        SvgPicture.asset(COUNT_LIST_SVG[index]),
+                                        SvgPicture.asset(
+                                          COUNT_LIST_SVG[index],
+                                          width: 23.w,
+                                          height: 23.h,
+                                        ),
                                         SizedBox(width: 15.w),
                                         Text('${item.songTitle}',
                                             style: TextStyle(
+                                                fontSize: textBasicSize.sp,
                                                 color: white,
                                                 fontFamily: NOTO_MEDIUM)),
                                         Spacer(flex: 1),
@@ -184,6 +199,8 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                           },
                                           child: SvgPicture.asset(
                                             BOOKMARK_SVG,
+                                            width: 20.w,
+                                            height: 20.h,
                                             color: item.songLike == 'true'
                                                 ? Colors.red
                                                 : white,

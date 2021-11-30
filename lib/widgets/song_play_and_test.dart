@@ -108,7 +108,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             ? Container()
                                             : songSwapButton(
                                                 text: Text(
-                                                    controller.testButtonswap),
+                                                    controller.testButtonswap,
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                            textSmallSize.sp)),
                                                 onPressed: () {
                                                   controller.testButtonState();
                                                   controller.stateCountUp(2);
@@ -117,13 +120,19 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         SizedBox(width: 5.w),
                                         songSwapButton(
                                             text: Text(
-                                                "${controller.speed[controller.speedCount]} 배속"),
+                                                "${controller.speed[controller.speedCount]} 배속",
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        textSmallSize.sp)),
                                             onPressed: () {
                                               controller.changespeedState();
                                             }),
                                         SizedBox(width: 5.w),
                                         songSwapButton(
-                                            text: Text(controller.krButton),
+                                            text: Text(controller.krButton,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        textSmallSize.sp)),
                                             onPressed: () {
                                               controller.changeKrState();
                                             }),
@@ -133,6 +142,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       ? songSwapButton(
                                           text: Text(
                                             controller.challengeButtonSwap,
+                                            style: TextStyle(
+                                                fontSize: textSmallSize.sp),
                                           ),
                                           onPressed: () {
                                             controller.changePlayStopState();
@@ -152,8 +163,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 songSwapButton(
-                                                  text: Text(controller
-                                                      .challengeButtonSwap),
+                                                  text: Text(
+                                                      controller
+                                                          .challengeButtonSwap,
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                              textSmallSize
+                                                                  .sp)),
                                                   onPressed: () {
                                                     controller
                                                         .testStartButtonState();
@@ -181,8 +197,15 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                               .spaceAround,
                                                       children: [
                                                         SvgPicture.asset(
-                                                            TRANSCRIPTION_SVG),
-                                                        Text("녹음"),
+                                                          TRANSCRIPTION_SVG,
+                                                          width: 13.w,
+                                                          height: 13.h,
+                                                        ),
+                                                        Text("녹음",
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    textSmallSize
+                                                                        .sp)),
                                                       ],
                                                     ),
                                                     onPressed: () {
@@ -199,9 +222,17 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                               .spaceAround,
                                                       children: [
                                                         SvgPicture.asset(
-                                                            RECORD_SVG),
-                                                        Text(controller
-                                                            .testButtonswap),
+                                                          RECORD_SVG,
+                                                          width: 20.w,
+                                                          height: 20.h,
+                                                        ),
+                                                        Text(
+                                                            controller
+                                                                .testButtonswap,
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    textSmallSize
+                                                                        .sp)),
                                                       ],
                                                     ),
                                                     onPressed: () {
@@ -217,8 +248,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                               ? Row(
                                                   children: [
                                                     songSwapButton(
-                                                      text: Text(controller
-                                                          .challengeButtonSwap),
+                                                      text: Text(
+                                                          controller
+                                                              .challengeButtonSwap,
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                                  textSmallSize
+                                                                      .sp)),
                                                       onPressed: () {
                                                         controller.reset();
                                                         jungcontroller
@@ -236,8 +272,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                     ),
                                                     SizedBox(width: 5),
                                                     songSwapButton(
-                                                        text: Text(controller
-                                                            .testButtonswap),
+                                                        text: Text(
+                                                            controller
+                                                                .testButtonswap,
+                                                            style: TextStyle(
+                                                                fontSize:
+                                                                    textSmallSize
+                                                                        .sp)),
                                                         onPressed: () {
                                                           print(controller
                                                               .statecount);
@@ -272,20 +313,20 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             Text(
                               "${controller.speed[controller.speedCount]} 배속",
                               style: TextStyle(
-                                  fontSize: textBasicSize.sp,
+                                  fontSize: textSmallSize.sp,
                                   fontFamily: NOTO_REGULAR),
                             ),
                             Text(
                               "${widget.jangdan}",
                               style: TextStyle(
-                                  fontSize: textBasicSize.sp,
+                                  fontSize: textSmallSize.sp,
                                   fontFamily: NOTO_REGULAR),
                             )
                           ],
                         ),
                       ),
                 Container(
-                  margin: EdgeInsets.only(right: 12.w),
+                  margin: EdgeInsets.only(right: textSmallSize.w),
                   // color: Colors.white,
                   // width: ScreenUtil().screenWidth,
                   // alignment: Alignment.center,
@@ -364,7 +405,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
             onPrimary: buttonColorOrang,
             side: BorderSide(color: buttonColorOrang),
             textStyle: TextStyle(
-                fontSize: 12.sp,
+                fontSize: textSmallSize.sp,
                 color: buttonColorOrang,
                 fontFamily: NOTO_REGULAR)),
         onPressed: onPressed,

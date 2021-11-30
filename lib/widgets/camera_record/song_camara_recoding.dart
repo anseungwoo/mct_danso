@@ -42,12 +42,12 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
       return Center(child: Text('Loading...'));
     } else {
       return Container(
-        height: 68.h,
+        height: 50.h,
         width: 111.w,
         child: Center(
           child: AspectRatio(
             // aspectRatio: cameraRecordcontroller.controller.value.aspectRatio,
-            aspectRatio: 4 / 6,
+            aspectRatio: 6 / 4,
             child: CameraPreview(cameraRecordcontroller.controller),
           ),
         ),
@@ -62,10 +62,11 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
         Row(
           children: <Widget>[
             Container(
-              width: 78.w,
+              width: 81.w,
               height: 30.h,
               child: ElevatedButton(
-                  child: Text(caController.recordingText),
+                  child: Text(caController.recordingText,
+                      style: TextStyle(fontSize: textSmallSize.sp)),
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
                       primary: white,
@@ -85,12 +86,13 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         : widget.controller.stepStop();
                   }),
             ),
-            SizedBox(width: 5),
+            SizedBox(width: 5.w),
             Container(
               width: 78.w,
               height: 30.h,
               child: ElevatedButton(
-                child: Text('반주만'),
+                child:
+                    Text('반주만', style: TextStyle(fontSize: textSmallSize.sp)),
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
                     primary: white,
@@ -103,10 +105,10 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
             ),
           ],
         ),
-        SizedBox(height: 5),
+        SizedBox(height: 3.h),
         Text(
           widget.jandan,
-          style: TextStyle(fontSize: textBasicSize.sp),
+          style: TextStyle(fontSize: textSmallSize.sp),
         ),
       ],
     );

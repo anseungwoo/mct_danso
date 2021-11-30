@@ -89,8 +89,8 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 120,
-            width: 120,
+            height: 120.h,
+            width: 120.w,
             child: SfRadialGauge(
               axes: <RadialAxis>[
                 RadialAxis(
@@ -125,7 +125,10 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("$_start초간 단소로 태(汰) 불어주세요."),
+            child: Text(
+              "$_start초간 단소로 태(汰) 불어주세요.",
+              style: TextStyle(fontSize: textFiveSize.sp),
+            ),
           ),
         ],
       ),
