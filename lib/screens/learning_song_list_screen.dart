@@ -22,7 +22,6 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     if (controller.musicState) {
@@ -91,7 +90,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                     Border.all(color: textBlack, width: 0.5)),
                             child: Center(
                               child: Text(
-                                  "${controller.yulmyeong[controller.currentLevel][i].toHangeul()}",
+                                  '${controller.yulmyeong[controller.currentLevel][i].toHangeul()}',
                                   style: TextStyle(
                                       fontSize: textEightSize.sp,
                                       fontFamily: NOTO_REGULAR)),
@@ -117,7 +116,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                     Border.all(color: textBlack, width: 0.5)),
                             child: Center(
                               child: Text(
-                                  "${controller.yulmyeong[controller.currentLevel][i].toChineseCharacter()}",
+                                  '${controller.yulmyeong[controller.currentLevel][i].toChineseCharacter()}',
                                   style: TextStyle(
                                       fontSize: textEightSize.sp,
                                       fontFamily: NOTO_REGULAR)),

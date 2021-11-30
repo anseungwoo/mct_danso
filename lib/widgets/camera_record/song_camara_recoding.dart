@@ -65,7 +65,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
               width: 78.w,
               height: 30.h,
               child: ElevatedButton(
-                  child: Text(caController.recordingText),
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
                       primary: white,
@@ -83,14 +82,14 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     widget.controller.startStopState
                         ? widget.controller.stepStart()
                         : widget.controller.stepStop();
-                  }),
+                  },
+                  child: Text(caController.recordingText)),
             ),
             SizedBox(width: 5),
             Container(
               width: 78.w,
               height: 30.h,
               child: ElevatedButton(
-                child: Text('반주만'),
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
                     primary: white,
@@ -99,6 +98,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     textStyle:
                         TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
                 onPressed: () {},
+                child: Text('반주만'),
               ),
             ),
           ],

@@ -12,7 +12,7 @@ class MyPageRecord extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabbarAndAppBar(title: "내기록", tabbar: null, enableTabBar: false),
+      appBar: tabbarAndAppBar(title: '내기록', tabbar: null, enableTabBar: false),
       body: Container(
         child: ListView.builder(
             padding: const EdgeInsets.all(15),
@@ -38,7 +38,7 @@ class MyPageRecord extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Entry ${index}',
+                            'Entry $index',
                             style: TextStyle(
                                 fontSize: textEightSize.sp,
                                 color: white,

@@ -1,15 +1,15 @@
-import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:flutter/material.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/jungganbo_controller.dart';
 
 Widget jungganboScreen(int heightNumber, JungganboController controller) {
-  double height = heightNumber == 12
-      ? jungHeight
-      : heightNumber == 8
-          ? jungEightHeight
-          : jungSixHeight;
+  double height;
+  if (heightNumber == 12) {
+    height = jungHeight;
+  } else {
+    height = heightNumber == 8 ? jungEightHeight : jungSixHeight;
+  }
 
   return Container(
     child: Row(

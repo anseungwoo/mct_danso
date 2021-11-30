@@ -16,7 +16,7 @@ class MyPageLook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: tabbarAndAppBar(title: "연주보기", tabbar: null, enableTabBar: false),
+      appBar: tabbarAndAppBar(title: '연주보기', tabbar: null, enableTabBar: false),
       body: GetBuilder<MyPageController>(
           init: MyPageController(),
           builder: (controller) {
@@ -78,20 +78,20 @@ class MyPageLook extends StatelessWidget {
                                       child: SvgPicture.asset(SEE_MORE_SVG)),
                                   itemBuilder: (context) => [
                                     PopupMenuItem(
+                                      value: 1,
                                       child: Text(
                                         '공유하기',
                                         style:
                                             TextStyle(fontFamily: NOTO_REGULAR),
                                       ),
-                                      value: 1,
                                     ),
                                     PopupMenuItem(
+                                      value: 2,
                                       child: Text(
                                         '삭제하기',
                                         style:
                                             TextStyle(fontFamily: NOTO_REGULAR),
                                       ),
-                                      value: 2,
                                     )
                                   ],
                                 ),

@@ -4,7 +4,6 @@ import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
-import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
@@ -14,9 +13,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
-import 'package:project_danso/widgets/main/loading_indicator.dart';
 import 'package:project_danso/widgets/test_dialog.dart';
-import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
   List<double> dansoPitchAdjustList = [];
@@ -94,7 +91,7 @@ class DansoSoundLearningController extends GetxController {
   void listener(dynamic obj) {
     //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());
-    final List<double> audioSample = buffer.toList();
+    final audioSample = buffer.toList();
     //Uses pitch_detector_dart library to detect a pitch from the audio sample
     final result = pitchDetectorDart.getPitch(audioSample);
     //If there is a pitch - evaluate it
@@ -294,7 +291,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 1:
         try {
           if (scl > 2000 || scl < 300) {
@@ -317,7 +313,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 2:
         try {
           if (scl > 2000 || scl < 300) {
@@ -340,7 +335,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 3:
         try {
           if (scl > 2000 || scl < 300) {
@@ -363,7 +357,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 4:
         try {
           if (scl > 2000 || scl < 300) {
@@ -386,7 +379,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 5:
         try {
           if (scl > 2000 || scl < 300) {
@@ -409,7 +401,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 6:
         try {
           if (scl > 2000 || scl < 300) {
@@ -432,7 +423,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 7:
         try {
           if (scl > 2000 || scl < 300) {
@@ -455,7 +445,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 8:
         try {
           if (scl > 2000 || scl < 300) {
@@ -478,7 +467,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       case 9:
         try {
           if (scl > 2000 || scl < 300) {
@@ -501,7 +489,6 @@ class DansoSoundLearningController extends GetxController {
         } catch (er) {
           return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
         }
-        break;
       default:
     }
   }
@@ -531,7 +518,7 @@ class DansoSoundLearningController extends GetxController {
     if (dansoPitchAdjustList.isEmpty) {
       print('pitchResult : $pitchResult');
       print('pitch list isEmpty');
-      await Get.dialog(testDialog(FAIL_SVG, '다시 시도 해주세요'));
+      await Get.dialog(testDialog(FAIL_SVG, '다시 시도해주세요'));
     } else {
       print('pitch list isNotEmpty');
 
@@ -541,11 +528,11 @@ class DansoSoundLearningController extends GetxController {
               100;
       print(dansoPitchAdjustList);
 
-      if (pitchResult > 700.0 || pitchResult < 400.0) {
+      if (pitchResult > 800.0 || pitchResult < 400.0) {
         // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
         print('음이 높거나 낮음');
         await Get.dialog(testDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
-      } else if (pitchResult < 700.0 || pitchResult > 400.0) {
+      } else if (pitchResult < 800.0 || pitchResult > 400.0) {
         print('pitch 정상범위');
         pitchModelInterface.settingAdjust(pitchResult);
         await DBHelPer().deleteFr();

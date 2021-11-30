@@ -6,12 +6,13 @@ import 'package:project_danso/controllers/jungganbo_controller.dart';
 
 Widget jungganbo(int heightNumber, JungganboController controller,
     JungGanBo testJungGanBo, bool krState) {
-  double height = heightNumber == 12
-      ? jungHeight
-      : heightNumber == 8
-          ? jungEightHeight
-          : jungSixHeight;
-  int j = 0;
+  double height;
+  if (heightNumber == 12) {
+    height = jungHeight;
+  } else {
+    height = heightNumber == 8 ? jungEightHeight : jungSixHeight;
+  }
+  var j = 0;
   return Row(
     // mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.end,

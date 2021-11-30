@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageScreen extends StatefulWidget {
@@ -22,7 +21,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
   @override
   void initState() {
     super.initState();
-    tearController.changeTear();
+    tearController.getTearInfo();
     if (controller.musicState) {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();

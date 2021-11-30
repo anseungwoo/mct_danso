@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MainScreenController extends GetxController with WidgetsBindingObserver {
   final assetsAudioPlayer = AssetsAudioPlayer();
   bool svgState = false;
-  late bool musicState;
+  bool musicState = true;
 
   @override
   void onInit() {

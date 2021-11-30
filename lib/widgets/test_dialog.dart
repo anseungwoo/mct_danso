@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/widgets.dart';
 
 Widget testDialog(String assetName, String text) {
   return Dialog(
@@ -30,7 +28,7 @@ Widget testDialog(String assetName, String text) {
                 Get.back();
               },
               child: Text(
-                "확인",
+                '확인',
                 style: TextStyle(color: textBlack),
               ))
         ],
