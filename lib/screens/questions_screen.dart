@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/pitch.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class QuestionsScreen extends StatefulWidget {
@@ -19,7 +18,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
 
     if (controller.musicState) {
@@ -34,10 +32,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       length: 2,
       child: Scaffold(
         appBar: tabbarAndAppBar(
-            title: "Q&A와 팁",
+            title: 'Q&A와 팁',
             tabbar: defaultTabBar(tabList: [
+
               TabText('Q&A'),
               TabText('팁'),
+
             ])),
         body: TabBarView(
           children: [

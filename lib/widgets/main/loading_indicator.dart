@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -58,7 +57,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTimer();
   }
@@ -125,10 +123,12 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
+
             child: Text(
               "$_start초간 단소로 태(汰) 불어주세요.",
               style: TextStyle(fontSize: textFiveSize.sp),
             ),
+
           ),
         ],
       ),

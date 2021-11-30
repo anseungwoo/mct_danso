@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 
 class TimerWidget extends StatefulWidget {
@@ -17,14 +16,12 @@ class _TimerWidgetState extends State<TimerWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTimer();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _timer.cancel();
   }

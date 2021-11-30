@@ -19,8 +19,8 @@ class _PitchState extends State<Pitch> {
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
 
-  var note = "";
-  var status = "Click on start";
+  var note = '';
+  var status = 'Click on start';
   var pitch;
   @override
   void dispose() {
@@ -34,8 +34,8 @@ class _PitchState extends State<Pitch> {
         sampleRate: 44100, bufferSize: 3000);
 
     setState(() {
-      note = "";
-      status = "Play something";
+      note = '';
+      status = 'Play something';
     });
   }
 
@@ -43,15 +43,15 @@ class _PitchState extends State<Pitch> {
     await _audioRecorder.stop();
 
     setState(() {
-      note = "";
-      status = "Click on start";
+      note = '';
+      status = 'Click on start';
     });
   }
 
   void listener(dynamic obj) {
     //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());
-    final List<double> audioSample = buffer.toList();
+    final audioSample = buffer.toList();
     //Uses pitch_detector_dart library to detect a pitch from the audio sample
     final result = pitchDetectorDart.getPitch(audioSample);
     //If there is a pitch - evaluate it
@@ -92,7 +92,7 @@ class _PitchState extends State<Pitch> {
               )),
               Center(
                   child: Text(
-                "$pitch",
+                '$pitch',
                 style: const TextStyle(
                     color: Colors.black87,
                     fontSize: 25.0,
@@ -111,8 +111,8 @@ class _PitchState extends State<Pitch> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                      onPressed: _startCapture, child: Text("Start")),
-                  ElevatedButton(onPressed: _stopCapture, child: Text("Stop")),
+                      onPressed: _startCapture, child: Text('Start')),
+                  ElevatedButton(onPressed: _stopCapture, child: Text('Stop')),
                 ],
               )
             ]),

@@ -5,7 +5,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 class PermissionController extends GetxController {
   void permission() async {
-    Map<Permission, PermissionStatus> permissions =
+    var permissions =
         await [Permission.camera, Permission.microphone].request();
     var micPermission = await Permission.microphone.status;
     var cameraPermission = await Permission.camera.status;

@@ -2,12 +2,10 @@ import 'dart:async';
 import 'package:danso_function/danso_function.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:project_danso/common/const.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +37,7 @@ class SongPlayAndTest extends StatefulWidget {
 
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   late int percent;
-  JungGanBoPlayer jungGanBoPlayer = new JungGanBoPlayer();
+  JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = JungganboController();
   FlutterMidi flutterMidi = FlutterMidi();
   Future _incrementCounter() async {
@@ -55,8 +53,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   @override
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
-    JungGanBo testJungGanBo =
-        new JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
+    var testJungGanBo =
+        JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
@@ -120,10 +118,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         SizedBox(width: 5.w),
                                         songSwapButton(
                                             text: Text(
+
                                                 "${controller.speed[controller.speedCount]} 배속",
                                                 style: TextStyle(
                                                     fontSize:
                                                         textSmallSize.sp)),
+
                                             onPressed: () {
                                               controller.changespeedState();
                                             }),
@@ -197,6 +197,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                               .spaceAround,
                                                       children: [
                                                         SvgPicture.asset(
+
                                                           TRANSCRIPTION_SVG,
                                                           width: 13.w,
                                                           height: 13.h,
@@ -206,6 +207,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                                 fontSize:
                                                                     textSmallSize
                                                                         .sp)),
+
                                                       ],
                                                     ),
                                                     onPressed: () {
@@ -311,13 +313,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "${controller.speed[controller.speedCount]} 배속",
+                              '${controller.speed[controller.speedCount]} 배속',
                               style: TextStyle(
                                   fontSize: textSmallSize.sp,
                                   fontFamily: NOTO_REGULAR),
                             ),
                             Text(
-                              "${widget.jangdan}",
+                              '${widget.jangdan}',
                               style: TextStyle(
                                   fontSize: textSmallSize.sp,
                                   fontFamily: NOTO_REGULAR),
@@ -372,11 +374,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                       height: 5.h,
                     ),
                     Text(
-                      "녹화화면을 준비하고 있습니다",
+                      '녹화화면을 준비하고 있습니다',
                       style: TextStyle(color: white, fontSize: textEightSize),
                     ),
                     Text(
-                      "녹화시작 버튼을 누르고 녹화시작",
+                      '녹화시작 버튼을 누르고 녹화시작',
                       style: TextStyle(color: white, fontSize: textEightSize),
                     ),
                   ],
@@ -398,7 +400,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       width: 81.w,
       height: 30.h,
       child: ElevatedButton(
-        child: text,
         style: ElevatedButton.styleFrom(
             elevation: 0,
             primary: white,
@@ -409,6 +410,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                 color: buttonColorOrang,
                 fontFamily: NOTO_REGULAR)),
         onPressed: onPressed,
+        child: text,
       ),
     );
   }
