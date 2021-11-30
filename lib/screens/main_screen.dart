@@ -198,12 +198,10 @@ class _MainScreenState extends State<MainScreen> {
             child: Center(
               child: Text(
                 '마이페이지',
-
                 style: TextStyle(
                     color: white,
                     fontFamily: NOTO_MEDIUM,
                     fontSize: textFiveSize.sp),
-
               ),
             ),
           ),
@@ -222,39 +220,40 @@ class _MainScreenState extends State<MainScreen> {
       bool dialog = false,
       Function()? onPressed}) {
     return InkWell(
-      onTap: () {
-        var controller = Get.find<MainScreenController>();
-        if (controller.musicState) {
-          // 아예 정지
-          // Get.find<MainScreenController>().disposeAudioPlayer();
-          // 일시 정지
-          controller.assetsAudioPlayer.pause();
-        }
-        onPressed;
-        if (dialog) {
-          Get.dialog(page);
-        } else {
-          Get.to(page);
-        }
-      },
-      child: Container(
-        margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
-        height: 106.w,
-        // width: 330.w,
-        decoration: BoxDecoration(
-            color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
+        onTap: () {
+          var controller = Get.find<MainScreenController>();
+          if (controller.musicState) {
+            // 아예 정지
+            // Get.find<MainScreenController>().disposeAudioPlayer();
+            // 일시 정지
+            controller.assetsAudioPlayer.pause();
+          }
+          onPressed;
+          if (dialog) {
+            Get.dialog(page);
+          } else {
+            Get.to(page);
+          }
+        },
+        child: Container(
+          margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+          height: 106.w,
+          // width: 330.w,
+          decoration: BoxDecoration(
+              color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
 
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SvgPicture.asset(
-                assetName,
-                width: 50.w,
-                height: 50.h,
+              Container(
+                width: 103.w,
+                child: SvgPicture.asset(
+                  assetName,
+                  width: svgWidth.w,
+                  height: svgHeight.w,
+                ),
               ),
-              SizedBox(width: 14.w),
+              // SizedBox(width: 14.w),
               Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -277,37 +276,10 @@ class _MainScreenState extends State<MainScreen> {
                     )
                   ],
                 ),
-
               ),
-            ),
-            // SizedBox(width: 14.w),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('$title',
-                      style: TextStyle(
-                          fontSize: textTitleSize.sp,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: NOTO_BOLD)),
-                  SizedBox(height: 7.h),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (int i = 0; i < 2; i++)
-                        Text(contant[i],
-                            style: TextStyle(
-                                fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+            ],
+          ),
+        ));
   }
 }
 
