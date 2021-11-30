@@ -50,18 +50,16 @@ class _MainDansoLearningTestScreenState
       resizeToAvoidBottomInset: false,
       appBar:
           tabbarAndAppBar(title: '단계별 연습', tabbar: null, enableTabBar: false),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          leftLightCicleAvatarAndText(),
-          GetBuilder<DansoSoundLearningController>(
-              init: dansoSoundLearningController,
-              builder: (controller) {
-                return Container(
-                  // padding: EdgeInsets.symmetric(horizontal: 30),
-                  // width: 330.w,
-                  // height: 500.h,
-                  child: Row(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            leftLightCicleAvatarAndText(),
+            GetBuilder<DansoSoundLearningController>(
+                init: dansoSoundLearningController,
+                builder: (controller) {
+                  return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -75,37 +73,45 @@ class _MainDansoLearningTestScreenState
                         child: listeningAndTest(controller),
                       ),
                     ],
-                  ),
-                );
-              }),
-        ],
+                  );
+                }),
+          ],
+        ),
       ),
     );
   }
 
   Widget listeningAndTest(DansoSoundLearningController controller) {
     return Container(
+      height: ScreenUtil().screenHeight * 0.68,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           // Text('${controller.pitchValue}'),
           if (controller.listenTuningState)
-            Column(
-              children: [
-                Text(
-                  '소리를 들어보세요',
-                  style: TextStyle(
-                      fontSize: textSevenSize.sp, fontFamily: NOTO_REGULAR),
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '소리를 들어보세요',
+                      style: TextStyle(
+                          fontSize: textSevenSize.sp, fontFamily: NOTO_REGULAR),
+                    ),
+                    Text(
+                      '단소에 따라 실음과 다를 수 있습니다.',
+                      style:
+                          TextStyle(fontSize: 13.sp, fontFamily: NOTO_REGULAR),
+                    ),
+                  ],
                 ),
-                Text(
-                  '단소에 따라 실음과 다를 수 있습니다.',
-                  style: TextStyle(fontSize: 13.sp, fontFamily: NOTO_REGULAR),
-                ),
-              ],
+              ),
             ),
           if (controller.playTuningState)
-            controller.soundMatch(controller.pitchValue)!,
-
+            Expanded(
+                child: Center(
+                    child: controller.soundMatch(controller.pitchValue)!)),
           Container(
             height: 97.w,
             width: 97.w,
@@ -201,6 +207,7 @@ class _MainDansoLearningTestScreenState
                             Get.to(MainDansoLearningLevelScreen());
                           },
           ),
+          SizedBox(height: 5.w),
         ],
       ),
     );
@@ -209,7 +216,7 @@ class _MainDansoLearningTestScreenState
   Widget dansoImage(DansoSoundLearningController controller) {
     return SvgPicture.asset(
       DANSO_SVG_LIST[controller.soundListUpDown],
-      // height: 500.h,
+      height: ScreenUtil().screenHeight * 0.68,
       fit: BoxFit.fitHeight,
     );
   }

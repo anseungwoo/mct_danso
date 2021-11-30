@@ -13,7 +13,8 @@ Widget jungganbo(int heightNumber, JungganboController controller,
           : jungSixHeight;
   int j = 0;
   return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
+    // mainAxisSize: MainAxisSize.min,
+    mainAxisAlignment: MainAxisAlignment.end,
     children: [
       for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
