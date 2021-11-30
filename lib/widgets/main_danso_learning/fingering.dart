@@ -46,7 +46,7 @@ Widget fingering(BuildContext context) {
       ),
       Expanded(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Column(
               children: [
@@ -61,7 +61,6 @@ Widget fingering(BuildContext context) {
                           )),
                   ],
                 ),
-                SizedBox(height: 5.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -80,20 +79,22 @@ Widget fingering(BuildContext context) {
                 ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                for (var i = 0; i < 6; i++)
-                  SvgPicture.asset(
-                    DANSO_CODE_SVG_LIST[i],
-                    height: ScreenUtil().screenHeight * 0.5,
-                    fit: BoxFit.fitHeight,
-                  ),
-              ],
+            Expanded(
+              child: Container(
+                // color: Colors.grey,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    for (var i = 0; i < 6; i++)
+                      SvgPicture.asset(
+                        DANSO_CODE_SVG_LIST[i],
+                        height: ScreenUtil().screenWidth,
+                        fit: BoxFit.fitHeight,
+                      ),
+                  ],
+                ),
+              ),
             ),
-            SizedBox(
-              height: 27.h,
-            )
           ],
         ),
       ),
