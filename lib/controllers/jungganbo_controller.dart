@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
+import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
+import 'package:project_danso/utils/danso_function.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;
@@ -73,9 +76,8 @@ class JungganboController extends GetxController {
     print('결과값 $copySheetHorizontal');
     await Future.delayed(Duration(milliseconds: mill));
     for (line; line < jungGanBo.sheet.length - 1; line++) {
-      if (line != 31 * pagenext || line != 23 * pagenext) {
+      if ((line != 31 * pagenext) || (line != 23 * pagenext)) {
         await Future.delayed(Duration(milliseconds: (mill - 4).toInt()));
-        update();
       }
 
       if (copySheetHorizontal >= 4 &&
@@ -135,5 +137,174 @@ class JungganboController extends GetxController {
       update();
     }
     update();
+  }
+
+  final player = FlutterMidi();
+  void playJungGanBo(JungGanBo jungGanBo, IndexManager indexManager) {
+    Timer.periodic(new Duration(milliseconds: jungGanBo.jangDan.milliSecond),
+        (timer) {
+      if (indexManager.index < jungGanBo.sheet.length) {
+        playJung(
+            jungGanBo.sheet[indexManager.index], jungGanBo.jangDan.milliSecond);
+
+        indexManager.addOneIndex();
+      } else {
+        timer.cancel();
+        allMidiStop();
+        indexManager.clearIndex();
+      }
+      //update();
+    });
+    allMidiStop();
+  }
+
+  playJung(Jung jung, int durationTime) {
+    int halfOfDurationTime = durationTime ~/ 2;
+    int oneOfThreeDurationTime = durationTime ~/ 3;
+    if (jung.divisionStatus == DivisionStatus.one) {
+      if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+        allMidiStop();
+      }
+      //sleep(new Duration(milliseconds: 10));
+      playOneYulmyeongNote(jung.yulmyeongs[0]);
+      return;
+    } else if (jung.divisionStatus == DivisionStatus.two) {
+      if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+        allMidiStop();
+      }
+      playOneYulmyeongNote(jung.yulmyeongs[0]);
+      sleep(new Duration(milliseconds: halfOfDurationTime));
+
+      if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+          jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+        allMidiStop();
+      }
+      //sleep(new Duration(milliseconds: 10));
+      playOneYulmyeongNote(jung.yulmyeongs[1]);
+      return;
+    } else if (jung.divisionStatus == DivisionStatus.three) {
+      if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+        allMidiStop();
+      }
+      playOneYulmyeongNote(jung.yulmyeongs[0]);
+      sleep(new Duration(milliseconds: oneOfThreeDurationTime));
+      if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+          jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+        allMidiStop();
+      }
+      //sleep(new Duration(milliseconds: 10));
+      playOneYulmyeongNote(jung.yulmyeongs[1]);
+      sleep(new Duration(milliseconds: oneOfThreeDurationTime));
+      if (jung.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
+          jung.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
+        allMidiStop();
+      }
+      //sleep(new Duration(milliseconds: 10));
+      playOneYulmyeongNote(jung.yulmyeongs[2]);
+      return;
+    }
+  }
+
+  playOneYulmyeongNoteDuringDurationTime(
+      YulmyeongNote yulmyeongNote, int durationTime) {
+    int notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
+    player.playMidiNote(midi: notePlayed);
+
+    Timer(new Duration(milliseconds: durationTime), () {
+      player.stopMidiNote(midi: notePlayed);
+    });
+  }
+
+  playOneYulmyeongNote(YulmyeongNote yulmyeongNote) {
+    int notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
+    player.playMidiNote(midi: notePlayed);
+  }
+
+  int getMidiNoteFromYulmyeongNote(YulmyeongNote yulmyeongNote) {
+    int res = 0;
+    if (yulmyeongNote.scaleStatus == ScaleStatus.origin) {
+      switch (yulmyeongNote.yulmyeong) {
+        case Yulmyeong.joong:
+          res = JOONG_NOTE;
+          break;
+        case Yulmyeong.yim:
+          res = YIM_NOTE;
+          break;
+        case Yulmyeong.moo:
+          res = MOO_NOTE;
+          break;
+        case Yulmyeong.hwang:
+          res = HWANG_NOTE;
+          break;
+        case Yulmyeong.tae:
+          res = TAE_NOTE;
+          break;
+        case Yulmyeong.blank:
+          res = REST_NOTE;
+          break;
+        case Yulmyeong.rest:
+          res = REST_NOTE;
+          break;
+        default: //high:
+      }
+    } else {
+      switch (yulmyeongNote.yulmyeong) {
+        case Yulmyeong.joong:
+          res = JOONG_HIGH_NOTE;
+          break;
+        case Yulmyeong.yim:
+          res = YIM_HIGH_NOTE;
+          break;
+        case Yulmyeong.moo:
+          res = MOO_HIGH_NOTE;
+          break;
+        case Yulmyeong.hwang:
+          res = HWANG_HIGH_NOTE;
+          break;
+        case Yulmyeong.tae:
+          res = TAE_HIGH_NOTE;
+          break;
+        case Yulmyeong.blank:
+          res = REST_NOTE;
+          break;
+        case Yulmyeong.rest:
+          res = REST_NOTE;
+          break;
+        default:
+      }
+    }
+    return res;
+  }
+
+  allMidiStop() {
+    for (var i = 0; i < 128; i++) {
+      player.stopMidiNote(midi: i);
+    }
+  }
+
+  endMidi() {
+    for (var i = 0; i < 128; i++) {
+      player.stopMidiNote(midi: i);
+    }
+  }
+}
+
+class IndexManager {
+  int _index = 0;
+  int get index => _index;
+
+  addOneIndex() {
+    _index++;
+  }
+
+  stopIndex() {
+    _index = 1000000;
+  }
+
+  clearIndex() {
+    _index = 0;
   }
 }

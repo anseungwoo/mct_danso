@@ -1,6 +1,4 @@
 import 'dart:typed_data';
-
-import 'package:danso_function/danso_function.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
@@ -10,9 +8,11 @@ import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
+import 'package:project_danso/utils/common/constants/PitchConst.dart';
+import 'package:project_danso/utils/danso_function.dart';
+import 'package:project_danso/utils/model/pitch_model/PitchModel.dart';
 import 'package:project_danso/widgets/test_dialog.dart';
 
 class DansoSoundLearningController extends GetxController {
@@ -43,6 +43,7 @@ class DansoSoundLearningController extends GetxController {
   PitchModelInterface pitchModelInterface = PitchModel();
   // late Pitchdetector detector;
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
+
   late double pitch;
   bool isRecording = false;
   bool isAdjust = false;
