@@ -1,7 +1,6 @@
-import 'package:danso_function/common/classes/YulmyeongNote.dart';
-import 'package:danso_function/danso_function.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/utils/danso_function.dart';
 
 class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;

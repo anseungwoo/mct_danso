@@ -1,9 +1,9 @@
-import 'package:danso_function/common/classes/YulmyeongNote.dart';
-import 'package:danso_function/common/constants/PitchConst.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/utils/common/constants/PitchConst.dart';
+import 'package:project_danso/utils/danso_function.dart';
 
 Widget fingering(BuildContext context) {
   final Yum = [

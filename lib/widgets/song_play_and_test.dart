@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:danso_function/danso_function.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_midi/flutter_midi.dart';
@@ -9,6 +9,7 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 import 'jungganbo/jungganbo_screen.dart';
@@ -118,12 +119,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         SizedBox(width: 5.w),
                                         songSwapButton(
                                             text: Text(
-
                                                 "${controller.speed[controller.speedCount]} 배속",
                                                 style: TextStyle(
                                                     fontSize:
                                                         textSmallSize.sp)),
-
                                             onPressed: () {
                                               controller.changespeedState();
                                             }),
@@ -197,7 +196,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                               .spaceAround,
                                                       children: [
                                                         SvgPicture.asset(
-
                                                           TRANSCRIPTION_SVG,
                                                           width: 13.w,
                                                           height: 13.h,
@@ -207,7 +205,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                                 fontSize:
                                                                     textSmallSize
                                                                         .sp)),
-
                                                       ],
                                                     ),
                                                     onPressed: () {
