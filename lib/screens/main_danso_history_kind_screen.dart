@@ -56,33 +56,22 @@ class _MainDansoHistoryKindScreenState
           ),
         ),
         body: TabBarView(
-          physics: NeverScrollableScrollPhysics(),
           children: [
             // 탭바 화면
             //첫번째 화면
-            CarouselListWidget(
-              carouselList: [
-                // 좌우 스크롤 화면
-                // 화면 1
-                DansoHistroyKind(
-                    subject: HISTORY_TITLE,
-                    explanation: HISTORY,
-                    url: DANSO_HISTORY_URL),
-                // 화면 2
-              ],
-            ),
+
+            DansoHistroyKind(
+                subject: HISTORY_TITLE,
+                explanation: HISTORY,
+                url: DANSO_HISTORY_URL),
+
             // 두번째 화면
-            CarouselListWidget(
-              carouselList: [
-                // 좌우 스크롤 화면
-                // 화면 1
-                DansoHistroyKind(
-                    subject: DANSO_KIND_TITLE,
-                    explanation: DANSO_KIND,
-                    url: DANSO_KIND_URL),
-                // 화면 2
-              ],
-            ),
+
+            DansoHistroyKind(
+                subject: DANSO_KIND_TITLE,
+                explanation: DANSO_KIND,
+                url: DANSO_KIND_URL),
+            // 화면 2
           ],
         ),
       ),

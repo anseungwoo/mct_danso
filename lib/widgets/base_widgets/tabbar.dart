@@ -27,6 +27,6 @@ TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
 Tab TabText(String text) {
   return Tab(
     text: text,
-    height: 30.h,
+    // height: 30.h,
   );
 }
