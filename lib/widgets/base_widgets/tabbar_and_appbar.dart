@@ -34,8 +34,6 @@ PreferredSizeWidget tabbarAndAppBar(
             },
             child: SvgPicture.asset(
               HOME_SVG,
-              width: 50.w,
-              height: 50.h,
             )),
       ),
     ],

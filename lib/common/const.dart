@@ -101,7 +101,7 @@ const String HISTORY =
 const String HISTORY_TITLE = '단소의 역사';
 //평조 설명
 const String DANSO_KIND =
-    '단소는 경제단소와 평조단소로 나누어 집니다. 경제단소는 표준으로 사용하는 단소이고, 평조단소는 경제단소보다 길고 전체적으로 음정이4도 낮습니다.';
+    '단소는 경제단소와 평조단소로 나누어 집니다. 경제단소는 표준으로 사용하는 단소이고, 평조단소는 경제단소보다 길고 전체적으로 음정이 4도 낮습니다.';
 const String DANSO_KIND_TITLE = '단소의  종류';
 
 const String DANSO_PALY =

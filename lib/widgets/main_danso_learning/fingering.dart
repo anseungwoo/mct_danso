@@ -45,7 +45,6 @@ Widget fingering(BuildContext context) {
       ),
       Expanded(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Column(
               children: [
@@ -60,6 +59,7 @@ Widget fingering(BuildContext context) {
                           )),
                   ],
                 ),
+                SizedBox(height: 5.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -87,7 +87,7 @@ Widget fingering(BuildContext context) {
                     for (var i = 0; i < 6; i++)
                       SvgPicture.asset(
                         DANSO_CODE_SVG_LIST[i],
-                        height: ScreenUtil().screenWidth,
+                        height: ScreenUtil().screenWidth * 0.9,
                         fit: BoxFit.fitHeight,
                       ),
                   ],
