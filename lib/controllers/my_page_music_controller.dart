@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:project_danso/common/const.dart';
@@ -21,11 +22,13 @@ class MyPageMusicController extends GetxController {
       Audio(backMusic),
       autoStart: false,
     );
+    assetsAudioPlayer.setLoopMode(LoopMode.single);
     super.onInit();
   }
 
   @override
   void dispose() {
+    assetsAudioPlayer.stop();
     assetsAudioPlayer.dispose();
     print('dispose');
     super.dispose();
@@ -84,44 +87,44 @@ class _PositionSeekWidgetState extends State<PositionSeekWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return Expanded(
+      child: Column(
         children: <Widget>[
-          SizedBox(
-            width: 40,
-            child: Text(durationToString(widget.currentPosition)),
+          NeumorphicSlider(
+            min: 0,
+            max: widget.duration.inMilliseconds.toDouble(),
+            value: percent * widget.duration.inMilliseconds.toDouble(),
+            style: SliderStyle(variant: logoColor, accent: logoColor),
+            onChangeEnd: (newValue) {
+              setState(() {
+                listenOnlyUserInterraction = false;
+                widget.seekTo(_visibleValue);
+              });
+            },
+            onChangeStart: (_) {
+              setState(() {
+                listenOnlyUserInterraction = true;
+              });
+            },
+            onChanged: (newValue) {
+              setState(() {
+                final to = Duration(milliseconds: newValue.floor());
+                _visibleValue = to;
+              });
+            },
           ),
-          Expanded(
-            child: NeumorphicSlider(
-              min: 0,
-              max: widget.duration.inMilliseconds.toDouble(),
-              value: percent * widget.duration.inMilliseconds.toDouble(),
-              style:
-                  SliderStyle(variant: Colors.grey, accent: Colors.grey[500]),
-              onChangeEnd: (newValue) {
-                setState(() {
-                  listenOnlyUserInterraction = false;
-                  widget.seekTo(_visibleValue);
-                });
-              },
-              onChangeStart: (_) {
-                setState(() {
-                  listenOnlyUserInterraction = true;
-                });
-              },
-              onChanged: (newValue) {
-                setState(() {
-                  final to = Duration(milliseconds: newValue.floor());
-                  _visibleValue = to;
-                });
-              },
-            ),
-          ),
-          SizedBox(
-            width: 40,
-            child: Text(durationToString(widget.duration)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 40,
+                child: Text(durationToString(widget.currentPosition)),
+              ),
+              SizedBox(
+                width: 40,
+                child: Text(durationToString(widget.duration)),
+              ),
+            ],
           ),
         ],
       ),
@@ -140,47 +143,4 @@ String durationToString(Duration duration) {
   final twoDigitSeconds =
       twoDigits(duration.inSeconds.remainder(Duration.secondsPerMinute));
   return '$twoDigitMinutes:$twoDigitSeconds';
-}
-
-class PlayingControls extends StatelessWidget {
-  final bool isPlaying;
-  final LoopMode? loopMode;
-  final bool isPlaylist;
-  final Function()? onPrevious;
-  final Function() onPlay;
-  final Function()? onNext;
-  final Function()? toggleLoop;
-  final Function()? onStop;
-
-  PlayingControls({
-    required this.isPlaying,
-    this.isPlaylist = false,
-    this.loopMode,
-    this.toggleLoop,
-    this.onPrevious,
-    required this.onPlay,
-    this.onNext,
-    this.onStop,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        NeumorphicButton(
-          style: NeumorphicStyle(
-            boxShape: NeumorphicBoxShape.circle(),
-          ),
-          padding: EdgeInsets.all(24),
-          onPressed: onPlay,
-          child: Icon(
-            isPlaying ? Icons.pause : Icons.play_arrow,
-            size: 32,
-          ),
-        ),
-      ],
-    );
-  }
 }

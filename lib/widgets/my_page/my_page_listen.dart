@@ -60,7 +60,7 @@ class MyPageListen extends StatelessWidget {
                             InkWell(
                                 radius: 40.r,
                                 onTap: () {
-                                  Get.dialog(myPageListenDialog(context));
+                                  Get.dialog(MyPageListenDialog());
                                 },
                                 child: SvgPicture.asset(
                                   PLAY_SVG,
