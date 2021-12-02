@@ -38,8 +38,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   void dispose() {
-    jungganboController.dispose();
     indexManager.stopIndex();
+    jungganboController.allMidiStop();
     super.dispose();
   }
 
