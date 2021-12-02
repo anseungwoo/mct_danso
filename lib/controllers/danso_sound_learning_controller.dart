@@ -13,7 +13,7 @@ import 'package:project_danso/models/models.dart';
 import 'package:project_danso/utils/common/constants/PitchConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/utils/model/pitch_model/PitchModel.dart';
-import 'package:project_danso/widgets/test_dialog.dart';
+import 'package:project_danso/widgets/main/success_fail_dialog.dart';
 
 class DansoSoundLearningController extends GetxController {
   List<double> dansoPitchAdjustList = [];
@@ -519,7 +519,7 @@ class DansoSoundLearningController extends GetxController {
     if (dansoPitchAdjustList.isEmpty) {
       print('pitchResult : $pitchResult');
       print('pitch list isEmpty');
-      await Get.dialog(testDialog(FAIL_SVG, '다시 시도해주세요'));
+      await Get.dialog(successFailDialog(FAIL_SVG, '다시 시도해주세요'));
     } else {
       print('pitch list isNotEmpty');
 
@@ -532,17 +532,17 @@ class DansoSoundLearningController extends GetxController {
       if (pitchResult > 800.0 || pitchResult < 400.0) {
         // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
         print('음이 높거나 낮음');
-        await Get.dialog(testDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
+        await Get.dialog(successFailDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
       } else if (pitchResult < 800.0 || pitchResult > 400.0) {
         print('pitch 정상범위');
         pitchModelInterface.settingAdjust(pitchResult);
         await DBHelPer().deleteFr();
         await DBHelPer().insertFr(UserModel(standardFr: pitchResult));
         // showToast(message: '$pitchResult DB에 저장됨.');
-        await Get.dialog(testDialog(SUCCESS_SVG, '성공하였습니다.'));
+        await Get.dialog(successFailDialog(SUCCESS_SVG, '성공하였습니다.'));
         update();
       } else {
-        await Get.dialog(testDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
+        await Get.dialog(successFailDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
       }
     }
     // await getDbFr();

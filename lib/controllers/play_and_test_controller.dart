@@ -10,7 +10,7 @@ class PlayAndTestController extends GetxController {
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
   int speedCount = 2;
   int test = 0;
-  String krButton = '한글버전';
+  String krButton = '한자버전';
   bool krChanges = false;
   @override
   void onInit() {
@@ -38,7 +38,7 @@ class PlayAndTestController extends GetxController {
 
   void changeKrState() {
     krChanges = !krChanges;
-    krButton = krChanges ? '한자버전' : '한글버전';
+    krButton = krChanges ? '한글버전' : '한자버전';
     update();
   }
 

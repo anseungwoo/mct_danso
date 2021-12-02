@@ -81,17 +81,15 @@ class JungganboController extends GetxController {
   }
 
   void stepStart() async {
+    copySheetHorizontal = sheetHorizontal;
     print('결과값 $copySheetHorizontal');
     await Future.delayed(Duration(milliseconds: mill));
     Timer.periodic(Duration(milliseconds: mill), (timer) {
       if (line < jungGanBo.sheet.length) {
-        if ((line != 31 * pagenext) || (line != 23 * pagenext)) {
-          line++;
-          update();
-        }
+        line++;
 
         if (copySheetHorizontal >= 4 &&
-            line == 31 * pagenext &&
+            line == 32 * pagenext &&
             sheetVertical == 8) {
           next += 4;
           next2 += 4;
@@ -104,7 +102,7 @@ class JungganboController extends GetxController {
           print('np $pagenext');
         }
         if (copySheetHorizontal >= 4 &&
-            line == 23 * pagenext &&
+            line == 24 * pagenext &&
             sheetVertical == 6) {
           next += 4;
           next2 += 4;
@@ -117,7 +115,7 @@ class JungganboController extends GetxController {
           print('np $pagenext');
         }
         if (copySheetHorizontal == 3 &&
-            line == 23 * pagenext &&
+            line == 24 * pagenext &&
             sheetVertical == 6) {
           next += 4;
           next2 += 2;
@@ -129,7 +127,7 @@ class JungganboController extends GetxController {
           print('np $pagenext');
         }
         if (copySheetHorizontal == 3 &&
-            line == 31 * pagenext &&
+            line == 32 * pagenext &&
             sheetVertical == 8) {
           next += 4;
           next2 += 2;
@@ -149,6 +147,7 @@ class JungganboController extends GetxController {
         timer.cancel();
         stepStop();
       }
+      update();
     });
   }
 
@@ -165,6 +164,7 @@ class JungganboController extends GetxController {
         allMidiStop();
         indexManager.clearIndex();
       }
+      update();
     });
     allMidiStop();
   }

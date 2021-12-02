@@ -12,7 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-import 'jungganbo/jungganbo_screen.dart';
+import '../jungganbo/jungganbo_screen.dart';
 
 class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;

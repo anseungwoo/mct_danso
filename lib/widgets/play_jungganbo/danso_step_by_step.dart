@@ -7,7 +7,7 @@ import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-import 'jungganbo/jungganbo_screen.dart';
+import '../jungganbo/jungganbo_screen.dart';
 
 class DansoStepByStep extends StatefulWidget {
   final String sheetData;
