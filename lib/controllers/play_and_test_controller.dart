@@ -7,8 +7,7 @@ class PlayAndTestController extends GetxController {
   bool testStartState = false;
   String testButtonswap = '연습하기';
   RxInt statecount = 0.obs;
-  List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
-  int speedCount = 2;
+
   int test = 0;
   String krButton = '한자버전';
   bool krChanges = false;
@@ -25,14 +24,6 @@ class PlayAndTestController extends GetxController {
     testState = false;
     testStartState = false;
     testButtonswap = '연습하기';
-    update();
-  }
-
-  void changespeedState() {
-    speedCount++;
-    if (speedCount == 5) {
-      speedCount = 0;
-    }
     update();
   }
 

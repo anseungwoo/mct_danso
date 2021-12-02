@@ -83,8 +83,12 @@ class JungganboController extends GetxController {
   void stepStart() async {
     copySheetHorizontal = sheetHorizontal;
     print('결과값 $copySheetHorizontal');
-    await Future.delayed(Duration(milliseconds: mill));
-    Timer.periodic(Duration(milliseconds: mill), (timer) {
+    print('mill ${speed[speedCount]}');
+    await Future.delayed(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()));
+    Timer.periodic(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
+        (timer) {
       if (line < jungGanBo.sheet.length) {
         line++;
 
@@ -153,11 +157,12 @@ class JungganboController extends GetxController {
 
   final player = FlutterMidi();
   void playJungGanBo(IndexManager indexManager) {
-    Timer.periodic(Duration(milliseconds: jungGanBo.jangDan.milliSecond),
+    Timer.periodic(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
       if (indexManager.index < jungGanBo.sheet.length) {
-        playJung(
-            jungGanBo.sheet[indexManager.index], jungGanBo.jangDan.milliSecond);
+        playJung(jungGanBo.sheet[indexManager.index],
+            (mill * speed[speedCount]).toInt());
         indexManager.addOneIndex();
       } else {
         timer.cancel();
