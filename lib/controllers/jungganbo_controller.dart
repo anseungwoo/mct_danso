@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter_midi/flutter_midi.dart';
@@ -19,12 +20,19 @@ class JungganboController extends GetxController {
 
   late int sheetVertical;
   bool gameState = false;
-
+  IndexManager indexManagers = IndexManager();
   @override
   void onInit() {
     super.onInit();
 
     stepStop();
+  }
+
+  @override
+  void dispose() {
+    allMidiStop();
+    line = jungGanBo.sheet.length;
+    super.dispose();
   }
 
   void changegameState() {
@@ -75,85 +83,88 @@ class JungganboController extends GetxController {
   void stepStart() async {
     print('결과값 $copySheetHorizontal');
     await Future.delayed(Duration(milliseconds: mill));
-    for (line; line < jungGanBo.sheet.length - 1; line++) {
-      if ((line != 31 * pagenext) || (line != 23 * pagenext)) {
-        await Future.delayed(Duration(milliseconds: (mill - 4).toInt()));
-      }
+    Timer.periodic(Duration(milliseconds: mill), (timer) {
+      if (line < jungGanBo.sheet.length) {
+        if ((line != 31 * pagenext) || (line != 23 * pagenext)) {
+          line++;
+          update();
+        }
 
-      if (copySheetHorizontal >= 4 &&
-          line == 31 * pagenext &&
-          sheetVertical == 8) {
-        next += 4;
-        next2 += 4;
-        pagenext++;
-        copySheetHorizontal -= 2;
+        if (copySheetHorizontal >= 4 &&
+            line == 31 * pagenext &&
+            sheetVertical == 8) {
+          next += 4;
+          next2 += 4;
+          pagenext++;
+          copySheetHorizontal -= 2;
 
-        print('결과값4 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-      if (copySheetHorizontal >= 4 &&
-          line == 23 * pagenext &&
-          sheetVertical == 6) {
-        next += 4;
-        next2 += 4;
-        pagenext++;
-        copySheetHorizontal -= 2;
+          print('결과값4 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+        if (copySheetHorizontal >= 4 &&
+            line == 23 * pagenext &&
+            sheetVertical == 6) {
+          next += 4;
+          next2 += 4;
+          pagenext++;
+          copySheetHorizontal -= 2;
 
-        print('결과값4 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-      if (copySheetHorizontal == 3 &&
-          line == 23 * pagenext &&
-          sheetVertical == 6) {
-        next += 4;
-        next2 += 2;
-        pagenext++;
+          print('결과값4 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+        if (copySheetHorizontal == 3 &&
+            line == 23 * pagenext &&
+            sheetVertical == 6) {
+          next += 4;
+          next2 += 2;
+          pagenext++;
 
-        print('결과값3 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-      if (copySheetHorizontal == 3 &&
-          line == 31 * pagenext &&
-          sheetVertical == 8) {
-        next += 4;
-        next2 += 2;
-        pagenext++;
+          print('결과값3 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+        if (copySheetHorizontal == 3 &&
+            line == 31 * pagenext &&
+            sheetVertical == 8) {
+          next += 4;
+          next2 += 2;
+          pagenext++;
 
-        print('결과값3 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
+          print('결과값3 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
 
-      if (startStopState == false || line == jungGanBo.sheet.length - 1) {
+        if (startStopState == false || line == jungGanBo.sheet.length - 1) {
+          stepStop();
+          timer.cancel();
+        }
+      } else {
+        timer.cancel();
         stepStop();
       }
-      update();
-    }
-    update();
+    });
   }
 
   final player = FlutterMidi();
-  void playJungGanBo(JungGanBo jungGanBo, IndexManager indexManager) {
-    Timer.periodic(new Duration(milliseconds: jungGanBo.jangDan.milliSecond),
+  void playJungGanBo(IndexManager indexManager) {
+    Timer.periodic(Duration(milliseconds: jungGanBo.jangDan.milliSecond),
         (timer) {
       if (indexManager.index < jungGanBo.sheet.length) {
         playJung(
             jungGanBo.sheet[indexManager.index], jungGanBo.jangDan.milliSecond);
-
         indexManager.addOneIndex();
       } else {
         timer.cancel();
         allMidiStop();
         indexManager.clearIndex();
       }
-      //update();
     });
     allMidiStop();
   }

@@ -61,12 +61,12 @@ class CameraRecordController extends GetxController {
     }
     // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
 
-    _playAndTestController.stateCountUp(2);
+    _playAndTestController.stateCountUp(2.obs);
     update();
   }
 
   void getBack() {
-    _playAndTestController.stateCountUp(2);
+    _playAndTestController.stateCountUp(2.obs);
     update();
   }
 

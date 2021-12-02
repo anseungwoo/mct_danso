@@ -15,12 +15,21 @@ class SongAudioRecorder extends StatefulWidget {
 }
 
 class SongAudioRecorderState extends State<SongAudioRecorder> {
-  final audioRecordController = Get.put(AudioRecordController());
+  AudioRecordController audioRecordController =
+      Get.put(AudioRecordController());
+  IndexManager indexManager = IndexManager();
   @override
   void dispose() {
-    audioRecordController.isRecording
-        ? audioRecordController.stopRecording()
-        : audioRecordController.getBack();
+    if (audioRecordController.isRecording == true) {
+      audioRecordController.stopRecording();
+      widget.controller.allMidiStop();
+      indexManager.stopIndex();
+    }
+
+    if (audioRecordController.isRecording == false) {
+      audioRecordController.getBack();
+    }
+
     super.dispose();
   }
 // //  삭제기능 테스트 함수입니다.
@@ -64,9 +73,14 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                       ? audioRecordController.startRecording()
                       : audioRecordController.stopRecording();
                   widget.controller.changeStartStopState();
-                  widget.controller.startStopState
-                      ? widget.controller.stepStart()
-                      : widget.controller.stepStop();
+                  if (widget.controller.startStopState) {
+                    widget.controller.stepStart();
+                    widget.controller.playJungGanBo(indexManager);
+                  }
+                  if (!widget.controller.startStopState) {
+                    widget.controller.stepStop();
+                    indexManager.stopIndex();
+                  }
                 },
                 child: audioRecordController.buttonText,
               ),

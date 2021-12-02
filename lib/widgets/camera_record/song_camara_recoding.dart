@@ -18,7 +18,7 @@ class SongCamaraRecoding extends StatefulWidget {
 
 class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   final cameraRecordcontroller = Get.put(CameraRecordController());
-
+  IndexManager indexManager = IndexManager();
   // @override
   // void initState() {
   //   _controller =
@@ -30,9 +30,15 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
 
   @override
   void dispose() {
-    cameraRecordcontroller.isRecording
-        ? cameraRecordcontroller.onStop()
-        : cameraRecordcontroller.getBack();
+    if (cameraRecordcontroller.isRecording) {
+      cameraRecordcontroller.onStop();
+      widget.controller.allMidiStop();
+      indexManager.stopIndex();
+    }
+
+    if (cameraRecordcontroller.isRecording == false) {
+      cameraRecordcontroller.getBack();
+    }
     super.dispose();
   }
 
@@ -81,9 +87,14 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                       : caController.onStop();
 
                   widget.controller.changeStartStopState();
-                  widget.controller.startStopState
-                      ? widget.controller.stepStart()
-                      : widget.controller.stepStop();
+                  if (widget.controller.startStopState) {
+                    widget.controller.stepStart();
+                    widget.controller.playJungGanBo(indexManager);
+                  }
+                  if (!widget.controller.startStopState) {
+                    widget.controller.stepStop();
+                    indexManager.stopIndex();
+                  }
                 },
               ),
             ),

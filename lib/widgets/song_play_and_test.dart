@@ -39,8 +39,18 @@ class SongPlayAndTest extends StatefulWidget {
 class _SongPlayAndTestState extends State<SongPlayAndTest> {
   late int percent;
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
-  JungganboController jungganboController = JungganboController();
+  JungganboController jungganboController = Get.put(JungganboController());
+  PlayAndTestController playAndTestController =
+      Get.put(PlayAndTestController());
   FlutterMidi flutterMidi = FlutterMidi();
+  IndexManager indexManager = IndexManager();
+  @override
+  void dispose() {
+    jungganboController.dispose();
+    indexManager.stopIndex();
+    super.dispose();
+  }
+
   Future _incrementCounter() async {
     return Future.delayed(Duration(seconds: 4), () {});
   }
@@ -60,7 +70,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
-          init: PlayAndTestController(),
+          init: playAndTestController,
           builder: (controller) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -78,252 +88,206 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                           width: 340.w,
                           child: Stack(
                             children: [
-                              controller.statecount == 0
-                                  ? Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        songSwapButton(
-                                          text: Text(
-                                              controller.challengeButtonSwap),
-                                          onPressed: () {
-                                            controller.changePlayStopState();
-                                            controller.nextButton();
-                                            jungcontroller
-                                                .changeStartStopState();
-                                            controller.platState
-                                                ? jungcontroller.stepStart()
-                                                : jungcontroller.stepStop();
-                                            jungcontroller.startStopState
-                                                ? jungGanBoPlayer
-                                                    .play(testJungGanBo)
-                                                : null;
+                              if (controller.statecount == 0)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    songSwapButton(
+                                      text:
+                                          Text(controller.challengeButtonSwap),
+                                      onPressed: () {
+                                        controller.changePlayStopState();
+                                        controller.nextButton();
+                                        jungcontroller.changeStartStopState();
+                                        if (jungcontroller.startStopState) {
+                                          jungcontroller.stepStart();
+                                          jungcontroller
+                                              .playJungGanBo(indexManager);
+                                        }
 
-                                            print(controller.statecount);
-                                          },
-                                        ),
-                                        SizedBox(width: 5.w),
-                                        controller.platState
-                                            ? Container()
-                                            : songSwapButton(
-                                                text: Text(
-                                                    controller.testButtonswap,
-                                                    style: TextStyle(
-                                                        fontSize:
-                                                            textSmallSize.sp)),
-                                                onPressed: () {
-                                                  controller.testButtonState();
-                                                  controller.stateCountUp(2);
-                                                  print(controller.statecount);
-                                                }),
-                                        SizedBox(width: 5.w),
-                                        songSwapButton(
+                                        print(controller.statecount);
+                                      },
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    controller.platState
+                                        ? Container()
+                                        : songSwapButton(
                                             text: Text(
-                                                "${controller.speed[controller.speedCount]} 배속",
+                                                controller.testButtonswap,
                                                 style: TextStyle(
                                                     fontSize:
                                                         textSmallSize.sp)),
                                             onPressed: () {
-                                              controller.changespeedState();
-                                            }),
-                                        SizedBox(width: 5.w),
-                                        songSwapButton(
-                                            text: Text(controller.krButton,
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        textSmallSize.sp)),
-                                            onPressed: () {
-                                              controller.changeKrState();
-                                            }),
-                                      ],
-                                    )
-                                  : controller.statecount == 1
-                                      ? songSwapButton(
-                                          text: Text(
-                                            controller.challengeButtonSwap,
-                                            style: TextStyle(
-                                                fontSize: textSmallSize.sp),
-                                          ),
-                                          onPressed: () {
-                                            controller.changePlayStopState();
+                                              controller.testButtonState();
+                                              controller.stateCountUp(2.obs);
 
-                                            controller.previousButton();
-                                            jungcontroller
-                                                .changeStartStopState();
-                                            controller.platState
-                                                ? null
-                                                : jungcontroller.stepStop();
-                                            print(controller.statecount);
-                                          },
-                                        )
-                                      : controller.statecount == 2
-                                          ? Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                songSwapButton(
-                                                  text: Text(
-                                                      controller
-                                                          .challengeButtonSwap,
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                              textSmallSize
-                                                                  .sp)),
-                                                  onPressed: () {
-                                                    controller
-                                                        .testStartButtonState();
-                                                    jungcontroller
-                                                        .changeStartStopState();
-                                                    controller.testStartState
-                                                        ? jungcontroller
-                                                            .stepStart()
-                                                        : null;
-                                                    jungcontroller
-                                                            .startStopState
-                                                        ? jungGanBoPlayer
-                                                            .play(testJungGanBo)
-                                                        : null;
-                                                    controller.nextButton();
-                                                    print(
-                                                        controller.statecount);
-                                                  },
-                                                ),
-                                                SizedBox(width: 5),
-                                                songSwapButton(
-                                                    text: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                          TRANSCRIPTION_SVG,
-                                                          width: 13.w,
-                                                          height: 13.h,
-                                                        ),
-                                                        Text("녹음",
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    textSmallSize
-                                                                        .sp)),
-                                                      ],
-                                                    ),
-                                                    onPressed: () {
-                                                      controller
-                                                          .stateCountUp(5);
-                                                      print(controller
-                                                          .statecount);
-                                                    }),
-                                                SizedBox(width: 5),
-                                                songSwapButton(
-                                                    text: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceAround,
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                          RECORD_SVG,
-                                                          width: 20.w,
-                                                          height: 20.h,
-                                                        ),
-                                                        Text(
-                                                            controller
-                                                                .testButtonswap,
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    textSmallSize
-                                                                        .sp)),
-                                                      ],
-                                                    ),
-                                                    onPressed: () {
-                                                      controller
-                                                          .stateCountUp(4);
-                                                      _onPressed(context);
-                                                      print(controller
-                                                          .statecount);
-                                                    }),
-                                              ],
-                                            )
-                                          : controller.statecount == 3
-                                              ? Row(
-                                                  children: [
-                                                    songSwapButton(
-                                                      text: Text(
-                                                          controller
-                                                              .challengeButtonSwap,
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                                  textSmallSize
-                                                                      .sp)),
-                                                      onPressed: () {
-                                                        controller.reset();
-                                                        jungcontroller
-                                                            .changeStartStopState();
-                                                        controller
-                                                                .testStartState
-                                                            ? null
-                                                            : jungcontroller
-                                                                .stepStop();
-                                                        controller
-                                                            .stateCountUp(0);
-                                                        print(controller
-                                                            .statecount);
-                                                      },
-                                                    ),
-                                                    SizedBox(width: 5),
-                                                    songSwapButton(
-                                                        text: Text(
-                                                            controller
-                                                                .testButtonswap,
-                                                            style: TextStyle(
-                                                                fontSize:
-                                                                    textSmallSize
-                                                                        .sp)),
-                                                        onPressed: () {
-                                                          print(controller
-                                                              .statecount);
-                                                        }),
-                                                  ],
-                                                )
-                                              : controller.statecount == 4
-                                                  ? SongCamaraRecoding(
-                                                      controller:
-                                                          jungcontroller,
-                                                      jandan: widget.jangdan,
-                                                    )
-                                                  : controller.statecount == 5
-                                                      ? SongAudioRecorder(
-                                                          controller:
-                                                              jungcontroller)
-                                                      : Container(),
+                                              print(controller.statecount);
+                                            }),
+                                    SizedBox(width: 5.w),
+                                    songSwapButton(
+                                        text: Text(
+                                            "${controller.speed[controller.speedCount]} 배속",
+                                            style: TextStyle(
+                                                fontSize: textSmallSize.sp)),
+                                        onPressed: () {
+                                          controller.changespeedState();
+                                        }),
+                                    SizedBox(width: 5.w),
+                                    songSwapButton(
+                                        text: Text(controller.krButton,
+                                            style: TextStyle(
+                                                fontSize: textSmallSize.sp)),
+                                        onPressed: () {
+                                          controller.changeKrState();
+                                        }),
+                                  ],
+                                ),
+                              if (controller.statecount == 1)
+                                songSwapButton(
+                                  text: Text(
+                                    controller.challengeButtonSwap,
+                                    style:
+                                        TextStyle(fontSize: textSmallSize.sp),
+                                  ),
+                                  onPressed: () {
+                                    controller.changePlayStopState();
+
+                                    controller.previousButton();
+                                    jungcontroller.changeStartStopState();
+                                    if (!controller.platState) {
+                                      jungcontroller.stepStop();
+                                      indexManager.stopIndex();
+                                    }
+
+                                    print(controller.statecount);
+                                  },
+                                ),
+                              if (controller.statecount == 2)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    songSwapButton(
+                                      text: Text(controller.challengeButtonSwap,
+                                          style: TextStyle(
+                                              fontSize: textSmallSize.sp)),
+                                      onPressed: () {
+                                        controller.testStartButtonState();
+                                        jungcontroller.changeStartStopState();
+                                        controller.nextButton();
+                                        print(controller.statecount);
+                                        if (jungcontroller.startStopState) {
+                                          jungcontroller.stepStart();
+                                          jungcontroller
+                                              .playJungGanBo(indexManager);
+                                        }
+                                      },
+                                    ),
+                                    SizedBox(width: 5),
+                                    songSwapButton(
+                                        text: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            SvgPicture.asset(
+                                              TRANSCRIPTION_SVG,
+                                              width: 13.w,
+                                              height: 13.h,
+                                            ),
+                                            Text("녹음",
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        textSmallSize.sp)),
+                                          ],
+                                        ),
+                                        onPressed: () {
+                                          controller.stateCountUp(5.obs);
+                                          print(controller.statecount);
+                                        }),
+                                    SizedBox(width: 5),
+                                    songSwapButton(
+                                        text: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            SvgPicture.asset(
+                                              RECORD_SVG,
+                                              width: 20.w,
+                                              height: 20.h,
+                                            ),
+                                            Text(controller.testButtonswap,
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        textSmallSize.sp)),
+                                          ],
+                                        ),
+                                        onPressed: () {
+                                          controller.stateCountUp(4.obs);
+                                          _onPressed(context);
+                                          print(controller.statecount);
+                                        }),
+                                  ],
+                                ),
+                              if (controller.statecount == 3)
+                                Row(
+                                  children: [
+                                    songSwapButton(
+                                      text: Text(controller.challengeButtonSwap,
+                                          style: TextStyle(
+                                              fontSize: textSmallSize.sp)),
+                                      onPressed: () {
+                                        controller.reset();
+                                        jungcontroller.changeStartStopState();
+                                        controller.stateCountUp(0.obs);
+                                        print(controller.statecount);
+                                        if (!controller.testStartState) {
+                                          jungcontroller.stepStop();
+                                          indexManager.stopIndex();
+                                        }
+                                      },
+                                    ),
+                                    SizedBox(width: 5),
+                                    songSwapButton(
+                                        text: Text(controller.testButtonswap,
+                                            style: TextStyle(
+                                                fontSize: textSmallSize.sp)),
+                                        onPressed: () {
+                                          print(controller.statecount);
+                                        }),
+                                  ],
+                                ),
+                              if (controller.statecount == 4)
+                                SongCamaraRecoding(
+                                  controller: jungcontroller,
+                                  jandan: widget.jangdan,
+                                ),
+                              if (controller.statecount == 5)
+                                SongAudioRecorder(controller: jungcontroller)
                             ],
                           ),
                         );
                       }),
                 ),
-                controller.statecount == 4
-                    ? SizedBox(
-                        height: 5,
-                      )
-                    : Container(
-                        width: 335.w,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '${controller.speed[controller.speedCount]} 배속',
-                              style: TextStyle(
-                                  fontSize: textSmallSize.sp,
-                                  fontFamily: NOTO_REGULAR),
-                            ),
-                            Text(
-                              '${widget.jangdan}',
-                              style: TextStyle(
-                                  fontSize: textSmallSize.sp,
-                                  fontFamily: NOTO_REGULAR),
-                            )
-                          ],
+                if (controller.statecount != 4)
+                  Container(
+                    width: 335.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${controller.speed[controller.speedCount]} 배속',
+                          style: TextStyle(
+                              fontSize: textSmallSize.sp,
+                              fontFamily: NOTO_REGULAR),
                         ),
-                      ),
+                        Text(
+                          '${widget.jangdan}',
+                          style: TextStyle(
+                              fontSize: textSmallSize.sp,
+                              fontFamily: NOTO_REGULAR),
+                        )
+                      ],
+                    ),
+                  ),
                 Container(
                   margin: EdgeInsets.only(right: textSmallSize.w),
                   // color: Colors.white,

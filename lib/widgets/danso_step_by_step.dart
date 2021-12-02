@@ -37,6 +37,13 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   }
 
   @override
+  void dispose() {
+    jungganboController.dispose();
+    indexManager.stopIndex();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     return GetBuilder<JungganboController>(
@@ -75,8 +82,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               controller.changeStartStopState();
                               if (controller.startStopState) {
                                 controller.stepStart();
-                                controller.playJungGanBo(
-                                    testJungGanBo, indexManager);
+                                controller.playJungGanBo(indexManager);
                               }
                               if (!controller.startStopState) {
                                 controller.stepStop();
