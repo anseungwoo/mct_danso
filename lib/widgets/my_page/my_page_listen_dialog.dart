@@ -101,6 +101,7 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
+        height: 70.h,
         child: GetBuilder<MyPageMusicController>(
             init: myPageMusicController,
             builder: (controller) {
