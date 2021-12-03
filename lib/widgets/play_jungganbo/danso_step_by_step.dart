@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -80,10 +82,12 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                             text: '${controller.startButton}',
                             onPressed: () {
                               controller.changeStartStopState();
+
                               if (controller.startStopState) {
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);
                               }
+
                               if (!controller.startStopState) {
                                 controller.stepStop();
                                 indexManager.stopIndex();

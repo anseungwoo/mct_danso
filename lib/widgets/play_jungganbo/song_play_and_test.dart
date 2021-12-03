@@ -148,7 +148,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
 
                                   controller.previousButton();
                                   jungcontroller.changeStartStopState();
-                                  if (!controller.platState) {
+                                  if (!jungcontroller.startStopState) {
                                     jungcontroller.stepStop();
                                     indexManager.stopIndex();
                                   }
@@ -227,11 +227,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         style: TextStyle(
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
-                                      controller.reset();
+                                      controller.testStartButtonState();
+                                      controller.testButtonState();
+
                                       jungcontroller.changeStartStopState();
                                       controller.stateCountUp(0.obs);
                                       print(controller.statecount);
-                                      if (!controller.testStartState) {
+                                      if (!jungcontroller.startStopState) {
                                         jungcontroller.stepStop();
                                         indexManager.stopIndex();
                                       }

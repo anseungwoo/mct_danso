@@ -25,7 +25,7 @@ class JungganboController extends GetxController {
   void onInit() {
     super.onInit();
 
-    stepStop();
+    reset();
   }
 
   @override
@@ -69,15 +69,22 @@ class JungganboController extends GetxController {
   int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
 
-  void stepStop() {
+  void reset() {
     pagenext = 1;
     line = 0;
     next = 0;
+    speedCount = 2;
     next2 = 0;
     jungSection = 0;
     startStopState = false;
     copySheetHorizontal = sheetHorizontal;
     startButton = '시작하기';
+    indexManagers.clearIndex();
+  }
+
+  void stepStop() {
+    line = jungGanBo.sheet.length;
+    update();
   }
 
   void stepStart() async {
@@ -142,14 +149,10 @@ class JungganboController extends GetxController {
           print('n2 $next2');
           print('np $pagenext');
         }
-
-        if (startStopState == false || line == jungGanBo.sheet.length - 1) {
-          stepStop();
-          timer.cancel();
-        }
       } else {
         timer.cancel();
-        stepStop();
+
+        reset();
       }
       update();
     });
