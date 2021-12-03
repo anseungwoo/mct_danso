@@ -11,16 +11,17 @@ class MainScreenController extends GetxController with WidgetsBindingObserver {
   @override
   void onInit() {
     super.onInit();
+    assetsAudioPlayer.open(
+      Audio('assets/music/arirang_shel.wav'),
+      loopMode: LoopMode.single,
+    );
     getMusicState();
   }
 
   void getMusicState() async {
     final getBgmState = await SharedPreferences.getInstance();
     musicState = getBgmState.getBool('music_state') ?? true;
-    await assetsAudioPlayer.open(
-      Audio('assets/music/arirang_shel.wav'),
-      loopMode: LoopMode.single,
-    );
+
     playOrPause();
     update();
   }
