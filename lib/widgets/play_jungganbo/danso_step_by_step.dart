@@ -77,17 +77,16 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //시작하기
+
                         levelButton(
                             controller: controller,
                             text: '${controller.startButton}',
                             onPressed: () {
                               controller.changeStartStopState();
-
                               if (controller.startStopState) {
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);
                               }
-
                               if (!controller.startStopState) {
                                 controller.stepStop();
                                 indexManager.stopIndex();

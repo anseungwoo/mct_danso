@@ -96,11 +96,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       controller.changePlayStopState();
                                       controller.nextButton();
                                       jungcontroller.changeStartStopState();
-                                      if (jungcontroller.startStopState) {
-                                        jungcontroller.stepStart();
-                                        jungcontroller
-                                            .playJungGanBo(indexManager);
-                                      }
+                                      jungcontroller.stepStart();
+                                      jungcontroller
+                                          .playJungGanBo(indexManager);
 
                                       print(controller.statecount);
                                     },
@@ -144,15 +142,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   style: TextStyle(fontSize: textSmallSize.sp),
                                 ),
                                 onPressed: () {
+                                  jungcontroller.stepStop();
+                                  indexManager.stopIndex();
+                                  jungcontroller.changeStartStopState();
                                   controller.changePlayStopState();
 
                                   controller.previousButton();
-                                  jungcontroller.changeStartStopState();
-                                  if (!jungcontroller.startStopState) {
-                                    jungcontroller.stepStop();
-                                    indexManager.stopIndex();
-                                  }
-
                                   print(controller.statecount);
                                 },
                               ),
@@ -166,14 +161,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
                                       controller.testStartButtonState();
-                                      jungcontroller.changeStartStopState();
+
                                       controller.nextButton();
                                       print(controller.statecount);
-                                      if (jungcontroller.startStopState) {
-                                        jungcontroller.stepStart();
-                                        jungcontroller
-                                            .playJungGanBo(indexManager);
-                                      }
+                                      jungcontroller.changeStartStopState();
+                                      jungcontroller.stepStart();
+                                      jungcontroller
+                                          .playJungGanBo(indexManager);
                                     },
                                   ),
                                   SizedBox(width: 5),
@@ -227,16 +221,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         style: TextStyle(
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
+                                      jungcontroller.stepStop();
+                                      indexManager.stopIndex();
                                       controller.testStartButtonState();
                                       controller.testButtonState();
-
                                       jungcontroller.changeStartStopState();
                                       controller.stateCountUp(0.obs);
                                       print(controller.statecount);
-                                      if (!jungcontroller.startStopState) {
-                                        jungcontroller.stepStop();
-                                        indexManager.stopIndex();
-                                      }
                                     },
                                   ),
                                   SizedBox(width: 5),

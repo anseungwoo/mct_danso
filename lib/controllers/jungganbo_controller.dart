@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
@@ -25,13 +26,23 @@ class JungganboController extends GetxController {
   void onInit() {
     super.onInit();
 
-    reset();
+    pagenext = 1;
+    line = 0;
+    next = 0;
+    speedCount = 2;
+    next2 = 0;
+    jungSection = 0;
+    startStopState = false;
+    copySheetHorizontal = sheetHorizontal;
+    startButton = '시작하기';
+    indexManagers.clearIndex();
   }
 
   @override
   void dispose() {
     allMidiStop();
     line = jungGanBo.sheet.length;
+
     super.dispose();
   }
 
@@ -69,26 +80,37 @@ class JungganboController extends GetxController {
   int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
 
+  void setting() {
+    pagenext = 1;
+    line = 0;
+    next = 0;
+    next2 = 0;
+    jungSection = 0;
+    copySheetHorizontal = sheetHorizontal;
+    indexManagers.clearIndex();
+  }
+
   void reset() {
     pagenext = 1;
     line = 0;
     next = 0;
-    speedCount = 2;
     next2 = 0;
-    jungSection = 0;
-    startStopState = false;
-    copySheetHorizontal = sheetHorizontal;
+    speedCount = 2;
     startButton = '시작하기';
+    jungSection = 0;
+    copySheetHorizontal = sheetHorizontal;
     indexManagers.clearIndex();
   }
 
   void stepStop() {
     line = jungGanBo.sheet.length;
+
     update();
   }
 
   void stepStart() async {
     copySheetHorizontal = sheetHorizontal;
+    setting();
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
     await Future.delayed(
@@ -160,6 +182,7 @@ class JungganboController extends GetxController {
 
   final player = FlutterMidi();
   void playJungGanBo(IndexManager indexManager) {
+    indexManager.clearIndex();
     Timer.periodic(
         Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
@@ -167,12 +190,16 @@ class JungganboController extends GetxController {
         playJung(jungGanBo.sheet[indexManager.index],
             (mill * speed[speedCount]).toInt());
         indexManager.addOneIndex();
+        if (indexManager.index == jungGanBo.sheet.length) {
+          timer.cancel();
+          allMidiStop();
+          indexManager.clearIndex();
+        }
       } else {
         timer.cancel();
         allMidiStop();
         indexManager.clearIndex();
       }
-      update();
     });
     allMidiStop();
   }
