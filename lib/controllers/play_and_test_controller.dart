@@ -6,12 +6,17 @@ class PlayAndTestController extends GetxController {
   bool testState = false;
   bool testStartState = false;
   String testButtonswap = '연습하기';
-  int statecount = 0;
-  List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
-  int speedCount = 2;
+  RxInt statecount = 0.obs;
+
   int test = 0;
-  String krButton = '한글버전';
+  String krButton = '한자버전';
   bool krChanges = false;
+  @override
+  void onInit() {
+    super.onInit();
+
+    reset();
+  }
 
   void reset() {
     platState = false;
@@ -22,17 +27,9 @@ class PlayAndTestController extends GetxController {
     update();
   }
 
-  void changespeedState() {
-    speedCount++;
-    if (speedCount == 5) {
-      speedCount = 0;
-    }
-    update();
-  }
-
   void changeKrState() {
     krChanges = !krChanges;
-    krButton = krChanges ? '한자버전' : '한글버전';
+    krButton = krChanges ? '한글버전' : '한자버전';
     update();
   }
 
@@ -56,7 +53,7 @@ class PlayAndTestController extends GetxController {
     update();
   }
 
-  void stateCountUp(int v) {
+  void stateCountUp(RxInt v) {
     statecount = v;
     update();
   }

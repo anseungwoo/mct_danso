@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/main_screen.dart';
 
 PreferredSizeWidget tabbarAndAppBar(
     {required String title, TabBar? tabbar, bool enableTabBar = true}) {
+  var controller = Get.find<MainScreenController>();
   return AppBar(
     title: Text(
       '$title',
@@ -30,7 +32,13 @@ PreferredSizeWidget tabbarAndAppBar(
         padding: const EdgeInsets.all(basicPadding),
         child: InkWell(
             onTap: () {
-              Get.offAll(MainScreen());
+              Get.off(MainScreen());
+              if (controller.musicState) {
+                controller.assetsAudioPlayer.play();
+              }
+              ;
+              // Navigator.of(Get.context!)
+              //     .push(MaterialPageRoute(builder: (_) => MainScreen()));
             },
             child: SvgPicture.asset(
               HOME_SVG,

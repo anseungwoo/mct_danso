@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,7 +9,7 @@ import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-import 'jungganbo/jungganbo_screen.dart';
+import '../jungganbo/jungganbo_screen.dart';
 
 class DansoStepByStep extends StatefulWidget {
   final String sheetData;
@@ -34,6 +36,13 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     jungganboController.sheetHorizontal = 4;
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    indexManager.stopIndex();
+    jungganboController.allMidiStop();
+    super.dispose();
   }
 
   @override
@@ -68,6 +77,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //시작하기
+
                         levelButton(
                             controller: controller,
                             text: '${controller.startButton}',
@@ -75,8 +85,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               controller.changeStartStopState();
                               if (controller.startStopState) {
                                 controller.stepStart();
-                                controller.playJungGanBo(
-                                    testJungGanBo, indexManager);
+                                controller.playJungGanBo(indexManager);
                               }
                               if (!controller.startStopState) {
                                 controller.stepStop();

@@ -62,7 +62,7 @@ class AudioRecordController extends GetxController {
     // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
 
     recorder = FlutterAudioRecorder2(customPath,
-        audioFormat: AudioFormat.WAV, sampleRate: 22050);
+        audioFormat: AudioFormat.AAC, sampleRate: 22050);
     print(customPath);
 
     await recorder.initialized;
@@ -105,12 +105,12 @@ class AudioRecordController extends GetxController {
     time.cancel();
     print(_recording.path);
     _recording = result!;
-    _playAndTestController.stateCountUp(2);
+    _playAndTestController.stateCountUp(2.obs);
     update();
   }
 
   void getBack() {
-    _playAndTestController.stateCountUp(2);
+    _playAndTestController.stateCountUp(2.obs);
     update();
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
@@ -19,12 +21,29 @@ class JungganboController extends GetxController {
 
   late int sheetVertical;
   bool gameState = false;
-
+  IndexManager indexManagers = IndexManager();
   @override
   void onInit() {
     super.onInit();
 
-    stepStop();
+    pagenext = 1;
+    line = 0;
+    next = 0;
+    speedCount = 2;
+    next2 = 0;
+    jungSection = 0;
+    startStopState = false;
+    copySheetHorizontal = sheetHorizontal;
+    startButton = '시작하기';
+    indexManagers.clearIndex();
+  }
+
+  @override
+  void dispose() {
+    allMidiStop();
+    line = jungGanBo.sheet.length;
+
+    super.dispose();
   }
 
   void changegameState() {
@@ -61,99 +80,126 @@ class JungganboController extends GetxController {
   int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
 
-  void stepStop() {
+  void setting() {
     pagenext = 1;
     line = 0;
     next = 0;
     next2 = 0;
     jungSection = 0;
-    startStopState = false;
     copySheetHorizontal = sheetHorizontal;
-    startButton = '시작하기';
+    indexManagers.clearIndex();
   }
 
-  void stepStart() async {
-    print('결과값 $copySheetHorizontal');
-    await Future.delayed(Duration(milliseconds: mill));
-    for (line; line < jungGanBo.sheet.length - 1; line++) {
-      if ((line != 31 * pagenext) || (line != 23 * pagenext)) {
-        await Future.delayed(Duration(milliseconds: (mill - 4).toInt()));
-      }
+  void reset() {
+    pagenext = 1;
+    line = 0;
+    next = 0;
+    next2 = 0;
+    speedCount = 2;
+    startButton = '시작하기';
+    jungSection = 0;
+    copySheetHorizontal = sheetHorizontal;
+    indexManagers.clearIndex();
+  }
 
-      if (copySheetHorizontal >= 4 &&
-          line == 31 * pagenext &&
-          sheetVertical == 8) {
-        next += 4;
-        next2 += 4;
-        pagenext++;
-        copySheetHorizontal -= 2;
+  void stepStop() {
+    line = jungGanBo.sheet.length;
 
-        print('결과값4 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-      if (copySheetHorizontal >= 4 &&
-          line == 23 * pagenext &&
-          sheetVertical == 6) {
-        next += 4;
-        next2 += 4;
-        pagenext++;
-        copySheetHorizontal -= 2;
-
-        print('결과값4 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-      if (copySheetHorizontal == 3 &&
-          line == 23 * pagenext &&
-          sheetVertical == 6) {
-        next += 4;
-        next2 += 2;
-        pagenext++;
-
-        print('결과값3 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-      if (copySheetHorizontal == 3 &&
-          line == 31 * pagenext &&
-          sheetVertical == 8) {
-        next += 4;
-        next2 += 2;
-        pagenext++;
-
-        print('결과값3 $copySheetHorizontal');
-        print('n1 $next');
-        print('n2 $next2');
-        print('np $pagenext');
-      }
-
-      if (startStopState == false || line == jungGanBo.sheet.length - 1) {
-        stepStop();
-      }
-      update();
-    }
     update();
   }
 
+  void stepStart() async {
+    copySheetHorizontal = sheetHorizontal;
+    setting();
+    print('결과값 $copySheetHorizontal');
+    print('mill ${speed[speedCount]}');
+    await Future.delayed(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()));
+    Timer.periodic(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
+        (timer) {
+      if (line < jungGanBo.sheet.length) {
+        line++;
+
+        if (copySheetHorizontal >= 4 &&
+            line == 32 * pagenext &&
+            sheetVertical == 8) {
+          next += 4;
+          next2 += 4;
+          pagenext++;
+          copySheetHorizontal -= 2;
+
+          print('결과값4 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+        if (copySheetHorizontal >= 4 &&
+            line == 24 * pagenext &&
+            sheetVertical == 6) {
+          next += 4;
+          next2 += 4;
+          pagenext++;
+          copySheetHorizontal -= 2;
+
+          print('결과값4 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+        if (copySheetHorizontal == 3 &&
+            line == 24 * pagenext &&
+            sheetVertical == 6) {
+          next += 4;
+          next2 += 2;
+          pagenext++;
+
+          print('결과값3 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+        if (copySheetHorizontal == 3 &&
+            line == 32 * pagenext &&
+            sheetVertical == 8) {
+          next += 4;
+          next2 += 2;
+          pagenext++;
+
+          print('결과값3 $copySheetHorizontal');
+          print('n1 $next');
+          print('n2 $next2');
+          print('np $pagenext');
+        }
+      } else {
+        timer.cancel();
+
+        reset();
+      }
+      update();
+    });
+  }
+
   final player = FlutterMidi();
-  void playJungGanBo(JungGanBo jungGanBo, IndexManager indexManager) {
-    Timer.periodic(new Duration(milliseconds: jungGanBo.jangDan.milliSecond),
+  void playJungGanBo(IndexManager indexManager) {
+    indexManager.clearIndex();
+    Timer.periodic(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
       if (indexManager.index < jungGanBo.sheet.length) {
-        playJung(
-            jungGanBo.sheet[indexManager.index], jungGanBo.jangDan.milliSecond);
-
+        playJung(jungGanBo.sheet[indexManager.index],
+            (mill * speed[speedCount]).toInt());
         indexManager.addOneIndex();
+        if (indexManager.index == jungGanBo.sheet.length) {
+          timer.cancel();
+          allMidiStop();
+          indexManager.clearIndex();
+        }
       } else {
         timer.cancel();
         allMidiStop();
         indexManager.clearIndex();
       }
-      //update();
     });
     allMidiStop();
   }

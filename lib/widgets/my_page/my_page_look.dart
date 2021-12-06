@@ -40,9 +40,10 @@ class MyPageLook extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 17, top: 10, right: 17, bottom: 3),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: basicPadding),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
@@ -74,8 +75,8 @@ class MyPageLook extends StatelessWidget {
                                   },
                                   child: SvgPicture.asset(
                                     SEE_MORE_SVG,
-                                    width: 30.w,
-                                    height: 30.h,
+                                    width: 40.w,
+                                    height: 25.h,
                                   ),
                                   itemBuilder: (context) => [
                                     PopupMenuItem(

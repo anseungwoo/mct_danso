@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Widget testDialog(String assetName, String text) {
+Widget successFailDialog(String assetName, String text) {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
@@ -33,10 +33,8 @@ Widget testDialog(String assetName, String text) {
                 Get.back();
               },
               child: Text(
-
                 "확인",
                 style: TextStyle(color: textBlack, fontSize: textBasicSize.sp),
-
               ))
         ],
       ),

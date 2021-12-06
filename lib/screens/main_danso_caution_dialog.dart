@@ -16,6 +16,7 @@ class FixDansoPitchDialog extends StatefulWidget {
 }
 
 class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
+  var controller = Get.find<MainScreenController>();
   @override
   void dispose() {
     super.dispose();
@@ -73,6 +74,9 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
                     child: InkWell(
                       onTap: () {
                         Get.back();
+                        if (controller.musicState) {
+                          controller.assetsAudioPlayer.play();
+                        }
                       },
                       child: Container(
                         height: 53.h,

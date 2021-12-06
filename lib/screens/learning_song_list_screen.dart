@@ -18,16 +18,10 @@ class LearningSongListScreen extends StatefulWidget {
 class _LearningSongListScreenState extends State<LearningSongListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
-  var controller = Get.find<MainScreenController>();
 
   @override
   void dispose() {
     super.dispose();
-
-    if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
-    }
-    ;
   }
 
   @override

@@ -152,12 +152,13 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget headerChangeButton(MainScreenController controller) {
     return Positioned(
-        top: 85.h,
+        top: 85.w,
         left: 50.w,
         child: Container(
           width: 100.w,
           height: 100.h,
           child: InkWell(
+            enableFeedback: false,
             onTap: () {
               controller.SvgStateChange();
             },
