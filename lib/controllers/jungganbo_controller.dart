@@ -96,9 +96,10 @@ class JungganboController extends GetxController {
     next = 0;
     next2 = 0;
     speedCount = 2;
-    startButton = '시작하기';
     jungSection = 0;
     copySheetHorizontal = sheetHorizontal;
+    startButton = '시작하기';
+    startStopState = false;
     indexManagers.clearIndex();
   }
 

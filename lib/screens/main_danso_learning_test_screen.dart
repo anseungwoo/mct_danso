@@ -24,7 +24,7 @@ class _MainDansoLearningTestScreenState
   @override
   void dispose() {
     super.dispose();
-
+    dansoSoundLearningController.disposeFunction();
     if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
@@ -142,28 +142,28 @@ class _MainDansoLearningTestScreenState
             children: [
               UpDownButton(
                 assetName: UP_SVG,
-                onPressed: () {
-                  controller.listenTuningState
-                      ? null
-                      : controller.soundTuningState
-                          ? null
-                          : controller.playTuningState
-                              ? null
-                              : controller.soundListUp();
-                },
+                onPressed: controller.listenTuningState
+                    ? null
+                    : controller.soundTuningState
+                        ? null
+                        : controller.playTuningState
+                            ? null
+                            : () {
+                                controller.soundListUp();
+                              },
               ),
               SizedBox(width: 12.w),
               UpDownButton(
                 assetName: DOWN_SVG,
-                onPressed: () {
-                  controller.listenTuningState
-                      ? null
-                      : controller.soundTuningState
-                          ? null
-                          : controller.playTuningState
-                              ? null
-                              : controller.soundListDown();
-                },
+                onPressed: controller.listenTuningState
+                    ? null
+                    : controller.soundTuningState
+                        ? null
+                        : controller.playTuningState
+                            ? null
+                            : () {
+                                controller.soundListDown();
+                              },
               ),
             ],
           ),

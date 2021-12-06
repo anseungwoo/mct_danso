@@ -53,8 +53,7 @@ class DansoSoundLearningController extends GetxController {
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
-  var note = '';
-  var status = 'Click on start';
+
   var isCapture = false;
 
   var dbFr;
@@ -66,27 +65,36 @@ class DansoSoundLearningController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void isRecordstate() {
     isRecording = !isRecording;
     update();
+  }
+
+  void disposeFunction() {
+    soundTuningState = false;
+    listenTuningState = false;
+    playTuningState = false;
+    if (isRecording) {
+      stopCapture();
+    }
   }
 
   Future<void> startCapture() async {
     isCapture = true;
     await _audioRecorder.start(listener, onError,
         sampleRate: 44100, bufferSize: 3000);
-    note = '';
-    status = 'Play something';
+    ;
     update();
   }
 
   Future<void> stopCapture() async {
     await _audioRecorder.stop();
     isCapture = false;
-
-    note = '';
-    status = 'Click on start';
-    update();
   }
 
   void listener(dynamic obj) {
@@ -103,9 +111,9 @@ class DansoSoundLearningController extends GetxController {
       userInputForAdjust = result.pitch;
       dansoPitchAdjustList.add(userInputForAdjust);
       pitchValue = result.pitch;
-      note = handledPitchResult.note;
+
       pitch = handledPitchResult.expectedFrequency;
-      status = handledPitchResult.tuningStatus.toString();
+
       update();
     }
   }
@@ -178,15 +186,6 @@ class DansoSoundLearningController extends GetxController {
 
     update();
   }
-
-  // bool isCorrectPitch(
-  //     {required Yulmyeong yulmyeong, bool isHighPitch = false}) {
-  //   var pitch = isHighPitch ? ScaleStatus.high : ScaleStatus.origin;
-  //   getDbFr();
-  //   var result = pitchModelInterface.isCorrectPitch(
-  //       dbFr, YulmyeongNote(yulmyeong, pitch));
-  //   return result;
-  // }
 
   void soundListUp() {
     if (soundListUpDown < hanJaAndGel.length - 1) {
