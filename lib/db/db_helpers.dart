@@ -411,7 +411,13 @@ class DBHelPer {
             (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
+              songPath: value['song_path'],
+              songJangdan: value['song_jangdan'],
               songLike: value['song_like'],
+              songDiff: value['song_diff'],
+              songSheet: value['song_sheet'],
+              songSheetVertical: value['song_sheet_vertical'],
+              songSheetHorizontal: value['song_sheet_horizontal'],
             ),
           )
           .toList();

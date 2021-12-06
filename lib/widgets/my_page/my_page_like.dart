@@ -26,7 +26,17 @@ class MyPageLike extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: basicPadding),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(
+                      SongPlayAndTest(
+                        appbarTitle: item.songTitle,
+                        jangdan: item.songJangdan,
+                        sheetData: item.songSheet,
+                        sheetVertical: item.songSheetVertical,
+                        sheetHorizontal: item.songSheetHorizontal,
+                      ),
+                    );
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
