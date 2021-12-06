@@ -6,7 +6,7 @@ class PlayAndTestController extends GetxController {
   bool testState = false;
   bool testStartState = false;
   String testButtonswap = '연습하기';
-  RxInt statecount = 0.obs;
+  int statecount = 0;
 
   int test = 0;
   String krButton = '한자버전';
@@ -24,7 +24,6 @@ class PlayAndTestController extends GetxController {
     testState = false;
     testStartState = false;
     testButtonswap = '연습하기';
-    update();
   }
 
   void changeKrState() {
@@ -53,9 +52,14 @@ class PlayAndTestController extends GetxController {
     update();
   }
 
-  void stateCountUp(RxInt v) {
+  void stateCountUp(int v) {
     statecount = v;
     update();
+  }
+
+  void stateCountTwo() {
+    statecount = 0;
+    reset();
   }
 
   void nextButton() {

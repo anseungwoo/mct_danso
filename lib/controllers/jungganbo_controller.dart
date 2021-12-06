@@ -1,10 +1,15 @@
 import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
+import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
+import 'package:pitch_detector_dart/pitch_detector.dart';
+import 'package:pitchupdart/instrument_type.dart';
+import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
@@ -15,9 +20,20 @@ class JungganboController extends GetxController {
   List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
   bool krState = false;
   String krButton = '한자';
-
+  int line = 0;
+  int jungSection = 0;
+  int next = 0;
+  int next2 = 0;
+  int pagenext = 1;
+  int sheetHorizontal = 0;
+  int copySheetHorizontal = 0;
+  final _audioRecorder = FlutterAudioCapture();
+  final pitchDetectorDart = PitchDetector(44100, 2000);
+  final pitchupDart = PitchHandler(InstrumentType.guitar);
+  PitchModelInterface pitchModelInterface = PitchModel();
+  double pitchValue = 0;
   late int mill;
-  late JungGanBo jungGanBo;
+  JungGanBo? jungGanBo;
 
   late int sheetVertical;
   bool gameState = false;
@@ -41,7 +57,7 @@ class JungganboController extends GetxController {
   @override
   void dispose() {
     allMidiStop();
-    line = jungGanBo.sheet.length;
+    line = jungGanBo!.sheet.length;
 
     super.dispose();
   }
@@ -72,13 +88,13 @@ class JungganboController extends GetxController {
     update();
   }
 
-  int line = 0;
-  int jungSection = 0;
-  int next = 0;
-  int next2 = 0;
-  int pagenext = 1;
-  int sheetHorizontal = 0;
-  int copySheetHorizontal = 0;
+  final List<bool> ft = [];
+  bool ftSetting(int i) {
+    for (var i = 0; i < jungGanBo!.sheet.length; i++) {
+      ft.add(false);
+    }
+    return ft[i];
+  }
 
   void setting() {
     pagenext = 1;
@@ -101,12 +117,46 @@ class JungganboController extends GetxController {
     startButton = '시작하기';
     startStopState = false;
     indexManagers.clearIndex();
+    for (var i = 0; i < jungGanBo!.sheet.length; i++) {
+      ft[i] = false;
+    }
   }
 
   void stepStop() {
-    line = jungGanBo.sheet.length;
+    line = jungGanBo!.sheet.length;
+  }
 
+  Future<void> startCapture() async {
+    await _audioRecorder.start(listener, onError,
+        sampleRate: 44100, bufferSize: 3000);
+    ;
     update();
+  }
+
+  Future<void> stopCapture() async {
+    await _audioRecorder.stop();
+  }
+
+  void onError(Object e) {
+    print(e);
+  }
+
+  void listener(dynamic obj) {
+    //Gets the audio sample
+    var buffer = Float64List.fromList(obj.cast<double>());
+    final audioSample = buffer.toList();
+    //Uses pitch_detector_dart library to detect a pitch from the audio sample
+    final result = pitchDetectorDart.getPitch(audioSample);
+    //If there is a pitch - evaluate it
+    if (result.pitched) {
+      //Uses the pitchupDart library to check a given pitch for a Guitar
+      final handledPitchResult = pitchupDart.handlePitch(result.pitch);
+      //Updates the state with the result
+
+      pitchValue = result.pitch;
+
+      update();
+    }
   }
 
   void stepStart() async {
@@ -119,7 +169,16 @@ class JungganboController extends GetxController {
     Timer.periodic(
         Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
-      if (line < jungGanBo.sheet.length) {
+      if (line < jungGanBo!.sheet.length) {
+        if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+            jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.rest ||
+            jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.long) {
+          ft[line] = true;
+        } else if (pitchModelInterface.isCorrectPitch(
+            pitchValue, jungGanBo!.sheet[line].yulmyeongs[0])!) {
+          ft[line] = true;
+        }
+
         line++;
 
         if (copySheetHorizontal >= 4 &&
@@ -187,11 +246,11 @@ class JungganboController extends GetxController {
     Timer.periodic(
         Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
-      if (indexManager.index < jungGanBo.sheet.length) {
-        playJung(jungGanBo.sheet[indexManager.index],
+      if (indexManager.index < jungGanBo!.sheet.length) {
+        playJung(jungGanBo!.sheet[indexManager.index],
             (mill * speed[speedCount]).toInt());
         indexManager.addOneIndex();
-        if (indexManager.index == jungGanBo.sheet.length) {
+        if (indexManager.index == jungGanBo!.sheet.length) {
           timer.cancel();
           allMidiStop();
           indexManager.clearIndex();

@@ -41,7 +41,11 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   @override
   void dispose() {
     indexManager.stopIndex();
+    jungganboController.stepStop();
     jungganboController.allMidiStop();
+    if (jungganboController.startStopState) {
+      jungganboController.stopCapture();
+    }
     super.dispose();
   }
 
@@ -84,10 +88,12 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                             onPressed: () {
                               controller.changeStartStopState();
                               if (controller.startStopState) {
+                                controller.startCapture();
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);
                               }
                               if (!controller.startStopState) {
+                                controller.stopCapture();
                                 controller.stepStop();
                                 indexManager.stopIndex();
                               }
