@@ -403,6 +403,7 @@ class DBHelPer {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_like="true"');
+    print('res $res');
     List<SongDataModel> list;
     if (res.isNotEmpty) {
       list = res
