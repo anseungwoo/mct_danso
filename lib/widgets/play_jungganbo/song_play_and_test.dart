@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
@@ -118,14 +119,26 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
+                                  //도전하기
                                   songSwapButton(
-                                    text: Text(controller.challengeButtonSwap),
-                                    onPressed: () {
-                                      controller.changePlayStopState();
+                                    text: Text('도전하기',
+                                        style: TextStyle(
+                                            fontSize: textSmallSize.sp)),
+                                    onPressed: () async {
                                       controller.nextButton();
+                                      await Get.dialog(
+                                        Dialog(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0),
+                                            elevation: 0,
+                                            child: GameTimerWidget()),
+                                        barrierDismissible: false,
+                                      );
+
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStart();
                                       jungcontroller.startCapture();
+                                      jungcontroller.isPitchState();
                                       // jungcontroller.audioSessionConfigure();
 
                                       print(controller.statecount);
@@ -134,17 +147,18 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   SizedBox(width: 5.w),
                                   controller.platState
                                       ? Container()
+                                      //연습하기
                                       : songSwapButton(
-                                          text: Text(controller.testButtonswap,
+                                          text: Text('연습하기',
                                               style: TextStyle(
                                                   fontSize: textSmallSize.sp)),
                                           onPressed: () {
-                                            controller.testButtonState();
                                             controller.stateCountUp(2);
 
                                             print(controller.statecount);
                                           }),
                                   SizedBox(width: 5.w),
+                                  //배속
                                   songSwapButton(
                                       text: Text(
                                           "${jungcontroller.speed[jungcontroller.speedCount]} 배속",
@@ -154,6 +168,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         jungcontroller.changespeedState();
                                       }),
                                   SizedBox(width: 5.w),
+                                  //한글 전환
                                   songSwapButton(
                                       text: Text(controller.krButton,
                                           style: TextStyle(
@@ -163,45 +178,38 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       }),
                                 ],
                               ),
-                            if (controller.statecount == 1)
+                            if (controller.statecount == 1) //도전하기클릭시
+                              // 중지하기
                               songSwapButton(
                                 text: Text(
-                                  controller.challengeButtonSwap,
+                                  '중지하기',
                                   style: TextStyle(fontSize: textSmallSize.sp),
                                 ),
                                 onPressed: () {
                                   jungcontroller.stepStop();
                                   jungcontroller.changeStartStopState();
-                                  controller.changePlayStopState();
                                   jungcontroller.stopCapture();
                                   controller.previousButton();
+                                  jungcontroller.isPitchState();
                                   print(controller.statecount);
                                 },
                               ),
-                            if (controller.statecount == 2)
+                            if (controller.statecount == 2) // 연습하기 클릭시
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
+                                  //연습 시작
                                   songSwapButton(
-                                    text: Text(controller.challengeButtonSwap,
+                                    text: Text('연습하기',
                                         style: TextStyle(
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
-                                      controller.testStartButtonState();
-                                      // jungcontroller.startCapture();
-
                                       controller.nextButton();
                                       print(controller.statecount);
-                                      jungcontroller.changeStartStopState();
-                                      jungcontroller.stepStart();
-                                      jungcontroller
-                                          .playJungGanBo(indexManager);
-
-                                      // jungcontroller.audioSessionConfigure();
-                                      audioSessionConfigure();
                                     },
                                   ),
                                   SizedBox(width: 5),
+                                  //녹음
                                   songSwapButton(
                                       text: Row(
                                         mainAxisAlignment:
@@ -218,10 +226,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         ],
                                       ),
                                       onPressed: () {
-                                        controller.stateCountUp(5);
+                                        controller.stateCountUp(6);
                                         print(controller.statecount);
                                       }),
                                   SizedBox(width: 5),
+                                  //녹화
                                   songSwapButton(
                                       text: Row(
                                         mainAxisAlignment:
@@ -232,13 +241,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             width: 20.w,
                                             height: 20.h,
                                           ),
-                                          Text(controller.testButtonswap,
+                                          Text('녹화',
                                               style: TextStyle(
                                                   fontSize: textSmallSize.sp)),
                                         ],
                                       ),
                                       onPressed: () {
-                                        controller.stateCountUp(4);
+                                        controller.stateCountUp(5);
                                         _onPressed(context);
                                         print(controller.statecount);
                                       }),
@@ -248,26 +257,32 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               Row(
                                 children: [
                                   songSwapButton(
-                                    text: Text(controller.challengeButtonSwap,
+                                    text: Text('연습시작',
                                         style: TextStyle(
                                             fontSize: textSmallSize.sp)),
-                                    onPressed: () {
-                                      jungcontroller.stepStop();
-                                      indexManager.stopIndex();
-                                      controller.testStartButtonState();
-                                      controller.testButtonState();
+                                    onPressed: () async {
+                                      controller.nextButton();
+                                      await Get.dialog(
+                                        Dialog(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0),
+                                            elevation: 0,
+                                            child: GameTimerWidget()),
+                                        barrierDismissible: false,
+                                      );
+                                      //  jungcontroller.startCapture();
                                       jungcontroller.changeStartStopState();
-                                      // jungcontroller.stopCapture();
+                                      jungcontroller.stepStart();
+                                      jungcontroller
+                                          .playJungGanBo(indexManager);
 
-                                      controller.stateCountUp(0);
-                                      print(controller.statecount);
-                                      jungcontroller.audioSessions
-                                          .setActive(false);
+                                      jungcontroller.audioSessionConfigure();
+                                      // audioSessionConfigure();
                                     },
                                   ),
                                   SizedBox(width: 5),
                                   songSwapButton(
-                                      text: Text(controller.testButtonswap,
+                                      text: Text('반주만',
                                           style: TextStyle(
                                               fontSize: textSmallSize.sp)),
                                       onPressed: () {
@@ -276,16 +291,46 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                 ],
                               ),
                             if (controller.statecount == 4)
+                              Row(
+                                children: [
+                                  songSwapButton(
+                                    text: Text('중지',
+                                        style: TextStyle(
+                                            fontSize: textSmallSize.sp)),
+                                    onPressed: () {
+                                      jungcontroller.stepStop();
+                                      indexManager.stopIndex();
+
+                                      jungcontroller.changeStartStopState();
+                                      // jungcontroller.stopCapture();
+
+                                      controller.stateCountUp(0);
+                                      print(controller.statecount);
+                                      // jungcontroller.audioSessions
+                                      //     .setActive(false);
+                                    },
+                                  ),
+                                  SizedBox(width: 5),
+                                  songSwapButton(
+                                      text: Text('반주만',
+                                          style: TextStyle(
+                                              fontSize: textSmallSize.sp)),
+                                      onPressed: () {
+                                        print(controller.statecount);
+                                      }),
+                                ],
+                              ),
+                            if (controller.statecount == 5)
                               SongCamaraRecoding(
                                 controller: jungcontroller,
                                 jandan: widget.jangdan,
                               ),
-                            if (controller.statecount == 5)
+                            if (controller.statecount == 6)
                               SongAudioRecorder(controller: jungcontroller)
                           ],
                         ),
                       ),
-                      if (controller.statecount != 4)
+                      if (controller.statecount != 5)
                         Container(
                           width: 335.w,
                           child: Row(

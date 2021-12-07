@@ -10,6 +10,7 @@ import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:audio_session/audio_session.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;
@@ -34,7 +35,7 @@ class JungganboController extends GetxController {
   late int mill;
   JungGanBo? jungGanBo;
   late AudioSession audioSessions;
-
+  bool isPitchDetector = false;
   late int sheetVertical;
   bool gameState = false;
   IndexManager indexManagers = IndexManager();
@@ -49,6 +50,7 @@ class JungganboController extends GetxController {
     next2 = 0;
     jungSection = 0;
     startStopState = false;
+    isPitchDetector = false;
     copySheetHorizontal = sheetHorizontal;
     startButton = '시작하기';
     indexManagers.clearIndex();
@@ -87,6 +89,18 @@ class JungganboController extends GetxController {
     gameState = !gameState;
 
     update();
+  }
+
+  void isPitchState() {
+    isPitchDetector = !isPitchDetector;
+
+    update();
+  }
+
+  Future delyButton() async {
+    Future.delayed(Duration(seconds: 4), () {
+      null;
+    });
   }
 
   void changekrState() {
@@ -138,14 +152,17 @@ class JungganboController extends GetxController {
     startButton = '시작하기';
     startStopState = false;
     indexManagers.clearIndex();
+    isPitchDetector = false;
     stopCapture();
-    for (var i = 0; i < jungGanBo!.sheet.length; i++) {
-      matchTrueFalse[i] = false;
+    if (isPitchDetector) {
+      for (var i = 0; i < jungGanBo!.sheet.length; i++) {
+        matchTrueFalse[i] = false;
+      }
     }
   }
 
   void stepStop() {
-    line = jungGanBo!.sheet.length;
+    line = jungGanBo!.sheet.length + 1;
   }
 
   Future<void> startCapture() async {
@@ -195,21 +212,26 @@ class JungganboController extends GetxController {
         Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
       if (line < jungGanBo!.sheet.length) {
-        double? pitchValueResult = pitchModelInterface
-            .getModerateAverageFrequencyByListOfPitches(pitchValueList);
-        if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
-            jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.rest ||
-            jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.long) {
-          matchTrueFalse[line] = true;
-        } else if (pitchModelInterface.isCorrectPitch(
-            pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
-          print("선 :$pitchValueResult");
-          matchTrueFalse[line] = true;
+        if (isPitchDetector) {
+          double? pitchValueResult = pitchModelInterface
+              .getModerateAverageFrequencyByListOfPitches(pitchValueList);
+          if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+                  Yulmyeong.blank ||
+              jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+                  Yulmyeong.rest ||
+              jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+                  Yulmyeong.long) {
+            matchTrueFalse[line] = true;
+          } else if (pitchModelInterface.isCorrectPitch(
+              pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
+            print("선 :$pitchValueResult");
+            matchTrueFalse[line] = true;
+          }
+          print("클후 :$pitchValueResult");
         }
 
         line++;
         pitchValueList.clear();
-        print("클후 :$pitchValueResult");
 
         if (copySheetHorizontal >= 4 &&
             line == 32 * pagenext &&
@@ -261,6 +283,10 @@ class JungganboController extends GetxController {
           print('n2 $next2');
           print('np $pagenext');
         }
+      } else if (line == jungGanBo!.sheet.length && isPitchDetector) {
+        timer.cancel();
+        Get.off(ResultScore());
+        reset();
       } else {
         timer.cancel();
 

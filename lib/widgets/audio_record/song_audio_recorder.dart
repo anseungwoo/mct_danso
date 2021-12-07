@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_record/audio_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class SongAudioRecorder extends StatefulWidget {
   final JungganboController controller;
@@ -67,18 +68,24 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     side: BorderSide(color: buttonColorOrang),
                     textStyle:
                         TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
-                onPressed: () {
+                onPressed: () async {
                   audioRecordController.isRecordingState();
-                  audioRecordController.isRecording
-                      ? audioRecordController.startRecording()
-                      : audioRecordController.stopRecording();
                   widget.controller.changeStartStopState();
                   if (widget.controller.startStopState) {
+                    await Get.dialog(
+                      Dialog(
+                          backgroundColor: Colors.white.withOpacity(0),
+                          elevation: 0,
+                          child: GameTimerWidget()),
+                      barrierDismissible: false,
+                    );
+                    audioRecordController.startRecording();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
                     widget.controller.audioSessionConfigure();
                   }
                   if (!widget.controller.startStopState) {
+                    audioRecordController.stopRecording();
                     widget.controller.stepStop();
                     indexManager.stopIndex();
                   }

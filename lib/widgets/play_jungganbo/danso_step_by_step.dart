@@ -85,9 +85,17 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                         levelButton(
                             controller: controller,
                             text: '${controller.startButton}',
-                            onPressed: () {
+                            onPressed: () async {
                               controller.changeStartStopState();
                               if (controller.startStopState) {
+                                await Get.dialog(
+                                  Dialog(
+                                      backgroundColor:
+                                          Colors.white.withOpacity(0),
+                                      elevation: 0,
+                                      child: GameTimerWidget()),
+                                  barrierDismissible: false,
+                                );
                                 // controller.startCapture();
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);

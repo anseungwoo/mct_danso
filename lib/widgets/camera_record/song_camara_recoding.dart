@@ -5,6 +5,7 @@ import 'package:project_danso/controllers/camera_record/camera_record_controller
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   final JungganboController controller;
@@ -80,11 +81,18 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     side: BorderSide(color: buttonColorOrang),
                     textStyle:
                         TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
-                onPressed: () {
+                onPressed: () async {
                   caController.isRecordingState();
 
                   widget.controller.changeStartStopState();
                   if (widget.controller.startStopState) {
+                    await Get.dialog(
+                      Dialog(
+                          backgroundColor: Colors.white.withOpacity(0),
+                          elevation: 0,
+                          child: GameTimerWidget()),
+                      barrierDismissible: false,
+                    );
                     caController.onRecord();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
