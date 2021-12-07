@@ -76,6 +76,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                   if (widget.controller.startStopState) {
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
+                    widget.controller.audioSessionConfigure();
                   }
                   if (!widget.controller.startStopState) {
                     widget.controller.stepStop();

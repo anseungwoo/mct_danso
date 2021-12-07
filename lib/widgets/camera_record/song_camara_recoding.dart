@@ -88,6 +88,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     caController.onRecord();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
+                    widget.controller.audioSessionConfigure();
                   }
                   if (widget.controller.startStopState == false) {
                     caController.onStop();

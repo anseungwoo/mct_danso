@@ -74,6 +74,7 @@ dependencies:
   flutter_neumorphic: ^3.2.0
   google_fonts: ^2.1.0
   shared_preferences: ^2.0.9
+  audio_session: ^0.1.6+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

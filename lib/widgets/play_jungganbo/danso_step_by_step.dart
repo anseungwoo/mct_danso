@@ -43,9 +43,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     indexManager.stopIndex();
     jungganboController.stepStop();
     jungganboController.allMidiStop();
-    if (jungganboController.startStopState) {
-      jungganboController.stopCapture();
-    }
+    // if (jungganboController.startStopState) {
+    //   jungganboController.stopCapture();
+    // }
     super.dispose();
   }
 
@@ -88,12 +88,13 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                             onPressed: () {
                               controller.changeStartStopState();
                               if (controller.startStopState) {
-                                controller.startCapture();
+                                // controller.startCapture();
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);
+                                controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
-                                controller.stopCapture();
+                                // controller.stopCapture();
                                 controller.stepStop();
                                 indexManager.stopIndex();
                               }

@@ -9,6 +9,7 @@ import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
+import 'package:audio_session/audio_session.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;
@@ -32,6 +33,7 @@ class JungganboController extends GetxController {
   List<double> pitchValueList = [];
   late int mill;
   JungGanBo? jungGanBo;
+  late AudioSession audioSessions;
 
   late int sheetVertical;
   bool gameState = false;
@@ -59,6 +61,27 @@ class JungganboController extends GetxController {
 
     super.dispose();
   }
+
+  audioSessionConfigure() =>
+      AudioSession.instance.then((audioSession) async => await audioSession
+          .configure(const AudioSessionConfiguration(
+            avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+            avAudioSessionCategoryOptions:
+                AVAudioSessionCategoryOptions.defaultToSpeaker,
+            avAudioSessionMode: AVAudioSessionMode.videoRecording,
+            avAudioSessionRouteSharingPolicy:
+                AVAudioSessionRouteSharingPolicy.defaultPolicy,
+            avAudioSessionSetActiveOptions:
+                AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
+            // androidAudioAttributes: AndroidAudioAttributes(
+            //   contentType: AndroidAudioContentType.music,
+            //   flags: AndroidAudioFlags.none,
+            //   usage: AndroidAudioUsage.media,
+            // ),
+            // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
+            // androidWillPauseWhenDucked: true,
+          ))
+          .then((_) => audioSessions = audioSession));
 
   void changegameState() {
     gameState = !gameState;

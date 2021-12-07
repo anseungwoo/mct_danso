@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_midi/flutter_midi.dart';
@@ -44,6 +45,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       Get.put(PlayAndTestController());
   FlutterMidi flutterMidi = FlutterMidi();
   IndexManager indexManager = IndexManager();
+  late AudioSession audioSessions;
+
   @override
   void dispose() {
     if (jungganboController.startStopState) {
@@ -64,6 +67,27 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     await _incrementCounter();
     hideOpenDialog();
   }
+
+  audioSessionConfigure() =>
+      AudioSession.instance.then((audioSession) async => await audioSession
+          .configure(const AudioSessionConfiguration(
+            avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+            avAudioSessionCategoryOptions:
+                AVAudioSessionCategoryOptions.defaultToSpeaker,
+            avAudioSessionMode: AVAudioSessionMode.videoRecording,
+            avAudioSessionRouteSharingPolicy:
+                AVAudioSessionRouteSharingPolicy.defaultPolicy,
+            avAudioSessionSetActiveOptions:
+                AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
+            // androidAudioAttributes: AndroidAudioAttributes(
+            //   contentType: AndroidAudioContentType.music,
+            //   flags: AndroidAudioFlags.none,
+            //   usage: AndroidAudioUsage.media,
+            // ),
+            // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
+            // androidWillPauseWhenDucked: true,
+          ))
+          .then((_) => audioSessions = audioSession));
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +126,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStart();
                                       jungcontroller.startCapture();
+                                      // jungcontroller.audioSessionConfigure();
 
                                       print(controller.statecount);
                                     },
@@ -163,7 +188,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
                                       controller.testStartButtonState();
-                                      jungcontroller.startCapture();
+                                      // jungcontroller.startCapture();
 
                                       controller.nextButton();
                                       print(controller.statecount);
@@ -171,6 +196,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.stepStart();
                                       jungcontroller
                                           .playJungGanBo(indexManager);
+
+                                      // jungcontroller.audioSessionConfigure();
+                                      audioSessionConfigure();
                                     },
                                   ),
                                   SizedBox(width: 5),
@@ -229,10 +257,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       controller.testStartButtonState();
                                       controller.testButtonState();
                                       jungcontroller.changeStartStopState();
-                                      jungcontroller.stopCapture();
+                                      // jungcontroller.stopCapture();
 
                                       controller.stateCountUp(0);
                                       print(controller.statecount);
+                                      jungcontroller.audioSessions
+                                          .setActive(false);
                                     },
                                   ),
                                   SizedBox(width: 5),
