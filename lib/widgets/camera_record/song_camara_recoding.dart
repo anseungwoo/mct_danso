@@ -82,16 +82,16 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
                 onPressed: () {
                   caController.isRecordingState();
-                  caController.isRecording
-                      ? caController.onRecord()
-                      : caController.onStop();
 
                   widget.controller.changeStartStopState();
                   if (widget.controller.startStopState) {
+                    caController.onRecord();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
                   }
-                  if (!widget.controller.startStopState) {
+                  if (widget.controller.startStopState == false) {
+                    caController.onStop();
+                    caController.getBack();
                     widget.controller.stepStop();
                     indexManager.stopIndex();
                   }

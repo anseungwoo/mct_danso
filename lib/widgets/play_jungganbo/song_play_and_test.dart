@@ -46,7 +46,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   IndexManager indexManager = IndexManager();
   @override
   void dispose() {
+    if (jungganboController.startStopState) {
+      jungganboController.stopCapture();
+    }
     jungganboController.dispose();
+    jungganboController.stepStop();
     indexManager.stopIndex();
     super.dispose();
   }
@@ -97,8 +101,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       controller.nextButton();
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStart();
-                                      jungcontroller
-                                          .playJungGanBo(indexManager);
+                                      jungcontroller.startCapture();
 
                                       print(controller.statecount);
                                     },
@@ -112,7 +115,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                   fontSize: textSmallSize.sp)),
                                           onPressed: () {
                                             controller.testButtonState();
-                                            controller.stateCountUp(2.obs);
+                                            controller.stateCountUp(2);
 
                                             print(controller.statecount);
                                           }),
@@ -143,10 +146,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                 ),
                                 onPressed: () {
                                   jungcontroller.stepStop();
-                                  indexManager.stopIndex();
                                   jungcontroller.changeStartStopState();
                                   controller.changePlayStopState();
-
+                                  jungcontroller.stopCapture();
                                   controller.previousButton();
                                   print(controller.statecount);
                                 },
@@ -161,6 +163,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
                                       controller.testStartButtonState();
+                                      jungcontroller.startCapture();
 
                                       controller.nextButton();
                                       print(controller.statecount);
@@ -187,7 +190,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         ],
                                       ),
                                       onPressed: () {
-                                        controller.stateCountUp(5.obs);
+                                        controller.stateCountUp(5);
                                         print(controller.statecount);
                                       }),
                                   SizedBox(width: 5),
@@ -207,7 +210,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         ],
                                       ),
                                       onPressed: () {
-                                        controller.stateCountUp(4.obs);
+                                        controller.stateCountUp(4);
                                         _onPressed(context);
                                         print(controller.statecount);
                                       }),
@@ -226,7 +229,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       controller.testStartButtonState();
                                       controller.testButtonState();
                                       jungcontroller.changeStartStopState();
-                                      controller.stateCountUp(0.obs);
+                                      jungcontroller.stopCapture();
+
+                                      controller.stateCountUp(0);
                                       print(controller.statecount);
                                     },
                                   ),

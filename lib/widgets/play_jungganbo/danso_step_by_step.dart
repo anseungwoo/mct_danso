@@ -41,7 +41,11 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   @override
   void dispose() {
     indexManager.stopIndex();
+    jungganboController.stepStop();
     jungganboController.allMidiStop();
+    if (jungganboController.startStopState) {
+      jungganboController.stopCapture();
+    }
     super.dispose();
   }
 
@@ -84,10 +88,12 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                             onPressed: () {
                               controller.changeStartStopState();
                               if (controller.startStopState) {
+                                controller.startCapture();
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);
                               }
                               if (!controller.startStopState) {
+                                controller.stopCapture();
                                 controller.stepStop();
                                 indexManager.stopIndex();
                               }
@@ -97,22 +103,22 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                         levelButton(
                             controller: controller,
                             text: '${controller.krButton}',
-                            onPressed: () {
-                              controller.startStopState
-                                  ? null
-                                  : controller.changekrState();
-                            }),
+                            onPressed: controller.startStopState
+                                ? null
+                                : () {
+                                    controller.changekrState();
+                                  }),
 
                         //배속
                         levelButton(
                             controller: controller,
                             text:
                                 '${controller.speed[controller.speedCount]} 배속',
-                            onPressed: () {
-                              controller.startStopState
-                                  ? null
-                                  : controller.changespeedState();
-                            }),
+                            onPressed: controller.startStopState
+                                ? null
+                                : () {
+                                    controller.changespeedState();
+                                  }),
                       ],
                     ),
                   ),
@@ -125,7 +131,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   Widget levelButton(
       {required JungganboController controller,
-      required Function() onPressed,
+      required Function()? onPressed,
       required String text}) {
     return Container(
         width: 105.w,

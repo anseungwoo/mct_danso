@@ -62,7 +62,7 @@ class PitchModel implements PitchModelInterface {
     double numberOfHits = 0.0;
     for (var pitch in pitches) {
       //out of range
-      if (pitch < 800.0 && pitch > 600.0) {
+      if (pitch < 1800.0 && pitch > 300.0) {
         sum += pitch;
         numberOfHits += 1.0;
       }

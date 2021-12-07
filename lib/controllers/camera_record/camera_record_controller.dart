@@ -53,20 +53,21 @@ class CameraRecordController extends GetxController {
         '${video.path}',
       );
       showToast(message: '녹화가 완료되었습니다.');
+      _playAndTestController.stateCountTwo();
     } else {
       await GallerySaver.saveVideo(
         video.path,
       );
       showToast(message: '녹화가 완료되었습니다.');
+      _playAndTestController.stateCountTwo();
     }
     // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
-
-    _playAndTestController.stateCountUp(2.obs);
+    _playAndTestController.stateCountTwo();
     update();
   }
 
   void getBack() {
-    _playAndTestController.stateCountUp(2.obs);
+    _playAndTestController.stateCountTwo();
     update();
   }
 

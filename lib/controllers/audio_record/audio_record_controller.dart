@@ -105,12 +105,11 @@ class AudioRecordController extends GetxController {
     time.cancel();
     print(_recording.path);
     _recording = result!;
-    _playAndTestController.stateCountUp(2.obs);
+    _playAndTestController.stateCountTwo();
     update();
   }
 
   void getBack() {
-    _playAndTestController.stateCountUp(2.obs);
-    update();
+    _playAndTestController.stateCountTwo();
   }
 }
