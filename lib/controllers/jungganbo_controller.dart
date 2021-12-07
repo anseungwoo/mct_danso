@@ -1,9 +1,6 @@
 import 'dart:async';
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:camera/camera.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
@@ -32,6 +29,7 @@ class JungganboController extends GetxController {
   final pitchupDart = PitchHandler(InstrumentType.guitar);
   PitchModelInterface pitchModelInterface = PitchModel();
   double pitchValue = 0;
+  List<double> pitchValueList = [];
   late int mill;
   JungGanBo? jungGanBo;
 
@@ -88,12 +86,12 @@ class JungganboController extends GetxController {
     update();
   }
 
-  final List<bool> ft = [];
+  final List<bool> matchTrueFalse = [];
   bool ftSetting(int i) {
     for (var i = 0; i < jungGanBo!.sheet.length; i++) {
-      ft.add(false);
+      matchTrueFalse.add(false);
     }
-    return ft[i];
+    return matchTrueFalse[i];
   }
 
   void setting() {
@@ -117,8 +115,9 @@ class JungganboController extends GetxController {
     startButton = '시작하기';
     startStopState = false;
     indexManagers.clearIndex();
+    stopCapture();
     for (var i = 0; i < jungGanBo!.sheet.length; i++) {
-      ft[i] = false;
+      matchTrueFalse[i] = false;
     }
   }
 
@@ -154,6 +153,9 @@ class JungganboController extends GetxController {
       //Updates the state with the result
 
       pitchValue = result.pitch;
+      pitchValueList.add(pitchValue);
+      pitchModelInterface
+          .getModerateAverageFrequencyByListOfPitches(pitchValueList);
 
       update();
     }
@@ -170,16 +172,21 @@ class JungganboController extends GetxController {
         Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
         (timer) {
       if (line < jungGanBo!.sheet.length) {
+        double? pitchValueResult = pitchModelInterface
+            .getModerateAverageFrequencyByListOfPitches(pitchValueList);
         if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
             jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.rest ||
             jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong == Yulmyeong.long) {
-          ft[line] = true;
+          matchTrueFalse[line] = true;
         } else if (pitchModelInterface.isCorrectPitch(
-            pitchValue, jungGanBo!.sheet[line].yulmyeongs[0])!) {
-          ft[line] = true;
+            pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
+          print("선 :$pitchValueResult");
+          matchTrueFalse[line] = true;
         }
 
         line++;
+        pitchValueList.clear();
+        print("클후 :$pitchValueResult");
 
         if (copySheetHorizontal >= 4 &&
             line == 32 * pagenext &&
