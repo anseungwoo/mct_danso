@@ -33,7 +33,7 @@ class JungganboController extends GetxController {
   List<double> pitchValueList = [];
   late int mill;
   JungGanBo? jungGanBo;
-  late AudioSession audioSessions;
+  // late AudioSession audioSessions;
 
   late int sheetVertical;
   bool gameState = false;
@@ -62,26 +62,26 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
-  audioSessionConfigure() =>
-      AudioSession.instance.then((audioSession) async => await audioSession
-          .configure(const AudioSessionConfiguration(
-            avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
-            avAudioSessionCategoryOptions:
-                AVAudioSessionCategoryOptions.defaultToSpeaker,
-            avAudioSessionMode: AVAudioSessionMode.videoRecording,
-            avAudioSessionRouteSharingPolicy:
-                AVAudioSessionRouteSharingPolicy.defaultPolicy,
-            avAudioSessionSetActiveOptions:
-                AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
-            // androidAudioAttributes: AndroidAudioAttributes(
-            //   contentType: AndroidAudioContentType.music,
-            //   flags: AndroidAudioFlags.none,
-            //   usage: AndroidAudioUsage.media,
-            // ),
-            // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
-            // androidWillPauseWhenDucked: true,
-          ))
-          .then((_) => audioSessions = audioSession));
+  // audioSessionConfigure() =>
+  //     AudioSession.instance.then((audioSession) async => await audioSession
+  //         .configure(const AudioSessionConfiguration(
+  //           avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+  //           avAudioSessionCategoryOptions:
+  //               AVAudioSessionCategoryOptions.defaultToSpeaker,
+  //           avAudioSessionMode: AVAudioSessionMode.videoRecording,
+  //           avAudioSessionRouteSharingPolicy:
+  //               AVAudioSessionRouteSharingPolicy.defaultPolicy,
+  //           avAudioSessionSetActiveOptions:
+  //               AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
+  //           // androidAudioAttributes: AndroidAudioAttributes(
+  //           //   contentType: AndroidAudioContentType.music,
+  //           //   flags: AndroidAudioFlags.none,
+  //           //   usage: AndroidAudioUsage.media,
+  //           // ),
+  //           // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
+  //           // androidWillPauseWhenDucked: true,
+  //         ))
+  //         .then((_) => audioSessions = audioSession));
 
   void changegameState() {
     gameState = !gameState;

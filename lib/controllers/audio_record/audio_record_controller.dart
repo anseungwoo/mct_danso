@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:project_danso/controllers/audio_and_video_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/my_page_music_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class AudioRecordController extends GetxController {
   final _playAndTestController = Get.put(PlayAndTestController());
+  final audioAndVideoRecordController = Get.put(AudioAndVideoDBController());
 
   late FlutterAudioRecorder2 recorder;
   late Recording _recording;
@@ -99,11 +102,13 @@ class AudioRecordController extends GetxController {
     update();
   }
 
-  Future stopRecording() async {
+  Future stopRecording({var songId, var exerType}) async {
     var result = await recorder.stop();
     showToast(message: '녹음이 완료되었습니다.');
     time.cancel();
     print(_recording.path);
+    audioAndVideoRecordController.putAudioAndVideoRecordDB(
+        songId: songId, exerPath: _recording.path, exerType: exerType);
     _recording = result!;
     _playAndTestController.stateCountTwo();
     update();

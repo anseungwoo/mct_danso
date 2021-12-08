@@ -149,6 +149,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                     sheetData: item.songSheet,
                                     sheetVertical: item.songSheetVertical,
                                     sheetHorizontal: item.songSheetHorizontal,
+                                    songId: item.songId,
                                   ),
                                 );
                                 // Get.to(SheetTestScreen(

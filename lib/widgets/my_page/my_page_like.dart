@@ -34,6 +34,7 @@ class MyPageLike extends StatelessWidget {
                         sheetData: item.songSheet,
                         sheetVertical: item.songSheetVertical,
                         sheetHorizontal: item.songSheetHorizontal,
+                        songId: item.songId,
                       ),
                     );
                   },

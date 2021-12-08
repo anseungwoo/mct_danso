@@ -8,8 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   final JungganboController controller;
+  final songId;
   final String jandan;
-  SongCamaraRecoding({Key? key, required this.controller, required this.jandan})
+  SongCamaraRecoding(
+      {Key? key,
+      required this.controller,
+      required this.jandan,
+      required this.songId})
       : super(key: key);
 
   @override
@@ -31,7 +36,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
-      cameraRecordcontroller.onStop();
+      cameraRecordcontroller.onStop(songId: widget.songId);
       widget.controller.allMidiStop();
       indexManager.stopIndex();
     }
@@ -88,10 +93,10 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     caController.onRecord();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
-                    widget.controller.audioSessionConfigure();
+                    // widget.controller.audioSessionConfigure();
                   }
                   if (widget.controller.startStopState == false) {
-                    caController.onStop();
+                    caController.onStop(songId: widget.songId);
                     caController.getBack();
                     widget.controller.stepStop();
                     indexManager.stopIndex();

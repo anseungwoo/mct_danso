@@ -5,8 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/my_page_music_controller.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:project_danso/models/models.dart';
 
 extension FormatString on Duration {
   String get mmSSFormat {
@@ -85,12 +87,28 @@ extension FormatString on Duration {
 // }
 
 class MyPageListenDialog extends StatefulWidget {
+  final ExerciseModel recordItem;
+
+  const MyPageListenDialog({Key? key, required this.recordItem})
+      : super(key: key);
+
   @override
   State<MyPageListenDialog> createState() => _MyPageListenDialogState();
 }
 
 class _MyPageListenDialogState extends State<MyPageListenDialog> {
   var myPageMusicController = Get.put(MyPageMusicController());
+  // var audioAndVideoListController = Get.put(AudioAndVideoListController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print('asdfasdf ${widget.recordItem.exerPath}');
+    myPageMusicController.playerInit(widget.recordItem.exerPath);
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -125,6 +143,10 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
                                         boxShape: NeumorphicBoxShape.circle(),
                                       ),
                                       onPressed: () {
+                                        // controller.audioRecordPath =
+                                        //     widget.recordItem.exerPath;
+                                        // print(widget.recordItem.exerPath);
+
                                         controller.assetsAudioPlayer
                                             .playOrPause();
                                       },
