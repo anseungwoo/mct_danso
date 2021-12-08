@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_record/audio_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/play_jungganbo/game_timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongAudioRecorder extends StatefulWidget {

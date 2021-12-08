@@ -7,7 +7,6 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
-import 'package:project_danso/widgets/play_jungganbo/game_timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 import '../jungganbo/jungganbo_screen.dart';
