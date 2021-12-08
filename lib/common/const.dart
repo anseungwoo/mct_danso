@@ -384,8 +384,8 @@ const List TIP_TITLE = [
 const List TIP_TIME = [0.0, 0.0, 0.0, 0.0];
 
 //장구 장단
-const String JUNGJUNG = 'assets/music/jungjung.opus';
-const String JAJIN = 'assets/music/jajin.opus';
-const String HWI = 'assets/music/hwi.opus';
-const String GOOD = 'assets/music/good.opus';
-const String SEMA = 'assets/music/sema.opus';
+const String JOONGJOONG = 'assets/music/joongjoong.mp3';
+const String JAJIN = 'assets/music/jajin.mp3';
+const String HUIMORI = 'assets/music/huimori.mp3';
+const String GOOD = 'assets/music/good.mp3';
+const String SEMACHI = 'assets/music/semachi.mp3';

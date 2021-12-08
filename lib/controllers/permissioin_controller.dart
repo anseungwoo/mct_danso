@@ -5,18 +5,14 @@ import 'package:permission_handler/permission_handler.dart';
 
 class PermissionController extends GetxController {
   void permission() async {
+    await [Permission.microphone, Permission.camera, Permission.photos]
+        .request();
     // var permissions =
     //     await [Permission.camera, Permission.microphone].request();
     // var micPermission = await Permission.microphone.status;
     // var cameraPermission = await Permission.camera.status;
     // print('per1 : ${Permission.microphone.status.isGranted}');
 
-    await [
-      Permission.microphone,
-      Permission.camera,
-      // Permission.mediaLibrary,
-      Permission.photos,
-    ].request();
     // print(statuses[Permission.microphone]);
     // print(statuses[Permission.camera]);
     // print(statuses[Permission.mediaLibrary]);

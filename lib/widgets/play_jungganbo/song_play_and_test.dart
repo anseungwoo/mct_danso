@@ -12,6 +12,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/utils/danso_function.dart';
+import 'package:project_danso/widgets/play_jungganbo/game_timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 import '../jungganbo/jungganbo_screen.dart';
@@ -74,6 +75,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     hideOpenDialog();
   }
 
+  @override
+  void initState() {
+    super.initState();
+    jungganboController.setJandan(widget.jangdan);
+  }
+
   // audioSessionConfigure() =>
   //     AudioSession.instance.then((audioSession) async => await audioSession
   //         .configure(const AudioSessionConfiguration(
@@ -99,7 +106,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
     jungganboController.janDan = widget.jangdan;
-    jungganboController.setJandan();
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
@@ -287,7 +293,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller
                                           .playJungGanBo(indexManager);
 
-                                      jungcontroller.audioSessionConfigure();
+                                      // jungcontroller.audioSessionConfigure();
                                       // audioSessionConfigure();
                                     },
                                   ),
@@ -339,7 +345,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                 songId: widget.songId,
                               ),
                             if (controller.statecount == 6)
-                              SongAudioRecorder(controller: jungcontroller, songId: widget.songId)
+                              SongAudioRecorder(
+                                  controller: jungcontroller,
+                                  songId: widget.songId)
                           ],
                         ),
                       ),

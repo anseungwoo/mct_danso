@@ -7,6 +7,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
+import 'package:project_danso/widgets/play_jungganbo/game_timer_widget.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 import '../jungganbo/jungganbo_screen.dart';
@@ -34,6 +35,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   void initState() {
     jungganboController.onInit();
     jungganboController.sheetHorizontal = 4;
+    jungganboController.setJandan(widget.jangdan);
 
     super.initState();
   }
@@ -53,7 +55,6 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.janDan = widget.jangdan;
-    jungganboController.setJandan();
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {

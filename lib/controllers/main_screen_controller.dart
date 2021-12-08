@@ -18,6 +18,12 @@ class MainScreenController extends GetxController with WidgetsBindingObserver {
     getMusicState();
   }
 
+  @override
+  void onClose() {
+    super.onClose();
+    assetsAudioPlayer.dispose();
+  }
+
   void getMusicState() async {
     final getBgmState = await SharedPreferences.getInstance();
     musicState = getBgmState.getBool('music_state') ?? true;

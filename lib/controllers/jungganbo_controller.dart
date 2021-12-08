@@ -65,42 +65,34 @@ class JungganboController extends GetxController {
   void dispose() {
     allMidiStop();
     line = jungGanBo!.sheet.length;
-
     super.dispose();
   }
 
-  void setJandan() {
+  void setJandan(var jangdan) {
     assetsAudioPlayer.open(
-      Audio(getJandan()),
+      Audio('assets/music/123123.mp3'),
       autoStart: false,
       loopMode: LoopMode.single,
     );
   }
 
-  String getJandan() {
-    String res = "";
+  String getJandan(var jangdan) {
+    // String res = "";
 
-    switch (janDan) {
+    switch (jangdan) {
       case "중중모리장단":
-        res = JUNGJUNG;
-        break;
+        return JOONGJOONG;
       case "굿거리장단":
-        res = GOOD;
-        break;
+        return GOOD;
       case "세마치장단":
-        res = SEMA;
-        break;
+        return SEMACHI;
       case "4박장단":
-        res = HWI;
-        break;
+        return HUIMORI;
       case "자진모리장단":
-        res = JAJIN;
-        break;
+        return JAJIN;
       default: //high:
-
+        return '';
     }
-
-    return res;
   }
 
   void setSpeed() {
@@ -139,7 +131,6 @@ class JungganboController extends GetxController {
 
   void jandanStop() async {
     await assetsAudioPlayer.stop();
-
     print('isplaying : $startStopState');
   }
   // audioSessionConfigure() =>
