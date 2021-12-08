@@ -46,17 +46,12 @@ Container jungBlankContainer(
 }
 
 Widget jungBigContainer(double height, JungganboController controller) {
-  return InkWell(
-    onTap: () {
-      controller.changegameState();
-    },
-    child: Container(
-      width: jungWidth.w,
-      height: height.h,
-      decoration: BoxDecoration(
-        border: Border.all(color: textBlack),
-        color: Colors.white,
-      ),
+  return Container(
+    width: jungWidth.w,
+    height: height.h,
+    decoration: BoxDecoration(
+      border: Border.all(color: textBlack),
+      color: Colors.white,
     ),
   );
 }

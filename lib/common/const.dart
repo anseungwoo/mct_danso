@@ -382,4 +382,10 @@ const List TIP_TITLE = [
   '매일매일 연습하는 팁!',
 ];
 const List TIP_TIME = [0.0, 0.0, 0.0, 0.0];
-enum SongSpeed { eight, nine, ten, eleven, twelve }
+
+//장구 장단
+const String JUNGJUNG = 'assets/music/jungjung.opus';
+const String JAJIN = 'assets/music/jajin.opus';
+const String HWI = 'assets/music/hwi.opus';
+const String GOOD = 'assets/music/good.opus';
+const String SEMA = 'assets/music/sema.opus';

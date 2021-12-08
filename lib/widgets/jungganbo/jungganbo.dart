@@ -105,6 +105,10 @@ Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
     style: TextStyle(
         fontFamily: NOTO_REGULAR,
         fontSize: heightNumber == 12 ? textEightSize.sp : textBasicSize.sp,
-        color: controller.ftSetting(i) ? Colors.blue : Colors.red),
+        color: controller.isPitchDetector
+            ? controller.ftSetting(i)
+                ? Colors.blue
+                : Colors.red
+            : textBlack),
   );
 }
