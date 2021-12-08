@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
+import 'package:project_danso/common/const.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:audio_session/audio_session.dart';
@@ -26,6 +28,7 @@ class JungganboController extends GetxController {
   int pagenext = 1;
   int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
+  String janDan = "";
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
@@ -37,8 +40,9 @@ class JungganboController extends GetxController {
   late AudioSession audioSessions;
   bool isPitchDetector = false;
   late int sheetVertical;
-  bool gameState = false;
+
   IndexManager indexManagers = IndexManager();
+  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   @override
   void onInit() {
     super.onInit();
@@ -64,6 +68,80 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
+  void setJandan() {
+    assetsAudioPlayer.open(
+      Audio(getJandan()),
+      autoStart: false,
+      loopMode: LoopMode.single,
+    );
+  }
+
+  String getJandan() {
+    String res = "";
+
+    switch (janDan) {
+      case "중중모리장단":
+        res = JUNGJUNG;
+        break;
+      case "굿거리장단":
+        res = GOOD;
+        break;
+      case "세마치장단":
+        res = SEMA;
+        break;
+      case "4박장단":
+        res = HWI;
+        break;
+      case "자진모리장단":
+        res = JAJIN;
+        break;
+      default: //high:
+
+    }
+
+    return res;
+  }
+
+  void setSpeed() {
+    switch (janDan) {
+      case "중중모리장단":
+        assetsAudioPlayer.setPlaySpeed(1.265);
+        break;
+      case "굿거리장단":
+        assetsAudioPlayer.setPlaySpeed(0.8);
+        break;
+      case "세마치장단":
+        assetsAudioPlayer.setPlaySpeed(1.65);
+        break;
+      case "4박장단":
+        assetsAudioPlayer.setPlaySpeed(0.65);
+        break;
+      case "자진모리장단":
+        assetsAudioPlayer.setPlaySpeed(1.85);
+        break;
+
+      default: //high:
+
+    }
+  }
+
+  void jandanPlay() async {
+    await assetsAudioPlayer.setVolume(1);
+    setSpeed();
+    await Future.delayed(
+        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()));
+    await assetsAudioPlayer.play();
+
+    print('isplaying : $startStopState');
+    update();
+  }
+
+  void jandanStop() async {
+    await assetsAudioPlayer.stop();
+
+    print('isplaying : $startStopState');
+  }
+
   audioSessionConfigure() =>
       AudioSession.instance.then((audioSession) async => await audioSession
           .configure(const AudioSessionConfiguration(
@@ -84,12 +162,6 @@ class JungganboController extends GetxController {
             // androidWillPauseWhenDucked: true,
           ))
           .then((_) => audioSessions = audioSession));
-
-  void changegameState() {
-    gameState = !gameState;
-
-    update();
-  }
 
   void isPitchState() {
     isPitchDetector = !isPitchDetector;
@@ -142,6 +214,16 @@ class JungganboController extends GetxController {
   }
 
   void reset() {
+    setControllerConstants();
+    stopCapture();
+    if (isPitchDetector) {
+      for (var i = 0; i < jungGanBo!.sheet.length; i++) {
+        matchTrueFalse[i] = false;
+      }
+    }
+  }
+
+  void setControllerConstants() {
     pagenext = 1;
     line = 0;
     next = 0;
@@ -153,12 +235,7 @@ class JungganboController extends GetxController {
     startStopState = false;
     indexManagers.clearIndex();
     isPitchDetector = false;
-    stopCapture();
-    if (isPitchDetector) {
-      for (var i = 0; i < jungGanBo!.sheet.length; i++) {
-        matchTrueFalse[i] = false;
-      }
-    }
+    assetsAudioPlayer.stop();
   }
 
   void stepStop() {
@@ -207,9 +284,8 @@ class JungganboController extends GetxController {
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
     await Future.delayed(
-        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()));
-    Timer.periodic(
-        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
+        Duration(milliseconds: (mill / speed[speedCount]).toInt()));
+    Timer.periodic(Duration(milliseconds: (mill / speed[speedCount]).toInt()),
         (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isPitchDetector) {
@@ -299,8 +375,7 @@ class JungganboController extends GetxController {
   final player = FlutterMidi();
   void playJungGanBo(IndexManager indexManager) {
     indexManager.clearIndex();
-    Timer.periodic(
-        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()),
+    Timer.periodic(Duration(milliseconds: (mill / speed[speedCount]).toInt()),
         (timer) {
       if (indexManager.index < jungGanBo!.sheet.length) {
         playJung(jungGanBo!.sheet[indexManager.index],

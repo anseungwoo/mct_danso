@@ -93,14 +93,18 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                           child: GameTimerWidget()),
                       barrierDismissible: false,
                     );
+                    widget.controller.jandanPlay();
                     caController.onRecord();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
+
                     widget.controller.audioSessionConfigure();
                   }
                   if (widget.controller.startStopState == false) {
+                    widget.controller.jandanStop();
                     caController.onStop();
                     caController.getBack();
+
                     widget.controller.stepStop();
                     indexManager.stopIndex();
                   }

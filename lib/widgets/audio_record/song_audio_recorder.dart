@@ -80,13 +80,16 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                       barrierDismissible: false,
                     );
                     audioRecordController.startRecording();
+                    widget.controller.jandanPlay();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
                     widget.controller.audioSessionConfigure();
                   }
                   if (!widget.controller.startStopState) {
+                    widget.controller.jandanStop();
                     audioRecordController.stopRecording();
                     widget.controller.stepStop();
+
                     indexManager.stopIndex();
                   }
                 },

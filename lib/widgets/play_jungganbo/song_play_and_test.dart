@@ -51,7 +51,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   @override
   void dispose() {
     if (jungganboController.startStopState) {
-      jungganboController.stopCapture();
+      if (jungganboController.isPitchDetector) {
+        jungganboController.stopCapture();
+      }
+      // jungganboController.jandanStop();
     }
     jungganboController.dispose();
     jungganboController.stepStop();
@@ -93,6 +96,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   @override
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
+    jungganboController.janDan = widget.jangdan;
+    jungganboController.setJandan();
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
@@ -126,6 +131,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () async {
                                       controller.nextButton();
+                                      jungcontroller.changeStartStopState();
                                       await Get.dialog(
                                         Dialog(
                                             backgroundColor:
@@ -134,11 +140,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             child: GameTimerWidget()),
                                         barrierDismissible: false,
                                       );
-
-                                      jungcontroller.changeStartStopState();
+                                      // jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
                                       jungcontroller.startCapture();
                                       jungcontroller.isPitchState();
+
                                       // jungcontroller.audioSessionConfigure();
 
                                       print(controller.statecount);
@@ -186,11 +192,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   style: TextStyle(fontSize: textSmallSize.sp),
                                 ),
                                 onPressed: () {
-                                  jungcontroller.stepStop();
                                   jungcontroller.changeStartStopState();
+                                  jungcontroller.stepStop();
                                   jungcontroller.stopCapture();
                                   controller.previousButton();
                                   jungcontroller.isPitchState();
+                                  // jungcontroller.jandanStop();
                                   print(controller.statecount);
                                 },
                               ),
@@ -261,6 +268,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         style: TextStyle(
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () async {
+                                      jungcontroller.changeStartStopState();
                                       controller.nextButton();
                                       await Get.dialog(
                                         Dialog(
@@ -271,7 +279,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         barrierDismissible: false,
                                       );
                                       //  jungcontroller.startCapture();
-                                      jungcontroller.changeStartStopState();
+                                      // jungcontroller.jandanPlay();
+
                                       jungcontroller.stepStart();
                                       jungcontroller
                                           .playJungGanBo(indexManager);
@@ -298,10 +307,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         style: TextStyle(
                                             fontSize: textSmallSize.sp)),
                                     onPressed: () {
+                                      jungcontroller.changeStartStopState();
                                       jungcontroller.stepStop();
                                       indexManager.stopIndex();
+                                      // jungcontroller.jandanStop();
 
-                                      jungcontroller.changeStartStopState();
                                       // jungcontroller.stopCapture();
 
                                       controller.stateCountUp(0);

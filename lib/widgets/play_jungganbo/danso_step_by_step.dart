@@ -43,21 +43,24 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     indexManager.stopIndex();
     jungganboController.stepStop();
     jungganboController.allMidiStop();
-    // if (jungganboController.startStopState) {
-    //   jungganboController.stopCapture();
-    // }
+    if (jungganboController.startStopState) {
+      jungganboController.jandanStop();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
+    jungganboController.janDan = widget.jangdan;
+    jungganboController.setJandan();
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
           controller.mill = testJungGanBo.jangDan.milliSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
+
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,13 +101,15 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 );
                                 // controller.startCapture();
                                 controller.stepStart();
-                                controller.playJungGanBo(indexManager);
+                                // controller.playJungGanBo(indexManager);
+                                controller.jandanPlay();
                                 controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
                                 // controller.stopCapture();
                                 controller.stepStop();
                                 indexManager.stopIndex();
+                                controller.jandanStop();
                               }
                             }),
 

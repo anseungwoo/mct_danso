@@ -13,7 +13,6 @@ Widget jungganboFromFlash(
     height = heightNumber == 8 ? jungEightHeight : jungSixHeight;
   }
 
-  var j = 0;
   return Row(
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
@@ -23,7 +22,7 @@ Widget jungganboFromFlash(
             for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
               Row(
                 children: [
-                  jungFlashContainer(height, controller, i, j, heightNumber),
+                  jungFlashContainer(height, controller, i, heightNumber),
                   beenContainer(height),
                 ],
               ),
@@ -43,16 +42,14 @@ Container beenContainer(double height) {
   );
 }
 
-Container jungFlashContainer(double height, JungganboController controller,
-    int i, int j, int heightNumber) {
+Container jungFlashContainer(
+    double height, JungganboController controller, int i, int heightNumber) {
   return Container(
     width: jungWidth.w,
     height: height.h,
     decoration: BoxDecoration(
       border: Border.all(color: textBlack),
-      color: controller.line == i && controller.jungSection == j
-          ? Colors.red[100]!.withOpacity(0.5)
-          : null,
+      color: controller.line == i ? Colors.red[100]!.withOpacity(0.5) : null,
     ),
   );
 }
