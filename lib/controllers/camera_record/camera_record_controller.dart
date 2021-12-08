@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/controllers/audio_and_video_record_controller.dart';
 import 'package:project_danso/controllers/play_and_test_controller.dart';
 import 'package:project_danso/main.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -15,6 +16,8 @@ class CameraRecordController extends GetxController {
   String recordingText = '녹화시작';
 
   final _playAndTestController = Get.put(PlayAndTestController());
+  final audioAndVideoDBController = Get.put(AudioAndVideoDBController());
+
   @override
   void onInit() {
     super.onInit();
@@ -27,7 +30,7 @@ class CameraRecordController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-
+    controller.dispose();
     print('call onClose method');
   }
 
@@ -44,25 +47,20 @@ class CameraRecordController extends GetxController {
     update();
   }
 
-  Future<void> onStop() async {
+  Future<void> onStop({var songId}) async {
     final video = await controller.stopVideoRecording();
     print(video);
     print(video.path);
-    if (Platform.isIOS) {
-      await GallerySaver.saveVideo(
-        '${video.path}',
-      );
-      showToast(message: '녹화가 완료되었습니다.');
-      _playAndTestController.stateCountTwo();
-    } else {
-      await GallerySaver.saveVideo(
-        video.path,
-      );
-      showToast(message: '녹화가 완료되었습니다.');
-      _playAndTestController.stateCountTwo();
-    }
+    await GallerySaver.saveVideo(
+      video.path,
+    );
+    showToast(message: '녹화가 완료되었습니다.');
+    _playAndTestController.stateCountTwo();
+
     // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
     _playAndTestController.stateCountTwo();
+    audioAndVideoDBController.putAudioAndVideoRecordDB(
+        exerPath: video.path, exerType: 'video', songId: songId);
     update();
   }
 

@@ -8,8 +8,10 @@ import 'package:project_danso/widgets/widgets.dart';
 
 class SongAudioRecorder extends StatefulWidget {
   final JungganboController controller;
+  final songId;
 
-  SongAudioRecorder({Key? key, required this.controller}) : super(key: key);
+  SongAudioRecorder({Key? key, required this.controller, required this.songId})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => SongAudioRecorderState();
@@ -22,7 +24,8 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   @override
   void dispose() {
     if (audioRecordController.isRecording == true) {
-      audioRecordController.stopRecording();
+      audioRecordController.stopRecording(
+          songId: widget.songId, exerType: 'audio');
       widget.controller.allMidiStop();
       indexManager.stopIndex();
     }
@@ -83,11 +86,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     widget.controller.jandanPlay();
                     widget.controller.stepStart();
                     widget.controller.playJungGanBo(indexManager);
-                    widget.controller.audioSessionConfigure();
+                    // widget.controller.audioSessionConfigure();
                   }
                   if (!widget.controller.startStopState) {
                     widget.controller.jandanStop();
-                    audioRecordController.stopRecording();
+                    audioRecordController.stopRecording(songId: widget.songId, exerType: 'audio');
                     widget.controller.stepStop();
 
                     indexManager.stopIndex();

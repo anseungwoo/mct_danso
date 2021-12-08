@@ -306,12 +306,13 @@ class DBHelPer {
   Future<List<ExerciseModel>> readExerSoundData() async {
     final db = await database;
     var res = await db.rawQuery(
-        "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='sound'");
+        "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='audio'");
     List<ExerciseModel> list;
     if (res.isNotEmpty) {
       list = res
           .map(
             (Map<String, dynamic> value) => ExerciseModel(
+              exerId: value['exer_id'],
               songTitle: value['song_title'],
               exerPath: value['exer_path'],
               exerTime: value['exer_time'],
@@ -333,6 +334,7 @@ class DBHelPer {
       list = res
           .map(
             (Map<String, dynamic> value) => ExerciseModel(
+              exerId: value['exer_id'],
               songTitle: value['song_title'],
               exerPath: value['exer_path'],
               exerTime: value['exer_time'],

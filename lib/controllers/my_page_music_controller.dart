@@ -5,8 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/models/models.dart';
 
 class MyPageMusicController extends GetxController {
+  // static MyPageMusicController get to => Get.find();
+  String? audioRecordPath;
   bool starStopState = false;
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   bool play = false;
@@ -17,13 +21,22 @@ class MyPageMusicController extends GetxController {
   );
 
   @override
-  void onInit() async {
+  void onInit() {
+    super.onInit();
+    // playerInit();
+  }
+
+  void playerInit(var audioRecordPath) async {
+    // print(audioRecordPath);
     await assetsAudioPlayer.open(
-      Audio(backMusic),
+      Audio.file(audioRecordPath),
       autoStart: false,
     );
-    assetsAudioPlayer.setLoopMode(LoopMode.single);
-    super.onInit();
+    await assetsAudioPlayer.setLoopMode(LoopMode.single);
+  }
+
+  void playAndPause() {
+    assetsAudioPlayer.playOrPause();
   }
 
   @override

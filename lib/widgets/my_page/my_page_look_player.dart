@@ -7,6 +7,9 @@ import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 
 class VideoApp extends StatefulWidget {
+  final videoFilePath;
+  VideoApp({Key? key, required this.videoFilePath}) : super(key: key);
+
   @override
   _VideoAppState createState() => _VideoAppState();
 }
@@ -14,15 +17,20 @@ class VideoApp extends StatefulWidget {
 class _VideoAppState extends State<VideoApp> {
   late VideoPlayerController videoPlayerController;
   late Future<void> videoPlayerFuture;
-  final File file = File(
-      '/data/user/0/com.mct.projectDanso1/cache/REC2329971791378890848.mp4');
 
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.file(file);
+    videoPlayerController =
+        VideoPlayerController.file(File('${widget.videoFilePath}'));
     videoPlayerFuture = videoPlayerController.initialize();
     videoPlayerController.setLooping(true);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    videoPlayerController.dispose();
   }
 
   @override
@@ -69,11 +77,5 @@ class _VideoAppState extends State<VideoApp> {
                   ),
           ),
         ));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    videoPlayerController.dispose();
   }
 }

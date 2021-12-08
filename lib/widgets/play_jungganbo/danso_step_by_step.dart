@@ -103,7 +103,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 controller.stepStart();
                                 // controller.playJungGanBo(indexManager);
                                 controller.jandanPlay();
-                                controller.audioSessionConfigure();
+                                // controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
                                 // controller.stopCapture();

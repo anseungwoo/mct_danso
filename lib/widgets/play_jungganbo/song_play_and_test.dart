@@ -22,6 +22,7 @@ class SongPlayAndTest extends StatefulWidget {
   final String jangdan;
   final int sheetVertical;
   final int sheetHorizontal;
+  final int songId;
 
   SongPlayAndTest(
       {Key? key,
@@ -29,7 +30,8 @@ class SongPlayAndTest extends StatefulWidget {
       required this.jangdan,
       required this.sheetData,
       required this.sheetVertical,
-      required this.sheetHorizontal})
+      required this.sheetHorizontal,
+      required this.songId})
       : super(key: key);
 
   // final songData = Get.arguments;
@@ -46,7 +48,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       Get.put(PlayAndTestController());
   FlutterMidi flutterMidi = FlutterMidi();
   IndexManager indexManager = IndexManager();
-  late AudioSession audioSessions;
+  // late AudioSession audioSessions;
 
   @override
   void dispose() {
@@ -72,26 +74,26 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     hideOpenDialog();
   }
 
-  audioSessionConfigure() =>
-      AudioSession.instance.then((audioSession) async => await audioSession
-          .configure(const AudioSessionConfiguration(
-            avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
-            avAudioSessionCategoryOptions:
-                AVAudioSessionCategoryOptions.defaultToSpeaker,
-            avAudioSessionMode: AVAudioSessionMode.videoRecording,
-            avAudioSessionRouteSharingPolicy:
-                AVAudioSessionRouteSharingPolicy.defaultPolicy,
-            avAudioSessionSetActiveOptions:
-                AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
-            // androidAudioAttributes: AndroidAudioAttributes(
-            //   contentType: AndroidAudioContentType.music,
-            //   flags: AndroidAudioFlags.none,
-            //   usage: AndroidAudioUsage.media,
-            // ),
-            // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
-            // androidWillPauseWhenDucked: true,
-          ))
-          .then((_) => audioSessions = audioSession));
+  // audioSessionConfigure() =>
+  //     AudioSession.instance.then((audioSession) async => await audioSession
+  //         .configure(const AudioSessionConfiguration(
+  //           avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+  //           avAudioSessionCategoryOptions:
+  //               AVAudioSessionCategoryOptions.defaultToSpeaker,
+  //           avAudioSessionMode: AVAudioSessionMode.videoRecording,
+  //           avAudioSessionRouteSharingPolicy:
+  //               AVAudioSessionRouteSharingPolicy.defaultPolicy,
+  //           avAudioSessionSetActiveOptions:
+  //               AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
+  //           // androidAudioAttributes: AndroidAudioAttributes(
+  //           //   contentType: AndroidAudioContentType.music,
+  //           //   flags: AndroidAudioFlags.none,
+  //           //   usage: AndroidAudioUsage.media,
+  //           // ),
+  //           // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
+  //           // androidWillPauseWhenDucked: true,
+  //         ))
+  //         .then((_) => audioSessions = audioSession));
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +169,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   //배속
                                   songSwapButton(
                                       text: Text(
-                                          "${jungcontroller.speed[jungcontroller.speedCount]} 배속",
+                                          '${jungcontroller.speed[jungcontroller.speedCount]} 배속',
                                           style: TextStyle(
                                               fontSize: textSmallSize.sp)),
                                       onPressed: () {
@@ -227,7 +229,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             width: 13.w,
                                             height: 13.h,
                                           ),
-                                          Text("녹음",
+                                          Text('녹음',
                                               style: TextStyle(
                                                   fontSize: textSmallSize.sp)),
                                         ],
@@ -334,9 +336,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               SongCamaraRecoding(
                                 controller: jungcontroller,
                                 jandan: widget.jangdan,
+                                songId: widget.songId,
                               ),
                             if (controller.statecount == 6)
-                              SongAudioRecorder(controller: jungcontroller)
+                              SongAudioRecorder(controller: jungcontroller, songId: widget.songId)
                           ],
                         ),
                       ),

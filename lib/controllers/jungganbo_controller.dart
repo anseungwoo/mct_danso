@@ -37,8 +37,9 @@ class JungganboController extends GetxController {
   List<double> pitchValueList = [];
   late int mill;
   JungGanBo? jungGanBo;
-  late AudioSession audioSessions;
   bool isPitchDetector = false;
+  // late AudioSession audioSessions;
+
   late int sheetVertical;
 
   IndexManager indexManagers = IndexManager();
@@ -141,27 +142,26 @@ class JungganboController extends GetxController {
 
     print('isplaying : $startStopState');
   }
-
-  audioSessionConfigure() =>
-      AudioSession.instance.then((audioSession) async => await audioSession
-          .configure(const AudioSessionConfiguration(
-            avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
-            avAudioSessionCategoryOptions:
-                AVAudioSessionCategoryOptions.defaultToSpeaker,
-            avAudioSessionMode: AVAudioSessionMode.videoRecording,
-            avAudioSessionRouteSharingPolicy:
-                AVAudioSessionRouteSharingPolicy.defaultPolicy,
-            avAudioSessionSetActiveOptions:
-                AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
-            // androidAudioAttributes: AndroidAudioAttributes(
-            //   contentType: AndroidAudioContentType.music,
-            //   flags: AndroidAudioFlags.none,
-            //   usage: AndroidAudioUsage.media,
-            // ),
-            // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
-            // androidWillPauseWhenDucked: true,
-          ))
-          .then((_) => audioSessions = audioSession));
+  // audioSessionConfigure() =>
+  //     AudioSession.instance.then((audioSession) async => await audioSession
+  //         .configure(const AudioSessionConfiguration(
+  //           avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+  //           avAudioSessionCategoryOptions:
+  //               AVAudioSessionCategoryOptions.defaultToSpeaker,
+  //           avAudioSessionMode: AVAudioSessionMode.videoRecording,
+  //           avAudioSessionRouteSharingPolicy:
+  //               AVAudioSessionRouteSharingPolicy.defaultPolicy,
+  //           avAudioSessionSetActiveOptions:
+  //               AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
+  //           // androidAudioAttributes: AndroidAudioAttributes(
+  //           //   contentType: AndroidAudioContentType.music,
+  //           //   flags: AndroidAudioFlags.none,
+  //           //   usage: AndroidAudioUsage.media,
+  //           // ),
+  //           // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
+  //           // androidWillPauseWhenDucked: true,
+  //         ))
+  //         .then((_) => audioSessions = audioSession));
 
   void isPitchState() {
     isPitchDetector = !isPitchDetector;
