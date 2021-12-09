@@ -119,88 +119,95 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        height: 70.h,
-        child: GetBuilder<MyPageMusicController>(
-            init: myPageMusicController,
-            builder: (controller) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    controller.assetsAudioPlayer.builderCurrent(
-                        builder: (context, Playing? playing) {
-                      return Row(
+          height: 70.h,
+          child: myPageMusicController.isFile
+              ? GetBuilder<MyPageMusicController>(
+                  init: myPageMusicController,
+                  builder: (controller) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
-                          controller.assetsAudioPlayer.builderLoopMode(
-                            builder: (context, loopMode) {
-                              return PlayerBuilder.isPlaying(
-                                  player: controller.assetsAudioPlayer,
-                                  builder: (context, isPlaying) {
-                                    return NeumorphicButton(
-                                      style: NeumorphicStyle(
-                                        boxShape: NeumorphicBoxShape.circle(),
-                                      ),
-                                      onPressed: () {
-                                        // controller.audioRecordPath =
-                                        //     widget.recordItem.exerPath;
-                                        // print(widget.recordItem.exerPath);
-
-                                        controller.assetsAudioPlayer
-                                            .playOrPause();
-                                      },
-                                      child: isPlaying
-                                          ? SvgPicture.asset(PLAY_STOP_SVG)
-                                          : SvgPicture.asset(
-                                              PLAY_SVG,
-                                              color: textBlack,
+                          controller.assetsAudioPlayer.builderCurrent(
+                              builder: (context, Playing? playing) {
+                            return Row(
+                              children: <Widget>[
+                                controller.assetsAudioPlayer.builderLoopMode(
+                                  builder: (context, loopMode) {
+                                    return PlayerBuilder.isPlaying(
+                                        player: controller.assetsAudioPlayer,
+                                        builder: (context, isPlaying) {
+                                          return NeumorphicButton(
+                                            style: NeumorphicStyle(
+                                              boxShape:
+                                                  NeumorphicBoxShape.circle(),
                                             ),
-                                    );
-                                  });
-                            },
-                          ),
-                          controller.assetsAudioPlayer
-                              .builderRealtimePlayingInfos(builder:
-                                  (context, RealtimePlayingInfos? infos) {
-                            return PositionSeekWidget(
-                              currentPosition: infos!.currentPosition,
-                              duration: infos.duration,
-                              seekTo: (to) {
-                                controller.assetsAudioPlayer.seek(to);
-                              },
+                                            onPressed: () {
+                                              // controller.audioRecordPath =
+                                              //     widget.recordItem.exerPath;
+                                              // print(widget.recordItem.exerPath);
+
+                                              controller.assetsAudioPlayer
+                                                  .playOrPause();
+                                            },
+                                            child: isPlaying
+                                                ? SvgPicture.asset(
+                                                    PLAY_STOP_SVG)
+                                                : SvgPicture.asset(
+                                                    PLAY_SVG,
+                                                    color: textBlack,
+                                                  ),
+                                          );
+                                        });
+                                  },
+                                ),
+                                controller.assetsAudioPlayer
+                                    .builderRealtimePlayingInfos(builder:
+                                        (context, RealtimePlayingInfos? infos) {
+                                  return PositionSeekWidget(
+                                    currentPosition: infos!.currentPosition,
+                                    duration: infos.duration,
+                                    seekTo: (to) {
+                                      controller.assetsAudioPlayer.seek(to);
+                                    },
+                                  );
+                                }),
+                              ],
                             );
                           }),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     NeumorphicButton(
+                          //       onPressed: () {
+                          //         controller.assetsAudioPlayer
+                          //             .seekBy(Duration(seconds: -10));
+                          //       },
+                          //       child: Text('-10'),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 12,
+                          //     ),
+                          //     NeumorphicButton(
+                          //       onPressed: () {
+                          //         controller.assetsAudioPlayer
+                          //             .seekBy(Duration(seconds: 10));
+                          //       },
+                          //       child: Text('+10'),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
-                      );
-                    }),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     NeumorphicButton(
-                    //       onPressed: () {
-                    //         controller.assetsAudioPlayer
-                    //             .seekBy(Duration(seconds: -10));
-                    //       },
-                    //       child: Text('-10'),
-                    //     ),
-                    //     SizedBox(
-                    //       width: 12,
-                    //     ),
-                    //     NeumorphicButton(
-                    //       onPressed: () {
-                    //         controller.assetsAudioPlayer
-                    //             .seekBy(Duration(seconds: 10));
-                    //       },
-                    //       child: Text('+10'),
-                    //     ),
-                    //   ],
-                    // ),
-                  ],
-                ),
-              );
-            }),
-      ),
+                      ),
+                    );
+                  })
+              : Center(
+                  child: Text(
+                  "저장 된 파일이 없거나 파일 이름이 바뀌었습니다.",
+                  style: TextStyle(fontSize: 12.sp, fontFamily: NOTO_REGULAR),
+                ))),
     );
   }
 }

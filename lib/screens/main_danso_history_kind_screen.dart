@@ -18,23 +18,9 @@ class _MainDansoHistoryKindScreenState
     extends State<MainDansoHistoryKindScreen> {
   var controller = Get.find<MainScreenController>();
 
-  Widget testContainer(String explanation) {
-    return Container(
-      color: Colors.grey,
-      height: 150.h,
-      width: 331.w,
-      child: Center(
-          child: Text(
-        explanation,
-        style: TextStyle(fontSize: 15.sp),
-      )),
-    );
-  }
-
   @override
   void dispose() {
     super.dispose();
-
     if (controller.musicState) {
       controller.assetsAudioPlayer.play();
     }
@@ -59,14 +45,11 @@ class _MainDansoHistoryKindScreenState
           children: [
             // 탭바 화면
             //첫번째 화면
-
             DansoHistroyKind(
                 subject: HISTORY_TITLE,
                 explanation: HISTORY,
                 url: DANSO_HISTORY_URL),
-
             // 두번째 화면
-
             DansoHistroyKind(
                 subject: DANSO_KIND_TITLE,
                 explanation: DANSO_KIND,
