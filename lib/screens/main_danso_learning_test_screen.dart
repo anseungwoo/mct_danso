@@ -34,7 +34,7 @@ class _MainDansoLearningTestScreenState
   @override
   void initState() {
     super.initState();
-
+    dansoSoundLearningController.disposeFunction();
     if (controller.musicState) {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
@@ -234,25 +234,17 @@ class _MainDansoLearningTestScreenState
           SizedBox(
             width: 7.sp,
           ),
-          InkWell(
-              onTap: () {
-                Get.to(ResultScore());
-              },
-              child: Text(
-                '왼손',
-                style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR),
-              )),
+          Text(
+            '왼손',
+            style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR),
+          ),
           SizedBox(
             width: 7.sp,
           ),
           CircleAvatar(radius: 14.r, backgroundColor: leftColor),
           SizedBox(width: 7.sp),
-          InkWell(
-              onTap: () {
-                // Get.to(Music());
-              },
-              child: Text('오른손',
-                  style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR))),
+          Text('오른손',
+              style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
         ],
       ),
     );

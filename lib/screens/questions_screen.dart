@@ -34,10 +34,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         appBar: tabbarAndAppBar(
             title: 'Q&A와 팁',
             tabbar: defaultTabBar(tabList: [
-
               TabText('Q&A'),
               TabText('팁'),
-
             ])),
         body: TabBarView(
           children: [
@@ -82,7 +80,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
                                           color: white,
-                                          fontSize: textSixSize.sp,
+                                          fontSize: textFiveSize.sp,
                                           fontFamily: NOTO_MEDIUM),
                                     ),
                                   ],

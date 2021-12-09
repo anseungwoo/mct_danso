@@ -77,7 +77,7 @@ class _TimerWidgetState extends State<TimerWidget> {
           ),
           Text(
             '태(汰)를 부를 준비하세요....',
-            style: TextStyle(fontSize: 20.sp),
+            style: TextStyle(fontSize: 19.sp),
           ),
         ],
       ),

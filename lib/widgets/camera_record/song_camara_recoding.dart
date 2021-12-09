@@ -40,6 +40,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
       cameraRecordcontroller.onStop(songId: widget.songId);
       widget.controller.allMidiStop();
       indexManager.stopIndex();
+      widget.controller.jandanStop();
     }
 
     if (cameraRecordcontroller.isRecording == false) {
@@ -101,7 +102,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     widget.controller.jandanPlay();
                     caController.onRecord();
                     widget.controller.stepStart();
-                    widget.controller.playJungGanBo(indexManager);
+                    // widget.controller.playJungGanBo(indexManager);
 
                     //widget.controller.audioSessionConfigure();
                   }
@@ -109,7 +110,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     widget.controller.jandanStop();
                     caController.onStop(songId: widget.songId);
                     caController.getBack();
-
                     widget.controller.stepStop();
                     indexManager.stopIndex();
                   }

@@ -5,6 +5,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class VideoApp extends StatefulWidget {
   final videoFilePath;
@@ -44,7 +45,10 @@ class _VideoAppState extends State<VideoApp> {
             if (snapshot.connectionState == ConnectionState.done) {
               return AspectRatio(
                 aspectRatio: videoPlayerController.value.aspectRatio,
-                child: VideoPlayer(videoPlayerController),
+                child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.rotationY(math.pi),
+                    child: VideoPlayer(videoPlayerController)),
               );
             } else {
               return Center(child: CircularProgressIndicator());

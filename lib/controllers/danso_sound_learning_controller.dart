@@ -79,6 +79,9 @@ class DansoSoundLearningController extends GetxController {
     soundTuningState = false;
     listenTuningState = false;
     playTuningState = false;
+    tuningButtonText = '기준음 잡기';
+    buttonListen = '예시듣기';
+    buttonPlay = '불어보기';
     if (isRecording) {
       stopCapture();
     }
