@@ -105,7 +105,7 @@ class _MainScreenState extends State<MainScreen> {
                         page: LearningSongListScreen()),
                     _homeMenuButton(
                         assetName: QandA_SVG,
-                        title: 'Q&A',
+                        title: 'Q&A와 팁',
                         contant: QUESTIONS,
                         svgHeight: 60,
                         svgWidth: 60,

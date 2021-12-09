@@ -56,8 +56,11 @@ class CameraRecordController extends GetxController {
     );
     showToast(message: '녹화가 완료되었습니다.');
     _playAndTestController.stateCountTwo();
+    if (Platform.isAndroid) {
+      File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
+    }
+    print(video.path);
 
-    // File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
     _playAndTestController.stateCountTwo();
     audioAndVideoDBController.putAudioAndVideoRecordDB(
         exerPath: video.path, exerType: 'video', songId: songId);
@@ -71,6 +74,7 @@ class CameraRecordController extends GetxController {
 
   Future<void> onRecord() async {
     await controller.startVideoRecording();
+
     showToast(message: '녹화를 시작합니다.');
 
     update();

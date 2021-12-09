@@ -8,13 +8,12 @@ Widget learningDialog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
-      height: 230.h,
+      padding: EdgeInsets.only(bottom: basicPadding, top: basicPadding),
+      // height: 230.h,
       width: 330.w,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: 20.h,
-          ),
           Center(
             child: Text(
               '운지법 익히기',

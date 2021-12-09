@@ -13,7 +13,7 @@ Widget icon(
     },
     child: Container(
       width: 140.w,
-      height: 140.h,
+      height: 140.w,
       decoration: BoxDecoration(
         color: logoColor,
         borderRadius: BorderRadius.circular(10), //모서리를 둥글게as

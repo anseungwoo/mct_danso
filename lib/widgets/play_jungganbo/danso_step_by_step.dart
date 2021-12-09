@@ -53,7 +53,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   @override
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
-    jungganboController.janDan = widget.jangdan;
+    jungganboController.jangDan = widget.jangdan;
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
@@ -101,15 +101,15 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 );
                                 // controller.startCapture();
                                 controller.stepStart();
-                                // controller.playJungGanBo(indexManager);
-                                controller.jandanPlay();
+                                controller.playJungGanBo(indexManager);
+                                // controller.jandanPlay();
                                 // controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
                                 // controller.stopCapture();
                                 controller.stepStop();
                                 indexManager.stopIndex();
-                                controller.jandanStop();
+                                // controller.jandanStop();
                               }
                             }),
 

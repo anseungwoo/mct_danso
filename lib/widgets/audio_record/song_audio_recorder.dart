@@ -28,6 +28,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
           songId: widget.songId, exerType: 'audio');
       widget.controller.allMidiStop();
       indexManager.stopIndex();
+      widget.controller.jandanStop();
     }
 
     if (audioRecordController.isRecording == false) {
@@ -85,7 +86,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     audioRecordController.startRecording();
                     widget.controller.jandanPlay();
                     widget.controller.stepStart();
-                    widget.controller.playJungGanBo(indexManager);
+                    // widget.controller.playJungGanBo(indexManager);
                     // widget.controller.audioSessionConfigure();
                   }
                   if (!widget.controller.startStopState) {

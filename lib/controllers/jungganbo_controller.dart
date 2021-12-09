@@ -28,7 +28,7 @@ class JungganboController extends GetxController {
   int pagenext = 1;
   int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
-  String janDan = "";
+  String jangDan = "";
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
@@ -96,7 +96,7 @@ class JungganboController extends GetxController {
   }
 
   void setSpeed() {
-    switch (janDan) {
+    switch (jangDan) {
       case "중중모리장단":
         assetsAudioPlayer.setPlaySpeed(1.265);
         break;

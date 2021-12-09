@@ -56,7 +56,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       if (jungganboController.isPitchDetector) {
         jungganboController.stopCapture();
       }
-      // jungganboController.jandanStop();
+      jungganboController.jandanStop();
     }
     jungganboController.dispose();
     jungganboController.stepStop();
@@ -104,7 +104,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   @override
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
-    jungganboController.janDan = widget.jangdan;
+    jungganboController.jangDan = widget.jangdan;
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     return Scaffold(
@@ -147,7 +147,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             child: GameTimerWidget()),
                                         barrierDismissible: false,
                                       );
-                                      // jungcontroller.jandanPlay();
+                                      jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
                                       jungcontroller.startCapture();
                                       jungcontroller.isPitchState();
@@ -204,7 +204,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   jungcontroller.stopCapture();
                                   controller.previousButton();
                                   jungcontroller.isPitchState();
-                                  // jungcontroller.jandanStop();
+                                  jungcontroller.jandanStop();
                                   print(controller.statecount);
                                 },
                               ),
@@ -230,9 +230,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           SvgPicture.asset(
-                                            TRANSCRIPTION_SVG,
-                                            width: 13.w,
-                                            height: 13.h,
+                                            RECORD_SVG,
+                                            width: 20.w,
+                                            height: 20.h,
                                           ),
                                           Text('녹음',
                                               style: TextStyle(
@@ -251,9 +251,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           SvgPicture.asset(
-                                            RECORD_SVG,
-                                            width: 20.w,
-                                            height: 20.h,
+                                            TRANSCRIPTION_SVG,
+                                            width: 13.w,
+                                            height: 13.h,
                                           ),
                                           Text('녹화',
                                               style: TextStyle(
@@ -286,8 +286,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         barrierDismissible: false,
                                       );
                                       //  jungcontroller.startCapture();
-                                      // jungcontroller.jandanPlay();
-
+                                      jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
                                       jungcontroller
                                           .playJungGanBo(indexManager);
@@ -317,7 +316,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStop();
                                       indexManager.stopIndex();
-                                      // jungcontroller.jandanStop();
+                                      jungcontroller.jandanStop();
 
                                       // jungcontroller.stopCapture();
 
