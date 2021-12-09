@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +24,10 @@ class _VideoAppState extends State<VideoApp> {
   @override
   void initState() {
     super.initState();
-    videoPlayerController =
-        VideoPlayerController.file(File('${widget.videoFilePath}'));
+    File(widget.videoFilePath).existsSync()
+        ? videoPlayerController =
+            VideoPlayerController.file(File('${widget.videoFilePath}'))
+        : Container();
     videoPlayerFuture = videoPlayerController.initialize();
     videoPlayerController.setLooping(true);
   }

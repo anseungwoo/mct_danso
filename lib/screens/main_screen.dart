@@ -61,17 +61,7 @@ class _MainScreenState extends State<MainScreen> {
                             controller.playOrPause();
                             controller.ChangeMuteButtonState();
                           }),
-                          Obx(
-                            () => Positioned(
-                              top: 40.h,
-                              right: 10.w,
-                              child: SvgPicture.asset(
-                                tearController.emblemAsset.value,
-                                width: 30.w,
-                                height: 30.w,
-                              ),
-                            ),
-                          ),
+                          tearImage(),
                           headerChangeButton(controller),
                           myPageButton(),
                         ],
@@ -114,6 +104,20 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               );
             }),
+      ),
+    );
+  }
+
+  Obx tearImage() {
+    return Obx(
+      () => Positioned(
+        top: 40.h,
+        right: 10.w,
+        child: SvgPicture.asset(
+          tearController.emblemAsset.value,
+          width: 30.w,
+          height: 30.w,
+        ),
       ),
     );
   }
@@ -289,23 +293,5 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ));
-  }
-}
-
-class MyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height - 40);
-    path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 35.h);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
   }
 }

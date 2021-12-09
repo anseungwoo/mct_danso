@@ -117,36 +117,6 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
                       ),
                     ),
                   ),
-                  // TextButton(
-                  //     onPressed: () {
-                  //       Get.back();
-                  //     },
-                  //     child: Text(
-                  //       '취소',
-                  //       style: TextStyle(
-                  //           color: textBlack, fontFamily: NOTO_REGULAR),
-                  //     )),
-                  // TextButton(
-                  //     onPressed: () async {
-                  //       Get.back();
-                  //       await Get.dialog(
-                  //         Dialog(child: TimerWidget()),
-                  //         barrierDismissible: false,
-                  //       );
-                  //       controller.startAdjust();
-                  //       await Get.dialog(
-                  //         Dialog(
-                  //           child: LoadingIndicator(),
-                  //         ),
-                  //         barrierDismissible: false,
-                  //       );
-                  //       controller.stopAdjust();
-                  //     },
-                  //     child: Text(
-                  //       '확인',
-                  //       style: TextStyle(
-                  //           color: textBlack, fontFamily: NOTO_REGULAR),
-                  //     )),
                 ],
               )
             ],
