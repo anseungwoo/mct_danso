@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/controllers/audio_and_video_record_controller.dart';
+import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/play_and_test_controller.dart';
 import 'package:project_danso/main.dart';
 import 'package:project_danso/widgets/widgets.dart';
