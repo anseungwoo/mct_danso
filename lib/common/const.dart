@@ -91,9 +91,9 @@ const Color buttonColorOrang = Color(0xffF19929);
 const Color unButtonColorOrang = Color(0xffFEC782);
 const Color matchColor = Color(0xff00A8F2);
 const Color unMatchColor = Color(0xffFE0000);
-const Color leftColor = Color(0xffE6C387);
+const Color leftColor = Color(0xffFFA200);
 const Color unSelectColor = Color(0xffFBCF98);
-const Color rightColor = Color(0xff54452A);
+const Color rightColor = Color(0xff00CDD5);
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
 const String HISTORY =
