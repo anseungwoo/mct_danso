@@ -205,7 +205,7 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
                   })
               : Center(
                   child: Text(
-                  "저장 된 파일이 없거나 파일 이름이 바뀌었습니다.",
+                  '저장 된 파일이 없거나 파일 이름이 바뀌었습니다.',
                   style: TextStyle(fontSize: 12.sp, fontFamily: NOTO_REGULAR),
                 ))),
     );

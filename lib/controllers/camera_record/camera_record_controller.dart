@@ -5,7 +5,6 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:project_danso/controllers/audio_and_video_record_controller.dart';
 
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 
@@ -54,12 +53,11 @@ class CameraRecordController extends GetxController {
 
   Future<void> onStop({var songId}) async {
     final video = await controller.stopVideoRecording();
+    final Directory appDirectory = await getApplicationDocumentsDirectory();
 
     print(video);
     print(video.path);
-    await GallerySaver.saveVideo(
-      video.path,
-    );
+    // await GallerySaver.saveVideo(video.path, albumName: '단소');
 
     showToast(message: '녹화가 완료되었습니다.');
 
