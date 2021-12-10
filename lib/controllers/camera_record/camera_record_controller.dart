@@ -15,7 +15,6 @@ class CameraRecordController extends GetxController {
   late Future<void> initializeControllerFuture;
   bool isRecording = false;
   String recordingText = '녹화시작';
-
   final _playAndTestController = Get.put(PlayAndTestController());
   final audioAndVideoDBController = Get.put(AudioAndVideoDBController());
 
@@ -49,6 +48,15 @@ class CameraRecordController extends GetxController {
   }
 
   Future<void> onStop({var songId}) async {
+    Directory appDocDirectory;
+    if (Platform.isIOS) {
+      appDocDirectory = await getApplicationDocumentsDirectory();
+    } else {
+      appDocDirectory = (await getExternalStorageDirectory())!;
+    }
+
+    XFile name = XFile(
+        '${appDocDirectory.path + '/' + 'Video' + DateTime.now().millisecondsSinceEpoch.toString()}');
     final video = await controller.stopVideoRecording();
 
     print(video);
@@ -75,15 +83,6 @@ class CameraRecordController extends GetxController {
   }
 
   Future<void> onRecord() async {
-    Directory appDocDirectory;
-    if (Platform.isIOS) {
-      appDocDirectory = await getApplicationDocumentsDirectory();
-    } else {
-      appDocDirectory = (await getExternalStorageDirectory())!;
-    }
-
-    XFile name = XFile(
-        '${appDocDirectory.path + '/' + 'Video' + DateTime.now().millisecondsSinceEpoch.toString()}');
     await controller.startVideoRecording();
 
     showToast(message: '녹화를 시작합니다.');

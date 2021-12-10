@@ -19,7 +19,7 @@ class SheetTestScreen extends StatefulWidget {
 
 class _SheetTestScreenState extends State<SheetTestScreen> {
   final SheetController sheetController = Get.put(SheetController());
-
+  String a = '';
   @override
   void initState() {
     super.initState();
