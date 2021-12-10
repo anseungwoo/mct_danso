@@ -24,9 +24,17 @@ class _VideoAppState extends State<VideoApp> {
   // late Future<void> videoPlayerFuture;
   // var isFile = true;
 
+  var cameraRecordViewController = Get.put(CameraRecordViewController());
+
   @override
   void initState() {
     super.initState();
+    print(widget.videoFilePath);
+    cameraRecordViewController
+        .asyncMethod(path: widget.videoFilePath)
+        .then((_) {
+      setState(() {});
+    });
     // asyncMethod();
     // File(widget.videoFilePath).existsSync()
     //     ? videoPlayerController =
@@ -34,6 +42,8 @@ class _VideoAppState extends State<VideoApp> {
     //     : Container();
     // videoPlayerFuture = videoPlayerController.initialize();
     // videoPlayerController.setLooping(true);
+    // var dir = (await getApplicationDocumentsDirectory()).path;
+    // var dir = (await getExternalStorageDirectory()).path;
   }
 
   // void asyncMethod() async {
@@ -70,12 +80,11 @@ class _VideoAppState extends State<VideoApp> {
   void dispose() {
     super.dispose();
     // videoPlayerController.dispose();
+    cameraRecordViewController.videoPlayerController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var cameraRecordViewController =
-        Get.put(CameraRecordViewController(path: widget.videoFilePath));
     return Scaffold(
         appBar:
             tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
@@ -85,12 +94,12 @@ class _VideoAppState extends State<VideoApp> {
             if (snapshot.connectionState == ConnectionState.done) {
               return AspectRatio(
                 aspectRatio: cameraRecordViewController
-                    .videoPlayerController!.value.aspectRatio,
+                    .videoPlayerController.value.aspectRatio,
                 child: Transform(
                     alignment: Alignment.center,
                     transform: Matrix4.rotationY(math.pi),
                     child: VideoPlayer(
-                        cameraRecordViewController.videoPlayerController!)),
+                        cameraRecordViewController.videoPlayerController)),
               );
             } else {
               return Center(child: CircularProgressIndicator());
@@ -104,25 +113,24 @@ class _VideoAppState extends State<VideoApp> {
             backgroundColor: buttonColorOrang,
             onPressed: () {
               setState(() {
-                cameraRecordViewController
-                        .videoPlayerController!.value.isPlaying
-                    ? cameraRecordViewController.videoPlayerController!.pause()
-                    : cameraRecordViewController.videoPlayerController!.play();
+                cameraRecordViewController.videoPlayerController.value.isPlaying
+                    ? cameraRecordViewController.videoPlayerController.pause()
+                    : cameraRecordViewController.videoPlayerController.play();
               });
             },
-            child: cameraRecordViewController
-                    .videoPlayerController!.value.isPlaying
-                ? SvgPicture.asset(
-                    PLAY_STOP_SVG,
-                    width: 20.w,
-                    height: 20.h,
-                    color: white,
-                  )
-                : SvgPicture.asset(
-                    PLAY_SVG,
-                    width: 20.w,
-                    height: 20.h,
-                  ),
+            child:
+                cameraRecordViewController.videoPlayerController.value.isPlaying
+                    ? SvgPicture.asset(
+                        PLAY_STOP_SVG,
+                        width: 20.w,
+                        height: 20.h,
+                        color: white,
+                      )
+                    : SvgPicture.asset(
+                        PLAY_SVG,
+                        width: 20.w,
+                        height: 20.h,
+                      ),
           ),
         ));
   }

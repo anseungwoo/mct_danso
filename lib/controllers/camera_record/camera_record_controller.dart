@@ -57,7 +57,9 @@ class CameraRecordController extends GetxController {
 
     print(video);
     print(video.path);
-    // await GallerySaver.saveVideo(video.path, albumName: '단소');
+    if (Platform.isAndroid) {
+      await GallerySaver.saveVideo(video.path, albumName: '단소');
+    }
 
     showToast(message: '녹화가 완료되었습니다.');
 
