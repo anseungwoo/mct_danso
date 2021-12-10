@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
@@ -30,13 +31,26 @@ class MyPageMusicController extends GetxController {
   }
 
   void playerInit(var audioRecordPath) async {
+    var dir = (await getApplicationDocumentsDirectory()).path;
+
     print(audioRecordPath);
-    File(audioRecordPath).existsSync()
-        ? await assetsAudioPlayer.open(
-            Audio.file(audioRecordPath),
-            autoStart: false,
-          )
-        : isFile = false;
+    if (Platform.isAndroid) {
+      File(audioRecordPath).existsSync()
+          ? await assetsAudioPlayer.open(
+              Audio.file(audioRecordPath),
+              autoStart: false,
+            )
+          : isFile = false;
+    } else if (Platform.isIOS) {
+      if (await File('$dir/$audioRecordPath').exists()) {
+        await assetsAudioPlayer.open(
+          Audio.file('$dir/$audioRecordPath'),
+          autoStart: false,
+        );
+      } else {
+        isFile = false;
+      }
+    }
 
     await assetsAudioPlayer.setLoopMode(LoopMode.single);
   }

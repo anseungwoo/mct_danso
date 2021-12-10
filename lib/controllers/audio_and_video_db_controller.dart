@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
 
@@ -7,10 +10,12 @@ class AudioAndVideoDBController extends GetxController {
       {required songId, required exerType, required exerPath}) {
     // song_id, exer_type, exer_path, exer_time
     var date = DateTime.now().toString();
+    String? fileName = basename(exerPath);
+
     DBHelPer().insertExerData(ExerciseModel(
       songId: songId,
       exerType: exerType,
-      exerPath: exerPath,
+      exerPath: Platform.isIOS ? fileName : exerPath,
       exerTime: date,
     ));
     print('저장된 songId : $songId');

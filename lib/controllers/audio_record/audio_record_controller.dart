@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -15,12 +16,11 @@ class AudioRecordController extends GetxController {
   final audioAndVideoRecordController = Get.put(AudioAndVideoDBController());
 
   late FlutterAudioRecorder2 recorder;
-  late Recording _recording;
+  late Recording? _recording;
   late Timer time;
   Widget buttonText = Text('녹음시작');
   late String alert;
   late String delPath;
-  late String day;
   bool isRecording = false;
 
   @override
@@ -46,19 +46,20 @@ class AudioRecordController extends GetxController {
 
   Future _init() async {
     var customPath = '/flutter_audio_recorder_';
-    Directory appDocDirectory;
+    Directory? appDocDirectory;
     if (Platform.isIOS) {
       appDocDirectory = await getApplicationDocumentsDirectory();
-    } else {
+    } else if (Platform.isAndroid) {
       appDocDirectory = (await getExternalStorageDirectory())!;
     }
 
     // can add extension like '.mp4' '.wav' '.m4a' '.aac'
-    delPath = appDocDirectory.path + customPath;
+    delPath = appDocDirectory!.path + customPath;
     customPath = appDocDirectory.path +
         customPath +
         DateTime.now().millisecondsSinceEpoch.toString();
-    day = DateTime.now().millisecondsSinceEpoch.toString();
+    // var iosPath = basename(customPath);
+    // print('파일 이름 : $iosPath');
 
     // .wav <---> AudioFormat.WAV
     // .mp4 .m4a .aac <---> AudioFormat.AAC
@@ -106,9 +107,8 @@ class AudioRecordController extends GetxController {
     var result = await recorder.stop();
     showToast(message: '녹음이 완료되었습니다.');
     time.cancel();
-    print(_recording.path);
     audioAndVideoRecordController.putAudioAndVideoRecordDB(
-        songId: songId, exerPath: _recording.path, exerType: exerType);
+        songId: songId, exerPath: _recording!.path, exerType: exerType);
     _recording = result!;
     _playAndTestController.stateCountTwo();
     update();
