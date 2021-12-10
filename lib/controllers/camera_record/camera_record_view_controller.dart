@@ -5,9 +5,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 
 class CameraRecordViewController extends GetxController {
-  late VideoPlayerController videoPlayerController;
+  VideoPlayerController? videoPlayerController;
   Future<void>? videoPlayerFuture;
   var isFile;
+  var isPlaying = false.obs;
   // final path;
 
   // CameraRecordViewController({required this.path});
@@ -23,8 +24,8 @@ class CameraRecordViewController extends GetxController {
       if (File(path).existsSync()) {
         videoPlayerController = VideoPlayerController.file(File('${path}'));
 
-        videoPlayerFuture = videoPlayerController.initialize();
-        videoPlayerController.setLooping(true);
+        await videoPlayerController!.initialize();
+        // await videoPlayerController!.setLooping(true);
       } else {
         isFile = false;
       }
@@ -35,11 +36,23 @@ class CameraRecordViewController extends GetxController {
         videoPlayerController =
             VideoPlayerController.file(File('$dir/camera/videos/${path}'));
 
-        videoPlayerFuture = videoPlayerController.initialize();
-        videoPlayerController.setLooping(true);
+        await videoPlayerController!.initialize();
+        // await videoPlayerController!.setLooping(true);
       } else {
         isFile = false;
       }
     }
   }
+
+  // void playVideo() {
+  //   videoPlayerController!.play();
+  //   isPlaying.value = true;
+  //   update();
+  // }
+
+  // void pauseVideo() {
+  //   videoPlayerController!.pause();
+  //   isPlaying.value = false;
+  //   update();
+  // }
 }
