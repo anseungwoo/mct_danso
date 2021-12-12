@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
@@ -35,9 +38,12 @@ class MyPageLook extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(bottom: basicPadding),
                 child: InkWell(
-                  onTap: () {
-                    Get.to(VideoApp(
-                      videoFilePath: item.exerPath,
+                  onTap: () async {
+                    var dir = (await getApplicationDocumentsDirectory()).path;
+                    await Get.to(VideoApp(
+                      videoFilePath: Platform.isIOS
+                          ? '$dir/camera/videos/${item.exerPath}'
+                          : item.exerPath,
                     ));
                   },
                   child: Container(

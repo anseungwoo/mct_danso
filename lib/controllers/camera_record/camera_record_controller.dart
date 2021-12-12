@@ -50,27 +50,39 @@ class CameraRecordController extends GetxController {
 
   Future<void> onStop({var songId}) async {
     final video = await controller.stopVideoRecording();
-    final Directory appDirectory = await getApplicationDocumentsDirectory();
+
     XFile androidVideoPath;
     if (Platform.isAndroid) {
       await GallerySaver.saveVideo(video.path);
-      print(video);
-      print(video.path);
       String videoPath = basename(video.path);
-      print(videoPath);
-      String dir = '/storange/emulated/0/Movies/';
-      print(dir + videoPath);
+      String dir = '/storage/emulated/0/Movies/';
       String dirVideo = dir + videoPath;
       androidVideoPath = XFile('$dirVideo');
-      showToast(message: '녹화가 완료되었습니다.');
-
       _playAndTestController.stateCountTwo();
       audioAndVideoDBController.putAudioAndVideoRecordDB(
           exerPath: androidVideoPath.path, exerType: 'video', songId: songId);
+    } else if (Platform.isIOS) {
+      _playAndTestController.stateCountTwo();
+      audioAndVideoDBController.putAudioAndVideoRecordDB(
+          exerPath: video.path, exerType: 'video', songId: songId);
     }
-    ;
 
-    update();
+    // print(video);
+    // print(video.path);
+    // if (Platform.isAndroid) {
+    //   await GallerySaver.saveVideo(video.path, albumName: '단소');
+    // }
+
+    showToast(message: '녹화가 완료되었습니다.');
+
+    // // if (Platform.isAndroid) {
+    // //   File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
+    // // }
+    // ;
+    // _playAndTestController.stateCountTwo();
+    // audioAndVideoDBController.putAudioAndVideoRecordDB(
+    //     exerPath: video.path, exerType: 'video', songId: songId);
+    // update();
   }
 
   void getBack() {
