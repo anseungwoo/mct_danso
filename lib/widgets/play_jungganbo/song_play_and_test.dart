@@ -107,6 +107,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     jungganboController.jangDan = widget.jangdan;
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
+
     return Scaffold(
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
@@ -149,7 +150,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       );
                                       jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
-                                      jungcontroller.startCapture();
+                                      await jungcontroller.startCapture();
                                       jungcontroller.isPitchState();
 
                                       // jungcontroller.audioSessionConfigure();

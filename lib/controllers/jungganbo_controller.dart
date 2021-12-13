@@ -13,6 +13,7 @@ import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:project_danso/widgets/widgets.dart';
+import 'package:rxdart/streams.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;
@@ -133,26 +134,114 @@ class JungganboController extends GetxController {
     await assetsAudioPlayer.stop();
     print('isplaying : $startStopState');
   }
-  // audioSessionConfigure() =>
-  //     AudioSession.instance.then((audioSession) async => await audioSession
-  //         .configure(const AudioSessionConfiguration(
-  //           avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
-  //           avAudioSessionCategoryOptions:
-  //               AVAudioSessionCategoryOptions.defaultToSpeaker,
-  //           avAudioSessionMode: AVAudioSessionMode.videoRecording,
-  //           avAudioSessionRouteSharingPolicy:
-  //               AVAudioSessionRouteSharingPolicy.defaultPolicy,
-  //           avAudioSessionSetActiveOptions:
-  //               AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
-  //           // androidAudioAttributes: AndroidAudioAttributes(
-  //           //   contentType: AndroidAudioContentType.music,
-  //           //   flags: AndroidAudioFlags.none,
-  //           //   usage: AndroidAudioUsage.media,
-  //           // ),
-  //           // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
-  //           // androidWillPauseWhenDucked: true,
-  //         ))
-  //         .then((_) => audioSessions = audioSession));
+
+  dynamic checkYulmyeongsSection(int i, {dynamic pitchValue}) {
+    var data = jungGanBo!.sheet[i];
+
+    if (data.divisionStatus == DivisionStatus.one) {
+      // print('division 1');
+
+      if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[0])!) {
+          matchTrueFalse[i][0] = true;
+          print('division 1 : true ${data.yulmyeongs[0].toHangeul()}');
+        }
+      } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+        print('division 1 : false ${data.yulmyeongs[0].toHangeul()}');
+        matchTrueFalse[i][0] = true;
+      }
+      print('division 1 : false ${data.yulmyeongs[0].toHangeul()}');
+
+      return;
+    } else if (data.divisionStatus == DivisionStatus.two) {
+      // print('division 2');
+
+      if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[0])!) {
+          matchTrueFalse[i][0] = true;
+          print('division 2-1 : true ${data.yulmyeongs[0].toHangeul()}');
+        }
+      } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+        print('division 2-1 : false ${data.yulmyeongs[0].toHangeul()}');
+        matchTrueFalse[i][0] = true;
+      }
+      print('division 2-1 : false ${data.yulmyeongs[0].toHangeul()}');
+      if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[1])!) {
+          matchTrueFalse[i][1] = true;
+          print('division 2-2 : true ${data.yulmyeongs[1].toHangeul()}');
+        }
+      } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][1] = true;
+        print('division 2-2 : false ${data.yulmyeongs[1].toHangeul()}');
+      }
+      print('division 2-2 : false ${data.yulmyeongs[1].toHangeul()}');
+      return;
+    } else if (data.divisionStatus == DivisionStatus.three) {
+      // print('division 3');
+      if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[0])!) {
+          matchTrueFalse[i][0] = true;
+          print('division 3-1 : true ${data.yulmyeongs[0].toHangeul()}');
+        }
+      } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][0] = true;
+        print('division 3-1 : false ${data.yulmyeongs[0].toHangeul()}');
+      }
+      print('division 3-1 : false ${data.yulmyeongs[0].toHangeul()}');
+      if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[1])!) {
+          matchTrueFalse[i][1] = true;
+          print('division 3-2 : true ${data.yulmyeongs[1].toHangeul()}');
+        }
+      } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][1] = true;
+        print('division 3-2 : false ${data.yulmyeongs[1].toHangeul()}');
+      }
+      print('division 3-2 : false ${data.yulmyeongs[1].toHangeul()}');
+      if (data.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[2].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[2].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[2])!) {
+          matchTrueFalse[i][2] = true;
+          print('division 3-3 : true ${data.yulmyeongs[2].toHangeul()}');
+        }
+      } else if (data.yulmyeongs[2].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[2].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[2].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][2] = true;
+        print('division 3-3 : false ${data.yulmyeongs[2].toHangeul()}');
+      }
+      print('division 3-3 : false ${data.yulmyeongs[2].toHangeul()}');
+      return;
+    }
+  }
 
   void isPitchState() {
     isPitchDetector = !isPitchDetector;
@@ -186,12 +275,13 @@ class JungganboController extends GetxController {
     update();
   }
 
-  final List<bool> matchTrueFalse = [];
-  bool ftSetting(int i) {
-    for (var i = 0; i < jungGanBo!.sheet.length; i++) {
-      matchTrueFalse.add(false);
-    }
-    return matchTrueFalse[i];
+  late List<dynamic> matchTrueFalse;
+  void create2DList() {
+    matchTrueFalse = List.generate(
+        jungGanBo!.sheet.length,
+        (index) =>
+            List.filled(jungGanBo!.sheet[index].yulmyeongs.length, false),
+        growable: false);
   }
 
   void setting() {
@@ -230,7 +320,7 @@ class JungganboController extends GetxController {
   }
 
   void stepStop() {
-    line = jungGanBo!.sheet.length + 1;
+    line = jungGanBo!.sheet.length;
   }
 
   Future<void> startCapture() async {
@@ -270,6 +360,7 @@ class JungganboController extends GetxController {
   }
 
   void stepStart() async {
+    create2DList();
     copySheetHorizontal = sheetHorizontal;
     setting();
     print('결과값 $copySheetHorizontal');
@@ -278,22 +369,24 @@ class JungganboController extends GetxController {
         Duration(milliseconds: (mill / speed[speedCount]).toInt()));
     Timer.periodic(Duration(milliseconds: (mill / speed[speedCount]).toInt()),
         (timer) {
-      if (line < jungGanBo!.sheet.length) {
+      if (line < jungGanBo!.sheet.length - 1) {
         if (isPitchDetector) {
           double? pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
-          if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-                  Yulmyeong.blank ||
-              jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-                  Yulmyeong.rest ||
-              jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-                  Yulmyeong.long) {
-            matchTrueFalse[line] = true;
-          } else if (pitchModelInterface.isCorrectPitch(
-              pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
-            print("선 :$pitchValueResult");
-            matchTrueFalse[line] = true;
-          }
+          checkYulmyeongsSection(line, pitchValue: pitchValueResult);
+
+          // if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+          //         Yulmyeong.blank ||
+          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+          //         Yulmyeong.rest ||
+          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+          //         Yulmyeong.long) {
+          //   matchTrueFalse[line] = true;
+          // } else if (pitchModelInterface.isCorrectPitch(
+          //     pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
+          //   print("선 :$pitchValueResult");
+          //   matchTrueFalse[line] = true;
+          // }
           print("클후 :$pitchValueResult");
         }
 
@@ -350,10 +443,10 @@ class JungganboController extends GetxController {
           print('n2 $next2');
           print('np $pagenext');
         }
-      } else if (line == jungGanBo!.sheet.length && isPitchDetector) {
+      } else if (line == jungGanBo!.sheet.length - 1 && isPitchDetector) {
         timer.cancel();
-        Get.off(ResultScore());
         reset();
+        Get.off(ResultScore());
       } else {
         timer.cancel();
 

@@ -106,7 +106,7 @@ Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
         fontFamily: NOTO_REGULAR,
         fontSize: heightNumber == 12 ? textEightSize.sp : textBasicSize.sp,
         color: controller.isPitchDetector
-            ? controller.ftSetting(i)
+            ? controller.matchTrueFalse[i][j]
                 ? Colors.blue
                 : Colors.red
             : textBlack),

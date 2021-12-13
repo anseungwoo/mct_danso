@@ -34,7 +34,7 @@ class SongGraph extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.centerRight,
-                      width: 330.w / 10 * 10,
+                      width: ScreenUtil().screenWidth * 100 / 100,
                       height: 35.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
