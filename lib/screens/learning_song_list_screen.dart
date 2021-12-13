@@ -83,7 +83,8 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                         for (int i = 0;
                             i <
                                 controller
-                                    .yulmyeong[controller.currentLevel].length;
+                                    .yulmyeongHangeul[controller.currentLevel]
+                                    .length;
                             i++)
                           Container(
                             width: 33.w,
@@ -94,7 +95,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                     Border.all(color: textBlack, width: 0.5)),
                             child: Center(
                               child: Text(
-                                  '${controller.yulmyeong[controller.currentLevel][i].toHangeul()}',
+                                  '${controller.yulmyeongHangeul[controller.currentLevel][i].toHangeul()}',
                                   style: TextStyle(
                                       fontSize: textEightSize.sp,
                                       fontFamily: NOTO_REGULAR)),
@@ -109,7 +110,8 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                         for (var i = 0;
                             i <
                                 controller
-                                    .yulmyeong[controller.currentLevel].length;
+                                    .yulmyeongHanja[controller.currentLevel]
+                                    .length;
                             i++)
                           Container(
                             width: 33.w,
@@ -120,7 +122,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                     Border.all(color: textBlack, width: 0.5)),
                             child: Center(
                               child: Text(
-                                  '${controller.yulmyeong[controller.currentLevel][i].toChineseCharacter()}',
+                                  '${controller.yulmyeongHanja[controller.currentLevel][i].toChineseCharacter()}',
                                   style: TextStyle(
                                       fontSize: textEightSize.sp,
                                       fontFamily: NOTO_REGULAR)),

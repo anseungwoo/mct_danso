@@ -5,7 +5,7 @@ import 'package:project_danso/utils/danso_function.dart';
 class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;
   var songList = [].obs;
-  List yulmyeong = [
+  List yulmyeongHangeul = [
     '',
     [
       YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
@@ -41,7 +41,42 @@ class LearningSongAndLevelController extends GetxController {
       YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
     ]
   ];
-
+  List yulmyeongHanja = [
+    '',
+    [
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
+    ],
+    [
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
+    ]
+  ];
   @override
   void onInit() {
     super.onInit();

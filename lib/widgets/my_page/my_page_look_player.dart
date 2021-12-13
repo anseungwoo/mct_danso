@@ -21,6 +21,7 @@ class VideoApp extends StatefulWidget {
 
 class _VideoAppState extends State<VideoApp> {
   late VideoPlayerController videoPlayerController;
+
   var isFile = true;
 
   @override
@@ -28,20 +29,23 @@ class _VideoAppState extends State<VideoApp> {
     super.initState();
     print(widget.videoFilePath);
 
-    // if (File(widget.videoFilePath).existsSync()) {
-    videoPlayerController =
-        VideoPlayerController.file(File(widget.videoFilePath))
-          ..initialize().then((_) {
-            setState(() {});
-          });
-    // } else {
-    //   isFile = false;
-    // }
+
+    if (File(widget.videoFilePath).existsSync()) {
+      videoPlayerController =
+          VideoPlayerController.file(File('${widget.videoFilePath}'));
+
+      videoPlayerController.initialize();
+      videoPlayerController.setLooping(true);
+    } else {
+      isFile = false;
+    }
+
   }
 
   @override
   void dispose() {
     super.dispose();
+
     if (isFile) {
       videoPlayerController.dispose();
     }
@@ -50,47 +54,46 @@ class _VideoAppState extends State<VideoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
-      body: Column(
-        children: [
-          videoPlayerController.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: videoPlayerController.value.aspectRatio,
-                  child: Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.rotationY(math.pi),
-                      child: VideoPlayer(videoPlayerController)),
-                )
-              : Container(),
-        ],
-      ),
-      floatingActionButton: Container(
-        width: 60.w,
-        height: 60.h,
-        child: FloatingActionButton(
-          backgroundColor: buttonColorOrang,
-          onPressed: () {
-            setState(() {
-              videoPlayerController.value.isPlaying
-                  ? videoPlayerController.pause()
-                  : videoPlayerController.play();
-            });
-          },
-          child: videoPlayerController.value.isPlaying
-              ? SvgPicture.asset(
-                  PLAY_STOP_SVG,
-                  width: 20.w,
-                  height: 20.h,
-                  color: white,
-                )
-              : SvgPicture.asset(
-                  PLAY_SVG,
-                  width: 20.w,
-                  height: 20.h,
+
+        appBar:
+            tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
+        body: isFile
+            ? AspectRatio(
+                aspectRatio: videoPlayerController.value.aspectRatio,
+                child: Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.rotationY(math.pi),
+                    child: VideoPlayer(videoPlayerController)),
+              )
+            : Center(child: Text("nodata")),
+        floatingActionButton: isFile
+            ? Container(
+                width: 60.w,
+                height: 60.h,
+                child: FloatingActionButton(
+                  backgroundColor: buttonColorOrang,
+                  onPressed: () {
+                    setState(() {
+                      videoPlayerController.value.isPlaying
+                          ? videoPlayerController.pause()
+                          : videoPlayerController.play();
+                    });
+                  },
+                  child: videoPlayerController.value.isPlaying
+                      ? SvgPicture.asset(
+                          PLAY_STOP_SVG,
+                          width: 20.w,
+                          height: 20.h,
+                          color: white,
+                        )
+                      : SvgPicture.asset(
+                          PLAY_SVG,
+                          width: 20.w,
+                          height: 20.h,
+                        ),
                 ),
-        ),
-      ),
-    );
+              )
+            : Container());
+
   }
 }
