@@ -45,10 +45,10 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h,
       width: 200.w,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Stack(
             children: [
