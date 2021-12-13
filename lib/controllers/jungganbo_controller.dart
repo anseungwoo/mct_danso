@@ -142,14 +142,16 @@ class JungganboController extends GetxController {
       // print('division 1');
 
       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[0])!) {
           matchTrueFalse[i][0] = true;
           print('division 1 : true ${data.yulmyeongs[0].toHangeul()}');
         }
       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
-          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank) {
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
         print('division 1 : false ${data.yulmyeongs[0].toHangeul()}');
         matchTrueFalse[i][0] = true;
       }
@@ -160,27 +162,31 @@ class JungganboController extends GetxController {
       // print('division 2');
 
       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[0])!) {
           matchTrueFalse[i][0] = true;
           print('division 2-1 : true ${data.yulmyeongs[0].toHangeul()}');
         }
       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
-          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank) {
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
         print('division 2-1 : false ${data.yulmyeongs[0].toHangeul()}');
         matchTrueFalse[i][0] = true;
       }
       print('division 2-1 : false ${data.yulmyeongs[0].toHangeul()}');
       if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[1])!) {
           matchTrueFalse[i][1] = true;
           print('division 2-2 : true ${data.yulmyeongs[1].toHangeul()}');
         }
       } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
-          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank) {
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
         matchTrueFalse[i][1] = true;
         print('division 2-2 : false ${data.yulmyeongs[1].toHangeul()}');
       }
@@ -189,40 +195,46 @@ class JungganboController extends GetxController {
     } else if (data.divisionStatus == DivisionStatus.three) {
       // print('division 3');
       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[0])!) {
           matchTrueFalse[i][0] = true;
           print('division 3-1 : true ${data.yulmyeongs[0].toHangeul()}');
         }
       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
-          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank) {
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
         matchTrueFalse[i][0] = true;
         print('division 3-1 : false ${data.yulmyeongs[0].toHangeul()}');
       }
       print('division 3-1 : false ${data.yulmyeongs[0].toHangeul()}');
       if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[1])!) {
           matchTrueFalse[i][1] = true;
           print('division 3-2 : true ${data.yulmyeongs[1].toHangeul()}');
         }
       } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
-          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank) {
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
         matchTrueFalse[i][1] = true;
         print('division 3-2 : false ${data.yulmyeongs[1].toHangeul()}');
       }
       print('division 3-2 : false ${data.yulmyeongs[1].toHangeul()}');
       if (data.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
-          data.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
+          data.yulmyeongs[2].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[2].yulmyeong != Yulmyeong.rest) {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[2])!) {
           matchTrueFalse[i][2] = true;
           print('division 3-3 : true ${data.yulmyeongs[2].toHangeul()}');
         }
       } else if (data.yulmyeongs[2].yulmyeong == Yulmyeong.long ||
-          data.yulmyeongs[2].yulmyeong == Yulmyeong.blank) {
+          data.yulmyeongs[2].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[2].yulmyeong == Yulmyeong.rest) {
         matchTrueFalse[i][2] = true;
         print('division 3-3 : false ${data.yulmyeongs[2].toHangeul()}');
       }
