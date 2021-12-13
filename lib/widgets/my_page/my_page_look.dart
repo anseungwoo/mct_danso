@@ -34,7 +34,7 @@ class MyPageLook extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             var item = audioAndVideoListController.videoList[index];
             if (audioAndVideoListController.videoList.isNotEmpty) {
-              print("${item.exerPath}");
+              print('${item.exerPath}');
               return Padding(
                 padding: const EdgeInsets.only(bottom: basicPadding),
                 child: InkWell(
