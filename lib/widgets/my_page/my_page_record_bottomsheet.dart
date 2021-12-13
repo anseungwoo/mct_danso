@@ -124,7 +124,7 @@ void bottomsheet(BuildContext context) async {
                                 ),
                                 SizedBox(height: 10.h),
                                 Container(
-                                  width: 330.w,
+                                  width: ScreenUtil().screenWidth * 100 / 100,
                                   height: 35.h,
                                   decoration: BoxDecoration(
                                     gradient: LinearGradient(
