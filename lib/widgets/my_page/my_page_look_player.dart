@@ -29,6 +29,7 @@ class _VideoAppState extends State<VideoApp> {
     super.initState();
     print(widget.videoFilePath);
 
+
     if (File(widget.videoFilePath).existsSync()) {
       videoPlayerController =
           VideoPlayerController.file(File('${widget.videoFilePath}'));
@@ -38,12 +39,13 @@ class _VideoAppState extends State<VideoApp> {
     } else {
       isFile = false;
     }
+
   }
 
   @override
   void dispose() {
     super.dispose();
-    // videoPlayerController.dispose();
+
     if (isFile) {
       videoPlayerController.dispose();
     }
@@ -52,6 +54,7 @@ class _VideoAppState extends State<VideoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar:
             tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
         body: isFile
@@ -91,5 +94,6 @@ class _VideoAppState extends State<VideoApp> {
                 ),
               )
             : Container());
+
   }
 }
