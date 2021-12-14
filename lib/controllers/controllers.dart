@@ -3,7 +3,7 @@ export 'play_and_test_controller.dart';
 export 'jungganbo_controller.dart';
 export 'learning_song_and_level_controller.dart';
 export 'my_page_controller.dart';
-export 'tabbar_controller.dart';
+export 'reslut_score_controller.dart';
 export 'audio_record/audio_record_controller.dart';
 export 'camera_record/camera_record_controller.dart';
 export 'main_screen_controller.dart';
