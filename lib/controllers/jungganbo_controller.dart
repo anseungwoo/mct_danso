@@ -39,6 +39,8 @@ class JungganboController extends GetxController {
   late int mill;
   JungGanBo? jungGanBo;
   bool isPitchDetector = false;
+  int scoreResult = 0;
+  var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
 
   late int sheetVertical;
@@ -284,6 +286,12 @@ class JungganboController extends GetxController {
         growable: false);
   }
 
+  void countingJungganboYulmyeong() {
+    for (var i = 0; i < jungGanBo!.sheet.length; i++) {
+      yulmyoungsCount += jungGanBo!.sheet[i].yulmyeongs.length;
+    }
+  }
+
   void setting() {
     pagenext = 1;
     line = 0;
@@ -295,6 +303,7 @@ class JungganboController extends GetxController {
   }
 
   void reset() {
+    yulmyoungsCount = 0;
     setControllerConstants();
     stopCapture();
     if (isPitchDetector) {
@@ -361,6 +370,7 @@ class JungganboController extends GetxController {
 
   void stepStart() async {
     create2DList();
+    countingJungganboYulmyeong();
     copySheetHorizontal = sheetHorizontal;
     setting();
     print('결과값 $copySheetHorizontal');
@@ -369,7 +379,7 @@ class JungganboController extends GetxController {
         Duration(milliseconds: (mill / speed[speedCount]).toInt()));
     Timer.periodic(Duration(milliseconds: (mill / speed[speedCount]).toInt()),
         (timer) {
-      if (line < jungGanBo!.sheet.length - 1) {
+      if (line < jungGanBo!.sheet.length) {
         if (isPitchDetector) {
           double? pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
@@ -443,10 +453,23 @@ class JungganboController extends GetxController {
           print('n2 $next2');
           print('np $pagenext');
         }
-      } else if (line == jungGanBo!.sheet.length - 1 && isPitchDetector) {
+      } else if (line == jungGanBo!.sheet.length && isPitchDetector) {
         timer.cancel();
+        for (var i = 0; i < jungGanBo!.sheet.length; i++) {
+          for (var j = 0; j < jungGanBo!.sheet[i].yulmyeongs.length; j++) {
+            if (matchTrueFalse[i][j] == true) {
+              scoreResult++;
+            }
+          }
+        }
+        print('갯수 $scoreResult');
+        print(yulmyoungsCount);
+        scoreResult = ((scoreResult / yulmyoungsCount) * 100).toInt();
+
+        Get.off(ResultScore(
+          scrore: scoreResult,
+        ));
         reset();
-        Get.off(ResultScore());
       } else {
         timer.cancel();
 
