@@ -83,7 +83,10 @@ class MyPageListen extends StatelessWidget {
                         // SizedBox(width: 10.w),
                         PopupMenuButton(
                           onSelected: (value) {
-                            if (value == 1) {}
+                            if (value == 1) {
+                              audioAndVideoListController
+                                  .shareFile(item.exerPath);
+                            }
                             if (value == 2) {
                               Get.dialog(myPageDeleteDialog());
                             }

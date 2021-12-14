@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:intl/intl.dart';
+import 'package:share/share.dart';
 
 class AudioAndVideoListController extends GetxController {
   static AudioAndVideoListController get to => Get.find();
@@ -39,5 +40,12 @@ class AudioAndVideoListController extends GetxController {
     var result = '$dateFormat $hourAndMinute';
     // var result = dateFormat.format(dateTime);
     return result;
+  }
+
+  void shareFile(String? path) {
+    // final result = await FilePicker.platform.pickFiles();
+    // if (result == null || result.files.isEmpty) return null;
+
+    Share.shareFiles([path!], text: 'Great picture');
   }
 }

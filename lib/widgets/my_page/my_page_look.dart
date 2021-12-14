@@ -9,6 +9,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/my_page/share_dialog.dart';
 
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -81,7 +82,10 @@ class MyPageLook extends StatelessWidget {
                         Spacer(flex: 1),
                         PopupMenuButton(
                           onSelected: (value) {
-                            if (value == 1) {}
+                            if (value == 1) {
+                              audioAndVideoListController
+                                  .shareFile(item.exerPath);
+                            }
                             if (value == 2) {
                               Get.dialog(myPageDeleteDialog());
                             }
