@@ -50,7 +50,7 @@ class CameraRecordController extends GetxController {
 
   Future<void> onStop({var songId}) async {
     final video = await controller.stopVideoRecording();
-
+    print(video.path);
     XFile androidVideoPath;
     if (Platform.isAndroid) {
       await GallerySaver.saveVideo(video.path);

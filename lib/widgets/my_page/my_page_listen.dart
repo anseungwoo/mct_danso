@@ -88,7 +88,9 @@ class MyPageListen extends StatelessWidget {
                                   .shareFile(item.exerPath);
                             }
                             if (value == 2) {
-                              Get.dialog(myPageDeleteDialog());
+                              audioAndVideoListController
+                                  .audioRecordState(false);
+                              Get.dialog(myPageDeleteDialog(item.exerPath));
                             }
                           },
                           child: Container(

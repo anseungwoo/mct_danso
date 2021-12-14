@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +11,7 @@ class AudioAndVideoListController extends GetxController {
   static AudioAndVideoListController get to => Get.find();
   var audioList = <ExerciseModel>[].obs;
   var videoList = <ExerciseModel>[].obs;
-
+  bool isRecord = false;
   @override
   void onInit() {
     super.onInit();
@@ -40,6 +43,26 @@ class AudioAndVideoListController extends GetxController {
     var result = '$dateFormat $hourAndMinute';
     // var result = dateFormat.format(dateTime);
     return result;
+  }
+
+  void audioRecordState(bool state) {
+    isRecord = state;
+  }
+
+  void audioDeleteFile(String? path) async {
+    final dir = Directory(path!);
+    dir.deleteSync(recursive: true);
+  }
+
+  void recordDeleteFile(String? path) async {
+    var getdir = (await getApplicationDocumentsDirectory()).path;
+    if (Platform.isIOS) {
+      final dir = Directory("$getdir/$path");
+      dir.deleteSync(recursive: true);
+    } else if (Platform.isAndroid) {
+      final dir = Directory("$path");
+      dir.deleteSync(recursive: true);
+    }
   }
 
   void shareFile(String? path) {

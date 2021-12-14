@@ -9,8 +9,6 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/my_page/share_dialog.dart';
-
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageLook extends StatelessWidget {
@@ -87,7 +85,9 @@ class MyPageLook extends StatelessWidget {
                                   .shareFile(item.exerPath);
                             }
                             if (value == 2) {
-                              Get.dialog(myPageDeleteDialog());
+                              audioAndVideoListController
+                                  .audioRecordState(true);
+                              Get.dialog(myPageDeleteDialog(item.exerPath));
                             }
                           },
                           child: Container(

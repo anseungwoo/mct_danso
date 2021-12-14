@@ -68,11 +68,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     return Future.delayed(Duration(seconds: 4), () {});
   }
 
-  void _onPressed(BuildContext context) async {
-    showLoadingIndicator(context);
-    await _incrementCounter();
-    hideOpenDialog();
-  }
+  // void _onPressed(BuildContext context) async {
+  //   showLoadingIndicator(context);
+  //   await _incrementCounter();
+  //   hideOpenDialog();
+  // }
 
   @override
   void initState() {
@@ -263,7 +263,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       ),
                                       onPressed: () {
                                         controller.stateCountUp(5);
-                                        _onPressed(context);
+
                                         print(controller.statecount);
                                       }),
                                 ],
@@ -394,47 +394,47 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     );
   }
 
-  void showLoadingIndicator(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.black.withOpacity(0),
-          content: Center(
-            child: Stack(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(white),
-                    ),
-                    SizedBox(
-                      height: 5.h,
-                    ),
-                    Text(
-                      '녹화화면을 준비하고 있습니다',
-                      style: TextStyle(color: white, fontSize: textEightSize),
-                    ),
-                    Text(
-                      '녹화시작 버튼을 누르고 녹화시작',
-                      style: TextStyle(color: white, fontSize: textEightSize),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // void showLoadingIndicator(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     barrierDismissible: false,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         backgroundColor: Colors.black.withOpacity(0),
+  //         content: Center(
+  //           child: Stack(
+  //             children: [
+  //               Column(
+  //                 mainAxisAlignment: MainAxisAlignment.center,
+  //                 crossAxisAlignment: CrossAxisAlignment.center,
+  //                 children: [
+  //                   CircularProgressIndicator(
+  //                     valueColor: AlwaysStoppedAnimation(white),
+  //                   ),
+  //                   SizedBox(
+  //                     height: 5.h,
+  //                   ),
+  //                   Text(
+  //                     '녹화화면을 준비하고 있습니다',
+  //                     style: TextStyle(color: white, fontSize: textEightSize),
+  //                   ),
+  //                   Text(
+  //                     '녹화시작 버튼을 누르고 녹화시작',
+  //                     style: TextStyle(color: white, fontSize: textEightSize),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
-  void hideOpenDialog() {
-    Get.back();
-  }
+  // void hideOpenDialog() {
+  //   Get.back();
+  // }
 
   Widget songSwapButton({Widget? text, Function()? onPressed}) {
     return Container(
