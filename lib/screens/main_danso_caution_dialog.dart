@@ -37,92 +37,114 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Column(
-                children: [
-                  SvgPicture.asset(
-                    WARNING_SVG,
-                    width: 60.w,
-                    height: 60.h,
-                    color: buttonColorYellow,
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(
-                    '연주 시 주의사항',
-                    style: TextStyle(
-                        fontSize: textSevenSize.sp,
-                        fontWeight: bold,
-                        fontFamily: NOTO_BOLD),
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(
-                    '단소의 바람이 마이크로 들어가지 않게 해 주세요',
-                    style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: 13.sp),
-                  ),
-                  SizedBox(height: 5.h),
-                  Text(
-                    '소음이 적은 장소에서 연주해 주세요',
-                    style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: 13.sp),
-                  ),
-                ],
-              ),
+              precautions(),
               SizedBox(height: 15.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                        if (controller.musicState) {
-                          controller.assetsAudioPlayer.play();
-                        }
-                      },
-                      child: Container(
-                        height: 53.h,
-                        child: Center(
-                          child: Text(
-                            '취소',
-                            style: TextStyle(fontSize: 15.sp),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () async {
-                        Get.back();
-                        await Get.dialog(
-                          Dialog(child: TimerWidget()),
-                          barrierDismissible: false,
-                        );
-                        dansoSoundLearningController.startAdjust();
-                        await Get.dialog(
-                          Dialog(
-                            child: LoadingIndicator(),
-                          ),
-                          barrierDismissible: false,
-                        );
-                        dansoSoundLearningController.stopAdjust();
-                      },
-                      child: Container(
-                        height: 53.h,
-                        child: Center(
-                          child: Text(
-                            '확인',
-                            style: TextStyle(fontSize: 15.sp),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
+              ConfirmOrCancelButton(
+                  controller: controller,
+                  dansoSoundLearningController: dansoSoundLearningController)
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Column precautions() {
+    return Column(
+      children: [
+        SvgPicture.asset(
+          WARNING_SVG,
+          width: 60.w,
+          height: 60.h,
+          color: buttonColorYellow,
+        ),
+        SizedBox(height: 10.h),
+        Text(
+          '연주 시 주의사항',
+          style: TextStyle(
+              fontSize: textSevenSize.sp,
+              fontWeight: bold,
+              fontFamily: NOTO_BOLD),
+        ),
+        SizedBox(height: 10.h),
+        Text(
+          '단소의 바람이 마이크로 들어가지 않게 해 주세요',
+          style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: 13.sp),
+        ),
+        SizedBox(height: 5.h),
+        Text(
+          '소음이 적은 장소에서 연주해 주세요',
+          style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: 13.sp),
+        ),
+      ],
+    );
+  }
+}
+
+class ConfirmOrCancelButton extends StatelessWidget {
+  const ConfirmOrCancelButton({
+    Key? key,
+    required this.controller,
+    required this.dansoSoundLearningController,
+  }) : super(key: key);
+
+  final MainScreenController controller;
+  final DansoSoundLearningController dansoSoundLearningController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: InkWell(
+            onTap: () {
+              Get.back();
+              if (controller.musicState) {
+                controller.assetsAudioPlayer.play();
+              }
+            },
+            child: Container(
+              height: 53.h,
+              child: Center(
+                child: Text(
+                  '취소',
+                  style: TextStyle(fontSize: 15.sp),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: InkWell(
+            onTap: () async {
+              Get.back();
+              await Get.dialog(
+                Dialog(child: TimerWidget()),
+                barrierDismissible: false,
+              );
+              dansoSoundLearningController.startAdjust();
+              await Get.dialog(
+                Dialog(
+                  child: LoadingIndicator(),
+                ),
+                barrierDismissible: false,
+              );
+              dansoSoundLearningController.stopAdjust();
+            },
+            child: Container(
+              height: 53.h,
+              child: Center(
+                child: Text(
+                  '확인',
+                  style: TextStyle(fontSize: 15.sp),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

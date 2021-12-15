@@ -18,30 +18,7 @@ Widget fingering(BuildContext context) {
     children: [
       Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            CircleAvatar(radius: 14.r, backgroundColor: rightColor),
-            SizedBox(
-              width: 7.sp,
-            ),
-            Text('왼손',
-                style: TextStyle(
-                  fontSize: 15.sp,
-                  fontFamily: NOTO_REGULAR,
-                )),
-            SizedBox(
-              width: 7.sp,
-            ),
-            CircleAvatar(radius: 14.r, backgroundColor: leftColor),
-            SizedBox(width: 7.sp),
-            Text('오른손',
-                style: TextStyle(
-                  fontSize: 15.sp,
-                  fontFamily: NOTO_REGULAR,
-                )),
-          ],
-        ),
+        child: leftRightText(),
       ),
       Expanded(
         child: Column(
@@ -97,6 +74,33 @@ Widget fingering(BuildContext context) {
           ],
         ),
       ),
+    ],
+  );
+}
+
+Row leftRightText() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      CircleAvatar(radius: 14.r, backgroundColor: rightColor),
+      SizedBox(
+        width: 7.sp,
+      ),
+      Text('왼손',
+          style: TextStyle(
+            fontSize: 15.sp,
+            fontFamily: NOTO_REGULAR,
+          )),
+      SizedBox(
+        width: 7.sp,
+      ),
+      CircleAvatar(radius: 14.r, backgroundColor: leftColor),
+      SizedBox(width: 7.sp),
+      Text('오른손',
+          style: TextStyle(
+            fontSize: 15.sp,
+            fontFamily: NOTO_REGULAR,
+          )),
     ],
   );
 }
