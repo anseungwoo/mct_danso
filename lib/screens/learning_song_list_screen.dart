@@ -20,6 +20,13 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
       Get.put(LearningSongAndLevelController());
 
   @override
+  void initState() {
+    learningSongLevelController.getExerSongList(1);
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   void dispose() {
     super.dispose();
   }

@@ -11,7 +11,7 @@ class AudioAndVideoListController extends GetxController {
   static AudioAndVideoListController get to => Get.find();
   var audioList = <ExerciseModel>[].obs;
   var videoList = <ExerciseModel>[].obs;
-  bool isRecord = false;
+
   @override
   void onInit() {
     super.onInit();
@@ -20,17 +20,25 @@ class AudioAndVideoListController extends GetxController {
   }
 
   void getAudioList() async {
-    var data = await DBHelPer().readExerSoundData();
-    print('저장된 오디오 데이터 $data');
-    audioList.clear();
-    audioList.assignAll(data);
+    try {
+      var data = await DBHelPer().readExerSoundData();
+      print('저장된 오디오 데이터 $data');
+      audioList.clear();
+      audioList.assignAll(data);
+    } catch (e) {
+      print('없음');
+    }
   }
 
   void getVideoList() async {
-    var data = await DBHelPer().readExerVideoData();
-    print('저장된 비디오 데이터 $data');
-    videoList.clear();
-    videoList.assignAll(data);
+    try {
+      var data = await DBHelPer().readExerVideoData();
+      print('저장된 비디오 데이터 $data');
+      videoList.clear();
+      videoList.assignAll(data);
+    } catch (e) {
+      print('없음');
+    }
   }
 
   String convertDateFormat(var date) {
@@ -45,38 +53,17 @@ class AudioAndVideoListController extends GetxController {
     return result;
   }
 
-  void audioRecordState(bool state) {
-    isRecord = state;
-  }
-
-  void audioDeleteFile(String? path) async {
+  void DeleteFile(String? path) async {
+    await DBHelPer().deletePath("$path");
     try {
-      final _localFile = File('$path');
-      print(_localFile);
-      final file = _localFile;
-      await file.delete();
-      Get.back();
-    } catch (e) {
-      return;
-    }
-    Get.back();
-  }
-
-  void recordDeleteFile(String? path) async {
-    var getdir = (await getApplicationDocumentsDirectory()).path;
-
-    try {
-      if (Platform.isIOS) {
-        final _localFile = File('$getdir/$path');
-        print(_localFile);
-        final file = _localFile;
-        await file.delete();
-        Get.back();
-      } else if (Platform.isAndroid) {
+      if (File(path!).existsSync()) {
         final _localFile = File('$path');
         print(_localFile);
         final file = _localFile;
         await file.delete();
+
+        Get.back();
+      } else {
         Get.back();
       }
     } catch (e) {

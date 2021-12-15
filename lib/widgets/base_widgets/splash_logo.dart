@@ -6,7 +6,9 @@ import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/permissioin_controller.dart';
+import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,6 +22,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final PermissionController permissionController =
       Get.put(PermissionController());
+  final SongController songController = Get.put(SongController());
   FlutterMidi flutterMidi = FlutterMidi();
   void load() async {
     var byteData = await rootBundle.load('assets/Dan.sf2');
@@ -29,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     load();
     startTime();
   }

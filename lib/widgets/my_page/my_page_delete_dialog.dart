@@ -39,11 +39,7 @@ Widget myPageDeleteDialog(String? path) {
                     yesNoButton(
                       text: "확인",
                       onPress: () {
-                        if (controller.isRecord) {
-                          controller.recordDeleteFile(path);
-                        } else if (!controller.isRecord) {
-                          controller.audioDeleteFile(path);
-                        }
+                        controller.DeleteFile(path);
                       },
                     ),
                   ],

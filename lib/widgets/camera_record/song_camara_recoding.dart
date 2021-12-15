@@ -37,10 +37,11 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
-      cameraRecordcontroller.onStop(songId: widget.songId);
+      // cameraRecordcontroller.onStop(songId: widget.songId);
       widget.controller.allMidiStop();
       indexManager.stopIndex();
       widget.controller.jandanStop();
+      cameraRecordcontroller.dispose();
     }
 
     if (cameraRecordcontroller.isRecording == false) {

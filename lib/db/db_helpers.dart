@@ -346,6 +346,13 @@ class DBHelPer {
     }
     return list;
   }
+
+  Future<int> deletePath(String path) async {
+    final db = await database;
+    var res = await db
+        .rawDelete('DELETE FROM $exerciseTable WHERE exer_path=?', [path]);
+    return res;
+  }
   //===========================================================================
 
   // 마이페이지 - 기록 탭
