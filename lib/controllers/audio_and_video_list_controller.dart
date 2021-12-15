@@ -50,25 +50,42 @@ class AudioAndVideoListController extends GetxController {
   }
 
   void audioDeleteFile(String? path) async {
-    final dir = Directory(path!);
-    dir.deleteSync(recursive: true);
+    try {
+      final _localFile = File('$path');
+      print(_localFile);
+      final file = _localFile;
+      await file.delete();
+      Get.back();
+    } catch (e) {
+      return;
+    }
+    Get.back();
   }
 
   void recordDeleteFile(String? path) async {
     var getdir = (await getApplicationDocumentsDirectory()).path;
-    if (Platform.isIOS) {
-      final dir = Directory("$getdir/$path");
-      dir.deleteSync(recursive: true);
-    } else if (Platform.isAndroid) {
-      final dir = Directory("$path");
-      dir.deleteSync(recursive: true);
+
+    try {
+      if (Platform.isIOS) {
+        final _localFile = File('$getdir/$path');
+        print(_localFile);
+        final file = _localFile;
+        await file.delete();
+        Get.back();
+      } else if (Platform.isAndroid) {
+        final _localFile = File('$path');
+        print(_localFile);
+        final file = _localFile;
+        await file.delete();
+        Get.back();
+      }
+    } catch (e) {
+      return;
     }
+    Get.back();
   }
 
   void shareFile(String? path) {
-    // final result = await FilePicker.platform.pickFiles();
-    // if (result == null || result.files.isEmpty) return null;
-
-    Share.shareFiles([path!], text: 'Great picture');
+    Share.shareFiles([path!], text: 'my Good File');
   }
 }

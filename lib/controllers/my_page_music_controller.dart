@@ -30,29 +30,17 @@ class MyPageMusicController extends GetxController {
     // playerInit();
   }
 
-  void playerInit(var audioRecordPath) async {
-    var dir = (await getApplicationDocumentsDirectory()).path;
-
+  void playerInit(var audioRecordPath) {
     print(audioRecordPath);
-    if (Platform.isAndroid) {
-      File(audioRecordPath).existsSync()
-          ? await assetsAudioPlayer.open(
-              Audio.file(audioRecordPath),
-              autoStart: false,
-            )
-          : isFile = false;
-    } else if (Platform.isIOS) {
-      if (await File('$dir/$audioRecordPath').exists()) {
-        await assetsAudioPlayer.open(
-          Audio.file('$dir/$audioRecordPath'),
-          autoStart: false,
-        );
-      } else {
-        isFile = false;
-      }
-    }
 
-    await assetsAudioPlayer.setLoopMode(LoopMode.single);
+    File(audioRecordPath).existsSync()
+        ? assetsAudioPlayer.open(
+            Audio.file(audioRecordPath),
+            autoStart: false,
+          )
+        : isFile = false;
+
+    assetsAudioPlayer.setLoopMode(LoopMode.single);
   }
 
   void playAndPause() {

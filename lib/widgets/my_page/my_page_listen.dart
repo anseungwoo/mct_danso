@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
@@ -70,9 +73,14 @@ class MyPageListen extends StatelessWidget {
                         Spacer(flex: 1),
                         InkWell(
                             radius: 40.r,
-                            onTap: () {
-                              Get.dialog(MyPageListenDialog(
-                                recordItem: item,
+                            onTap: () async {
+                              var dir =
+                                  (await getApplicationDocumentsDirectory())
+                                      .path;
+                              await Get.dialog(MyPageListenDialog(
+                                recordItem: Platform.isIOS
+                                    ? '$dir/${item.exerPath}'
+                                    : item.exerPath,
                               ));
                             },
                             child: SvgPicture.asset(
