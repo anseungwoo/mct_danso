@@ -57,7 +57,8 @@ void bottomsheet(
                               ),
                               SizedBox(height: 10.h),
                               Container(
-                                width: ScreenUtil().screenWidth * 100 / 100,
+                                width: (ScreenUtil().screenWidth / 100) *
+                                    (item.chalScore)!.toInt(),
                                 height: 35.h,
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
@@ -72,10 +73,10 @@ void bottomsheet(
                                 child: Padding(
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
-                                    '${item.chalScore}',
+                                    '${item.chalScore}점',
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                        fontSize: MctSize.eighteen.getSize.sp,
+                                        fontSize: MctSize.fifteen.getSize.sp,
                                         color: MctColor.black.getMctColor,
                                         decoration: TextDecoration.none),
                                   ),

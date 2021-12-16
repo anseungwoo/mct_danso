@@ -103,15 +103,15 @@ class JungganboController extends GetxController {
 
     switch (jangdan) {
       case '중중모리장단':
-        return JOONGJOONG;
+        return getAudioFilePath(AudioFile.JoongJoong);
       case '굿거리장단':
-        return GOOD;
+        return getAudioFilePath(AudioFile.Good);
       case '세마치장단':
-        return SEMACHI;
+        return getAudioFilePath(AudioFile.Semachi);
       case '4박장단':
-        return HUIMORI;
+        return getAudioFilePath(AudioFile.Huimori);
       case '자진모리장단':
-        return JAJIN;
+        return getAudioFilePath(AudioFile.Jagin);
       default: //high:
         return '';
     }

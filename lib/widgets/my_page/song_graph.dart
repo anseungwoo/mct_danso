@@ -61,7 +61,8 @@ class _SongGraphState extends State<SongGraph> {
                           ),
                           Container(
                             alignment: Alignment.centerRight,
-                            width: ScreenUtil().screenWidth * 100 / 100,
+                            width: (ScreenUtil().screenWidth / 100) *
+                                (item.chalScore)!.toInt(),
                             height: 35.h,
                             decoration: BoxDecoration(
                                 borderRadius:
@@ -74,12 +75,12 @@ class _SongGraphState extends State<SongGraph> {
                                       MctColor.lightYellow.getMctColor,
                                     ])),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: MctSize.fifteen.getSize),
+                              padding:
+                                  EdgeInsets.only(right: MctSize.seven.getSize),
                               child: Text(
-                                '${item.chalScore}',
+                                '${item.chalScore}점',
                                 style: TextStyle(
-                                    fontSize: MctSize.seventeen.getSize.sp,
+                                    fontSize: MctSize.fifteen.getSize.sp,
                                     fontFamily: NOTO_BOLD),
                               ),
                             ),
