@@ -11,6 +11,7 @@ import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/const.dart';
 
 import 'package:project_danso/common/enum.dart';
+import 'package:project_danso/controllers/controllers.dart';
 
 import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/db/db_helpers.dart';
@@ -48,14 +49,20 @@ class JungganboController extends GetxController {
   List<double> pitchValueList = [];
   late int mill;
   JungGanBo? jungGanBo;
-  bool isPitchDetector = false;
+  bool isChallenge = false;
+  bool isPractice = false;
+  bool isLevelPractice = false;
+
   int scoreResult = 0;
   var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
   final TearController _tearController = Get.put(TearController());
 
   late int sheetVertical;
-
+  LearningSongAndLevelController learningSongAndLevelController =
+      Get.put(LearningSongAndLevelController());
+  PlayAndTestController playAndTestController =
+      Get.put(PlayAndTestController());
   IndexManager indexManagers = IndexManager();
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   @override
@@ -69,7 +76,7 @@ class JungganboController extends GetxController {
     next2 = 0;
     jungSection = 0;
     startStopState = false;
-    isPitchDetector = false;
+    isChallenge = false;
     copySheetHorizontal = sheetHorizontal;
     startButton = '시작하기';
     indexManagers.clearIndex();
@@ -256,9 +263,18 @@ class JungganboController extends GetxController {
     }
   }
 
-  void isPitchState() {
-    isPitchDetector = !isPitchDetector;
+  void isChallengeState() {
+    isChallenge = !isChallenge;
+    update();
+  }
 
+  void isPracticeState() {
+    isPractice = !isPractice;
+    update();
+  }
+
+  void isLevelPracticeState() {
+    isLevelPractice = !isLevelPractice;
     update();
   }
 
@@ -317,7 +333,7 @@ class JungganboController extends GetxController {
     yulmyoungsCount = 0;
     setControllerConstants();
     stopCapture();
-    if (isPitchDetector) {
+    if (isChallenge) {
       for (var i = 0; i < jungGanBo!.sheet.length; i++) {
         matchTrueFalse[i] = false;
       }
@@ -335,7 +351,9 @@ class JungganboController extends GetxController {
     startButton = '시작하기';
     startStopState = false;
     indexManagers.clearIndex();
-    isPitchDetector = false;
+    isChallenge = false;
+    isLevelPractice = false;
+    isPractice = false;
     assetsAudioPlayer.stop();
   }
 
@@ -389,7 +407,7 @@ class JungganboController extends GetxController {
     await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
     Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
-        if (isPitchDetector) {
+        if (isChallenge) {
           var pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
           checkYulmyeongsSection(line, pitchValue: pitchValueResult);
@@ -462,10 +480,10 @@ class JungganboController extends GetxController {
           print('n2 $next2');
           print('np $pagenext');
         }
-      } else if (line == jungGanBo!.sheet.length && isPitchDetector) {
+      } else if (line == jungGanBo!.sheet.length && isChallenge) {
         timer.cancel();
         // _tearController.addExp(1.0);
-        _tearController.incrementExp(10.0);
+
         for (var i = 0; i < jungGanBo!.sheet.length; i++) {
           for (var j = 0; j < jungGanBo!.sheet[i].yulmyeongs.length; j++) {
             if (matchTrueFalse[i][j] == true) {
@@ -476,14 +494,25 @@ class JungganboController extends GetxController {
         print('갯수 $scoreResult');
         print(yulmyoungsCount);
         scoreResult = ((scoreResult / yulmyoungsCount) * 100).toInt();
-
+        _tearController.incrementExp(
+            (scoreResult / 10.0) + learningSongAndLevelController.currentLevel);
         Get.off(ResultScore(
           scrore: scoreResult,
         ));
         reset();
+      } else if (line == jungGanBo!.sheet.length && isLevelPractice) {
+        timer.cancel();
+        _tearController
+            .incrementExp(learningSongAndLevelController.currentLevel + 1.0);
+        reset();
+        playAndTestController.stateCountTwo();
+      } else if (line == jungGanBo!.sheet.length && isPractice) {
+        timer.cancel();
+        _tearController.incrementExp(1.0);
+        reset();
+        playAndTestController.stateCountTwo();
       } else {
         timer.cancel();
-
         reset();
       }
       update();

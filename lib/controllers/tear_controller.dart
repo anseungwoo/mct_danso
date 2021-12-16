@@ -87,11 +87,11 @@ class TearController extends GetxController {
     }
   }
 
-  void setEmblemAssetAndTearName(var rankedName, tearNum, nextTearExp) {
+  void setEmblemAssetAndTearName(var rankedName, tearNum, setNextTearExp) {
     var path = 'assets/images/tear/ic_' + rankedName + '.svg';
     emblemAsset = path;
     tearName = TEAR_NAME[tearNum];
     // 다음 티어 까지 경험치
-    nextTearExp = nextTearExp;
+    nextTearExp = setNextTearExp;
   }
 }

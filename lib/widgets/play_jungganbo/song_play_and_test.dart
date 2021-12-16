@@ -53,7 +53,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   @override
   void dispose() {
     if (jungganboController.startStopState) {
-      if (jungganboController.isPitchDetector) {
+      if (jungganboController.isChallenge) {
         jungganboController.stopCapture();
       }
       jungganboController.jandanStop();
@@ -79,27 +79,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     super.initState();
     jungganboController.setJandan(widget.jangdan);
   }
-
-  // audioSessionConfigure() =>
-  //     AudioSession.instance.then((audioSession) async => await audioSession
-  //         .configure(const AudioSessionConfiguration(
-  //           avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
-  //           avAudioSessionCategoryOptions:
-  //               AVAudioSessionCategoryOptions.defaultToSpeaker,
-  //           avAudioSessionMode: AVAudioSessionMode.videoRecording,
-  //           avAudioSessionRouteSharingPolicy:
-  //               AVAudioSessionRouteSharingPolicy.defaultPolicy,
-  //           avAudioSessionSetActiveOptions:
-  //               AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
-  //           // androidAudioAttributes: AndroidAudioAttributes(
-  //           //   contentType: AndroidAudioContentType.music,
-  //           //   flags: AndroidAudioFlags.none,
-  //           //   usage: AndroidAudioUsage.media,
-  //           // ),
-  //           // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
-  //           // androidWillPauseWhenDucked: true,
-  //         ))
-  //         .then((_) => audioSessions = audioSession));
 
   @override
   Widget build(BuildContext context) {
@@ -151,7 +130,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
                                       await jungcontroller.startCapture();
-                                      jungcontroller.isPitchState();
+                                      jungcontroller.isChallengeState();
 
                                       // jungcontroller.audioSessionConfigure();
 
@@ -204,7 +183,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   jungcontroller.stepStop();
                                   jungcontroller.stopCapture();
                                   controller.previousButton();
-                                  jungcontroller.isPitchState();
+                                  jungcontroller.isChallengeState();
                                   jungcontroller.jandanStop();
                                   print(controller.statecount);
                                 },
@@ -287,6 +266,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         barrierDismissible: false,
                                       );
                                       //  jungcontroller.startCapture();
+                                      jungcontroller.isLevelPracticeState();
                                       jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
                                       jungcontroller
@@ -318,7 +298,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.stepStop();
                                       indexManager.stopIndex();
                                       jungcontroller.jandanStop();
-
+                                      jungcontroller.isLevelPracticeState();
                                       // jungcontroller.stopCapture();
 
                                       controller.stateCountUp(0);

@@ -100,6 +100,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                   barrierDismissible: false,
                                 );
                                 // controller.startCapture();
+                                controller.isPracticeState();
                                 controller.stepStart();
                                 controller.playJungGanBo(indexManager);
                                 // controller.jandanPlay();
@@ -107,6 +108,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               }
                               if (!controller.startStopState) {
                                 // controller.stopCapture();
+                                controller.isPracticeState();
                                 controller.stepStop();
                                 indexManager.stopIndex();
                                 // controller.jandanStop();

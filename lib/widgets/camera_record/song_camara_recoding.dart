@@ -37,11 +37,10 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
-      // cameraRecordcontroller.onStop(songId: widget.songId);
+      cameraRecordcontroller.onStop(songId: widget.songId);
       widget.controller.allMidiStop();
       indexManager.stopIndex();
       widget.controller.jandanStop();
-      cameraRecordcontroller.dispose();
     }
 
     if (cameraRecordcontroller.isRecording == false) {
@@ -92,7 +91,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                   caController.isRecordingState();
 
                   widget.controller.changeStartStopState();
-                  if (widget.controller.startStopState) {
+                  if (caController.isRecording) {
                     await Get.dialog(
                       Dialog(
                           backgroundColor: Colors.white.withOpacity(0),
@@ -100,16 +99,17 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                           child: GameTimerWidget()),
                       barrierDismissible: false,
                     );
+                    await caController.onRecord();
                     widget.controller.jandanPlay();
-                    caController.onRecord();
                     widget.controller.stepStart();
+                    widget.controller.isLevelPracticeState();
                     // widget.controller.playJungGanBo(indexManager);
-
                     //widget.controller.audioSessionConfigure();
                   }
-                  if (widget.controller.startStopState == false) {
+                  if (caController.isRecording == false) {
+                    await caController.onStop(songId: widget.songId);
                     widget.controller.jandanStop();
-                    caController.onStop(songId: widget.songId);
+                    widget.controller.isLevelPracticeState();
                     caController.getBack();
                     widget.controller.stepStop();
                     indexManager.stopIndex();

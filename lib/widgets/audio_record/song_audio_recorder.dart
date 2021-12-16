@@ -83,6 +83,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                           child: GameTimerWidget()),
                       barrierDismissible: false,
                     );
+                    widget.controller.isLevelPracticeState();
                     audioRecordController.startRecording();
                     widget.controller.jandanPlay();
                     widget.controller.stepStart();
@@ -94,7 +95,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     audioRecordController.stopRecording(
                         songId: widget.songId, exerType: 'audio');
                     widget.controller.stepStop();
-
+                    widget.controller.isLevelPracticeState();
                     indexManager.stopIndex();
                   }
                 },

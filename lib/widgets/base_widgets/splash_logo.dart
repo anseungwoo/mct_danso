@@ -23,7 +23,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final PermissionController permissionController =
       Get.put(PermissionController());
-  final SongController songController = Get.put(SongController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
   final TearController _tearController = Get.put(TearController());

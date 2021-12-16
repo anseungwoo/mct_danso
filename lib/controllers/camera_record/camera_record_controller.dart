@@ -33,20 +33,13 @@ class CameraRecordController extends GetxController {
     print('call onClose method');
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-    print('call dispose method');
-  }
-
   void isRecordingState() {
     isRecording = !isRecording;
     recordingText = isRecording ? '녹화중지' : '녹화시작';
     update();
   }
 
-  Future<void> onStop({var songId}) async {
+  Future onStop({var songId}) async {
     final video = await controller.stopVideoRecording();
     print(video.path);
     XFile androidVideoPath;
