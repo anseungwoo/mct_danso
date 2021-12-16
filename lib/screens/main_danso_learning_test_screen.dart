@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -96,7 +99,8 @@ class _MainDansoLearningTestScreenState
                     Text(
                       '소리를 들어보세요',
                       style: TextStyle(
-                          fontSize: textSevenSize.sp, fontFamily: NOTO_REGULAR),
+                          fontSize: MctSize.seventeen.getSize.sp,
+                          fontFamily: NOTO_REGULAR),
                     ),
                     Text(
                       '단소에 따라 실음과 다를 수 있습니다.',
@@ -135,7 +139,8 @@ class _MainDansoLearningTestScreenState
           SizedBox(height: 21.h),
           Text(controller.hanJaAndGel[controller.soundListUpDown].toHangeul(),
               style: TextStyle(
-                  fontSize: textEightSize.sp, fontFamily: NOTO_MEDIUM)),
+                  fontSize: MctSize.eighteen.getSize.sp,
+                  fontFamily: NOTO_MEDIUM)),
           SizedBox(height: 18.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -230,7 +235,9 @@ class _MainDansoLearningTestScreenState
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          CircleAvatar(radius: 14.r, backgroundColor: rightColor),
+          CircleAvatar(
+              radius: 14.r,
+              backgroundColor: MctColor.rightHandColor.getMctColor),
           SizedBox(
             width: 7.sp,
           ),
@@ -241,7 +248,9 @@ class _MainDansoLearningTestScreenState
           SizedBox(
             width: 7.sp,
           ),
-          CircleAvatar(radius: 14.r, backgroundColor: leftColor),
+          CircleAvatar(
+              radius: 14.r,
+              backgroundColor: MctColor.leftHandColor.getMctColor),
           SizedBox(width: 7.sp),
           Text('오른손',
               style: TextStyle(fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
@@ -268,12 +277,13 @@ class SoundButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           title,
-          style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: textFiveSize.sp),
+          style: TextStyle(
+              fontFamily: NOTO_REGULAR, fontSize: MctSize.fifteen.getSize.sp),
         ),
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          onSurface: unButtonColorOrang,
-          primary: buttonColorOrang,
+          onSurface: MctColor.unButtonColorOrange.getMctColor,
+          primary: MctColor.buttonColorOrange.getMctColor,
           minimumSize: Size(130.w, 45.h),
         ),
       ),
@@ -301,8 +311,8 @@ class UpDownButton extends StatelessWidget {
       ),
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        onSurface: unButtonColorOrang,
-        primary: buttonColorOrang,
+        onSurface: MctColor.unButtonColorOrange.getMctColor,
+        primary: MctColor.buttonColorOrange.getMctColor,
         minimumSize: Size(59.w, 35.h),
       ),
     );

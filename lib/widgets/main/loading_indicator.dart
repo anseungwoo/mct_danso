@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -107,7 +109,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
                   pointers: <GaugePointer>[
                     //239, 190, 80
                     RangePointer(
-                      color: unButtonColorOrang,
+                      color: MctColor.unButtonColorOrange.getMctColor,
                       value: progressValue,
                       width: 0.95,
                       pointerOffset: 0.05,
@@ -123,12 +125,10 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-
             child: Text(
               "$_start초간 단소로 태(汰) 불어주세요.",
-              style: TextStyle(fontSize: textFiveSize.sp),
+              style: TextStyle(fontSize: MctSize.fifteen.getSize.sp),
             ),
-
           ),
         ],
       ),

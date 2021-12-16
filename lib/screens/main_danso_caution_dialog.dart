@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/main/loading_indicator.dart';
@@ -56,13 +59,13 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
           WARNING_SVG,
           width: 60.w,
           height: 60.h,
-          color: buttonColorYellow,
+          color: MctColor.buttonColorYellow.getMctColor,
         ),
         SizedBox(height: 10.h),
         Text(
           '연주 시 주의사항',
           style: TextStyle(
-              fontSize: textSevenSize.sp,
+              fontSize: MctSize.seventeen.getSize.sp,
               fontWeight: bold,
               fontFamily: NOTO_BOLD),
         ),

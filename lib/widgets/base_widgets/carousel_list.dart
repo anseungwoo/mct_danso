@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/color.dart';
 
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
 
 class CarouselListWidget extends StatefulWidget {
   List<Widget> carouselList = [];
@@ -58,7 +59,9 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
                           EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: _current == index ? second : mainColor),
+                          color: _current == index
+                              ? MctColor.carouselColor.getMctColor
+                              : MctColor.lightYellow.getMctColor),
                     ),
                   );
                 },

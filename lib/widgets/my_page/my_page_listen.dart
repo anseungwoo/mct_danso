@@ -5,7 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/date_format.dart';
@@ -39,7 +42,7 @@ class _MyPageListenState extends State<MyPageListen> {
         () => Align(
           alignment: Alignment.topCenter,
           child: ListView.builder(
-            padding: const EdgeInsets.all(basicPadding),
+            padding: EdgeInsets.all(MctSize.fifteen.getSize),
             reverse: true,
             shrinkWrap: true,
             itemCount: audioAndVideoListController.audioList.length,
@@ -48,18 +51,18 @@ class _MyPageListenState extends State<MyPageListen> {
               print(audioAndVideoListController.audioList[0].exerPath);
               if (audioAndVideoListController.audioList.isNotEmpty) {
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: basicPadding),
+                  padding: EdgeInsets.only(bottom: MctSize.fifteen.getSize),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: buttonColorYellow),
+                        color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: basicPadding),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: MctSize.fifteen.getSize),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,8 +71,8 @@ class _MyPageListenState extends State<MyPageListen> {
                                 '${item.songTitle}',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                    fontSize: textEightSize.sp,
-                                    color: white,
+                                    fontSize: MctSize.eighteen.getSize.sp,
+                                    color: MctColor.white.getMctColor,
                                     fontFamily: NOTO_MEDIUM),
                               ),
                               SizedBox(height: 2),
@@ -77,7 +80,8 @@ class _MyPageListenState extends State<MyPageListen> {
                                 // '${item.exerTime}',
                                 '${convertDateFormat(item.exerTime)}',
                                 // '2021년 12월 07일 오전 09시 08분',
-                                style: TextStyle(color: white),
+                                style: TextStyle(
+                                    color: MctColor.white.getMctColor),
                               ),
                             ],
                           ),

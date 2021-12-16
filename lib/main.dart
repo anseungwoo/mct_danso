@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 List<CameraDescription>? cameras;
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
 
               primarySwatch: Colors.blue,
               visualDensity: VisualDensity.adaptivePlatformDensity,
-              scaffoldBackgroundColor: background, // 기본 배경색
+              scaffoldBackgroundColor:
+                  MctColor.mainBackGround.getMctColor, // 기본 배경색
             ),
             debugShowCheckedModeBanner: false,
             home: SplashScreen(),

@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:camera/camera.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/play_and_test_controller.dart';
 import 'package:project_danso/main.dart';
@@ -35,20 +33,13 @@ class CameraRecordController extends GetxController {
     print('call onClose method');
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-    print('call dispose method');
-  }
-
   void isRecordingState() {
     isRecording = !isRecording;
     recordingText = isRecording ? '녹화중지' : '녹화시작';
     update();
   }
 
-  Future<void> onStop({var songId}) async {
+  Future onStop({var songId}) async {
     final video = await controller.stopVideoRecording();
     print(video.path);
     XFile androidVideoPath;

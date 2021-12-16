@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
 import 'package:project_danso/controllers/camera_record/camera_record_view_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -29,7 +31,6 @@ class _VideoAppState extends State<VideoApp> {
     super.initState();
     print(widget.videoFilePath);
 
-
     if (File(widget.videoFilePath).existsSync()) {
       videoPlayerController =
           VideoPlayerController.file(File('${widget.videoFilePath}'));
@@ -39,7 +40,6 @@ class _VideoAppState extends State<VideoApp> {
     } else {
       isFile = false;
     }
-
   }
 
   @override
@@ -54,7 +54,6 @@ class _VideoAppState extends State<VideoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
         appBar:
             tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
         body: isFile
@@ -71,7 +70,7 @@ class _VideoAppState extends State<VideoApp> {
                 width: 60.w,
                 height: 60.h,
                 child: FloatingActionButton(
-                  backgroundColor: buttonColorOrang,
+                  backgroundColor: MctColor.buttonColorOrange.getMctColor,
                   onPressed: () {
                     setState(() {
                       videoPlayerController.value.isPlaying
@@ -84,7 +83,7 @@ class _VideoAppState extends State<VideoApp> {
                           PLAY_STOP_SVG,
                           width: 20.w,
                           height: 20.h,
-                          color: white,
+                          color: MctColor.white.getMctColor,
                         )
                       : SvgPicture.asset(
                           PLAY_SVG,
@@ -94,6 +93,5 @@ class _VideoAppState extends State<VideoApp> {
                 ),
               )
             : Container());
-
   }
 }

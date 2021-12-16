@@ -1,16 +1,11 @@
 import 'dart:io';
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:project_danso/common/const.dart';
-import 'package:project_danso/db/db_helpers.dart';
-import 'package:project_danso/models/models.dart';
-import 'package:project_danso/screens/screens.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 
 class MyPageMusicController extends GetxController {
   // static MyPageMusicController get to => Get.find();
@@ -115,7 +110,9 @@ class _PositionSeekWidgetState extends State<PositionSeekWidget> {
             min: 0,
             max: widget.duration.inMilliseconds.toDouble(),
             value: percent * widget.duration.inMilliseconds.toDouble(),
-            style: SliderStyle(variant: logoColor, accent: logoColor),
+            style: SliderStyle(
+                variant: MctColor.lightYellow.getMctColor,
+                accent: MctColor.lightYellow.getMctColor),
             onChangeEnd: (newValue) {
               setState(() {
                 listenOnlyUserInterraction = false;

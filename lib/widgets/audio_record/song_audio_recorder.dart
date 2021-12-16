@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/audio_record/audio_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -67,22 +69,26 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    primary: white,
-                    onPrimary: buttonColorOrang,
-                    side: BorderSide(color: buttonColorOrang),
-                    textStyle:
-                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                    primary: MctColor.white.getMctColor,
+                    onPrimary: MctColor.buttonColorOrange.getMctColor,
+                    side: BorderSide(
+                        color: MctColor.buttonColorOrange.getMctColor),
+                    textStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   audioRecordController.isRecordingState();
                   widget.controller.changeStartStopState();
                   if (widget.controller.startStopState) {
                     await Get.dialog(
                       Dialog(
-                          backgroundColor: Colors.white.withOpacity(0),
+                          backgroundColor:
+                              MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
                           child: GameTimerWidget()),
                       barrierDismissible: false,
                     );
+                    widget.controller.isLevelPracticeState();
                     audioRecordController.startRecording();
                     widget.controller.jandanPlay();
                     widget.controller.stepStart();
@@ -94,7 +100,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     audioRecordController.stopRecording(
                         songId: widget.songId, exerType: 'audio');
                     widget.controller.stepStop();
-
+                    widget.controller.isLevelPracticeState();
                     indexManager.stopIndex();
                   }
                 },
@@ -108,14 +114,16 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    primary: white,
-                    onPrimary: buttonColorOrang,
-                    side: BorderSide(color: buttonColorOrang),
-                    textStyle:
-                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                    primary: MctColor.white.getMctColor,
+                    onPrimary: MctColor.buttonColorOrange.getMctColor,
+                    side: BorderSide(
+                        color: MctColor.buttonColorOrange.getMctColor),
+                    textStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () {},
-                child:
-                    Text('반주만', style: TextStyle(fontSize: textSmallSize.sp)),
+                child: Text('반주만',
+                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
               ),
             ),
           ],

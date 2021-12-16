@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/permissioin_controller.dart';
 import 'package:project_danso/db/db_helpers.dart';
@@ -23,7 +25,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final PermissionController permissionController =
       Get.put(PermissionController());
-  final SongController songController = Get.put(SongController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
   final TearController _tearController = Get.put(TearController());
@@ -53,10 +54,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: logoColor,
+      backgroundColor: MctColor.lightYellow.getMctColor,
       body: Center(
         child: Container(
-          color: logoColor,
+          color: MctColor.lightYellow.getMctColor,
           child: SvgPicture.asset(
             LOGO_SVG,
             width: 230.w,

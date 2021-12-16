@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:project_danso/utils/date_format.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
@@ -28,15 +29,15 @@ void bottomsheet(
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(basicPadding),
+              padding: EdgeInsets.all(MctSize.fifteen.getSize),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '$songTitle',
                     style: TextStyle(
-                        fontSize: textSingleSize.sp,
-                        color: textBlack,
+                        fontSize: MctSize.twentyThree.getSize.sp,
+                        color: MctColor.black.getMctColor,
                         decoration: TextDecoration.none),
                   ),
                   Expanded(
@@ -50,8 +51,8 @@ void bottomsheet(
                               Text(
                                 convertDateFormat(item.chalTime),
                                 style: TextStyle(
-                                    fontSize: textEightSize.sp,
-                                    color: textBlack,
+                                    fontSize: MctSize.eighteen.getSize.sp,
+                                    color: MctColor.black.getMctColor,
                                     decoration: TextDecoration.none),
                               ),
                               SizedBox(height: 10.h),
@@ -63,8 +64,8 @@ void bottomsheet(
                                     begin: Alignment.topLeft,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      graColorYellow,
-                                      logoColor,
+                                      MctColor.gradationColorYellow.getMctColor,
+                                      MctColor.lightYellow.getMctColor,
                                     ],
                                   ),
                                 ),
@@ -74,8 +75,8 @@ void bottomsheet(
                                     '${item.chalScore}',
                                     textAlign: TextAlign.right,
                                     style: TextStyle(
-                                        fontSize: textEightSize.sp,
-                                        color: textBlack,
+                                        fontSize: MctSize.eighteen.getSize.sp,
+                                        color: MctColor.black.getMctColor,
                                         decoration: TextDecoration.none),
                                   ),
                                 ),

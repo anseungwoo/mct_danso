@@ -8,10 +8,14 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/audio_file_path.dart';
+import 'package:project_danso/common/size.dart';
+import 'package:project_danso/controllers/learning_song_and_level_controller.dart';
 import 'package:project_danso/controllers/my_history_controller.dart';
+import 'package:project_danso/controllers/play_and_test_controller.dart';
+
 import 'package:project_danso/controllers/tear_controller.dart';
-import 'package:project_danso/db/db_helpers.dart';
+
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -20,7 +24,13 @@ class JungganboController extends GetxController {
   bool startStopState = false;
   String startButton = '시작하기';
   int speedCount = 2;
-  List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
+  List speed = [
+    getSpeed(SongSpeed.eight),
+    getSpeed(SongSpeed.nine),
+    getSpeed(SongSpeed.ten),
+    getSpeed(SongSpeed.eleven),
+    getSpeed(SongSpeed.twelve)
+  ];
   bool krState = false;
   String krButton = '한자';
   int line = 0;
@@ -39,7 +49,10 @@ class JungganboController extends GetxController {
   List<double> pitchValueList = [];
   late int mill;
   JungGanBo? jungGanBo;
-  bool isPitchDetector = false;
+  bool isChallenge = false;
+  bool isPractice = false;
+  bool isLevelPractice = false;
+
   int scoreResult = 0;
   var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
@@ -47,7 +60,10 @@ class JungganboController extends GetxController {
   final _myHistoryController = Get.put(MyHistoryController());
 
   late int sheetVertical;
-
+  LearningSongAndLevelController learningSongAndLevelController =
+      Get.put(LearningSongAndLevelController());
+  PlayAndTestController playAndTestController =
+      Get.put(PlayAndTestController());
   IndexManager indexManagers = IndexManager();
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   @override
@@ -61,7 +77,7 @@ class JungganboController extends GetxController {
     next2 = 0;
     jungSection = 0;
     startStopState = false;
-    isPitchDetector = false;
+    isChallenge = false;
     copySheetHorizontal = sheetHorizontal;
     startButton = '시작하기';
     indexManagers.clearIndex();
@@ -248,9 +264,18 @@ class JungganboController extends GetxController {
     }
   }
 
-  void isPitchState() {
-    isPitchDetector = !isPitchDetector;
+  void isChallengeState() {
+    isChallenge = !isChallenge;
+    update();
+  }
 
+  void isPracticeState() {
+    isPractice = !isPractice;
+    update();
+  }
+
+  void isLevelPracticeState() {
+    isLevelPractice = !isLevelPractice;
     update();
   }
 
@@ -309,7 +334,7 @@ class JungganboController extends GetxController {
     yulmyoungsCount = 0;
     setControllerConstants();
     stopCapture();
-    if (isPitchDetector) {
+    if (isChallenge) {
       for (var i = 0; i < jungGanBo!.sheet.length; i++) {
         matchTrueFalse[i] = false;
       }
@@ -327,7 +352,9 @@ class JungganboController extends GetxController {
     startButton = '시작하기';
     startStopState = false;
     indexManagers.clearIndex();
-    isPitchDetector = false;
+    isChallenge = false;
+    isLevelPractice = false;
+    isPractice = false;
     assetsAudioPlayer.stop();
   }
 
@@ -381,7 +408,7 @@ class JungganboController extends GetxController {
     await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
     Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
-        if (isPitchDetector) {
+        if (isChallenge) {
           var pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
           checkYulmyeongsSection(line, pitchValue: pitchValueResult);
@@ -454,10 +481,10 @@ class JungganboController extends GetxController {
           print('n2 $next2');
           print('np $pagenext');
         }
-      } else if (line == jungGanBo!.sheet.length && isPitchDetector) {
+      } else if (line == jungGanBo!.sheet.length && isChallenge) {
         timer.cancel();
         // _tearController.addExp(1.0);
-        _tearController.incrementExp(10.0);
+
         for (var i = 0; i < jungGanBo!.sheet.length; i++) {
           for (var j = 0; j < jungGanBo!.sheet[i].yulmyeongs.length; j++) {
             if (matchTrueFalse[i][j] == true) {
@@ -471,15 +498,27 @@ class JungganboController extends GetxController {
         // 도전점수 DB 저장
         _myHistoryController.putChallangeHistorydDB(
             songId: songId, chalScore: scoreResult);
+        _tearController.incrementExp(
+            (scoreResult / 10.0) + learningSongAndLevelController.currentLevel);
         Get.off(ResultScore(
           scrore: scoreResult,
           songTitle: songTitle,
           songId: songId,
         ));
         reset();
+      } else if (line == jungGanBo!.sheet.length && isLevelPractice) {
+        timer.cancel();
+        _tearController
+            .incrementExp(learningSongAndLevelController.currentLevel + 1.0);
+        reset();
+        playAndTestController.stateCountTwo();
+      } else if (line == jungGanBo!.sheet.length && isPractice) {
+        timer.cancel();
+        _tearController.incrementExp(1.0);
+        reset();
+        playAndTestController.stateCountTwo();
       } else {
         timer.cancel();
-
         reset();
       }
       update();

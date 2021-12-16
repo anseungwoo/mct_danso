@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/youtude.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -101,34 +103,34 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
                 explanation: DANSO_PALY,
                 url: DANSO_PALY_URL),
             PictureAndText(
-              title: DANSO_CODE_TITLE[0],
-              contant: DANSO_CODE_CONTANT[0],
-              image: DANSO_CODE_PNG[0],
+              title: getDansoCodeTitle(DansoCode.joog),
+              contant: getDansoCodeContant(DansoCode.joog),
+              image: getDansoCodePng(DansoCode.joog),
             ),
             PictureAndText(
-              title: DANSO_CODE_TITLE[1],
-              contant: DANSO_CODE_CONTANT[1],
-              image: DANSO_CODE_PNG[1],
+              title: getDansoCodeTitle(DansoCode.lim),
+              contant: getDansoCodeContant(DansoCode.lim),
+              image: getDansoCodePng(DansoCode.lim),
             ),
             PictureAndText(
-              title: DANSO_CODE_TITLE[2],
-              contant: DANSO_CODE_CONTANT[2],
-              image: DANSO_CODE_PNG[2],
+              title: getDansoCodeTitle(DansoCode.moo),
+              contant: getDansoCodeContant(DansoCode.moo),
+              image: getDansoCodePng(DansoCode.moo),
             ),
             PictureAndText(
-              title: DANSO_CODE_TITLE[3],
-              contant: DANSO_CODE_CONTANT[3],
-              image: DANSO_CODE_PNG[3],
+              title: getDansoCodeTitle(DansoCode.hawng),
+              contant: getDansoCodeContant(DansoCode.hawng),
+              image: getDansoCodePng(DansoCode.hawng),
             ),
             PictureAndText(
-              title: DANSO_CODE_TITLE[4],
-              contant: DANSO_CODE_CONTANT[4],
-              image: DANSO_CODE_PNG[4],
+              title: getDansoCodeTitle(DansoCode.tae),
+              contant: getDansoCodeContant(DansoCode.tae),
+              image: getDansoCodePng(DansoCode.tae),
             ),
             PictureAndText(
-              title: DANSO_CODE_TITLE[5],
-              contant: DANSO_CODE_CONTANT[5],
-              image: DANSO_CODE_PNG[5],
+              title: getDansoCodeTitle(DansoCode.highTae),
+              contant: getDansoCodeContant(DansoCode.highTae),
+              image: getDansoCodePng(DansoCode.highTae),
             ),
             fingering(context),
           ],

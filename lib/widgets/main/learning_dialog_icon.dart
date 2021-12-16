@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 
 Widget icon(
     {required String text, required Widget page, required String assetName}) {
@@ -15,7 +18,7 @@ Widget icon(
       width: 140.w,
       height: 140.w,
       decoration: BoxDecoration(
-        color: logoColor,
+        color: MctColor.lightYellow.getMctColor,
         borderRadius: BorderRadius.circular(10), //모서리를 둥글게as
       ),
       child: Column(
@@ -29,8 +32,8 @@ Widget icon(
           Text(
             text,
             style: TextStyle(
-                color: white,
-                fontSize: textSevenSize.sp,
+                color: MctColor.white.getMctColor,
+                fontSize: MctSize.seventeen.getSize.sp,
                 fontFamily: NOTO_MEDIUM),
           ),
         ],

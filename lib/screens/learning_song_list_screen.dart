@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -65,7 +68,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
   Expanded songListView(LearningSongAndLevelController controller) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(basicPadding),
+        padding: EdgeInsets.all(MctSize.fifteen.getSize),
         child: ListView.builder(
             itemCount: controller.songList.length,
             itemBuilder: (BuildContext context, int index) {
@@ -92,13 +95,13 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                   },
                   child: Container(
                       decoration: BoxDecoration(
-                        color: buttonColorYellow,
+                        color: MctColor.buttonColorYellow.getMctColor,
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       ),
                       height: 57.h,
                       // width: 330.w,
                       child: Padding(
-                        padding: const EdgeInsets.all(basicPadding),
+                        padding: EdgeInsets.all(MctSize.fifteen.getSize),
                         child: Row(
                           children: [
                             SvgPicture.asset(
@@ -109,8 +112,8 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                             SizedBox(width: 15.w),
                             Text('${item.songTitle}',
                                 style: TextStyle(
-                                    fontSize: textBasicSize.sp,
-                                    color: white,
+                                    fontSize: MctSize.fourteen.getSize.sp,
+                                    color: MctColor.white.getMctColor,
                                     fontFamily: NOTO_MEDIUM)),
                             Spacer(flex: 1),
                             InkWell(
@@ -128,7 +131,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                 height: 20.h,
                                 color: item.songLike == 'true'
                                     ? Colors.red
-                                    : white,
+                                    : MctColor.white.getMctColor,
                               ),
                             ),
                           ],
@@ -153,12 +156,15 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
             width: 33.w,
             height: 33.h,
             decoration: BoxDecoration(
-                color: white, border: Border.all(color: textBlack, width: 0.5)),
+                color: MctColor.white.getMctColor,
+                border:
+                    Border.all(color: MctColor.black.getMctColor, width: 0.5)),
             child: Center(
               child: Text(
                   '${controller.yulmyeongHanja[controller.currentLevel][i].toChineseCharacter()}',
                   style: TextStyle(
-                      fontSize: textEightSize.sp, fontFamily: NOTO_REGULAR)),
+                      fontSize: MctSize.eighteen.getSize.sp,
+                      fontFamily: NOTO_REGULAR)),
             ),
           )
       ],
@@ -177,12 +183,15 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
             width: 33.w,
             height: 33.h,
             decoration: BoxDecoration(
-                color: white, border: Border.all(color: textBlack, width: 0.5)),
+                color: MctColor.white.getMctColor,
+                border:
+                    Border.all(color: MctColor.black.getMctColor, width: 0.5)),
             child: Center(
               child: Text(
                   '${controller.yulmyeongHangeul[controller.currentLevel][i].toHangeul()}',
                   style: TextStyle(
-                      fontSize: textEightSize.sp, fontFamily: NOTO_REGULAR)),
+                      fontSize: MctSize.eighteen.getSize.sp,
+                      fontFamily: NOTO_REGULAR)),
             ),
           )
       ],

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/jungganbo_controller.dart';
 
 Widget jungganboScreen(int heightNumber, JungganboController controller) {
   double height;
   if (heightNumber == 12) {
-    height = jungHeight;
+    height = MctSize.jungHeight.getSize;
   } else {
-    height = heightNumber == 8 ? jungEightHeight : jungSixHeight;
+    height = heightNumber == 8
+        ? MctSize.jungEightHeight.getSize
+        : MctSize.jungSixHeight.getSize;
   }
 
   return Container(
@@ -39,7 +43,7 @@ Container jungBlankContainer(
     width: 20.w,
     height: height.h,
     decoration: BoxDecoration(
-      border: Border.all(color: textBlack),
+      border: Border.all(color: MctColor.black.getMctColor),
       color: Colors.white,
     ),
   );
@@ -47,10 +51,10 @@ Container jungBlankContainer(
 
 Widget jungBigContainer(double height, JungganboController controller) {
   return Container(
-    width: jungWidth.w,
+    width: MctSize.jungWidth.getSize.w,
     height: height.h,
     decoration: BoxDecoration(
-      border: Border.all(color: textBlack),
+      border: Border.all(color: MctColor.black.getMctColor),
       color: Colors.white,
     ),
   );

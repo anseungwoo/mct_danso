@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/camera_record/camera_record_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
@@ -37,11 +39,10 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
-      // cameraRecordcontroller.onStop(songId: widget.songId);
+      cameraRecordcontroller.onStop(songId: widget.songId);
       widget.controller.allMidiStop();
       indexManager.stopIndex();
       widget.controller.jandanStop();
-      cameraRecordcontroller.dispose();
     }
 
     if (cameraRecordcontroller.isRecording == false) {
@@ -80,36 +81,40 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
               height: 30.h,
               child: ElevatedButton(
                 child: Text(caController.recordingText,
-                    style: TextStyle(fontSize: textSmallSize.sp)),
+                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    primary: white,
-                    onPrimary: buttonColorOrang,
-                    side: BorderSide(color: buttonColorOrang),
-                    textStyle:
-                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                    primary: MctColor.white.getMctColor,
+                    onPrimary: MctColor.buttonColorOrange.getMctColor,
+                    side: BorderSide(
+                        color: MctColor.buttonColorOrange.getMctColor),
+                    textStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   caController.isRecordingState();
 
                   widget.controller.changeStartStopState();
-                  if (widget.controller.startStopState) {
+                  if (caController.isRecording) {
                     await Get.dialog(
                       Dialog(
-                          backgroundColor: Colors.white.withOpacity(0),
+                          backgroundColor:
+                              MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
                           child: GameTimerWidget()),
                       barrierDismissible: false,
                     );
+                    await caController.onRecord();
                     widget.controller.jandanPlay();
-                    caController.onRecord();
                     widget.controller.stepStart();
+                    widget.controller.isLevelPracticeState();
                     // widget.controller.playJungGanBo(indexManager);
-
                     //widget.controller.audioSessionConfigure();
                   }
-                  if (widget.controller.startStopState == false) {
+                  if (caController.isRecording == false) {
+                    await caController.onStop(songId: widget.songId);
                     widget.controller.jandanStop();
-                    caController.onStop(songId: widget.songId);
+                    widget.controller.isLevelPracticeState();
                     caController.getBack();
                     widget.controller.stepStop();
                     indexManager.stopIndex();
@@ -122,15 +127,17 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
               width: 78.w,
               height: 30.h,
               child: ElevatedButton(
-                child:
-                    Text('반주만', style: TextStyle(fontSize: textSmallSize.sp)),
+                child: Text('반주만',
+                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    primary: white,
-                    onPrimary: buttonColorOrang,
-                    side: BorderSide(color: buttonColorOrang),
-                    textStyle:
-                        TextStyle(fontSize: 12.sp, color: buttonColorOrang)),
+                    primary: MctColor.white.getMctColor,
+                    onPrimary: MctColor.buttonColorOrange.getMctColor,
+                    side: BorderSide(
+                        color: MctColor.buttonColorOrange.getMctColor),
+                    textStyle: TextStyle(
+                        fontSize: 12.sp,
+                        color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () {},
               ),
             ),
@@ -139,7 +146,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
         SizedBox(height: 3.h),
         Text(
           widget.jandan,
-          style: TextStyle(fontSize: textSmallSize.sp),
+          style: TextStyle(fontSize: MctSize.twelve.getSize.sp),
         ),
       ],
     );

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/jungganbo_controller.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
@@ -8,9 +11,11 @@ Widget jungganbo(int heightNumber, JungganboController controller,
     JungGanBo testJungGanBo, bool krState) {
   double height;
   if (heightNumber == 12) {
-    height = jungHeight;
+    height = MctSize.jungHeight.getSize;
   } else {
-    height = heightNumber == 8 ? jungEightHeight : jungSixHeight;
+    height = heightNumber == 8
+        ? MctSize.jungEightHeight.getSize
+        : MctSize.jungSixHeight.getSize;
   }
   var j = 0;
   return Row(
@@ -62,7 +67,9 @@ Container blankContainer(double height) {
   return Container(
     width: 20.w,
     height: height.h,
-    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
+    decoration: BoxDecoration(
+        color: MctColor.white.getMctColor,
+        border: Border.all(color: MctColor.white.getMctColor)),
   );
 }
 
@@ -70,9 +77,11 @@ Widget jungContainer(double height, JungganboController controller, int i,
     int j, int heightNumber, JungGanBo testJungGanBo, bool krState) {
   return Center(
     child: Container(
-      width: jungWidth.w,
+      width: MctSize.jungWidth.getSize.w,
       height: height.h,
-      decoration: BoxDecoration(color: white, border: Border.all(color: white)),
+      decoration: BoxDecoration(
+          color: MctColor.white.getMctColor,
+          border: Border.all(color: MctColor.white.getMctColor)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -104,11 +113,13 @@ Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
     text,
     style: TextStyle(
         fontFamily: NOTO_REGULAR,
-        fontSize: heightNumber == 12 ? textEightSize.sp : textBasicSize.sp,
-        color: controller.isPitchDetector
+        fontSize: heightNumber == 12
+            ? MctSize.eighteen.getSize.sp
+            : MctSize.fourteen.getSize.sp,
+        color: controller.isChallenge
             ? controller.matchTrueFalse[i][j]
                 ? Colors.blue
                 : Colors.red
-            : textBlack),
+            : MctColor.black.getMctColor),
   );
 }

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
 
 class ReslutScoreController extends GetxController {
   String iamge = STAR_SVG[0];
