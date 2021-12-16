@@ -16,7 +16,7 @@ class MyPageController extends GetxController {
 
   void playMusic() async {
     await assetsAudioPlayer.open(
-      Audio(backMusic),
+      Audio(getAudioFilePath(AudioFile.BackGroundMusic)),
     );
     await assetsAudioPlayer.play();
   }

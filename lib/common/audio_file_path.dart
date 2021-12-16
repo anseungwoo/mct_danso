@@ -1,8 +1,20 @@
-//장구 장단
-const String JOONGJOONG = 'assets/music/joongjoong.mp3';
-const String JAJIN = 'assets/music/jajin.mp3';
-const String HUIMORI = 'assets/music/huimori.mp3';
-const String GOOD = 'assets/music/good.mp3';
-const String SEMACHI = 'assets/music/semachi.mp3';
-// 배경음
-const String backMusic = 'assets/music/danso_arirang_mixed.mp3';
+enum AudioFile { JoongJoong, Jagin, Huimori, Good, Semachi, BackGroundMusic }
+
+String getAudioFilePath(AudioFile audioFile) {
+  switch (audioFile) {
+    case AudioFile.JoongJoong:
+      return 'assets/music/joongjoong.mp3';
+    case AudioFile.Jagin:
+      return 'assets/music/jajin.mp3';
+    case AudioFile.Huimori:
+      return 'assets/music/huimori.mp3';
+    case AudioFile.Good:
+      return 'assets/music/good.mp3';
+    case AudioFile.Semachi:
+      return 'assets/music/semachi.mp3';
+    case AudioFile.BackGroundMusic:
+      return 'assets/music/danso_arirang_mixed.mp3';
+    default:
+      return "";
+  }
+}
