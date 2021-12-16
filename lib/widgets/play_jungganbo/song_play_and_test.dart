@@ -149,7 +149,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         barrierDismissible: false,
                                       );
                                       jungcontroller.jandanPlay();
-                                      jungcontroller.stepStart();
+                                      jungcontroller.stepStart(
+                                          songId: widget.songId,
+                                          songTitle: widget.appbarTitle);
                                       await jungcontroller.startCapture();
                                       jungcontroller.isPitchState();
 

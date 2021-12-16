@@ -13,7 +13,7 @@ import 'package:project_danso/models/models.dart';
 import 'package:project_danso/utils/common/constants/PitchConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/utils/model/pitch_model/PitchModel.dart';
-import 'package:project_danso/widgets/main/success_fail_dialog.dart';
+import 'package:project_danso/widgets/main/confirm_cancel_dialog.dart';
 
 class DansoSoundLearningController extends GetxController {
   List<double> dansoPitchAdjustList = [];

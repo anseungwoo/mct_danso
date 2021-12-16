@@ -9,6 +9,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageLook extends StatefulWidget {
@@ -81,8 +82,7 @@ class _MyPageLookState extends State<MyPageLook> {
                               ),
                               SizedBox(height: 2),
                               Text(
-                                audioAndVideoListController
-                                    .convertDateFormat(item.exerTime),
+                                convertDateFormat(item.exerTime),
                                 style: TextStyle(color: white),
                               ),
                             ],
@@ -100,9 +100,11 @@ class _MyPageLookState extends State<MyPageLook> {
                                   (await getApplicationDocumentsDirectory())
                                       .path;
 
-                              await Get.dialog(myPageDeleteDialog(Platform.isIOS
-                                  ? '$dir/camera/videos/${item.exerPath}'
-                                  : item.exerPath));
+                              await Get.dialog(myPageDeleteDialog(
+                                  Platform.isIOS
+                                      ? '$dir/camera/videos/${item.exerPath}'
+                                      : item.exerPath,
+                                  item.exerId));
                             }
                           },
                           child: Container(

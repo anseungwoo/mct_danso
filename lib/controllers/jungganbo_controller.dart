@@ -9,6 +9,7 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/controllers/my_history_controller.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
@@ -42,7 +43,8 @@ class JungganboController extends GetxController {
   int scoreResult = 0;
   var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
-  final TearController _tearController = Get.put(TearController());
+  final _tearController = Get.put(TearController());
+  final _myHistoryController = Get.put(MyHistoryController());
 
   late int sheetVertical;
 
@@ -369,7 +371,7 @@ class JungganboController extends GetxController {
     }
   }
 
-  void stepStart() async {
+  void stepStart({var songId, songTitle}) async {
     create2DList();
     countingJungganboYulmyeong();
     copySheetHorizontal = sheetHorizontal;
@@ -466,9 +468,13 @@ class JungganboController extends GetxController {
         print('갯수 $scoreResult');
         print(yulmyoungsCount);
         scoreResult = ((scoreResult / yulmyoungsCount) * 100).toInt();
-
+        // 도전점수 DB 저장
+        _myHistoryController.putChallangeHistorydDB(
+            songId: songId, chalScore: scoreResult);
         Get.off(ResultScore(
           scrore: scoreResult,
+          songTitle: songTitle,
+          songId: songId,
         ));
         reset();
       } else {

@@ -83,8 +83,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       child: LinearProgressIndicator(
-                        value: tearController.userExp.ceil() /
-                            tearController.nextTearExp,
+                        value:
+                            tearController.userExp / tearController.nextTearExp,
                         backgroundColor: expColor,
                         color: mainColor,
                       ),
@@ -109,7 +109,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
             ),
             SizedBox(height: 31.h),
             // const Spacer(),
-            myPageButton(MY_RECORD_SVG, '내기록', MyPageRecord(songname: '곡이름')),
+            myPageButton(
+                MY_RECORD_SVG, '내기록', MyPageChallangeHistory(songname: '곡이름')),
             myPageButton(BOOKMARK_SVG, '관심곡', MyPageLike(songname: '곡이름')),
             myPageButton(
                 MP3_SVG, '연주듣기', MyPageListen(songname: '곡이름', date: '날짜')),
