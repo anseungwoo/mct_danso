@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -30,7 +31,7 @@ class MyPageRecord extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: buttonColorYellow),
+                        color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Padding(
                       padding: const EdgeInsets.all(svenPadddig),

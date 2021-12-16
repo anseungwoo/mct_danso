@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 
 PreferredSizeWidget defaultAppBar({required String title}) {
@@ -9,6 +10,6 @@ PreferredSizeWidget defaultAppBar({required String title}) {
       style: TextStyle(color: white, fontSize: textBasicSize.sp),
     ),
     elevation: 1,
-    backgroundColor: darkGray,
+    backgroundColor: getMctColor(MctColor.indiDarkGray),
   );
 }

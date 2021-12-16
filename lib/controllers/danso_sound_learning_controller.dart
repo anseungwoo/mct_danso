@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/db/db_helpers.dart';
@@ -218,7 +219,7 @@ class DansoSoundLearningController extends GetxController {
   //         userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
   //       return Text(
   //         '잘 불렀어요!! $userInputForAdjust',
-  //         style: TextStyle(color: matchColor, fontSize: 14.sp),
+  //         style: TextStyle(color: MctColor.dansoCodematchColor.getMctColor, fontSize: 14.sp),
   //       );
   //     } else {
   //       return Text(
@@ -281,7 +282,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -303,7 +306,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -325,7 +330,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -347,7 +354,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -369,7 +378,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -391,7 +402,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -413,7 +426,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -435,7 +450,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -457,7 +474,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',
@@ -479,7 +498,9 @@ class DansoSoundLearningController extends GetxController {
                 scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))!) {
               return Text(
                 '잘 불렀어요!!',
-                style: TextStyle(color: matchColor, fontSize: 14.sp),
+                style: TextStyle(
+                    color: MctColor.dansoCodematchColor.getMctColor,
+                    fontSize: 14.sp),
               );
             } else {
               return Text('다시 불러보세요!',

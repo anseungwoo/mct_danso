@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -41,7 +42,7 @@ class MyPageLike extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: buttonColorOrang),
+                        color: buttonColorOrange),
                     height: 60.h,
                     child: Padding(
                       padding: const EdgeInsets.all(svenPadddig),
@@ -53,7 +54,7 @@ class MyPageLike extends StatelessWidget {
                             '${item.songTitle}',
                             style: TextStyle(
                                 fontSize: textEightSize.sp,
-                                color: white,
+                                color: MctColor.white.getMctColor,
                                 fontFamily: NOTO_MEDIUM),
                           ),
                           InkWell(
@@ -68,8 +69,9 @@ class MyPageLike extends StatelessWidget {
                               BOOKMARK_SVG,
                               width: 20.w,
                               height: 20.h,
-                              color:
-                                  item.songLike == 'true' ? Colors.red : white,
+                              color: item.songLike == 'true'
+                                  ? Colors.red
+                                  : MctColor.white.getMctColor,
                             ),
                           ),
                         ],

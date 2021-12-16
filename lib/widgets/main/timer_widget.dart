@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 
 class TimerWidget extends StatefulWidget {
@@ -56,7 +57,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                 width: 100.w,
                 height: 100.w,
                 child: CircularProgressIndicator(
-                  color: unButtonColorOrang,
+                  color: MctColor.unButtonColorOrange.getMctColor,
                   strokeWidth: 5,
                 ),
               ),
@@ -66,7 +67,9 @@ class _TimerWidgetState extends State<TimerWidget> {
                 child: Center(
                   child: Text(
                     '$_start',
-                    style: TextStyle(fontSize: 30, color: unButtonColorOrang),
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: MctColor.unButtonColorOrange.getMctColor),
                   ),
                 ),
               ),

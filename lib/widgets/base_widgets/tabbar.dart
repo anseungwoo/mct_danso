@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/color.dart';
 
 import 'package:project_danso/common/const.dart';
 
@@ -11,12 +12,12 @@ TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
         width: 1.0,
-        color: buttonColorOrang,
+        color: buttonColorOrange,
       ),
       insets: EdgeInsets.symmetric(horizontal: basicPadding),
     ),
     unselectedLabelColor: unSelectColor,
-    labelColor: tapBarColor,
+    labelColor: MctColor.tapBarColor.getMctColor,
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: textEightSize.sp,

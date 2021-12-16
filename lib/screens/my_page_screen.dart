@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
@@ -85,8 +86,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
                       child: LinearProgressIndicator(
                         value: tearController.userExp.ceil() /
                             tearController.nextTearExp,
-                        backgroundColor: expColor,
-                        color: mainColor,
+                        backgroundColor: MctColor.expColor.getMctColor,
+                        color: MctColor.lightYellow.getMctColor,
                       ),
                     ),
                   ),

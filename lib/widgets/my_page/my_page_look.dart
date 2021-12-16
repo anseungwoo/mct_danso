@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
@@ -59,7 +60,7 @@ class _MyPageLookState extends State<MyPageLook> {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: buttonColorYellow),
+                        color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.start,

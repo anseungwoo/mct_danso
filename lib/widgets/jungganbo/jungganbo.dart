@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/jungganbo_controller.dart';
@@ -62,7 +63,9 @@ Container blankContainer(double height) {
   return Container(
     width: 20.w,
     height: height.h,
-    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
+    decoration: BoxDecoration(
+        color: MctColor.white.getMctColor,
+        border: Border.all(color: MctColor.white.getMctColor)),
   );
 }
 
@@ -72,7 +75,9 @@ Widget jungContainer(double height, JungganboController controller, int i,
     child: Container(
       width: jungWidth.w,
       height: height.h,
-      decoration: BoxDecoration(color: white, border: Border.all(color: white)),
+      decoration: BoxDecoration(
+          color: MctColor.white.getMctColor,
+          border: Border.all(color: MctColor.white.getMctColor)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

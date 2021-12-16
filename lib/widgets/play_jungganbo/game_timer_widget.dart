@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/const.dart';
 
 class GameTimerWidget extends StatefulWidget {
@@ -56,7 +57,7 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
                 width: 100.w,
                 height: 100.w,
                 child: CircularProgressIndicator(
-                  color: unButtonColorOrang,
+                  color: MctColor.unButtonColorOrange.getMctColor,
                   strokeWidth: 5,
                 ),
               ),
@@ -66,7 +67,9 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
                 child: Center(
                   child: Text(
                     '$_start',
-                    style: TextStyle(fontSize: 30, color: unButtonColorOrang),
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: MctColor.unButtonColorOrange.getMctColor),
                   ),
                 ),
               ),
@@ -77,7 +80,8 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
           ),
           Text(
             '3초후 시작합니다. 준비해주세요',
-            style: TextStyle(fontSize: 20.sp, color: white),
+            style:
+                TextStyle(fontSize: 20.sp, color: MctColor.white.getMctColor),
           ),
         ],
       ),

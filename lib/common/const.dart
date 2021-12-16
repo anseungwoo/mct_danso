@@ -3,30 +3,10 @@ import 'package:flutter/material.dart';
 // 배경색
 
 const Color background = Color(0xffFAF1E6);
-
-const Color backgroundGary = Color(0xffECECEC);
-
-// 매우 어두운 회색(상단 탭 텍스트-선택됨)
-const Color ultraDarkGray = Color(0xff636363);
-
 // 어두운 회색(상단 탭 인디케이터-선택됨)
 const Color darkGray = Color(0xffA5A5A5);
 
-// 중간 밝기 회색
-const Color mediumGray = Color(0xff949494);
-
-// 밝은 회색(상단 탭 텍스트-선택 안됨, 상단 탭 인디케이터-선택 안됨)
-const Color lightGray = Color(0xffD4D4D4);
-
-// 페이지 인디케이터 어두운 회색
-const Color indiDarkGray = Color(0xff878787);
-
-// 페이지 인디케이터 밝은 회색
-const Color indiLightGray = Color(0xffCFCFCF);
-//빨간색
-
 //메인색깔
-const Color mainColor = Color(0xffEFBE50);
 const Color expColor = Color(0xffFCDF9C);
 const Color buttonColorYellow = Color(0xffFFB85E);
 const Color graColorYellow = Color(0xffFFFBDE);
@@ -38,12 +18,8 @@ const Color tapBarColor = Color(0xffC48535);
 //마이페이지 글자색
 const Color white = Color(0xffFFFFFF);
 
-const Color grayBlackColor = Color(0xff9D9D9D);
-const Color grayWeithColor = Color(0xffD6D6D6);
-const Color grayLightColor = Color(0xffECECEC);
-
 // 단소 스타일 가이드
-const Color third = Color(0xffc48535);
+
 const Color appBarColor = Color(0xff302414);
 const Color logoColor = Color(0xffEFBE50);
 const Color buttonColorOrang = Color(0xffF19929);
@@ -59,8 +35,7 @@ const Color rightColor = Color(0xff00CDD5);
 const Color textDarkBlack = Color(0xff0c0c0c);
 // 검은색
 const Color textBlack = Color(0xff222222);
-//비활성화 회색
-const Color textHiddenGray = Color(0xffBFBFBF);
+
 //어플리캐이션 기본 크기 설정
 const double eightPadding = 8;
 const double basicPadding = 15;
