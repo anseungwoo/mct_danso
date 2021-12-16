@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class LearningSongListScreen extends StatefulWidget {
@@ -19,9 +20,12 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
 
+  final TearController _tearController = Get.put(TearController());
+
   @override
   void dispose() {
     super.dispose();
+    _tearController.getTearInfo();
   }
 
   @override
