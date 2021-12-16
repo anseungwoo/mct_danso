@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/color.dart';
 import 'package:project_danso/common/icon.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
@@ -543,7 +543,7 @@ class DansoSoundLearningController extends GetxController {
     if (dansoPitchAdjustList.isEmpty) {
       print('pitchResult : $pitchResult');
       print('pitch list isEmpty');
-      await Get.dialog(successFailDialog(FAIL_SVG, '다시 시도해주세요'));
+      await Get.dialog(confirmCancelDialog(FAIL_SVG, '다시 시도해주세요'));
       await stopCapture();
     } else {
       print('pitch list isNotEmpty');
@@ -557,7 +557,7 @@ class DansoSoundLearningController extends GetxController {
       if (pitchResult > 800.0 || pitchResult < 400.0) {
         // showToast(message: '음이 올바르지 않습니다.\n다시 시도해주세요.');
         print('음이 높거나 낮음');
-        await Get.dialog(successFailDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
+        await Get.dialog(confirmCancelDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
       } else if (pitchResult < 800.0 || pitchResult > 400.0) {
         print('pitch 정상범위');
         pitchModelInterface.settingAdjust(pitchResult);
@@ -565,11 +565,11 @@ class DansoSoundLearningController extends GetxController {
         await DBHelPer().insertFr(UserModel(standardFr: pitchResult));
         // showToast(message: '$pitchResult DB에 저장됨.');
         await stopCapture();
-        await Get.dialog(successFailDialog(SUCCESS_SVG, '성공하였습니다.'));
+        await Get.dialog(confirmCancelDialog(SUCCESS_SVG, '성공하였습니다.'));
 
         update();
       } else {
-        await Get.dialog(successFailDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
+        await Get.dialog(confirmCancelDialog(FAIL_SVG, '실패하였습니다. 다시 시도해주세요.'));
         await stopCapture();
       }
     }

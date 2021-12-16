@@ -16,6 +16,7 @@ export 'play_jungganbo/danso_step_by_step.dart';
 export '../screens/learning_song_list_screen.dart';
 export 'base_widgets/result_score.dart';
 export 'camera_record/song_camara_recoding.dart';
+export 'my_page/song_graph.dart';
 export 'play_jungganbo/song_play_and_test.dart';
 export 'my_page/my_page_delete_dialog.dart';
 export 'my_page/my_page_listen.dart';

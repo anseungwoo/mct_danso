@@ -122,25 +122,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                 },
               ),
             ),
-            SizedBox(width: 5.w),
-            Container(
-              width: 78.w,
-              height: 30.h,
-              child: ElevatedButton(
-                child: Text('반주만',
-                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
-                style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: MctColor.white.getMctColor,
-                    onPrimary: MctColor.buttonColorOrange.getMctColor,
-                    side: BorderSide(
-                        color: MctColor.buttonColorOrange.getMctColor),
-                    textStyle: TextStyle(
-                        fontSize: 12.sp,
-                        color: MctColor.buttonColorOrange.getMctColor)),
-                onPressed: () {},
-              ),
-            ),
           ],
         ),
         SizedBox(height: 3.h),
