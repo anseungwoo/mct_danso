@@ -12,7 +12,7 @@ class SongController extends GetxController {
     super.onInit();
 
     // deleteAllSong(); // DB 초기화
-    insertSongToJson();
+    // insertSongToJson();
   }
 
   void updateLikeSongList(

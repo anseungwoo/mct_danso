@@ -9,6 +9,7 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/permissioin_controller.dart';
 import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,6 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(PermissionController());
   final SongController songController = Get.put(SongController());
   FlutterMidi flutterMidi = FlutterMidi();
+  final SongController _songController = Get.put(SongController());
+  final TearController _tearController = Get.put(TearController());
   void load() async {
     var byteData = await rootBundle.load('assets/Dan.sf2');
     await flutterMidi.prepare(sf2: byteData);
@@ -34,6 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     load();
+    _songController.insertSongToJson();
+    _tearController.loadExp();
     startTime();
   }
 
