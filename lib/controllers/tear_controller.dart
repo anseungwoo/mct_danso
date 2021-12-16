@@ -2,12 +2,16 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/level_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TearController extends GetxController {
-  var userExp = 0.0.obs;
-  var emblemAsset = ''.obs;
-  var tearName = ''.obs;
-  var nextTearExp = 0.0.obs;
+  // shared preferences 얻기
+
+// 값 저장하기
+  var userExp = 0.0;
+  var emblemAsset = '';
+  var tearName = '';
+  var nextTearExp = 0.0;
   // RxMap<String, double?> get tearExp => <String,double?>{
   //   'bronze': 35.0,
   //   'silver': 100.0,
@@ -22,65 +26,72 @@ class TearController extends GetxController {
     // DBHelPer().deleteExp();
   }
 
+  //시작할 때 counter 값을 불러옵니다.
+  void loadExp() async {
+    var prefs = await SharedPreferences.getInstance();
+    userExp = (prefs.getDouble('exp') ?? 0.0);
+    print('load userExp : $userExp');
+  }
+
+  //클릭하면 counter를 증가시킵니다.
+  void incrementExp(double addExp) async {
+    var prefs = await SharedPreferences.getInstance();
+    userExp = (prefs.getDouble('exp') ?? 0.0) + addExp;
+    await prefs.setDouble('exp', userExp);
+    print('setter userExp : $userExp');
+  }
+
   void getUserExp() async {
-    try {
-      // 경험치 정보 가져오는데 null 이면 변수에 0 넣어줌.
-      userExp.value = await DBHelPer().getExp() ?? 0.0;
-    } catch (e) {
-      print('경험치 값 없음');
-    } finally {
-      // 변수 값을 insert 함
-      if (userExp.value < 1.0) {
-        inserUserExp(userExp.value);
-      }
-    }
+    // try {
+    // 경험치 정보 가져오는데 null 이면 변수에 0 넣어줌.
+    userExp = await DBHelPer().getExp() ?? 0.0;
+    // } catch (e) {
+    // print('경험치 값 없음');
+    // } finally {
+    // 변수 값을 insert 함
+    // if (userExp < 1.0) {
+    //   inserUserExp(userExp);
+    // }
+    // }
   }
 
-  void inserUserExp(double exp) async {
-    // 테이블 초기화 후 insert
-    DBHelPer().deleteExp();
-    await DBHelPer().insertExp(LevelModel(levelExp: exp));
-  }
+  // void inserUserExp(double exp) async {
+  //   // 테이블 초기화 후 insert
+  //   DBHelPer().deleteExp();
+  //   await DBHelPer().insertExp(LevelModel(levelExp: exp));
+  // }
 
-  void updateUserExp(double exp) async {
-    // 경험치 업데이트(새로 들어온 경험치 로직 필요)
-    await DBHelPer().updateExp(exp);
-  }
-
-  void addExp(double addPoint) async {
-    getUserExp();
-    var result = userExp.value + addPoint;
-    await DBHelPer().updateExp(result);
-  }
+  // void addExp(double addPoint) async {
+  //   getUserExp();
+  //   var result = userExp + addPoint;
+  //   await DBHelPer().updateExp(result);
+  //   getUserExp();
+  //   print('추가 후 경험치 : $result');
+  // }
 
   void getTearInfo() {
-    var path = 'assets/images/tear/ic_';
-    getUserExp();
-    if (userExp.value <= 5) {
-      emblemAsset.value = path + 'unranked.svg';
-      tearName.value = TEAR_NAME[0];
-      // 다음 티어 까지 경험치
-      nextTearExp.value = 6.0;
-    } else if (userExp.value <= 34) {
-      emblemAsset.value = path + 'bronze.svg';
-      tearName.value = TEAR_NAME[1];
-      nextTearExp.value = 35.0;
-    } else if (userExp.value <= 99) {
-      emblemAsset.value = path + 'silver.svg';
-      tearName.value = TEAR_NAME[2];
-      nextTearExp.value = 100.0;
-    } else if (userExp.value <= 299) {
-      emblemAsset.value = path + 'gold.svg';
-      tearName.value = TEAR_NAME[3];
-      nextTearExp.value = 300.0;
-    } else if (userExp.value <= 9999) {
-      emblemAsset.value = path + 'platinum.svg';
-      tearName.value = TEAR_NAME[4];
-      nextTearExp.value = 10000.0;
-    } else if (userExp.value > 9999) {
-      emblemAsset.value = path + 'master.svg';
-      tearName.value = TEAR_NAME[5];
-      nextTearExp.value = 10000.0;
+    loadExp();
+
+    if (userExp <= 5) {
+      setEmblemAssetAndTearName('unranked', 0, 6.0);
+    } else if (userExp <= 34) {
+      setEmblemAssetAndTearName('bronze', 1, 35.0);
+    } else if (userExp <= 99) {
+      setEmblemAssetAndTearName('silver', 2, 100.0);
+    } else if (userExp <= 299) {
+      setEmblemAssetAndTearName('gold', 3, 300.0);
+    } else if (userExp <= 999) {
+      setEmblemAssetAndTearName('platinum', 4, 1000.0);
+    } else if (userExp > 9999) {
+      setEmblemAssetAndTearName('master', 5, 10000.0);
     }
+  }
+
+  void setEmblemAssetAndTearName(var rankedName, tearNum, nextTearExp) {
+    var path = 'assets/images/tear/ic_' + rankedName + '.svg';
+    emblemAsset = path;
+    tearName = TEAR_NAME[tearNum];
+    // 다음 티어 까지 경험치
+    nextTearExp = nextTearExp;
   }
 }

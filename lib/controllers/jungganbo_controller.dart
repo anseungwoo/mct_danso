@@ -9,7 +9,12 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/const.dart';
+
 import 'package:project_danso/common/enum.dart';
+
+import 'package:project_danso/controllers/tear_controller.dart';
+import 'package:project_danso/db/db_helpers.dart';
+
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -34,7 +39,7 @@ class JungganboController extends GetxController {
   int pagenext = 1;
   int sheetHorizontal = 0;
   int copySheetHorizontal = 0;
-  String jangDan = "";
+  String jangDan = '';
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
@@ -47,6 +52,7 @@ class JungganboController extends GetxController {
   int scoreResult = 0;
   var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
+  final TearController _tearController = Get.put(TearController());
 
   late int sheetVertical;
 
@@ -85,18 +91,18 @@ class JungganboController extends GetxController {
   }
 
   String getJandan(var jangdan) {
-    // String res = "";
+    // String res = '';
 
     switch (jangdan) {
-      case "중중모리장단":
+      case '중중모리장단':
         return JOONGJOONG;
-      case "굿거리장단":
+      case '굿거리장단':
         return GOOD;
-      case "세마치장단":
+      case '세마치장단':
         return SEMACHI;
-      case "4박장단":
+      case '4박장단':
         return HUIMORI;
-      case "자진모리장단":
+      case '자진모리장단':
         return JAJIN;
       default: //high:
         return '';
@@ -105,19 +111,19 @@ class JungganboController extends GetxController {
 
   void setSpeed() {
     switch (jangDan) {
-      case "중중모리장단":
+      case '중중모리장단':
         assetsAudioPlayer.setPlaySpeed(1.265);
         break;
-      case "굿거리장단":
+      case '굿거리장단':
         assetsAudioPlayer.setPlaySpeed(0.8);
         break;
-      case "세마치장단":
+      case '세마치장단':
         assetsAudioPlayer.setPlaySpeed(1.65);
         break;
-      case "4박장단":
+      case '4박장단':
         assetsAudioPlayer.setPlaySpeed(0.65);
         break;
-      case "자진모리장단":
+      case '자진모리장단':
         assetsAudioPlayer.setPlaySpeed(1.85);
         break;
 
@@ -380,16 +386,27 @@ class JungganboController extends GetxController {
     setting();
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
-    await Future.delayed(
-        Duration(milliseconds: (mill / speed[speedCount]).toInt()));
-    Timer.periodic(Duration(milliseconds: (mill / speed[speedCount]).toInt()),
-        (timer) {
+    await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
+    Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isPitchDetector) {
-          double? pitchValueResult = pitchModelInterface
+          var pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
           checkYulmyeongsSection(line, pitchValue: pitchValueResult);
-          print("클후 :$pitchValueResult");
+
+          // if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+          //         Yulmyeong.blank ||
+          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+          //         Yulmyeong.rest ||
+          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
+          //         Yulmyeong.long) {
+          //   matchTrueFalse[line] = true;
+          // } else if (pitchModelInterface.isCorrectPitch(
+          //     pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
+          //   print('선 :$pitchValueResult');
+          //   matchTrueFalse[line] = true;
+          // }
+          print('클후 :$pitchValueResult');
         }
 
         line++;
@@ -447,6 +464,8 @@ class JungganboController extends GetxController {
         }
       } else if (line == jungGanBo!.sheet.length && isPitchDetector) {
         timer.cancel();
+        // _tearController.addExp(1.0);
+        _tearController.incrementExp(10.0);
         for (var i = 0; i < jungGanBo!.sheet.length; i++) {
           for (var j = 0; j < jungGanBo!.sheet[i].yulmyeongs.length; j++) {
             if (matchTrueFalse[i][j] == true) {
@@ -474,8 +493,7 @@ class JungganboController extends GetxController {
   final player = FlutterMidi();
   void playJungGanBo(IndexManager indexManager) {
     indexManager.clearIndex();
-    Timer.periodic(Duration(milliseconds: (mill / speed[speedCount]).toInt()),
-        (timer) {
+    Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
       if (indexManager.index < jungGanBo!.sheet.length) {
         playJung(jungGanBo!.sheet[indexManager.index],
             (mill * speed[speedCount]).toInt());
@@ -495,8 +513,8 @@ class JungganboController extends GetxController {
   }
 
   playJung(Jung jung, int durationTime) {
-    int halfOfDurationTime = durationTime ~/ 2;
-    int oneOfThreeDurationTime = durationTime ~/ 3;
+    var halfOfDurationTime = durationTime ~/ 2;
+    var oneOfThreeDurationTime = durationTime ~/ 3;
     if (jung.divisionStatus == DivisionStatus.one) {
       if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
           jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
@@ -511,7 +529,7 @@ class JungganboController extends GetxController {
         allMidiStop();
       }
       playOneYulmyeongNote(jung.yulmyeongs[0]);
-      sleep(new Duration(milliseconds: halfOfDurationTime));
+      sleep(Duration(milliseconds: halfOfDurationTime));
 
       if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
           jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
@@ -526,14 +544,14 @@ class JungganboController extends GetxController {
         allMidiStop();
       }
       playOneYulmyeongNote(jung.yulmyeongs[0]);
-      sleep(new Duration(milliseconds: oneOfThreeDurationTime));
+      sleep(Duration(milliseconds: oneOfThreeDurationTime));
       if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
           jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
         allMidiStop();
       }
       //sleep(new Duration(milliseconds: 10));
       playOneYulmyeongNote(jung.yulmyeongs[1]);
-      sleep(new Duration(milliseconds: oneOfThreeDurationTime));
+      sleep(Duration(milliseconds: oneOfThreeDurationTime));
       if (jung.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
           jung.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
         allMidiStop();
@@ -549,18 +567,18 @@ class JungganboController extends GetxController {
     int notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
     player.playMidiNote(midi: notePlayed);
 
-    Timer(new Duration(milliseconds: durationTime), () {
+    Timer(Duration(milliseconds: durationTime), () {
       player.stopMidiNote(midi: notePlayed);
     });
   }
 
   playOneYulmyeongNote(YulmyeongNote yulmyeongNote) {
-    int notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
+    var notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
     player.playMidiNote(midi: notePlayed);
   }
 
   int getMidiNoteFromYulmyeongNote(YulmyeongNote yulmyeongNote) {
-    int res = 0;
+    var res = 0;
     if (yulmyeongNote.scaleStatus == ScaleStatus.origin) {
       switch (yulmyeongNote.yulmyeong) {
         case Yulmyeong.joong:

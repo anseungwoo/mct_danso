@@ -22,12 +22,13 @@ class _MainScreenState extends State<MainScreen> {
   MainScreenController mainScreenController =
       Get.put(MainScreenController(), permanent: true);
 
-  TearController tearController = Get.put(TearController());
+  TearController tearController = Get.put(TearController(), permanent: true);
 
   @override
   void initState() {
     super.initState();
     tearController.getTearInfo();
+    setState(() {});
   }
 
   @override
@@ -35,6 +36,7 @@ class _MainScreenState extends State<MainScreen> {
     // TODO: implement dispose
     super.dispose();
     mainScreenController.assetsAudioPlayer.dispose();
+    tearController.getTearInfo();
   }
 
   @override
@@ -108,16 +110,14 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Obx tearImage() {
-    return Obx(
-      () => Positioned(
-        top: 40.h,
-        right: 10.w,
-        child: SvgPicture.asset(
-          tearController.emblemAsset.value,
-          width: 30.w,
-          height: 30.w,
-        ),
+  Widget tearImage() {
+    return Positioned(
+      top: 40.h,
+      right: 10.w,
+      child: SvgPicture.asset(
+        tearController.emblemAsset,
+        width: 30.w,
+        height: 30.w,
       ),
     );
   }
@@ -202,7 +202,13 @@ class _MainScreenState extends State<MainScreen> {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
-          onTap: () => Get.to(MyPageScreen()),
+          // onTap: () => Get.to(MyPageScreen()),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyPageScreen()),
+            ).then((value) => setState(() {}));
+          },
           child: Container(
             width: 174.w,
             height: 36.w,

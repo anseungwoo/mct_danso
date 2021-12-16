@@ -38,7 +38,7 @@ class DBHelPer {
       await db.execute('''
             CREATE TABLE $levelTable
             (
-                level_exp DOUBLE NOT NULL DEFAULT 0.0
+                level_exp DOUBLE
             )
           ''');
       await db.execute('''
