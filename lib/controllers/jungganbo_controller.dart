@@ -9,17 +9,22 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/enum.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
-import 'package:audio_session/audio_session.dart';
 import 'package:project_danso/widgets/widgets.dart';
-import 'package:rxdart/streams.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;
   String startButton = '시작하기';
   int speedCount = 2;
-  List speed = [0.8, 0.9, 1.0, 1.1, 1.2];
+  List speed = [
+    getSpeed(SongSpeed.eight),
+    getSpeed(SongSpeed.nine),
+    getSpeed(SongSpeed.ten),
+    getSpeed(SongSpeed.eleven),
+    getSpeed(SongSpeed.twelve)
+  ];
   bool krState = false;
   String krButton = '한자';
   int line = 0;
@@ -384,19 +389,6 @@ class JungganboController extends GetxController {
           double? pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
           checkYulmyeongsSection(line, pitchValue: pitchValueResult);
-
-          // if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-          //         Yulmyeong.blank ||
-          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-          //         Yulmyeong.rest ||
-          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-          //         Yulmyeong.long) {
-          //   matchTrueFalse[line] = true;
-          // } else if (pitchModelInterface.isCorrectPitch(
-          //     pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
-          //   print("선 :$pitchValueResult");
-          //   matchTrueFalse[line] = true;
-          // }
           print("클후 :$pitchValueResult");
         }
 

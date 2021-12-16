@@ -1,20 +1,16 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/controllers/my_page_music_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class AudioRecordController extends GetxController {
   final _playAndTestController = Get.put(PlayAndTestController());
   final audioAndVideoRecordController = Get.put(AudioAndVideoDBController());
-
   late FlutterAudioRecorder2 recorder;
   late Recording? _recording;
   late Timer time;
@@ -60,11 +56,9 @@ class AudioRecordController extends GetxController {
         DateTime.now().millisecondsSinceEpoch.toString();
     // var iosPath = basename(customPath);
     // print('파일 이름 : $iosPath');
-
     // .wav <---> AudioFormat.WAV
     // .mp4 .m4a .aac <---> AudioFormat.AAC
     // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
-
     recorder = FlutterAudioRecorder2("$customPath.mp4");
     print(customPath);
 
@@ -78,7 +72,6 @@ class AudioRecordController extends GetxController {
       await _init();
       var result = await recorder.current();
       _recording = result!;
-
       alert = '';
       update();
     } else {

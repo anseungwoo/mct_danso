@@ -2,19 +2,16 @@ import 'package:get/get.dart';
 
 class PlayAndTestController extends GetxController {
   bool platState = false;
-
   bool testState = false;
   bool testStartState = false;
-
   int statecount = 0;
-
   int test = 0;
   String krButton = '한자버전';
   bool krChanges = false;
+
   @override
   void onInit() {
     super.onInit();
-
     reset();
   }
 
@@ -43,7 +40,6 @@ class PlayAndTestController extends GetxController {
 
   void nextButton() {
     statecount++;
-
     update();
   }
 
@@ -52,5 +48,3 @@ class PlayAndTestController extends GetxController {
     update();
   }
 }
-
-enum SongSpeed { eight, nine, ten, eleven, twelve }

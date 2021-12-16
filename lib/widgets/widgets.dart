@@ -35,5 +35,5 @@ export 'main_danso_learning/q_and_a_page.dart';
 export './main/loading_indicator.dart';
 export './main/timer_widget.dart';
 export './base_widgets/picture_and_text.dart';
-export 'main/success_fail_dialog.dart';
+export 'main/confirm_cancel_dialog.dart';
 export './play_jungganbo/game_timer_widget.dart';

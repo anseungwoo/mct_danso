@@ -9,7 +9,6 @@ export 'camera_record/camera_record_controller.dart';
 export 'main_screen_controller.dart';
 export 'audio_and_video_list_controller.dart';
 export 'my_page_music_controller.dart';
-
 // DB
 export 'chal_data_controller.dart';
 export 'exer_data_controller.dart';

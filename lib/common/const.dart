@@ -42,6 +42,25 @@ const Color grayBlackColor = Color(0xff9D9D9D);
 const Color grayWeithColor = Color(0xffD6D6D6);
 const Color grayLightColor = Color(0xffECECEC);
 
+// 단소 스타일 가이드
+const Color third = Color(0xffc48535);
+const Color appBarColor = Color(0xff302414);
+const Color logoColor = Color(0xffEFBE50);
+const Color buttonColorOrang = Color(0xffF19929);
+const Color unButtonColorOrang = Color(0xffFEC782);
+const Color matchColor = Color(0xff00A8F2);
+const Color unMatchColor = Color(0xffFE0000);
+const Color leftColor = Color(0xffFFA200);
+const Color unSelectColor = Color(0xffFBCF98);
+const Color rightColor = Color(0xff00CDD5);
+
+//글자 색상
+//진한 검은색
+const Color textDarkBlack = Color(0xff0c0c0c);
+// 검은색
+const Color textBlack = Color(0xff222222);
+//비활성화 회색
+const Color textHiddenGray = Color(0xffBFBFBF);
 //어플리캐이션 기본 크기 설정
 const double eightPadding = 8;
 const double basicPadding = 15;
@@ -67,14 +86,6 @@ const double textTitleSize = 20;
 //단일크기
 const double textSingleSize = 23;
 
-//글자 색상
-//진한 검은색
-const Color textDarkBlack = Color(0xff0c0c0c);
-// 검은색
-const Color textBlack = Color(0xff222222);
-//비활성화 회색
-const Color textHiddenGray = Color(0xffBFBFBF);
-
 //정간보세로,가로
 const FontWeight bold = FontWeight.bold;
 
@@ -83,17 +94,6 @@ const double jungHeight = 35;
 const double jungSixHeight = 82;
 const double jungEightHeight = 62;
 
-// 단소 스타일 가이드
-const Color third = Color(0xffc48535);
-const Color appBarColor = Color(0xff302414);
-const Color logoColor = Color(0xffEFBE50);
-const Color buttonColorOrang = Color(0xffF19929);
-const Color unButtonColorOrang = Color(0xffFEC782);
-const Color matchColor = Color(0xff00A8F2);
-const Color unMatchColor = Color(0xffFE0000);
-const Color leftColor = Color(0xffFFA200);
-const Color unSelectColor = Color(0xffFBCF98);
-const Color rightColor = Color(0xff00CDD5);
 //단소 설명 페이지안에서의 내용
 //단소의 역사 설명
 const String HISTORY =
@@ -209,30 +209,30 @@ const List<String> DANSO_CODE_SVG_LIST = [
 const String UP_SVG = 'assets/images/ic_up.svg';
 const String DOWN_SVG = 'assets/images/ic_down.svg';
 //운지법
-const List DANSO_CODE_PNG = [
-  'assets/images/danso_code/중.png',
-  'assets/images/danso_code/임.png',
-  'assets/images/danso_code/무.png',
-  'assets/images/danso_code/황.png',
-  'assets/images/danso_code/태.png',
-  'assets/images/danso_code/높은_태.png'
-];
-const List DANSO_CODE_TITLE = [
-  '仲 & 㳞(중)',
-  '林 & 淋(임)',
-  '無 & 潕(무)',
-  '潢 & 㶂(황)',
-  '汰(태)',
-  '㳲(태)'
-];
-const List DANSO_CODE_CONTANT = [
-  '1~4공까지의 지공을 막고, 5공은 열고 소리를 냅니다. 仲은 "낮은소리"를 낼 때의 입김으로,  㳞은 "가운데소리"를 낼 때의 입김으로 연주합니다.',
-  '1~3공까지의  지공을 막고, 4공과 5공은 열고 소리를 냅니다. 林은 "낮은소리"를 낼 때의 입김으로,  淋은 "가운데소리"를 낼 때의 입김으로 연주합니다.',
-  '1~2공까지의  지공을 막고, 3~5공은 열고 소리를 냅니다. 無는 "가운데소리"를 낼 때의 입김으로,  潕는 "높은소리"를 낼 때의 입김으로 연주합니다.',
-  '1공의  지공을 막고, 2~5공은 열고 소리를 냅니다. 潢은 "가운데소리"를 낼 때의 입김으로,  㶂은 "높은소리"를 낼 때의 입김으로 연주합니다.',
-  '1~5공의 지공을 모두 열고  소리를 냅니다. 汰는 "가운데소리"를 낼 때의 입김으로 연주합니다.',
-  '1공과 3공은 막고, 2공과 4공, 5공은 열고 소리를 냅니다. 㳲는 "높은소리"를 낼 때의 입김으로 연주합니다.'
-];
+// const List DANSO_CODE_PNG = [
+//   'assets/images/danso_code/중.png',
+//   'assets/images/danso_code/임.png',
+//   'assets/images/danso_code/무.png',
+//   'assets/images/danso_code/황.png',
+//   'assets/images/danso_code/태.png',
+//   'assets/images/danso_code/높은_태.png'
+// ];
+// const List DANSO_CODE_TITLE = [
+//   '仲 & 㳞(중)',
+//   '林 & 淋(임)',
+//   '無 & 潕(무)',
+//   '潢 & 㶂(황)',
+//   '汰(태)',
+//   '㳲(태)'
+// ];
+// const List DANSO_CODE_CONTANT = [
+//   '1~4공까지의 지공을 막고, 5공은 열고 소리를 냅니다. 仲은 "낮은소리"를 낼 때의 입김으로,  㳞은 "가운데소리"를 낼 때의 입김으로 연주합니다.',
+//   '1~3공까지의  지공을 막고, 4공과 5공은 열고 소리를 냅니다. 林은 "낮은소리"를 낼 때의 입김으로,  淋은 "가운데소리"를 낼 때의 입김으로 연주합니다.',
+//   '1~2공까지의  지공을 막고, 3~5공은 열고 소리를 냅니다. 無는 "가운데소리"를 낼 때의 입김으로,  潕는 "높은소리"를 낼 때의 입김으로 연주합니다.',
+//   '1공의  지공을 막고, 2~5공은 열고 소리를 냅니다. 潢은 "가운데소리"를 낼 때의 입김으로,  㶂은 "높은소리"를 낼 때의 입김으로 연주합니다.',
+//   '1~5공의 지공을 모두 열고  소리를 냅니다. 汰는 "가운데소리"를 낼 때의 입김으로 연주합니다.',
+//   '1공과 3공은 막고, 2공과 4공, 5공은 열고 소리를 냅니다. 㳲는 "높은소리"를 낼 때의 입김으로 연주합니다.'
+// ];
 //main svg 기준음잡디 메인페이지 아이콘
 const String HOME_SVG = 'assets/images/ic_home.svg';
 const String BOLW_SVG = 'assets/images/ic_blow.svg';
