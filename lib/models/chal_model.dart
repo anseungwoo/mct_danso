@@ -1,13 +1,11 @@
 class ChallangeModel {
-  final int chalId;
   final int? songId;
   final int chalScore;
   final String? chalTime;
 
   ChallangeModel({
-    this.songId,
-    required this.chalId,
+    required this.songId,
     required this.chalScore,
-    this.chalTime,
+    required this.chalTime,
   });
 }

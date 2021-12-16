@@ -6,7 +6,7 @@ import 'package:project_danso/common/contant.dart';
 import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
-Widget myPageDeleteDialog(String? path) {
+Widget myPageDeleteDialog(var path, exerId) {
   final audioAndVideoListController = Get.put(AudioAndVideoListController());
   return Dialog(
     insetPadding: EdgeInsets.zero,
@@ -41,7 +41,7 @@ Widget myPageDeleteDialog(String? path) {
                     yesNoButton(
                       text: "확인",
                       onPress: () {
-                        controller.DeleteFile(path);
+                        controller.DeleteFile(path, exerId);
                       },
                     ),
                   ],

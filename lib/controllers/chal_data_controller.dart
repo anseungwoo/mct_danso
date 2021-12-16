@@ -12,7 +12,7 @@ class ChalDataController extends GetxController {
   }
 
   void getMyHistoryList() {
-    myHistoryList.value = DBHelPer().readMyHistoryData();
+    myHistoryList.value = DBHelPer().readMyHistoryList();
     update();
   }
 
