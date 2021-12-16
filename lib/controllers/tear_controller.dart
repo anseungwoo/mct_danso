@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/level_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';

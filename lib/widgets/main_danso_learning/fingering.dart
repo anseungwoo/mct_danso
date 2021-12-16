@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/utils/common/constants/PitchConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
@@ -31,7 +34,7 @@ Widget fingering(BuildContext context) {
                     for (var i = 0; i < 6; i++)
                       Text('${Yum[i].toChineseCharacter()}',
                           style: TextStyle(
-                            fontSize: textTitleSize.sp,
+                            fontSize: MctSize.twenty.getSize.sp,
                             fontFamily: NOTO_REGULAR,
                           )),
                   ],
@@ -43,12 +46,12 @@ Widget fingering(BuildContext context) {
                     for (var i = 0; i < 5; i++)
                       Text('${Yum[i].toHangeul()}',
                           style: TextStyle(
-                            fontSize: textTitleSize.sp,
+                            fontSize: MctSize.twenty.getSize.sp,
                             fontFamily: NOTO_REGULAR,
                           )),
                     Text('태',
                         style: TextStyle(
-                          fontSize: textTitleSize.sp,
+                          fontSize: MctSize.twenty.getSize.sp,
                           fontFamily: NOTO_REGULAR,
                         )),
                   ],
@@ -82,7 +85,8 @@ Row leftRightText() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.end,
     children: [
-      CircleAvatar(radius: 14.r, backgroundColor: rightColor),
+      CircleAvatar(
+          radius: 14.r, backgroundColor: MctColor.rightHandColor.getMctColor),
       SizedBox(
         width: 7.sp,
       ),
@@ -94,7 +98,8 @@ Row leftRightText() {
       SizedBox(
         width: 7.sp,
       ),
-      CircleAvatar(radius: 14.r, backgroundColor: leftColor),
+      CircleAvatar(
+          radius: 14.r, backgroundColor: MctColor.leftHandColor.getMctColor),
       SizedBox(width: 7.sp),
       Text('오른손',
           style: TextStyle(

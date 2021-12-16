@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongGraph extends StatelessWidget {
@@ -13,7 +15,7 @@ class SongGraph extends StatelessWidget {
       appBar: songtabbarAndAppBar(
           title: '노래곡 제목', tabbar: null, enableTabBar: false),
       body: Padding(
-        padding: const EdgeInsets.all(basicPadding),
+        padding: EdgeInsets.all(MctSize.fifteen.getSize),
         child: Container(
           width: ScreenUtil().screenWidth,
           height: ScreenUtil().screenHeight,
@@ -24,12 +26,12 @@ class SongGraph extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: basicPadding),
+                      padding: EdgeInsets.symmetric(
+                          vertical: MctSize.fifteen.getSize),
                       child: Text(
                         '2021.09.10 14:13',
                         style: TextStyle(
-                            fontSize: textEightSize.sp,
+                            fontSize: MctSize.eighteen.getSize.sp,
                             fontFamily: NOTO_REGULAR),
                       ),
                     ),
@@ -43,16 +45,16 @@ class SongGraph extends StatelessWidget {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                graColorYellow,
+                                MctColor.gradationColorYellow.getMctColor,
                                 MctColor.lightYellow.getMctColor,
                               ])),
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: basicPadding),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: MctSize.fifteen.getSize),
                         child: Text(
                           '100점',
                           style: TextStyle(
-                              fontSize: textSevenSize.sp,
+                              fontSize: MctSize.seventeen.getSize.sp,
                               fontFamily: NOTO_BOLD),
                         ),
                       ),

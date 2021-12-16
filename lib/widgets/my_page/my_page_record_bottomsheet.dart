@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 // Widget bottomsheet() {
@@ -96,15 +98,15 @@ void bottomsheet(BuildContext context) async {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(basicPadding),
+              padding: EdgeInsets.all(MctSize.fifteen.getSize),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '곡 이름',
                     style: TextStyle(
-                        fontSize: textSingleSize.sp,
-                        color: textBlack,
+                        fontSize: MctSize.twentyThree.getSize.sp,
+                        color: MctColor.black.getMctColor,
                         decoration: TextDecoration.none),
                   ),
                   Container(
@@ -118,8 +120,8 @@ void bottomsheet(BuildContext context) async {
                                 Text(
                                   '날짜',
                                   style: TextStyle(
-                                      fontSize: textEightSize.sp,
-                                      color: textBlack,
+                                      fontSize: MctSize.eighteen.getSize.sp,
+                                      color: MctColor.black.getMctColor,
                                       decoration: TextDecoration.none),
                                 ),
                                 SizedBox(height: 10.h),
@@ -131,8 +133,9 @@ void bottomsheet(BuildContext context) async {
                                       begin: Alignment.topLeft,
                                       end: Alignment.bottomRight,
                                       colors: [
-                                        graColorYellow,
-                                        logoColor,
+                                        MctColor
+                                            .gradationColorYellow.getMctColor,
+                                        MctColor.lightYellow.getMctColor,
                                       ],
                                     ),
                                   ),
@@ -142,8 +145,8 @@ void bottomsheet(BuildContext context) async {
                                       '점수',
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
-                                          fontSize: textEightSize.sp,
-                                          color: textBlack,
+                                          fontSize: MctSize.eighteen.getSize.sp,
+                                          color: MctColor.black.getMctColor,
                                           decoration: TextDecoration.none),
                                     ),
                                   ),

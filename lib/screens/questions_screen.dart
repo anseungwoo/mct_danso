@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/youtude.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -40,7 +44,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         body: TabBarView(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: basicPadding),
+              padding: EdgeInsets.only(top: MctSize.fifteen.getSize),
               child: Container(
                 width: ScreenUtil().screenWidth,
                 height: ScreenUtil().screenHeight,
@@ -48,8 +52,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     itemCount: Q_AND_A_TITLE.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: basicPadding),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 5, horizontal: MctSize.fifteen.getSize),
                         child: InkWell(
                             onTap: () {
                               Get.to(QAndAPAGE(
@@ -63,10 +67,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                               width: 330.w,
                               height: 60.h,
                               decoration: BoxDecoration(
-                                  color: buttonColorYellow,
+                                  color: MctColor.buttonColorYellow.getMctColor,
                                   borderRadius: BorderRadius.circular(5)),
                               child: Padding(
-                                padding: const EdgeInsets.all(svenPadddig),
+                                padding:
+                                    EdgeInsets.all(MctSize.seventeen.getSize),
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
@@ -74,13 +79,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                       width: 20.w,
                                       height: 20.h,
                                     ),
-                                    SizedBox(width: basicPadding),
+                                    SizedBox(width: MctSize.fifteen.getSize),
                                     Text(
                                       '${Q_AND_A_TITLE[index]}',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                          color: white,
-                                          fontSize: textFiveSize.sp,
+                                          color: MctColor.white.getMctColor,
+                                          fontSize: MctSize.fifteen.getSize.sp,
                                           fontFamily: NOTO_MEDIUM),
                                     ),
                                   ],
@@ -92,7 +97,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: basicPadding),
+              padding: EdgeInsets.only(top: MctSize.fifteen.getSize),
               child: Container(
                 width: ScreenUtil().screenWidth,
                 height: ScreenUtil().screenHeight,
@@ -100,8 +105,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     itemCount: TIP_TITLE.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: basicPadding),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 5, horizontal: MctSize.fifteen.getSize),
                         child: InkWell(
                             onTap: () {
                               Get.to(QAndAPAGE(
@@ -115,10 +120,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                               width: 330.w,
                               height: 60.h,
                               decoration: BoxDecoration(
-                                  color: buttonColorYellow,
+                                  color: MctColor.buttonColorYellow.getMctColor,
                                   borderRadius: BorderRadius.circular(5)),
                               child: Padding(
-                                padding: const EdgeInsets.all(svenPadddig),
+                                padding:
+                                    EdgeInsets.all(MctSize.seventeen.getSize),
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
@@ -126,13 +132,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                       width: 20.w,
                                       height: 20.h,
                                     ),
-                                    SizedBox(width: basicPadding),
+                                    SizedBox(width: MctSize.fifteen.getSize),
                                     Text(
                                       TIP_TITLE[index],
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                          color: white,
-                                          fontSize: textSixSize.sp,
+                                          color: MctColor.white.getMctColor,
+                                          fontSize: MctSize.sixteen.getSize.sp,
                                           fontFamily: NOTO_MEDIUM),
                                     ),
                                   ],

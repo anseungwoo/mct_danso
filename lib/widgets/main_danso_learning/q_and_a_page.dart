@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class QAndAPAGE extends StatefulWidget {
@@ -39,7 +40,8 @@ class _QAndAPAGEState extends State<QAndAPAGE> {
               ),
               SizedBox(height: 20.h),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: basicPadding),
+                margin:
+                    EdgeInsets.symmetric(horizontal: MctSize.fifteen.getSize),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -47,12 +49,13 @@ class _QAndAPAGEState extends State<QAndAPAGE> {
                       widget.subject,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: textSevenSize.sp,
+                        fontSize: MctSize.seventeen.getSize.sp,
                       ),
                     ),
                     SizedBox(height: 10.h),
                     Text(widget.explanation,
-                        style: TextStyle(fontSize: textBasicSize.sp)),
+                        style:
+                            TextStyle(fontSize: MctSize.fourteen.getSize.sp)),
                   ],
                 ),
               ),

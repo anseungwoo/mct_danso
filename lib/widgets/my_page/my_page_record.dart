@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageRecord extends StatelessWidget {
@@ -20,8 +22,8 @@ class MyPageRecord extends StatelessWidget {
             itemCount: 16,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.only(
-                  bottom: basicPadding,
+                padding: EdgeInsets.only(
+                  bottom: MctSize.fifteen.getSize,
                 ),
                 child: InkWell(
                   onTap: () {
@@ -34,15 +36,15 @@ class MyPageRecord extends StatelessWidget {
                         color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Padding(
-                      padding: const EdgeInsets.all(svenPadddig),
+                      padding: EdgeInsets.all(MctSize.seventeen.getSize),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             'Entry $index',
                             style: TextStyle(
-                                fontSize: textEightSize.sp,
-                                color: white,
+                                fontSize: MctSize.eighteen.getSize.sp,
+                                color: MctColor.white.getMctColor,
                                 fontFamily: NOTO_MEDIUM),
                           ),
                           Spacer(flex: 1),

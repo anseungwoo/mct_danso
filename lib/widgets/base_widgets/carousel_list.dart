@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/color.dart';
 
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
 
 class CarouselListWidget extends StatefulWidget {
   List<Widget> carouselList = [];

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 Widget myPageDeleteDialog(String? path) {
@@ -23,7 +25,7 @@ Widget myPageDeleteDialog(String? path) {
                   padding: const EdgeInsets.all(42),
                   child: Text(
                     '삭제하겠습니까?',
-                    style: TextStyle(fontSize: textEightSize.sp),
+                    style: TextStyle(fontSize: MctSize.eighteen.getSize.sp),
                   ),
                 ),
                 Row(
@@ -57,7 +59,9 @@ Padding yesNoButton({required String text, required Function() onPress}) {
     child: TextButton(
         child: Text(
           text,
-          style: TextStyle(color: textBlack, fontSize: textFiveSize.sp),
+          style: TextStyle(
+              color: MctColor.black.getMctColor,
+              fontSize: MctSize.fifteen.getSize.sp),
         ),
         onPressed: onPress),
   );

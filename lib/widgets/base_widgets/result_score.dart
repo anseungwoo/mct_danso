@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -32,7 +35,7 @@ class _ResultScoreState extends State<ResultScore> {
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: background,
+              backgroundColor: MctColor.indiDarkGray.getMctColor,
               automaticallyImplyLeading: false,
               elevation: 0,
               actions: [
@@ -42,18 +45,18 @@ class _ResultScoreState extends State<ResultScore> {
                     },
                     icon: Icon(
                       Icons.arrow_back,
-                      color: textBlack,
+                      color: MctColor.black.getMctColor,
                     ))
               ],
             ),
             floatingActionButton: Padding(
-              padding: const EdgeInsets.all(basicPadding),
+              padding: EdgeInsets.all(MctSize.fifteen.getSize),
               child: Container(
                 width: 70.w,
                 height: 70.h,
                 child: FloatingActionButton(
                   elevation: 0,
-                  backgroundColor: buttonColorOrang,
+                  backgroundColor: MctColor.buttonColorOrange.getMctColor,
                   onPressed: () {
                     Get.off(SongGraph());
                   },
@@ -66,7 +69,8 @@ class _ResultScoreState extends State<ResultScore> {
                         ),
                         Text(
                           '그래프',
-                          style: TextStyle(fontSize: textBasicSize.sp),
+                          style:
+                              TextStyle(fontSize: MctSize.fourteen.getSize.sp),
                         )
                       ]),
                 ),
@@ -87,11 +91,12 @@ class _ResultScoreState extends State<ResultScore> {
                       fontWeight: FontWeight.bold,
                       fontFamily: NOTO_MEDIUM),
                 ),
-                SizedBox(height: basicPadding),
+                SizedBox(height: MctSize.fifteen.getSize),
                 Text(
                   controller.comment,
                   style: TextStyle(
-                      fontSize: textEightSize.sp, fontFamily: NOTO_REGULAR),
+                      fontSize: MctSize.eighteen.getSize.sp,
+                      fontFamily: NOTO_REGULAR),
                 ),
               ],
             ),

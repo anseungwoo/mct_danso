@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/my_page_music_controller.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -157,7 +159,8 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
                                                     PLAY_STOP_SVG)
                                                 : SvgPicture.asset(
                                                     PLAY_SVG,
-                                                    color: textBlack,
+                                                    color: MctColor
+                                                        .black.getMctColor,
                                                   ),
                                           );
                                         });

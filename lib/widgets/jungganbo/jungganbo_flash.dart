@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
@@ -8,9 +10,11 @@ Widget jungganboFromFlash(
     int heightNumber, JungganboController controller, JungGanBo testJungGanBo) {
   double height;
   if (heightNumber == 12) {
-    height = jungHeight;
+    height = MctSize.jungHeight.getSize;
   } else {
-    height = heightNumber == 8 ? jungEightHeight : jungSixHeight;
+    height = heightNumber == 8
+        ? MctSize.jungEightHeight.getSize
+        : MctSize.jungSixHeight.getSize;
   }
 
   return Row(
@@ -37,7 +41,7 @@ Container beenContainer(double height) {
     width: 20.w,
     height: height.h,
     decoration: BoxDecoration(
-      border: Border.all(color: textBlack),
+      border: Border.all(color: MctColor.black.getMctColor),
     ),
   );
 }
@@ -45,10 +49,10 @@ Container beenContainer(double height) {
 Container jungFlashContainer(
     double height, JungganboController controller, int i, int heightNumber) {
   return Container(
-    width: jungWidth.w,
+    width: MctSize.jungWidth.getSize.w,
     height: height.h,
     decoration: BoxDecoration(
-      border: Border.all(color: textBlack),
+      border: Border.all(color: MctColor.black.getMctColor),
       color: controller.line == i ? Colors.red[100]!.withOpacity(0.5) : null,
     ),
   );

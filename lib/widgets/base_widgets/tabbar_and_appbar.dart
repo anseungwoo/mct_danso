@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/main_screen.dart';
 
@@ -15,12 +17,12 @@ PreferredSizeWidget tabbarAndAppBar(
       '$title',
       style: TextStyle(
           color: Colors.white,
-          fontSize: textBasicSize.sp,
+          fontSize: MctSize.fourteen.getSize.sp,
           fontFamily: NOTO_MEDIUM),
     ),
     centerTitle: true,
     elevation: 1,
-    backgroundColor: appBarColor,
+    backgroundColor: MctColor.appBarColor.getMctColor,
     leading: IconButton(
       splashRadius: 15,
       icon: Icon(Icons.arrow_back),
@@ -30,7 +32,7 @@ PreferredSizeWidget tabbarAndAppBar(
     ),
     actions: [
       Padding(
-        padding: const EdgeInsets.all(basicPadding),
+        padding: EdgeInsets.all(MctSize.fifteen.getSize),
         child: InkWell(
             onTap: () {
               Get.off(MainScreen());
@@ -50,7 +52,7 @@ PreferredSizeWidget tabbarAndAppBar(
         ? PreferredSize(
             preferredSize: tabbar!.preferredSize,
             child: ColoredBox(
-              color: MctColor.indiDarkGray.getMctColor,
+              color: MctColor.mainBackGround.getMctColor,
               child: tabbar,
             ),
           )
@@ -64,15 +66,15 @@ PreferredSizeWidget songtabbarAndAppBar(
     title: Text(
       '$title',
       style: TextStyle(
-          color: textBlack,
+          color: MctColor.black.getMctColor,
           fontSize: 23.sp,
           fontWeight: FontWeight.bold,
           fontFamily: NOTO_REGULAR),
     ),
-    iconTheme: IconThemeData(color: textBlack),
+    iconTheme: IconThemeData(color: MctColor.black.getMctColor),
     centerTitle: true,
     elevation: 0,
-    backgroundColor: MctColor.indiDarkGray.getMctColor,
+    backgroundColor: MctColor.mainBackGround.getMctColor,
     leading: IconButton(
       splashRadius: 15,
       icon: Icon(Icons.arrow_back),

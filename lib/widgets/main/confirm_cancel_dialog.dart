@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/size.dart';
 
 Widget successFailDialog(String assetName, String text) {
   return Dialog(
@@ -20,12 +22,12 @@ Widget successFailDialog(String assetName, String text) {
               assetName,
               width: 60.w,
               height: 60.h,
-              color: unButtonColorOrang,
+              color: MctColor.unButtonColorOrange.getMctColor,
             ),
           ),
           Text(
             text,
-            style: TextStyle(fontSize: textFiveSize.sp),
+            style: TextStyle(fontSize: MctSize.fifteen.getSize.sp),
           ),
           SizedBox(height: 30.h),
           TextButton(
@@ -34,7 +36,9 @@ Widget successFailDialog(String assetName, String text) {
               },
               child: Text(
                 "확인",
-                style: TextStyle(color: textBlack, fontSize: textBasicSize.sp),
+                style: TextStyle(
+                    color: MctColor.black.getMctColor,
+                    fontSize: MctSize.fourteen.getSize.sp),
               ))
         ],
       ),

@@ -3,7 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/color.dart';
 
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
 
 TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
   return TabBar(
@@ -12,15 +13,15 @@ TabBar defaultTabBar({required List<Tab> tabList, bool scrollable = false}) {
     indicator: UnderlineTabIndicator(
       borderSide: BorderSide(
         width: 1.0,
-        color: buttonColorOrange,
+        color: MctColor.buttonColorOrange.getMctColor,
       ),
-      insets: EdgeInsets.symmetric(horizontal: basicPadding),
+      insets: EdgeInsets.symmetric(horizontal: MctSize.fifteen.getSize),
     ),
-    unselectedLabelColor: unSelectColor,
+    unselectedLabelColor: MctColor.unSelecttapBarColor.getMctColor,
     labelColor: MctColor.tapBarColor.getMctColor,
     labelStyle: TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: textEightSize.sp,
+      fontSize: MctSize.eighteen.getSize.sp,
     ),
   );
 }

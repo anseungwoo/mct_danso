@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -62,7 +64,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
             Text(
               tearController.tearName,
               style: TextStyle(
-                  fontSize: textEightSize.sp,
+                  fontSize: MctSize.eighteen.getSize.sp,
                   fontWeight: bold,
                   fontFamily: NOTO_BOLD),
             ),
@@ -74,7 +76,7 @@ class _MyPageScreenState extends State<MyPageScreen> {
                   Text(
                     '다음 랭크까지',
                     style: TextStyle(
-                        fontSize: textBasicSize.sp,
+                        fontSize: MctSize.fourteen.getSize.sp,
                         fontWeight: FontWeight.bold,
                         fontFamily: NOTO_REGULAR),
                   ),
@@ -97,11 +99,11 @@ class _MyPageScreenState extends State<MyPageScreen> {
                     children: [
                       Text(
                         '${tearController.userExp.ceil()}',
-                        style: TextStyle(fontSize: textBasicSize.sp),
+                        style: TextStyle(fontSize: MctSize.fourteen.getSize.sp),
                       ),
                       Text(
                         '${tearController.nextTearExp.ceil()}',
-                        style: TextStyle(fontSize: textBasicSize.sp),
+                        style: TextStyle(fontSize: MctSize.fourteen.getSize.sp),
                       ),
                     ],
                   )
@@ -129,7 +131,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
           height: 60.h,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  primary: buttonColorYellow, elevation: 0),
+                  primary: MctColor.buttonColorYellow.getMctColor,
+                  elevation: 0),
               onPressed: () {
                 Get.to(page);
               },
@@ -146,7 +149,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
                   Text(
                     title,
                     style: TextStyle(
-                        fontSize: textEightSize.sp, fontFamily: NOTO_MEDIUM),
+                        fontSize: MctSize.eighteen.getSize.sp,
+                        fontFamily: NOTO_MEDIUM),
                   ),
                 ],
               )),

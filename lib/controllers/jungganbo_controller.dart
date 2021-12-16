@@ -8,9 +8,10 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/audio_file_path.dart';
+import 'package:project_danso/common/contant.dart';
 
-import 'package:project_danso/common/enum.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 import 'package:project_danso/controllers/tear_controller.dart';

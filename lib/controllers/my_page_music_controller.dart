@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 
 class MyPageMusicController extends GetxController {
   // static MyPageMusicController get to => Get.find();
@@ -109,7 +110,9 @@ class _PositionSeekWidgetState extends State<PositionSeekWidget> {
             min: 0,
             max: widget.duration.inMilliseconds.toDouble(),
             value: percent * widget.duration.inMilliseconds.toDouble(),
-            style: SliderStyle(variant: logoColor, accent: logoColor),
+            style: SliderStyle(
+                variant: MctColor.lightYellow.getMctColor,
+                accent: MctColor.lightYellow.getMctColor),
             onChangeEnd: (newValue) {
               setState(() {
                 listenOnlyUserInterraction = false;

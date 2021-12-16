@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -20,12 +22,12 @@ class MyPageLike extends StatelessWidget {
       appBar: tabbarAndAppBar(title: '관심곡', tabbar: null, enableTabBar: false),
       body: Obx(
         () => ListView.builder(
-            padding: const EdgeInsets.all(basicPadding),
+            padding: EdgeInsets.all(MctSize.fifteen.getSize),
             itemCount: likeSongController.likeSongList.length,
             itemBuilder: (BuildContext context, int index) {
               var item = likeSongController.likeSongList[index];
               return Padding(
-                padding: const EdgeInsets.only(bottom: basicPadding),
+                padding: EdgeInsets.only(bottom: MctSize.fifteen.getSize),
                 child: InkWell(
                   onTap: () {
                     Get.to(
@@ -42,10 +44,10 @@ class MyPageLike extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: buttonColorOrange),
+                        color: MctColor.buttonColorOrange.getMctColor),
                     height: 60.h,
                     child: Padding(
-                      padding: const EdgeInsets.all(svenPadddig),
+                      padding: EdgeInsets.all(MctSize.seventeen.getSize),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,7 +55,7 @@ class MyPageLike extends StatelessWidget {
                           Text(
                             '${item.songTitle}',
                             style: TextStyle(
-                                fontSize: textEightSize.sp,
+                                fontSize: MctSize.eighteen.getSize.sp,
                                 color: MctColor.white.getMctColor,
                                 fontFamily: NOTO_MEDIUM),
                           ),

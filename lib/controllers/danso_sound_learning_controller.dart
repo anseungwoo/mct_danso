@@ -7,8 +7,9 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/icon.dart';
 import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:project_danso/utils/common/constants/PitchConst.dart';
@@ -224,7 +225,7 @@ class DansoSoundLearningController extends GetxController {
   //     } else {
   //       return Text(
   //         '음이 달라요ㅠㅠ $userInputForAdjust',
-  //         style: TextStyle(color: unMatchColor),
+  //         style: TextStyle(color: MctColor.dansoCodeunMatchColor.getMctColor),
   //       );
   //     }
   //   } catch (er) {
@@ -290,7 +291,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -314,7 +315,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -338,7 +339,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -362,7 +363,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -386,7 +387,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -410,7 +411,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -434,7 +435,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -458,7 +459,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -482,7 +483,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }
@@ -506,7 +507,7 @@ class DansoSoundLearningController extends GetxController {
               return Text('다시 불러보세요!',
                   style: TextStyle(
                     fontSize: 14.sp,
-                    color: unMatchColor,
+                    color: MctColor.dansoCodeunMatchColor.getMctColor,
                   ));
             }
           }

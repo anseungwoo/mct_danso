@@ -8,7 +8,10 @@ import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/utils/danso_function.dart';
@@ -115,7 +118,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                     text: Text('도전하기',
                                         style: TextStyle(
-                                            fontSize: textSmallSize.sp)),
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
                                       controller.nextButton();
                                       jungcontroller.changeStartStopState();
@@ -144,7 +148,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       : songSwapButton(
                                           text: Text('연습하기',
                                               style: TextStyle(
-                                                  fontSize: textSmallSize.sp)),
+                                                  fontSize: MctSize
+                                                      .twelve.getSize.sp)),
                                           onPressed: () {
                                             controller.stateCountUp(2);
 
@@ -156,7 +161,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       text: Text(
                                           '${jungcontroller.speed[jungcontroller.speedCount]} 배속',
                                           style: TextStyle(
-                                              fontSize: textSmallSize.sp)),
+                                              fontSize:
+                                                  MctSize.twelve.getSize.sp)),
                                       onPressed: () {
                                         jungcontroller.changespeedState();
                                       }),
@@ -165,7 +171,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                       text: Text(controller.krButton,
                                           style: TextStyle(
-                                              fontSize: textSmallSize.sp)),
+                                              fontSize:
+                                                  MctSize.twelve.getSize.sp)),
                                       onPressed: () {
                                         controller.changeKrState();
                                       }),
@@ -176,7 +183,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               songSwapButton(
                                 text: Text(
                                   '중지하기',
-                                  style: TextStyle(fontSize: textSmallSize.sp),
+                                  style: TextStyle(
+                                      fontSize: MctSize.twelve.getSize.sp),
                                 ),
                                 onPressed: () {
                                   jungcontroller.changeStartStopState();
@@ -196,7 +204,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                     text: Text('연습하기',
                                         style: TextStyle(
-                                            fontSize: textSmallSize.sp)),
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp)),
                                     onPressed: () {
                                       controller.nextButton();
                                       print(controller.statecount);
@@ -216,7 +225,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           ),
                                           Text('녹음',
                                               style: TextStyle(
-                                                  fontSize: textSmallSize.sp)),
+                                                  fontSize: MctSize
+                                                      .twelve.getSize.sp)),
                                         ],
                                       ),
                                       onPressed: () {
@@ -237,7 +247,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           ),
                                           Text('녹화',
                                               style: TextStyle(
-                                                  fontSize: textSmallSize.sp)),
+                                                  fontSize: MctSize
+                                                      .twelve.getSize.sp)),
                                         ],
                                       ),
                                       onPressed: () {
@@ -253,7 +264,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                     text: Text('연습시작',
                                         style: TextStyle(
-                                            fontSize: textSmallSize.sp)),
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
@@ -280,7 +292,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                       text: Text('반주만',
                                           style: TextStyle(
-                                              fontSize: textSmallSize.sp)),
+                                              fontSize:
+                                                  MctSize.twelve.getSize.sp)),
                                       onPressed: () {
                                         print(controller.statecount);
                                       }),
@@ -292,7 +305,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                     text: Text('중지',
                                         style: TextStyle(
-                                            fontSize: textSmallSize.sp)),
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp)),
                                     onPressed: () {
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStop();
@@ -311,7 +325,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   songSwapButton(
                                       text: Text('반주만',
                                           style: TextStyle(
-                                              fontSize: textSmallSize.sp)),
+                                              fontSize:
+                                                  MctSize.twelve.getSize.sp)),
                                       onPressed: () {
                                         print(controller.statecount);
                                       }),
@@ -339,20 +354,21 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               Text(
                                 '${jungganboController.speed[jungganboController.speedCount]} 배속',
                                 style: TextStyle(
-                                    fontSize: textSmallSize.sp,
+                                    fontSize: MctSize.twelve.getSize.sp,
                                     fontFamily: NOTO_REGULAR),
                               ),
                               Text(
                                 '${widget.jangdan}',
                                 style: TextStyle(
-                                    fontSize: textSmallSize.sp,
+                                    fontSize: MctSize.twelve.getSize.sp,
                                     fontFamily: NOTO_REGULAR),
                               )
                             ],
                           ),
                         ),
                       Container(
-                        margin: EdgeInsets.only(right: textSmallSize.w),
+                        margin:
+                            EdgeInsets.only(right: MctSize.twelve.getSize.w),
                         // color: Colors.white,
                         // width: ScreenUtil().screenWidth,
                         // alignment: Alignment.center,
@@ -423,12 +439,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             elevation: 0,
-            primary: white,
-            onPrimary: buttonColorOrang,
-            side: BorderSide(color: buttonColorOrang),
+            primary: MctColor.white.getMctColor,
+            onPrimary: MctColor.buttonColorOrange.getMctColor,
+            side: BorderSide(color: MctColor.buttonColorOrange.getMctColor),
             textStyle: TextStyle(
-                fontSize: textSmallSize.sp,
-                color: buttonColorOrang,
+                fontSize: MctSize.twelve.getSize.sp,
+                color: MctColor.buttonColorOrange.getMctColor,
                 fontFamily: NOTO_REGULAR)),
         onPressed: onPressed,
         child: text,

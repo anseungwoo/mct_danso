@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoHistroyKind extends StatefulWidget {
@@ -42,7 +44,7 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
 
   Container titleDescription() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: basicPadding),
+      margin: EdgeInsets.symmetric(horizontal: MctSize.fifteen.getSize),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -50,13 +52,14 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
             widget.subject,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: textSevenSize.sp,
+                fontSize: MctSize.seventeen.getSize.sp,
                 fontFamily: NOTO_BOLD),
           ),
           SizedBox(height: 10.h),
           Text(widget.explanation,
               style: TextStyle(
-                  fontSize: textBasicSize.sp, fontFamily: NOTO_REGULAR)),
+                  fontSize: MctSize.fourteen.getSize.sp,
+                  fontFamily: NOTO_REGULAR)),
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
@@ -8,7 +10,8 @@ Widget learningDialog() {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(
-      padding: EdgeInsets.only(bottom: basicPadding, top: basicPadding),
+      padding: EdgeInsets.only(
+          bottom: MctSize.fifteen.getSize, top: MctSize.fifteen.getSize),
       // height: 230.h,
       width: 330.w,
       child: Column(
@@ -18,7 +21,7 @@ Widget learningDialog() {
             child: Text(
               '운지법 익히기',
               style: TextStyle(
-                  fontSize: textTitleSize.sp,
+                  fontSize: MctSize.twenty.getSize.sp,
                   fontWeight: FontWeight.bold,
                   fontFamily: NOTO_BOLD),
             ),

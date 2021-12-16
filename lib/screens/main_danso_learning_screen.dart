@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
-import 'package:project_danso/common/enum.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/youtude.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 

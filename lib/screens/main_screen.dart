@@ -2,7 +2,10 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/screens/screens.dart';
@@ -132,8 +135,8 @@ class _MainScreenState extends State<MainScreen> {
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  primary: logoColor.withOpacity(0),
-                  side: BorderSide(color: white),
+                  primary: MctColor.lightYellow.getMctColor.withOpacity(0),
+                  side: BorderSide(color: MctColor.white.getMctColor),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50))),
               onPressed: onPressed,
@@ -175,7 +178,7 @@ class _MainScreenState extends State<MainScreen> {
             },
             child: Text(
               '',
-              style: TextStyle(color: textBlack),
+              style: TextStyle(color: MctColor.black.getMctColor),
             ),
           ),
         ));
@@ -213,14 +216,15 @@ class _MainScreenState extends State<MainScreen> {
             width: 174.w,
             height: 36.w,
             decoration: BoxDecoration(
-                color: logoColor, borderRadius: BorderRadius.circular(40)),
+                color: MctColor.lightYellow.getMctColor,
+                borderRadius: BorderRadius.circular(40)),
             child: Center(
               child: Text(
                 '마이페이지',
                 style: TextStyle(
-                    color: white,
+                    color: MctColor.white.getMctColor,
                     fontFamily: NOTO_MEDIUM,
-                    fontSize: textFiveSize.sp),
+                    fontSize: MctSize.fifteen.getSize.sp),
               ),
             ),
           ),
@@ -259,7 +263,8 @@ class _MainScreenState extends State<MainScreen> {
           height: 106.w,
           // width: 330.w,
           decoration: BoxDecoration(
-              color: white, borderRadius: BorderRadius.all(Radius.circular(5))),
+              color: MctColor.white.getMctColor,
+              borderRadius: BorderRadius.all(Radius.circular(5))),
 
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -280,7 +285,7 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     Text('$title',
                         style: TextStyle(
-                            fontSize: textTitleSize.sp,
+                            fontSize: MctSize.twenty.getSize.sp,
                             fontWeight: FontWeight.bold,
                             fontFamily: NOTO_BOLD)),
                     SizedBox(height: 7.h),

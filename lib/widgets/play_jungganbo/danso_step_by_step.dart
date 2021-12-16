@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/jungganbo/jungganbo_flash.dart';
@@ -155,11 +158,12 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
         child: ElevatedButton(
             style: ElevatedButton.styleFrom(
                 elevation: 0,
-                primary: buttonColorOrang,
-                onSurface: unButtonColorOrang),
+                primary: MctColor.buttonColorOrange.getMctColor,
+                onSurface: MctColor.unButtonColorOrange.getMctColor),
             onPressed: onPressed,
             child: Text(text,
                 style: TextStyle(
-                    fontSize: textBasicSize.sp, fontFamily: NOTO_REGULAR))));
+                    fontSize: MctSize.fourteen.getSize.sp,
+                    fontFamily: NOTO_REGULAR))));
   }
 }
