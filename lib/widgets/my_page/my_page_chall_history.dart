@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
+
 import 'package:project_danso/controllers/my_history_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -37,8 +40,8 @@ class _MyPageChallangeHistoryState extends State<MyPageChallangeHistory> {
                 itemBuilder: (BuildContext context, int index) {
                   var item = controller.reversedHistoryList[index];
                   return Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: basicPadding,
+                    padding: EdgeInsets.only(
+                      bottom: MctSize.fifteen.getSize,
                     ),
                     child: InkWell(
                       onTap: () async {
@@ -50,18 +53,18 @@ class _MyPageChallangeHistoryState extends State<MyPageChallangeHistory> {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: buttonColorYellow),
+                            color: MctColor.buttonColorYellow.getMctColor),
                         height: 60.h,
                         child: Padding(
-                          padding: const EdgeInsets.all(svenPadddig),
+                          padding: EdgeInsets.all(MctSize.seventeen.getSize),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
                                 '${item.songTitle}',
                                 style: TextStyle(
-                                    fontSize: textEightSize.sp,
-                                    color: white,
+                                    fontSize: MctSize.eighteen.getSize.sp,
+                                    color: MctColor.white.getMctColor,
                                     fontFamily: NOTO_MEDIUM),
                               ),
                               Spacer(flex: 1),
