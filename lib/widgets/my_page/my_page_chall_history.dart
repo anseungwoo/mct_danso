@@ -69,12 +69,12 @@ class _MyPageChallangeHistoryState extends State<MyPageChallangeHistory> {
                               ),
                               Spacer(flex: 1),
                               Container(
-                                  width: 33,
-                                  height: 33,
+                                  width: 33.w,
+                                  height: 33.w,
                                   child: SvgPicture.asset(
                                     GRAPH_SVG,
                                     width: 24.w,
-                                    height: 24.h,
+                                    height: 24.w,
                                   ))
                             ],
                           ),
