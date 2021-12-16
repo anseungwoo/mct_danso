@@ -7,12 +7,20 @@ import 'package:project_danso/common/contant.dart';
 import 'package:project_danso/common/icon.dart';
 import 'package:project_danso/common/size.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/widgets/my_page/song_graph.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class ResultScore extends StatefulWidget {
   final int scrore;
+  final songTitle;
+  final songId;
 
-  ResultScore({Key? key, required this.scrore}) : super(key: key);
+  ResultScore(
+      {Key? key,
+      required this.scrore,
+      required this.songTitle,
+      required this.songId})
+      : super(key: key);
 
   @override
   State<ResultScore> createState() => _ResultScoreState();
@@ -58,7 +66,10 @@ class _ResultScoreState extends State<ResultScore> {
                   elevation: 0,
                   backgroundColor: MctColor.buttonColorOrange.getMctColor,
                   onPressed: () {
-                    Get.off(SongGraph());
+                    Get.off(SongGraph(
+                      songId: widget.songId,
+                      songTitle: widget.songTitle,
+                    ));
                   },
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

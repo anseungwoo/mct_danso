@@ -87,7 +87,8 @@ class TearController extends GetxController {
     }
   }
 
-  void setEmblemAssetAndTearName(var rankedName, tearNum, setNextTearExp) {
+  void setEmblemAssetAndTearName(
+      var rankedName, tearNum, double setNextTearExp) {
     var path = 'assets/images/tear/ic_' + rankedName + '.svg';
     emblemAsset = path;
     tearName = TEAR_NAME[tearNum];

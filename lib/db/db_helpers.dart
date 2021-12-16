@@ -259,8 +259,8 @@ class DBHelPer {
   dynamic insertChalData(ChallangeModel chal) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO $challangeTable (song_id, chal_score) VALUES(?,?)',
-        [chal.songId, chal.chalScore]);
+        'INSERT INTO $challangeTable (song_id, chal_score, chal_time) VALUES(?,?,?)',
+        [chal.songId, chal.chalScore, chal.chalTime]);
   }
 
   // read challange data
@@ -347,10 +347,10 @@ class DBHelPer {
     return list;
   }
 
-  Future<int> deletePath(String path) async {
+  Future<int> deletePath(var exerId) async {
     final db = await database;
     var res = await db
-        .rawDelete('DELETE FROM $exerciseTable WHERE exer_path=?', [path]);
+        .rawDelete('DELETE FROM $exerciseTable WHERE exer_id=?', [exerId]);
     return res;
   }
   //===========================================================================
@@ -358,7 +358,7 @@ class DBHelPer {
   // 마이페이지 - 기록 탭
   //===========================================================================
   //
-  Future<List<MyHistoryModel>> readMyHistoryData() async {
+  Future<List<MyHistoryModel>> readMyHistoryList() async {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT s.song_title, c.song_id FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id GROUP BY s.song_id');
@@ -385,22 +385,24 @@ class DBHelPer {
   Future<List<MyHistoryModel>> readMyHistoryGraph(int songId) async {
     final db = await database;
     var res = await db.rawQuery(
-        'SELECT chal_score, chal_time FROM $challangeTable WHERE song_id=?',
+        'SELECT * FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id WHERE c.song_id=?',
         [songId]);
     List<MyHistoryModel> list;
     if (res.isNotEmpty) {
       list = res
           .map(
             (Map<String, dynamic> value) => MyHistoryModel(
+              songId: value['song_id'],
+              songTitle: value['song_title'],
               chalScore: value['chal_score'],
               chalTime: value['chal_time'],
+              chalId: value['chal_id'],
             ),
           )
           .toList();
     } else {
       list = [];
     }
-    print(list);
     return list;
   }
   //===========================================================================
