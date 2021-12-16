@@ -9,6 +9,7 @@ class LikeSongController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     getLikeSongList();
   }
 

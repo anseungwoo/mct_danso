@@ -33,28 +33,31 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
               url: widget.url,
             ),
             SizedBox(height: 20.h),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: basicPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.subject,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: textSevenSize.sp,
-                        fontFamily: NOTO_BOLD),
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(widget.explanation,
-                      style: TextStyle(
-                          fontSize: textBasicSize.sp,
-                          fontFamily: NOTO_REGULAR)),
-                ],
-              ),
-            ),
+            titleDescription(),
           ],
         ),
+      ),
+    );
+  }
+
+  Container titleDescription() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: basicPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.subject,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: textSevenSize.sp,
+                fontFamily: NOTO_BOLD),
+          ),
+          SizedBox(height: 10.h),
+          Text(widget.explanation,
+              style: TextStyle(
+                  fontSize: textBasicSize.sp, fontFamily: NOTO_REGULAR)),
+        ],
       ),
     );
   }

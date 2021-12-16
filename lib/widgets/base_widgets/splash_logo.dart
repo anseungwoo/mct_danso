@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/permissioin_controller.dart';
+import 'package:project_danso/db/db_helpers.dart';
 import 'package:project_danso/controllers/tear_controller.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +23,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   final PermissionController permissionController =
       Get.put(PermissionController());
+  final SongController songController = Get.put(SongController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
   final TearController _tearController = Get.put(TearController());
@@ -33,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     load();
     _songController.insertSongToJson();
     _tearController.loadExp();

@@ -65,8 +65,7 @@ class AudioRecordController extends GetxController {
     // .mp4 .m4a .aac <---> AudioFormat.AAC
     // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
 
-    recorder = FlutterAudioRecorder2(customPath,
-        audioFormat: AudioFormat.AAC, sampleRate: 22050);
+    recorder = FlutterAudioRecorder2("$customPath.mp4");
     print(customPath);
 
     await recorder.initialized;

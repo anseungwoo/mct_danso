@@ -80,7 +80,6 @@ class LearningSongAndLevelController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getExerSongList(1);
   }
 
   void nextLevel() {
@@ -100,13 +99,17 @@ class LearningSongAndLevelController extends GetxController {
   }
 
   void getExerSongList(int exerNum) async {
-    var data = await DBHelPer().getExerSongs(exerNum);
-    if (data.isNotEmpty || data != []) {
-      songList.assignAll(data);
-      print('$exerNum 레벨');
-      update();
-    } else {
-      print('$exerNum 레벨 곡 없음');
+    try {
+      var data = await DBHelPer().getExerSongs(exerNum);
+      if (data.isNotEmpty || data != []) {
+        songList.assignAll(data);
+        print('$exerNum 레벨');
+        update();
+      } else {
+        print('$exerNum 레벨 곡 없음');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 

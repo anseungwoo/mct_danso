@@ -87,7 +87,7 @@ extension FormatString on Duration {
 // }
 
 class MyPageListenDialog extends StatefulWidget {
-  final ExerciseModel recordItem;
+  final recordItem;
 
   const MyPageListenDialog({Key? key, required this.recordItem})
       : super(key: key);
@@ -105,8 +105,8 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
     // TODO: implement initState
     super.initState();
 
-    print('asdfasdf ${widget.recordItem.exerPath}');
-    myPageMusicController.playerInit(widget.recordItem.exerPath);
+    print('asdfasdf ${widget.recordItem}');
+    myPageMusicController.playerInit(widget.recordItem);
   }
 
   @override

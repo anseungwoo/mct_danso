@@ -9,17 +9,27 @@ import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/audio_and_video_db_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
-
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageLook extends StatelessWidget {
+class MyPageLook extends StatefulWidget {
   final String songname;
   final String date;
 
   MyPageLook({Key? key, required this.songname, required this.date})
       : super(key: key);
 
+  @override
+  State<MyPageLook> createState() => _MyPageLookState();
+}
+
+class _MyPageLookState extends State<MyPageLook> {
   final audioAndVideoListController = Get.put(AudioAndVideoListController());
+  @override
+  void initState() {
+    audioAndVideoListController.onInit();
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,10 +90,19 @@ class MyPageLook extends StatelessWidget {
                         ),
                         Spacer(flex: 1),
                         PopupMenuButton(
-                          onSelected: (value) {
-                            if (value == 1) {}
+                          onSelected: (value) async {
+                            if (value == 1) {
+                              audioAndVideoListController
+                                  .shareFile(item.exerPath);
+                            }
                             if (value == 2) {
-                              Get.dialog(myPageDeleteDialog());
+                              var dir =
+                                  (await getApplicationDocumentsDirectory())
+                                      .path;
+
+                              await Get.dialog(myPageDeleteDialog(Platform.isIOS
+                                  ? '$dir/camera/videos/${item.exerPath}'
+                                  : item.exerPath));
                             }
                           },
                           child: Container(

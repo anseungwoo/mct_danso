@@ -1,20 +1,34 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/const.dart';
 import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageListen extends StatelessWidget {
+class MyPageListen extends StatefulWidget {
   final String songname;
   final String date;
 
   MyPageListen({Key? key, required this.songname, required this.date})
       : super(key: key);
 
+  @override
+  State<MyPageListen> createState() => _MyPageListenState();
+}
+
+class _MyPageListenState extends State<MyPageListen> {
   final audioAndVideoListController = Get.put(AudioAndVideoListController());
+  @override
+  void initState() {
+    audioAndVideoListController.onInit();
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +84,14 @@ class MyPageListen extends StatelessWidget {
                         Spacer(flex: 1),
                         InkWell(
                             radius: 40.r,
-                            onTap: () {
-                              Get.dialog(MyPageListenDialog(
-                                recordItem: item,
+                            onTap: () async {
+                              var dir =
+                                  (await getApplicationDocumentsDirectory())
+                                      .path;
+                              await Get.dialog(MyPageListenDialog(
+                                recordItem: Platform.isIOS
+                                    ? '$dir/${item.exerPath}'
+                                    : item.exerPath,
                               ));
                             },
                             child: SvgPicture.asset(
@@ -82,10 +101,19 @@ class MyPageListen extends StatelessWidget {
                             )),
                         // SizedBox(width: 10.w),
                         PopupMenuButton(
-                          onSelected: (value) {
-                            if (value == 1) {}
+                          onSelected: (value) async {
+                            if (value == 1) {
+                              audioAndVideoListController
+                                  .shareFile(item.exerPath);
+                            }
                             if (value == 2) {
-                              Get.dialog(myPageDeleteDialog());
+                              var dir =
+                                  (await getApplicationDocumentsDirectory())
+                                      .path;
+
+                              await Get.dialog(myPageDeleteDialog(Platform.isIOS
+                                  ? '$dir/${item.exerPath}'
+                                  : item.exerPath));
                             }
                           },
                           child: Container(
