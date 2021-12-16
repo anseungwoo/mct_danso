@@ -292,13 +292,29 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   ),
                                   SizedBox(width: 5),
                                   songSwapButton(
-                                      text: Text('반주만',
-                                          style: TextStyle(
-                                              fontSize:
-                                                  MctSize.twelve.getSize.sp)),
-                                      onPressed: () {
-                                        print(controller.statecount);
-                                      }),
+                                    text: Text('반주만',
+                                        style: TextStyle(
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp)),
+                                    onPressed: () async {
+                                      jungcontroller.changeStartStopState();
+                                      controller.nextButton();
+                                      await Get.dialog(
+                                        Dialog(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0),
+                                            elevation: 0,
+                                            child: GameTimerWidget()),
+                                        barrierDismissible: false,
+                                      );
+                                      //  jungcontroller.startCapture();
+                                      jungcontroller.isLevelPracticeState();
+                                      jungcontroller.jandanPlay();
+                                      jungcontroller.stepStart();
+                                      // jungcontroller.audioSessionConfigure();
+                                      // audioSessionConfigure();
+                                    },
+                                  ),
                                 ],
                               ),
                             if (controller.statecount == 4)
@@ -325,13 +341,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   ),
                                   SizedBox(width: 5),
                                   songSwapButton(
-                                      text: Text('반주만',
-                                          style: TextStyle(
-                                              fontSize:
-                                                  MctSize.twelve.getSize.sp)),
-                                      onPressed: () {
-                                        print(controller.statecount);
-                                      }),
+                                    text: Text('반주만',
+                                        style: TextStyle(
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp)),
+                                    onPressed: null,
+                                  ),
                                 ],
                               ),
                             if (controller.statecount == 5)

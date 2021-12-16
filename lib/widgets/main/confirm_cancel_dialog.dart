@@ -6,7 +6,7 @@ import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/size.dart';
 
-Widget successFailDialog(String assetName, String text) {
+Widget confirmCancelDialog(String assetName, String text) {
   return Dialog(
     insetPadding: EdgeInsets.zero,
     child: Container(

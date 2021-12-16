@@ -359,7 +359,7 @@ class JungganboController extends GetxController {
   }
 
   void stepStop() {
-    line = jungGanBo!.sheet.length;
+    line = jungGanBo!.sheet.length + 2;
   }
 
   Future<void> startCapture() async {

@@ -39,23 +39,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
 
     super.dispose();
   }
-// //  삭제기능 테스트 함수입니다.
-//   // Future _del() async {
-//   //   // AudioPlayer player = AudioPlayer();
-//   //   // player.play(_recording.path, isLocal: true);
-//   //   try {
-//   //     print(delPath);
-//   //     print(_recording.path);
-//   //     print(day);
-//   //     final _localFile = io.File('${delPath}${day}.wav');
-//   //     print(_localFile);
-//   //     final file = await _localFile;
 
-//   //     await file.delete();
-//   //   } catch (e) {
-//   //     return;
-//   //   }
-//   // }
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AudioRecordController>(
@@ -105,25 +89,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                   }
                 },
                 child: audioRecordController.buttonText,
-              ),
-            ),
-            SizedBox(width: 5.w),
-            Container(
-              width: 78.w,
-              height: 30.h,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: MctColor.white.getMctColor,
-                    onPrimary: MctColor.buttonColorOrange.getMctColor,
-                    side: BorderSide(
-                        color: MctColor.buttonColorOrange.getMctColor),
-                    textStyle: TextStyle(
-                        fontSize: 12.sp,
-                        color: MctColor.buttonColorOrange.getMctColor)),
-                onPressed: () {},
-                child: Text('반주만',
-                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
               ),
             ),
           ],
