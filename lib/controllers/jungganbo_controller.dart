@@ -143,8 +143,7 @@ class JungganboController extends GetxController {
   void jandanPlay() async {
     await assetsAudioPlayer.setVolume(1);
     setSpeed();
-    await Future.delayed(
-        Duration(milliseconds: (mill * (2 - speed[speedCount])).toInt()));
+    await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
     await assetsAudioPlayer.play();
 
     print('isplaying : $startStopState');

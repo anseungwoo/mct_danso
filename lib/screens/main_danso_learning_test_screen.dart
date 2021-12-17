@@ -115,7 +115,7 @@ class _MainDansoLearningTestScreenState
             Expanded(
                 child: Column(
               children: [
-                Center(child: Text('${controller.pitchValue}')),
+                Center(child: Text('${controller.pitchValue} Hz')),
                 Center(child: controller.soundMatch(controller.pitchValue)!),
               ],
             )),

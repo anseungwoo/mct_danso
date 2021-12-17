@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 FontWeight bold = FontWeight.bold;
 //단소의 역사 설명
 const String HISTORY =
-    '단소는 대나무를 깍고, 구멍을 내서 부는 악기 입니다. 소리가 맑고 청아하여 사람들에게 많은 사랑을 받고 있습니다. 단소가 역사책에 기록된 것은 오래 되지 않았지만, 조상들의 삶 속에서 널리 연주되었던 악기입니다.';
+    '단소는 대나무를 깎고, 구멍을 내서 부는 악기 입니다. 소리가 맑고 청아하여 사람들에게 많은 사랑을 받고 있습니다. 단소가 역사책에 기록된 것은 오래 되지 않았지만, 조상들의 삶 속에서 널리 연주되었던 악기입니다.';
 const String HISTORY_TITLE = '단소의 역사';
 //평조 설명
 const String DANSO_KIND =
@@ -41,10 +41,10 @@ const String DANSO_CATCH2_TITLE = '단소 기초 소리 내기';
 //단소연주자세 설명
 
 const String BREATH =
-    '단소 소리가 여전히 안 나는 학생들을 위한 영상입니다.입술위치, 떠는 소리 내는 법, 호흡법과 관련된 내용이 담겨있습니다.';
+    '단소 소리가 여전히 안 나는 학생들을 위한 영상입니다. \n입술위치, 떠는 소리 내는 법, 호흡법과 관련된 내용이 담겨있습니다.';
 const String BREATH_TITLE = '단소 호흡법';
 const String BREATH2 =
-    '단소를 불다 보면 호흡에 문제가 생겨서 완주하는데 어려움을 겪는분들이 많습니다. 그런 분들을 위한 장기적인 호흡 연습 방법에 관한내용입니다.';
+    '단소를 불다 보면 호흡에 문제가 생겨서 완주하는 데 어려움을 겪는 분들이 많습니다. 그런 분들을 위한 장기적인 호흡 연습 방법에 관한 내용입니다.';
 const String BREATH2_TITLE = '복식호흡';
 
 //단소 메인페이지 내용
@@ -125,17 +125,17 @@ enum DansoCode { joog, lim, moo, hawng, tae, highTae }
 String getDansoCodeTitle(DansoCode dansoCode) {
   switch (dansoCode) {
     case DansoCode.joog:
-      return '仲 & 㳞(중)';
+      return '仲 / 㳞 (중)';
     case DansoCode.lim:
-      return '林 & 淋(임)';
+      return '林 / 淋 (임)';
     case DansoCode.moo:
-      return '無 & 潕(무)';
+      return '無 / 潕 (무)';
     case DansoCode.hawng:
-      return '潢 & 㶂(황)';
+      return '潢 / 㶂 (황)';
     case DansoCode.tae:
-      return '汰(태)';
+      return '汰 (태)';
     case DansoCode.highTae:
-      return '㳲(태)';
+      return '㳲 (태)';
 
     default:
       return "";
