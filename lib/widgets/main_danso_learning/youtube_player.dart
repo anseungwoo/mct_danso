@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube_view/flutter_youtube_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/youtude.dart';
 
 class YoutubePlayers extends StatefulWidget {
   final String url;
-
-  const YoutubePlayers({Key key, this.url}) : super(key: key);
+  final double startSeconds;
+  const YoutubePlayers({
+    Key? key,
+    required this.url,
+    this.startSeconds = 0,
+  }) : super(key: key);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -15,7 +20,7 @@ class _MyAppState extends State<YoutubePlayers>
     implements YouTubePlayerListener {
   var currentVideoSecond = 0.0;
   var playerState = '';
-  FlutterYoutubeViewController controller;
+  late FlutterYoutubeViewController controller;
 
   @override
   void onCurrentSecond(double second) {
@@ -62,6 +67,7 @@ class _MyAppState extends State<YoutubePlayers>
           listener: this,
           params: YoutubeParam(
             videoId: widget.url,
+            startSeconds: widget.startSeconds,
             showUI: true,
             showYoutube: false,
             showFullScreen: false,

@@ -1,45 +1,216 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/controllers/audio_and_video_list_controller.dart';
+import 'package:project_danso/controllers/my_page_music_controller.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:project_danso/models/models.dart';
 
-Widget myPageListenDialog() {
-  var player = AudioPlayer();
-  final _recording =
-      '/storage/emulated/0/Android/data/com.example.project_danso/files/flutter_audio_recorder_1635144151751.wav';
-  void _play() {
-    player.play(_recording, isLocal: true);
+extension FormatString on Duration {
+  String get mmSSFormat {
+    String twoDigits(int n) {
+      if (n >= 10) return '$n';
+      return '0$n';
+    }
+
+    final twoDigitMinutes =
+        twoDigits(inMinutes.remainder(Duration.minutesPerHour));
+    final twoDigitSeconds =
+        twoDigits(inSeconds.remainder(Duration.secondsPerMinute));
+    return '$twoDigitMinutes:$twoDigitSeconds';
+  }
+}
+
+// Widget myPageListenDialog() {
+//   final _recording =
+//       '/storage/emulated/0/Android/data/com.mct.projectDanso1/files/flutter_audio_recorder_1635144151751.wav';
+//   MyPageMusicController myPageController = Get.put(MyPageMusicController());
+//   Duration visibleValue;
+//   return Dialog(
+//     child: Container(
+//       width: 330.w,
+//       height: 200.h,
+//       child: GetBuilder<MyPageMusicController>(
+//           init: myPageController,
+//           builder: (controller) {
+//             return AudioWidget.assets(
+//               path: backMusic,
+//               play: controller.starStopState,
+//               onReadyToPlay: (total) {
+//                 controller.currentPositionState(
+//                     '${Duration().mmSSFormat} / ${total.mmSSFormat}');
+//               },
+//               onPositionChanged: (current, total) {
+//                 controller.currentPositionState(
+//                     '${current.mmSSFormat} / ${total.mmSSFormat}');
+//               },
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 mainAxisSize: MainAxisSize.max,
+//                 children: <Widget>[
+//                   Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: ElevatedButton(
+//                         style: ElevatedButton.styleFrom(
+//                           shape: CircleBorder(),
+//                           padding: EdgeInsets.all(14),
+//                           primary: Colors.red,
+//                         ),
+//                         onPressed: () {
+//                           controller.changeStartStopState();
+//                         },
+//                         child: controller.startIcon),
+//                   ),
+//                   Text(controller.currentPosition),
+//                   Expanded(
+//                     child: NeumorphicSlider(
+//                       min: 0,
+//                       max: 100,
+//                       value: 0,
+//                       style: SliderStyle(
+//                           variant: Colors.grey, accent: Colors.grey[500]),
+//                       onChangeEnd: (newValue) {},
+//                       onChangeStart: (_) {},
+//                       onChanged: (newValue) {},
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             );
+//           }),
+//     ),
+//   );
+// }
+
+class MyPageListenDialog extends StatefulWidget {
+  final recordItem;
+
+  const MyPageListenDialog({Key? key, required this.recordItem})
+      : super(key: key);
+
+  @override
+  State<MyPageListenDialog> createState() => _MyPageListenDialogState();
+}
+
+class _MyPageListenDialogState extends State<MyPageListenDialog> {
+  var myPageMusicController = Get.put(MyPageMusicController());
+  // var audioAndVideoListController = Get.put(AudioAndVideoListController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    print('asdfasdf ${widget.recordItem}');
+    myPageMusicController.playerInit(widget.recordItem);
   }
 
-  void _stop() {
-    player.stop();
+  @override
+  void dispose() {
+    super.dispose();
+    myPageMusicController.dispose();
   }
 
-  return Dialog(
-    child: GetBuilder<MyPageController>(
-        init: MyPageController(),
-        builder: (controller) {
-          return Container(
-            height: 80.h,
-            width: 330.w,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '**곡 듣기',
-                  style: TextStyle(fontSize: 30),
-                ),
-                IconButton(
-                    icon: controller.startIcon,
-                    onPressed: () {
-                      controller.changeStartStopState();
-                      controller.starStopState ? _play() : _stop();
-                    }),
-              ],
-            ),
-          );
-        }),
-  );
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+          height: 70.h,
+          child: myPageMusicController.isFile
+              ? GetBuilder<MyPageMusicController>(
+                  init: myPageMusicController,
+                  builder: (controller) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          controller.assetsAudioPlayer.builderCurrent(
+                              builder: (context, Playing? playing) {
+                            return Row(
+                              children: <Widget>[
+                                controller.assetsAudioPlayer.builderLoopMode(
+                                  builder: (context, loopMode) {
+                                    return PlayerBuilder.isPlaying(
+                                        player: controller.assetsAudioPlayer,
+                                        builder: (context, isPlaying) {
+                                          return NeumorphicButton(
+                                            style: NeumorphicStyle(
+                                              boxShape:
+                                                  NeumorphicBoxShape.circle(),
+                                            ),
+                                            onPressed: () {
+                                              // controller.audioRecordPath =
+                                              //     widget.recordItem.exerPath;
+                                              // print(widget.recordItem.exerPath);
+
+                                              controller.assetsAudioPlayer
+                                                  .playOrPause();
+                                            },
+                                            child: isPlaying
+                                                ? SvgPicture.asset(
+                                                    PLAY_STOP_SVG)
+                                                : SvgPicture.asset(
+                                                    PLAY_SVG,
+                                                    color: MctColor
+                                                        .black.getMctColor,
+                                                  ),
+                                          );
+                                        });
+                                  },
+                                ),
+                                controller.assetsAudioPlayer
+                                    .builderRealtimePlayingInfos(builder:
+                                        (context, RealtimePlayingInfos? infos) {
+                                  return PositionSeekWidget(
+                                    currentPosition: infos!.currentPosition,
+                                    duration: infos.duration,
+                                    seekTo: (to) {
+                                      controller.assetsAudioPlayer.seek(to);
+                                    },
+                                  );
+                                }),
+                              ],
+                            );
+                          }),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     NeumorphicButton(
+                          //       onPressed: () {
+                          //         controller.assetsAudioPlayer
+                          //             .seekBy(Duration(seconds: -10));
+                          //       },
+                          //       child: Text('-10'),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 12,
+                          //     ),
+                          //     NeumorphicButton(
+                          //       onPressed: () {
+                          //         controller.assetsAudioPlayer
+                          //             .seekBy(Duration(seconds: 10));
+                          //       },
+                          //       child: Text('+10'),
+                          //     ),
+                          //   ],
+                          // ),
+                        ],
+                      ),
+                    );
+                  })
+              : Center(
+                  child: Text(
+                  '저장 된 파일이 없거나 파일 이름이 바뀌었습니다.',
+                  style: TextStyle(fontSize: 12.sp, fontFamily: NOTO_REGULAR),
+                ))),
+    );
+  }
 }

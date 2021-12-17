@@ -1,13 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/color.dart';
 
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
 
 class CarouselListWidget extends StatefulWidget {
   List<Widget> carouselList = [];
 
-  CarouselListWidget({Key key, @required this.carouselList}) : super(key: key);
+  CarouselListWidget({Key? key, required this.carouselList}) : super(key: key);
 
   @override
   State<CarouselListWidget> createState() => _CarouselListWidgetState();
@@ -49,14 +50,19 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
                 (v) {
                   //these two lines
                   var index = widget.carouselList.indexOf(v); //are changed
-                  return Container(
-                    width: 8.0,
-                    height: 8.0,
-                    margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: _current == index ? second : mainColor),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Container(
+                      width: 8.0.w,
+                      height: 8.0.w,
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: _current == index
+                              ? MctColor.carouselColor.getMctColor
+                              : MctColor.lightYellow.getMctColor),
+                    ),
                   );
                 },
               ).toList(),

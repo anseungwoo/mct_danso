@@ -1,10 +1,10 @@
 class ExerciseModel {
-  final int exerId;
-  final int songId;
-  final String songTitle;
-  final String exerType;
-  final String exerPath;
-  final String exerTime;
+  final int? exerId;
+  final int? songId;
+  final String? songTitle;
+  final String? exerType;
+  final String? exerPath;
+  final String? exerTime;
 
   ExerciseModel({
     this.exerId,

@@ -1,40 +1,42 @@
-import 'package:danso_function/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/color.dart';
+import 'package:project_danso/common/contant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
+import 'package:project_danso/controllers/jungganbo_controller.dart';
+import 'package:project_danso/utils/danso_function.dart';
 
-Widget jungganbo(
-    int heightNumber, controller, JungGanBo testJungGanBo, bool krState) {
-  double height = heightNumber == 12
-      ? jungHeight
-      : heightNumber == 8
-          ? jungEightHeight
-          : jungSixHeight;
-  int j = 0;
+Widget jungganbo(int heightNumber, JungganboController controller,
+    JungGanBo testJungGanBo, bool krState) {
+  double height;
+  if (heightNumber == 12) {
+    height = MctSize.jungHeight.getSize;
+  } else {
+    height = heightNumber == 8
+        ? MctSize.jungEightHeight.getSize
+        : MctSize.jungSixHeight.getSize;
+  }
+  var j = 0;
   return Row(
+    // mainAxisSize: MainAxisSize.min,
+    mainAxisAlignment: MainAxisAlignment.end,
     children: [
-      for (var c = 3; c >= 0; c--)
+      for (var c = 3 + controller.next2; c >= 0 + controller.next; c--)
         Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             for (var i = heightNumber * c; i < heightNumber * (c + 1); i++)
               Row(
                 children: [
                   testJungGanBo.sheet[i].yulmyeongs.length == 1
-                      ? jungContainer(height, controller.flashcount, i, j,
-                          heightNumber, testJungGanBo, krState)
+                      ? jungContainer(height, controller, i, j, heightNumber,
+                          testJungGanBo, krState)
                       : testJungGanBo.sheet[i].yulmyeongs.length == 2
                           ? Column(
                               children: [
                                 for (var j = 0; j < 2; j++)
-                                  jungContainer(
-                                      height / 2,
-                                      controller.flashcount,
-                                      i,
-                                      j,
-                                      heightNumber,
-                                      testJungGanBo,
-                                      krState)
+                                  jungContainer(height / 2, controller, i, j,
+                                      heightNumber, testJungGanBo, krState)
                               ],
                             )
                           : testJungGanBo.sheet[i].yulmyeongs.length == 3
@@ -43,7 +45,7 @@ Widget jungganbo(
                                     for (var j = 0; j < 3; j++)
                                       jungContainer(
                                           height / 3,
-                                          controller.flashcount,
+                                          controller,
                                           i,
                                           j,
                                           heightNumber,
@@ -65,33 +67,59 @@ Container blankContainer(double height) {
   return Container(
     width: 20.w,
     height: height.h,
-    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
+    decoration: BoxDecoration(
+        color: MctColor.white.getMctColor,
+        border: Border.all(color: MctColor.white.getMctColor)),
   );
 }
 
-Container jungContainer(double height, int a, int i, int j, int heightNumber,
-    JungGanBo testJungGanBo, bool krState) {
-  return Container(
-    width: jungWidth.w,
-    height: height.h,
-    decoration: BoxDecoration(color: white, border: Border.all(color: white)),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: krState
-              ? Text(
-                  testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter(),
-                  style:
-                      TextStyle(fontSize: heightNumber == 12 ? 23.sp : 14.sp),
-                )
-              : Text(
-                  testJungGanBo.sheet[i].yulmyeongs[j].toHangeul(),
-                  style:
-                      TextStyle(fontSize: heightNumber == 12 ? 23.sp : 14.sp),
-                ),
-        ),
-      ],
+Widget jungContainer(double height, JungganboController controller, int i,
+    int j, int heightNumber, JungGanBo testJungGanBo, bool krState) {
+  return Center(
+    child: Container(
+      width: MctSize.jungWidth.getSize.w,
+      height: height.h,
+      decoration: BoxDecoration(
+          color: MctColor.white.getMctColor,
+          border: Border.all(color: MctColor.white.getMctColor)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+              child: krState
+                  ? changeTextColor(
+                      testJungGanBo,
+                      i,
+                      j,
+                      heightNumber,
+                      controller,
+                      testJungGanBo.sheet[i].yulmyeongs[j].toChineseCharacter())
+                  : changeTextColor(
+                      testJungGanBo,
+                      i,
+                      j,
+                      heightNumber,
+                      controller,
+                      testJungGanBo.sheet[i].yulmyeongs[j].toHangeul())),
+        ],
+      ),
     ),
+  );
+}
+
+Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
+    JungganboController controller, String text) {
+  return Text(
+    text,
+    style: TextStyle(
+        fontFamily: NOTO_REGULAR,
+        fontSize: heightNumber == 12
+            ? MctSize.eighteen.getSize.sp
+            : MctSize.fourteen.getSize.sp,
+        color: controller.isChallenge
+            ? controller.matchTrueFalse[i][j]
+                ? Colors.blue
+                : Colors.red
+            : MctColor.black.getMctColor),
   );
 }

@@ -9,6 +9,7 @@ class LikeSongController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     getLikeSongList();
   }
 
@@ -20,13 +21,12 @@ class LikeSongController extends GetxController {
 
   void getLikeSongList() async {
     var data = await DBHelPer().readLikeSongList();
-    if (data != null) {
-      likeSongList.assignAll(data);
-    }
+    likeSongList.assignAll(data);
     // update();
   }
 
-  void updateLikeSongList({String songLike, int songId}) async {
+  void updateLikeSongList(
+      {required String songLike, required int songId}) async {
     // var data = await
     var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);

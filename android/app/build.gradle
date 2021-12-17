@@ -41,7 +41,7 @@ android {
         configurations.all {
             resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
         }
-        applicationId "com.example.project_danso"
+        applicationId "com.mct.projectDanso1"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()

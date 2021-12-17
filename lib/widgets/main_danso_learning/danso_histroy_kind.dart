@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/icon.dart';
+import 'package:project_danso/common/size.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoHistroyKind extends StatefulWidget {
@@ -9,10 +11,10 @@ class DansoHistroyKind extends StatefulWidget {
   final String url;
   // final Image image;
   DansoHistroyKind(
-      {Key key,
-      @required this.subject,
-      @required this.explanation,
-      @required this.url})
+      {Key? key,
+      required this.subject,
+      required this.explanation,
+      required this.url})
       : super(key: key);
 
   @override
@@ -33,26 +35,32 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
               url: widget.url,
             ),
             SizedBox(height: 20.h),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: basicPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.subject,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: textSevenSize.sp,
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(widget.explanation,
-                      style: TextStyle(fontSize: textBasicSize.sp)),
-                ],
-              ),
-            ),
+            titleDescription(),
           ],
         ),
+      ),
+    );
+  }
+
+  Container titleDescription() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: MctSize.fifteen.getSize),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.subject,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: MctSize.seventeen.getSize.sp,
+                fontFamily: NOTO_BOLD),
+          ),
+          SizedBox(height: 10.h),
+          Text(widget.explanation,
+              style: TextStyle(
+                  fontSize: MctSize.fourteen.getSize.sp,
+                  fontFamily: NOTO_REGULAR)),
+        ],
       ),
     );
   }

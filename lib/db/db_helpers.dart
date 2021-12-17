@@ -8,19 +8,20 @@ final String songTable = 'TB_SONG';
 final String exerciseTable = 'TB_EXER';
 final String challangeTable = 'TB_CHAL';
 final String userTable = 'TB_USER';
+final String levelTable = 'TB_LEVEL';
 
 class DBHelPer {
   DBHelPer._();
   static final DBHelPer _db = DBHelPer._();
   factory DBHelPer() => _db;
 
-  static Database _database;
+  static Database? _database;
 
   Future<Database> get database async {
-    if (_database != null) return _database;
+    if (_database != null) return _database!;
 
     _database = await initDB();
-    return _database;
+    return _database!;
   }
 
   Future<Database> initDB() async {
@@ -31,7 +32,13 @@ class DBHelPer {
       await db.execute('''
             CREATE TABLE $userTable
             (
-                standard_fr DOUBLE NOT NULL
+                standard_fr DOUBLE  NOT NULL
+            )
+          ''');
+      await db.execute('''
+            CREATE TABLE $levelTable
+            (
+                level_exp DOUBLE
             )
           ''');
       await db.execute('''
@@ -43,7 +50,9 @@ class DBHelPer {
                 song_jangdan  TEXT      NOT NULL, 
                 song_like     TEXT      NOT NULL, 
                 song_diff     INTEGER   NOT NULL, 
-                song_sheet    TEXT      NOT NULL, 
+                song_sheet    TEXT      NOT NULL,
+                song_sheet_vertical INTEGER NOT NULL,
+                song_sheet_horizontal INTEGER NOT NULL,
                 PRIMARY KEY (song_id)
             )
           ''');
@@ -83,7 +92,7 @@ class DBHelPer {
   dynamic insertFr(UserModel user) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO TB_USER (standard_fr) VALUES(?)', [user.standardFr]);
+        'INSERT INTO $userTable (standard_fr) VALUES(?)', [user.standardFr]);
   }
 
   dynamic getUserFr() async {
@@ -99,7 +108,35 @@ class DBHelPer {
 
   dynamic deleteFr() async {
     final db = await database;
-    await db.rawDelete('DELETE FROM TB_USER');
+    await db.rawDelete('DELETE FROM $userTable');
+  }
+  //===========================================================================
+
+  // tear query -> TB_LEVEL
+  //===========================================================================
+
+  dynamic insertExp(LevelModel exp) async {
+    final db = await database;
+    await db.rawInsert(
+        'INSERT INTO $levelTable (level_exp) VALUES(?)', [exp.levelExp]);
+  }
+
+  dynamic getExp() async {
+    final db = await database;
+    var res = await db.rawQuery('SELECT * FROM $levelTable');
+    return res[0]['level_exp'];
+    // return res[0]['level_exp'];
+  }
+
+  dynamic updateExp(double levelExp) async {
+    final db = await database;
+    await db.rawUpdate('UPDATE $levelTable SET level_exp=?', [levelExp]);
+    // 'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=?,song_sheet_vertical=? WHERE song_id=?',
+  }
+
+  void deleteExp() async {
+    final db = await database;
+    await db.rawDelete('DELETE FROM $levelTable');
   }
   //===========================================================================
 
@@ -109,14 +146,16 @@ class DBHelPer {
   dynamic insertSongData(SongDataModel song) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet) VALUES(?,?,?,?,?,?)',
+        'INSERT INTO $songTable (song_title, song_path, song_jangdan, song_like, song_diff, song_sheet,song_sheet_vertical,song_sheet_horizontal) VALUES(?,?,?,?,?,?,?,?)',
         [
           song.songTitle,
           song.songPath,
           song.songJangdan,
           song.songLike,
           song.songDiff,
-          song.songSheet
+          song.songSheet,
+          song.songSheetVertical,
+          song.songSheetHorizontal,
         ]);
   }
 
@@ -136,7 +175,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => SongDataModel(
+            (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
               songPath: value['song_path'],
@@ -144,6 +183,8 @@ class DBHelPer {
               songLike: value['song_like'],
               songDiff: value['song_diff'],
               songSheet: value['song_sheet'],
+              songSheetVertical: value['song_sheet_vertical'],
+              songSheetHorizontal: value['song_sheet_horizontal'],
             ),
           )
           .toList();
@@ -162,7 +203,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => SongDataModel(
+            (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
               songPath: value['song_path'],
@@ -170,6 +211,8 @@ class DBHelPer {
               songLike: value['song_like'],
               songDiff: value['song_diff'],
               songSheet: value['song_sheet'],
+              songSheetVertical: value['song_sheet_vertical'],
+              songSheetHorizontal: value['song_sheet_horizontal'],
             ),
           )
           .toList();
@@ -196,14 +239,15 @@ class DBHelPer {
   dynamic updateSong(SongDataModel song) async {
     final db = await database;
     var res = db.rawUpdate(
-        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=? WHERE song_id=?',
+        'UPDATE $songTable SET song_title=?, song_path=?, song_jangdan=?, song_like=?, song_sheet=?,song_sheet_vertical=? WHERE song_id=?',
         [
           song.songTitle,
           song.songPath,
           song.songJangdan,
           song.songLike,
           song.songId,
-          song.songSheet
+          song.songSheet,
+          song.songSheetVertical
         ]);
     return res;
   }
@@ -215,8 +259,8 @@ class DBHelPer {
   dynamic insertChalData(ChallangeModel chal) async {
     final db = await database;
     await db.rawInsert(
-        'INSERT INTO $challangeTable (song_id, chal_score) VALUES(?,?)',
-        [chal.songId, chal.chalScore]);
+        'INSERT INTO $challangeTable (song_id, chal_score, chal_time) VALUES(?,?,?)',
+        [chal.songId, chal.chalScore, chal.chalTime]);
   }
 
   // read challange data
@@ -228,13 +272,13 @@ class DBHelPer {
   }
 
   // read all challange data
-  Future<List<ChallangeModel>> getAllChal() async {
+  Future<List<SongDataModel>> getAllChal() async {
     final db = await database;
     var res = await db.rawQuery('SELECT * FROM $challangeTable');
-    List<ChallangeModel> list = res.isNotEmpty
+    List<SongDataModel> list = res.isNotEmpty
         ? res
             .map(
-              (value) => SongDataModel(
+              (Map<String, dynamic> value) => SongDataModel(
                 songId: value['song_id'],
                 songTitle: value['song_title'],
                 songPath: value['song_path'],
@@ -262,12 +306,13 @@ class DBHelPer {
   Future<List<ExerciseModel>> readExerSoundData() async {
     final db = await database;
     var res = await db.rawQuery(
-        "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='sound'");
+        "SELECT * FROM $exerciseTable AS e INNER JOIN $songTable AS s ON e.song_id = s.song_id WHERE exer_type='audio'");
     List<ExerciseModel> list;
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => ExerciseModel(
+            (Map<String, dynamic> value) => ExerciseModel(
+              exerId: value['exer_id'],
               songTitle: value['song_title'],
               exerPath: value['exer_path'],
               exerTime: value['exer_time'],
@@ -288,7 +333,8 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => ExerciseModel(
+            (Map<String, dynamic> value) => ExerciseModel(
+              exerId: value['exer_id'],
               songTitle: value['song_title'],
               exerPath: value['exer_path'],
               exerTime: value['exer_time'],
@@ -300,12 +346,19 @@ class DBHelPer {
     }
     return list;
   }
+
+  Future<int> deletePath(var exerId) async {
+    final db = await database;
+    var res = await db
+        .rawDelete('DELETE FROM $exerciseTable WHERE exer_id=?', [exerId]);
+    return res;
+  }
   //===========================================================================
 
   // 마이페이지 - 기록 탭
   //===========================================================================
   //
-  Future<List<MyHistoryModel>> readMyHistoryData() async {
+  Future<List<MyHistoryModel>> readMyHistoryList() async {
     final db = await database;
     var res = await db.rawQuery(
         'SELECT s.song_title, c.song_id FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id GROUP BY s.song_id');
@@ -313,7 +366,7 @@ class DBHelPer {
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => MyHistoryModel(
+            (Map<String, dynamic> value) => MyHistoryModel(
               songTitle: value['song_title'],
               songId: value['song_id'],
             ),
@@ -332,22 +385,24 @@ class DBHelPer {
   Future<List<MyHistoryModel>> readMyHistoryGraph(int songId) async {
     final db = await database;
     var res = await db.rawQuery(
-        'SELECT chal_score, chal_time FROM $challangeTable WHERE song_id=?',
+        'SELECT * FROM $challangeTable AS c INNER JOIN $songTable AS s ON c.song_id = s.song_id WHERE c.song_id=?',
         [songId]);
     List<MyHistoryModel> list;
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => MyHistoryModel(
+            (Map<String, dynamic> value) => MyHistoryModel(
+              songId: value['song_id'],
+              songTitle: value['song_title'],
               chalScore: value['chal_score'],
               chalTime: value['chal_time'],
+              chalId: value['chal_id'],
             ),
           )
           .toList();
     } else {
       list = [];
     }
-    print(list);
     return list;
   }
   //===========================================================================
@@ -359,14 +414,21 @@ class DBHelPer {
     final db = await database;
     var res =
         await db.rawQuery('SELECT * FROM $songTable WHERE song_like="true"');
+    print('res $res');
     List<SongDataModel> list;
     if (res.isNotEmpty) {
       list = res
           .map(
-            (value) => SongDataModel(
+            (Map<String, dynamic> value) => SongDataModel(
               songId: value['song_id'],
               songTitle: value['song_title'],
+              songPath: value['song_path'],
+              songJangdan: value['song_jangdan'],
               songLike: value['song_like'],
+              songDiff: value['song_diff'],
+              songSheet: value['song_sheet'],
+              songSheetVertical: value['song_sheet_vertical'],
+              songSheetHorizontal: value['song_sheet_horizontal'],
             ),
           )
           .toList();
