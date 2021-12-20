@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/widgets/my_page/song_graph.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class ResultScore extends StatefulWidget {
@@ -66,7 +62,7 @@ class _ResultScoreState extends State<ResultScore> {
                   elevation: 0,
                   backgroundColor: MctColor.buttonColorOrange.getMctColor,
                   onPressed: () {
-                    Get.off(SongGraph(
+                    Get.off(SongScoreGraph(
                       songId: widget.songId,
                       songTitle: widget.songTitle,
                     ));

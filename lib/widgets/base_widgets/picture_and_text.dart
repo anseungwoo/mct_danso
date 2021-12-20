@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 
 class PictureAndText extends StatelessWidget {
   String title;

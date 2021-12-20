@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/common.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MainDansoLearningLevelScreen extends StatelessWidget {

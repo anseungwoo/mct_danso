@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/common/size.dart';
-import 'package:project_danso/controllers/my_history_controller.dart';
+import 'package:project_danso/common/common.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class SongGraph extends StatefulWidget {
-  SongGraph({Key? key, required this.songId, required this.songTitle})
+class SongScoreGraph extends StatefulWidget {
+  SongScoreGraph({Key? key, required this.songId, required this.songTitle})
       : super(key: key);
   final songId;
   final songTitle;
 
   @override
-  State<SongGraph> createState() => _SongGraphState();
+  State<SongScoreGraph> createState() => _SongScoreGraphState();
 }
 
-class _SongGraphState extends State<SongGraph> {
+class _SongScoreGraphState extends State<SongScoreGraph> {
   final MyHistoryController _myHistoryController =
       Get.put(MyHistoryController());
 

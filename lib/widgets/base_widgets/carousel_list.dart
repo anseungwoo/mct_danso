@@ -1,9 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/color.dart';
-
-import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/common.dart';
 
 class CarouselListWidget extends StatefulWidget {
   List<Widget> carouselList = [];

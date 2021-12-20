@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/common.dart';
 
 class MyPageMusicController extends GetxController {
   // static MyPageMusicController get to => Get.find();

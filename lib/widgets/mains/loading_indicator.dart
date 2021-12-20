@@ -2,11 +2,8 @@ import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/controllers/main_screen_controller.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class LoadingIndicator extends StatefulWidget {

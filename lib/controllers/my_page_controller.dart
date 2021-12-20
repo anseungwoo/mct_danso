@@ -1,8 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/audio_file_path.dart';
-
-import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/common.dart';
 
 class MyPageController extends GetxController {
   bool starStopState = false;
