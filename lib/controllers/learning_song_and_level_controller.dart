@@ -1,27 +1,85 @@
 import 'package:get/get.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/db/db.dart';
+import 'package:project_danso/utils/danso_function.dart';
 
 class LearningSongAndLevelController extends GetxController {
   int currentLevel = 1;
   var songList = [].obs;
-  List hanja = [
+  List yulmyeongHangeul = [
     '',
-    ['汰', '潢', '無', '', '', '', '', '', '', ''],
-    ['無', '潢', '汰', '㳞', '淋', '', '', '', '', ''],
-    ['仲', '林', '無', '潢', '汰', '㳞', '淋', '', '', ''],
-    ['仲', '林', '無', '潢', '汰', '㳞', '淋', '潕', '㶂', '㳲']
+    [
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
+    ],
+    [
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+    ]
   ];
-  List hangeul = [
+  List yulmyeongHanja = [
     '',
-    ['태', '황', '무', '', '', '', '', '', '', ''],
-    ['무', '황', '태', '중', '임', '', '', '', '', ''],
-    ['중', '임', '무', '황', '태', '중', '임', '', '', ''],
-    ['중', '임', '무', '황', '태', '중', '임', '무', '황', '태']
+    [
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
+    ],
+    [
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+    ],
+    [
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high),
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
+    ]
   ];
   @override
   void onInit() {
     super.onInit();
-    getExerSongList(1);
   }
 
   void nextLevel() {
@@ -41,17 +99,24 @@ class LearningSongAndLevelController extends GetxController {
   }
 
   void getExerSongList(int exerNum) async {
-    var data = await DBHelPer().getExerSongs(exerNum);
-    if (data.isNotEmpty || data != []) {
-      songList.assignAll(data);
-      print('$exerNum 레벨');
-      update();
-    } else {
-      print('$exerNum 레벨 곡 없음');
+    try {
+      var data = await DBHelPer().getExerSongs(exerNum);
+      if (data.isNotEmpty || data != []) {
+        songList.assignAll(data);
+        print('$exerNum 레벨');
+        update();
+      } else {
+        print('$exerNum 레벨 곡 없음');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
-  void updateLikeSongList({String songLike, int songId, int exerNum}) async {
+  void updateLikeSongList(
+      {required String songLike,
+      required int songId,
+      required int exerNum}) async {
     // var data = await
     var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);

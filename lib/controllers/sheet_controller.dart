@@ -1,12 +1,14 @@
-import 'package:danso_function/danso_function.dart';
 import 'package:get/get.dart';
+import 'package:project_danso/utils/danso_function.dart';
 
 class SheetController extends GetxController {
   var koSheet = [];
   var chiSheet = [];
 
   void jungGanBoSheet(
-      {String songTitle, String jangdan, String songSheet}) async {
+      {required String songTitle,
+      required String jangdan,
+      required String songSheet}) async {
     var createJungGanBo = JungGanBo(songTitle, jangdan, songSheet);
 
     createJungGanBo.sheet[0].yulmyeongs[0];

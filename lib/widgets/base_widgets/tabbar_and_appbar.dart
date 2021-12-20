@@ -1,24 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/const.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:project_danso/common/common.dart';
+import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/screens/screens.dart';
 
 PreferredSizeWidget tabbarAndAppBar(
-    {@required String title,
-    @required TabBar tabbar,
-    bool enableTabBar = true}) {
+    {required String title, TabBar? tabbar, bool enableTabBar = true}) {
+  var controller = Get.find<MainScreenController>();
   return AppBar(
     title: Text(
       '$title',
-      style: TextStyle(color: Colors.white, fontSize: textBasicSize.sp),
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: MctSize.fourteen.getSize.sp,
+          fontFamily: NOTO_MEDIUM),
     ),
     centerTitle: true,
     elevation: 1,
-    backgroundColor: appBarColor,
+    backgroundColor: MctColor.appBarColor.getMctColor,
+    leading: IconButton(
+      splashRadius: 15,
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Get.back();
+      },
+    ),
+    actions: [
+      Padding(
+        padding: EdgeInsets.all(MctSize.fifteen.getSize),
+        child: InkWell(
+            onTap: () {
+              Get.off(MainScreen());
+              if (controller.musicState) {
+                controller.assetsAudioPlayer.play();
+              }
+              ;
+              // Navigator.of(Get.context!)
+              //     .push(MaterialPageRoute(builder: (_) => MainScreen()));
+            },
+            child: SvgPicture.asset(
+              HOME_SVG,
+            )),
+      ),
+    ],
     bottom: enableTabBar
         ? PreferredSize(
-            preferredSize: tabbar.preferredSize,
+            preferredSize: tabbar!.preferredSize,
             child: ColoredBox(
-              color: background,
+              color: MctColor.mainBackGround.getMctColor,
               child: tabbar,
             ),
           )
@@ -27,27 +58,26 @@ PreferredSizeWidget tabbarAndAppBar(
 }
 
 PreferredSizeWidget songtabbarAndAppBar(
-    {@required String title,
-    @required TabBar tabbar,
-    bool enableTabBar = true}) {
+    {required String title, TabBar? tabbar, bool enableTabBar = true}) {
   return AppBar(
     title: Text(
       '$title',
       style: TextStyle(
-          color: textBlack, fontSize: 23.sp, fontWeight: FontWeight.bold),
+          color: MctColor.black.getMctColor,
+          fontSize: 23.sp,
+          fontWeight: FontWeight.bold,
+          fontFamily: NOTO_REGULAR),
     ),
-    iconTheme: IconThemeData(color: textBlack),
+    iconTheme: IconThemeData(color: MctColor.black.getMctColor),
     centerTitle: true,
     elevation: 0,
-    backgroundColor: background,
-    bottom: enableTabBar
-        ? PreferredSize(
-            preferredSize: tabbar.preferredSize,
-            child: ColoredBox(
-              color: background,
-              child: tabbar,
-            ),
-          )
-        : null,
+    backgroundColor: MctColor.mainBackGround.getMctColor,
+    leading: IconButton(
+      splashRadius: 15,
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Get.back();
+      },
+    ),
   );
 }

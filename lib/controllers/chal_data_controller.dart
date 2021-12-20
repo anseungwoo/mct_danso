@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/db/db.dart';
 
 class ChalDataController extends GetxController {
   var myHistoryList = Future.value([]).obs;
@@ -12,14 +12,12 @@ class ChalDataController extends GetxController {
   }
 
   void getMyHistoryList() {
-    myHistoryList.value = DBHelPer().readMyHistoryData();
+    myHistoryList.value = DBHelPer().readMyHistoryList();
     update();
   }
 
   void getMyHistoryGraphData(int songId) async {
     var data = await DBHelPer().readMyHistoryGraph(songId);
-    if (data != null) {
-      myHistoryGraph.assignAll(data);
-    }
+    myHistoryGraph.assignAll(data);
   }
 }

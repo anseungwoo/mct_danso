@@ -42,3 +42,5 @@ app.*.map.json
 
 # fvm flutter sdk symlink related
 .fvm/flutter_sdk
+.com.greenworldsoft.syncfolderspro
+.vscode

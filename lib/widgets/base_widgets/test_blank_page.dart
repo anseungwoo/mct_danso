@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TestBlankPage extends StatelessWidget {
-  const TestBlankPage({Key key}) : super(key: key);
+  const TestBlankPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
