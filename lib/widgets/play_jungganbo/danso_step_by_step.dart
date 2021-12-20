@@ -37,7 +37,6 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   void initState() {
     jungganboController.onInit();
     jungganboController.sheetHorizontal = 4;
-    jungganboController.setJandan(widget.jangdan);
 
     super.initState();
   }
@@ -57,13 +56,16 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
+    jungganboController.setJandan(widget.jangdan);
+
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
           controller.mill = testJungGanBo.jangDan.milliSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-
+          controller.setSpeed(
+              widget.jangdan, controller.speed[controller.speedCount]);
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,8 +107,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 // controller.startCapture();
                                 controller.isPracticeState();
                                 controller.stepStart();
-                                controller.playJungGanBo(indexManager);
-                                // controller.jandanPlay();
+                                // controller.playJungGanBo(indexManager);
+                                controller.jandanPlay();
                                 // controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
@@ -114,7 +116,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 controller.isPracticeState();
                                 controller.stepStop();
                                 indexManager.stopIndex();
-                                // controller.jandanStop();
+                                controller.jandanStop();
                               }
                             }),
 

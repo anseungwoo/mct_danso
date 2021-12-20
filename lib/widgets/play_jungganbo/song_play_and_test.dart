@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,6 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
-
 import '../jungganbo/jungganbo_screen.dart';
 
 class SongPlayAndTest extends StatefulWidget {
@@ -87,6 +85,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
     jungganboController.jangDan = widget.jangdan;
+    jungganboController.setJandan(widget.jangdan);
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
 
@@ -102,6 +101,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   jungcontroller.mill = testJungGanBo.jangDan.milliSecond;
                   jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
+                  jungcontroller.setSpeed(widget.jangdan,
+                      jungcontroller.speed[jungcontroller.speedCount]);
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -331,8 +332,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       indexManager.stopIndex();
                                       jungcontroller.jandanStop();
                                       jungcontroller.isLevelPracticeState();
-                                      // jungcontroller.stopCapture();
-
                                       controller.stateCountUp(0);
                                       print(controller.statecount);
                                       // jungcontroller.audioSessions

@@ -212,63 +212,6 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
-  // Widget isCorrectMethod(Yulmyeong yulmyeong, bool isHigh) {
-  //   var scale = isHigh ? ScaleStatus.high : ScaleStatus.origin;
-  //   // getDbFr();
-  //   try {
-  //     if (pitchModelInterface.isCorrectPitch(
-  //         userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
-  //       return Text(
-  //         '잘 불렀어요!! $userInputForAdjust',
-  //         style: TextStyle(color: MctColor.dansoCodematchColor.getMctColor, fontSize: 14.sp),
-  //       );
-  //     } else {
-  //       return Text(
-  //         '음이 달라요ㅠㅠ $userInputForAdjust',
-  //         style: TextStyle(color: MctColor.dansoCodeunMatchColor.getMctColor),
-  //       );
-  //     }
-  //   } catch (er) {
-  //     return Text('error');
-  //   }
-  // }
-
-  // Widget soundMatch() {
-  //   switch (soundListUpDown) {
-  //     case 0:
-  //       isCorrectMethod(Yulmyeong.joong, false);
-  //       break;
-  //     case 1:
-  //       isCorrectMethod(Yulmyeong.yim, false);
-  //       break;
-  //     case 2:
-  //       isCorrectMethod(Yulmyeong.moo, false);
-  //       break;
-  //     case 3:
-  //       isCorrectMethod(Yulmyeong.hwang, false);
-  //       break;
-  //     case 4:
-  //       isCorrectMethod(Yulmyeong.tae, false);
-  //       break;
-  //     case 5:
-  //       isCorrectMethod(Yulmyeong.joong, true);
-  //       break;
-  //     case 6:
-  //       isCorrectMethod(Yulmyeong.yim, true);
-  //       break;
-  //     case 7:
-  //       isCorrectMethod(Yulmyeong.moo, true);
-  //       break;
-  //     case 8:
-  //       isCorrectMethod(Yulmyeong.hwang, true);
-  //       break;
-  //     case 9:
-  //       isCorrectMethod(Yulmyeong.tae, true);
-  //       break;
-  //     default:
-  //   }
-  // }
-
   Text? soundMatch(double scl) {
     switch (soundListUpDown) {
       case 0:
