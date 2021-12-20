@@ -29,7 +29,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   void initState() {
     jungganboController.onInit();
     jungganboController.sheetHorizontal = 4;
-    jungganboController.setJandan(widget.jangdan);
+    // jungganboController.setJandan(widget.jangdan);
 
     super.initState();
   }

@@ -73,7 +73,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   @override
   void initState() {
     super.initState();
-    jungganboController.setJandan(widget.jangdan);
+    // jungganboController.setJandan(widget.jangdan);
   }
 
   @override

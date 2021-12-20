@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:assets_audio_player/assets_audio_player.dart';
+// import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
@@ -15,6 +15,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
+import 'package:just_audio/just_audio.dart' as ja;
 
 class JungganboController extends GetxController {
   bool startStopState = false;
@@ -61,7 +62,14 @@ class JungganboController extends GetxController {
   PlayAndTestController playAndTestController =
       Get.put(PlayAndTestController());
   IndexManager indexManagers = IndexManager();
-  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+  // AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+
+  ja.AudioPlayer player = ja.AudioPlayer(
+    handleInterruptions: false,
+    androidApplyAudioAttributes: false,
+    handleAudioSessionActivation: false,
+  );
+
   @override
   void onInit() {
     super.onInit();
@@ -87,11 +95,11 @@ class JungganboController extends GetxController {
   }
 
   void setJandan(var jangdan) {
-    assetsAudioPlayer.open(
-      Audio('assets/music/123123.mp3'),
-      autoStart: false,
-      loopMode: LoopMode.single,
-    );
+    // assetsAudioPlayer.open(
+    //   Audio('assets/music/123123.mp3'),
+    //   autoStart: false,
+    //   loopMode: LoopMode.single,
+    // );
   }
 
   String getJandan(var jangdan) {
