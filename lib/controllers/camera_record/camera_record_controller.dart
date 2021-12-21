@@ -56,22 +56,7 @@ class CameraRecordController extends GetxController {
       audioAndVideoDBController.putAudioAndVideoRecordDB(
           exerPath: video.path, exerType: 'video', songId: songId);
     }
-
-    // print(video);
-    // print(video.path);
-    // if (Platform.isAndroid) {
-    //   await GallerySaver.saveVideo(video.path, albumName: '단소');
-    // }
-
     showToast(message: '녹화가 완료되었습니다.');
-
-    // // if (Platform.isAndroid) {
-    // //   File(video.path).deleteSync(); // 이코드 주석 처리하니깐 ios에서 실행됨
-    // // }
-    // ;
-    // _playAndTestController.stateCountTwo();
-    // audioAndVideoDBController.putAudioAndVideoRecordDB(
-    //     exerPath: video.path, exerType: 'video', songId: songId);
     // update();
   }
 

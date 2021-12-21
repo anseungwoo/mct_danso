@@ -39,7 +39,7 @@ class _ResultScoreState extends State<ResultScore> {
         builder: (controller) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: MctColor.indiDarkGray.getMctColor,
+              backgroundColor: MctColor.mainBackGround.getMctColor,
               automaticallyImplyLeading: false,
               elevation: 0,
               actions: [

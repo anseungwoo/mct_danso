@@ -21,7 +21,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     super.dispose();
 
     if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     ;
   }

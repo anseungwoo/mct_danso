@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/db/db.dart';
@@ -209,92 +208,40 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
-  // Widget isCorrectMethod(Yulmyeong yulmyeong, bool isHigh) {
-  //   var scale = isHigh ? ScaleStatus.high : ScaleStatus.origin;
-  //   // getDbFr();
-  //   try {
-  //     if (pitchModelInterface.isCorrectPitch(
-  //         userInputForAdjust, YulmyeongNote(yulmyeong, scale))) {
-  //       return Text(
-  //         '잘 불렀어요!! $userInputForAdjust',
-  //         style: TextStyle(color: MctColor.dansoCodematchColor.getMctColor, fontSize: 14.sp),
-  //       );
-  //     } else {
-  //       return Text(
-  //         '음이 달라요ㅠㅠ $userInputForAdjust',
-  //         style: TextStyle(color: MctColor.dansoCodeunMatchColor.getMctColor),
-  //       );
-  //     }
-  //   } catch (er) {
-  //     return Text('error');
-  //   }
-  // }
-
-  // Widget soundMatch() {
-  //   switch (soundListUpDown) {
-  //     case 0:
-  //       isCorrectMethod(Yulmyeong.joong, false);
-  //       break;
-  //     case 1:
-  //       isCorrectMethod(Yulmyeong.yim, false);
-  //       break;
-  //     case 2:
-  //       isCorrectMethod(Yulmyeong.moo, false);
-  //       break;
-  //     case 3:
-  //       isCorrectMethod(Yulmyeong.hwang, false);
-  //       break;
-  //     case 4:
-  //       isCorrectMethod(Yulmyeong.tae, false);
-  //       break;
-  //     case 5:
-  //       isCorrectMethod(Yulmyeong.joong, true);
-  //       break;
-  //     case 6:
-  //       isCorrectMethod(Yulmyeong.yim, true);
-  //       break;
-  //     case 7:
-  //       isCorrectMethod(Yulmyeong.moo, true);
-  //       break;
-  //     case 8:
-  //       isCorrectMethod(Yulmyeong.hwang, true);
-  //       break;
-  //     case 9:
-  //       isCorrectMethod(Yulmyeong.tae, true);
-  //       break;
-  //     default:
-  //   }
-  // }
+  Text soundMatching(double scl, YulmyeongNote yulmyeongNote) {
+    try {
+      if (scl > 2000 || scl < 300) {
+        return Text('단소를 불러보세요',
+            style: TextStyle(
+              fontSize: 14.sp,
+            ));
+      } else {
+        if (pitchModelInterface.isCorrectPitch(scl, yulmyeongNote)!) {
+          return Text(
+            '잘 불렀어요!!',
+            style: TextStyle(
+                color: MctColor.dansoCodematchColor.getMctColor,
+                fontSize: 14.sp),
+          );
+        } else {
+          return Text('다시 불러보세요!',
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: MctColor.dansoCodeunMatchColor.getMctColor,
+              ));
+        }
+      }
+    } catch (er) {
+      return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
+    }
+  }
 
   Text? soundMatch(double scl) {
     switch (soundListUpDown) {
       case 0:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
+        return soundMatching(
+            scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin));
+
       case 1:
         try {
           if (scl > 2000 || scl < 300) {

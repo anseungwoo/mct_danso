@@ -6,16 +6,18 @@ class JangDan {
   JangDanType _jangDanType = JangDanType.semachi;
   double _tempo = MEDIUM_TEMPO;
   int _milliSecond = MEDIUM_TEMPO_SEC;
-
+  int _microSecond = 0;
   JangDan(JangDanType jangDanType) {
     _jangDanType = jangDanType;
     _tempo = getTempo(jangDanType);
     _milliSecond = getMilliSecond(jangDanType);
+    _microSecond = getMicrosecond(jangDanType);
   }
 
   JangDanType get jangDanType => _jangDanType;
   double get tempo => _tempo;
   int get milliSecond => _milliSecond;
+  int get microSecond => _microSecond;
 
   void setJangDanType(JangDanType jangDanType) {
     _jangDanType = jangDanType;
@@ -57,6 +59,37 @@ class JangDan {
     switch (jangDanType) {
       case JangDanType.semachi:
         ms = MEDIUM_TEMPO_SEC;
+        break;
+
+      case JangDanType.goodGeori:
+        ms = MEDIUM_TEMPO_SEC;
+        break;
+
+      case JangDanType.joongJoongMori:
+        ms = SLOW_TEMPO_SEC;
+        break;
+
+      case JangDanType.jajinMori:
+        ms = FAST_TEMPO_SEC;
+        break;
+
+      case JangDanType.huiMori:
+        ms = FAST_TEMPO_SEC;
+        break;
+      case JangDanType.fourByFour:
+        ms = MEDIUM_TEMPO_SEC;
+        break;
+      default:
+    }
+    return ms;
+  }
+
+  int getMicrosecond(JangDanType jangDanType) {
+    int ms = 0;
+    switch (jangDanType) {
+      case JangDanType.semachi:
+        // ms = 612638;
+        ms = 598611;
         break;
 
       case JangDanType.goodGeori:

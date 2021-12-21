@@ -24,8 +24,9 @@ class _SplashScreenState extends State<SplashScreen> {
   final SongController _songController = Get.put(SongController());
   final TearController _tearController = Get.put(TearController());
   void load() async {
+    await flutterMidi.unmute();
     var byteData = await rootBundle.load('assets/Dan.sf2');
-    await flutterMidi.prepare(sf2: byteData);
+    await flutterMidi.prepare(sf2: byteData, name: 'Dan.sf2');
   }
 
   @override

@@ -53,7 +53,7 @@ class AudioRecordController extends GetxController {
     customPath = appDocDirectory.path +
         customPath +
         DateTime.now().millisecondsSinceEpoch.toString();
-    // var iosPath = basename(customPath);
+
     // print('파일 이름 : $iosPath');
     // .wav <---> AudioFormat.WAV
     // .mp4 .m4a .aac <---> AudioFormat.AAC

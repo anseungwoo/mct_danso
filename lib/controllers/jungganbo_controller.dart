@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 // import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:flutter_midi/flutter_midi.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/common.dart';
+import 'package:just_audio/just_audio.dart' as ja;
 
 import 'package:project_danso/controllers/controllers.dart';
 
@@ -49,7 +51,6 @@ class JungganboController extends GetxController {
   bool isChallenge = false;
   bool isPractice = false;
   bool isLevelPractice = false;
-
   int scoreResult = 0;
   var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
@@ -62,13 +63,13 @@ class JungganboController extends GetxController {
   PlayAndTestController playAndTestController =
       Get.put(PlayAndTestController());
   IndexManager indexManagers = IndexManager();
-  // AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
 
-  ja.AudioPlayer player = ja.AudioPlayer(
-    handleInterruptions: false,
-    androidApplyAudioAttributes: false,
-    handleAudioSessionActivation: false,
-  );
+  // ja.AudioPlayer player = ja.AudioPlayer(
+  //   handleInterruptions: false,
+  //   // androidApplyAudioAttributes: false,
+  //   handleAudioSessionActivation: false,
+  // );
 
   @override
   void onInit() {
@@ -94,12 +95,29 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
-  void setJandan(var jangdan) {
-    // assetsAudioPlayer.open(
-    //   Audio('assets/music/123123.mp3'),
-    //   autoStart: false,
-    //   loopMode: LoopMode.single,
-    // );
+//   void setJandan(var jangdan) {
+//     assetsAudioPlayer.open(
+//       Audio(getJandan(jangdan)),
+//       autoStart: false,
+//       loopMode: LoopMode.single,
+//     );
+
+  void setJandan(var jangdan) async {
+    assetsAudioPlayer.open(
+      Audio('assets/music/123123.mp3'),
+      autoStart: false,
+      loopMode: LoopMode.single,
+    );
+    // await player.setAsset('assets/music/123123.mp3');
+    // await player.setLoopMode(ja.LoopMode.one);
+  }
+
+  void setJangdanAndDansoSound(var jangdanAndDanso) {
+    assetsAudioPlayer.open(
+      Audio(jangdanAndDanso),
+      autoStart: false,
+      loopMode: LoopMode.single,
+    );
   }
 
   String getJandan(var jangdan) {
@@ -121,34 +139,53 @@ class JungganboController extends GetxController {
     }
   }
 
-  void setSpeed() {
-    switch (jangDan) {
-      case '중중모리장단':
-        assetsAudioPlayer.setPlaySpeed(1.265);
-        break;
-      case '굿거리장단':
-        assetsAudioPlayer.setPlaySpeed(0.8);
-        break;
-      case '세마치장단':
-        assetsAudioPlayer.setPlaySpeed(1.65);
-        break;
-      case '4박장단':
-        assetsAudioPlayer.setPlaySpeed(0.65);
-        break;
-      case '자진모리장단':
-        assetsAudioPlayer.setPlaySpeed(1.85);
-        break;
+//   void setSpeed(jangDan, speed) {
+//     switch (jangDan) {
+//       case '중중모리장단':
+//         // assetsAudioPlayer.setPlaySpeed(1.265);
+//   //      assetsAudioPlayer.setPlaySpeed(1.26 * speed);
 
-      default: //high:
+//         player.setSpeed(1.265);
+//         break;
+//       case '굿거리장단':
+//         // assetsAudioPlayer.setPlaySpeed(0.8);
+// //         assetsAudioPlayer.setPlaySpeed(1.2 * speed);
 
-    }
-  }
+//         player.setSpeed(0.8);
+
+//         break;
+//       case '세마치장단':
+//         // assetsAudioPlayer.setPlaySpeed(1.65);
+// //         assetsAudioPlayer.setPlaySpeed(1.66 * speed);
+
+//         player.setSpeed(1.65);
+
+//         break;
+//       case '4박장단':
+//         // assetsAudioPlayer.setPlaySpeed(0.65);
+// //         assetsAudioPlayer.setPlaySpeed(0.66 * speed);
+
+//         player.setSpeed(0.65);
+
+//         break;
+//       case '자진모리장단':
+//         // assetsAudioPlayer.setPlaySpeed(1.85);
+// //         assetsAudioPlayer.setPlaySpeed(1.85 * speed);
+
+//         player.setSpeed(1.85);
+
+//         break;
+
+//       default: //high:
+
+//     }
+//   }
 
   void jandanPlay() async {
     await assetsAudioPlayer.setVolume(1);
-    setSpeed();
-    await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
+
     await assetsAudioPlayer.play();
+    // await player.play();
 
     print('isplaying : $startStopState');
     update();
@@ -156,6 +193,7 @@ class JungganboController extends GetxController {
 
   void jandanStop() async {
     await assetsAudioPlayer.stop();
+    // await player.stop();
     print('isplaying : $startStopState');
   }
 
@@ -342,6 +380,7 @@ class JungganboController extends GetxController {
         matchTrueFalse[i] = false;
       }
     }
+    update();
   }
 
   void setControllerConstants() {
@@ -359,6 +398,7 @@ class JungganboController extends GetxController {
     isLevelPractice = false;
     isPractice = false;
     assetsAudioPlayer.stop();
+    // player.stop();
   }
 
   void stepStop() {
@@ -408,26 +448,13 @@ class JungganboController extends GetxController {
     setting();
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
-    await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
-    Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
+
+    Timer.periodic(Duration(microseconds: mill ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {
           var pitchValueResult = pitchModelInterface
               .getModerateAverageFrequencyByListOfPitches(pitchValueList);
           checkYulmyeongsSection(line, pitchValue: pitchValueResult);
-
-          // if (jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-          //         Yulmyeong.blank ||
-          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-          //         Yulmyeong.rest ||
-          //     jungGanBo!.sheet[line].yulmyeongs[0].yulmyeong ==
-          //         Yulmyeong.long) {
-          //   matchTrueFalse[line] = true;
-          // } else if (pitchModelInterface.isCorrectPitch(
-          //     pitchValueResult!, jungGanBo!.sheet[line].yulmyeongs[0])!) {
-          //   print('선 :$pitchValueResult');
-          //   matchTrueFalse[line] = true;
-          // }
           print('클후 :$pitchValueResult');
         }
 
@@ -528,7 +555,7 @@ class JungganboController extends GetxController {
     });
   }
 
-  final player = FlutterMidi();
+  final midiPlayer = FlutterMidi();
   void playJungGanBo(IndexManager indexManager) {
     indexManager.clearIndex();
     Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
@@ -550,7 +577,7 @@ class JungganboController extends GetxController {
     allMidiStop();
   }
 
-  playJung(Jung jung, int durationTime) {
+  void playJung(Jung jung, int durationTime) {
     var halfOfDurationTime = durationTime ~/ 2;
     var oneOfThreeDurationTime = durationTime ~/ 3;
     if (jung.divisionStatus == DivisionStatus.one) {
@@ -567,14 +594,17 @@ class JungganboController extends GetxController {
         allMidiStop();
       }
       playOneYulmyeongNote(jung.yulmyeongs[0]);
-      sleep(Duration(milliseconds: halfOfDurationTime));
-
-      if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-          jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
-        allMidiStop();
-      }
-      //sleep(new Duration(milliseconds: 10));
-      playOneYulmyeongNote(jung.yulmyeongs[1]);
+      // sleep(Duration(milliseconds: halfOfDurationTime));
+      Timer.periodic(Duration(milliseconds: halfOfDurationTime), (timer) {
+        if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+            jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+          timer.cancel();
+          allMidiStop();
+        }
+        //sleep(new Duration(milliseconds: 10));
+        playOneYulmyeongNote(jung.yulmyeongs[1]);
+        timer.cancel();
+      });
       return;
     } else if (jung.divisionStatus == DivisionStatus.three) {
       if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
@@ -582,37 +612,35 @@ class JungganboController extends GetxController {
         allMidiStop();
       }
       playOneYulmyeongNote(jung.yulmyeongs[0]);
-      sleep(Duration(milliseconds: oneOfThreeDurationTime));
-      if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-          jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
-        allMidiStop();
-      }
-      //sleep(new Duration(milliseconds: 10));
-      playOneYulmyeongNote(jung.yulmyeongs[1]);
-      sleep(Duration(milliseconds: oneOfThreeDurationTime));
-      if (jung.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
-          jung.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
-        allMidiStop();
-      }
-      //sleep(new Duration(milliseconds: 10));
-      playOneYulmyeongNote(jung.yulmyeongs[2]);
+      // sleep(Duration(milliseconds: oneOfThreeDurationTime));
+      Timer.periodic(Duration(milliseconds: oneOfThreeDurationTime), (timer) {
+        if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+            jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+          timer.cancel();
+          allMidiStop();
+        }
+        //sleep(new Duration(milliseconds: 10));
+        playOneYulmyeongNote(jung.yulmyeongs[1]);
+        timer.cancel();
+      });
+      // sleep(Duration(milliseconds: oneOfThreeDurationTime));
+      Timer.periodic(Duration(milliseconds: oneOfThreeDurationTime), (timer) {
+        if (jung.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
+            jung.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
+          timer.cancel();
+          allMidiStop();
+        }
+        //sleep(new Duration(milliseconds: 10));
+        playOneYulmyeongNote(jung.yulmyeongs[2]);
+        timer.cancel();
+      });
       return;
     }
   }
 
-  playOneYulmyeongNoteDuringDurationTime(
-      YulmyeongNote yulmyeongNote, int durationTime) {
-    int notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
-    player.playMidiNote(midi: notePlayed);
-
-    Timer(Duration(milliseconds: durationTime), () {
-      player.stopMidiNote(midi: notePlayed);
-    });
-  }
-
   playOneYulmyeongNote(YulmyeongNote yulmyeongNote) {
     var notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
-    player.playMidiNote(midi: notePlayed);
+    midiPlayer.playMidiNote(midi: notePlayed);
   }
 
   int getMidiNoteFromYulmyeongNote(YulmyeongNote yulmyeongNote) {
@@ -673,13 +701,13 @@ class JungganboController extends GetxController {
 
   allMidiStop() {
     for (var i = 0; i < 128; i++) {
-      player.stopMidiNote(midi: i);
+      midiPlayer.stopMidiNote(midi: i);
     }
   }
 
   endMidi() {
     for (var i = 0; i < 128; i++) {
-      player.stopMidiNote(midi: i);
+      midiPlayer.stopMidiNote(midi: i);
     }
   }
 }

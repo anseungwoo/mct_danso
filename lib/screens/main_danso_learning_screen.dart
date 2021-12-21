@@ -22,7 +22,8 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
       // 일시 정지
-      controller.assetsAudioPlayer.pause();
+      // controller.assetsAudioPlayer.pause();
+      controller.player.pause();
     }
   }
 
@@ -31,7 +32,8 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
     super.dispose();
 
     if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     ;
   }

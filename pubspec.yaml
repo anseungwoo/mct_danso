@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -18,79 +18,58 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-
   sdk: ">=2.12.0 <3.0.0"
 
-
 dependencies:
+  assets_audio_player: ^3.0.3+6
+  audio_session: ^0.1.6+1
+  camera: ^0.9.4+3
+  carousel_slider: ^4.0.0
+  cupertino_icons: ^1.0.4
+  device_preview: ^0.8.0
+  double_back_to_close_app: ^2.0.1
+  enum_to_string: ^2.0.1
   flutter:
     sdk: flutter
-
- 
-  # 패키지  
-  # get: ^3.26.0
-  # flutter_screenutil: ^4.0.4+1
-  # carousel_slider: ^3.0.0
-  # sliding_sheet: ^0.4.1
-  flutter_screenutil: ^5.0.0+2
-  get: ^4.3.8
-  carousel_slider: ^4.0.0
-  sliding_sheet: ^0.5.2
-  youtube_player_flutter: ^8.0.0
-  # youtube_player_flutter: ^7.0.0+7
-  camera: ^0.9.4+3
-  video_player: ^2.2.7
-  path_provider: ^2.0.6
-  # danso_function: ^2.0.0
-  path: ^1.8.0
-  gallery_saver: ^2.3.2
-  flutter_youtube_view: ^2.0.2
-  # splashscreen: any
-  # flutter_audio_recorder: any
-  flutter_audio_recorder2: ^0.0.2
-  permission_handler: ^8.2.6
-  # audioplayers: ^0.20.1
-  flutter_svg: ^0.23.0+1
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.4
-  flutter_sequence_animation: ^4.0.0-nullsafety
-  image_picker: ^0.8.4+4
-  flutter_midi: ^1.1.0
-  sqflite: ^2.0.0+4
-  just_audio: ^0.9.18
-  # pitchdetector: any
-  double_back_to_close_app: ^2.0.1
-  fluttertoast: ^8.0.8
-  enum_to_string: ^2.0.1
-  syncfusion_flutter_gauges: ^19.3.48
-  hexagon: ^0.2.0-nullsafety.1
-  pitch_detector_dart: ^0.0.2
   flutter_audio_capture: ^1.1.0
+  flutter_audio_recorder2: ^0.0.2
+  flutter_midi: ^1.1.0
+  flutter_neumorphic: ^3.2.0
+  flutter_screenutil: ^5.0.0+2
+  flutter_sequence_animation: ^4.0.0-nullsafety
+  flutter_share: ^2.0.0
+  flutter_svg: ^0.23.0+1
+  flutter_youtube_view: ^2.0.2
+  fluttertoast: ^8.0.8
+  gallery_saver: ^2.3.2
+  get: ^4.3.8
+  google_fonts: ^2.1.0
+  hexagon: ^0.2.0-nullsafety.1
+  image_picker: ^0.8.4+4
+  intl: any
+  just_audio: ^0.9.18
+  path: ^1.8.0
+  path_provider: ^2.0.6
+  permission_handler: ^8.2.6
+  pitch_detector_dart: ^0.0.2
   pitchupdart: ^0.0.2
   rxdart: ^0.27.3
-  # assets_audio_player: ^3.0.3+6
-  device_preview: ^0.8.0
-  flutter_neumorphic: ^3.2.0
-  google_fonts: ^2.1.0
-  shared_preferences: ^2.0.9
-  audio_session: ^0.1.6+1
-  intl: any
   share: ^2.0.4
-  flutter_share: ^2.0.0
+  shared_preferences: ^2.0.9
+  sliding_sheet: ^0.5.2
+  sqflite: ^2.0.0+4
+  syncfusion_flutter_gauges: ^19.3.48
+  video_player: ^2.2.7
+  youtube_player_flutter: ^8.0.0
 dev_dependencies:
+  flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-    
-  flutter_lints: ^1.0.0
-  # pedantic: ^1.9.2
-  
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -100,6 +79,10 @@ flutter:
   assets:
     - assets/
     - assets/music/
+    - assets/music/level_1/
+    - assets/music/level_2/
+    - assets/music/level_3/
+    - assets/music/level_4/
     - assets/images/mainImage/
     - assets/images/tear/
     - assets/images/
@@ -109,14 +92,10 @@ flutter:
     - assets/json/
     - assets/images/danso_code/
     - assets/fonts/
-
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

@@ -83,11 +83,6 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                         songId: item.songId,
                       ),
                     );
-                    // Get.to(SheetTestScreen(
-                    //   sheetData: item.songSheet,
-                    //   jangdan: item.songJangdan,
-                    //   songTitle: item.songTitle,
-                    // ));
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -121,13 +116,17 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                                   exerNum: controller.currentLevel,
                                 );
                               },
-                              child: SvgPicture.asset(
-                                BOOKMARK_SVG,
-                                width: 20.w,
-                                height: 20.h,
-                                color: item.songLike == 'true'
-                                    ? Colors.red
-                                    : MctColor.white.getMctColor,
+                              child: Container(
+                                margin:
+                                    EdgeInsets.only(left: 5, bottom: 5, top: 5),
+                                child: SvgPicture.asset(
+                                  BOOKMARK_SVG,
+                                  width: 40.w,
+                                  height: 40.w,
+                                  color: item.songLike == 'true'
+                                      ? Colors.red
+                                      : MctColor.white.getMctColor,
+                                ),
                               ),
                             ),
                           ],

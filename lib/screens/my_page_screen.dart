@@ -24,7 +24,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
       // 일시 정지
-      controller.assetsAudioPlayer.pause();
+      // controller.assetsAudioPlayer.pause();
+      controller.player.pause();
     }
     tearController.getTearInfo();
     setState(() {});
@@ -34,7 +35,8 @@ class _MyPageScreenState extends State<MyPageScreen> {
   void dispose() {
     super.dispose();
     if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     tearController.getTearInfo();
   }

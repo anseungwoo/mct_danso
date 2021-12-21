@@ -34,7 +34,8 @@ class _MainScreenState extends State<MainScreen> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    mainScreenController.assetsAudioPlayer.dispose();
+    // mainScreenController.assetsAudioPlayer.dispose();
+    mainScreenController.player.dispose();
     tearController.getTearInfo();
   }
 
@@ -245,7 +246,8 @@ class _MainScreenState extends State<MainScreen> {
             // 아예 정지
             // Get.find<MainScreenController>().disposeAudioPlayer();
             // 일시 정지
-            controller.assetsAudioPlayer.pause();
+            // controller.assetsAudioPlayer.pause();
+            controller.player.pause();
           }
           onPressed;
           if (dialog) {
