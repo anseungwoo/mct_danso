@@ -9,6 +9,7 @@ import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:project_danso/common/common.dart';
+import 'package:just_audio/just_audio.dart' as ja;
 
 import 'package:project_danso/controllers/controllers.dart';
 
@@ -61,7 +62,14 @@ class JungganboController extends GetxController {
   PlayAndTestController playAndTestController =
       Get.put(PlayAndTestController());
   IndexManager indexManagers = IndexManager();
-  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+  // AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+
+  ja.AudioPlayer player = ja.AudioPlayer(
+    handleInterruptions: false,
+    // androidApplyAudioAttributes: false,
+    handleAudioSessionActivation: false,
+  );
+
   @override
   void onInit() {
     super.onInit();
@@ -86,12 +94,14 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
-  void setJandan(var jangdan) {
-    assetsAudioPlayer.open(
-      Audio('assets/music/123123.mp3'),
-      autoStart: false,
-      loopMode: LoopMode.single,
-    );
+  void setJandan(var jangdan) async {
+    // assetsAudioPlayer.open(
+    //   Audio('assets/music/123123.mp3'),
+    //   autoStart: false,
+    //   loopMode: LoopMode.single,
+    // );
+    await player.setAsset('assets/music/123123.mp3');
+    await player.setLoopMode(ja.LoopMode.one);
   }
 
   String getJandan(var jangdan) {
@@ -116,19 +126,28 @@ class JungganboController extends GetxController {
   void setSpeed() {
     switch (jangDan) {
       case '중중모리장단':
-        assetsAudioPlayer.setPlaySpeed(1.265);
+        // assetsAudioPlayer.setPlaySpeed(1.265);
+        player.setSpeed(1.265);
         break;
       case '굿거리장단':
-        assetsAudioPlayer.setPlaySpeed(0.8);
+        // assetsAudioPlayer.setPlaySpeed(0.8);
+        player.setSpeed(0.8);
+
         break;
       case '세마치장단':
-        assetsAudioPlayer.setPlaySpeed(1.65);
+        // assetsAudioPlayer.setPlaySpeed(1.65);
+        player.setSpeed(1.65);
+
         break;
       case '4박장단':
-        assetsAudioPlayer.setPlaySpeed(0.65);
+        // assetsAudioPlayer.setPlaySpeed(0.65);
+        player.setSpeed(0.65);
+
         break;
       case '자진모리장단':
-        assetsAudioPlayer.setPlaySpeed(1.85);
+        // assetsAudioPlayer.setPlaySpeed(1.85);
+        player.setSpeed(1.85);
+
         break;
 
       default: //high:
@@ -137,17 +156,20 @@ class JungganboController extends GetxController {
   }
 
   void jandanPlay() async {
-    await assetsAudioPlayer.setVolume(1);
+    // await assetsAudioPlayer.setVolume(1);
+    await player.setVolume(1);
     setSpeed();
     await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
-    await assetsAudioPlayer.play();
+    // await assetsAudioPlayer.play();
+    await player.play();
 
     print('isplaying : $startStopState');
     update();
   }
 
   void jandanStop() async {
-    await assetsAudioPlayer.stop();
+    // await assetsAudioPlayer.stop();
+    await player.stop();
     print('isplaying : $startStopState');
   }
 
@@ -350,7 +372,8 @@ class JungganboController extends GetxController {
     isChallenge = false;
     isLevelPractice = false;
     isPractice = false;
-    assetsAudioPlayer.stop();
+    // assetsAudioPlayer.stop();
+    player.stop();
   }
 
   void stepStop() {
@@ -520,7 +543,7 @@ class JungganboController extends GetxController {
     });
   }
 
-  final player = FlutterMidi();
+  final midiPlayer = FlutterMidi();
   void playJungGanBo(IndexManager indexManager) {
     indexManager.clearIndex();
     Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
@@ -595,16 +618,16 @@ class JungganboController extends GetxController {
   playOneYulmyeongNoteDuringDurationTime(
       YulmyeongNote yulmyeongNote, int durationTime) {
     int notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
-    player.playMidiNote(midi: notePlayed);
+    midiPlayer.playMidiNote(midi: notePlayed);
 
     Timer(Duration(milliseconds: durationTime), () {
-      player.stopMidiNote(midi: notePlayed);
+      midiPlayer.stopMidiNote(midi: notePlayed);
     });
   }
 
   playOneYulmyeongNote(YulmyeongNote yulmyeongNote) {
     var notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
-    player.playMidiNote(midi: notePlayed);
+    midiPlayer.playMidiNote(midi: notePlayed);
   }
 
   int getMidiNoteFromYulmyeongNote(YulmyeongNote yulmyeongNote) {
@@ -665,13 +688,13 @@ class JungganboController extends GetxController {
 
   allMidiStop() {
     for (var i = 0; i < 128; i++) {
-      player.stopMidiNote(midi: i);
+      midiPlayer.stopMidiNote(midi: i);
     }
   }
 
   endMidi() {
     for (var i = 0; i < 128; i++) {
-      player.stopMidiNote(midi: i);
+      midiPlayer.stopMidiNote(midi: i);
     }
   }
 }

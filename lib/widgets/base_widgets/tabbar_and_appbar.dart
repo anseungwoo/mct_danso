@@ -34,7 +34,8 @@ PreferredSizeWidget tabbarAndAppBar(
             onTap: () {
               Get.off(MainScreen());
               if (controller.musicState) {
-                controller.assetsAudioPlayer.play();
+                // controller.assetsAudioPlayer.play();
+                controller.player.play();
               }
               ;
               // Navigator.of(Get.context!)
