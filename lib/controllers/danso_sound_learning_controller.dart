@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/db/db.dart';
@@ -210,35 +209,40 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
+  Text soundMatching(double scl, YulmyeongNote yulmyeongNote) {
+    try {
+      if (scl > 2000 || scl < 300) {
+        return Text('단소를 불러보세요',
+            style: TextStyle(
+              fontSize: 14.sp,
+            ));
+      } else {
+        if (pitchModelInterface.isCorrectPitch(scl, yulmyeongNote)!) {
+          return Text(
+            '잘 불렀어요!!',
+            style: TextStyle(
+                color: MctColor.dansoCodematchColor.getMctColor,
+                fontSize: 14.sp),
+          );
+        } else {
+          return Text('다시 불러보세요!',
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: MctColor.dansoCodeunMatchColor.getMctColor,
+              ));
+        }
+      }
+    } catch (er) {
+      return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
+    }
+  }
+
   Text? soundMatch(double scl) {
     switch (soundListUpDown) {
       case 0:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
+        return soundMatching(
+            scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin));
+
       case 1:
         try {
           if (scl > 2000 || scl < 300) {

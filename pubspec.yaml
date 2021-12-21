@@ -79,6 +79,10 @@ flutter:
   assets:
     - assets/
     - assets/music/
+    - assets/music/level_1/
+    - assets/music/level_2/
+    - assets/music/level_3/
+    - assets/music/level_4/
     - assets/images/mainImage/
     - assets/images/tear/
     - assets/images/
