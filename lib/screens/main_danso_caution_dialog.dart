@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/main/loading_indicator.dart';
-import 'package:project_danso/widgets/main/timer_widget.dart';
+import 'package:project_danso/widgets/mains/mains.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class FixDansoPitchDialog extends StatefulWidget {

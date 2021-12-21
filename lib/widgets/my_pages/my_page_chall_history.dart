@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 
-import 'package:project_danso/controllers/my_history_controller.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageChallangeHistory extends StatefulWidget {
@@ -69,12 +67,12 @@ class _MyPageChallangeHistoryState extends State<MyPageChallangeHistory> {
                               ),
                               Spacer(flex: 1),
                               Container(
-                                  width: 33,
-                                  height: 33,
+                                  width: 33.w,
+                                  height: 33.w,
                                   child: SvgPicture.asset(
                                     GRAPH_SVG,
                                     width: 24.w,
-                                    height: 24.h,
+                                    height: 24.w,
                                   ))
                             ],
                           ),

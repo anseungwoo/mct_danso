@@ -1,13 +1,7 @@
 import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/controllers/camera_record/camera_record_view_controller.dart';
-import 'package:project_danso/screens/screens.dart';
+import 'package:project_danso/common/common.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';

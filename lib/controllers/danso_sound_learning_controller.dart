@@ -8,14 +8,12 @@ import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/common/common.dart';
+import 'package:project_danso/db/db.dart';
 import 'package:project_danso/models/models.dart';
-import 'package:project_danso/utils/common/constants/PitchConst.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/utils/model/pitch_model/PitchModel.dart';
-import 'package:project_danso/widgets/main/confirm_cancel_dialog.dart';
+import 'package:project_danso/widgets/widgets.dart';
 
 class DansoSoundLearningController extends GetxController {
   List<double> dansoPitchAdjustList = [];

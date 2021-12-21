@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:get/get.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/db/db.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';

@@ -8,13 +8,9 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-import 'package:project_danso/common/audio_file_path.dart';
-import 'package:project_danso/common/size.dart';
-import 'package:project_danso/controllers/learning_song_and_level_controller.dart';
-import 'package:project_danso/controllers/my_history_controller.dart';
-import 'package:project_danso/controllers/play_and_test_controller.dart';
+import 'package:project_danso/common/common.dart';
 
-import 'package:project_danso/controllers/tear_controller.dart';
+import 'package:project_danso/controllers/controllers.dart';
 
 import 'package:project_danso/utils/common/constants/MidiNoteConst.dart';
 import 'package:project_danso/utils/danso_function.dart';

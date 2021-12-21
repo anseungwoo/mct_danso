@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/mains/mains.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 Widget learningDialog() {
@@ -32,14 +31,14 @@ Widget learningDialog() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              icon(
+              createLearningDialogIcon(
                   text: '단소 기초 학습',
                   page: MainDansoLearningScreen(),
                   assetName: DANSO_LESSON_SVG),
               SizedBox(
                 width: 14.w,
               ),
-              icon(
+              createLearningDialogIcon(
                   page: MainDansoLearningTestScreen(),
                   text: '단계별 연습',
                   assetName: DANSO_STUDY_SVG),

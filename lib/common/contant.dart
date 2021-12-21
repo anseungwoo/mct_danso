@@ -126,17 +126,17 @@ enum DansoCode { joog, lim, moo, hawng, tae, highTae }
 String getDansoCodeTitle(DansoCode dansoCode) {
   switch (dansoCode) {
     case DansoCode.joog:
-      return '仲 & 㳞(중)';
+      return '仲 / 㳞 (중)';
     case DansoCode.lim:
-      return '林 & 淋(임)';
+      return '林 / 淋 (임)';
     case DansoCode.moo:
-      return '無 & 潕(무)';
+      return '無 / 潕 (무)';
     case DansoCode.hawng:
-      return '潢 & 㶂(황)';
+      return '潢 / 㶂 (황)';
     case DansoCode.tae:
-      return '汰(태)';
+      return '汰 (태)';
     case DansoCode.highTae:
-      return '㳲(태)';
+      return '㳲 (태)';
 
     default:
       return "";
