@@ -407,6 +407,8 @@ class JungganboController extends GetxController {
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
     await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
+    await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
+
     Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {
