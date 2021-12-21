@@ -195,7 +195,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () {
                                       jungganboController
-                                          .setJangdanAndDansoSound(ARIRANG);
+                                          .setJangdanAndDansoSound(SAEGSIPUL);
                                       controller.nextButton();
                                       print(controller.statecount);
                                     },
@@ -260,7 +260,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       controller.nextButton();
                                       jungcontroller.jandanPlay();
                                       await Future.delayed(
-                                          Duration(microseconds: 3897916));
+                                          Duration(microseconds: 5197916));
                                       // await Get.dialog(
                                       //   Dialog(
                                       //       backgroundColor:

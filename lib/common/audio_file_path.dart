@@ -20,3 +20,4 @@ String getAudioFilePath(AudioFile audioFile) {
 }
 
 const String ARIRANG = 'assets/music/level_3/arirang.mp3';
+const String SAEGSIPUL = 'assets/music/level_3/saegsipul.mp3';

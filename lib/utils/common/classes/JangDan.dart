@@ -92,7 +92,7 @@ class JangDan {
         break;
 
       case JangDanType.goodGeori:
-        ms = MEDIUM_TEMPO_SEC;
+        ms = 460468;
         break;
 
       case JangDanType.joongJoongMori:
