@@ -61,13 +61,13 @@ class JungganboController extends GetxController {
   PlayAndTestController playAndTestController =
       Get.put(PlayAndTestController());
   IndexManager indexManagers = IndexManager();
-  // AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
 
-  ja.AudioPlayer player = ja.AudioPlayer(
-    handleInterruptions: false,
-    // androidApplyAudioAttributes: false,
-    handleAudioSessionActivation: false,
-  );
+  // ja.AudioPlayer player = ja.AudioPlayer(
+  //   handleInterruptions: false,
+  //   // androidApplyAudioAttributes: false,
+  //   handleAudioSessionActivation: false,
+  // );
 
   @override
   void onInit() {
@@ -101,13 +101,13 @@ class JungganboController extends GetxController {
 //     );
     
   void setJandan(var jangdan) async {
-    // assetsAudioPlayer.open(
-    //   Audio('assets/music/123123.mp3'),
-    //   autoStart: false,
-    //   loopMode: LoopMode.single,
-    // );
-    await player.setAsset('assets/music/123123.mp3');
-    await player.setLoopMode(ja.LoopMode.one);
+    assetsAudioPlayer.open(
+      Audio('assets/music/123123.mp3'),
+      autoStart: false,
+      loopMode: LoopMode.single,
+    );
+    // await player.setAsset('assets/music/123123.mp3');
+    // await player.setLoopMode(ja.LoopMode.one);
   }
 
   void setJangdanAndDansoSound(var jangdanAndDanso) {
@@ -137,54 +137,54 @@ class JungganboController extends GetxController {
     }
   }
 
-  void setSpeed(jangDan, speed) {
-    switch (jangDan) {
-      case '중중모리장단':
-        // assetsAudioPlayer.setPlaySpeed(1.265);
-  //      assetsAudioPlayer.setPlaySpeed(1.26 * speed);
+//   void setSpeed(jangDan, speed) {
+//     switch (jangDan) {
+//       case '중중모리장단':
+//         // assetsAudioPlayer.setPlaySpeed(1.265);
+//   //      assetsAudioPlayer.setPlaySpeed(1.26 * speed);
   
-        player.setSpeed(1.265);
-        break;
-      case '굿거리장단':
-        // assetsAudioPlayer.setPlaySpeed(0.8);
-//         assetsAudioPlayer.setPlaySpeed(1.2 * speed);
+//         player.setSpeed(1.265);
+//         break;
+//       case '굿거리장단':
+//         // assetsAudioPlayer.setPlaySpeed(0.8);
+// //         assetsAudioPlayer.setPlaySpeed(1.2 * speed);
         
-        player.setSpeed(0.8);
+//         player.setSpeed(0.8);
 
-        break;
-      case '세마치장단':
-        // assetsAudioPlayer.setPlaySpeed(1.65);
-//         assetsAudioPlayer.setPlaySpeed(1.66 * speed);
+//         break;
+//       case '세마치장단':
+//         // assetsAudioPlayer.setPlaySpeed(1.65);
+// //         assetsAudioPlayer.setPlaySpeed(1.66 * speed);
         
-        player.setSpeed(1.65);
+//         player.setSpeed(1.65);
 
-        break;
-      case '4박장단':
-        // assetsAudioPlayer.setPlaySpeed(0.65);
-//         assetsAudioPlayer.setPlaySpeed(0.66 * speed);
+//         break;
+//       case '4박장단':
+//         // assetsAudioPlayer.setPlaySpeed(0.65);
+// //         assetsAudioPlayer.setPlaySpeed(0.66 * speed);
         
-        player.setSpeed(0.65);
+//         player.setSpeed(0.65);
 
-        break;
-      case '자진모리장단':
-        // assetsAudioPlayer.setPlaySpeed(1.85);
-//         assetsAudioPlayer.setPlaySpeed(1.85 * speed);
+//         break;
+//       case '자진모리장단':
+//         // assetsAudioPlayer.setPlaySpeed(1.85);
+// //         assetsAudioPlayer.setPlaySpeed(1.85 * speed);
         
-        player.setSpeed(1.85);
+//         player.setSpeed(1.85);
 
-        break;
+//         break;
 
-      default: //high:
+//       default: //high:
 
-    }
-  }
+//     }
+//   }
 
   void jandanPlay() async {
     await assetsAudioPlayer.setVolume(1);
 
 
-//     await assetsAudioPlayer.play();
-    await player.play();
+    await assetsAudioPlayer.play();
+    // await player.play();
     
 
 
@@ -193,8 +193,8 @@ class JungganboController extends GetxController {
   }
 
   void jandanStop() async {
-    // await assetsAudioPlayer.stop();
-    await player.stop();
+    await assetsAudioPlayer.stop();
+    // await player.stop();
     print('isplaying : $startStopState');
   }
 
@@ -398,8 +398,8 @@ class JungganboController extends GetxController {
     isChallenge = false;
     isLevelPractice = false;
     isPractice = false;
-    // assetsAudioPlayer.stop();
-    player.stop();
+    assetsAudioPlayer.stop();
+    // player.stop();
   }
 
   void stepStop() {

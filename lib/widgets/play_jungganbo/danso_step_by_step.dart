@@ -56,8 +56,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
           controller.mill = testJungGanBo.jangDan.milliSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-          controller.setSpeed(
-              widget.jangdan, controller.speed[controller.speedCount]);
+          // controller.setSpeed(
+          //     widget.jangdan, controller.speed[controller.speedCount]);
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,

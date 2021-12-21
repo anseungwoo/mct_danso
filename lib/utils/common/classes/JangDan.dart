@@ -88,7 +88,8 @@ class JangDan {
     int ms = 0;
     switch (jangDanType) {
       case JangDanType.semachi:
-        ms = 612638;
+        // ms = 612638;
+        ms = 598611;
         break;
 
       case JangDanType.goodGeori:
