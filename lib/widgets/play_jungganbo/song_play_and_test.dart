@@ -1,10 +1,4 @@
 import 'dart:async';
-<<<<<<< HEAD
-import 'dart:io';
-import 'package:audio_session/audio_session.dart';
-=======
-
->>>>>>> 87e146ede22acde1bdbd59b990fa865d0498296f
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_midi/flutter_midi.dart';
@@ -16,10 +10,6 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
-<<<<<<< HEAD
-import '../jungganbo/jungganbo_screen.dart';
-=======
->>>>>>> 87e146ede22acde1bdbd59b990fa865d0498296f
 
 class SongPlayAndTest extends StatefulWidget {
   final String appbarTitle;
