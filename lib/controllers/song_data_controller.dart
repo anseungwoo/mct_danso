@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/db/db_helpers.dart';
-import 'package:project_danso/db/insert_dummy.dart';
+import 'package:project_danso/db/db.dart';
 import 'package:project_danso/models/models.dart';
 
 class SongController extends GetxController {

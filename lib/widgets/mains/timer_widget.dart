@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
+import 'package:project_danso/common/common.dart';
 
 class TimerWidget extends StatefulWidget {
   const TimerWidget({Key? key}) : super(key: key);

@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/db/db_helpers.dart';
-import 'package:project_danso/models/level_model.dart';
+import 'package:project_danso/common/common.dart';
+import 'package:project_danso/db/db.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TearController extends GetxController {

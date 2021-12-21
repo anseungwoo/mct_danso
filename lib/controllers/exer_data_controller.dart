@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/db/db.dart';
 
 class ExerDataController extends GetxController {
   var myHistoryList = Future.value([]).obs;

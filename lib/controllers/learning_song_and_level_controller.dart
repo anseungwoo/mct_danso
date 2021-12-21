@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/db/db.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
 class LearningSongAndLevelController extends GetxController {

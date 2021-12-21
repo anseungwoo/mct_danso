@@ -85,11 +85,11 @@ extension MctSizeExtension on MctSize {
       case MctSize.jungWidth:
         return 64.0;
       case MctSize.jungEightHeight:
-        return 62.0;
+        return 60.0;
       case MctSize.jungHeight:
         return 35.0;
       case MctSize.jungSixHeight:
-        return 82.0;
+        return 80.0;
 
       default:
         return 1.0;
