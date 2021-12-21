@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:project_danso/common/color.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/icon.dart';
-import 'package:project_danso/common/size.dart';
+import 'package:project_danso/common/common.dart';
 
-Widget icon(
+Widget createLearningDialogIcon(
     {required String text, required Widget page, required String assetName}) {
   return InkWell(
     onTap: () {

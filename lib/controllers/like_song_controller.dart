@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/db/db_helpers.dart';
+import 'package:project_danso/db/db.dart';
 
 class LikeSongController extends GetxController {
   var likeSongList = [].obs;

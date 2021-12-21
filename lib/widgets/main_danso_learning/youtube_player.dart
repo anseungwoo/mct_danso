@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_youtube_view/flutter_youtube_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/common/contant.dart';
-import 'package:project_danso/common/youtude.dart';
+import 'package:project_danso/common/common.dart';
 
 class YoutubePlayers extends StatefulWidget {
   final String url;
