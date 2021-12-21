@@ -21,7 +21,8 @@ class _MainDansoHistoryKindScreenState
   void dispose() {
     super.dispose();
     if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     ;
   }
