@@ -12,7 +12,7 @@ class GameTimerWidget extends StatefulWidget {
 
 class _GameTimerWidgetState extends State<GameTimerWidget> {
   late Timer _timer;
-  int _start = 3;
+  int _start = 2;
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
   }
 
   void startTimer() {
-    const oneSec = Duration(milliseconds: 1000);
+    const oneSec = Duration(microseconds: 1000000);
     _timer = Timer.periodic(oneSec, (Timer timer) {
       if (_start == 0) {
         setState(() {

@@ -59,27 +59,17 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     super.dispose();
   }
 
-  Future _incrementCounter() async {
-    return Future.delayed(Duration(seconds: 4), () {});
-  }
-
-  // void _onPressed(BuildContext context) async {
-  //   showLoadingIndicator(context);
-  //   await _incrementCounter();
-  //   hideOpenDialog();
-  // }
-
   @override
   void initState() {
     super.initState();
-    jungganboController.setJandan(widget.jangdan);
+    // jungganboController.setJandan(widget.jangdan);
   }
 
   @override
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
     jungganboController.jangDan = widget.jangdan;
-    jungganboController.setJandan(widget.jangdan);
+    // jungganboController.setJandan(widget.jangdan);
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
 
@@ -92,11 +82,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
             return GetBuilder<JungganboController>(
                 init: jungganboController,
                 builder: (jungcontroller) {
-                  jungcontroller.mill = testJungGanBo.jangDan.milliSecond;
+                  jungcontroller.mill = testJungGanBo.jangDan.microSecond;
                   jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
-                  jungcontroller.setSpeed(widget.jangdan,
-                      jungcontroller.speed[jungcontroller.speedCount]);
+                  // jungcontroller.setSpeed(widget.jangdan,
+                  //     jungcontroller.speed[jungcontroller.speedCount]);
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -204,6 +194,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () {
+                                      jungganboController
+                                          .setJangdanAndDansoSound(ARIRANG);
                                       controller.nextButton();
                                       print(controller.statecount);
                                     },
@@ -266,20 +258,22 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () async {
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
-                                      await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget()),
-                                        barrierDismissible: false,
-                                      );
+                                      jungcontroller.jandanPlay();
+                                      await Future.delayed(
+                                          Duration(microseconds: 3897916));
+                                      // await Get.dialog(
+                                      //   Dialog(
+                                      //       backgroundColor:
+                                      //           Colors.white.withOpacity(0),
+                                      //       elevation: 0,
+                                      //       child: GameTimerWidget()),
+                                      //   barrierDismissible: false,
+                                      // );
                                       //  jungcontroller.startCapture();
                                       jungcontroller.isLevelPracticeState();
-                                      jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
-                                      jungcontroller
-                                          .playJungGanBo(indexManager);
+                                      // jungcontroller
+                                      //     .playJungGanBo(indexManager);
 
                                       // jungcontroller.audioSessionConfigure();
                                       // audioSessionConfigure();

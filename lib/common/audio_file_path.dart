@@ -18,3 +18,5 @@ String getAudioFilePath(AudioFile audioFile) {
       return "";
   }
 }
+
+const String ARIRANG = 'assets/music/level_3/arirang.mp3';

@@ -48,7 +48,6 @@ class JungganboController extends GetxController {
   bool isChallenge = false;
   bool isPractice = false;
   bool isLevelPractice = false;
-
   int scoreResult = 0;
   var yulmyoungsCount = 0;
   // late AudioSession audioSessions;
@@ -89,6 +88,14 @@ class JungganboController extends GetxController {
   void setJandan(var jangdan) {
     assetsAudioPlayer.open(
       Audio(getJandan(jangdan)),
+      autoStart: false,
+      loopMode: LoopMode.single,
+    );
+  }
+
+  void setJangdanAndDansoSound(var jangdanAndDanso) {
+    assetsAudioPlayer.open(
+      Audio(jangdanAndDanso),
       autoStart: false,
       loopMode: LoopMode.single,
     );
@@ -139,8 +146,6 @@ class JungganboController extends GetxController {
   void jandanPlay() async {
     await assetsAudioPlayer.setVolume(1);
 
-    await Future.delayed(
-        Duration(milliseconds: (mill ~/ speed[speedCount]).toInt()));
     await assetsAudioPlayer.play();
 
     print('isplaying : $startStopState');
@@ -402,8 +407,8 @@ class JungganboController extends GetxController {
     setting();
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
-    await Future.delayed(Duration(milliseconds: mill ~/ speed[speedCount]));
-    Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
+
+    Timer.periodic(Duration(microseconds: mill ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {
           var pitchValueResult = pitchModelInterface
