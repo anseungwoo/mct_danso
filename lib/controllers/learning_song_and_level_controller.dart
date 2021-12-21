@@ -8,9 +8,9 @@ class LearningSongAndLevelController extends GetxController {
   List yulmyeongHangeul = [
     '',
     [
-      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
       YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
-      YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin)
+      YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin)
     ],
     [
       YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
@@ -52,7 +52,7 @@ class LearningSongAndLevelController extends GetxController {
       YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin),
       YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin),
       YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin),
-      YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
+      YulmyeongNote(Yulmyeong.joong, ScaleStatus.high),
       YulmyeongNote(Yulmyeong.yim, ScaleStatus.high),
     ],
     [
