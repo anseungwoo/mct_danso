@@ -4,7 +4,6 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/base_widgets/play_timer.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
@@ -102,7 +101,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                               MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
                           child: GameTimerWidget(
-                            timer: widget.controller.mill,
+                            timer: widget.controller.micro,
                           )),
                       barrierDismissible: false,
                     );

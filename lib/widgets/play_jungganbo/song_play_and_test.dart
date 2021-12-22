@@ -82,7 +82,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
             return GetBuilder<JungganboController>(
                 init: jungganboController,
                 builder: (jungcontroller) {
-                  jungcontroller.mill = testJungGanBo.jangDan.microSecond;
+                  jungcontroller.micro = testJungGanBo.jangDan.microSecond;
                   jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
                   jungcontroller.setSpeed(

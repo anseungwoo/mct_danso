@@ -46,7 +46,7 @@ class JungganboController extends GetxController {
   PitchModelInterface pitchModelInterface = PitchModel();
   double pitchValue = 0;
   List<double> pitchValueList = [];
-  late int mill;
+  late int micro;
   JungGanBo? jungGanBo;
   bool isChallenge = false;
   bool isPractice = false;
@@ -412,7 +412,7 @@ class JungganboController extends GetxController {
     print('결과값 $copySheetHorizontal');
     print('mill ${speed[speedCount]}');
 
-    Timer.periodic(Duration(microseconds: mill ~/ speed[speedCount]), (timer) {
+    Timer.periodic(Duration(microseconds: micro ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {
           var pitchValueResult = pitchModelInterface

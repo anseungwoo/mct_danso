@@ -53,7 +53,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
-          controller.mill = testJungGanBo.jangDan.milliSecond;
+          controller.micro = testJungGanBo.jangDan.microSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
           controller.setSpeed(controller.speed[controller.speedCount]);

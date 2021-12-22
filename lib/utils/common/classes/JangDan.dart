@@ -91,21 +91,23 @@ class JangDan {
     int ms = 0;
     switch (jangDanType) {
       case JangDanType.semachi:
-        // ms = (1+21÷25)/3=0.620666667;
+        // ms = (1+(44÷80+21)÷25)÷3=0.620666667;
         ms = 620666;
         break;
 
       case JangDanType.goodGeori:
         ms = 461541;
-        // //0.461541667
+        //(5+(37÷80+13)÷25)÷12=0.461541667
         break;
 
       case JangDanType.joongJoongMori:
         ms = 400000;
+        //=400000
         break;
 
       case JangDanType.jajinMori:
         ms = 230750;
+        //(2+(18÷80+19)÷25)÷12=0.23075
         break;
 
       case JangDanType.huiMori:
@@ -113,6 +115,7 @@ class JangDan {
         break;
       case JangDanType.fourByFour:
         ms = 645125;
+        // (2+(41÷80+14)÷25)÷4=0.645125
         break;
       default:
     }
@@ -123,13 +126,13 @@ class JangDan {
     int delay = 0;
     switch (jangDanType) {
       case JangDanType.semachi:
-        // ms = 612638;
+        //
         delay = 3697916;
         break;
 
       case JangDanType.goodGeori:
-        delay = 5197916;
-        //0.461541667
+        delay = 5350000;
+        //
         break;
 
       case JangDanType.joongJoongMori:

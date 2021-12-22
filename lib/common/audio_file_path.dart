@@ -23,6 +23,7 @@ String getSongFilePath(String songName) {
   var path_level = 'assets/music/song_file/';
 
   switch (songName) {
+    //1단계
     case '비행기':
       return '$path_level/airplane.mp3';
     case '산들바람':
@@ -37,20 +38,22 @@ String getSongFilePath(String songName) {
       return '$path_level/summer.mp3';
     case '코스모스':
       return '$path_level/cosmos.mp3';
+    //2단계
     case '줄넘기':
-      return '$path_level/arirang.mp3';
+      return '$path_level/julneomgi.mp3';
     case '남생이 놀아라':
-      return '$path_level/arirang.mp3';
+      return '$path_level/namsaenga.mp3';
     case '꼭꼭 숨어라':
-      return '$path_level/arirang.mp3';
-    case '배틀가':
-      return '$path_level/arirang.mp3';
+      return '$path_level/kkogkkog.mp3';
+    case '베틀가':
+      return '$path_level/baeteulga.mp3';
     case '시냇물':
-      return '$path_level/arirang.mp3';
-    case '겨울':
-      return '$path_level/arirang.mp3';
+      return '$path_level/sinaesmul.mp3';
+    case '거울':
+      return '$path_level/mirror.mp3';
     case '새콤달콤':
-      return '$path_level/arirang.mp3';
+      return '$path_level/saekomdalkom.mp3';
+    //3단계
     case '아리랑':
       return '$path_level/arirang.mp3'; //O
     case '색시풀':
@@ -58,13 +61,14 @@ String getSongFilePath(String songName) {
     case '밀양 아리랑':
       return '$path_level/arirang.mp3';
     case '도라지타령':
-      return '$path_level/arirang.mp3';
+      return '$path_level/dolaji.mp3';
     case '강아지':
-      return '$path_level/arirang.mp3';
+      return '$path_level/puppy.mp3';
     case '봄빛':
-      return '$path_level/arirang.mp3';
+      return '$path_level/spring_light.mp3';
     case '범벅타령':
       return '$path_level/arirang.mp3';
+    //4단계
     case '둥개둥개 둥개야':
       return '$path_level/arirang.mp3';
     case '늴늬리야':
