@@ -50,7 +50,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
-          controller.mill = testJungGanBo.jangDan.milliSecond;
+          controller.micro = testJungGanBo.jangDan.microSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
           controller.setSpeed(controller.speed[controller.speedCount]);
@@ -89,7 +89,9 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                       backgroundColor:
                                           Colors.white.withOpacity(0),
                                       elevation: 0,
-                                      child: GameTimerWidget()),
+                                      child: GameTimerWidget(
+                                        timer: testJungGanBo.jangDan.delay,
+                                      )),
                                   barrierDismissible: false,
                                 );
                                 controller.isPracticeState();

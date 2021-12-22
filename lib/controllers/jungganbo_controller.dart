@@ -45,6 +45,7 @@ class JungganboController extends GetxController {
   PitchModelInterface pitchModelInterface = PitchModel();
   double pitchValue = 0;
   List<double> pitchValueList = [];
+  late int micro;
   JungGanBo? jungGanBo;
   bool isChallenge = false;
   bool isPractice = false;
@@ -88,11 +89,14 @@ class JungganboController extends GetxController {
       autoStart: false,
       loopMode: LoopMode.single,
     );
+    setSpeed(speed[speedCount]);
+    // await player.setAsset('assets/music/123123.mp3');
+    // await player.setLoopMode(ja.LoopMode.one);
   }
 
-  void setJangdanAndDansoSound(var jangdanAndDanso) async {
+  void setJangdanAndDansoSound(var songName) async {
     await assetsAudioPlayer.open(
-      Audio(jangdanAndDanso),
+      Audio(getSongFilePath(songName)),
       autoStart: false,
       loopMode: LoopMode.single,
     );
@@ -119,6 +123,7 @@ class JungganboController extends GetxController {
 
   void setSpeed(speed) {
     assetsAudioPlayer.setPlaySpeed(speed);
+    update();
   }
 
   void jandanPlay() async {
@@ -354,7 +359,7 @@ class JungganboController extends GetxController {
     copySheetHorizontal = sheetHorizontal;
     setJungganboVariable();
 
-    Timer.periodic(Duration(microseconds: mill ~/ speed[speedCount]), (timer) {
+    Timer.periodic(Duration(microseconds: micro ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {
           // 도전하기 시작

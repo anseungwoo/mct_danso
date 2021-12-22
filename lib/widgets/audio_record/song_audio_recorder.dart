@@ -8,8 +8,12 @@ import 'package:project_danso/widgets/widgets.dart';
 class SongAudioRecorder extends StatefulWidget {
   final JungganboController controller;
   final songId;
-
-  SongAudioRecorder({Key? key, required this.controller, required this.songId})
+  final String jangdan;
+  SongAudioRecorder(
+      {Key? key,
+      required this.controller,
+      required this.jangdan,
+      required this.songId})
       : super(key: key);
 
   @override
@@ -57,13 +61,17 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                 onPressed: () async {
                   audioRecordController.isRecordingState();
                   widget.controller.changeStartStopState();
+                  widget.controller.setJandan(widget.jangdan);
+
                   if (widget.controller.startStopState) {
                     await Get.dialog(
                       Dialog(
                           backgroundColor:
                               MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
-                          child: GameTimerWidget()),
+                          child: GameTimerWidget(
+                            timer: widget.controller.micro,
+                          )),
                       barrierDismissible: false,
                     );
                     widget.controller.isLevelPracticeState();
