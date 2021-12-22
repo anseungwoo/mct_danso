@@ -23,14 +23,11 @@ class SongAudioRecorder extends StatefulWidget {
 class SongAudioRecorderState extends State<SongAudioRecorder> {
   AudioRecordController audioRecordController =
       Get.put(AudioRecordController());
-  IndexManager indexManager = IndexManager();
   @override
   void dispose() {
     if (audioRecordController.isRecording == true) {
       audioRecordController.stopRecording(
           songId: widget.songId, exerType: 'audio');
-      // widget.controller.allMidiStop();
-      indexManager.stopIndex();
       widget.controller.jandanStop();
     }
 
@@ -81,8 +78,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     audioRecordController.startRecording();
                     widget.controller.jandanPlay();
                     widget.controller.stepStart();
-                    // widget.controller.playJungGanBo(indexManager);
-                    // widget.controller.audioSessionConfigure();
                   }
                   if (!widget.controller.startStopState) {
                     widget.controller.jandanStop();
@@ -90,7 +85,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                         songId: widget.songId, exerType: 'audio');
                     widget.controller.stepStop();
                     widget.controller.isLevelPracticeState();
-                    indexManager.stopIndex();
                   }
                 },
                 child: audioRecordController.buttonText,

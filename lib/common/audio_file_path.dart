@@ -15,7 +15,7 @@ String getAudioFilePath(AudioFile audioFile) {
     case AudioFile.BackGroundMusic:
       return 'assets/music/danso_arirang_mixed.mp3';
     default:
-      return "";
+      return '';
   }
 }
 
@@ -85,6 +85,6 @@ String getSongFilePath(String songName) {
       return '$path_level/arirang.mp3';
 
     default:
-      return "";
+      return '';
   }
 }

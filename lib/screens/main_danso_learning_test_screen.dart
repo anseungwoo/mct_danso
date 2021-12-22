@@ -25,7 +25,7 @@ class _MainDansoLearningTestScreenState
   void dispose() {
     super.dispose();
     dansoSoundLearningController.disposeFunction();
-    if (controller.musicState) {
+    if (controller.musicState.value) {
       // controller.assetsAudioPlayer.play();
       controller.player.play();
     }
@@ -36,7 +36,7 @@ class _MainDansoLearningTestScreenState
   void initState() {
     super.initState();
     dansoSoundLearningController.disposeFunction();
-    if (controller.musicState) {
+    if (controller.musicState.value) {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
       // 일시 정지
@@ -274,16 +274,16 @@ class SoundButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 7),
       child: ElevatedButton(
         onPressed: onPressed,
-        child: Text(
-          title,
-          style: TextStyle(
-              fontFamily: NOTO_REGULAR, fontSize: MctSize.fifteen.getSize.sp),
-        ),
         style: ElevatedButton.styleFrom(
           elevation: 0,
           onSurface: MctColor.unButtonColorOrange.getMctColor,
           primary: MctColor.buttonColorOrange.getMctColor,
           minimumSize: Size(130.w, 45.h),
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+              fontFamily: NOTO_REGULAR, fontSize: MctSize.fifteen.getSize.sp),
         ),
       ),
     );
@@ -303,16 +303,16 @@ class UpDownButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: SvgPicture.asset(
-        assetName,
-        width: 20.w,
-        height: 12.h,
-      ),
       style: ElevatedButton.styleFrom(
         elevation: 0,
         onSurface: MctColor.unButtonColorOrange.getMctColor,
         primary: MctColor.buttonColorOrange.getMctColor,
         minimumSize: Size(59.w, 35.h),
+      ),
+      child: SvgPicture.asset(
+        assetName,
+        width: 20.w,
+        height: 12.h,
       ),
     );
   }

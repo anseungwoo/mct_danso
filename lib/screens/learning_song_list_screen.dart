@@ -19,12 +19,11 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
 
-  final TearController _tearController = Get.put(TearController());
+  final _tearController = Get.put(TearController());
 
   @override
   void initState() {
     learningSongLevelController.getExerSongList(1);
-    // TODO: implement initState
     super.initState();
   }
 

@@ -33,7 +33,7 @@ Widget confirmCancelDialog(String assetName, String text) {
                 Get.back();
               },
               child: Text(
-                "확인",
+                '확인',
                 style: TextStyle(
                     color: MctColor.black.getMctColor,
                     fontSize: MctSize.fourteen.getSize.sp),

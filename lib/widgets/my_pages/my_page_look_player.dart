@@ -58,7 +58,7 @@ class _VideoAppState extends State<VideoApp> {
                     transform: Matrix4.rotationY(math.pi),
                     child: VideoPlayer(videoPlayerController)),
               )
-            : Center(child: Text("nodata")),
+            : Center(child: Text('nodata')),
         floatingActionButton: isFile
             ? Container(
                 width: 60.w,

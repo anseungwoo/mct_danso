@@ -33,7 +33,7 @@ PreferredSizeWidget tabbarAndAppBar(
         child: InkWell(
             onTap: () {
               Get.off(MainScreen());
-              if (controller.musicState) {
+              if (controller.musicState.value) {
                 // controller.assetsAudioPlayer.play();
                 controller.player.play();
               }

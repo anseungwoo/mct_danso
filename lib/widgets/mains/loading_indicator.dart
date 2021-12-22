@@ -45,7 +45,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
     _timer2.cancel();
 
-    if (controller.musicState) {
+    if (controller.musicState.value) {
       // controller.assetsAudioPlayer.play();
       controller.player.play();
     }
@@ -124,7 +124,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "$_start초간 단소로 태(汰) 불어주세요.",
+              '$_start초간 단소로 태(汰) 불어주세요.',
               style: TextStyle(fontSize: MctSize.fifteen.getSize.sp),
             ),
           ),

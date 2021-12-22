@@ -10,28 +10,17 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageLook extends StatefulWidget {
+class MyPageLook extends GetView<AudioAndVideoListController> {
   final String songname;
   final String date;
 
   MyPageLook({Key? key, required this.songname, required this.date})
       : super(key: key);
-
-  @override
-  State<MyPageLook> createState() => _MyPageLookState();
-}
-
-class _MyPageLookState extends State<MyPageLook> {
   final audioAndVideoListController = Get.put(AudioAndVideoListController());
-  @override
-  void initState() {
-    audioAndVideoListController.onInit();
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    controller.getVideoList();
     return Scaffold(
       appBar: tabbarAndAppBar(title: '연주보기', tabbar: null, enableTabBar: false),
       body: Obx(
@@ -39,10 +28,10 @@ class _MyPageLookState extends State<MyPageLook> {
           padding: EdgeInsets.all(MctSize.fifteen.getSize),
           reverse: true,
           shrinkWrap: true,
-          itemCount: audioAndVideoListController.videoList.length,
+          itemCount: controller.videoList.length,
           itemBuilder: (BuildContext context, int index) {
-            var item = audioAndVideoListController.videoList[index];
-            if (audioAndVideoListController.videoList.isNotEmpty) {
+            var item = controller.videoList[index];
+            if (controller.videoList.isNotEmpty) {
               print('${item.exerPath}');
               return Padding(
                 padding: EdgeInsets.only(bottom: MctSize.fifteen.getSize),
@@ -91,8 +80,7 @@ class _MyPageLookState extends State<MyPageLook> {
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
-                              audioAndVideoListController
-                                  .shareFile(item.exerPath);
+                              controller.shareFile(item.exerPath);
                             }
                             if (value == 2) {
                               var dir =

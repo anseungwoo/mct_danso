@@ -27,7 +27,7 @@ class JangDan {
   }
 
   double getTempo(JangDanType jangDanType) {
-    double tempo = 0.0;
+    var tempo = 0.0;
     switch (jangDanType) {
       case JangDanType.semachi:
         tempo = MEDIUM_TEMPO;
@@ -58,7 +58,7 @@ class JangDan {
   }
 
   int getMilliSecond(JangDanType jangDanType) {
-    int ms = 0;
+    var ms = 0;
     switch (jangDanType) {
       case JangDanType.semachi:
         ms = MEDIUM_TEMPO_SEC;
@@ -88,7 +88,7 @@ class JangDan {
   }
 
   int getMicrosecond(JangDanType jangDanType) {
-    int ms = 0;
+    var ms = 0;
     switch (jangDanType) {
       case JangDanType.semachi:
         // ms = (1+(44÷80+21)÷25)÷3=0.620666667;
@@ -123,7 +123,7 @@ class JangDan {
   }
 
   int getJangdanDelay(JangDanType jangDanType) {
-    int delay = 0;
+    var delay = 0;
     switch (jangDanType) {
       case JangDanType.semachi:
         //
@@ -156,7 +156,6 @@ class JangDan {
 
   @override
   bool operator ==(covariant JangDan other) {
-    return (this._jangDanType == other.jangDanType &&
-        this._tempo == other.tempo);
+    return (_jangDanType == other.jangDanType && _tempo == other.tempo);
   }
 }

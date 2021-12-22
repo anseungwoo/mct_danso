@@ -22,7 +22,6 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(PermissionController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
-  final TearController _tearController = Get.put(TearController());
   void load() async {
     await flutterMidi.unmute();
     var byteData = await rootBundle.load('assets/Dan.sf2');
@@ -35,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     load();
     _songController.insertSongToJson();
-    _tearController.loadExp();
+    // _tearController.loadExp();
     startTime();
   }
 

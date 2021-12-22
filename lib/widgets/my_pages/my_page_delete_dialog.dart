@@ -31,13 +31,13 @@ Widget myPageDeleteDialog(var path, exerId) {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     yesNoButton(
-                      text: "취소",
+                      text: '취소',
                       onPress: () {
                         Get.back();
                       },
                     ),
                     yesNoButton(
-                      text: "확인",
+                      text: '확인',
                       onPress: () {
                         controller.DeleteFile(path, exerId);
                       },
@@ -55,12 +55,12 @@ Padding yesNoButton({required String text, required Function() onPress}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 16),
     child: TextButton(
+        onPressed: onPress,
         child: Text(
           text,
           style: TextStyle(
               color: MctColor.black.getMctColor,
               fontSize: MctSize.fifteen.getSize.sp),
-        ),
-        onPressed: onPress),
+        )),
   );
 }

@@ -3,7 +3,7 @@ import 'package:project_danso/common/common.dart';
 
 class ReslutScoreController extends GetxController {
   String iamge = STAR_SVG[0];
-  String comment = "";
+  String comment = '';
   int? score;
 
   void resultText() {

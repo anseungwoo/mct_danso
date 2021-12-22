@@ -12,8 +12,8 @@ class MainScreenController extends GetxController with WidgetsBindingObserver {
     // androidApplyAudioAttributes: false,
     handleAudioSessionActivation: false,
   );
-  bool svgState = false;
-  bool musicState = true;
+  var svgState = false.obs;
+  var musicState = true.obs;
 
   @override
   void onInit() {
@@ -36,31 +36,26 @@ class MainScreenController extends GetxController with WidgetsBindingObserver {
 
   void getMusicState() async {
     final getBgmState = await SharedPreferences.getInstance();
-    musicState = getBgmState.getBool('music_state') ?? true;
-
+    musicState.value = getBgmState.getBool('music_state') ?? true;
     playOrPause();
-    update();
   }
 
   void playOrPause() async {
     final getBgmState = await SharedPreferences.getInstance();
     await player.setAsset('assets/music/arirang_shel.wav');
-    if (musicState) {
-      await getBgmState.setBool('music_state', musicState);
+    if (musicState.value) {
+      await getBgmState.setBool('music_state', musicState.value);
       // await assetsAudioPlayer.play();
       await player.play();
-    } else if (!musicState) {
-      await getBgmState.setBool('music_state', musicState);
+    } else if (!musicState.value) {
+      await getBgmState.setBool('music_state', musicState.value);
       // await assetsAudioPlayer.stop();
       await player.stop();
     }
-    print('isplaying : $musicState');
-    update();
   }
 
   void ChangeMuteButtonState() {
-    musicState = !musicState;
-    update();
+    musicState.value = !musicState.value;
   }
 
   @override
@@ -71,7 +66,7 @@ class MainScreenController extends GetxController with WidgetsBindingObserver {
   }
 
   void SvgStateChange() {
-    svgState = !svgState;
-    update();
+    svgState.value = !svgState.value;
+    // update();
   }
 }
