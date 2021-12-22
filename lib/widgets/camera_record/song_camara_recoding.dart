@@ -4,16 +4,17 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/widgets/base_widgets/play_timer.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
   final JungganboController controller;
   final songId;
-  final String jandan;
+  final String jangdan;
   SongCamaraRecoding(
       {Key? key,
       required this.controller,
-      required this.jandan,
+      required this.jangdan,
       required this.songId})
       : super(key: key);
 
@@ -24,6 +25,7 @@ class SongCamaraRecoding extends StatefulWidget {
 class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   final cameraRecordcontroller = Get.put(CameraRecordController());
   IndexManager indexManager = IndexManager();
+
   // @override
   // void initState() {
   //   _controller =
@@ -90,15 +92,18 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   caController.isRecordingState();
-
                   widget.controller.changeStartStopState();
+                  widget.controller.setJandan(widget.jangdan);
+
                   if (caController.isRecording) {
                     await Get.dialog(
                       Dialog(
                           backgroundColor:
                               MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
-                          child: GameTimerWidget()),
+                          child: GameTimerWidget(
+                            timer: widget.controller.mill,
+                          )),
                       barrierDismissible: false,
                     );
                     await caController.onRecord();
@@ -123,7 +128,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
         ),
         SizedBox(height: 3.h),
         Text(
-          widget.jandan,
+          widget.jangdan,
           style: TextStyle(fontSize: MctSize.twelve.getSize.sp),
         ),
       ],

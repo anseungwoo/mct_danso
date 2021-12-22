@@ -112,7 +112,7 @@ class JangDan {
         ms = FAST_TEMPO_SEC;
         break;
       case JangDanType.fourByFour:
-        ms = 802343;
+        ms = 645125;
         break;
       default:
     }
@@ -124,7 +124,7 @@ class JangDan {
     switch (jangDanType) {
       case JangDanType.semachi:
         // ms = 612638;
-        delay = 3797916;
+        delay = 3697916;
         break;
 
       case JangDanType.goodGeori:
@@ -133,18 +133,18 @@ class JangDan {
         break;
 
       case JangDanType.joongJoongMori:
-        delay = 400000;
+        delay = 4700000;
         break;
 
       case JangDanType.jajinMori:
-        delay = 230000;
+        delay = 2800000;
         break;
 
       case JangDanType.huiMori:
         delay = FAST_TEMPO_SEC;
         break;
       case JangDanType.fourByFour:
-        delay = MEDIUM_TEMPO_SEC;
+        delay = 2300000;
         break;
       default:
     }

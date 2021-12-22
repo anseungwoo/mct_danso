@@ -85,7 +85,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   jungcontroller.mill = testJungGanBo.jangDan.microSecond;
                   jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
-                  jungcontroller.setSpeed(widget.jangdan,
+                  jungcontroller.setSpeed(
                       jungcontroller.speed[jungcontroller.speedCount]);
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -106,13 +106,22 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
+                                      controller.nextButton();
                                       jungcontroller.setJandan(widget.jangdan);
+
+                                      jungcontroller.isChallengeState();
                                       await Get.dialog(
                                         Dialog(
                                             backgroundColor:
                                                 Colors.white.withOpacity(0),
                                             elevation: 0,
-                                            child: GameTimerWidget()),
+                                            child: GameTimerWidget(
+                                              timer:
+                                                  testJungGanBo.jangDan.delay ~/
+                                                      jungcontroller.speed[
+                                                          jungcontroller
+                                                              .speedCount],
+                                            )),
                                         barrierDismissible: false,
                                       );
                                       jungcontroller.jandanPlay();
@@ -120,7 +129,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                           songId: widget.songId,
                                           songTitle: widget.appbarTitle);
                                       await jungcontroller.startCapture();
-                                      jungcontroller.isChallengeState();
 
                                       // jungcontroller.audioSessionConfigure();
 
@@ -194,7 +202,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () {
                                       jungganboController
-                                          .setJangdanAndDansoSound(ARIRANG);
+                                          .setJangdanAndDansoSound(
+                                              widget.appbarTitle);
                                       controller.nextButton();
                                       print(controller.statecount);
                                     },
@@ -262,25 +271,23 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
                                       jungcontroller.jandanPlay();
-                                      await Future.delayed(Duration(
-                                          microseconds:
-                                              testJungGanBo.jangDan.delay));
-                                      // await Get.dialog(
-                                      //   Dialog(
-                                      //       backgroundColor:
-                                      //           Colors.white.withOpacity(0),
-                                      //       elevation: 0,
-                                      //       child: GameTimerWidget()),
-                                      //   barrierDismissible: false,
-                                      // );
-                                      //  jungcontroller.startCapture();
+                                      await Get.dialog(
+                                        Dialog(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0),
+                                            elevation: 0,
+                                            child: GameTimerWidget(
+                                              timer:
+                                                  testJungGanBo.jangDan.delay ~/
+                                                      jungcontroller.speed[
+                                                          jungcontroller
+                                                              .speedCount],
+                                            )),
+                                        barrierDismissible: false,
+                                      );
+
                                       jungcontroller.isLevelPracticeState();
                                       jungcontroller.stepStart();
-                                      // jungcontroller
-                                      //     .playJungGanBo(indexManager);
-
-                                      // jungcontroller.audioSessionConfigure();
-                                      // audioSessionConfigure();
                                     },
                                   ),
                                   SizedBox(width: 5),
@@ -292,6 +299,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () async {
                                       jungganboController
                                           .setJandan(widget.jangdan);
+
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
                                       await Get.dialog(
@@ -299,7 +307,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             backgroundColor:
                                                 Colors.white.withOpacity(0),
                                             elevation: 0,
-                                            child: GameTimerWidget()),
+                                            child: GameTimerWidget(
+                                              timer:
+                                                  testJungGanBo.jangDan.delay ~/
+                                                      jungcontroller.speed[
+                                                          jungcontroller
+                                                              .speedCount],
+                                            )),
                                         barrierDismissible: false,
                                       );
                                       //  jungcontroller.startCapture();
@@ -345,13 +359,15 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             if (controller.statecount == 5)
                               SongCamaraRecoding(
                                 controller: jungcontroller,
-                                jandan: widget.jangdan,
+                                jangdan: widget.jangdan,
                                 songId: widget.songId,
                               ),
                             if (controller.statecount == 6)
                               SongAudioRecorder(
-                                  controller: jungcontroller,
-                                  songId: widget.songId)
+                                controller: jungcontroller,
+                                jangdan: widget.jangdan,
+                                songId: widget.songId,
+                              )
                           ],
                         ),
                       ),

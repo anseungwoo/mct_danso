@@ -107,13 +107,14 @@ class JungganboController extends GetxController {
       autoStart: false,
       loopMode: LoopMode.single,
     );
+    setSpeed(speed[speedCount]);
     // await player.setAsset('assets/music/123123.mp3');
     // await player.setLoopMode(ja.LoopMode.one);
   }
 
-  void setJangdanAndDansoSound(var jangdanAndDanso) async {
+  void setJangdanAndDansoSound(var songName) async {
     await assetsAudioPlayer.open(
-      Audio(jangdanAndDanso),
+      Audio(getSongFilePath(songName)),
       autoStart: false,
       loopMode: LoopMode.single,
     );
@@ -138,32 +139,9 @@ class JungganboController extends GetxController {
     }
   }
 
-  void setSpeed(jangDan, speed) {
-    switch (jangDan) {
-      case '중중모리장단':
-        assetsAudioPlayer.setPlaySpeed(1.26 * speed);
-
-        break;
-      case '굿거리장단':
-        assetsAudioPlayer.setPlaySpeed(1.2 * speed);
-
-        break;
-      case '세마치장단':
-        assetsAudioPlayer.setPlaySpeed(1.66 * speed);
-
-        break;
-      case '4박장단':
-        assetsAudioPlayer.setPlaySpeed(0.66 * speed);
-
-        break;
-      case '자진모리장단':
-        assetsAudioPlayer.setPlaySpeed(1.85 * speed);
-
-        break;
-
-      default: //high:
-
-    }
+  void setSpeed(speed) {
+    assetsAudioPlayer.setPlaySpeed(speed);
+    update();
   }
 
   void jandanPlay() async {
@@ -540,7 +518,7 @@ class JungganboController extends GetxController {
     });
   }
 
-  final midiPlayer = FlutterMidi();
+  // final midiPlayer = FlutterMidi();
   // void playJungGanBo(IndexManager indexManager) {
   //   indexManager.clearIndex();
   //   Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
@@ -562,139 +540,139 @@ class JungganboController extends GetxController {
   //   allMidiStop();
   // }
 
-  void playJung(Jung jung, int durationTime) {
-    var halfOfDurationTime = durationTime ~/ 2;
-    var oneOfThreeDurationTime = durationTime ~/ 3;
-    if (jung.divisionStatus == DivisionStatus.one) {
-      if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-          jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
-        allMidiStop();
-      }
-      //sleep(new Duration(milliseconds: 10));
-      playOneYulmyeongNote(jung.yulmyeongs[0]);
-      return;
-    } else if (jung.divisionStatus == DivisionStatus.two) {
-      if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-          jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
-        allMidiStop();
-      }
-      playOneYulmyeongNote(jung.yulmyeongs[0]);
-      // sleep(Duration(milliseconds: halfOfDurationTime));
-      Timer.periodic(Duration(milliseconds: halfOfDurationTime), (timer) {
-        if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-            jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
-          timer.cancel();
-          allMidiStop();
-        }
-        //sleep(new Duration(milliseconds: 10));
-        playOneYulmyeongNote(jung.yulmyeongs[1]);
-        timer.cancel();
-      });
-      return;
-    } else if (jung.divisionStatus == DivisionStatus.three) {
-      if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-          jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
-        allMidiStop();
-      }
-      playOneYulmyeongNote(jung.yulmyeongs[0]);
-      // sleep(Duration(milliseconds: oneOfThreeDurationTime));
-      Timer.periodic(Duration(milliseconds: oneOfThreeDurationTime), (timer) {
-        if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-            jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
-          timer.cancel();
-          allMidiStop();
-        }
-        //sleep(new Duration(milliseconds: 10));
-        playOneYulmyeongNote(jung.yulmyeongs[1]);
-        timer.cancel();
-      });
-      // sleep(Duration(milliseconds: oneOfThreeDurationTime));
-      Timer.periodic(Duration(milliseconds: oneOfThreeDurationTime), (timer) {
-        if (jung.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
-            jung.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
-          timer.cancel();
-          allMidiStop();
-        }
-        //sleep(new Duration(milliseconds: 10));
-        playOneYulmyeongNote(jung.yulmyeongs[2]);
-        timer.cancel();
-      });
-      return;
-    }
-  }
+  // void playJung(Jung jung, int durationTime) {
+  //   var halfOfDurationTime = durationTime ~/ 2;
+  //   var oneOfThreeDurationTime = durationTime ~/ 3;
+  //   if (jung.divisionStatus == DivisionStatus.one) {
+  //     if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+  //         jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+  //       allMidiStop();
+  //     }
+  //     //sleep(new Duration(milliseconds: 10));
+  //     playOneYulmyeongNote(jung.yulmyeongs[0]);
+  //     return;
+  //   } else if (jung.divisionStatus == DivisionStatus.two) {
+  //     if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+  //         jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+  //       allMidiStop();
+  //     }
+  //     playOneYulmyeongNote(jung.yulmyeongs[0]);
+  //     // sleep(Duration(milliseconds: halfOfDurationTime));
+  //     Timer.periodic(Duration(milliseconds: halfOfDurationTime), (timer) {
+  //       if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+  //           jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+  //         timer.cancel();
+  //         allMidiStop();
+  //       }
+  //       //sleep(new Duration(milliseconds: 10));
+  //       playOneYulmyeongNote(jung.yulmyeongs[1]);
+  //       timer.cancel();
+  //     });
+  //     return;
+  //   } else if (jung.divisionStatus == DivisionStatus.three) {
+  //     if (jung.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+  //         jung.yulmyeongs[0].yulmyeong != Yulmyeong.blank) {
+  //       allMidiStop();
+  //     }
+  //     playOneYulmyeongNote(jung.yulmyeongs[0]);
+  //     // sleep(Duration(milliseconds: oneOfThreeDurationTime));
+  //     Timer.periodic(Duration(milliseconds: oneOfThreeDurationTime), (timer) {
+  //       if (jung.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+  //           jung.yulmyeongs[1].yulmyeong != Yulmyeong.blank) {
+  //         timer.cancel();
+  //         allMidiStop();
+  //       }
+  //       //sleep(new Duration(milliseconds: 10));
+  //       playOneYulmyeongNote(jung.yulmyeongs[1]);
+  //       timer.cancel();
+  //     });
+  //     // sleep(Duration(milliseconds: oneOfThreeDurationTime));
+  //     Timer.periodic(Duration(milliseconds: oneOfThreeDurationTime), (timer) {
+  //       if (jung.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
+  //           jung.yulmyeongs[2].yulmyeong != Yulmyeong.blank) {
+  //         timer.cancel();
+  //         allMidiStop();
+  //       }
+  //       //sleep(new Duration(milliseconds: 10));
+  //       playOneYulmyeongNote(jung.yulmyeongs[2]);
+  //       timer.cancel();
+  //     });
+  //     return;
+  //   }
+  // }
 
-  playOneYulmyeongNote(YulmyeongNote yulmyeongNote) {
-    var notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
-    midiPlayer.playMidiNote(midi: notePlayed);
-  }
+  // playOneYulmyeongNote(YulmyeongNote yulmyeongNote) {
+  //   var notePlayed = getMidiNoteFromYulmyeongNote(yulmyeongNote);
+  //   midiPlayer.playMidiNote(midi: notePlayed);
+  // }
 
-  int getMidiNoteFromYulmyeongNote(YulmyeongNote yulmyeongNote) {
-    var res = 0;
-    if (yulmyeongNote.scaleStatus == ScaleStatus.origin) {
-      switch (yulmyeongNote.yulmyeong) {
-        case Yulmyeong.joong:
-          res = JOONG_NOTE;
-          break;
-        case Yulmyeong.yim:
-          res = YIM_NOTE;
-          break;
-        case Yulmyeong.moo:
-          res = MOO_NOTE;
-          break;
-        case Yulmyeong.hwang:
-          res = HWANG_NOTE;
-          break;
-        case Yulmyeong.tae:
-          res = TAE_NOTE;
-          break;
-        case Yulmyeong.blank:
-          res = REST_NOTE;
-          break;
-        case Yulmyeong.rest:
-          res = REST_NOTE;
-          break;
-        default: //high:
-      }
-    } else {
-      switch (yulmyeongNote.yulmyeong) {
-        case Yulmyeong.joong:
-          res = JOONG_HIGH_NOTE;
-          break;
-        case Yulmyeong.yim:
-          res = YIM_HIGH_NOTE;
-          break;
-        case Yulmyeong.moo:
-          res = MOO_HIGH_NOTE;
-          break;
-        case Yulmyeong.hwang:
-          res = HWANG_HIGH_NOTE;
-          break;
-        case Yulmyeong.tae:
-          res = TAE_HIGH_NOTE;
-          break;
-        case Yulmyeong.blank:
-          res = REST_NOTE;
-          break;
-        case Yulmyeong.rest:
-          res = REST_NOTE;
-          break;
-        default:
-      }
-    }
-    return res;
-  }
+  // int getMidiNoteFromYulmyeongNote(YulmyeongNote yulmyeongNote) {
+  //   var res = 0;
+  //   if (yulmyeongNote.scaleStatus == ScaleStatus.origin) {
+  //     switch (yulmyeongNote.yulmyeong) {
+  //       case Yulmyeong.joong:
+  //         res = JOONG_NOTE;
+  //         break;
+  //       case Yulmyeong.yim:
+  //         res = YIM_NOTE;
+  //         break;
+  //       case Yulmyeong.moo:
+  //         res = MOO_NOTE;
+  //         break;
+  //       case Yulmyeong.hwang:
+  //         res = HWANG_NOTE;
+  //         break;
+  //       case Yulmyeong.tae:
+  //         res = TAE_NOTE;
+  //         break;
+  //       case Yulmyeong.blank:
+  //         res = REST_NOTE;
+  //         break;
+  //       case Yulmyeong.rest:
+  //         res = REST_NOTE;
+  //         break;
+  //       default: //high:
+  //     }
+  //   } else {
+  //     switch (yulmyeongNote.yulmyeong) {
+  //       case Yulmyeong.joong:
+  //         res = JOONG_HIGH_NOTE;
+  //         break;
+  //       case Yulmyeong.yim:
+  //         res = YIM_HIGH_NOTE;
+  //         break;
+  //       case Yulmyeong.moo:
+  //         res = MOO_HIGH_NOTE;
+  //         break;
+  //       case Yulmyeong.hwang:
+  //         res = HWANG_HIGH_NOTE;
+  //         break;
+  //       case Yulmyeong.tae:
+  //         res = TAE_HIGH_NOTE;
+  //         break;
+  //       case Yulmyeong.blank:
+  //         res = REST_NOTE;
+  //         break;
+  //       case Yulmyeong.rest:
+  //         res = REST_NOTE;
+  //         break;
+  //       default:
+  //     }
+  //   }
+  //   return res;
+  // }
 
-  allMidiStop() {
-    for (var i = 0; i < 128; i++) {
-      midiPlayer.stopMidiNote(midi: i);
-    }
-  }
+  // allMidiStop() {
+  //   for (var i = 0; i < 128; i++) {
+  //     midiPlayer.stopMidiNote(midi: i);
+  //   }
+  // }
 
-  endMidi() {
-    for (var i = 0; i < 128; i++) {
-      midiPlayer.stopMidiNote(midi: i);
-    }
-  }
+  // endMidi() {
+  //   for (var i = 0; i < 128; i++) {
+  //     midiPlayer.stopMidiNote(midi: i);
+  //   }
+  // }
 }
 
 class IndexManager {

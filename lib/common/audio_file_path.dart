@@ -19,27 +19,24 @@ String getAudioFilePath(AudioFile audioFile) {
   }
 }
 
-const String ARIRANG = 'assets/music/level_3/arirang.mp3';
-const String SAEGSIPUL = 'assets/music/level_3/saegsipul.mp3';
-const String WOlWARY = 'assets/music/level_4/wolwarycheongcheong.mp3';
 String getSongFilePath(String songName) {
   var path_level = 'assets/music/song_file/';
 
   switch (songName) {
     case '비행기':
-      return '$path_level/arirang.mp3';
+      return '$path_level/airplane.mp3';
     case '산들바람':
-      return '$path_level/arirang.mp3';
-    case '숨박꼭질':
-      return '$path_level/arirang.mp3';
+      return '$path_level/sandeulbalam.mp3';
+    case '숨바꼭질':
+      return '$path_level/sumbakkogjil.mp3';
     case '가을바람':
-      return '$path_level/arirang.mp3';
+      return '$path_level/autumn.mp3';
     case '봄':
-      return '$path_level/arirang.mp3';
+      return '$path_level/spring.mp3';
     case '여름':
-      return '$path_level/arirang.mp3';
+      return '$path_level/summer.mp3';
     case '코스모스':
-      return '$path_level/arirang.mp3';
+      return '$path_level/cosmos.mp3';
     case '줄넘기':
       return '$path_level/arirang.mp3';
     case '남생이 놀아라':
