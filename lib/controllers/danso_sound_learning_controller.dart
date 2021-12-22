@@ -90,7 +90,6 @@ class DansoSoundLearningController extends GetxController {
     isCapture = true;
     await _audioRecorder.start(listener, onError,
         sampleRate: 44100, bufferSize: 3000);
-    ;
     update();
   }
 

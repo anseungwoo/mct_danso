@@ -37,7 +37,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   void dispose() {
     indexManager.stopIndex();
     jungganboController.stepStop();
-    jungganboController.allMidiStop();
+    // jungganboController.allMidiStop();
     if (jungganboController.startStopState) {
       jungganboController.jandanStop();
     }
@@ -99,7 +99,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 // controller.startCapture();
                                 controller.isPracticeState();
                                 controller.stepStart();
-                                controller.playJungGanBo(indexManager);
+                                // controller.playJungGanBo(indexManager);
                                 controller.jandanPlay();
                                 // controller.audioSessionConfigure();
                               }
