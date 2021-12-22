@@ -90,8 +90,7 @@ class JungganboController extends GetxController {
 
   @override
   void dispose() {
-    allMidiStop();
-    line = jungGanBo!.sheet.length;
+    line = jungGanBo!.sheet.length + 2;
     super.dispose();
   }
 
@@ -103,8 +102,8 @@ class JungganboController extends GetxController {
 //     );
 
   void setJandan(var jangdan) async {
-    assetsAudioPlayer.open(
-      Audio('assets/music/123123.mp3'),
+    await assetsAudioPlayer.open(
+      Audio(getJandan(jangdan)),
       autoStart: false,
       loopMode: LoopMode.single,
     );
@@ -112,8 +111,8 @@ class JungganboController extends GetxController {
     // await player.setLoopMode(ja.LoopMode.one);
   }
 
-  void setJangdanAndDansoSound(var jangdanAndDanso) {
-    assetsAudioPlayer.open(
+  void setJangdanAndDansoSound(var jangdanAndDanso) async {
+    await assetsAudioPlayer.open(
       Audio(jangdanAndDanso),
       autoStart: false,
       loopMode: LoopMode.single,
@@ -139,47 +138,33 @@ class JungganboController extends GetxController {
     }
   }
 
-//   void setSpeed(jangDan, speed) {
-//     switch (jangDan) {
-//       case '중중모리장단':
-//         // assetsAudioPlayer.setPlaySpeed(1.265);
-//   //      assetsAudioPlayer.setPlaySpeed(1.26 * speed);
+  void setSpeed(jangDan, speed) {
+    switch (jangDan) {
+      case '중중모리장단':
+        assetsAudioPlayer.setPlaySpeed(1.26 * speed);
 
-//         player.setSpeed(1.265);
-//         break;
-//       case '굿거리장단':
-//         // assetsAudioPlayer.setPlaySpeed(0.8);
-// //         assetsAudioPlayer.setPlaySpeed(1.2 * speed);
+        break;
+      case '굿거리장단':
+        assetsAudioPlayer.setPlaySpeed(1.2 * speed);
 
-//         player.setSpeed(0.8);
+        break;
+      case '세마치장단':
+        assetsAudioPlayer.setPlaySpeed(1.66 * speed);
 
-//         break;
-//       case '세마치장단':
-//         // assetsAudioPlayer.setPlaySpeed(1.65);
-// //         assetsAudioPlayer.setPlaySpeed(1.66 * speed);
+        break;
+      case '4박장단':
+        assetsAudioPlayer.setPlaySpeed(0.66 * speed);
 
-//         player.setSpeed(1.65);
+        break;
+      case '자진모리장단':
+        assetsAudioPlayer.setPlaySpeed(1.85 * speed);
 
-//         break;
-//       case '4박장단':
-//         // assetsAudioPlayer.setPlaySpeed(0.65);
-// //         assetsAudioPlayer.setPlaySpeed(0.66 * speed);
+        break;
 
-//         player.setSpeed(0.65);
+      default: //high:
 
-//         break;
-//       case '자진모리장단':
-//         // assetsAudioPlayer.setPlaySpeed(1.85);
-// //         assetsAudioPlayer.setPlaySpeed(1.85 * speed);
-
-//         player.setSpeed(1.85);
-
-//         break;
-
-//       default: //high:
-
-//     }
-//   }
+    }
+  }
 
   void jandanPlay() async {
     await assetsAudioPlayer.setVolume(1);
@@ -556,26 +541,26 @@ class JungganboController extends GetxController {
   }
 
   final midiPlayer = FlutterMidi();
-  void playJungGanBo(IndexManager indexManager) {
-    indexManager.clearIndex();
-    Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
-      if (indexManager.index < jungGanBo!.sheet.length) {
-        playJung(jungGanBo!.sheet[indexManager.index],
-            (mill * speed[speedCount]).toInt());
-        indexManager.addOneIndex();
-        if (indexManager.index == jungGanBo!.sheet.length) {
-          timer.cancel();
-          allMidiStop();
-          indexManager.clearIndex();
-        }
-      } else {
-        timer.cancel();
-        allMidiStop();
-        indexManager.clearIndex();
-      }
-    });
-    allMidiStop();
-  }
+  // void playJungGanBo(IndexManager indexManager) {
+  //   indexManager.clearIndex();
+  //   Timer.periodic(Duration(milliseconds: mill ~/ speed[speedCount]), (timer) {
+  //     if (indexManager.index < jungGanBo!.sheet.length) {
+  //       playJung(jungGanBo!.sheet[indexManager.index],
+  //           (mill * speed[speedCount]).toInt());
+  //       indexManager.addOneIndex();
+  //       if (indexManager.index == jungGanBo!.sheet.length) {
+  //         timer.cancel();
+  //         allMidiStop();
+  //         indexManager.clearIndex();
+  //       }
+  //     } else {
+  //       timer.cancel();
+  //       allMidiStop();
+  //       indexManager.clearIndex();
+  //     }
+  //   });
+  //   allMidiStop();
+  // }
 
   void playJung(Jung jung, int durationTime) {
     var halfOfDurationTime = durationTime ~/ 2;

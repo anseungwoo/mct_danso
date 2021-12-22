@@ -20,3 +20,70 @@ String getAudioFilePath(AudioFile audioFile) {
 }
 
 const String ARIRANG = 'assets/music/level_3/arirang.mp3';
+const String SAEGSIPUL = 'assets/music/level_3/saegsipul.mp3';
+const String WOlWARY = 'assets/music/level_4/wolwarycheongcheong.mp3';
+String getSongFilePath(String songName) {
+  var path_level = 'assets/music/song_file/';
+
+  switch (songName) {
+    case '비행기':
+      return '$path_level/arirang.mp3';
+    case '산들바람':
+      return '$path_level/arirang.mp3';
+    case '숨박꼭질':
+      return '$path_level/arirang.mp3';
+    case '가을바람':
+      return '$path_level/arirang.mp3';
+    case '봄':
+      return '$path_level/arirang.mp3';
+    case '여름':
+      return '$path_level/arirang.mp3';
+    case '코스모스':
+      return '$path_level/arirang.mp3';
+    case '줄넘기':
+      return '$path_level/arirang.mp3';
+    case '남생이 놀아라':
+      return '$path_level/arirang.mp3';
+    case '꼭꼭 숨어라':
+      return '$path_level/arirang.mp3';
+    case '배틀가':
+      return '$path_level/arirang.mp3';
+    case '시냇물':
+      return '$path_level/arirang.mp3';
+    case '겨울':
+      return '$path_level/arirang.mp3';
+    case '새콤달콤':
+      return '$path_level/arirang.mp3';
+    case '아리랑':
+      return '$path_level/arirang.mp3'; //O
+    case '색시풀':
+      return '$path_level/saegsipul.mp3'; //O
+    case '밀양 아리랑':
+      return '$path_level/arirang.mp3';
+    case '도라지타령':
+      return '$path_level/arirang.mp3';
+    case '강아지':
+      return '$path_level/arirang.mp3';
+    case '봄빛':
+      return '$path_level/arirang.mp3';
+    case '범벅타령':
+      return '$path_level/arirang.mp3';
+    case '둥개둥개 둥개야':
+      return '$path_level/arirang.mp3';
+    case '늴늬리야':
+      return '$path_level/arirang.mp3';
+    case '나물노래':
+      return '$path_level/arirang.mp3';
+    case '월워리 청청':
+      return '$path_level/wolwarycheongcheong.mp3'; //O
+    case '새노래':
+      return '$path_level/arirang.mp3';
+    case '살구대소리':
+      return '$path_level/arirang.mp3';
+    case '제주도 타령ㄴ':
+      return '$path_level/arirang.mp3';
+
+    default:
+      return "";
+  }
+}

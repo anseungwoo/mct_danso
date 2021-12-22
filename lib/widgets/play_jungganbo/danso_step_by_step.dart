@@ -37,7 +37,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   void dispose() {
     indexManager.stopIndex();
     jungganboController.stepStop();
-    jungganboController.allMidiStop();
+    // jungganboController.allMidiStop();
     if (jungganboController.startStopState) {
       jungganboController.jandanStop();
     }
@@ -56,8 +56,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
           controller.mill = testJungGanBo.jangDan.milliSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-          // controller.setSpeed(
-          //     widget.jangdan, controller.speed[controller.speedCount]);
+          controller.setSpeed(
+              widget.jangdan, controller.speed[controller.speedCount]);
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,7 +99,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 // controller.startCapture();
                                 controller.isPracticeState();
                                 controller.stepStart();
-                                controller.playJungGanBo(indexManager);
+                                // controller.playJungGanBo(indexManager);
                                 controller.jandanPlay();
                                 // controller.audioSessionConfigure();
                               }

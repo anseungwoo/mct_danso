@@ -25,7 +25,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
     if (audioRecordController.isRecording == true) {
       audioRecordController.stopRecording(
           songId: widget.songId, exerType: 'audio');
-      widget.controller.allMidiStop();
+      // widget.controller.allMidiStop();
       indexManager.stopIndex();
       widget.controller.jandanStop();
     }

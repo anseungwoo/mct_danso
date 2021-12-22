@@ -85,8 +85,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   jungcontroller.mill = testJungGanBo.jangDan.microSecond;
                   jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
-                  // jungcontroller.setSpeed(widget.jangdan,
-                  //     jungcontroller.speed[jungcontroller.speedCount]);
+                  jungcontroller.setSpeed(widget.jangdan,
+                      jungcontroller.speed[jungcontroller.speedCount]);
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,8 +106,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
-                                      controller.nextButton();
-                                      jungcontroller.changeStartStopState();
+                                      jungcontroller.setJandan(widget.jangdan);
                                       await Get.dialog(
                                         Dialog(
                                             backgroundColor:
@@ -219,6 +218,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                         ],
                                       ),
                                       onPressed: () {
+                                        jungganboController
+                                            .setJandan(widget.jangdan);
                                         controller.stateCountUp(6);
                                         print(controller.statecount);
                                       }),
@@ -242,6 +243,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       ),
                                       onPressed: () {
                                         controller.stateCountUp(5);
+                                        jungganboController
+                                            .setJandan(widget.jangdan);
 
                                         print(controller.statecount);
                                       }),
@@ -259,8 +262,9 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
                                       jungcontroller.jandanPlay();
-                                      await Future.delayed(
-                                          Duration(microseconds: 3897916));
+                                      await Future.delayed(Duration(
+                                          microseconds:
+                                              testJungGanBo.jangDan.delay));
                                       // await Get.dialog(
                                       //   Dialog(
                                       //       backgroundColor:
@@ -286,6 +290,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
+                                      jungganboController
+                                          .setJandan(widget.jangdan);
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
                                       await Get.dialog(
