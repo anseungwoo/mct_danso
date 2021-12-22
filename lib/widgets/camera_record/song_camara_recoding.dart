@@ -23,22 +23,12 @@ class SongCamaraRecoding extends StatefulWidget {
 
 class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   final cameraRecordcontroller = Get.put(CameraRecordController());
-  IndexManager indexManager = IndexManager();
-  // @override
-  // void initState() {
-  //   _controller =
-  //       CameraController(cameras[_cameraIndex], ResolutionPreset.medium);
-  //   _initializeControllerFuture = _controller.initialize();
-
-  //   super.initState();
-  // }
 
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
       cameraRecordcontroller.onStop(songId: widget.songId);
       // widget.controller.allMidiStop();
-      indexManager.stopIndex();
       widget.controller.jandanStop();
     }
 
@@ -77,8 +67,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
               width: 81.w,
               height: 30.h,
               child: ElevatedButton(
-                child: Text(caController.recordingText,
-                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
                     primary: MctColor.white.getMctColor,
@@ -105,8 +93,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     widget.controller.jandanPlay();
                     widget.controller.stepStart();
                     widget.controller.isLevelPracticeState();
-                    // widget.controller.playJungGanBo(indexManager);
-                    //widget.controller.audioSessionConfigure();
                   }
                   if (caController.isRecording == false) {
                     await caController.onStop(songId: widget.songId);
@@ -114,9 +100,10 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     widget.controller.isLevelPracticeState();
                     caController.getBack();
                     widget.controller.stepStop();
-                    indexManager.stopIndex();
                   }
                 },
+                child: Text(caController.recordingText,
+                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
               ),
             ),
           ],

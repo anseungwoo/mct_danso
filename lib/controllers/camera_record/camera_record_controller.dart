@@ -44,9 +44,9 @@ class CameraRecordController extends GetxController {
     XFile androidVideoPath;
     if (Platform.isAndroid) {
       await GallerySaver.saveVideo(video.path);
-      String videoPath = basename(video.path);
-      String dir = '/storage/emulated/0/Movies/';
-      String dirVideo = dir + videoPath;
+      var videoPath = basename(video.path);
+      var dir = '/storage/emulated/0/Movies/';
+      var dirVideo = dir + videoPath;
       androidVideoPath = XFile('$dirVideo');
       _playAndTestController.stateCountTwo();
       audioAndVideoDBController.putAudioAndVideoRecordDB(

@@ -23,7 +23,6 @@ class DansoStepByStep extends StatefulWidget {
 class _DansoStepByStepState extends State<DansoStepByStep> {
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
-  IndexManager indexManager = IndexManager();
 
   @override
   void initState() {
@@ -35,9 +34,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
   @override
   void dispose() {
-    indexManager.stopIndex();
     jungganboController.stepStop();
-    // jungganboController.allMidiStop();
     if (jungganboController.startStopState) {
       jungganboController.jandanStop();
     }
@@ -56,8 +53,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
           controller.mill = testJungGanBo.jangDan.milliSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-          controller.setSpeed(
-              widget.jangdan, controller.speed[controller.speedCount]);
+          controller.setSpeed(controller.speed[controller.speedCount]);
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,18 +92,13 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                       child: GameTimerWidget()),
                                   barrierDismissible: false,
                                 );
-                                // controller.startCapture();
                                 controller.isPracticeState();
                                 controller.stepStart();
-                                // controller.playJungGanBo(indexManager);
                                 controller.jandanPlay();
-                                // controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
-                                // controller.stopCapture();
                                 controller.isPracticeState();
                                 controller.stepStop();
-                                indexManager.stopIndex();
                                 controller.jandanStop();
                               }
                             }),

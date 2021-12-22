@@ -1,5 +1,6 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
@@ -21,91 +22,78 @@ class _MainScreenState extends State<MainScreen> {
   MainScreenController mainScreenController =
       Get.put(MainScreenController(), permanent: true);
 
-  TearController tearController = Get.put(TearController(), permanent: true);
-
-  @override
-  void initState() {
-    super.initState();
-    tearController.getTearInfo();
-    setState(() {});
-  }
+  TearController tearController = Get.put(TearController());
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
-    // mainScreenController.assetsAudioPlayer.dispose();
     mainScreenController.player.dispose();
-    tearController.getTearInfo();
   }
 
   @override
   Widget build(BuildContext context) {
+    tearController.getTearInfo();
+
     return Scaffold(
       body: DoubleBackToCloseApp(
         snackBar: SnackBar(
           content: Text('한번 더 누르면 앱이 종료됩니다.'),
         ),
-        child: GetBuilder<MainScreenController>(
-            init: MainScreenController(),
-            builder: (controller) {
-              return SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Stack(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Stack(
-                        children: [
-                          headerImage(controller),
-                          bgmOnOffButton(onPressed: () {
-                            controller.playOrPause();
-                            controller.ChangeMuteButtonState();
-                          }),
-                          tearImage(),
-                          headerChangeButton(controller),
-                          myPageButton(),
-                        ],
-                      ),
-                    ),
-                    _homeMenuButton(
-                        assetName: INFOR_SVG,
-                        title: '단소 알아보기',
-                        contant: LOOK,
-                        page: MainDansoHistoryKindScreen()),
-                    _homeMenuButton(
-                        assetName: DANSO_TUNING_SVG,
-                        title: '내 단소 기준음 잡기',
-                        contant: VOLUMECONTROL,
-                        page: FixDansoPitchDialog(),
-                        dialog: true),
-                    _homeMenuButton(
-                        assetName: STUDY_SVG,
-                        title: '운지법 익히기',
-                        page: learningDialog(),
-                        contant: LEARN,
-                        svgHeight: 60,
-                        svgWidth: 60,
-                        dialog: true),
-                    _homeMenuButton(
-                        assetName: TUNE_SVG,
-                        title: '연주곡 익히기',
-                        contant: PLAYLEARN,
-                        svgHeight: 65,
-                        svgWidth: 65,
-                        page: LearningSongListScreen()),
-                    _homeMenuButton(
-                        assetName: QandA_SVG,
-                        title: 'Q&A와 팁',
-                        contant: QUESTIONS,
-                        svgHeight: 60,
-                        svgWidth: 60,
-                        page: QuestionsScreen()),
+                    headerImage(),
+                    bgmOnOffButton(onPressed: () {
+                      mainScreenController.playOrPause();
+                      mainScreenController.ChangeMuteButtonState();
+                    }),
+                    tearImage(),
+                    headerChangeButton(),
+                    myPageButton(),
                   ],
                 ),
-              );
-            }),
+              ),
+              _homeMenuButton(
+                  assetName: INFOR_SVG,
+                  title: '단소 알아보기',
+                  contant: LOOK,
+                  page: MainDansoHistoryKindScreen()),
+              _homeMenuButton(
+                  assetName: DANSO_TUNING_SVG,
+                  title: '내 단소 기준음 잡기',
+                  contant: VOLUMECONTROL,
+                  page: FixDansoPitchDialog(),
+                  dialog: true),
+              _homeMenuButton(
+                  assetName: STUDY_SVG,
+                  title: '운지법 익히기',
+                  page: learningDialog(),
+                  contant: LEARN,
+                  svgHeight: 60,
+                  svgWidth: 60,
+                  dialog: true),
+              _homeMenuButton(
+                  assetName: TUNE_SVG,
+                  title: '연주곡 익히기',
+                  contant: PLAYLEARN,
+                  svgHeight: 65,
+                  svgWidth: 65,
+                  page: LearningSongListScreen()),
+              _homeMenuButton(
+                  assetName: QandA_SVG,
+                  title: 'Q&A와 팁',
+                  contant: QUESTIONS,
+                  svgHeight: 60,
+                  svgWidth: 60,
+                  page: QuestionsScreen()),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -114,10 +102,16 @@ class _MainScreenState extends State<MainScreen> {
     return Positioned(
       top: 40.h,
       right: 10.w,
-      child: SvgPicture.asset(
-        tearController.emblemAsset,
-        width: 30.w,
-        height: 30.w,
+      child: GetBuilder<TearController>(
+        init: TearController(),
+        initState: (_) {},
+        builder: (_) {
+          return SvgPicture.asset(
+            tearController.emblemAsset,
+            width: 30.w,
+            height: 30.w,
+          );
+        },
       ),
     );
   }
@@ -141,17 +135,13 @@ class _MainScreenState extends State<MainScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  !mainScreenController.musicState
-                      ? SvgPicture.asset(
-                          OFF_SVG,
-                          width: 10.w,
-                          height: 10.h,
-                        )
-                      : SvgPicture.asset(
-                          ON_SVG,
-                          width: 10.w,
-                          height: 10.h,
-                        ),
+                  Obx(() => SvgPicture.asset(
+                        !mainScreenController.musicState.value
+                            ? OFF_SVG
+                            : ON_SVG,
+                        width: 10.w,
+                        height: 10.h,
+                      )),
                   Text(
                     '배경음',
                     style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
@@ -161,7 +151,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Widget headerChangeButton(MainScreenController controller) {
+  Widget headerChangeButton() {
     return Positioned(
         top: 85.w,
         left: 50.w,
@@ -171,7 +161,7 @@ class _MainScreenState extends State<MainScreen> {
           child: InkWell(
             enableFeedback: false,
             onTap: () {
-              controller.SvgStateChange();
+              mainScreenController.SvgStateChange();
             },
             child: Text(
               '',
@@ -181,9 +171,9 @@ class _MainScreenState extends State<MainScreen> {
         ));
   }
 
-  Widget headerImage(MainScreenController controller) {
-    return Container(
-        child: controller.svgState
+  Widget headerImage() {
+    return Obx(() => Container(
+        child: mainScreenController.svgState.value
             ? SvgPicture.asset(
                 MAIN_ILL2_SVG,
                 fit: BoxFit.fitWidth,
@@ -193,7 +183,7 @@ class _MainScreenState extends State<MainScreen> {
                 MAIN_ILL1_SVG,
                 fit: BoxFit.fitWidth,
                 width: ScreenUtil().screenWidth,
-              ));
+              )));
   }
 
   Positioned myPageButton() {
@@ -241,13 +231,12 @@ class _MainScreenState extends State<MainScreen> {
       Function()? onPressed}) {
     return InkWell(
         onTap: () {
-          var controller = Get.find<MainScreenController>();
-          if (controller.musicState) {
+          if (mainScreenController.musicState.value) {
             // 아예 정지
             // Get.find<MainScreenController>().disposeAudioPlayer();
             // 일시 정지
             // controller.assetsAudioPlayer.pause();
-            controller.player.pause();
+            mainScreenController.player.pause();
           }
           onPressed;
           if (dialog) {

@@ -42,7 +42,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   PlayAndTestController playAndTestController =
       Get.put(PlayAndTestController());
   FlutterMidi flutterMidi = FlutterMidi();
-  IndexManager indexManager = IndexManager();
   // late AudioSession audioSessions;
 
   @override
@@ -55,21 +54,18 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     }
     jungganboController.dispose();
     jungganboController.stepStop();
-    indexManager.stopIndex();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    // jungganboController.setJandan(widget.jangdan);
   }
 
   @override
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
     jungganboController.jangDan = widget.jangdan;
-    // jungganboController.setJandan(widget.jangdan);
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
 
@@ -85,7 +81,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                   jungcontroller.mill = testJungGanBo.jangDan.microSecond;
                   jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
-                  jungcontroller.setSpeed(widget.jangdan,
+                  jungcontroller.setSpeed(
                       jungcontroller.speed[jungcontroller.speedCount]);
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -323,7 +319,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () {
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStop();
-                                      indexManager.stopIndex();
                                       jungcontroller.jandanStop();
                                       jungcontroller.isLevelPracticeState();
                                       controller.stateCountUp(0);

@@ -100,7 +100,7 @@ class ConfirmOrCancelButton extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Get.back();
-              if (controller.musicState) {
+              if (controller.musicState.value) {
                 // controller.assetsAudioPlayer.play();
                 controller.player.play();
               }

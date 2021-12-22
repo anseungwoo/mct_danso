@@ -39,7 +39,6 @@ class _MyPageListenDialogState extends State<MyPageListenDialog> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     print('asdfasdf ${widget.recordItem}');

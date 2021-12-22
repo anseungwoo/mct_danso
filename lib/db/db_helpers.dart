@@ -275,6 +275,7 @@ class DBHelPer {
   Future<List<SongDataModel>> getAllChal() async {
     final db = await database;
     var res = await db.rawQuery('SELECT * FROM $challangeTable');
+    // 절대 변경 금지 (lint 포함)
     List<SongDataModel> list = res.isNotEmpty
         ? res
             .map(

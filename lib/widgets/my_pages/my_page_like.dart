@@ -6,7 +6,7 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageLike extends StatelessWidget {
+class MyPageLike extends GetView<LikeSongController> {
   final String songname;
 
   MyPageLike({Key? key, required this.songname}) : super(key: key);
@@ -15,14 +15,15 @@ class MyPageLike extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getLikeSongList();
     return Scaffold(
       appBar: tabbarAndAppBar(title: '관심곡', tabbar: null, enableTabBar: false),
       body: Obx(
         () => ListView.builder(
             padding: EdgeInsets.all(MctSize.fifteen.getSize),
-            itemCount: likeSongController.likeSongList.length,
+            itemCount: controller.likeSongList.length,
             itemBuilder: (BuildContext context, int index) {
-              var item = likeSongController.likeSongList[index];
+              var item = controller.likeSongList[index];
               return Padding(
                 padding: EdgeInsets.only(bottom: MctSize.fifteen.getSize),
                 child: InkWell(
@@ -59,7 +60,7 @@ class MyPageLike extends StatelessWidget {
                           InkWell(
                             radius: 40.r,
                             onTap: () {
-                              likeSongController.updateLikeSongList(
+                              controller.updateLikeSongList(
                                 songId: item.songId,
                                 songLike: item.songLike,
                               );
