@@ -25,7 +25,7 @@ class SongAudioRecorder extends StatefulWidget {
 class SongAudioRecorderState extends State<SongAudioRecorder> {
   AudioRecordController audioRecordController =
       Get.put(AudioRecordController());
-//   JungganboController jungganboController = Get.put(JungganboController());
+  JungganboController jungganboController = Get.put(JungganboController());
   JangdanAndDansoSoundController jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
   @override
@@ -46,7 +46,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
 
   @override
   void initState() {
-    jungganboController.setJandan(widget.jangdan);
+    jangdanAndDansoSoundController.setJandan(widget.jangdan);
     super.initState();
   }
 
@@ -72,12 +72,12 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   audioRecordController.isRecordingState();
-//                   jungganboController.changeStartStopState();
-                  widget.controller.changeStartStopState();
+                  jungganboController.changeStartStopState();
+                  // widget.controller.changeListenRecordState();
                   jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
                   if (jungganboController.startStopState) {
-                    jungganboController.jandanPlay();
+                    jangdanAndDansoSoundController.jandanPlay();
                     jungganboController.isLevelPracticeState();
                     await Get.dialog(
                       Dialog(
@@ -86,22 +86,18 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                           elevation: 0,
                           child: GameTimerWidget(
                             timer: widget.jungGanBo.jangDan.delay ~/
-                                jungganboController
-                                    .speed[jungganboController.speedCount],
+                                jangdanAndDansoSoundController.speed[
+                                    jangdanAndDansoSoundController.speedCount],
                           )),
                       barrierDismissible: false,
                     );
 
                     audioRecordController.startRecording();
-//                     jungganboController.stepStart();
-//                   }
-//                   if (!jungganboController.startStopState) {
-//                     jungganboController.isLevelPracticeState();
-//                     jungganboController.jandanStop();
                     jangdanAndDansoSoundController.jandanPlay();
-                    widget.controller.stepStart();
+                    jungganboController.stepStart();
                   }
-                  if (!widget.controller.startStopState) {
+                  if (!jungganboController.startStopState) {
+                    jungganboController.isLevelPracticeState();
                     jangdanAndDansoSoundController.jandanStop();
                     audioRecordController.stopRecording(
                         songId: widget.songId, exerType: 'audio');
