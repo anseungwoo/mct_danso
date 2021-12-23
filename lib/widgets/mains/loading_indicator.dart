@@ -81,13 +81,13 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   Widget build(BuildContext context) {
     return Container(
       width: 200.w,
-      height: 200.h,
+      height: 200.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 120.h,
+            height: 120.w,
             width: 120.w,
             child: SfRadialGauge(
               axes: <RadialAxis>[
@@ -121,6 +121,7 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
               ],
             ),
           ),
+          // Center(child: Text('$pitch Hz')),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(

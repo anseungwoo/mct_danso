@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,9 +18,25 @@ class FixDansoPitchDialog extends StatefulWidget {
 
 class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
   var controller = Get.find<MainScreenController>();
+  var permissionController = Get.put(PermissionController());
+
+  @override
+  void initState() {
+    super.initState();
+    getPermission();
+  }
+
   @override
   void dispose() {
     super.dispose();
+  }
+
+  dynamic getPermission() async {
+    await permissionController.checkPermission().then((value) {
+      if (!value) {
+        permissionController.buildPermissionDialog(context);
+      } else if (value) {}
+    });
   }
 
   var dansoSoundLearningController = Get.put(DansoSoundLearningController());
@@ -121,13 +139,21 @@ class ConfirmOrCancelButton extends StatelessWidget {
             onTap: () async {
               Get.back();
               await Get.dialog(
-                Dialog(child: TimerWidget()),
+                WillPopScope(
+                  onWillPop: () async => false,
+                  child: Dialog(
+                    child: TimerWidget(),
+                  ),
+                ),
                 barrierDismissible: false,
               );
               dansoSoundLearningController.startAdjust();
               await Get.dialog(
-                Dialog(
-                  child: LoadingIndicator(),
+                WillPopScope(
+                  onWillPop: () async => false,
+                  child: Dialog(
+                    child: LoadingIndicator(),
+                  ),
                 ),
                 barrierDismissible: false,
               );

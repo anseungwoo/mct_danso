@@ -18,6 +18,7 @@ class LearningSongListScreen extends StatefulWidget {
 class _LearningSongListScreenState extends State<LearningSongListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
+  final permissionController = Get.put(PermissionController());
 
   final _tearController = Get.put(TearController());
 
@@ -35,6 +36,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    permissionController.checkPermission();
     return GetBuilder<LearningSongAndLevelController>(
         init: learningSongLevelController,
         builder: (controller) {

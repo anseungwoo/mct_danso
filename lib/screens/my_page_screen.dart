@@ -16,33 +16,27 @@ class MyPageScreen extends StatefulWidget {
 class _MyPageScreenState extends State<MyPageScreen> {
   var controller = Get.find<MainScreenController>();
   var tearController = Get.put(TearController());
+  final permissionController = Get.put(PermissionController());
 
   @override
   void initState() {
     super.initState();
     if (controller.musicState.value) {
-      // 아예 정지
-      // Get.find<MainScreenController>().disposeAudioPlayer();
-      // 일시 정지
-      // controller.assetsAudioPlayer.pause();
       controller.player.pause();
     }
-    // tearController.getTearInfo();
-    // setState(() {});
   }
 
   @override
   void dispose() {
     super.dispose();
     if (controller.musicState.value) {
-      // controller.assetsAudioPlayer.play();
       controller.player.play();
     }
-    // tearController.getTearInfo();
   }
 
   @override
   Widget build(BuildContext context) {
+    permissionController.checkPermission();
     return Scaffold(
       appBar:
           tabbarAndAppBar(title: '마이페이지', tabbar: null, enableTabBar: false),

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/pitch_check_controller.dart';
 import 'package:project_danso/utils/danso_function.dart';
+
+PitchCheckController pitchCheckController = Get.put(PitchCheckController());
 
 Widget jungganbo(int heightNumber, JungganboController controller,
     JungGanBo testJungGanBo, bool krState) {
@@ -114,7 +118,7 @@ Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
             ? MctSize.eighteen.getSize.sp
             : MctSize.fourteen.getSize.sp,
         color: controller.isChallenge
-            ? controller.matchTrueFalse[i][j]
+            ? pitchCheckController.matchTrueFalse[i][j]
                 ? Colors.blue
                 : Colors.red
             : MctColor.black.getMctColor),
