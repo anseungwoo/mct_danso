@@ -4,16 +4,17 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/utils/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
-  final JungganboController controller;
+  final JungGanBo jungGanBo;
   final songId;
   final String jangdan;
   SongCamaraRecoding(
       {Key? key,
-      required this.controller,
+      required this.jungGanBo,
       required this.jangdan,
       required this.songId})
       : super(key: key);
@@ -27,11 +28,12 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   final jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
 
+  JungganboController jungganboController = Get.put(JungganboController());
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
       cameraRecordcontroller.onStop(songId: widget.songId);
-      // widget.controller.allMidiStop();
+//       jungganboController.jandanStop();
       jangdanAndDansoSoundController.jandanStop();
     }
 
@@ -39,6 +41,12 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
       cameraRecordcontroller.getBack();
     }
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    jungganboController.setJandan(widget.jangdan);
+    super.initState();
   }
 
   Widget _buildCamera({required CameraRecordController caController}) {
@@ -81,20 +89,33 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   caController.isRecordingState();
+//                   jungganboController.changeStartStopState();
                   widget.controller.changeStartStopState();
                   jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
                   if (caController.isRecording) {
+                    jungganboController.isLevelPracticeState();
+                    jungganboController.jandanPlay();
+                    await caController.onRecord();
                     await Get.dialog(
                       Dialog(
                           backgroundColor:
                               MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
                           child: GameTimerWidget(
-                            timer: widget.controller.micro,
+                            timer: widget.jungGanBo.jangDan.delay ~/
+                                jungganboController
+                                    .speed[jungganboController.speedCount],
                           )),
                       barrierDismissible: false,
                     );
+
+//                     jungganboController.stepStart();
+//                   }
+//                   if (caController.isRecording == false) {
+//                     await caController.onStop(songId: widget.songId);
+//                     jungganboController.jandanStop();
+//                     jungganboController.isLevelPracticeState();
                     await caController.onRecord();
                     jangdanAndDansoSoundController.jandanPlay();
                     widget.controller.stepStart();
@@ -105,7 +126,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                     jangdanAndDansoSoundController.jandanStop();
                     widget.controller.isLevelPracticeState();
                     caController.getBack();
-                    widget.controller.stepStop();
+                    jungganboController.stepStop();
                   }
                 },
                 child: Text(caController.recordingText,
@@ -115,6 +136,8 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           ],
         ),
         SizedBox(height: 3.h),
+        Text('${jungganboController.speed[jungganboController.speedCount]}',
+            style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
         Text(
           widget.jangdan,
           style: TextStyle(fontSize: MctSize.twelve.getSize.sp),

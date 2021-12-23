@@ -25,6 +25,7 @@ class _MainDansoLearningTestScreenState
   void dispose() {
     super.dispose();
     dansoSoundLearningController.disposeFunction();
+
     if (controller.musicState.value) {
       // controller.assetsAudioPlayer.play();
       controller.player.play();
@@ -156,6 +157,7 @@ class _MainDansoLearningTestScreenState
                             ? null
                             : () {
                                 controller.soundListUp();
+                                controller.setYulmyeng();
                               },
               ),
               SizedBox(width: 12.w),
@@ -169,6 +171,7 @@ class _MainDansoLearningTestScreenState
                             ? null
                             : () {
                                 controller.soundListDown();
+                                controller.setYulmyeng();
                               },
               ),
             ],
@@ -184,8 +187,10 @@ class _MainDansoLearningTestScreenState
                     : () {
                         controller.changeSpeakTuningState();
                         controller.listenTuningState
-                            ? controller.playYulmyeongSound()
-                            : null;
+                            ? controller.YulmyengPlay()
+                            : controller.YulmyengStop();
+//                             ? controller.playYulmyeongSound()
+//                             : null;
                       },
           ),
           //불어보기

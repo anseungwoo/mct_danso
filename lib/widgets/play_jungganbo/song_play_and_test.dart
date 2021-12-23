@@ -74,6 +74,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     jungganboController.jungGanBo = testJungGanBo;
+//     jungganboController.create2DList();
 
     pitchCheckController.create2DList();
 
@@ -110,11 +111,17 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
-                                      controller.nextButton();
+//                                       jungcontroller.setJandan(widget.jangdan);
+//                                       controller.nextButton();
                                       jangdanAndDansoSoundController
                                           .setJandan(widget.jangdan);
-
+                                      controller.nextButton();
+                                      
                                       jungcontroller.isChallengeState();
+//                                       jungcontroller.jandanPlay();
+                                      
+                                      jangdanAndDansoSoundController
+                                          .jandanPlay();
                                       await Get.dialog(
                                         Dialog(
                                             backgroundColor:
@@ -130,8 +137,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             )),
                                         barrierDismissible: false,
                                       );
-                                      jangdanAndDansoSoundController
-                                          .jandanPlay();
                                       jungcontroller.stepStart(
                                           songId: widget.songId,
                                           songTitle: widget.appbarTitle);
@@ -369,13 +374,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               ),
                             if (controller.statecount == 5)
                               SongCamaraRecoding(
-                                controller: jungcontroller,
+                                jungGanBo: testJungGanBo,
                                 jangdan: widget.jangdan,
                                 songId: widget.songId,
                               ),
                             if (controller.statecount == 6)
                               SongAudioRecorder(
-                                controller: jungcontroller,
+                                jungGanBo: testJungGanBo,
                                 jangdan: widget.jangdan,
                                 songId: widget.songId,
                               )
