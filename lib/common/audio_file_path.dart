@@ -1,3 +1,5 @@
+import 'package:project_danso/utils/danso_function.dart';
+
 enum AudioFile { JoongJoong, Jagin, Huimori, Good, Semachi, BackGroundMusic }
 
 String getAudioFilePath(AudioFile audioFile) {
@@ -24,6 +26,8 @@ String getSongFilePath(String songName) {
 
   switch (songName) {
     //1단계
+    case '1':
+      return '$path_level/level_1.mp3';
     case '비행기':
       return '$path_level/airplane.mp3';
     case '산들바람':
@@ -39,6 +43,8 @@ String getSongFilePath(String songName) {
     case '코스모스':
       return '$path_level/cosmos.mp3';
     //2단계
+    case '2':
+      return '$path_level/level_2.mp3';
     case '줄넘기':
       return '$path_level/julneomgi.mp3';
     case '남생이 놀아라':
@@ -54,6 +60,8 @@ String getSongFilePath(String songName) {
     case '새콤달콤':
       return '$path_level/saekomdalkom.mp3';
     //3단계
+    case '3':
+      return '$path_level/level_3.mp3';
     case '아리랑':
       return '$path_level/arirang.mp3'; //O
     case '색시풀':
@@ -69,6 +77,8 @@ String getSongFilePath(String songName) {
     case '범벅타령':
       return '$path_level/beombeog.mp3';
     //4단계
+    case '4':
+      return '$path_level/level_4.mp3';
     case '둥개둥개 둥개야':
       return '$path_level/dung_gae.mp3';
     case '늴늬리야':
@@ -83,7 +93,8 @@ String getSongFilePath(String songName) {
       return '$path_level/silgudae.mp3';
     case '제주도 타령':
       return '$path_level/jejudo.mp3';
-
+    case '5':
+      return '$path_level/level_5.mp3';
     default:
       return '';
   }

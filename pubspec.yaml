@@ -80,6 +80,7 @@ flutter:
     - assets/
     - assets/music/
     - assets/music/song_file/
+    - assets/music/danso_code_file/
     - assets/images/mainImage/
     - assets/images/tear/
     - assets/images/

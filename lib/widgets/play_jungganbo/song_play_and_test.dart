@@ -68,7 +68,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
     jungganboController.jangDan = widget.jangdan;
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
-
+    jungganboController.jungGanBo = testJungGanBo;
+    jungganboController.create2DList();
     return Scaffold(
       appBar: songtabbarAndAppBar(
           title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
@@ -79,7 +80,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                 init: jungganboController,
                 builder: (jungcontroller) {
                   jungcontroller.micro = testJungGanBo.jangDan.microSecond;
-                  jungcontroller.jungGanBo = testJungGanBo;
                   jungcontroller.sheetVertical = widget.sheetVertical;
                   jungcontroller.setSpeed(
                       jungcontroller.speed[jungcontroller.speedCount]);
@@ -102,10 +102,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
-                                      controller.nextButton();
                                       jungcontroller.setJandan(widget.jangdan);
-
+                                      controller.nextButton();
                                       jungcontroller.isChallengeState();
+                                      jungcontroller.jandanPlay();
                                       await Get.dialog(
                                         Dialog(
                                             backgroundColor:
@@ -120,7 +120,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             )),
                                         barrierDismissible: false,
                                       );
-                                      jungcontroller.jandanPlay();
                                       jungcontroller.stepStart(
                                           songId: widget.songId,
                                           songTitle: widget.appbarTitle);
@@ -353,13 +352,13 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               ),
                             if (controller.statecount == 5)
                               SongCamaraRecoding(
-                                controller: jungcontroller,
+                                jungGanBo: testJungGanBo,
                                 jangdan: widget.jangdan,
                                 songId: widget.songId,
                               ),
                             if (controller.statecount == 6)
                               SongAudioRecorder(
-                                controller: jungcontroller,
+                                jungGanBo: testJungGanBo,
                                 jangdan: widget.jangdan,
                                 songId: widget.songId,
                               )

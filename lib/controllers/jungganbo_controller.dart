@@ -89,7 +89,7 @@ class JungganboController extends GetxController {
       autoStart: false,
       loopMode: LoopMode.single,
     );
-    setSpeed(speed[speedCount]);
+
     // await player.setAsset('assets/music/123123.mp3');
     // await player.setLoopMode(ja.LoopMode.one);
   }
@@ -121,8 +121,8 @@ class JungganboController extends GetxController {
     }
   }
 
-  void setSpeed(speed) {
-    assetsAudioPlayer.setPlaySpeed(speed);
+  void setSpeed(speed) async {
+    await assetsAudioPlayer.setPlaySpeed(speed);
   }
 
   void jandanPlay() async {
@@ -257,6 +257,7 @@ class JungganboController extends GetxController {
     if (speedCount == 5) {
       speedCount = 0;
     }
+
     update();
   }
 
@@ -357,7 +358,6 @@ class JungganboController extends GetxController {
     countingJungganboYulmyeong();
     copySheetHorizontal = sheetHorizontal;
     setJungganboVariable();
-
     Timer.periodic(Duration(microseconds: micro ~/ speed[speedCount]), (timer) {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {

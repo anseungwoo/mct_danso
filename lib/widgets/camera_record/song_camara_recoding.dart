@@ -4,15 +4,16 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/utils/model/jung-gan-bo_model/JungGanBo.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
-  final JungganboController controller;
+  final JungGanBo jungGanBo;
   final songId;
   final String jangdan;
   SongCamaraRecoding(
       {Key? key,
-      required this.controller,
+      required this.jungGanBo,
       required this.jangdan,
       required this.songId})
       : super(key: key);
@@ -24,18 +25,25 @@ class SongCamaraRecoding extends StatefulWidget {
 class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   final cameraRecordcontroller = Get.put(CameraRecordController());
 
+  JungganboController jungganboController = Get.put(JungganboController());
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
       cameraRecordcontroller.onStop(songId: widget.songId);
-      // widget.controller.allMidiStop();
-      widget.controller.jandanStop();
+      //jungganboController.allMidiStop();
+      jungganboController.jandanStop();
     }
 
     if (cameraRecordcontroller.isRecording == false) {
       cameraRecordcontroller.getBack();
     }
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    jungganboController.setJandan(widget.jangdan);
+    super.initState();
   }
 
   Widget _buildCamera({required CameraRecordController caController}) {
@@ -78,31 +86,32 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   caController.isRecordingState();
-                  widget.controller.changeStartStopState();
-                  widget.controller.setJandan(widget.jangdan);
-
+                  jungganboController.changeStartStopState();
                   if (caController.isRecording) {
+                    jungganboController.isLevelPracticeState();
+                    jungganboController.jandanPlay();
+                    await caController.onRecord();
                     await Get.dialog(
                       Dialog(
                           backgroundColor:
                               MctColor.white.getMctColor.withOpacity(0),
                           elevation: 0,
                           child: GameTimerWidget(
-                            timer: widget.controller.micro,
+                            timer: widget.jungGanBo.jangDan.delay ~/
+                                jungganboController
+                                    .speed[jungganboController.speedCount],
                           )),
                       barrierDismissible: false,
                     );
-                    await caController.onRecord();
-                    widget.controller.jandanPlay();
-                    widget.controller.stepStart();
-                    widget.controller.isLevelPracticeState();
+
+                    jungganboController.stepStart();
                   }
                   if (caController.isRecording == false) {
                     await caController.onStop(songId: widget.songId);
-                    widget.controller.jandanStop();
-                    widget.controller.isLevelPracticeState();
+                    jungganboController.jandanStop();
+                    jungganboController.isLevelPracticeState();
                     caController.getBack();
-                    widget.controller.stepStop();
+                    jungganboController.stepStop();
                   }
                 },
                 child: Text(caController.recordingText,
@@ -112,6 +121,8 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           ],
         ),
         SizedBox(height: 3.h),
+        Text('${jungganboController.speed[jungganboController.speedCount]}',
+            style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
         Text(
           widget.jangdan,
           style: TextStyle(fontSize: MctSize.twelve.getSize.sp),

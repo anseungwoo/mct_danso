@@ -179,4 +179,54 @@ class YulmyeongNote {
     }
     return res;
   }
+
+  String getYulmyengPathFile() {
+    String res = "";
+    var yulmyengPath = 'assets/music/danso_code_file/';
+    //origin
+    if (_scaleStatus == ScaleStatus.origin) {
+      switch (_yulmyeong) {
+        case Yulmyeong.joong:
+          res = '$yulmyengPath/joong.mp3';
+          break;
+        case Yulmyeong.yim:
+          res = '$yulmyengPath/yim.mp3';
+          break;
+        case Yulmyeong.moo:
+          res = '$yulmyengPath/moo.mp3';
+          break;
+        case Yulmyeong.hwang:
+          res = '$yulmyengPath/hwang.mp3';
+          break;
+        case Yulmyeong.tae:
+          res = '$yulmyengPath/tae.mp3';
+          break;
+        default:
+          res = '$yulmyengPath/joong.mp3';
+      }
+    }
+    //high
+    else {
+      switch (_yulmyeong) {
+        case Yulmyeong.joong:
+          res = '$yulmyengPath/high_joong.mp3';
+          break;
+        case Yulmyeong.yim:
+          res = '$yulmyengPath/high_yim.mp3';
+          break;
+        case Yulmyeong.moo:
+          res = '$yulmyengPath/high_moo.mp3';
+          break;
+        case Yulmyeong.hwang:
+          res = '$yulmyengPath/high_hwang.mp3';
+          break;
+        case Yulmyeong.tae:
+          res = '$yulmyengPath/high_tae.mp3';
+          break;
+        default:
+          res = '$yulmyengPath/high_joong.mp3';
+      }
+    }
+    return res;
+  }
 }

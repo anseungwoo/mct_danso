@@ -1,8 +1,10 @@
 import 'dart:typed_data';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/sockets/src/socket_notifier.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
@@ -58,9 +60,10 @@ class DansoSoundLearningController extends GetxController {
   var dbFr;
   // late Pitchdetector detectorAdjust;
   Text isMacthing = Text('단, style: TextStyle(fontSize: 14.sp)소를 불러보세요');
-
+  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   @override
   void onInit() {
+    setYulmyeng();
     super.onInit();
   }
 
@@ -83,6 +86,9 @@ class DansoSoundLearningController extends GetxController {
     buttonPlay = '불어보기';
     if (isRecording) {
       stopCapture();
+    }
+    if (listenTuningState) {
+      YulmyengStop();
     }
   }
 
@@ -123,50 +129,20 @@ class DansoSoundLearningController extends GetxController {
     print(e);
   }
 
-  void palySound() {
-    switch (soundListUpDown) {
-      case 0:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin), 2000);
-        break;
-      case 1:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin), 2000);
-        break;
-      case 2:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin), 2000);
-        break;
-      case 3:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin), 2000);
-        break;
-      case 4:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin), 2000);
-        break;
-      case 5:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.joong, ScaleStatus.high), 2000);
-        break;
-      case 6:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.yim, ScaleStatus.high), 2000);
-        break;
-      case 7:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.moo, ScaleStatus.high), 2000);
-        break;
-      case 8:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high), 2000);
-        break;
-      case 9:
-        jungGanBoPlayer.playOneNoteDurationTime(
-            YulmyeongNote(Yulmyeong.tae, ScaleStatus.high), 2000);
-        break;
-      default:
-    }
+  void setYulmyeng() async {
+    await assetsAudioPlayer.open(
+      Audio(hanJaAndGel[soundListUpDown].getYulmyengPathFile()),
+      autoStart: false,
+      loopMode: LoopMode.single,
+    );
+  }
+
+  void YulmyengPlay() async {
+    await assetsAudioPlayer.play();
+  }
+
+  void YulmyengStop() async {
+    await assetsAudioPlayer.stop();
   }
 
   void changeSoundTuningState() {

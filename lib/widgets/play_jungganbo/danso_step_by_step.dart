@@ -21,14 +21,12 @@ class DansoStepByStep extends StatefulWidget {
 }
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
-  JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
 
   @override
   void initState() {
     jungganboController.onInit();
     jungganboController.sheetHorizontal = 4;
-
     super.initState();
   }
 
@@ -45,8 +43,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
-    jungganboController.setJandan(widget.jangdan);
-
+    jungganboController.setJangdanAndDansoSound(widget.currentLevel);
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
@@ -77,26 +74,28 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //시작하기
-
                         levelButton(
                             controller: controller,
                             text: '${controller.startButton}',
                             onPressed: () async {
                               controller.changeStartStopState();
+
                               if (controller.startStopState) {
+                                controller.isPracticeState();
+                                controller.jandanPlay();
                                 await Get.dialog(
                                   Dialog(
                                       backgroundColor:
                                           Colors.white.withOpacity(0),
                                       elevation: 0,
                                       child: GameTimerWidget(
-                                        timer: testJungGanBo.jangDan.delay,
+                                        timer: testJungGanBo.jangDan.delay ~/
+                                            controller
+                                                .speed[controller.speedCount],
                                       )),
                                   barrierDismissible: false,
                                 );
-                                controller.isPracticeState();
                                 controller.stepStart();
-                                controller.jandanPlay();
                               }
                               if (!controller.startStopState) {
                                 controller.isPracticeState();
