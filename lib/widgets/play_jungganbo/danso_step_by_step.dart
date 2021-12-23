@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -23,6 +24,8 @@ class DansoStepByStep extends StatefulWidget {
 class _DansoStepByStepState extends State<DansoStepByStep> {
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
+  final jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
 
   @override
   void initState() {
@@ -36,7 +39,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   void dispose() {
     jungganboController.stepStop();
     if (jungganboController.startStopState) {
-      jungganboController.jandanStop();
+      jangdanAndDansoSoundController.jandanStop();
     }
     super.dispose();
   }
@@ -45,7 +48,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
-    jungganboController.setJandan(widget.jangdan);
+    jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
     return GetBuilder<JungganboController>(
         init: jungganboController,
@@ -53,7 +56,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
           controller.micro = testJungGanBo.jangDan.microSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-          controller.setSpeed(controller.speed[controller.speedCount]);
+          jangdanAndDansoSoundController.setSpeed(jangdanAndDansoSoundController
+              .speed[jangdanAndDansoSoundController.speedCount]);
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,12 +100,12 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 );
                                 controller.isPracticeState();
                                 controller.stepStart();
-                                controller.jandanPlay();
+                                jangdanAndDansoSoundController.jandanPlay();
                               }
                               if (!controller.startStopState) {
                                 controller.isPracticeState();
                                 controller.stepStop();
-                                controller.jandanStop();
+                                jangdanAndDansoSoundController.jandanStop();
                               }
                             }),
 
@@ -119,7 +123,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                         levelButton(
                             controller: controller,
                             text:
-                                '${controller.speed[controller.speedCount]} 배속',
+                                '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
                             onPressed: controller.startStopState
                                 ? null
                                 : () {

@@ -41,8 +41,14 @@ class _SplashScreenState extends State<SplashScreen> {
   dynamic startTime() async {
     var _duration = Duration(seconds: 3);
     return Timer(_duration, () async {
-      permissionController.permission();
-      await Get.off(MainScreen());
+      await permissionController.checkPermission().then((value) async {
+        if (!value) {
+          await permissionController.buildPermissionDialog(context,
+              runMethod: Get.off(MainScreen()));
+        } else if (value) {
+          await Get.off(MainScreen());
+        }
+      });
     });
   }
 

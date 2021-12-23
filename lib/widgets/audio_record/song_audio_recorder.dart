@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongAudioRecorder extends StatefulWidget {
@@ -23,12 +24,14 @@ class SongAudioRecorder extends StatefulWidget {
 class SongAudioRecorderState extends State<SongAudioRecorder> {
   AudioRecordController audioRecordController =
       Get.put(AudioRecordController());
+  JangdanAndDansoSoundController jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
   @override
   void dispose() {
     if (audioRecordController.isRecording == true) {
       audioRecordController.stopRecording(
           songId: widget.songId, exerType: 'audio');
-      widget.controller.jandanStop();
+      jangdanAndDansoSoundController.jandanStop();
     }
 
     if (audioRecordController.isRecording == false) {
@@ -61,7 +64,7 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                 onPressed: () async {
                   audioRecordController.isRecordingState();
                   widget.controller.changeStartStopState();
-                  widget.controller.setJandan(widget.jangdan);
+                  jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
                   if (widget.controller.startStopState) {
                     await Get.dialog(
@@ -76,11 +79,11 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     );
                     widget.controller.isLevelPracticeState();
                     audioRecordController.startRecording();
-                    widget.controller.jandanPlay();
+                    jangdanAndDansoSoundController.jandanPlay();
                     widget.controller.stepStart();
                   }
                   if (!widget.controller.startStopState) {
-                    widget.controller.jandanStop();
+                    jangdanAndDansoSoundController.jandanStop();
                     audioRecordController.stopRecording(
                         songId: widget.songId, exerType: 'audio');
                     widget.controller.stepStop();

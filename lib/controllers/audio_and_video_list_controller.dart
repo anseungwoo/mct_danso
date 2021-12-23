@@ -12,8 +12,8 @@ class AudioAndVideoListController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAudioList();
-    getVideoList();
+    // getAudioList();
+    // getVideoList();
   }
 
   void getAudioList() async {

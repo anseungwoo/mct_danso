@@ -115,7 +115,9 @@ class _MainDansoLearningTestScreenState
                 child: Column(
               children: [
                 Center(child: Text('${controller.pitchValue} Hz')),
-                Center(child: controller.soundMatch(controller.pitchValue)!),
+                Center(
+                    child: controller
+                        .getPitchCorrectTextWidget(controller.pitchValue)!),
               ],
             )),
           Container(
@@ -182,7 +184,7 @@ class _MainDansoLearningTestScreenState
                     : () {
                         controller.changeSpeakTuningState();
                         controller.listenTuningState
-                            ? controller.palySound()
+                            ? controller.playYulmyeongSound()
                             : null;
                       },
           ),

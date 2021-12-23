@@ -36,7 +36,8 @@ class DansoSoundLearningController extends GetxController {
     YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high),
     YulmyeongNote(Yulmyeong.tae, ScaleStatus.high),
   ];
-  double pitchValue = 0;
+  var pitchValue = 0.0;
+  var pitchResult = 0.0.obs;
 
   //디텍터
   PitchModelInterface pitchModelInterface = PitchModel();
@@ -57,17 +58,7 @@ class DansoSoundLearningController extends GetxController {
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
-  Text isMacthing = Text('단, style: TextStyle(fontSize: 14.sp)소를 불러보세요');
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  Text isMacthing = Text('단소를 불러보세요');
 
   void isRecordstate() {
     isRecording = !isRecording;
@@ -123,7 +114,7 @@ class DansoSoundLearningController extends GetxController {
     print(e);
   }
 
-  void palySound() {
+  void playYulmyeongSound() {
     switch (soundListUpDown) {
       case 0:
         jungGanBoPlayer.playOneNoteDurationTime(
@@ -208,7 +199,43 @@ class DansoSoundLearningController extends GetxController {
     update();
   }
 
-  Text soundMatching(double scl, YulmyeongNote yulmyeongNote) {
+  Text? getPitchCorrectTextWidget(double scl) {
+    switch (soundListUpDown) {
+      case 0:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin));
+      case 1:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin));
+      case 2:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin));
+      case 3:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin));
+      case 4:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin));
+      case 5:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high));
+      case 6:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high));
+      case 7:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high));
+      case 8:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high));
+      case 9:
+        return buildPitchCorrectTextWidget(
+            scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high));
+      default:
+    }
+  }
+
+  Text buildPitchCorrectTextWidget(double scl, var yulmyeong) {
     try {
       if (scl > 2000 || scl < 300) {
         return Text('단소를 불러보세요',
@@ -216,7 +243,7 @@ class DansoSoundLearningController extends GetxController {
               fontSize: 14.sp,
             ));
       } else {
-        if (pitchModelInterface.isCorrectPitch(scl, yulmyeongNote)!) {
+        if (pitchModelInterface.isCorrectPitch(scl, yulmyeong)!) {
           return Text(
             '잘 불렀어요!!',
             style: TextStyle(
@@ -233,232 +260,6 @@ class DansoSoundLearningController extends GetxController {
       }
     } catch (er) {
       return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-    }
-  }
-
-  Text? soundMatch(double scl) {
-    switch (soundListUpDown) {
-      case 0:
-        return soundMatching(
-            scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin));
-
-      case 1:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 2:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.origin))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 3:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.origin))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 4:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.origin))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 5:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.joong, ScaleStatus.high))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 6:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.yim, ScaleStatus.high))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 7:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.moo, ScaleStatus.high))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 8:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.hwang, ScaleStatus.high))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      case 9:
-        try {
-          if (scl > 2000 || scl < 300) {
-            return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-          } else {
-            if (pitchModelInterface.isCorrectPitch(
-                scl, YulmyeongNote(Yulmyeong.tae, ScaleStatus.high))!) {
-              return Text(
-                '잘 불렀어요!!',
-                style: TextStyle(
-                    color: MctColor.dansoCodematchColor.getMctColor,
-                    fontSize: 14.sp),
-              );
-            } else {
-              return Text('다시 불러보세요!',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    color: MctColor.dansoCodeunMatchColor.getMctColor,
-                  ));
-            }
-          }
-        } catch (er) {
-          return Text('단소를 불러보세요', style: TextStyle(fontSize: 14.sp));
-        }
-      default:
     }
   }
 
