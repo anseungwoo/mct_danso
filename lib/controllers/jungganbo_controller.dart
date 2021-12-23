@@ -123,7 +123,6 @@ class JungganboController extends GetxController {
 
   void setSpeed(speed) {
     assetsAudioPlayer.setPlaySpeed(speed);
-    update();
   }
 
   void jandanPlay() async {

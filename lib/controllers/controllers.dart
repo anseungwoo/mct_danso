@@ -10,7 +10,6 @@ export 'learning_song_and_level_controller.dart';
 export 'like_song_controller.dart';
 export 'main_screen_controller.dart';
 export 'my_history_controller.dart';
-export 'my_page_controller.dart';
 export 'my_page_music_controller.dart';
 export 'permissioin_controller.dart';
 export 'play_and_test_controller.dart';
