@@ -22,7 +22,7 @@ String getAudioFilePath(AudioFile audioFile) {
 }
 
 String getSongFilePath(String songName) {
-  var path_level = 'assets/music/song_file/';
+  var path_level = 'assets/music/song_file';
 
   switch (songName) {
     //1단계

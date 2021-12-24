@@ -1,11 +1,17 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
+import 'package:just_audio/just_audio.dart' as ja;
 
 class JangdanAndDansoSoundController extends GetxController {
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
   int speedCount = 2;
 
+  ja.AudioPlayer jaPlayer = ja.AudioPlayer(
+    handleInterruptions: false,
+    androidApplyAudioAttributes: false,
+    handleAudioSessionActivation: false,
+  );
   List speed = [
     getSpeed(SongSpeed.eight),
     getSpeed(SongSpeed.nine),
@@ -13,24 +19,24 @@ class JangdanAndDansoSoundController extends GetxController {
     getSpeed(SongSpeed.eleven),
     getSpeed(SongSpeed.twelve)
   ];
-
-  void setJandan(var jangdan) async {
-    await assetsAudioPlayer.open(
-      Audio(getJandan(jangdan)),
-      autoStart: false,
-      loopMode: LoopMode.single,
-    );
-    setSpeed(speed[speedCount]);
-    // await player.setAsset('assets/music/123123.mp3');
-    // await player.setLoopMode(ja.LoopMode.one);
+  Future<void> setJangdanAndDansoSound(var songName) async {
+    await jaPlayer.setAsset(getSongFilePath(songName));
   }
 
-  void setJangdanAndDansoSound(var songName) async {
-    await assetsAudioPlayer.open(
-      Audio(getSongFilePath(songName)),
-      autoStart: false,
-      loopMode: LoopMode.single,
-    );
+  void playJangdanAndDansoSound() {
+    jaPlayer.play();
+  }
+
+  void stopJangdanAndDansoSound() {
+    jaPlayer.stop();
+  }
+
+  void setJangdanAndDansoSoundSpeed(speed) {
+    jaPlayer.setSpeed(speed);
+  }
+
+  Future<void> setJandan(var jangdan) async {
+    await jaPlayer.setAsset(getJandan(jangdan));
   }
 
   String getJandan(var jangdan) {
@@ -53,16 +59,14 @@ class JangdanAndDansoSoundController extends GetxController {
   }
 
   void setSpeed(speed) {
-    assetsAudioPlayer.setPlaySpeed(speed);
-    update();
+    jaPlayer.setSpeed(speed);
   }
 
   void jandanPlay() async {
-    await assetsAudioPlayer.setVolume(1);
-    await assetsAudioPlayer.play();
+    await jaPlayer.play();
   }
 
   void jandanStop() async {
-    await assetsAudioPlayer.stop();
+    await jaPlayer.stop();
   }
 }

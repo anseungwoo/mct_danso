@@ -131,7 +131,7 @@ class JangDan {
         break;
 
       case JangDanType.goodGeori:
-        delay = 5350000;
+        delay = 5400000;
         //
         break;
 

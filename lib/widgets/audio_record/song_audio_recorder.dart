@@ -45,12 +45,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   }
 
   @override
-  void initState() {
-    jangdanAndDansoSoundController.setJandan(widget.jangdan);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return GetBuilder<AudioRecordController>(
       init: audioRecordController,
@@ -74,9 +68,10 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                   audioRecordController.isRecordingState();
                   jungganboController.changeStartStopState();
                   // widget.controller.changeListenRecordState();
-                  jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
                   if (jungganboController.startStopState) {
+                    await jangdanAndDansoSoundController
+                        .setJandan(widget.jangdan);
                     jangdanAndDansoSoundController.jandanPlay();
                     jungganboController.isLevelPracticeState();
                     await Get.dialog(
