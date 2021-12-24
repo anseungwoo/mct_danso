@@ -1,15 +1,14 @@
 import 'dart:typed_data';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/sockets/src/socket_notifier.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/common.dart';
+import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/db/db.dart';
 import 'package:project_danso/models/models.dart';
 import 'package:project_danso/utils/danso_function.dart';
@@ -55,17 +54,21 @@ class DansoSoundLearningController extends GetxController {
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
-
+  JangdanAndDansoSoundController jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
   var isCapture = false;
 
   var dbFr;
   // late Pitchdetector detectorAdjust;
   Text isMacthing = Text('단소를 불러보세요');
-  
-  AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
+
+  // ja.AudioPlayer listenPlayer = ja.AudioPlayer(
+  //   handleInterruptions: false,
+  //   androidApplyAudioAttributes: false,
+  //   handleAudioSessionActivation: false,
+  // );
   @override
   void onInit() {
-    setYulmyeng();
     super.onInit();
   }
 
@@ -90,7 +93,7 @@ class DansoSoundLearningController extends GetxController {
       stopCapture();
     }
     if (listenTuningState) {
-      YulmyengStop();
+      jangdanAndDansoSoundController.stopJangdanAndDansoSound();
     }
   }
 
@@ -131,22 +134,6 @@ class DansoSoundLearningController extends GetxController {
     print(e);
   }
 
-  void setYulmyeng() async {
-    await assetsAudioPlayer.open(
-      Audio(hanJaAndGel[soundListUpDown].getYulmyengPathFile()),
-      autoStart: false,
-      loopMode: LoopMode.single,
-    );
-  }
-
-  void YulmyengPlay() async {
-    await assetsAudioPlayer.play();
-  }
-
-  void YulmyengStop() async {
-    await assetsAudioPlayer.stop();
-  }
-
   void changeSoundTuningState() {
     soundTuningState = !soundTuningState;
     tuningButtonText = soundTuningState ? '종료하기' : '기준음 잡기';
@@ -177,12 +164,6 @@ class DansoSoundLearningController extends GetxController {
     if (0 < soundListUpDown) {
       soundListUpDown--;
     }
-    update();
-  }
-
-  void soundListTa(int n) {
-    soundListUpDown = 4;
-
     update();
   }
 

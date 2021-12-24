@@ -23,6 +23,10 @@ class JangdanAndDansoSoundController extends GetxController {
     await jaPlayer.setAsset(getSongFilePath(songName));
   }
 
+  Future<void> setListenSound(var songName) async {
+    await jaPlayer.setAsset(songName);
+  }
+
   void playJangdanAndDansoSound() {
     jaPlayer.play();
   }

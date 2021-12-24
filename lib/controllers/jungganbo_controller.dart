@@ -315,7 +315,6 @@ class JungganboController extends GetxController {
     copySheetHorizontal = sheetHorizontal;
     startButton = '시작하기';
     startStopState = false;
-
     isChallenge = false;
     isLevelPractice = false;
     isPractice = false;

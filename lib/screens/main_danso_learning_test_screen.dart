@@ -20,7 +20,8 @@ class _MainDansoLearningTestScreenState
   final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
   var controller = Get.find<MainScreenController>();
-
+  JangdanAndDansoSoundController jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
   @override
   void dispose() {
     super.dispose();
@@ -155,9 +156,9 @@ class _MainDansoLearningTestScreenState
                         ? null
                         : controller.playTuningState
                             ? null
-                            : () {
+                            : () async {
+                                // await controller.setYulmyeng();
                                 controller.soundListUp();
-                                controller.setYulmyeng();
                               },
               ),
               SizedBox(width: 12.w),
@@ -169,9 +170,9 @@ class _MainDansoLearningTestScreenState
                         ? null
                         : controller.playTuningState
                             ? null
-                            : () {
+                            : () async {
+                                // await controller.setYulmyeng();
                                 controller.soundListDown();
-                                controller.setYulmyeng();
                               },
               ),
             ],
@@ -184,13 +185,25 @@ class _MainDansoLearningTestScreenState
                 ? null
                 : controller.playTuningState
                     ? null
-                    : () {
+                    : () async {
                         controller.changeSpeakTuningState();
-                        controller.listenTuningState
-                            ? controller.YulmyengPlay()
-                            : controller.YulmyengStop();
-//                             ? controller.playYulmyeongSound()
-//                             : null;
+                        if (controller.listenTuningState) {
+                          await jangdanAndDansoSoundController.setListenSound(
+                              controller.hanJaAndGel[controller.soundListUpDown]
+                                  .getYulmyengPathFile());
+                          print(controller
+                              .hanJaAndGel[controller.soundListUpDown]
+                              .getYulmyengPathFile());
+                          // jangdanAndDansoSoundController.setListenSound(
+                          //     controller.hanJaAndGel[0].getYulmyengPathFile());
+                          jangdanAndDansoSoundController
+                              .playJangdanAndDansoSound();
+                        }
+                        if (!controller.listenTuningState) {
+                          jangdanAndDansoSoundController
+                              .stopJangdanAndDansoSound();
+                        }
+//
                       },
           ),
           //불어보기
