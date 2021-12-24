@@ -46,7 +46,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
-    jungganboController.setJangdanAndDansoSound(widget.currentLevel);
+    jangdanAndDansoSoundController.setJangdanAndDansoSound(widget.currentLevel);
     jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
     return GetBuilder<JungganboController>(
@@ -90,7 +90,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                 controller.isPracticeState();
 //                                 controller.jandanPlay();
                                 jangdanAndDansoSoundController.jandanPlay();
-                                
+
                                 await Get.dialog(
                                   Dialog(
                                       backgroundColor:
@@ -98,8 +98,10 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                       elevation: 0,
                                       child: GameTimerWidget(
                                         timer: testJungGanBo.jangDan.delay ~/
-                                            controller
-                                                .speed[controller.speedCount],
+                                            jangdanAndDansoSoundController
+                                                    .speed[
+                                                jangdanAndDansoSoundController
+                                                    .speedCount],
                                       )),
                                   barrierDismissible: false,
                                 );

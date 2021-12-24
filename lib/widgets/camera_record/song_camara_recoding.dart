@@ -45,7 +45,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
 
   @override
   void initState() {
-    jungganboController.setJandan(widget.jangdan);
+    jangdanAndDansoSoundController.setJandan(widget.jangdan);
     super.initState();
   }
 
@@ -89,13 +89,13 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   caController.isRecordingState();
-//                   jungganboController.changeStartStopState();
-                  widget.controller.changeStartStopState();
+                  jungganboController.changeStartStopState();
+                  // widget.controller.changeStartStopState();
                   jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
                   if (caController.isRecording) {
                     jungganboController.isLevelPracticeState();
-                    jungganboController.jandanPlay();
+                    jangdanAndDansoSoundController.jandanPlay();
                     await caController.onRecord();
                     await Get.dialog(
                       Dialog(
@@ -104,27 +104,21 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                           elevation: 0,
                           child: GameTimerWidget(
                             timer: widget.jungGanBo.jangDan.delay ~/
-                                jungganboController
-                                    .speed[jungganboController.speedCount],
+                                jangdanAndDansoSoundController.speed[
+                                    jangdanAndDansoSoundController.speedCount],
                           )),
                       barrierDismissible: false,
                     );
 
-//                     jungganboController.stepStart();
-//                   }
-//                   if (caController.isRecording == false) {
-//                     await caController.onStop(songId: widget.songId);
-//                     jungganboController.jandanStop();
-//                     jungganboController.isLevelPracticeState();
                     await caController.onRecord();
                     jangdanAndDansoSoundController.jandanPlay();
-                    widget.controller.stepStart();
-                    widget.controller.isLevelPracticeState();
+                    jungganboController.stepStart();
+                    jungganboController.isLevelPracticeState();
                   }
                   if (caController.isRecording == false) {
                     await caController.onStop(songId: widget.songId);
                     jangdanAndDansoSoundController.jandanStop();
-                    widget.controller.isLevelPracticeState();
+                    jungganboController.isLevelPracticeState();
                     caController.getBack();
                     jungganboController.stepStop();
                   }
@@ -136,7 +130,8 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           ],
         ),
         SizedBox(height: 3.h),
-        Text('${jungganboController.speed[jungganboController.speedCount]}',
+        Text(
+            '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]}',
             style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
         Text(
           widget.jangdan,

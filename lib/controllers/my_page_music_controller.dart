@@ -49,7 +49,7 @@ class MyPageMusicController extends GetxController {
     super.dispose();
   }
 
-  void changeStartStopState() {
+  void changeListenRecordState() {
     starStopState = !starStopState;
     startIcon = starStopState
         ? Icon(
