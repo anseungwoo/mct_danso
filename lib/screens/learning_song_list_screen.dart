@@ -206,10 +206,14 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
               onTap: () {
                 controller.previousLevel();
               },
-              child: SvgPicture.asset(
-                LEFT_SVG,
-                width: 20.w,
-                height: 30.h,
+              child: Container(
+                height: 40.w,
+                width: 40.w,
+                child: SvgPicture.asset(
+                  LEFT_SVG,
+                  width: 20.w,
+                  height: 30.h,
+                ),
               ),
             ),
             Spacer(flex: 1),
@@ -223,10 +227,14 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
               onTap: () {
                 controller.nextLevel();
               },
-              child: SvgPicture.asset(
-                RIGHT_SVG,
-                width: 20.w,
-                height: 30.h,
+              child: Container(
+                height: 40.w,
+                width: 40.w,
+                child: SvgPicture.asset(
+                  RIGHT_SVG,
+                  width: 20.w,
+                  height: 30.h,
+                ),
               ),
             ),
           ],

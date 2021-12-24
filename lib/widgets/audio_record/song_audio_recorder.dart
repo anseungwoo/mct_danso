@@ -75,15 +75,19 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                     jangdanAndDansoSoundController.jandanPlay();
                     jungganboController.isLevelPracticeState();
                     await Get.dialog(
-                      Dialog(
-                          backgroundColor:
-                              MctColor.white.getMctColor.withOpacity(0),
-                          elevation: 0,
-                          child: GameTimerWidget(
-                            timer: widget.jungGanBo.jangDan.delay ~/
-                                jangdanAndDansoSoundController.speed[
-                                    jangdanAndDansoSoundController.speedCount],
-                          )),
+                      WillPopScope(
+                        onWillPop: () async => false,
+                        child: Dialog(
+                            backgroundColor:
+                                MctColor.white.getMctColor.withOpacity(0),
+                            elevation: 0,
+                            child: GameTimerWidget(
+                              timer: widget.jungGanBo.jangDan.delay ~/
+                                  jangdanAndDansoSoundController.speed[
+                                      jangdanAndDansoSoundController
+                                          .speedCount],
+                            )),
+                      ),
                       barrierDismissible: false,
                     );
 

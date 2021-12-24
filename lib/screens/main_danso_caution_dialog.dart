@@ -44,22 +44,25 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Dialog(
-        insetPadding: EdgeInsets.zero,
-        child: Container(
-          // height: 260.h,
-          width: ScreenUtil().screenWidth,
-          padding: EdgeInsets.only(top: 20.h),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              precautions(),
-              SizedBox(height: 15.h),
-              ConfirmOrCancelButton(
-                  controller: controller,
-                  dansoSoundLearningController: dansoSoundLearningController)
-            ],
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Dialog(
+          insetPadding: EdgeInsets.zero,
+          child: Container(
+            // height: 260.h,
+            width: ScreenUtil().screenWidth,
+            padding: EdgeInsets.only(top: 20.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                precautions(),
+                SizedBox(height: 15.h),
+                ConfirmOrCancelButton(
+                    controller: controller,
+                    dansoSoundLearningController: dansoSoundLearningController)
+              ],
+            ),
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
@@ -48,6 +49,7 @@ class JungganboController extends GetxController {
   late List<dynamic> matchTrueFalse;
   double pitchValue = 0;
   List<double> pitchValueList = [];
+  late AudioSession audioSessions;
 
   final _tearController = Get.put(TearController());
   final _myHistoryController = Get.put(MyHistoryController());
@@ -115,6 +117,27 @@ class JungganboController extends GetxController {
   void onError(Object e) {
     print(e);
   }
+
+  audioSessionConfigure() =>
+      AudioSession.instance.then((audioSession) async => await audioSession
+          .configure(const AudioSessionConfiguration(
+            avAudioSessionCategory: AVAudioSessionCategory.playAndRecord,
+            avAudioSessionCategoryOptions:
+                AVAudioSessionCategoryOptions.defaultToSpeaker,
+            avAudioSessionMode: AVAudioSessionMode.videoRecording,
+            avAudioSessionRouteSharingPolicy:
+                AVAudioSessionRouteSharingPolicy.defaultPolicy,
+            avAudioSessionSetActiveOptions:
+                AVAudioSessionSetActiveOptions.notifyOthersOnDeactivation,
+            // androidAudioAttributes: AndroidAudioAttributes(
+            //   contentType: AndroidAudioContentType.music,
+            //   flags: AndroidAudioFlags.none,
+            //   usage: AndroidAudioUsage.media,
+            // ),
+            // androidAudioFocusGainType: AndroidAudioFocusGainType.gainTransient,
+            // androidWillPauseWhenDucked: true,
+          ))
+          .then((_) => audioSessions = audioSession));
 
   void checkYulmyeongsSection(int i, {dynamic pitchValue}) {
     var data = jungGanBo!.sheet[i];
@@ -296,7 +319,6 @@ class JungganboController extends GetxController {
     isLevelPractice = false;
     isPractice = false;
     jangdanAndDansoSoundController.jaPlayer.stop();
-    // player.stop();
   }
 
   void stepStop() {
