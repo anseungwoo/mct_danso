@@ -46,17 +46,18 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
-    jangdanAndDansoSoundController.setJangdanAndDansoSound(widget.currentLevel);
-    jangdanAndDansoSoundController.setJandan(widget.jangdan);
 
+    // jangdanAndDansoSoundController.setJandan(widget.jangdan);
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
           controller.micro = testJungGanBo.jangDan.microSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-          jangdanAndDansoSoundController.setSpeed(jangdanAndDansoSoundController
-              .speed[jangdanAndDansoSoundController.speedCount]);
+          jangdanAndDansoSoundController.setJangdanAndDansoSoundSpeed(
+              jangdanAndDansoSoundController
+                  .speed[jangdanAndDansoSoundController.speedCount]);
+
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,9 +88,13 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               controller.changeStartStopState();
 
                               if (controller.startStopState) {
+                                await jangdanAndDansoSoundController
+                                    .setJangdanAndDansoSound(
+                                        widget.currentLevel);
                                 controller.isPracticeState();
 //                                 controller.jandanPlay();
-                                jangdanAndDansoSoundController.jandanPlay();
+                                jangdanAndDansoSoundController
+                                    .playJangdanAndDansoSound();
 
                                 await Get.dialog(
                                   Dialog(
@@ -110,7 +115,8 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                               if (!controller.startStopState) {
                                 controller.isPracticeState();
                                 controller.stepStop();
-                                jangdanAndDansoSoundController.jandanStop();
+                                jangdanAndDansoSoundController
+                                    .stopJangdanAndDansoSound();
                               }
                             }),
 

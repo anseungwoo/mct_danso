@@ -41,6 +41,14 @@ class JungganboController extends GetxController {
   bool isLevelPractice = false;
   int scoreResult = 0;
   var yulmyoungsCount = 0;
+  final _audioRecorder = FlutterAudioCapture();
+  final pitchDetectorDart = PitchDetector(44100, 2000);
+  final pitchupDart = PitchHandler(InstrumentType.guitar);
+  PitchModelInterface pitchModelInterface = PitchModel();
+  late List<dynamic> matchTrueFalse;
+  double pitchValue = 0;
+  List<double> pitchValueList = [];
+
   final _tearController = Get.put(TearController());
   final _myHistoryController = Get.put(MyHistoryController());
 
@@ -50,6 +58,7 @@ class JungganboController extends GetxController {
 
   final jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
+
   @override
   void onInit() {
     super.onInit();
@@ -72,141 +81,120 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
-//   void setJandan(var jangdan) async {
-//     await assetsAudioPlayer.open(
-//       Audio(getJandan(jangdan)),
-//       autoStart: false,
-//       loopMode: LoopMode.single,
-//     );
+  void listener(dynamic obj) {
+    //Gets the audio sample
+    var buffer = Float64List.fromList(obj.cast<double>());
+    final audioSample = buffer.toList();
+    //Uses pitch_detector_dart library to detect a pitch from the audio sample
+    final result = pitchDetectorDart.getPitch(audioSample);
+    //If there is a pitch - evaluate it
+    if (result.pitched) {
+      //Uses the pitchupDart library to check a given pitch for a Guitar
+      //Updates the state with the result
 
-//     // await player.setAsset('assets/music/123123.mp3');
-//     // await player.setLoopMode(ja.LoopMode.one);
-//   }
+      pitchValue = result.pitch;
+      pitchValueList.add(pitchValue);
+      pitchModelInterface
+          .getModerateAverageFrequencyByListOfPitches(pitchValueList);
 
-//   void setJangdanAndDansoSound(var songName) async {
-//     await assetsAudioPlayer.open(
-//       Audio(getSongFilePath(songName)),
-//       autoStart: false,
-//       loopMode: LoopMode.single,
-//     );
-//   }
+      update();
+    }
+  }
 
-//   String getJandan(var jangdan) {
-//     // String res = '';
+  Future<void> startCapture() async {
+    await _audioRecorder.start(listener, onError,
+        sampleRate: 44100, bufferSize: 3000);
+    ;
+    update();
+  }
 
-//     switch (jangdan) {
-//       case '중중모리장단':
-//         return getAudioFilePath(AudioFile.JoongJoong);
-//       case '굿거리장단':
-//         return getAudioFilePath(AudioFile.Good);
-//       case '세마치장단':
-//         return getAudioFilePath(AudioFile.Semachi);
-//       case '4박장단':
-//         return getAudioFilePath(AudioFile.Huimori);
-//       case '자진모리장단':
-//         return getAudioFilePath(AudioFile.Jagin);
-//       default: //high:
-//         return '';
-//     }
-//   }
+  Future<void> stopCapture() async {
+    await _audioRecorder.stop();
+  }
 
-//   void setSpeed(speed) async {
-//     await assetsAudioPlayer.setPlaySpeed(speed);
-//   }
+  void onError(Object e) {
+    print(e);
+  }
 
-//   void jandanPlay() async {
-//     await assetsAudioPlayer.setVolume(1);
-//     await assetsAudioPlayer.play();
-//   }
-
-//   void jandanStop() async {
-//     await assetsAudioPlayer.stop();
-//   }
-
-//   dynamic checkYulmyeongsSection(int i, {dynamic pitchValue}) {
-//     var data = jungGanBo!.sheet[i];
-
-//     if (data.divisionStatus == DivisionStatus.one) {
-//       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-//           data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
-//           data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
-//         if (pitchModelInterface.isCorrectPitch(
-//             pitchValue!, data.yulmyeongs[0])!) {
-//           matchTrueFalse[i][0] = true;
-//         }
-//       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
-//           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
-//           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
-//         matchTrueFalse[i][0] = true;
-//       }
-
-//       return;
-//     } else if (data.divisionStatus == DivisionStatus.two) {
-//       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-//           data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
-//           data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
-//         if (pitchModelInterface.isCorrectPitch(
-//             pitchValue!, data.yulmyeongs[0])!) {
-//           matchTrueFalse[i][0] = true;
-//         }
-//       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
-//           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
-//           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
-//         matchTrueFalse[i][0] = true;
-//       }
-//       if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-//           data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
-//           data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
-//         if (pitchModelInterface.isCorrectPitch(
-//             pitchValue!, data.yulmyeongs[1])!) {
-//           matchTrueFalse[i][1] = true;
-//         }
-//       } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
-//           data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
-//           data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
-//         matchTrueFalse[i][1] = true;
-//       }
-//       return;
-//     } else if (data.divisionStatus == DivisionStatus.three) {
-//       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
-//           data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
-//           data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
-//         if (pitchModelInterface.isCorrectPitch(
-//             pitchValue!, data.yulmyeongs[0])!) {
-//           matchTrueFalse[i][0] = true;
-//         }
-//       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
-//           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
-//           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
-//         matchTrueFalse[i][0] = true;
-//       }
-//       if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
-//           data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
-//           data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
-//         if (pitchModelInterface.isCorrectPitch(
-//             pitchValue!, data.yulmyeongs[1])!) {
-//           matchTrueFalse[i][1] = true;
-//         }
-//       } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
-//           data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
-//           data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
-//         matchTrueFalse[i][1] = true;
-//       }
-//       if (data.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
-//           data.yulmyeongs[2].yulmyeong != Yulmyeong.blank &&
-//           data.yulmyeongs[2].yulmyeong != Yulmyeong.rest) {
-//         if (pitchModelInterface.isCorrectPitch(
-//             pitchValue!, data.yulmyeongs[2])!) {
-//           matchTrueFalse[i][2] = true;
-//         }
-//       } else if (data.yulmyeongs[2].yulmyeong == Yulmyeong.long ||
-//           data.yulmyeongs[2].yulmyeong == Yulmyeong.blank ||
-//           data.yulmyeongs[2].yulmyeong == Yulmyeong.rest) {
-//         matchTrueFalse[i][2] = true;
-//       }
-//       return;
-//     }
-//   }
+  void checkYulmyeongsSection(int i, {dynamic pitchValue}) {
+    var data = jungGanBo!.sheet[i];
+    if (data.divisionStatus == DivisionStatus.one) {
+      if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[0])!) {
+          matchTrueFalse[i][0] = true;
+        }
+      } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][0] = true;
+      }
+    } else if (data.divisionStatus == DivisionStatus.two) {
+      if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[0])!) {
+          matchTrueFalse[i][0] = true;
+        }
+      } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][0] = true;
+      }
+      if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[1])!) {
+          matchTrueFalse[i][1] = true;
+        }
+      } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][1] = true;
+      }
+    } else if (data.divisionStatus == DivisionStatus.three) {
+      if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[0])!) {
+          matchTrueFalse[i][0] = true;
+        }
+      } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][0] = true;
+      }
+      if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[1])!) {
+          matchTrueFalse[i][1] = true;
+        }
+      } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][1] = true;
+      }
+      if (data.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
+          data.yulmyeongs[2].yulmyeong != Yulmyeong.blank &&
+          data.yulmyeongs[2].yulmyeong != Yulmyeong.rest) {
+        if (pitchModelInterface.isCorrectPitch(
+            pitchValue!, data.yulmyeongs[2])!) {
+          matchTrueFalse[i][2] = true;
+        }
+      } else if (data.yulmyeongs[2].yulmyeong == Yulmyeong.long ||
+          data.yulmyeongs[2].yulmyeong == Yulmyeong.blank ||
+          data.yulmyeongs[2].yulmyeong == Yulmyeong.rest) {
+        matchTrueFalse[i][2] = true;
+      }
+    }
+  }
 
   void isChallengeState() {
     isChallenge = !isChallenge;
@@ -250,13 +238,13 @@ class JungganboController extends GetxController {
 //     update();
 //   }
 
-//   void create2DList() {
-//     matchTrueFalse = List.generate(
-//         jungGanBo!.sheet.length,
-//         (index) =>
-//             List.filled(jungGanBo!.sheet[index].yulmyeongs.length, false),
-//         growable: false);
-//   }
+  void create2DList() {
+    matchTrueFalse = List.generate(
+        jungGanBo!.sheet.length,
+        (index) =>
+            List.filled(jungGanBo!.sheet[index].yulmyeongs.length, false),
+        growable: false);
+  }
 
   void countingJungganboYulmyeong() {
     for (var i = 0; i < jungGanBo!.sheet.length; i++) {
@@ -271,15 +259,16 @@ class JungganboController extends GetxController {
     next2 = 0;
     jungSection = 0;
     copySheetHorizontal = sheetHorizontal;
+    update();
   }
 
   void reset() {
     yulmyoungsCount = 0;
     setControllerConstants();
-    pitchCheckController.stopCapture();
+    stopCapture();
     if (isChallenge) {
       for (var i = 0; i < jungGanBo!.sheet.length; i++) {
-        pitchCheckController.matchTrueFalse[i] = false;
+        matchTrueFalse[i] = false;
       }
     }
     update();
@@ -316,7 +305,7 @@ class JungganboController extends GetxController {
   }
 
   void stepStart({var songId, songTitle}) async {
-    pitchCheckController.create2DList();
+    create2DList();
     countingJungganboYulmyeong();
     copySheetHorizontal = sheetHorizontal;
     setJungganboVariable();
@@ -331,15 +320,13 @@ class JungganboController extends GetxController {
       if (line < jungGanBo!.sheet.length) {
         if (isChallenge) {
           // 도전하기 시작
-          var pitchValueResult = pitchCheckController.pitchModelInterface
-              .getModerateAverageFrequencyByListOfPitches(
-                  pitchCheckController.pitchValueList);
+          var pitchValueResult = pitchModelInterface
+              .getModerateAverageFrequencyByListOfPitches(pitchValueList);
           // 도전하기 피치 체크
-          pitchCheckController.checkYulmyeongsSection(line,
-              pitchValue: pitchValueResult);
+          checkYulmyeongsSection(line, pitchValue: pitchValueResult);
         }
         line++;
-        pitchCheckController.pitchValueList.clear();
+        pitchValueList.clear();
 
         // 정간보 다음 페이지
         if (copySheetHorizontal >= 4 &&
@@ -376,7 +363,7 @@ class JungganboController extends GetxController {
         timer.cancel();
         for (var i = 0; i < jungGanBo!.sheet.length; i++) {
           for (var j = 0; j < jungGanBo!.sheet[i].yulmyeongs.length; j++) {
-            if (pitchCheckController.matchTrueFalse[i][j] == true) {
+            if (matchTrueFalse[i][j] == true) {
               scoreResult++;
             }
           }
