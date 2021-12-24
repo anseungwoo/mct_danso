@@ -4,7 +4,7 @@
             "song_title": "비행기",
             "song_path": "asdf|asdfasdf|asdfasdf|asdf.mp3",
             "song_jangdan": "4박장단",
-            "song_like": "true",
+            "song_like": "false",
             "song_diff": 1,
             "song_sheet": "t|-h|m|h#t|t|t|o#h|h|h|o#t|t|t|o#t|-h|m|h#t|t|t|o#h|h|t|-h#m|o|o|^#",
             "song_sheet_vertical":8,
@@ -14,7 +14,7 @@
             "song_title": "산들바람",
             "song_path": "zzzz|ffdd|assddf|sdggd.mp3",
             "song_jangdan": "중중모리장단",
-            "song_like": "true",
+            "song_like": "false",
             "song_diff": 1,
             "song_sheet": "m|h|o#t|h|m#h|--t|h#t|o|^#t|h|m#h|o|t#h|--t|h#h|o|^#m|h|m#h|t|o#h|o|m#m|o|^#",
             "song_sheet_vertical":6,
@@ -77,7 +77,7 @@
             "song_like": "false",
             "song_diff": 2,
             "song_sheet": "t|m|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#mh|tm|h|o#t|m|h|o#J|^|J|^#J|^|J|J#mh|tt|tt|h#tt|J|tt|h#t|tt|tt|h#tt|J|tt|h#mh|tm|h|o#mh|tt|tt|th#th|mh|t|^#o|o|o|o#",
-            "song_sheet_vertical":4,
+            "song_sheet_vertical":8,
             "song_sheet_horizontal":5
         },
         {
