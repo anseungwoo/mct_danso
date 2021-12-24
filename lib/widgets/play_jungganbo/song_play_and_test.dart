@@ -116,26 +116,29 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jangdanAndDansoSoundController
                                           .jandanPlay();
                                       await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget(
-                                              timer: testJungGanBo
-                                                      .jangDan.delay ~/
-                                                  jangdanAndDansoSoundController
-                                                          .speed[
-                                                      jangdanAndDansoSoundController
-                                                          .speedCount],
-                                            )),
+                                        WillPopScope(
+                                          onWillPop: () async => false,
+                                          child: Dialog(
+                                              backgroundColor:
+                                                  Colors.white.withOpacity(0),
+                                              elevation: 0,
+                                              child: GameTimerWidget(
+                                                timer: testJungGanBo
+                                                        .jangDan.delay ~/
+                                                    jangdanAndDansoSoundController
+                                                            .speed[
+                                                        jangdanAndDansoSoundController
+                                                            .speedCount],
+                                              )),
+                                        ),
                                         barrierDismissible: false,
                                       );
+                                      await jungcontroller.startCapture();
                                       jungcontroller.stepStart(
                                           songId: widget.songId,
                                           songTitle: widget.appbarTitle);
-                                      await jungcontroller.startCapture();
 
-                                      // jungcontroller.audioSessionConfigure();
+                                      jungcontroller.audioSessionConfigure();
 
                                       print(controller.statecount);
                                     },
@@ -274,18 +277,21 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jangdanAndDansoSoundController
                                           .jandanPlay();
                                       await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget(
-                                              timer: testJungGanBo
-                                                      .jangDan.delay ~/
-                                                  jangdanAndDansoSoundController
-                                                          .speed[
-                                                      jangdanAndDansoSoundController
-                                                          .speedCount],
-                                            )),
+                                        WillPopScope(
+                                          onWillPop: () async => false,
+                                          child: Dialog(
+                                              backgroundColor:
+                                                  Colors.white.withOpacity(0),
+                                              elevation: 0,
+                                              child: GameTimerWidget(
+                                                timer: testJungGanBo
+                                                        .jangDan.delay ~/
+                                                    jangdanAndDansoSoundController
+                                                            .speed[
+                                                        jangdanAndDansoSoundController
+                                                            .speedCount],
+                                              )),
+                                        ),
                                         barrierDismissible: false,
                                       );
 
@@ -308,18 +314,21 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                       jangdanAndDansoSoundController
                                           .jandanPlay();
                                       await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget(
-                                              timer: testJungGanBo
-                                                      .jangDan.delay ~/
-                                                  jangdanAndDansoSoundController
-                                                          .speed[
-                                                      jangdanAndDansoSoundController
-                                                          .speedCount],
-                                            )),
+                                        WillPopScope(
+                                          onWillPop: () async => false,
+                                          child: Dialog(
+                                              backgroundColor:
+                                                  Colors.white.withOpacity(0),
+                                              elevation: 0,
+                                              child: GameTimerWidget(
+                                                timer: testJungGanBo
+                                                        .jangDan.delay ~/
+                                                    jangdanAndDansoSoundController
+                                                            .speed[
+                                                        jangdanAndDansoSoundController
+                                                            .speedCount],
+                                              )),
+                                        ),
                                         barrierDismissible: false,
                                       );
                                       jungcontroller.stepStart();

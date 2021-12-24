@@ -97,17 +97,20 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                                     .playJangdanAndDansoSound();
 
                                 await Get.dialog(
-                                  Dialog(
-                                      backgroundColor:
-                                          Colors.white.withOpacity(0),
-                                      elevation: 0,
-                                      child: GameTimerWidget(
-                                        timer: testJungGanBo.jangDan.delay ~/
-                                            jangdanAndDansoSoundController
-                                                    .speed[
-                                                jangdanAndDansoSoundController
-                                                    .speedCount],
-                                      )),
+                                  WillPopScope(
+                                    onWillPop: () async => false,
+                                    child: Dialog(
+                                        backgroundColor:
+                                            Colors.white.withOpacity(0),
+                                        elevation: 0,
+                                        child: GameTimerWidget(
+                                          timer: testJungGanBo.jangDan.delay ~/
+                                              jangdanAndDansoSoundController
+                                                      .speed[
+                                                  jangdanAndDansoSoundController
+                                                      .speedCount],
+                                        )),
+                                  ),
                                   barrierDismissible: false,
                                 );
                                 controller.stepStart();
