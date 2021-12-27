@@ -27,14 +27,12 @@ class MyPageMusicController extends GetxController {
   void playerInit(var audioRecordPath) {
     print(audioRecordPath);
 
-    File(audioRecordPath).existsSync()
-        ? assetsAudioPlayer.open(
-            Audio.file(audioRecordPath),
-            autoStart: false,
-          )
-        : isFile = false;
-
-    assetsAudioPlayer.setLoopMode(LoopMode.single);
+    if (File(audioRecordPath).existsSync()) {
+      assetsAudioPlayer.open(Audio.file(audioRecordPath),
+          autoStart: false, loopMode: LoopMode.single);
+    } else {
+      isFile = false;
+    }
   }
 
   void playAndPause() {
@@ -47,20 +45,6 @@ class MyPageMusicController extends GetxController {
     assetsAudioPlayer.dispose();
     print('dispose');
     super.dispose();
-  }
-
-  void changeListenRecordState() {
-    starStopState = !starStopState;
-    startIcon = starStopState
-        ? Icon(
-            Icons.pause,
-            size: 40,
-          )
-        : Icon(
-            Icons.play_arrow,
-            size: 40,
-          );
-    update();
   }
 }
 

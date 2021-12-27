@@ -50,7 +50,7 @@ class JungganboController extends GetxController {
   double pitchValue = 0;
   List<double> pitchValueList = [];
   late AudioSession audioSessions;
-
+  bool buttonDelay = true;
   final _tearController = Get.put(TearController());
   final _myHistoryController = Get.put(MyHistoryController());
 
@@ -83,6 +83,7 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
+  void buttonDelayState() {}
   void listener(dynamic obj) {
     //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());

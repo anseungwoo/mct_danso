@@ -12,6 +12,7 @@ import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dar
 
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/utils/disable_multi_touch.dart';
+import 'package:project_danso/widgets/base_widgets/challenge_dialog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongPlayAndTest extends StatefulWidget {
@@ -111,6 +112,10 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                               fontSize:
                                                   MctSize.twelve.getSize.sp)),
                                       onPressed: () async {
+                                        await Get.dialog(Dialog(
+                                            insetAnimationDuration:
+                                                Duration(seconds: 3),
+                                            child: challengeDialog()));
                                         await jangdanAndDansoSoundController
                                             .setJandan(widget.jangdan);
                                         controller.nextButton();
