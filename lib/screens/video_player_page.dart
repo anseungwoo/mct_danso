@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/widgets/widgets.dart';
 import 'package:video_player/video_player.dart';
@@ -8,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class VideoAppScreen extends StatefulWidget {
-  final videoFilePath;
-  VideoAppScreen({Key? key, required this.videoFilePath}) : super(key: key);
+  VideoAppScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _VideoAppScreenState createState() => _VideoAppScreenState();
@@ -23,11 +25,11 @@ class _VideoAppScreenState extends State<VideoAppScreen> {
   @override
   void initState() {
     super.initState();
-    print(widget.videoFilePath);
+    print(Get.arguments);
 
-    if (File(widget.videoFilePath).existsSync()) {
+    if (File(Get.arguments).existsSync()) {
       videoPlayerController =
-          VideoPlayerController.file(File('${widget.videoFilePath}'));
+          VideoPlayerController.file(File('${Get.arguments}'));
 
       videoPlayerController.initialize();
       videoPlayerController.setLooping(true);

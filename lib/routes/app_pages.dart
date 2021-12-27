@@ -54,5 +54,10 @@ class AppPages {
       page: () => StepByStepScreen(),
       // binding: SecondBinding(),
     ),
+    GetPage(
+      name: _Paths.VIDEO,
+      page: () => VideoAppScreen(),
+      // binding: SecondBinding(),
+    ),
   ];
 }

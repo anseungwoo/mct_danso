@@ -39,11 +39,10 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                 child: InkWell(
                   onTap: () async {
                     var dir = (await getApplicationDocumentsDirectory()).path;
-                    await Get.to(VideoAppScreen(
-                      videoFilePath: Platform.isIOS
-                          ? '$dir/camera/videos/${item.exerPath}'
-                          : item.exerPath,
-                    ));
+                    await Get.toNamed('/video',
+                        arguments: Platform.isIOS
+                            ? '$dir/camera/videos/${item.exerPath}'
+                            : item.exerPath);
                   },
                   child: Container(
                     decoration: BoxDecoration(
