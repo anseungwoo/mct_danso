@@ -73,17 +73,28 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
-                  onTap: () {
-                    Get.to(
-                      SongPlayAndTest(
-                        appbarTitle: item.songTitle,
-                        jangdan: item.songJangdan,
-                        sheetData: item.songSheet,
-                        sheetVertical: item.songSheetVertical,
-                        sheetHorizontal: item.songSheetHorizontal,
-                        songId: item.songId,
-                      ),
-                    );
+                  onTap: () async {
+                    // Get.to(
+                    //   JungGanBoPage(
+                    //     appbarTitle: item.songTitle,
+                    //     jangdan: item.songJangdan,
+                    //     sheetData: item.songSheet,
+                    //     sheetVertical: item.songSheetVertical,
+                    //     sheetHorizontal: item.songSheetHorizontal,
+                    //     songId: item.songId,
+                    //   ),
+                    // );
+                    await Get.toNamed('/jungganbo', arguments: {
+                      'songTitle': item.songTitle,
+                      'jangdan': item.songJangdan,
+                      'sheetData': item.songSheet,
+                      'sheetVertical': item.songSheetVertical,
+                      'sheetHorizontal': item.songSheetHorizontal,
+                      'songId': item.songId
+                    });
+
+                    // await Get.toNamed('/jungganbo',
+                    //     arguments: controller.songList[index]);
                   },
                   child: Container(
                       decoration: BoxDecoration(

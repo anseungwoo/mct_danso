@@ -231,7 +231,7 @@ class _HomeStepByStepAndTestScreenState
                     : controller.playTuningState
                         ? null
                         : () {
-                            Get.to(StepByStepScreen());
+                            Get.toNamed('/steplearning');
                           },
           ),
           SizedBox(height: 5.w),

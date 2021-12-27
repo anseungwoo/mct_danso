@@ -59,5 +59,10 @@ class AppPages {
       page: () => VideoAppScreen(),
       // binding: SecondBinding(),
     ),
+    GetPage(
+      name: _Paths.VIDEO,
+      page: () => JungGanBoPage(),
+      // binding: SecondBinding(),
+    ),
   ];
 }

@@ -27,17 +27,26 @@ class MyPageLike extends GetView<LikeSongController> {
               return Padding(
                 padding: EdgeInsets.only(bottom: MctSize.fifteen.getSize),
                 child: InkWell(
-                  onTap: () {
-                    Get.to(
-                      SongPlayAndTest(
-                        appbarTitle: item.songTitle,
-                        jangdan: item.songJangdan,
-                        sheetData: item.songSheet,
-                        sheetVertical: item.songSheetVertical,
-                        sheetHorizontal: item.songSheetHorizontal,
-                        songId: item.songId,
-                      ),
-                    );
+                  onTap: () async {
+                    // Get.to(
+                    //   JungGanBoPage(
+                    //     appbarTitle: item.songTitle,
+                    //     jangdan: item.songJangdan,
+                    //     sheetData: item.songSheet,
+                    //     sheetVertical: item.songSheetVertical,
+                    //     sheetHorizontal: item.songSheetHorizontal,
+                    //     songId: item.songId,
+                    //   ),
+                    // );
+
+                    await Get.toNamed('/jungganbo', arguments: {
+                      'songTitle': item.songTitle,
+                      'jangdan': item.songJangdan,
+                      'sheetData': item.songSheet,
+                      'sheetVertical': item.songSheetVertical,
+                      'sheetHorizontal': item.songSheetHorizontal,
+                      'songId': item.songId
+                    });
                   },
                   child: Container(
                     decoration: BoxDecoration(
