@@ -8,17 +8,15 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
-// import 'package:just_audio/just_audio.dart';
-// testasdf
 
-class MainScreen extends StatefulWidget {
-  MainScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   MainScreenController mainScreenController =
       Get.put(MainScreenController(), permanent: true);
 
@@ -62,12 +60,12 @@ class _MainScreenState extends State<MainScreen> {
                   assetName: INFOR_SVG,
                   title: '단소 알아보기',
                   contant: LOOK,
-                  page: MainDansoHistoryKindScreen()),
+                  page: HomeDansoHistoryScreen()),
               _homeMenuButton(
                   assetName: DANSO_TUNING_SVG,
                   title: '내 단소 기준음 잡기',
                   contant: VOLUMECONTROL,
-                  page: FixDansoPitchDialog(),
+                  page: PitchSettingDialog(),
                   dialog: true),
               _homeMenuButton(
                   assetName: STUDY_SVG,
@@ -83,7 +81,7 @@ class _MainScreenState extends State<MainScreen> {
                   contant: PLAYLEARN,
                   svgHeight: 65,
                   svgWidth: 65,
-                  page: LearningSongListScreen()),
+                  page: InstrumentalListScreen()),
               _homeMenuButton(
                   assetName: QandA_SVG,
                   title: 'Q&A와 팁',
@@ -192,13 +190,13 @@ class _MainScreenState extends State<MainScreen> {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: InkWell(
-          // onTap: () => Get.to(MyPageScreen()),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyPageScreen()),
-            ).then((value) => setState(() {}));
-          },
+          onTap: () => Get.toNamed('/mypage'),
+          // onTap: () {
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => MyPageScreen()),
+          //   ).then((value) => setState(() {}));
+          // },
           child: Container(
             width: 174.w,
             height: 36.w,

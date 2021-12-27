@@ -7,15 +7,15 @@ import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class VideoApp extends StatefulWidget {
+class VideoAppScreen extends StatefulWidget {
   final videoFilePath;
-  VideoApp({Key? key, required this.videoFilePath}) : super(key: key);
+  VideoAppScreen({Key? key, required this.videoFilePath}) : super(key: key);
 
   @override
-  _VideoAppState createState() => _VideoAppState();
+  _VideoAppScreenState createState() => _VideoAppScreenState();
 }
 
-class _VideoAppState extends State<VideoApp> {
+class _VideoAppScreenState extends State<VideoAppScreen> {
   late VideoPlayerController videoPlayerController;
 
   var isFile = true;

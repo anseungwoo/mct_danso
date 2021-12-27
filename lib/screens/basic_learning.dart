@@ -4,15 +4,16 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoLearningScreen extends StatefulWidget {
-  const MainDansoLearningScreen({Key? key}) : super(key: key);
+class HomeDansoBasicLearningScreen extends StatefulWidget {
+  const HomeDansoBasicLearningScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainDansoLearningScreen> createState() =>
-      _MainDansoLearningScreenState();
+  State<HomeDansoBasicLearningScreen> createState() =>
+      _HomeDansoBasicLearningScreenState();
 }
 
-class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
+class _HomeDansoBasicLearningScreenState
+    extends State<HomeDansoBasicLearningScreen> {
   var controller = Get.find<MainScreenController>();
 
   @override

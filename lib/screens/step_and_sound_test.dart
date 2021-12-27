@@ -7,16 +7,16 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoLearningTestScreen extends StatefulWidget {
-  MainDansoLearningTestScreen({Key? key}) : super(key: key);
+class HomeStepByStepAndTestScreen extends StatefulWidget {
+  HomeStepByStepAndTestScreen({Key? key}) : super(key: key);
 
   @override
-  _MainDansoLearningTestScreenState createState() =>
-      _MainDansoLearningTestScreenState();
+  _HomeStepByStepAndTestScreenState createState() =>
+      _HomeStepByStepAndTestScreenState();
 }
 
-class _MainDansoLearningTestScreenState
-    extends State<MainDansoLearningTestScreen> {
+class _HomeStepByStepAndTestScreenState
+    extends State<HomeStepByStepAndTestScreen> {
   final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
   var controller = Get.find<MainScreenController>();
@@ -231,7 +231,7 @@ class _MainDansoLearningTestScreenState
                     : controller.playTuningState
                         ? null
                         : () {
-                            Get.to(MainDansoLearningLevelScreen());
+                            Get.to(StepByStepScreen());
                           },
           ),
           SizedBox(height: 5.w),

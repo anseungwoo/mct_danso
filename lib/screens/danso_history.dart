@@ -5,16 +5,14 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoHistoryKindScreen extends StatefulWidget {
-  const MainDansoHistoryKindScreen({Key? key}) : super(key: key);
+class HomeDansoHistoryScreen extends StatefulWidget {
+  const HomeDansoHistoryScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainDansoHistoryKindScreen> createState() =>
-      _MainDansoHistoryKindScreenState();
+  State<HomeDansoHistoryScreen> createState() => _HomeDansoHistoryScreenState();
 }
 
-class _MainDansoHistoryKindScreenState
-    extends State<MainDansoHistoryKindScreen> {
+class _HomeDansoHistoryScreenState extends State<HomeDansoHistoryScreen> {
   var controller = Get.find<MainScreenController>();
 
   @override
