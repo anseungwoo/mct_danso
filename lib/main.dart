@@ -9,6 +9,8 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
+import 'routes/app_pages.dart';
+
 List<CameraDescription>? cameras;
 
 Future<Void?> main() async {
@@ -46,10 +48,9 @@ class MyApp extends StatelessWidget {
                   MctColor.mainBackGround.getMctColor, // 기본 배경색
             ),
             debugShowCheckedModeBanner: false,
-            home: SplashScreen(),
-            getPages: [
-              GetPage(name: '/', page: () => MainScreen(), bindings: []),
-            ],
+            // home: SplashScreen(),
+            initialRoute: AppPages.INITIAL,
+            getPages: AppPages.routes,
           );
         });
   }

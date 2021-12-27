@@ -6,17 +6,16 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/mains/mains.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class FixDansoPitchDialog extends StatefulWidget {
-  const FixDansoPitchDialog({Key? key}) : super(key: key);
+class PitchSettingDialog extends StatefulWidget {
+  const PitchSettingDialog({Key? key}) : super(key: key);
 
   @override
-  _FixDansoPitchDialogState createState() => _FixDansoPitchDialogState();
+  _PitchSettingDialogState createState() => _PitchSettingDialogState();
 }
 
-class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
+class _PitchSettingDialogState extends State<PitchSettingDialog> {
   var controller = Get.find<MainScreenController>();
   var permissionController = Get.put(PermissionController());
 

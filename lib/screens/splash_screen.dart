@@ -44,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
       await permissionController.checkPermission().then((value) async {
         if (!value) {
           await permissionController.buildPermissionDialog(context,
-              runMethod: Get.off(MainScreen()));
+              runMethod: Get.offNamed('/home'));
         } else if (value) {
-          await Get.off(MainScreen());
+          await Get.offNamed('/home');
         }
       });
     });

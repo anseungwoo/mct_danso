@@ -6,16 +6,16 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class LearningSongListScreen extends StatefulWidget {
-  LearningSongListScreen({
+class InstrumentalListScreen extends StatefulWidget {
+  InstrumentalListScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<LearningSongListScreen> createState() => _LearningSongListScreenState();
+  State<InstrumentalListScreen> createState() => _InstrumentalListScreenState();
 }
 
-class _LearningSongListScreenState extends State<LearningSongListScreen> {
+class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
   final permissionController = Get.put(PermissionController());

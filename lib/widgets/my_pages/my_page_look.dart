@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -38,11 +39,10 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                 child: InkWell(
                   onTap: () async {
                     var dir = (await getApplicationDocumentsDirectory()).path;
-                    await Get.to(VideoApp(
-                      videoFilePath: Platform.isIOS
-                          ? '$dir/camera/videos/${item.exerPath}'
-                          : item.exerPath,
-                    ));
+                    await Get.toNamed('/video',
+                        arguments: Platform.isIOS
+                            ? '$dir/camera/videos/${item.exerPath}'
+                            : item.exerPath);
                   },
                   child: Container(
                     decoration: BoxDecoration(

@@ -4,7 +4,6 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/mains/mains.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 final permissionController = Get.put(PermissionController());
@@ -37,13 +36,13 @@ Widget learningDialog() {
             children: [
               createLearningDialogIcon(
                   text: '단소 기초 학습',
-                  page: MainDansoLearningScreen(),
+                  page: HomeDansoBasicLearningScreen(),
                   assetName: DANSO_LESSON_SVG),
               SizedBox(
                 width: 14.w,
               ),
               createLearningDialogIcon(
-                  page: MainDansoLearningTestScreen(),
+                  page: HomeStepByStepAndTestScreen(),
                   text: '단계별 연습',
                   assetName: DANSO_STUDY_SVG),
             ],
