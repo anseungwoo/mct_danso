@@ -4,16 +4,18 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/utils/model/jung-gan-bo_model/JungGanBo.dart';
+import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
-  final JungganboController controller;
+  final JungGanBo jungGanBo;
   final songId;
-  final String jandan;
+  final String jangdan;
   SongCamaraRecoding(
       {Key? key,
-      required this.controller,
-      required this.jandan,
+      required this.jungGanBo,
+      required this.jangdan,
       required this.songId})
       : super(key: key);
 
@@ -23,23 +25,16 @@ class SongCamaraRecoding extends StatefulWidget {
 
 class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   final cameraRecordcontroller = Get.put(CameraRecordController());
-  IndexManager indexManager = IndexManager();
-  // @override
-  // void initState() {
-  //   _controller =
-  //       CameraController(cameras[_cameraIndex], ResolutionPreset.medium);
-  //   _initializeControllerFuture = _controller.initialize();
+  final jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
 
-  //   super.initState();
-  // }
-
+  JungganboController jungganboController = Get.put(JungganboController());
   @override
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
       cameraRecordcontroller.onStop(songId: widget.songId);
-      widget.controller.allMidiStop();
-      indexManager.stopIndex();
-      widget.controller.jandanStop();
+//       jungganboController.jandanStop();
+      jangdanAndDansoSoundController.jandanStop();
     }
 
     if (cameraRecordcontroller.isRecording == false) {
@@ -77,8 +72,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
               width: 81.w,
               height: 30.h,
               child: ElevatedButton(
-                child: Text(caController.recordingText,
-                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
                     primary: MctColor.white.getMctColor,
@@ -90,40 +83,53 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   caController.isRecordingState();
+                  jungganboController.changeStartStopState();
+                  // widget.controller.changeStartStopState();
 
-                  widget.controller.changeStartStopState();
                   if (caController.isRecording) {
+                    await jangdanAndDansoSoundController
+                        .setJandan(widget.jangdan);
+                    jungganboController.isLevelPracticeState();
+                    jangdanAndDansoSoundController.jandanPlay();
+                    await caController.onRecord();
                     await Get.dialog(
-                      Dialog(
-                          backgroundColor:
-                              MctColor.white.getMctColor.withOpacity(0),
-                          elevation: 0,
-                          child: GameTimerWidget()),
+                      WillPopScope(
+                        onWillPop: () async => false,
+                        child: Dialog(
+                            backgroundColor:
+                                MctColor.white.getMctColor.withOpacity(0),
+                            elevation: 0,
+                            child: GameTimerWidget(
+                              timer: widget.jungGanBo.jangDan.delay ~/
+                                  jangdanAndDansoSoundController.speed[
+                                      jangdanAndDansoSoundController
+                                          .speedCount],
+                            )),
+                      ),
                       barrierDismissible: false,
                     );
-                    await caController.onRecord();
-                    widget.controller.jandanPlay();
-                    widget.controller.stepStart();
-                    widget.controller.isLevelPracticeState();
-                    // widget.controller.playJungGanBo(indexManager);
-                    //widget.controller.audioSessionConfigure();
+                    jungganboController.stepStart();
                   }
                   if (caController.isRecording == false) {
                     await caController.onStop(songId: widget.songId);
-                    widget.controller.jandanStop();
-                    widget.controller.isLevelPracticeState();
+                    jangdanAndDansoSoundController.jandanStop();
+                    jungganboController.isLevelPracticeState();
                     caController.getBack();
-                    widget.controller.stepStop();
-                    indexManager.stopIndex();
+                    jungganboController.stepStop();
                   }
                 },
+                child: Text(caController.recordingText,
+                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
               ),
             ),
           ],
         ),
         SizedBox(height: 3.h),
         Text(
-          widget.jandan,
+            '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]}',
+            style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
+        Text(
+          widget.jangdan,
           style: TextStyle(fontSize: MctSize.twelve.getSize.sp),
         ),
       ],

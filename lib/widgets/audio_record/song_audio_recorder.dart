@@ -3,13 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/utils/danso_function.dart';
+import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongAudioRecorder extends StatefulWidget {
-  final JungganboController controller;
+  final JungGanBo jungGanBo;
   final songId;
-
-  SongAudioRecorder({Key? key, required this.controller, required this.songId})
+  final String jangdan;
+  SongAudioRecorder(
+      {Key? key,
+      required this.jungGanBo,
+      required this.jangdan,
+      required this.songId})
       : super(key: key);
 
   @override
@@ -19,15 +25,16 @@ class SongAudioRecorder extends StatefulWidget {
 class SongAudioRecorderState extends State<SongAudioRecorder> {
   AudioRecordController audioRecordController =
       Get.put(AudioRecordController());
-  IndexManager indexManager = IndexManager();
+  JungganboController jungganboController = Get.put(JungganboController());
+  JangdanAndDansoSoundController jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
   @override
   void dispose() {
     if (audioRecordController.isRecording == true) {
       audioRecordController.stopRecording(
           songId: widget.songId, exerType: 'audio');
-      widget.controller.allMidiStop();
-      indexManager.stopIndex();
-      widget.controller.jandanStop();
+//       jungganboController.jandanStop();
+      jangdanAndDansoSoundController.jandanStop();
     }
 
     if (audioRecordController.isRecording == false) {
@@ -59,30 +66,41 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                         color: MctColor.buttonColorOrange.getMctColor)),
                 onPressed: () async {
                   audioRecordController.isRecordingState();
-                  widget.controller.changeStartStopState();
-                  if (widget.controller.startStopState) {
+                  jungganboController.changeStartStopState();
+                  // widget.controller.changeListenRecordState();
+
+                  if (jungganboController.startStopState) {
+                    await jangdanAndDansoSoundController
+                        .setJandan(widget.jangdan);
+                    jangdanAndDansoSoundController.jandanPlay();
+                    jungganboController.isLevelPracticeState();
                     await Get.dialog(
-                      Dialog(
-                          backgroundColor:
-                              MctColor.white.getMctColor.withOpacity(0),
-                          elevation: 0,
-                          child: GameTimerWidget()),
+                      WillPopScope(
+                        onWillPop: () async => false,
+                        child: Dialog(
+                            backgroundColor:
+                                MctColor.white.getMctColor.withOpacity(0),
+                            elevation: 0,
+                            child: GameTimerWidget(
+                              timer: widget.jungGanBo.jangDan.delay ~/
+                                  jangdanAndDansoSoundController.speed[
+                                      jangdanAndDansoSoundController
+                                          .speedCount],
+                            )),
+                      ),
                       barrierDismissible: false,
                     );
-                    widget.controller.isLevelPracticeState();
+
                     audioRecordController.startRecording();
-                    widget.controller.jandanPlay();
-                    widget.controller.stepStart();
-                    // widget.controller.playJungGanBo(indexManager);
-                    // widget.controller.audioSessionConfigure();
+                    jangdanAndDansoSoundController.jandanPlay();
+                    jungganboController.stepStart();
                   }
-                  if (!widget.controller.startStopState) {
-                    widget.controller.jandanStop();
+                  if (!jungganboController.startStopState) {
+                    jungganboController.isLevelPracticeState();
+                    jangdanAndDansoSoundController.jandanStop();
                     audioRecordController.stopRecording(
                         songId: widget.songId, exerType: 'audio');
-                    widget.controller.stepStop();
-                    widget.controller.isLevelPracticeState();
-                    indexManager.stopIndex();
+                    jungganboController.stepStop();
                   }
                 },
                 child: audioRecordController.buttonText,

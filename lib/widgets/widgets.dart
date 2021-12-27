@@ -4,8 +4,5 @@ export 'camera_record/camera_record.dart';
 export 'jungganbos/jungganbos.dart';
 export 'main_danso_learning/main_danso_learning.dart';
 export 'mains/mains.dart';
-export 'music.dart';
 export 'my_pages/my_pages.dart';
-export 'pitch.dart';
 export 'play_jungganbo/play_jungganbo.dart';
-export 'sheet_test.dart';

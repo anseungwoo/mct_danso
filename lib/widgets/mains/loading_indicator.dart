@@ -45,8 +45,9 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
     _timer2.cancel();
 
-    if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+    if (controller.musicState.value) {
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     super.dispose();
   }
@@ -80,13 +81,13 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
   Widget build(BuildContext context) {
     return Container(
       width: 200.w,
-      height: 200.h,
+      height: 200.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 120.h,
+            height: 120.w,
             width: 120.w,
             child: SfRadialGauge(
               axes: <RadialAxis>[
@@ -120,10 +121,11 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
               ],
             ),
           ),
+          // Center(child: Text('$pitch Hz')),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "$_start초간 단소로 태(汰) 불어주세요.",
+              '$_start초간 단소로 태(汰) 불어주세요.',
               style: TextStyle(fontSize: MctSize.fifteen.getSize.sp),
             ),
           ),

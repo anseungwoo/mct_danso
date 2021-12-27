@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -21,25 +22,22 @@ class DansoStepByStep extends StatefulWidget {
 }
 
 class _DansoStepByStepState extends State<DansoStepByStep> {
-  JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
-  IndexManager indexManager = IndexManager();
+  final jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
 
   @override
   void initState() {
     jungganboController.onInit();
     jungganboController.sheetHorizontal = 4;
-
     super.initState();
   }
 
   @override
   void dispose() {
-    indexManager.stopIndex();
     jungganboController.stepStop();
-    jungganboController.allMidiStop();
     if (jungganboController.startStopState) {
-      jungganboController.jandanStop();
+      jangdanAndDansoSoundController.jandanStop();
     }
     super.dispose();
   }
@@ -48,16 +46,18 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
-    jungganboController.setJandan(widget.jangdan);
 
+    // jangdanAndDansoSoundController.setJandan(widget.jangdan);
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
-          controller.mill = testJungGanBo.jangDan.milliSecond;
+          controller.micro = testJungGanBo.jangDan.microSecond;
           controller.jungGanBo = testJungGanBo;
           controller.sheetVertical = 12;
-          controller.setSpeed(
-              widget.jangdan, controller.speed[controller.speedCount]);
+          jangdanAndDansoSoundController.setJangdanAndDansoSoundSpeed(
+              jangdanAndDansoSoundController
+                  .speed[jangdanAndDansoSoundController.speedCount]);
+
           return Container(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,34 +81,45 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         //시작하기
-
                         levelButton(
                             controller: controller,
                             text: '${controller.startButton}',
                             onPressed: () async {
                               controller.changeStartStopState();
+
                               if (controller.startStopState) {
+                                await jangdanAndDansoSoundController
+                                    .setJangdanAndDansoSound(
+                                        widget.currentLevel);
+                                controller.isPracticeState();
+//                                 controller.jandanPlay();
+                                jangdanAndDansoSoundController
+                                    .playJangdanAndDansoSound();
+
                                 await Get.dialog(
-                                  Dialog(
-                                      backgroundColor:
-                                          Colors.white.withOpacity(0),
-                                      elevation: 0,
-                                      child: GameTimerWidget()),
+                                  WillPopScope(
+                                    onWillPop: () async => false,
+                                    child: Dialog(
+                                        backgroundColor:
+                                            Colors.white.withOpacity(0),
+                                        elevation: 0,
+                                        child: GameTimerWidget(
+                                          timer: testJungGanBo.jangDan.delay ~/
+                                              jangdanAndDansoSoundController
+                                                      .speed[
+                                                  jangdanAndDansoSoundController
+                                                      .speedCount],
+                                        )),
+                                  ),
                                   barrierDismissible: false,
                                 );
-                                // controller.startCapture();
-                                controller.isPracticeState();
                                 controller.stepStart();
-                                controller.playJungGanBo(indexManager);
-                                controller.jandanPlay();
-                                // controller.audioSessionConfigure();
                               }
                               if (!controller.startStopState) {
-                                // controller.stopCapture();
                                 controller.isPracticeState();
                                 controller.stepStop();
-                                indexManager.stopIndex();
-                                controller.jandanStop();
+                                jangdanAndDansoSoundController
+                                    .stopJangdanAndDansoSound();
                               }
                             }),
 
@@ -126,7 +137,7 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                         levelButton(
                             controller: controller,
                             text:
-                                '${controller.speed[controller.speedCount]} 배속',
+                                '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
                             onPressed: controller.startStopState
                                 ? null
                                 : () {

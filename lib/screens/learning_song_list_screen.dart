@@ -18,13 +18,13 @@ class LearningSongListScreen extends StatefulWidget {
 class _LearningSongListScreenState extends State<LearningSongListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
+  final permissionController = Get.put(PermissionController());
 
-  final TearController _tearController = Get.put(TearController());
+  final _tearController = Get.put(TearController());
 
   @override
   void initState() {
     learningSongLevelController.getExerSongList(1);
-    // TODO: implement initState
     super.initState();
   }
 
@@ -36,6 +36,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    permissionController.checkPermission();
     return GetBuilder<LearningSongAndLevelController>(
         init: learningSongLevelController,
         builder: (controller) {
@@ -205,10 +206,14 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
               onTap: () {
                 controller.previousLevel();
               },
-              child: SvgPicture.asset(
-                LEFT_SVG,
-                width: 20.w,
-                height: 30.h,
+              child: Container(
+                height: 40.w,
+                width: 40.w,
+                child: SvgPicture.asset(
+                  LEFT_SVG,
+                  width: 20.w,
+                  height: 30.h,
+                ),
               ),
             ),
             Spacer(flex: 1),
@@ -222,10 +227,14 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
               onTap: () {
                 controller.nextLevel();
               },
-              child: SvgPicture.asset(
-                RIGHT_SVG,
-                width: 20.w,
-                height: 30.h,
+              child: Container(
+                height: 40.w,
+                width: 40.w,
+                child: SvgPicture.asset(
+                  RIGHT_SVG,
+                  width: 20.w,
+                  height: 30.h,
+                ),
               ),
             ),
           ],

@@ -8,6 +8,8 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
+
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -39,10 +41,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
   late int percent;
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
+
   PlayAndTestController playAndTestController =
       Get.put(PlayAndTestController());
+  final jangdanAndDansoSoundController =
+      Get.put(JangdanAndDansoSoundController());
   FlutterMidi flutterMidi = FlutterMidi();
-  IndexManager indexManager = IndexManager();
   // late AudioSession audioSessions;
 
   @override
@@ -51,37 +55,26 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
       if (jungganboController.isChallenge) {
         jungganboController.stopCapture();
       }
-      jungganboController.jandanStop();
+      jangdanAndDansoSoundController.jandanStop();
     }
     jungganboController.dispose();
     jungganboController.stepStop();
-    indexManager.stopIndex();
     super.dispose();
   }
-
-  Future _incrementCounter() async {
-    return Future.delayed(Duration(seconds: 4), () {});
-  }
-
-  // void _onPressed(BuildContext context) async {
-  //   showLoadingIndicator(context);
-  //   await _incrementCounter();
-  //   hideOpenDialog();
-  // }
 
   @override
   void initState() {
     super.initState();
-    jungganboController.setJandan(widget.jangdan);
   }
 
   @override
   Widget build(BuildContext context) {
     jungganboController.sheetHorizontal = widget.sheetHorizontal;
     jungganboController.jangDan = widget.jangdan;
-    jungganboController.setJandan(widget.jangdan);
     var testJungGanBo =
         JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
+    jungganboController.jungGanBo = testJungGanBo;
+    jungganboController.create2DList();
 
     return Scaffold(
       appBar: songtabbarAndAppBar(
@@ -92,11 +85,11 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
             return GetBuilder<JungganboController>(
                 init: jungganboController,
                 builder: (jungcontroller) {
-                  jungcontroller.mill = testJungGanBo.jangDan.milliSecond;
-                  jungcontroller.jungGanBo = testJungGanBo;
+                  jungcontroller.micro = testJungGanBo.jangDan.microSecond;
                   jungcontroller.sheetVertical = widget.sheetVertical;
-                  jungcontroller.setSpeed(widget.jangdan,
-                      jungcontroller.speed[jungcontroller.speedCount]);
+                  jangdanAndDansoSoundController.setSpeed(
+                      jangdanAndDansoSoundController
+                          .speed[jangdanAndDansoSoundController.speedCount]);
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,24 +109,36 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
+                                      await jangdanAndDansoSoundController
+                                          .setJandan(widget.jangdan);
                                       controller.nextButton();
-                                      jungcontroller.changeStartStopState();
+                                      jungcontroller.isChallengeState();
+                                      jangdanAndDansoSoundController
+                                          .jandanPlay();
                                       await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget()),
+                                        WillPopScope(
+                                          onWillPop: () async => false,
+                                          child: Dialog(
+                                              backgroundColor:
+                                                  Colors.white.withOpacity(0),
+                                              elevation: 0,
+                                              child: GameTimerWidget(
+                                                timer: testJungGanBo
+                                                        .jangDan.delay ~/
+                                                    jangdanAndDansoSoundController
+                                                            .speed[
+                                                        jangdanAndDansoSoundController
+                                                            .speedCount],
+                                              )),
+                                        ),
                                         barrierDismissible: false,
                                       );
-                                      jungcontroller.jandanPlay();
+                                      await jungcontroller.startCapture();
                                       jungcontroller.stepStart(
                                           songId: widget.songId,
                                           songTitle: widget.appbarTitle);
-                                      await jungcontroller.startCapture();
-                                      jungcontroller.isChallengeState();
 
-                                      // jungcontroller.audioSessionConfigure();
+                                      jungcontroller.audioSessionConfigure();
 
                                       print(controller.statecount);
                                     },
@@ -156,12 +161,12 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   //배속
                                   songSwapButton(
                                       text: Text(
-                                          '${jungcontroller.speed[jungcontroller.speedCount]} 배속',
+                                          '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
                                           style: TextStyle(
                                               fontSize:
                                                   MctSize.twelve.getSize.sp)),
                                       onPressed: () {
-                                        jungcontroller.changespeedState();
+                                        jungganboController.changespeedState();
                                       }),
                                   SizedBox(width: 5.w),
                                   //한글 전환
@@ -189,7 +194,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                   jungcontroller.stopCapture();
                                   controller.previousButton();
                                   jungcontroller.isChallengeState();
-                                  jungcontroller.jandanStop();
+                                  jangdanAndDansoSoundController.jandanStop();
                                   print(controller.statecount);
                                 },
                               ),
@@ -264,25 +269,34 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
+                                      await jangdanAndDansoSoundController
+                                          .setJangdanAndDansoSound(
+                                              widget.appbarTitle);
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
+                                      jangdanAndDansoSoundController
+                                          .jandanPlay();
                                       await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget()),
+                                        WillPopScope(
+                                          onWillPop: () async => false,
+                                          child: Dialog(
+                                              backgroundColor:
+                                                  Colors.white.withOpacity(0),
+                                              elevation: 0,
+                                              child: GameTimerWidget(
+                                                timer: testJungGanBo
+                                                        .jangDan.delay ~/
+                                                    jangdanAndDansoSoundController
+                                                            .speed[
+                                                        jangdanAndDansoSoundController
+                                                            .speedCount],
+                                              )),
+                                        ),
                                         barrierDismissible: false,
                                       );
-                                      //  jungcontroller.startCapture();
-                                      jungcontroller.isLevelPracticeState();
-                                      jungcontroller.jandanPlay();
-                                      jungcontroller.stepStart();
-                                      jungcontroller
-                                          .playJungGanBo(indexManager);
 
-                                      // jungcontroller.audioSessionConfigure();
-                                      // audioSessionConfigure();
+                                      jungcontroller.isLevelPracticeState();
+                                      jungcontroller.stepStart();
                                     },
                                   ),
                                   SizedBox(width: 5),
@@ -292,22 +306,32 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                             fontSize:
                                                 MctSize.twelve.getSize.sp)),
                                     onPressed: () async {
+                                      await jangdanAndDansoSoundController
+                                          .setJandan(widget.jangdan);
+                                      jungcontroller.isLevelPracticeState();
                                       jungcontroller.changeStartStopState();
                                       controller.nextButton();
+                                      jangdanAndDansoSoundController
+                                          .jandanPlay();
                                       await Get.dialog(
-                                        Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget()),
+                                        WillPopScope(
+                                          onWillPop: () async => false,
+                                          child: Dialog(
+                                              backgroundColor:
+                                                  Colors.white.withOpacity(0),
+                                              elevation: 0,
+                                              child: GameTimerWidget(
+                                                timer: testJungGanBo
+                                                        .jangDan.delay ~/
+                                                    jangdanAndDansoSoundController
+                                                            .speed[
+                                                        jangdanAndDansoSoundController
+                                                            .speedCount],
+                                              )),
+                                        ),
                                         barrierDismissible: false,
                                       );
-                                      //  jungcontroller.startCapture();
-                                      jungcontroller.isLevelPracticeState();
-                                      jungcontroller.jandanPlay();
                                       jungcontroller.stepStart();
-                                      // jungcontroller.audioSessionConfigure();
-                                      // audioSessionConfigure();
                                     },
                                   ),
                                 ],
@@ -323,8 +347,8 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                                     onPressed: () {
                                       jungcontroller.changeStartStopState();
                                       jungcontroller.stepStop();
-                                      indexManager.stopIndex();
-                                      jungcontroller.jandanStop();
+                                      jangdanAndDansoSoundController
+                                          .jandanStop();
                                       jungcontroller.isLevelPracticeState();
                                       controller.stateCountUp(0);
                                       print(controller.statecount);
@@ -344,14 +368,16 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                               ),
                             if (controller.statecount == 5)
                               SongCamaraRecoding(
-                                controller: jungcontroller,
-                                jandan: widget.jangdan,
+                                jungGanBo: testJungGanBo,
+                                jangdan: widget.jangdan,
                                 songId: widget.songId,
                               ),
                             if (controller.statecount == 6)
                               SongAudioRecorder(
-                                  controller: jungcontroller,
-                                  songId: widget.songId)
+                                jungGanBo: testJungGanBo,
+                                jangdan: widget.jangdan,
+                                songId: widget.songId,
+                              )
                           ],
                         ),
                       ),
@@ -362,7 +388,7 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                '${jungganboController.speed[jungganboController.speedCount]} 배속',
+                                '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
                                 style: TextStyle(
                                     fontSize: MctSize.twelve.getSize.sp,
                                     fontFamily: NOTO_REGULAR),
@@ -399,48 +425,6 @@ class _SongPlayAndTestState extends State<SongPlayAndTest> {
           }),
     );
   }
-
-  // void showLoadingIndicator(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     barrierDismissible: false,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         backgroundColor: Colors.black.withOpacity(0),
-  //         content: Center(
-  //           child: Stack(
-  //             children: [
-  //               Column(
-  //                 mainAxisAlignment: MainAxisAlignment.center,
-  //                 crossAxisAlignment: CrossAxisAlignment.center,
-  //                 children: [
-  //                   CircularProgressIndicator(
-  //                     valueColor: AlwaysStoppedAnimation(white),
-  //                   ),
-  //                   SizedBox(
-  //                     height: 5.h,
-  //                   ),
-  //                   Text(
-  //                     '녹화화면을 준비하고 있습니다',
-  //                     style: TextStyle(color: white, fontSize: textEightSize),
-  //                   ),
-  //                   Text(
-  //                     '녹화시작 버튼을 누르고 녹화시작',
-  //                     style: TextStyle(color: white, fontSize: textEightSize),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
-  // void hideOpenDialog() {
-  //   Get.back();
-  // }
 
   Widget songSwapButton({Widget? text, Function()? onPressed}) {
     return Container(

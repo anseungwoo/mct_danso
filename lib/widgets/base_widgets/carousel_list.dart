@@ -27,6 +27,7 @@ class _CarouselListWidgetState extends State<CarouselListWidget> {
           options: CarouselOptions(
             enableInfiniteScroll: false,
             onPageChanged: (index, reason) {
+              // setState 사용
               setState(() {
                 _current = index;
               });

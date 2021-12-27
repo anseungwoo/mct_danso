@@ -22,10 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(PermissionController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
-  final TearController _tearController = Get.put(TearController());
   void load() async {
+    await flutterMidi.unmute();
     var byteData = await rootBundle.load('assets/Dan.sf2');
-    await flutterMidi.prepare(sf2: byteData);
+    await flutterMidi.prepare(sf2: byteData, name: 'Dan.sf2');
   }
 
   @override
@@ -34,15 +34,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
     load();
     _songController.insertSongToJson();
-    _tearController.loadExp();
+    // _tearController.loadExp();
     startTime();
   }
 
   dynamic startTime() async {
     var _duration = Duration(seconds: 3);
     return Timer(_duration, () async {
-      permissionController.permission();
-      await Get.off(MainScreen());
+      await permissionController.checkPermission().then((value) async {
+        if (!value) {
+          await permissionController.buildPermissionDialog(context,
+              runMethod: Get.off(MainScreen()));
+        } else if (value) {
+          await Get.off(MainScreen());
+        }
+      });
     });
   }
 

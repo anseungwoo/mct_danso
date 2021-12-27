@@ -20,8 +20,9 @@ class _MainDansoHistoryKindScreenState
   @override
   void dispose() {
     super.dispose();
-    if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+    if (controller.musicState.value) {
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     ;
   }

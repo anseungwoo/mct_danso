@@ -32,9 +32,10 @@ PreferredSizeWidget tabbarAndAppBar(
         padding: EdgeInsets.all(MctSize.fifteen.getSize),
         child: InkWell(
             onTap: () {
-              Get.off(MainScreen());
-              if (controller.musicState) {
-                controller.assetsAudioPlayer.play();
+              Get.offAll(MainScreen());
+              if (controller.musicState.value) {
+                // controller.assetsAudioPlayer.play();
+                controller.player.play();
               }
               ;
               // Navigator.of(Get.context!)

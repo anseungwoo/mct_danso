@@ -139,7 +139,7 @@ String getDansoCodeTitle(DansoCode dansoCode) {
       return '㳲 (태)';
 
     default:
-      return "";
+      return '';
   }
 }
 
@@ -159,7 +159,7 @@ String getDansoCodeContant(DansoCode dansoCode) {
       return '1공과 3공은 막고, 2공과 4공, 5공은 열고 소리를 냅니다. 㳲는 "높은소리"를 낼 때의 입김으로 연주합니다.';
 
     default:
-      return "";
+      return '';
   }
 }
 
@@ -179,7 +179,7 @@ String getDansoCodePng(DansoCode dansoCode) {
       return 'assets/images/danso_code/높은_태.png';
 
     default:
-      return "";
+      return '';
   }
 } //운지법
 

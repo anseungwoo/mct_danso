@@ -18,11 +18,12 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
   @override
   void initState() {
     super.initState();
-    if (controller.musicState) {
+    if (controller.musicState.value) {
       // 아예 정지
       // Get.find<MainScreenController>().disposeAudioPlayer();
       // 일시 정지
-      controller.assetsAudioPlayer.pause();
+      // controller.assetsAudioPlayer.pause();
+      controller.player.pause();
     }
   }
 
@@ -30,8 +31,9 @@ class _MainDansoLearningScreenState extends State<MainDansoLearningScreen> {
   void dispose() {
     super.dispose();
 
-    if (controller.musicState) {
-      controller.assetsAudioPlayer.play();
+    if (controller.musicState.value) {
+      // controller.assetsAudioPlayer.play();
+      controller.player.play();
     }
     ;
   }

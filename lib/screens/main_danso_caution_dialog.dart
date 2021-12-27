@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,9 +18,25 @@ class FixDansoPitchDialog extends StatefulWidget {
 
 class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
   var controller = Get.find<MainScreenController>();
+  var permissionController = Get.put(PermissionController());
+
+  @override
+  void initState() {
+    super.initState();
+    getPermission();
+  }
+
   @override
   void dispose() {
     super.dispose();
+  }
+
+  dynamic getPermission() async {
+    await permissionController.checkPermission().then((value) {
+      if (!value) {
+        permissionController.buildPermissionDialog(context);
+      } else if (value) {}
+    });
   }
 
   var dansoSoundLearningController = Get.put(DansoSoundLearningController());
@@ -26,22 +44,25 @@ class _FixDansoPitchDialogState extends State<FixDansoPitchDialog> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
-      child: Dialog(
-        insetPadding: EdgeInsets.zero,
-        child: Container(
-          // height: 260.h,
-          width: ScreenUtil().screenWidth,
-          padding: EdgeInsets.only(top: 20.h),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              precautions(),
-              SizedBox(height: 15.h),
-              ConfirmOrCancelButton(
-                  controller: controller,
-                  dansoSoundLearningController: dansoSoundLearningController)
-            ],
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Dialog(
+          insetPadding: EdgeInsets.zero,
+          child: Container(
+            // height: 260.h,
+            width: ScreenUtil().screenWidth,
+            padding: EdgeInsets.only(top: 20.h),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                precautions(),
+                SizedBox(height: 15.h),
+                ConfirmOrCancelButton(
+                    controller: controller,
+                    dansoSoundLearningController: dansoSoundLearningController)
+              ],
+            ),
           ),
         ),
       ),
@@ -100,8 +121,9 @@ class ConfirmOrCancelButton extends StatelessWidget {
           child: InkWell(
             onTap: () {
               Get.back();
-              if (controller.musicState) {
-                controller.assetsAudioPlayer.play();
+              if (controller.musicState.value) {
+                // controller.assetsAudioPlayer.play();
+                controller.player.play();
               }
             },
             child: Container(
@@ -120,13 +142,21 @@ class ConfirmOrCancelButton extends StatelessWidget {
             onTap: () async {
               Get.back();
               await Get.dialog(
-                Dialog(child: TimerWidget()),
+                WillPopScope(
+                  onWillPop: () async => false,
+                  child: Dialog(
+                    child: TimerWidget(),
+                  ),
+                ),
                 barrierDismissible: false,
               );
               dansoSoundLearningController.startAdjust();
               await Get.dialog(
-                Dialog(
-                  child: LoadingIndicator(),
+                WillPopScope(
+                  onWillPop: () async => false,
+                  child: Dialog(
+                    child: LoadingIndicator(),
+                  ),
                 ),
                 barrierDismissible: false,
               );

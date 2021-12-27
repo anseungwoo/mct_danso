@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:project_danso/db/db.dart';
 import 'package:project_danso/models/models.dart';
-import 'package:intl/intl.dart';
 import 'package:share/share.dart';
 
 class AudioAndVideoListController extends GetxController {
@@ -13,8 +12,8 @@ class AudioAndVideoListController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAudioList();
-    getVideoList();
+    // getAudioList();
+    // getVideoList();
   }
 
   void getAudioList() async {

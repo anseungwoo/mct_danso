@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/common.dart';
 
 class GameTimerWidget extends StatefulWidget {
-  const GameTimerWidget({Key? key}) : super(key: key);
+  final int timer;
+  GameTimerWidget({Key? key, required this.timer}) : super(key: key);
 
   @override
   _GameTimerWidgetState createState() => _GameTimerWidgetState();
@@ -12,7 +13,6 @@ class GameTimerWidget extends StatefulWidget {
 
 class _GameTimerWidgetState extends State<GameTimerWidget> {
   late Timer _timer;
-  int _start = 3;
 
   @override
   void initState() {
@@ -27,18 +27,10 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
   }
 
   void startTimer() {
-    const oneSec = Duration(milliseconds: 1000);
+    var oneSec = Duration(microseconds: widget.timer);
     _timer = Timer.periodic(oneSec, (Timer timer) {
-      if (_start == 0) {
-        setState(() {
-          timer.cancel();
-          Navigator.pop(context);
-        });
-      } else {
-        setState(() {
-          _start--;
-        });
-      }
+      timer.cancel();
+      Navigator.pop(context);
     });
   }
 
@@ -50,35 +42,8 @@ class _GameTimerWidgetState extends State<GameTimerWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: 100.w,
-                height: 100.w,
-                child: CircularProgressIndicator(
-                  color: MctColor.unButtonColorOrange.getMctColor,
-                  strokeWidth: 5,
-                ),
-              ),
-              SizedBox(
-                width: 100.w,
-                height: 100.w,
-                child: Center(
-                  child: Text(
-                    '$_start',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: MctColor.unButtonColorOrange.getMctColor),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 30.h,
-          ),
           Text(
-            '3초후 시작합니다. 준비해주세요',
+            '반주 후 시작합니다. 준비해주세요',
             style:
                 TextStyle(fontSize: 20.sp, color: MctColor.white.getMctColor),
           ),
