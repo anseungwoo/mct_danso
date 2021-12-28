@@ -7,7 +7,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:project_danso/common/common.dart';
 
 class MyPageMusicController extends GetxController {
-  // static MyPageMusicController get to => Get.find();
   String? audioRecordPath;
   bool starStopState = false;
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
@@ -18,11 +17,6 @@ class MyPageMusicController extends GetxController {
     size: 40,
   );
   bool isFile = true;
-  @override
-  void onInit() {
-    super.onInit();
-    // playerInit();
-  }
 
   void playerInit(var audioRecordPath) {
     print(audioRecordPath);

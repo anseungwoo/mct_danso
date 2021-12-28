@@ -10,7 +10,6 @@ Widget confirmCancelDialog(String assetName, String text) {
     child: Dialog(
       insetPadding: EdgeInsets.zero,
       child: Container(
-        // height: 210.h,
         width: 330.w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,15 +30,16 @@ Widget confirmCancelDialog(String assetName, String text) {
             ),
             SizedBox(height: 30.h),
             TextButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text(
-                  '확인',
-                  style: TextStyle(
-                      color: MctColor.black.getMctColor,
-                      fontSize: MctSize.fourteen.getSize.sp),
-                ))
+              onPressed: () {
+                Get.back();
+              },
+              child: Text(
+                '확인',
+                style: TextStyle(
+                    color: MctColor.black.getMctColor,
+                    fontSize: MctSize.fourteen.getSize.sp),
+              ),
+            ),
           ],
         ),
       ),

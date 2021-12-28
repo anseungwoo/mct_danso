@@ -51,7 +51,6 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                         color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -97,14 +96,11 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                             }
                           },
                           child: Container(
-                              // color: Colors.grey,
                               height: 25.w,
                               width: 40.w,
                               margin: EdgeInsets.only(right: 10, left: 10),
                               child: SvgPicture.asset(
                                 SEE_MORE_SVG,
-                                // width: 40.w,
-                                // height: 25.h,
                                 fit: BoxFit.contain,
                               )),
                           itemBuilder: (context) => [

@@ -28,11 +28,13 @@ Widget fingering(BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     for (var i = 0; i < 6; i++)
-                      Text('${Yum[i].toChineseCharacter()}',
-                          style: TextStyle(
-                            fontSize: MctSize.twenty.getSize.sp,
-                            fontFamily: NOTO_REGULAR,
-                          )),
+                      Text(
+                        '${Yum[i].toChineseCharacter()}',
+                        style: TextStyle(
+                          fontSize: MctSize.twenty.getSize.sp,
+                          fontFamily: NOTO_REGULAR,
+                        ),
+                      ),
                   ],
                 ),
                 SizedBox(height: 5.h),
@@ -40,23 +42,26 @@ Widget fingering(BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     for (var i = 0; i < 5; i++)
-                      Text('${Yum[i].toHangeul()}',
-                          style: TextStyle(
-                            fontSize: MctSize.twenty.getSize.sp,
-                            fontFamily: NOTO_REGULAR,
-                          )),
-                    Text('태',
+                      Text(
+                        '${Yum[i].toHangeul()}',
                         style: TextStyle(
                           fontSize: MctSize.twenty.getSize.sp,
                           fontFamily: NOTO_REGULAR,
-                        )),
+                        ),
+                      ),
+                    Text(
+                      '태',
+                      style: TextStyle(
+                        fontSize: MctSize.twenty.getSize.sp,
+                        fontFamily: NOTO_REGULAR,
+                      ),
+                    ),
                   ],
                 ),
               ],
             ),
             Expanded(
               child: Container(
-                // color: Colors.grey,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -86,22 +91,26 @@ Row leftRightText() {
       SizedBox(
         width: 7.sp,
       ),
-      Text('왼손',
-          style: TextStyle(
-            fontSize: 15.sp,
-            fontFamily: NOTO_REGULAR,
-          )),
+      Text(
+        '왼손',
+        style: TextStyle(
+          fontSize: 15.sp,
+          fontFamily: NOTO_REGULAR,
+        ),
+      ),
       SizedBox(
         width: 7.sp,
       ),
       CircleAvatar(
           radius: 14.r, backgroundColor: MctColor.leftHandColor.getMctColor),
       SizedBox(width: 7.sp),
-      Text('오른손',
-          style: TextStyle(
-            fontSize: 15.sp,
-            fontFamily: NOTO_REGULAR,
-          )),
+      Text(
+        '오른손',
+        style: TextStyle(
+          fontSize: 15.sp,
+          fontFamily: NOTO_REGULAR,
+        ),
+      ),
     ],
   );
 }

@@ -46,7 +46,6 @@ class _PitchSettingDialogState extends State<PitchSettingDialog> {
         child: Dialog(
           insetPadding: EdgeInsets.zero,
           child: Container(
-            // height: 260.h,
             width: ScreenUtil().screenWidth,
             padding: EdgeInsets.only(top: 20.h),
             child: Column(
@@ -119,7 +118,6 @@ class ConfirmOrCancelButton extends StatelessWidget {
             onTap: () {
               Get.back();
               if (controller.musicState.value) {
-                // controller.assetsAudioPlayer.play();
                 controller.player.play();
               }
             },
@@ -174,8 +172,3 @@ class ConfirmOrCancelButton extends StatelessWidget {
     );
   }
 }
-
-// Widget mainDansoCautionDialog() {
-//   return 
-// }
-

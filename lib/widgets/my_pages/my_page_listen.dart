@@ -45,7 +45,6 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                         color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -64,9 +63,7 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                               ),
                               SizedBox(height: 2),
                               Text(
-                                // '${item.exerTime}',
                                 '${convertDateFormat(item.exerTime)}',
-                                // '2021년 12월 07일 오전 09시 08분',
                                 style: TextStyle(
                                     color: MctColor.white.getMctColor),
                               ),
@@ -92,7 +89,6 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                               width: 20.w,
                               height: 20.w,
                             )),
-                        // SizedBox(width: 10.w),
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
@@ -112,14 +108,11 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                             }
                           },
                           child: Container(
-                              // color: Colors.grey,
                               height: 25.w,
                               width: 40.w,
                               margin: EdgeInsets.only(right: 10, left: 10),
                               child: SvgPicture.asset(
                                 SEE_MORE_SVG,
-                                // width: 40.w,
-                                // height: 25.h,
                                 fit: BoxFit.contain,
                               )),
                           itemBuilder: (context) => [

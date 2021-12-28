@@ -44,13 +44,12 @@ class _ResultScoreState extends State<ResultScore> {
               elevation: 0,
               actions: [
                 IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: MctColor.black.getMctColor,
-                    ))
+                  onPressed: () => Get.back(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: MctColor.black.getMctColor,
+                  ),
+                ),
               ],
             ),
             floatingActionButton: Padding(
@@ -62,24 +61,26 @@ class _ResultScoreState extends State<ResultScore> {
                   elevation: 0,
                   backgroundColor: MctColor.buttonColorOrange.getMctColor,
                   onPressed: () {
-                    Get.off(SongScoreGraph(
-                      songId: widget.songId,
-                      songTitle: widget.songTitle,
-                    ));
+                    Get.off(
+                      SongScoreGraph(
+                        songId: widget.songId,
+                        songTitle: widget.songTitle,
+                      ),
+                    );
                   },
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(
-                          GRAPH_SVG,
-                          height: 24.h,
-                        ),
-                        Text(
-                          '그래프',
-                          style:
-                              TextStyle(fontSize: MctSize.fourteen.getSize.sp),
-                        )
-                      ]),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        GRAPH_SVG,
+                        height: 24.h,
+                      ),
+                      Text(
+                        '그래프',
+                        style: TextStyle(fontSize: MctSize.fourteen.getSize.sp),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

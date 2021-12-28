@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class DansoHistroyKind extends StatefulWidget {
+class DansoHistroyKind extends StatelessWidget {
   final String subject;
   final String explanation;
   final String url;
-  // final Image image;
+
   DansoHistroyKind(
       {Key? key,
       required this.subject,
@@ -16,22 +16,14 @@ class DansoHistroyKind extends StatefulWidget {
       : super(key: key);
 
   @override
-  _DansoHistroyKindState createState() => _DansoHistroyKindState();
-}
-
-class _DansoHistroyKindState extends State<DansoHistroyKind> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            YoutubePlayers(
-              url: widget.url,
-            ),
+            YoutubePlayers(url: url),
             SizedBox(height: 20.h),
             titleDescription(),
           ],
@@ -47,17 +39,19 @@ class _DansoHistroyKindState extends State<DansoHistroyKind> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.subject,
+            subject,
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: MctSize.seventeen.getSize.sp,
                 fontFamily: NOTO_BOLD),
           ),
           SizedBox(height: 10.h),
-          Text(widget.explanation,
-              style: TextStyle(
-                  fontSize: MctSize.fourteen.getSize.sp,
-                  fontFamily: NOTO_REGULAR)),
+          Text(
+            explanation,
+            style: TextStyle(
+                fontSize: MctSize.fourteen.getSize.sp,
+                fontFamily: NOTO_REGULAR),
+          ),
         ],
       ),
     );

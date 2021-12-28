@@ -1,11 +1,9 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -119,58 +117,64 @@ class _HomeScreenState extends State<HomeScreen> {
       top: 40.h,
       left: 10.w,
       child: Container(
-          width: 85.w,
-          height: 22.h,
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  primary: MctColor.lightYellow.getMctColor.withOpacity(0),
-                  side: BorderSide(color: MctColor.white.getMctColor),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50))),
-              onPressed: onPressed,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Obx(() => SvgPicture.asset(
-                        !mainScreenController.musicState.value
-                            ? OFF_SVG
-                            : ON_SVG,
-                        width: 10.w,
-                        height: 10.h,
-                      )),
-                  Text(
-                    '배경음',
-                    style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
-                  ),
-                ],
-              ))),
+        width: 85.w,
+        height: 22.h,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            elevation: 0,
+            primary: MctColor.lightYellow.getMctColor.withOpacity(0),
+            side: BorderSide(color: MctColor.white.getMctColor),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50),
+            ),
+          ),
+          onPressed: onPressed,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Obx(
+                () => SvgPicture.asset(
+                  !mainScreenController.musicState.value ? OFF_SVG : ON_SVG,
+                  width: 10.w,
+                  height: 10.h,
+                ),
+              ),
+              Text(
+                '배경음',
+                style: TextStyle(fontSize: 10.sp, fontFamily: NOTO_REGULAR),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
   Widget headerChangeButton() {
     return Positioned(
-        top: 85.w,
-        left: 50.w,
-        child: Container(
-          width: 100.w,
-          height: 100.h,
-          child: InkWell(
-            enableFeedback: false,
-            onTap: () {
-              mainScreenController.SvgStateChange();
-            },
-            child: Text(
-              '',
-              style: TextStyle(color: MctColor.black.getMctColor),
-            ),
+      top: 85.w,
+      left: 50.w,
+      child: Container(
+        width: 100.w,
+        height: 100.h,
+        child: InkWell(
+          enableFeedback: false,
+          onTap: () {
+            mainScreenController.SvgStateChange();
+          },
+          child: Text(
+            '',
+            style: TextStyle(color: MctColor.black.getMctColor),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget headerImage() {
-    return Obx(() => Container(
+    return Obx(
+      () => Container(
         child: mainScreenController.svgState.value
             ? SvgPicture.asset(
                 MAIN_ILL2_SVG,
@@ -181,7 +185,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 MAIN_ILL1_SVG,
                 fit: BoxFit.fitWidth,
                 width: ScreenUtil().screenWidth,
-              )));
+              ),
+      ),
+    );
   }
 
   Positioned myPageButton() {
@@ -228,66 +234,69 @@ class _HomeScreenState extends State<HomeScreen> {
       bool dialog = false,
       Function()? onPressed}) {
     return InkWell(
-        onTap: () {
-          if (mainScreenController.musicState.value) {
-            // 아예 정지
-            // Get.find<MainScreenController>().disposeAudioPlayer();
-            // 일시 정지
-            // controller.assetsAudioPlayer.pause();
-            mainScreenController.player.pause();
-          }
-          onPressed;
-          if (dialog) {
-            Get.dialog(page);
-          } else {
-            Get.toNamed(page);
-          }
-        },
-        child: Container(
-          margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
-          height: 106.w,
-          // width: 330.w,
-          decoration: BoxDecoration(
-              color: MctColor.white.getMctColor,
-              borderRadius: BorderRadius.all(Radius.circular(5))),
+      onTap: () {
+        if (mainScreenController.musicState.value) {
+          // 아예 정지
+          // Get.find<MainScreenController>().disposeAudioPlayer();
+          // 일시 정지
+          // controller.assetsAudioPlayer.pause();
+          mainScreenController.player.pause();
+        }
+        onPressed;
+        if (dialog) {
+          Get.dialog(page);
+        } else {
+          Get.toNamed(page);
+        }
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10, left: 15, right: 15),
+        height: 106.w,
+        // width: 330.w,
+        decoration: BoxDecoration(
+            color: MctColor.white.getMctColor,
+            borderRadius: BorderRadius.all(Radius.circular(5))),
 
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                width: 103.w,
-                child: SvgPicture.asset(
-                  assetName,
-                  width: svgWidth.w,
-                  height: svgHeight.w,
-                ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: 103.w,
+              child: SvgPicture.asset(
+                assetName,
+                width: svgWidth.w,
+                height: svgHeight.w,
               ),
-              // SizedBox(width: 14.w),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('$title',
-                        style: TextStyle(
-                            fontSize: MctSize.twenty.getSize.sp,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: NOTO_BOLD)),
-                    SizedBox(height: 7.h),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        for (int i = 0; i < 2; i++)
-                          Text(contant[i],
-                              style: TextStyle(
-                                  fontSize: 14.sp, fontFamily: NOTO_REGULAR)),
-                      ],
-                    )
-                  ],
-                ),
+            ),
+            // SizedBox(width: 14.w),
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('$title',
+                      style: TextStyle(
+                          fontSize: MctSize.twenty.getSize.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: NOTO_BOLD)),
+                  SizedBox(height: 7.h),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (int i = 0; i < 2; i++)
+                        Text(
+                          contant[i],
+                          style: TextStyle(
+                              fontSize: 14.sp, fontFamily: NOTO_REGULAR),
+                        ),
+                    ],
+                  )
+                ],
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

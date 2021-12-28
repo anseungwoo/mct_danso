@@ -6,14 +6,6 @@ import 'package:project_danso/models/models.dart';
 class SongController extends GetxController {
   var songList = Future.value([]).obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-
-    // deleteAllSong(); // DB 초기화
-    // insertSongToJson();
-  }
-
   void updateLikeSongList(
       {required String songLike, required int songId}) async {
     // var data = await
@@ -37,19 +29,21 @@ class SongController extends GetxController {
 
   // 단소 곡 DB 데이터 체크
   void insertSongToJson() async {
-    await DBHelPer().getAllSongs().then((value) async {
-      if (value.isEmpty || value == null || value == []) {
-        var jsonString = await rootBundle.loadString('assets/json/song.json');
-        final res = songFromJsonFromJson(jsonString);
-        res.songData!.forEach((element) async {
-          await DBHelPer().insertSongData(element);
-        });
-        print('DB 데이터 insert : $value');
-      } else {
-        getAllSongList();
-      }
-      print('현재 음악 데이터 : $value');
-    });
+    await DBHelPer().getAllSongs().then(
+      (value) async {
+        if (value.isEmpty || value == null || value == []) {
+          var jsonString = await rootBundle.loadString('assets/json/song.json');
+          final res = songFromJsonFromJson(jsonString);
+          res.songData!.forEach((element) async {
+            await DBHelPer().insertSongData(element);
+          });
+          print('DB 데이터 insert : $value');
+        } else {
+          getAllSongList();
+        }
+        print('현재 음악 데이터 : $value');
+      },
+    );
   }
 
   void deleteAllSong() async {
@@ -60,6 +54,5 @@ class SongController extends GetxController {
   void insertSongDummyData() async {
     Dummy().insertSongDummy();
     getAllSongList();
-    // update();
   }
 }

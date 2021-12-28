@@ -57,14 +57,8 @@ class DansoSoundLearningController extends GetxController {
   var isCapture = false;
 
   var dbFr;
-  // late Pitchdetector detectorAdjust;
   Text isMacthing = Text('단소를 불러보세요');
 
-  // ja.AudioPlayer listenPlayer = ja.AudioPlayer(
-  //   handleInterruptions: false,
-  //   androidApplyAudioAttributes: false,
-  //   handleAudioSessionActivation: false,
-  // );
   @override
   void onInit() {
     super.onInit();
@@ -108,16 +102,11 @@ class DansoSoundLearningController extends GetxController {
   }
 
   void listener(dynamic obj) {
-    //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());
     final audioSample = buffer.toList();
-    //Uses pitch_detector_dart library to detect a pitch from the audio sample
     final result = pitchDetectorDart.getPitch(audioSample);
-    //If there is a pitch - evaluate it
     if (result.pitched) {
-      //Uses the pitchupDart library to check a given pitch for a Guitar
       final handledPitchResult = pitchupDart.handlePitch(result.pitch);
-      //Updates the state with the result
       userInputForAdjust = result.pitch;
       dansoPitchAdjustList.add(userInputForAdjust);
       pitchValue = result.pitch;

@@ -34,7 +34,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   void dispose() {
     if (cameraRecordcontroller.isRecording) {
       cameraRecordcontroller.onStop(songId: widget.songId);
-//       jungganboController.jandanStop();
       jangdanAndDansoSoundController.jandanStop();
     }
 
@@ -55,7 +54,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
         width: 111.w,
         child: Center(
           child: AspectRatio(
-            // aspectRatio: cameraRecordcontroller.controller.value.aspectRatio,
             aspectRatio: 6 / 4,
             child: CameraPreview(cameraRecordcontroller.controller),
           ),
@@ -87,7 +85,6 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                 onPressed: () async {
                   caController.isRecordingState();
                   jungganboController.changeStartStopState();
-                  // widget.controller.changeStartStopState();
 
                   if (caController.isRecording) {
                     await jangdanAndDansoSoundController
@@ -99,15 +96,15 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
                       WillPopScope(
                         onWillPop: () async => false,
                         child: Dialog(
-                            backgroundColor:
-                                MctColor.white.getMctColor.withOpacity(0),
-                            elevation: 0,
-                            child: GameTimerWidget(
-                              timer: widget.jungGanBo.jangDan.delay ~/
-                                  jangdanAndDansoSoundController.speed[
-                                      jangdanAndDansoSoundController
-                                          .speedCount],
-                            )),
+                          backgroundColor:
+                              MctColor.white.getMctColor.withOpacity(0),
+                          elevation: 0,
+                          child: GameTimerWidget(
+                            timer: widget.jungGanBo.jangDan.delay ~/
+                                jangdanAndDansoSoundController.speed[
+                                    jangdanAndDansoSoundController.speedCount],
+                          ),
+                        ),
                       ),
                       barrierDismissible: false,
                     );
@@ -142,23 +139,25 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CameraRecordController>(
-        init: cameraRecordcontroller,
-        builder: (caController) {
-          return FutureBuilder(
-              future: caController.initializeControllerFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return Row(
-                    children: [
-                      _buildCamera(caController: caController),
-                      Spacer(flex: 1),
-                      _buildControls(caController: caController),
-                    ],
-                  );
-                } else {
-                  return CircularProgressIndicator();
-                }
-              });
-        });
+      init: cameraRecordcontroller,
+      builder: (caController) {
+        return FutureBuilder(
+          future: caController.initializeControllerFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Row(
+                children: [
+                  _buildCamera(caController: caController),
+                  Spacer(flex: 1),
+                  _buildControls(caController: caController),
+                ],
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        );
+      },
+    );
   }
 }

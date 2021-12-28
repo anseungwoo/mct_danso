@@ -11,8 +11,6 @@ class SongScoreGraph extends GetView<MyHistoryController> {
       : super(key: key);
   final songId;
   final songTitle;
-  // final MyHistoryController _myHistoryController =
-  //     Get.put(MyHistoryController());
 
   @override
   Widget build(BuildContext context) {
