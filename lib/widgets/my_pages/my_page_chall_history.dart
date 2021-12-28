@@ -7,30 +7,19 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MyPageChallangeHistory extends StatefulWidget {
+class MyPageChallangeHistory extends GetView<MyHistoryController> {
   final String songname;
 
   MyPageChallangeHistory({Key? key, required this.songname}) : super(key: key);
-
-  @override
-  State<MyPageChallangeHistory> createState() => _MyPageChallangeHistoryState();
-}
-
-class _MyPageChallangeHistoryState extends State<MyPageChallangeHistory> {
-  final _myHistoryController = Get.put(MyHistoryController());
-
-  @override
-  void initState() {
-    super.initState();
-    _myHistoryController.getMyHistoryList();
-  }
+  // final _myHistoryController = Get.put(MyHistoryController());
 
   @override
   Widget build(BuildContext context) {
+    controller.getMyHistoryList();
     return Scaffold(
       appBar: tabbarAndAppBar(title: '내기록', tabbar: null, enableTabBar: false),
       body: GetBuilder<MyHistoryController>(
-          init: _myHistoryController,
+          init: controller,
           builder: (controller) {
             return ListView.builder(
                 padding: const EdgeInsets.all(15),

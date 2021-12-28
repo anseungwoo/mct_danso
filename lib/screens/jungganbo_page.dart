@@ -39,7 +39,7 @@ class JungGanBoPage extends StatefulWidget {
 }
 
 class _JungGanBoPageState extends State<JungGanBoPage> {
-  final item = Get.arguments;
+  // final item = Get.arguments;
   late int percent;
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
   JungganboController jungganboController = Get.put(JungganboController());
@@ -71,16 +71,16 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
 
   @override
   Widget build(BuildContext context) {
-    jungganboController.sheetHorizontal = item['sheetHorizontal'];
-    jungganboController.jangDan = item['jangdan'];
+    jungganboController.sheetHorizontal = widget.sheetHorizontal;
+    jungganboController.jangDan = widget.jangdan;
     var testJungGanBo =
-        JungGanBo(item['appbarTitle'], item['jangdan'], item['sheetData']);
+        JungGanBo(widget.appbarTitle, widget.jangdan, widget.sheetData);
     jungganboController.jungGanBo = testJungGanBo;
     jungganboController.create2DList();
 
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: '${item['appbarTitle']}', tabbar: null, enableTabBar: false),
+          title: '${widget.appbarTitle}', tabbar: null, enableTabBar: false),
       body: GetBuilder<PlayAndTestController>(
           init: playAndTestController,
           builder: (controller) {
@@ -88,7 +88,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                 init: jungganboController,
                 builder: (jungcontroller) {
                   jungcontroller.micro = testJungGanBo.jangDan.microSecond;
-                  jungcontroller.sheetVertical = item['sheetVertical'];
+                  jungcontroller.sheetVertical = widget.sheetVertical;
                   jangdanAndDansoSoundController.setSpeed(
                       jangdanAndDansoSoundController
                           .speed[jangdanAndDansoSoundController.speedCount]);
@@ -117,7 +117,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                                 Duration(seconds: 3),
                                             child: challengeDialog()));
                                         await jangdanAndDansoSoundController
-                                            .setJandan(item['jangdan']);
+                                            .setJandan(widget.jangdan);
                                         controller.nextButton();
                                         jungcontroller.isChallengeState();
                                         jangdanAndDansoSoundController
@@ -142,8 +142,8 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                         );
                                         await jungcontroller.startCapture();
                                         jungcontroller.stepStart(
-                                            songId: item['songId'],
-                                            songTitle: item['appbarTitle']);
+                                            songId: widget.songId,
+                                            songTitle: widget.appbarTitle);
 
                                         jungcontroller.audioSessionConfigure();
 
@@ -279,7 +279,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                       onPressed: () async {
                                         await jangdanAndDansoSoundController
                                             .setJangdanAndDansoSound(
-                                                item['appbarTitle']);
+                                                widget.appbarTitle);
                                         jungcontroller.changeStartStopState();
                                         controller.nextButton();
                                         jangdanAndDansoSoundController
@@ -315,7 +315,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                                   MctSize.twelve.getSize.sp)),
                                       onPressed: () async {
                                         await jangdanAndDansoSoundController
-                                            .setJandan(item['jangdan']);
+                                            .setJandan(widget.jangdan);
                                         jungcontroller.isLevelPracticeState();
                                         jungcontroller.changeStartStopState();
                                         controller.nextButton();
@@ -377,14 +377,14 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                               if (controller.statecount == 5)
                                 SongCamaraRecoding(
                                   jungGanBo: testJungGanBo,
-                                  jangdan: item['jangdan'],
-                                  songId: item['songId'],
+                                  jangdan: widget.jangdan,
+                                  songId: widget.songId,
                                 ),
                               if (controller.statecount == 6)
                                 SongAudioRecorder(
                                   jungGanBo: testJungGanBo,
-                                  jangdan: item['jangdan'],
-                                  songId: item['songId'],
+                                  jangdan: widget.jangdan,
+                                  songId: widget.songId,
                                 )
                             ],
                           ),
@@ -402,7 +402,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                       fontFamily: NOTO_REGULAR),
                                 ),
                                 Text(
-                                  '${item['jangdan']}',
+                                  '${widget.jangdan}',
                                   style: TextStyle(
                                       fontSize: MctSize.twelve.getSize.sp,
                                       fontFamily: NOTO_REGULAR),
@@ -419,10 +419,10 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                           child: Stack(
                             children: [
                               jungganboScreen(
-                                  item['sheetVertical'], jungcontroller),
-                              jungganbo(item['sheetVertical'], jungcontroller,
+                                  widget.sheetVertical, jungcontroller),
+                              jungganbo(widget.sheetVertical, jungcontroller,
                                   testJungGanBo, controller.krChanges),
-                              jungganboFromFlash(item['sheetVertical'],
+                              jungganboFromFlash(widget.sheetVertical,
                                   jungcontroller, testJungGanBo),
                             ],
                           ),
