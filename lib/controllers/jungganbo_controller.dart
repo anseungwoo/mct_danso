@@ -6,10 +6,8 @@ import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
-
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
@@ -18,6 +16,10 @@ class JungganboController extends GetxController {
   String startButton = '시작하기';
   bool krState = false;
   String krButton = '한자';
+  bool isChallenge = false;
+  bool isPractice = false;
+  bool isLevelPractice = false;
+
   // 정간보 변수
   int line = 0;
   int jungSection = 0;
@@ -29,31 +31,28 @@ class JungganboController extends GetxController {
   String jangDan = '';
   late int mill;
   late int sheetVertical;
-
-  // =========================
   late int micro;
   JungGanBo? jungGanBo;
-  bool isChallenge = false;
-  bool isPractice = false;
-  bool isLevelPractice = false;
   int scoreResult = 0;
   var yulmyoungsCount = 0;
+  // =========================
+
+  //디텍터 변수
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
-  PitchModelInterface pitchModelInterface = PitchModel();
-  late List<dynamic> matchTrueFalse;
   double pitchValue = 0;
   List<double> pitchValueList = [];
+  late List<dynamic> matchTrueFalse;
+  PitchModelInterface pitchModelInterface = PitchModel();
+  //==============================================
   late AudioSession audioSessions;
-  bool buttonDelay = true;
+
   final _tearController = Get.put(TearController());
   final _myHistoryController = Get.put(MyHistoryController());
-
   final learningSongAndLevelController =
       Get.put(LearningSongAndLevelController());
   final playAndTestController = Get.put(PlayAndTestController());
-
   final jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
 

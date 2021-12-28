@@ -101,7 +101,8 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                           width: 340.w,
                           child: Stack(
                             children: [
-                              if (controller.statecount == 0)
+                              if (controller.statecount ==
+                                  0) // 맨 처음 버튼 도전하기, 연습하기 ,한글/한자 ,배속
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -115,14 +116,18 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                         await Get.dialog(Dialog(
                                             insetAnimationDuration:
                                                 Duration(seconds: 3),
-                                            child: challengeDialog()));
+                                            child:
+                                                challengeDialog())); //도전하기전 경고문을 띄워줌
                                         await jangdanAndDansoSoundController
-                                            .setJandan(widget.jangdan);
-                                        controller.nextButton();
-                                        jungcontroller.isChallengeState();
+                                            .setJandan(
+                                                widget.jangdan); //장단 파일을 열어줌
+                                        controller.nextButton(); // 중지 버튼으로
+                                        jungcontroller
+                                            .isChallengeState(); //도전하기시 경험치를 관련
                                         jangdanAndDansoSoundController
-                                            .jandanPlay();
+                                            .jandanPlay(); //장단을 플레이
                                         await Get.dialog(
+                                          //예박을 위한 준비 단계
                                           WillPopScope(
                                             onWillPop: () async => false,
                                             child: Dialog(
@@ -140,8 +145,10 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                           ),
                                           barrierDismissible: false,
                                         );
-                                        await jungcontroller.startCapture();
+                                        await jungcontroller
+                                            .startCapture(); //음인식시작
                                         jungcontroller.stepStart(
+                                            //애니매이션 실행
                                             songId: widget.songId,
                                             songTitle: widget.appbarTitle);
 
@@ -188,8 +195,8 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                         }),
                                   ],
                                 ),
-                              if (controller.statecount == 1) //도전하기클릭시
-                                // 중지하기
+                              if (controller.statecount == 1) //도전하기클릭시 중지버튼이 나옴
+                                // 도전하기  중지하기 버튼
                                 songSwapButton(
                                   text: Text(
                                     '중지하기',
@@ -198,15 +205,18 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                   ),
                                   onPressed: () {
                                     jungcontroller.changeStartStopState();
-                                    jungcontroller.stepStop();
-                                    jungcontroller.stopCapture();
-                                    controller.previousButton();
-                                    jungcontroller.isChallengeState();
-                                    jangdanAndDansoSoundController.jandanStop();
+                                    jungcontroller.stepStop(); //애니매이션리셋
+                                    jungcontroller.stopCapture(); //음인식 멈춤
+                                    controller.previousButton(); //도전하기가 있던 페이지로
+                                    jungcontroller
+                                        .isChallengeState(); //도전하기시 경험치 주지않기 위해 선언
+                                    jangdanAndDansoSoundController
+                                        .jandanStop(); //장단멈춤
                                     print(controller.statecount);
                                   },
                                 ),
-                              if (controller.statecount == 2) // 연습하기 클릭시
+                              if (controller.statecount ==
+                                  2) // 연습하기 클릭시 연습하기, 녹음 ,녹화 버튼이 나옴
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -268,9 +278,11 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                         }),
                                   ],
                                 ),
-                              if (controller.statecount == 3)
+                              if (controller.statecount ==
+                                  3) //연습하기 클릭시 연습시작, 반주만 버튼이 나옴
                                 Row(
                                   children: [
+                                    //연습 시작 버튼
                                     songSwapButton(
                                       text: Text('연습시작',
                                           style: TextStyle(
@@ -308,6 +320,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                       },
                                     ),
                                     SizedBox(width: 5),
+                                    //반주만 버튼
                                     songSwapButton(
                                       text: Text('반주만',
                                           style: TextStyle(
@@ -344,9 +357,11 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                     ),
                                   ],
                                 ),
-                              if (controller.statecount == 4)
+                              if (controller.statecount ==
+                                  4) //연습시작 클릭시 -> 중지 , 반주만 버튼이 나옴
                                 Row(
                                   children: [
+                                    //중지버튼
                                     songSwapButton(
                                       text: Text('중지',
                                           style: TextStyle(
@@ -365,6 +380,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                       },
                                     ),
                                     SizedBox(width: 5),
+                                    //반주만 버튼
                                     songSwapButton(
                                       text: Text('반주만',
                                           style: TextStyle(
@@ -374,13 +390,13 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                     ),
                                   ],
                                 ),
-                              if (controller.statecount == 5)
+                              if (controller.statecount == 5) // 녹화 버튼을 보여줌
                                 SongCamaraRecoding(
                                   jungGanBo: testJungGanBo,
                                   jangdan: widget.jangdan,
                                   songId: widget.songId,
                                 ),
-                              if (controller.statecount == 6)
+                              if (controller.statecount == 6) //녹음 버튼을 보여줌
                                 SongAudioRecorder(
                                   jungGanBo: testJungGanBo,
                                   jangdan: widget.jangdan,
@@ -389,7 +405,8 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                             ],
                           ),
                         ),
-                        if (controller.statecount != 5)
+                        if (controller.statecount !=
+                            5) // 녹화를 제외한 곳에 장단이랑, 배속을 표시해줌
                           Container(
                             width: 335.w,
                             child: Row(
@@ -418,10 +435,13 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                           // alignment: Alignment.center,
                           child: Stack(
                             children: [
+                              //정간보배경을 보여줌
                               jungganboScreen(
                                   widget.sheetVertical, jungcontroller),
+                              //정간보 글자를 보여줌
                               jungganbo(widget.sheetVertical, jungcontroller,
                                   testJungGanBo, controller.krChanges),
+                              //정간보 애니매이션을 보여줌
                               jungganboFromFlash(widget.sheetVertical,
                                   jungcontroller, testJungGanBo),
                             ],

@@ -7,6 +7,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class QuestionsScreen extends StatefulWidget {
+  //QAndA 리스트를 보여줌
   const QuestionsScreen({Key? key}) : super(key: key);
 
   @override
@@ -53,7 +54,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             vertical: 5, horizontal: MctSize.fifteen.getSize),
                         child: InkWell(
                             onTap: () {
-                              Get.to(QAndAPAGE(
+                              Get.to(QAndAPage(
                                 subject: Q_AND_A_TITLE[index],
                                 explanation: Q_AND_A_SUB_CONTANT[index],
                                 url: Q_AND_A_URL[index],
@@ -106,7 +107,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                             vertical: 5, horizontal: MctSize.fifteen.getSize),
                         child: InkWell(
                             onTap: () {
-                              Get.to(QAndAPAGE(
+                              Get.to(QAndAPage(
                                 subject: TIP_TITLE[index],
                                 explanation: TIP_SUB_CONTANT[index],
                                 url: TIP_URL[index],

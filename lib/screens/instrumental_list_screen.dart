@@ -48,15 +48,19 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
             body: Column(
               children: [
                 SizedBox(height: 30),
+                //레벨 바꾸는 버튼 레벨표시 아이콘
                 levelSwapButton(controller),
                 SizedBox(height: 20),
                 Column(
                   children: [
+                    //각 난이도 별 율명 한글
                     yulmyeongHangeul(controller),
+                    //각 난이도 별 율명 한자
                     yulmyeongHanja(controller),
                   ],
                 ),
                 SizedBox(height: 20.h),
+                //각 단계별 곡 리스트를 보여줌
                 songListView(controller),
               ],
             ),
@@ -161,6 +165,7 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
     );
   }
 
+  //율명 한자를 표기하는 위젯
   Row yulmyeongHanja(LearningSongAndLevelController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -188,6 +193,7 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
     );
   }
 
+//율명 한글를 표기하는 위젯
   Row yulmyeongHangeul(LearningSongAndLevelController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

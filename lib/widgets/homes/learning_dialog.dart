@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 final permissionController = Get.put(PermissionController());
+//운지법익히기 클릭시 나오는 다이얼 로그
 Widget learningDialog() {
   permissionController.checkPermission();
   return Dialog(

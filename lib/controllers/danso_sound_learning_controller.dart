@@ -20,7 +20,8 @@ class DansoSoundLearningController extends GetxController {
   bool soundTuningState = false;
   bool listenTuningState = false;
   bool playTuningState = false;
-  // late PitchModel pitchModel;
+  bool isRecording = false;
+  bool isAdjust = false;
   String tuningButtonText = '기준음 잡기';
   String buttonListen = '예시듣기';
   String buttonPlay = '불어보기';
@@ -40,14 +41,11 @@ class DansoSoundLearningController extends GetxController {
   var pitchValue = 0.0;
   var pitchResult = 0.0.obs;
 
-  //디텍터
   PitchModelInterface pitchModelInterface = PitchModel();
-  // late Pitchdetector detector;
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
 
   late double pitch;
-  bool isRecording = false;
-  bool isAdjust = false;
+
   late String yulmyeong;
   late String pitchStatus;
   double userInputForAdjust = F_FREQ;
