@@ -21,17 +21,17 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(PermissionController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
-  void load() async {
-    await flutterMidi.unmute();
-    var byteData = await rootBundle.load('assets/Dan.sf2');
-    await flutterMidi.prepare(sf2: byteData, name: 'Dan.sf2');
-  }
+  // void load() async {
+  //   await flutterMidi.unmute();
+  //   var byteData = await rootBundle.load('assets/Dan.sf2');
+  //   await flutterMidi.prepare(sf2: byteData, name: 'Dan.sf2');
+  // }
 
   @override
   void initState() {
     super.initState();
 
-    load();
+    // load();
     _songController.insertSongToJson();
     // _tearController.loadExp();
     startTime();

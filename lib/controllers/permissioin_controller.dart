@@ -3,20 +3,11 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionController extends GetxController {
-  // void permission() async {
-  //   await [
-  //     Permission.microphone,
-  //     Permission.camera,
-  //     Permission.photos,
-  //     Permission.storage
-  //   ].request();
-  // }
-
   Future<bool> checkPermission() async {
     var statuses = await [
       Permission.camera,
       Permission.microphone,
-      Permission.photos,
+      // Permission.photos,
       Permission.storage
     ].request();
 
@@ -30,23 +21,6 @@ class PermissionController extends GetxController {
 
     return per;
   }
-
-  // Future<bool> requestPermission(BuildContext context) async {
-  //   var cameraStatus = await Permission.camera.request();
-  //   var micStatus = await Permission.camera.request();
-  //   var photoStatus = await Permission.camera.request();
-  //   var storageStatus = await Permission.camera.request();
-
-  //   if (!cameraStatus.isGranted ||
-  //       !micStatus.isGranted ||
-  //       !photoStatus.isGranted ||
-  //       !storageStatus.isGranted) {
-  //     // 허용이 안된 경우
-  //     await await buildPermissionDialog(context);
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
   Future buildPermissionDialog(BuildContext context,
       {dynamic runMethod}) async {

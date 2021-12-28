@@ -28,7 +28,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
         if (progressValue == 75) {
           _timer.cancel();
           dansoSoundLearningController.changeSoundTuningState();
-          // dansoSoundLearningController.stopAdjust();
           print(dansoSoundLearningController.dansoPitchAdjustList);
           Get.back();
         }
@@ -38,15 +37,12 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
 
   @override
   void dispose() {
-    // dansoSoundLearningController.stopAdjust();
     dansoSoundLearningController.soundTuningState = false;
     dansoSoundLearningController.isAdjust = false;
-    // dansoSoundLearningController.detector.stopRecording();
 
     _timer2.cancel();
 
     if (controller.musicState.value) {
-      // controller.assetsAudioPlayer.play();
       controller.player.play();
     }
     super.dispose();
@@ -105,7 +101,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
                     thicknessUnit: GaugeSizeUnit.factor,
                   ),
                   pointers: <GaugePointer>[
-                    //239, 190, 80
                     RangePointer(
                       color: MctColor.unButtonColorOrange.getMctColor,
                       value: progressValue,
@@ -121,7 +116,6 @@ class _LoadingIndicatorState extends State<LoadingIndicator> {
               ],
             ),
           ),
-          // Center(child: Text('$pitch Hz')),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(

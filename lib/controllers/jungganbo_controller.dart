@@ -79,18 +79,11 @@ class JungganboController extends GetxController {
     super.dispose();
   }
 
-  void buttonDelayState() {}
   void listener(dynamic obj) {
-    //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());
     final audioSample = buffer.toList();
-    //Uses pitch_detector_dart library to detect a pitch from the audio sample
     final result = pitchDetectorDart.getPitch(audioSample);
-    //If there is a pitch - evaluate it
     if (result.pitched) {
-      //Uses the pitchupDart library to check a given pitch for a Guitar
-      //Updates the state with the result
-
       pitchValue = result.pitch;
       pitchValueList.add(pitchValue);
       pitchModelInterface
@@ -249,15 +242,6 @@ class JungganboController extends GetxController {
     update();
   }
 
-//   void changespeedState() {
-//     speedCount++;
-//     if (speedCount == 5) {
-//       speedCount = 0;
-//     }
-
-//     update();
-//   }
-
   void create2DList() {
     matchTrueFalse = List.generate(
         jungGanBo!.sheet.length,
@@ -327,7 +311,6 @@ class JungganboController extends GetxController {
     countingJungganboYulmyeong();
     copySheetHorizontal = sheetHorizontal;
     setJungganboVariable();
-//     Timer.periodic(Duration(microseconds: micro ~/ speed[speedCount]), (timer) {
 
     Timer.periodic(
         Duration(

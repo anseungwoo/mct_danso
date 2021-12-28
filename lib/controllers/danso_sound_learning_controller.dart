@@ -20,7 +20,6 @@ class DansoSoundLearningController extends GetxController {
   bool soundTuningState = false;
   bool listenTuningState = false;
   bool playTuningState = false;
-  // late PitchModel pitchModel;
   String tuningButtonText = '기준음 잡기';
   String buttonListen = '예시듣기';
   String buttonPlay = '불어보기';
@@ -40,9 +39,7 @@ class DansoSoundLearningController extends GetxController {
   var pitchValue = 0.0;
   var pitchResult = 0.0.obs;
 
-  //디텍터
   PitchModelInterface pitchModelInterface = PitchModel();
-  // late Pitchdetector detector;
   JungGanBoPlayer jungGanBoPlayer = JungGanBoPlayer();
 
   late double pitch;
@@ -59,14 +56,8 @@ class DansoSoundLearningController extends GetxController {
   var isCapture = false;
 
   var dbFr;
-  // late Pitchdetector detectorAdjust;
   Text isMacthing = Text('단소를 불러보세요');
 
-  // ja.AudioPlayer listenPlayer = ja.AudioPlayer(
-  //   handleInterruptions: false,
-  //   androidApplyAudioAttributes: false,
-  //   handleAudioSessionActivation: false,
-  // );
   @override
   void onInit() {
     super.onInit();
@@ -110,16 +101,11 @@ class DansoSoundLearningController extends GetxController {
   }
 
   void listener(dynamic obj) {
-    //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());
     final audioSample = buffer.toList();
-    //Uses pitch_detector_dart library to detect a pitch from the audio sample
     final result = pitchDetectorDart.getPitch(audioSample);
-    //If there is a pitch - evaluate it
     if (result.pitched) {
-      //Uses the pitchupDart library to check a given pitch for a Guitar
       final handledPitchResult = pitchupDart.handlePitch(result.pitch);
-      //Updates the state with the result
       userInputForAdjust = result.pitch;
       dansoPitchAdjustList.add(userInputForAdjust);
       pitchValue = result.pitch;

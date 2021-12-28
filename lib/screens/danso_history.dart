@@ -19,10 +19,8 @@ class _HomeDansoHistoryScreenState extends State<HomeDansoHistoryScreen> {
   void dispose() {
     super.dispose();
     if (controller.musicState.value) {
-      // controller.assetsAudioPlayer.play();
       controller.player.play();
     }
-    ;
   }
 
   @override

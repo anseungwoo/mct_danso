@@ -92,6 +92,4 @@ void bottomsheet(
     );
     return slidingSheetDialog;
   });
-
-  print(result); // This is the result.
 }

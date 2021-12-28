@@ -44,8 +44,6 @@ class JangdanAndDansoSoundController extends GetxController {
   }
 
   String getJandan(var jangdan) {
-    // String res = '';
-
     switch (jangdan) {
       case '중중모리장단':
         return getAudioFilePath(AudioFile.JoongJoong);

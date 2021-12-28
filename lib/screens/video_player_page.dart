@@ -41,7 +41,6 @@ class _VideoAppScreenState extends State<VideoAppScreen> {
   @override
   void dispose() {
     super.dispose();
-
     if (isFile) {
       videoPlayerController.dispose();
     }
@@ -50,44 +49,48 @@ class _VideoAppScreenState extends State<VideoAppScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar:
-            tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
-        body: isFile
-            ? AspectRatio(
-                aspectRatio: videoPlayerController.value.aspectRatio,
-                child: Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationY(math.pi),
-                    child: VideoPlayer(videoPlayerController)),
-              )
-            : Center(child: Text('nodata')),
-        floatingActionButton: isFile
-            ? Container(
-                width: 60.w,
-                height: 60.h,
-                child: FloatingActionButton(
-                  backgroundColor: MctColor.buttonColorOrange.getMctColor,
-                  onPressed: () {
-                    setState(() {
-                      videoPlayerController.value.isPlaying
-                          ? videoPlayerController.pause()
-                          : videoPlayerController.play();
-                    });
-                  },
-                  child: videoPlayerController.value.isPlaying
-                      ? SvgPicture.asset(
-                          PLAY_STOP_SVG,
-                          width: 20.w,
-                          height: 20.h,
-                          color: MctColor.white.getMctColor,
-                        )
-                      : SvgPicture.asset(
-                          PLAY_SVG,
-                          width: 20.w,
-                          height: 20.h,
-                        ),
-                ),
-              )
-            : Container());
+      appBar:
+          tabbarAndAppBar(title: '내연주 보기', tabbar: null, enableTabBar: false),
+      body: isFile
+          ? AspectRatio(
+              aspectRatio: videoPlayerController.value.aspectRatio,
+              child: Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.rotationY(math.pi),
+                child: VideoPlayer(videoPlayerController),
+              ),
+            )
+          : Center(
+              child: Text('nodata'),
+            ),
+      floatingActionButton: isFile
+          ? Container(
+              width: 60.w,
+              height: 60.h,
+              child: FloatingActionButton(
+                backgroundColor: MctColor.buttonColorOrange.getMctColor,
+                onPressed: () {
+                  setState(() {
+                    videoPlayerController.value.isPlaying
+                        ? videoPlayerController.pause()
+                        : videoPlayerController.play();
+                  });
+                },
+                child: videoPlayerController.value.isPlaying
+                    ? SvgPicture.asset(
+                        PLAY_STOP_SVG,
+                        width: 20.w,
+                        height: 20.h,
+                        color: MctColor.white.getMctColor,
+                      )
+                    : SvgPicture.asset(
+                        PLAY_SVG,
+                        width: 20.w,
+                        height: 20.h,
+                      ),
+              ),
+            )
+          : Container(),
+    );
   }
 }

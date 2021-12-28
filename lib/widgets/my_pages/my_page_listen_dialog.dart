@@ -35,7 +35,6 @@ class MyPageListenDialog extends StatefulWidget {
 
 class _MyPageListenDialogState extends State<MyPageListenDialog> {
   var myPageMusicController = Get.put(MyPageMusicController());
-  // var audioAndVideoListController = Get.put(AudioAndVideoListController());
 
   @override
   void initState() {

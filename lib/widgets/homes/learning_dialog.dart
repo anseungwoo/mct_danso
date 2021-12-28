@@ -14,7 +14,6 @@ Widget learningDialog() {
     child: Container(
       padding: EdgeInsets.only(
           bottom: MctSize.fifteen.getSize, top: MctSize.fifteen.getSize),
-      // height: 230.h,
       width: 330.w,
       child: Column(
         mainAxisSize: MainAxisSize.min,

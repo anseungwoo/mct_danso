@@ -41,16 +41,15 @@ Widget challengeDialog() {
           style: TextStyle(fontFamily: NOTO_REGULAR, fontSize: 13.sp),
         ),
         TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: Text(
-              '확인',
-              style: TextStyle(
-                  fontFamily: NOTO_REGULAR,
-                  fontSize: 13.sp,
-                  color: MctColor.black.getMctColor),
-            ))
+          onPressed: () => Get.back(),
+          child: Text(
+            '확인',
+            style: TextStyle(
+                fontFamily: NOTO_REGULAR,
+                fontSize: 13.sp,
+                color: MctColor.black.getMctColor),
+          ),
+        ),
       ],
     ),
   );
