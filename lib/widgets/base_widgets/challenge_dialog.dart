@@ -45,7 +45,7 @@ Widget challengeDialog() {
               Get.back();
             },
             child: Text(
-              "확인",
+              '확인',
               style: TextStyle(
                   fontFamily: NOTO_REGULAR,
                   fontSize: 13.sp,

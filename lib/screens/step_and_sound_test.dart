@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class HomeStepByStepAndTestScreen extends StatefulWidget {
@@ -231,7 +230,7 @@ class _HomeStepByStepAndTestScreenState
                     : controller.playTuningState
                         ? null
                         : () {
-                            Get.to(StepByStepScreen());
+                            Get.toNamed('/steplearning');
                           },
           ),
           SizedBox(height: 5.w),

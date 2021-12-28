@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   assetName: INFOR_SVG,
                   title: '단소 알아보기',
                   contant: LOOK,
-                  page: HomeDansoHistoryScreen()),
+                  page: '/dansohistory'),
               _homeMenuButton(
                   assetName: DANSO_TUNING_SVG,
                   title: '내 단소 기준음 잡기',
@@ -81,14 +81,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   contant: PLAYLEARN,
                   svgHeight: 65,
                   svgWidth: 65,
-                  page: InstrumentalListScreen()),
+                  page: '/instrumental'),
               _homeMenuButton(
                   assetName: QandA_SVG,
                   title: 'Q&A와 팁',
                   contant: QUESTIONS,
                   svgHeight: 60,
                   svgWidth: 60,
-                  page: QuestionsScreen()),
+                  page: '/qna'),
             ],
           ),
         ),
@@ -220,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _homeMenuButton(
       {required String title,
-      required Widget page,
+      required dynamic page,
       required List contant,
       required String assetName,
       double svgHeight = 45,
@@ -240,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (dialog) {
             Get.dialog(page);
           } else {
-            Get.to(page);
+            Get.toNamed(page);
           }
         },
         child: Container(

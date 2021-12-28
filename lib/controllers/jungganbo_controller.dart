@@ -1,21 +1,17 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-import 'package:project_danso/common/common.dart';
 
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
 
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
-
-import 'pitch_check_controller.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;

@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/models/song_from_json_model.dart';
+import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class InstrumentalListScreen extends StatefulWidget {
@@ -75,7 +77,7 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
                 child: InkWell(
                   onTap: () {
                     Get.to(
-                      SongPlayAndTest(
+                      JungGanBoPage(
                         appbarTitle: item.songTitle,
                         jangdan: item.songJangdan,
                         sheetData: item.songSheet,
@@ -84,6 +86,25 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
                         songId: item.songId,
                       ),
                     );
+                    // await Get.toNamed('/jungganbo', arguments: {
+                    //   'songTitle': item!.songTitle,
+                    //   'jangdan': item!.songJangdan,
+                    //   'sheetData': item!.songSheet,
+                    //   'sheetVertical': item!.songSheetVertical,
+                    //   'sheetHorizontal': item!.songSheetHorizontal,
+                    //   'songId': item!.songId
+                    // });
+                    // print('${item.songTitle}');
+
+                    // await Get.toNamed('/jungganbo',
+                    //     arguments: SongDataModel(
+                    //       songTitle: item.songTitle!,
+                    //       songJangdan: item.songJangdan!,
+                    //       songSheet: item.songSheet!,
+                    //       songSheetVertical: item.songSheetVertical!,
+                    //       songSheetHorizontal: item.songSheetHorizontal!,
+                    //       songId: item.songId!,
+                    //     ));
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -112,8 +133,8 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
                               radius: 40.r,
                               onTap: () {
                                 controller.updateLikeSongList(
-                                  songId: item.songId,
-                                  songLike: item.songLike,
+                                  songId: item.songId!,
+                                  songLike: item.songLike!,
                                   exerNum: controller.currentLevel,
                                 );
                               },

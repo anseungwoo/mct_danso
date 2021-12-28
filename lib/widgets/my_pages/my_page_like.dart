@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageLike extends GetView<LikeSongController> {
@@ -29,7 +30,7 @@ class MyPageLike extends GetView<LikeSongController> {
                 child: InkWell(
                   onTap: () {
                     Get.to(
-                      SongPlayAndTest(
+                      JungGanBoPage(
                         appbarTitle: item.songTitle,
                         jangdan: item.songJangdan,
                         sheetData: item.songSheet,
@@ -38,6 +39,15 @@ class MyPageLike extends GetView<LikeSongController> {
                         songId: item.songId,
                       ),
                     );
+
+                    // await Get.toNamed('/jungganbo', arguments: {
+                    //   'songTitle': item.songTitle,
+                    //   'jangdan': item.songJangdan,
+                    //   'sheetData': item.songSheet,
+                    //   'sheetVertical': item.songSheetVertical,
+                    //   'sheetHorizontal': item.songSheetHorizontal,
+                    //   'songId': item.songId
+                    // });
                   },
                   child: Container(
                     decoration: BoxDecoration(

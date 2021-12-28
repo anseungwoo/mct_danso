@@ -12,6 +12,7 @@ class Routes {
   static const QNA = _Paths.QNA;
   static const STEPLEARNING = _Paths.STEPLEARNING;
   static const VIDEO = _Paths.VIDEO;
+  static const JUNGGANBO = _Paths.JUNGGANBO;
 }
 
 class _Paths {
@@ -26,4 +27,5 @@ class _Paths {
   static const QNA = '/qna';
   static const STEPLEARNING = '/steplearning';
   static const VIDEO = '/video';
+  static const JUNGGANBO = '/jungganbo';
 }
