@@ -6,33 +6,23 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class SongScoreGraph extends StatefulWidget {
+class SongScoreGraph extends GetView<MyHistoryController> {
   SongScoreGraph({Key? key, required this.songId, required this.songTitle})
       : super(key: key);
   final songId;
   final songTitle;
-
-  @override
-  State<SongScoreGraph> createState() => _SongScoreGraphState();
-}
-
-class _SongScoreGraphState extends State<SongScoreGraph> {
-  final MyHistoryController _myHistoryController =
-      Get.put(MyHistoryController());
-
-  @override
-  void initState() {
-    super.initState();
-    _myHistoryController.getMyHistoryGraphList(widget.songId);
-  }
+  // final MyHistoryController _myHistoryController =
+  //     Get.put(MyHistoryController());
 
   @override
   Widget build(BuildContext context) {
+    controller.getMyHistoryGraphList(songId);
+
     return Scaffold(
       appBar: songtabbarAndAppBar(
-          title: '${widget.songTitle}', tabbar: null, enableTabBar: false),
+          title: '$songTitle', tabbar: null, enableTabBar: false),
       body: GetBuilder<MyHistoryController>(
-          init: _myHistoryController,
+          init: controller,
           builder: (controller) {
             return Padding(
               padding: EdgeInsets.all(MctSize.fifteen.getSize),
