@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/controllers/pitch_check_controller.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
 Widget jungganbo(int heightNumber, JungganboController controller,

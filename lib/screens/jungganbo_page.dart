@@ -1,7 +1,5 @@
-import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_midi/flutter_midi.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -16,7 +14,22 @@ import 'package:project_danso/widgets/base_widgets/challenge_dialog.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class JungGanBoPage extends StatefulWidget {
-  JungGanBoPage({Key? key}) : super(key: key);
+  JungGanBoPage(
+      {Key? key,
+      required this.appbarTitle,
+      required this.jangdan,
+      required this.sheetData,
+      required this.sheetVertical,
+      required this.sheetHorizontal,
+      required this.songId})
+      : super(key: key);
+
+  final appbarTitle;
+  final jangdan;
+  final sheetData;
+  final sheetVertical;
+  final sheetHorizontal;
+  final songId;
 
   // final songData = Get.arguments;
   // final item = Get.arguments;

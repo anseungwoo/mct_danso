@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
