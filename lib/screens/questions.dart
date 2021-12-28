@@ -7,6 +7,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class QuestionsScreen extends StatefulWidget {
+  //QAndA 리스트를 보여줌
   const QuestionsScreen({Key? key}) : super(key: key);
 
   @override

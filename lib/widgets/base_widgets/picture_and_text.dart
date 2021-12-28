@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/common.dart';
 
+//사진이랑 제목 설명 위한 위젯
 class PictureAndText extends StatelessWidget {
   String title;
   String image;

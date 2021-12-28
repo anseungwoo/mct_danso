@@ -9,6 +9,7 @@ import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dar
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongCamaraRecoding extends StatefulWidget {
+  //녹화기능을 담당하고 있는 클래스
   final JungGanBo jungGanBo;
   final songId;
   final String jangdan;
@@ -42,6 +43,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     super.dispose();
   }
 
+// 카메라의 크기와 조정
   Widget _buildCamera({required CameraRecordController caController}) {
     if (cameraRecordcontroller.controller == null ||
         !cameraRecordcontroller.controller.value.isInitialized) {
@@ -60,6 +62,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     }
   }
 
+// 녹화시작 버튼
   Widget _buildControls({required CameraRecordController caController}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -123,7 +126,7 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
         ),
         SizedBox(height: 3.h),
         Text(
-            '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]}',
+            '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
             style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
         Text(
           widget.jangdan,

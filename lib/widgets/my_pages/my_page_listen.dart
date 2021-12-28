@@ -11,6 +11,7 @@ import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageListen extends GetView<AudioAndVideoListController> {
+  //녹음 파일을 리스트로 불러오는 페이지
   final String songname;
   final String date;
 
@@ -76,6 +77,7 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                               var dir =
                                   (await getApplicationDocumentsDirectory())
                                       .path;
+                              //녹음한 파일을 들을수 있게 path를 넘겨줌
                               await Get.dialog(MyPageListenDialog(
                                 recordItem: Platform.isIOS
                                     ? '$dir/${item.exerPath}'
@@ -90,13 +92,14 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
+                              //공유를 위한 path
                               controller.shareFile(item.exerPath);
                             }
                             if (value == 2) {
                               var dir =
                                   (await getApplicationDocumentsDirectory())
                                       .path;
-
+                              //파일 삭제를 위한 path
                               await Get.dialog(myPageDeleteDialog(
                                   Platform.isIOS
                                       ? '$dir/${item.exerPath}'
