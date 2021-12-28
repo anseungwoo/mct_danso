@@ -178,8 +178,9 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                     }),
                               ],
                             ),
-                          if (controller.statecount == 1) //도전하기클릭시
-                            // 중지하기
+                          if (controller.statecount == 1) //도전하기클릭시 중지버튼이 나옴
+
+                            // 도전하기  중지하기 버튼
                             songSwapButton(
                               text: Text(
                                 '중지하기',
@@ -196,222 +197,186 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                 print(controller.statecount);
                               },
                             ),
-                          if (controller.statecount == 2) // 연습하기 클릭시
+                          if (controller.statecount ==
+                              2) // 연습하기 클릭시 연습하기, 녹음 ,녹화 버튼이 나옴
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 //연습 시작
                                 songSwapButton(
-                                  text: Text('연습하기',
-                                      style: TextStyle(
-                                          fontSize: MctSize.twelve.getSize.sp)),
+                                  text: Text('연습하기'),
                                   onPressed: () {
                                     controller.nextButton();
                                     print(controller.statecount);
                                   },
                                 ),
-                                if (controller.statecount ==
-                                    1) //도전하기클릭시 중지버튼이 나옴
-                                  // 도전하기  중지하기 버튼
-                                  //녹음
-                                  songSwapButton(
-                                    text: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        SvgPicture.asset(
-                                          RECORD_SVG,
-                                          width: 20.w,
-                                          height: 20.h,
-                                        ),
-                                        Text(
-                                          '녹음',
+                                SizedBox(width: 5.w),
+                                songSwapButton(
+                                  text: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      SvgPicture.asset(
+                                        RECORD_SVG,
+                                        width: 20.w,
+                                        height: 20.h,
+                                      ),
+                                      Text(
+                                        '녹음',
+                                        style: TextStyle(
+                                            fontSize:
+                                                MctSize.twelve.getSize.sp),
+                                      ),
+                                    ],
+                                  ),
+                                  onPressed: () {
+                                    controller.stateCountUp(6);
+                                  },
+                                ),
+                                SizedBox(width: 5.w),
+                                //녹화
+                                songSwapButton(
+                                  text: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      SvgPicture.asset(
+                                        TRANSCRIPTION_SVG,
+                                        width: 13.w,
+                                        height: 13.h,
+                                      ),
+                                      Text('녹화',
                                           style: TextStyle(
                                               fontSize:
-                                                  MctSize.twelve.getSize.sp),
-                                        ),
-                                      ],
-                                    ),
-                                    onPressed: () {
-                                      jungcontroller.changeStartStopState();
-                                      jungcontroller.stepStop(); //애니매이션리셋
-                                      jungcontroller.stopCapture(); //음인식 멈춤
-                                      controller
-                                          .previousButton(); //도전하기가 있던 페이지로
-                                      jungcontroller
-                                          .isChallengeState(); //도전하기시 경험치 주지않기 위해 선언
-                                      jangdanAndDansoSoundController
-                                          .jandanStop(); //장단멈춤
-                                      print(controller.statecount);
-                                    },
-                                  ),
-                                if (controller.statecount ==
-                                    2) // 연습하기 클릭시 연습하기, 녹음 ,녹화 버튼이 나옴
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      //연습 시작
-                                      songSwapButton(
-                                        text: Text('연습하기'),
-                                        onPressed: () {
-                                          controller.stateCountUp(6);
-                                          print(controller.statecount);
-                                        },
-                                      ),
-                                      SizedBox(width: 5),
-                                      //녹화
-                                      songSwapButton(
-                                        text: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            SvgPicture.asset(
-                                              TRANSCRIPTION_SVG,
-                                              width: 13.w,
-                                              height: 13.h,
-                                            ),
-                                            Text('녹화',
-                                                style: TextStyle(
-                                                    fontSize: MctSize
-                                                        .twelve.getSize.sp)),
-                                          ],
-                                        ),
-                                        onPressed: () {
-                                          controller.stateCountUp(5);
-
-                                          print(controller.statecount);
-                                        },
-                                      ),
+                                                  MctSize.twelve.getSize.sp)),
                                     ],
                                   ),
+                                  onPressed: () {
+                                    controller.stateCountUp(5);
 
-                                if (controller.statecount ==
-                                    3) //연습하기 클릭시 연습시작, 반주만 버튼이 나옴
-                                  Row(
-                                    children: [
-                                      songSwapButton(
-                                        //연습 시작 버튼
-                                        text: Text('연습시작',
-                                            style: TextStyle(
-                                                fontSize:
-                                                    MctSize.twelve.getSize.sp)),
-                                        onPressed: () async {
-                                          await jangdanAndDansoSoundController
-                                              .setJangdanAndDansoSound(
-                                                  widget.appbarTitle);
-                                          jungcontroller.changeStartStopState();
-                                          controller.nextButton();
-                                          jangdanAndDansoSoundController
-                                              .jandanPlay();
-                                          await Get.dialog(
-                                            WillPopScope(
-                                              onWillPop: () async => false,
-                                              child: Dialog(
-                                                backgroundColor:
-                                                    Colors.white.withOpacity(0),
-                                                elevation: 0,
-                                                child: GameTimerWidget(
-                                                  timer: testJungGanBo
-                                                          .jangDan.delay ~/
-                                                      jangdanAndDansoSoundController
-                                                              .speed[
-                                                          jangdanAndDansoSoundController
-                                                              .speedCount],
-                                                ),
-                                              ),
-                                            ),
-                                            barrierDismissible: false,
-                                          );
-
-                                          jungcontroller.isLevelPracticeState();
-                                          jungcontroller.stepStart();
-                                        },
-                                      ),
-                                      SizedBox(width: 5),
-                                      //반주만 버튼
-                                      songSwapButton(
-                                        text: Text('반주만',
-                                            style: TextStyle(
-                                                fontSize:
-                                                    MctSize.twelve.getSize.sp)),
-                                        onPressed: () async {
-                                          await jangdanAndDansoSoundController
-                                              .setJandan(widget.jangdan);
-                                          jungcontroller.isLevelPracticeState();
-                                          jungcontroller.changeStartStopState();
-                                          controller.nextButton();
-                                          jangdanAndDansoSoundController
-                                              .jandanPlay();
-                                          await Get.dialog(
-                                            WillPopScope(
-                                              onWillPop: () async => false,
-                                              child: Dialog(
-                                                  backgroundColor: Colors.white
-                                                      .withOpacity(0),
-                                                  elevation: 0,
-                                                  child: GameTimerWidget(
-                                                    timer: testJungGanBo
-                                                            .jangDan.delay ~/
-                                                        jangdanAndDansoSoundController
-                                                                .speed[
-                                                            jangdanAndDansoSoundController
-                                                                .speedCount],
-                                                  )),
-                                            ),
-                                            barrierDismissible: false,
-                                          );
-                                          jungcontroller.stepStart();
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                if (controller.statecount ==
-                                    4) //연습시작 클릭시 -> 중지 , 반주만 버튼이 나옴
-                                  Row(
-                                    children: [
-                                      //중지버튼
-                                      songSwapButton(
-                                        text: Text('중지',
-                                            style: TextStyle(
-                                                fontSize:
-                                                    MctSize.twelve.getSize.sp)),
-                                        onPressed: () {
-                                          jungcontroller.changeStartStopState();
-                                          jungcontroller.stepStop();
-                                          jangdanAndDansoSoundController
-                                              .jandanStop();
-                                          jungcontroller.isLevelPracticeState();
-                                          controller.stateCountUp(0);
-                                          print(controller.statecount);
-                                          // jungcontroller.audioSessions
-                                          //     .setActive(false);
-                                        },
-                                      ),
-                                      SizedBox(width: 5),
-                                      //반주만 버튼
-                                      songSwapButton(
-                                        text: Text('반주만',
-                                            style: TextStyle(
-                                                fontSize:
-                                                    MctSize.twelve.getSize.sp)),
-                                        onPressed: null,
-                                      ),
-                                    ],
-                                  ),
-                                if (controller.statecount == 5) // 녹화 버튼을 보여줌
-                                  SongCamaraRecoding(
-                                    jungGanBo: testJungGanBo,
-                                    jangdan: widget.jangdan,
-                                    songId: widget.songId,
-                                  ),
-                                if (controller.statecount == 6) //녹음 버튼을 보여줌
-                                  SongAudioRecorder(
-                                    jungGanBo: testJungGanBo,
-                                    jangdan: widget.jangdan,
-                                    songId: widget.songId,
-                                  )
+                                    print(controller.statecount);
+                                  },
+                                ),
                               ],
                             ),
+                          if (controller.statecount ==
+                              3) //연습하기 클릭시 연습시작, 반주만 버튼이 나옴
+                            Row(
+                              children: [
+                                songSwapButton(
+                                  //연습 시작 버튼
+                                  text: Text('연습시작',
+                                      style: TextStyle(
+                                          fontSize: MctSize.twelve.getSize.sp)),
+                                  onPressed: () async {
+                                    await jangdanAndDansoSoundController
+                                        .setJangdanAndDansoSound(
+                                            widget.appbarTitle);
+                                    jungcontroller.changeStartStopState();
+                                    controller.nextButton();
+                                    jangdanAndDansoSoundController.jandanPlay();
+                                    await Get.dialog(
+                                      WillPopScope(
+                                        onWillPop: () async => false,
+                                        child: Dialog(
+                                          backgroundColor:
+                                              Colors.white.withOpacity(0),
+                                          elevation: 0,
+                                          child: GameTimerWidget(
+                                            timer: testJungGanBo
+                                                    .jangDan.delay ~/
+                                                jangdanAndDansoSoundController
+                                                        .speed[
+                                                    jangdanAndDansoSoundController
+                                                        .speedCount],
+                                          ),
+                                        ),
+                                      ),
+                                      barrierDismissible: false,
+                                    );
+
+                                    jungcontroller.isLevelPracticeState();
+                                    jungcontroller.stepStart();
+                                  },
+                                ),
+                                SizedBox(width: 5),
+                                //반주만 버튼
+                                songSwapButton(
+                                  text: Text('반주만',
+                                      style: TextStyle(
+                                          fontSize: MctSize.twelve.getSize.sp)),
+                                  onPressed: () async {
+                                    await jangdanAndDansoSoundController
+                                        .setJandan(widget.jangdan);
+                                    jungcontroller.isLevelPracticeState();
+                                    jungcontroller.changeStartStopState();
+                                    controller.nextButton();
+                                    jangdanAndDansoSoundController.jandanPlay();
+                                    await Get.dialog(
+                                      WillPopScope(
+                                        onWillPop: () async => false,
+                                        child: Dialog(
+                                            backgroundColor:
+                                                Colors.white.withOpacity(0),
+                                            elevation: 0,
+                                            child: GameTimerWidget(
+                                              timer: testJungGanBo
+                                                      .jangDan.delay ~/
+                                                  jangdanAndDansoSoundController
+                                                          .speed[
+                                                      jangdanAndDansoSoundController
+                                                          .speedCount],
+                                            )),
+                                      ),
+                                      barrierDismissible: false,
+                                    );
+                                    jungcontroller.stepStart();
+                                  },
+                                ),
+                              ],
+                            ),
+                          if (controller.statecount ==
+                              4) //연습시작 클릭시 -> 중지 , 반주만 버튼이 나옴
+                            Row(
+                              children: [
+                                //중지버튼
+                                songSwapButton(
+                                  text: Text('중지',
+                                      style: TextStyle(
+                                          fontSize: MctSize.twelve.getSize.sp)),
+                                  onPressed: () {
+                                    jungcontroller.changeStartStopState();
+                                    jungcontroller.stepStop();
+                                    jangdanAndDansoSoundController.jandanStop();
+                                    jungcontroller.isLevelPracticeState();
+                                    controller.stateCountUp(0);
+                                    print(controller.statecount);
+                                    // jungcontroller.audioSessions
+                                    //     .setActive(false);
+                                  },
+                                ),
+                                SizedBox(width: 5),
+                                //반주만 버튼
+                                songSwapButton(
+                                  text: Text('반주만',
+                                      style: TextStyle(
+                                          fontSize: MctSize.twelve.getSize.sp)),
+                                  onPressed: null,
+                                ),
+                              ],
+                            ),
+                          if (controller.statecount == 5) // 녹화 버튼을 보여줌
+                            SongCamaraRecoding(
+                              jungGanBo: testJungGanBo,
+                              jangdan: widget.jangdan,
+                              songId: widget.songId,
+                            ),
+                          if (controller.statecount == 6) //녹음 버튼을 보여줌
+                            SongAudioRecorder(
+                              jungGanBo: testJungGanBo,
+                              jangdan: widget.jangdan,
+                              songId: widget.songId,
+                            )
                         ],
                       ),
                     ),
