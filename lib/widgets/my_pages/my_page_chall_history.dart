@@ -11,10 +11,10 @@ class MyPageChallangeHistory extends GetView<MyHistoryController> {
   final String songname;
 
   MyPageChallangeHistory({Key? key, required this.songname}) : super(key: key);
-
+  final myHistoryController = Get.put(MyHistoryController());
   @override
   Widget build(BuildContext context) {
-    controller.getMyHistoryList();
+    myHistoryController.getMyHistoryList();
     return Scaffold(
       appBar: tabbarAndAppBar(title: '내기록', tabbar: null, enableTabBar: false),
       body: GetBuilder<MyHistoryController>(

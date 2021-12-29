@@ -114,7 +114,7 @@ class JangDan {
         ms = FAST_TEMPO_SEC;
         break;
       case JangDanType.fourByFour:
-        ms = 645125;
+        ms = 1645125;
         // (2+(41÷80+14)÷25)÷4=0.645125
         break;
       default:
