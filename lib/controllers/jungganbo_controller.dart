@@ -128,6 +128,87 @@ class JungganboController extends GetxController {
           ))
           .then((_) => audioSessions = audioSession));
 
+//처음에 사용한 율명 체크
+// void checkYulmyeongsSection(int i, {dynamic pitchValue}) {
+//     var data = jungGanBo!.sheet[i];
+//     if (data.divisionStatus == DivisionStatus.one) {
+//       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+//           data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+//           data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+//         if (pitchModelInterface.isCorrectPitch(
+//             pitchValue!, data.yulmyeongs[0])!) {
+//           matchTrueFalse[i][0] = true;
+//         }
+//       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+//           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+//           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+//         matchTrueFalse[i][0] = true;
+//       }
+//     } else if (data.divisionStatus == DivisionStatus.two) {
+//       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+//           data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+//           data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+//         if (pitchModelInterface.isCorrectPitch(
+//             pitchValue!, data.yulmyeongs[0])!) {
+//           matchTrueFalse[i][0] = true;
+//         }
+//       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+//           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+//           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+//         matchTrueFalse[i][0] = true;
+//       }
+//       if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+//           data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+//           data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
+//         if (pitchModelInterface.isCorrectPitch(
+//             pitchValue!, data.yulmyeongs[1])!) {
+//           matchTrueFalse[i][1] = true;
+//         }
+//       } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
+//           data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+//           data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
+//         matchTrueFalse[i][1] = true;
+//       }
+//     } else if (data.divisionStatus == DivisionStatus.three) {
+//       if (data.yulmyeongs[0].yulmyeong != Yulmyeong.long &&
+//           data.yulmyeongs[0].yulmyeong != Yulmyeong.blank &&
+//           data.yulmyeongs[0].yulmyeong != Yulmyeong.rest) {
+//         if (pitchModelInterface.isCorrectPitch(
+//             pitchValue!, data.yulmyeongs[0])!) {
+//           matchTrueFalse[i][0] = true;
+//         }
+//       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
+//           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
+//           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
+//         matchTrueFalse[i][0] = true;
+//       }
+//       if (data.yulmyeongs[1].yulmyeong != Yulmyeong.long &&
+//           data.yulmyeongs[1].yulmyeong != Yulmyeong.blank &&
+//           data.yulmyeongs[1].yulmyeong != Yulmyeong.rest) {
+//         if (pitchModelInterface.isCorrectPitch(
+//             pitchValue!, data.yulmyeongs[1])!) {
+//           matchTrueFalse[i][1] = true;
+//         }
+//       } else if (data.yulmyeongs[1].yulmyeong == Yulmyeong.long ||
+//           data.yulmyeongs[1].yulmyeong == Yulmyeong.blank ||
+//           data.yulmyeongs[1].yulmyeong == Yulmyeong.rest) {
+//         matchTrueFalse[i][1] = true;
+//       }
+//       if (data.yulmyeongs[2].yulmyeong != Yulmyeong.long &&
+//           data.yulmyeongs[2].yulmyeong != Yulmyeong.blank &&
+//           data.yulmyeongs[2].yulmyeong != Yulmyeong.rest) {
+//         if (pitchModelInterface.isCorrectPitch(
+//             pitchValue!, data.yulmyeongs[2])!) {
+//           matchTrueFalse[i][2] = true;
+//         }
+//       } else if (data.yulmyeongs[2].yulmyeong == Yulmyeong.long ||
+//           data.yulmyeongs[2].yulmyeong == Yulmyeong.blank ||
+//           data.yulmyeongs[2].yulmyeong == Yulmyeong.rest) {
+//         matchTrueFalse[i][2] = true;
+//       }
+//     }
+//   }
+//쉘든이 로직한 율명 체크
   void checkYulmyeongsSection(int i, {dynamic pitchValue}) {
     var data = jungGanBo!.sheet[i];
     if (data.divisionStatus == DivisionStatus.one) {
