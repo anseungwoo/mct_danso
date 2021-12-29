@@ -53,7 +53,6 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
       }
       jangdanAndDansoSoundController.jandanStop();
     }
-    jungganboController.dispose();
     jungganboController.stepStop();
     super.dispose();
   }
@@ -185,7 +184,8 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                     }),
                               ],
                             ),
-                          if (controller.statecount == 1) //도전하기클릭시 중지버튼이 나옴
+                          //도전하기클릭시 중지버튼이 나옴
+                          if (controller.statecount == 1)
 
                             // 도전하기  중지하기 버튼
                             songSwapButton(

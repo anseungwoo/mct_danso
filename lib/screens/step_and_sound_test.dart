@@ -19,9 +19,10 @@ class _HomeStepByStepAndTestScreenState
   final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
   var mainScreenController = Get.find<MainScreenController>();
-  JangdanAndDansoSoundController jangdanAndDansoSoundController =
+  final jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
-  var jungganboController = Get.find<JungganboController>();
+  final jungganboController = Get.put(JungganboController());
+
   @override
   void dispose() {
     super.dispose();
@@ -218,7 +219,7 @@ class _HomeStepByStepAndTestScreenState
                         controller.isRecording
                             ? controller.startCapture()
                             : controller.stopCapture();
-                        jungganboController.audioSessionConfigure();
+                        // jungganboController.audioSessionConfigure();
                       },
           ),
           //연습하기
