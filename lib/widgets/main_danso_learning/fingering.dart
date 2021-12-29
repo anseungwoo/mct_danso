@@ -5,6 +5,7 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
 Widget fingering(BuildContext context) {
+  //운지법 익히기 마지막 부분 한글 한자 각율명의 그림을 보여줌
   final Yum = [
     YulmyeongNote(Yulmyeong.joong, ScaleStatus.origin),
     YulmyeongNote(Yulmyeong.yim, ScaleStatus.origin),

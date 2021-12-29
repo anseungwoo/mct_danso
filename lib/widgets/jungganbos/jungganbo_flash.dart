@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
+//정간보 애니매이션을 담당
 Widget jungganboFromFlash(
     int heightNumber, JungganboController controller, JungGanBo testJungGanBo) {
   double height;

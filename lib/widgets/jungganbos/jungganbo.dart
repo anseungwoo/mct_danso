@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/utils/danso_function.dart';
 
+//정간보 율명을 적어주는 담당
 Widget jungganbo(int heightNumber, JungganboController controller,
     JungGanBo testJungGanBo, bool krState) {
   double height;

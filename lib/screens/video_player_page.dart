@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class VideoAppScreen extends StatefulWidget {
+  //녹화 영상을 볼수 있는 페이지
   VideoAppScreen({
     Key? key,
   }) : super(key: key);

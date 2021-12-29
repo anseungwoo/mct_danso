@@ -3,6 +3,7 @@ import 'package:project_danso/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
+//정간보에서 배경을담당
 Widget jungganboScreen(int heightNumber, JungganboController controller) {
   double height;
   if (heightNumber == 12) {

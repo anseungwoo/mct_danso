@@ -9,6 +9,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class MyPageListenDialog extends StatefulWidget {
+  //녹음한 파일을 다이얼로그에서 플레이 할수 있음
   final recordItem;
 
   const MyPageListenDialog({Key? key, required this.recordItem})

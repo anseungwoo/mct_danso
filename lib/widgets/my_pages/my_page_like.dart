@@ -8,6 +8,7 @@ import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageLike extends GetView<LikeSongController> {
+  //관심곡에대한 리스트를 보여줌
   final String songname;
 
   MyPageLike({Key? key, required this.songname}) : super(key: key);

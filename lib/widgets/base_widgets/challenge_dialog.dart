@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+//도전하기시에 경고문구 담당
 Widget challengeCautionDialog() {
   return Padding(
     padding: const EdgeInsets.only(left: 15, right: 15, top: 20),

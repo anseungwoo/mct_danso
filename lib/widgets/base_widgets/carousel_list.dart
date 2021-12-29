@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:project_danso/common/common.dart';
 
 class CarouselListWidget extends StatefulWidget {
+  //각페이지별 점으로 보여줌
   List<Widget> carouselList = [];
 
   CarouselListWidget({Key? key, required this.carouselList}) : super(key: key);
