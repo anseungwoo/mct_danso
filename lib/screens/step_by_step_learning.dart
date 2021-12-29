@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoLearningLevelScreen extends StatelessWidget {
-  const MainDansoLearningLevelScreen({Key? key}) : super(key: key);
+class StepByStepScreen extends StatelessWidget {
+  const StepByStepScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -26,13 +26,6 @@ class AudioRecordController extends GetxController {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-
-    print('call dispose method');
-  }
-
   void isRecordingState() {
     isRecording = !isRecording;
     buttonText = isRecording ? Text('녹음중지') : Text('녹음시작');

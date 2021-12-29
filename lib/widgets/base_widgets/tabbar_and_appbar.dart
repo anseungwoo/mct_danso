@@ -31,19 +31,16 @@ PreferredSizeWidget tabbarAndAppBar(
       Padding(
         padding: EdgeInsets.all(MctSize.fifteen.getSize),
         child: InkWell(
-            onTap: () {
-              Get.offAll(MainScreen());
-              if (controller.musicState.value) {
-                // controller.assetsAudioPlayer.play();
-                controller.player.play();
-              }
-              ;
-              // Navigator.of(Get.context!)
-              //     .push(MaterialPageRoute(builder: (_) => MainScreen()));
-            },
-            child: SvgPicture.asset(
-              HOME_SVG,
-            )),
+          onTap: () {
+            Get.offAll(HomeScreen());
+            if (controller.musicState.value) {
+              controller.player.play();
+            }
+          },
+          child: SvgPicture.asset(
+            HOME_SVG,
+          ),
+        ),
       ),
     ],
     bottom: enableTabBar

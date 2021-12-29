@@ -7,7 +7,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:project_danso/common/common.dart';
 
 class MyPageMusicController extends GetxController {
-  // static MyPageMusicController get to => Get.find();
   String? audioRecordPath;
   bool starStopState = false;
   AssetsAudioPlayer assetsAudioPlayer = AssetsAudioPlayer();
@@ -18,23 +17,16 @@ class MyPageMusicController extends GetxController {
     size: 40,
   );
   bool isFile = true;
-  @override
-  void onInit() {
-    super.onInit();
-    // playerInit();
-  }
 
   void playerInit(var audioRecordPath) {
     print(audioRecordPath);
 
-    File(audioRecordPath).existsSync()
-        ? assetsAudioPlayer.open(
-            Audio.file(audioRecordPath),
-            autoStart: false,
-          )
-        : isFile = false;
-
-    assetsAudioPlayer.setLoopMode(LoopMode.single);
+    if (File(audioRecordPath).existsSync()) {
+      assetsAudioPlayer.open(Audio.file(audioRecordPath),
+          autoStart: false, loopMode: LoopMode.single);
+    } else {
+      isFile = false;
+    }
   }
 
   void playAndPause() {
@@ -47,20 +39,6 @@ class MyPageMusicController extends GetxController {
     assetsAudioPlayer.dispose();
     print('dispose');
     super.dispose();
-  }
-
-  void changeListenRecordState() {
-    starStopState = !starStopState;
-    startIcon = starStopState
-        ? Icon(
-            Icons.pause,
-            size: 40,
-          )
-        : Icon(
-            Icons.play_arrow,
-            size: 40,
-          );
-    update();
   }
 }
 

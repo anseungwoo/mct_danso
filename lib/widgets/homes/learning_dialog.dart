@@ -4,10 +4,10 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:project_danso/widgets/mains/mains.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 final permissionController = Get.put(PermissionController());
+//운지법익히기 클릭시 나오는 다이얼 로그
 Widget learningDialog() {
   permissionController.checkPermission();
   return Dialog(
@@ -15,7 +15,6 @@ Widget learningDialog() {
     child: Container(
       padding: EdgeInsets.only(
           bottom: MctSize.fifteen.getSize, top: MctSize.fifteen.getSize),
-      // height: 230.h,
       width: 330.w,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -37,13 +36,13 @@ Widget learningDialog() {
             children: [
               createLearningDialogIcon(
                   text: '단소 기초 학습',
-                  page: MainDansoLearningScreen(),
+                  page: HomeDansoBasicLearningScreen(),
                   assetName: DANSO_LESSON_SVG),
               SizedBox(
                 width: 14.w,
               ),
               createLearningDialogIcon(
-                  page: MainDansoLearningTestScreen(),
+                  page: HomeStepByStepAndTestScreen(),
                   text: '단계별 연습',
                   assetName: DANSO_STUDY_SVG),
             ],

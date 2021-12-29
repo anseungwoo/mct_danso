@@ -11,6 +11,7 @@ import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageListen extends GetView<AudioAndVideoListController> {
+  //녹음 파일을 리스트로 불러오는 페이지
   final String songname;
   final String date;
 
@@ -44,7 +45,6 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                         color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -63,9 +63,7 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                               ),
                               SizedBox(height: 2),
                               Text(
-                                // '${item.exerTime}',
                                 '${convertDateFormat(item.exerTime)}',
-                                // '2021년 12월 07일 오전 09시 08분',
                                 style: TextStyle(
                                     color: MctColor.white.getMctColor),
                               ),
@@ -79,6 +77,7 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                               var dir =
                                   (await getApplicationDocumentsDirectory())
                                       .path;
+                              //녹음한 파일을 들을수 있게 path를 넘겨줌
                               await Get.dialog(MyPageListenDialog(
                                 recordItem: Platform.isIOS
                                     ? '$dir/${item.exerPath}'
@@ -90,17 +89,17 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                               width: 20.w,
                               height: 20.w,
                             )),
-                        // SizedBox(width: 10.w),
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
+                              //공유를 위한 path
                               controller.shareFile(item.exerPath);
                             }
                             if (value == 2) {
                               var dir =
                                   (await getApplicationDocumentsDirectory())
                                       .path;
-
+                              //파일 삭제를 위한 path
                               await Get.dialog(myPageDeleteDialog(
                                   Platform.isIOS
                                       ? '$dir/${item.exerPath}'
@@ -109,14 +108,11 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                             }
                           },
                           child: Container(
-                              // color: Colors.grey,
                               height: 25.w,
                               width: 40.w,
                               margin: EdgeInsets.only(right: 10, left: 10),
                               child: SvgPicture.asset(
                                 SEE_MORE_SVG,
-                                // width: 40.w,
-                                // height: 25.h,
                                 fit: BoxFit.contain,
                               )),
                           itemBuilder: (context) => [

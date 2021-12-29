@@ -11,6 +11,7 @@ import 'package:project_danso/utils/date_format.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageLook extends GetView<AudioAndVideoListController> {
+  //녹화한 파일의 리스트를 보여줌
   final String songname;
   final String date;
 
@@ -38,11 +39,11 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                 child: InkWell(
                   onTap: () async {
                     var dir = (await getApplicationDocumentsDirectory()).path;
-                    await Get.to(VideoApp(
-                      videoFilePath: Platform.isIOS
-                          ? '$dir/camera/videos/${item.exerPath}'
-                          : item.exerPath,
-                    ));
+                    //영상을 보러갈때 필요한 path
+                    await Get.toNamed('/video',
+                        arguments: Platform.isIOS
+                            ? '$dir/camera/videos/${item.exerPath}'
+                            : item.exerPath);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -50,7 +51,6 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                         color: MctColor.buttonColorYellow.getMctColor),
                     height: 60.h,
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(
@@ -80,13 +80,14 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
+                              //공유하기 할때 필요한 path
                               controller.shareFile(item.exerPath);
                             }
                             if (value == 2) {
                               var dir =
                                   (await getApplicationDocumentsDirectory())
                                       .path;
-
+//삭제시 필요한 path
                               await Get.dialog(myPageDeleteDialog(
                                   Platform.isIOS
                                       ? '$dir/camera/videos/${item.exerPath}'
@@ -95,14 +96,11 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                             }
                           },
                           child: Container(
-                              // color: Colors.grey,
                               height: 25.w,
                               width: 40.w,
                               margin: EdgeInsets.only(right: 10, left: 10),
                               child: SvgPicture.asset(
                                 SEE_MORE_SVG,
-                                // width: 40.w,
-                                // height: 25.h,
                                 fit: BoxFit.contain,
                               )),
                           itemBuilder: (context) => [

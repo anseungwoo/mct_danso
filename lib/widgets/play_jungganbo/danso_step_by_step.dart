@@ -46,8 +46,6 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
   Widget build(BuildContext context) {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
-
-    // jangdanAndDansoSoundController.setJandan(widget.jangdan);
     return GetBuilder<JungganboController>(
         init: jungganboController,
         builder: (controller) {
@@ -82,46 +80,45 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
                       children: [
                         //시작하기
                         levelButton(
-                            controller: controller,
-                            text: '${controller.startButton}',
-                            onPressed: () async {
-                              controller.changeStartStopState();
+                          controller: controller,
+                          text: '${controller.startButton}',
+                          onPressed: () async {
+                            controller.changeStartStopState();
 
-                              if (controller.startStopState) {
-                                await jangdanAndDansoSoundController
-                                    .setJangdanAndDansoSound(
-                                        widget.currentLevel);
-                                controller.isPracticeState();
-//                                 controller.jandanPlay();
-                                jangdanAndDansoSoundController
-                                    .playJangdanAndDansoSound();
+                            if (controller.startStopState) {
+                              await jangdanAndDansoSoundController
+                                  .setJangdanAndDansoSound(widget.currentLevel);
+                              controller.isPracticeState();
+                              jangdanAndDansoSoundController
+                                  .playJangdanAndDansoSound();
 
-                                await Get.dialog(
-                                  WillPopScope(
-                                    onWillPop: () async => false,
-                                    child: Dialog(
-                                        backgroundColor:
-                                            Colors.white.withOpacity(0),
-                                        elevation: 0,
-                                        child: GameTimerWidget(
-                                          timer: testJungGanBo.jangDan.delay ~/
-                                              jangdanAndDansoSoundController
-                                                      .speed[
-                                                  jangdanAndDansoSoundController
-                                                      .speedCount],
-                                        )),
-                                  ),
-                                  barrierDismissible: false,
-                                );
-                                controller.stepStart();
-                              }
-                              if (!controller.startStopState) {
-                                controller.isPracticeState();
-                                controller.stepStop();
-                                jangdanAndDansoSoundController
-                                    .stopJangdanAndDansoSound();
-                              }
-                            }),
+                              await Get.dialog(
+                                WillPopScope(
+                                  onWillPop: () async => false,
+                                  child: Dialog(
+                                      backgroundColor:
+                                          Colors.white.withOpacity(0),
+                                      elevation: 0,
+                                      child: GameTimerWidget(
+                                        timer: testJungGanBo.jangDan.delay ~/
+                                            jangdanAndDansoSoundController
+                                                    .speed[
+                                                jangdanAndDansoSoundController
+                                                    .speedCount],
+                                      )),
+                                ),
+                                barrierDismissible: false,
+                              );
+                              controller.stepStart();
+                            }
+                            if (!controller.startStopState) {
+                              controller.isPracticeState();
+                              controller.stepStop();
+                              jangdanAndDansoSoundController
+                                  .stopJangdanAndDansoSound();
+                            }
+                          },
+                        ),
 
                         //한글한자
                         levelButton(
@@ -135,14 +132,15 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
 
                         //배속
                         levelButton(
-                            controller: controller,
-                            text:
-                                '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
-                            onPressed: controller.startStopState
-                                ? null
-                                : () {
-                                    controller.changespeedState();
-                                  }),
+                          controller: controller,
+                          text:
+                              '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
+                          onPressed: controller.startStopState
+                              ? null
+                              : () {
+                                  controller.changespeedState();
+                                },
+                        ),
                       ],
                     ),
                   ),

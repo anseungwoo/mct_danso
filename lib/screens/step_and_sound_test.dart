@@ -4,19 +4,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class MainDansoLearningTestScreen extends StatefulWidget {
-  MainDansoLearningTestScreen({Key? key}) : super(key: key);
+class HomeStepByStepAndTestScreen extends StatefulWidget {
+  HomeStepByStepAndTestScreen({Key? key}) : super(key: key);
 
   @override
-  _MainDansoLearningTestScreenState createState() =>
-      _MainDansoLearningTestScreenState();
+  _HomeStepByStepAndTestScreenState createState() =>
+      _HomeStepByStepAndTestScreenState();
 }
 
-class _MainDansoLearningTestScreenState
-    extends State<MainDansoLearningTestScreen> {
+class _HomeStepByStepAndTestScreenState
+    extends State<HomeStepByStepAndTestScreen> {
   final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
   var controller = Get.find<MainScreenController>();
@@ -28,7 +27,6 @@ class _MainDansoLearningTestScreenState
     dansoSoundLearningController.disposeFunction();
 
     if (controller.musicState.value) {
-      // controller.assetsAudioPlayer.play();
       controller.player.play();
     }
     ;
@@ -39,10 +37,6 @@ class _MainDansoLearningTestScreenState
     super.initState();
     dansoSoundLearningController.disposeFunction();
     if (controller.musicState.value) {
-      // 아예 정지
-      // Get.find<MainScreenController>().disposeAudioPlayer();
-      // 일시 정지
-      // controller.assetsAudioPlayer.pause();
       controller.player.pause();
     }
   }
@@ -60,24 +54,25 @@ class _MainDansoLearningTestScreenState
           children: [
             leftLightCicleAvatarAndText(),
             GetBuilder<DansoSoundLearningController>(
-                init: dansoSoundLearningController,
-                builder: (controller) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: dansoImage(controller),
-                      ),
-                      // SizedBox(width: 20.w),
-                      Expanded(
-                        flex: 6,
-                        child: listeningAndTest(controller),
-                      ),
-                    ],
-                  );
-                }),
+              init: dansoSoundLearningController,
+              builder: (controller) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: dansoImage(controller),
+                    ),
+                    // SizedBox(width: 20.w),
+                    Expanded(
+                      flex: 6,
+                      child: listeningAndTest(controller),
+                    ),
+                  ],
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -114,14 +109,15 @@ class _MainDansoLearningTestScreenState
             ),
           if (controller.playTuningState)
             Expanded(
-                child: Column(
-              children: [
-                Center(child: Text('${controller.pitchValue} Hz')),
-                Center(
-                    child: controller
-                        .getPitchCorrectTextWidget(controller.pitchValue)!),
-              ],
-            )),
+              child: Column(
+                children: [
+                  Center(child: Text('${controller.pitchValue} Hz')),
+                  Center(
+                      child: controller
+                          .getPitchCorrectTextWidget(controller.pitchValue)!),
+                ],
+              ),
+            ),
           Container(
             height: 97.w,
             width: 97.w,
@@ -130,20 +126,22 @@ class _MainDansoLearningTestScreenState
               border: Border.all(color: Colors.black, width: 3),
             ),
             child: Center(
-                child: Text(
-              controller.hanJaAndGel[controller.soundListUpDown]
-                  .toChineseCharacter(),
-              style: TextStyle(
-                  fontSize: 45.sp,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: NOTO_BOLD),
-            )),
+              child: Text(
+                controller.hanJaAndGel[controller.soundListUpDown]
+                    .toChineseCharacter(),
+                style: TextStyle(
+                    fontSize: 45.sp,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: NOTO_BOLD),
+              ),
+            ),
           ),
           SizedBox(height: 21.h),
-          Text(controller.hanJaAndGel[controller.soundListUpDown].toHangeul(),
-              style: TextStyle(
-                  fontSize: MctSize.eighteen.getSize.sp,
-                  fontFamily: NOTO_MEDIUM)),
+          Text(
+            controller.hanJaAndGel[controller.soundListUpDown].toHangeul(),
+            style: TextStyle(
+                fontSize: MctSize.eighteen.getSize.sp, fontFamily: NOTO_MEDIUM),
+          ),
           SizedBox(height: 18.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -203,7 +201,6 @@ class _MainDansoLearningTestScreenState
                           jangdanAndDansoSoundController
                               .stopJangdanAndDansoSound();
                         }
-//
                       },
           ),
           //불어보기
@@ -231,7 +228,7 @@ class _MainDansoLearningTestScreenState
                     : controller.playTuningState
                         ? null
                         : () {
-                            Get.to(MainDansoLearningLevelScreen());
+                            Get.toNamed('/steplearning');
                           },
           ),
           SizedBox(height: 5.w),

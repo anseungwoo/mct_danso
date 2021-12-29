@@ -8,7 +8,6 @@ Widget createLearningDialogIcon(
     {required String text, required Widget page, required String assetName}) {
   return InkWell(
     onTap: () {
-      // Get.to(page);
       Navigator.of(Get.context!).push(MaterialPageRoute(builder: (_) => page));
     },
     child: Container(
@@ -16,7 +15,7 @@ Widget createLearningDialogIcon(
       height: 140.w,
       decoration: BoxDecoration(
         color: MctColor.lightYellow.getMctColor,
-        borderRadius: BorderRadius.circular(10), //모서리를 둥글게as
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

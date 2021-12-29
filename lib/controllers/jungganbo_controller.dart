@@ -1,27 +1,25 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter_audio_capture/flutter_audio_capture.dart';
 import 'package:get/get.dart';
 import 'package:pitch_detector_dart/pitch_detector.dart';
 import 'package:pitchupdart/instrument_type.dart';
 import 'package:pitchupdart/pitch_handler.dart';
-import 'package:project_danso/common/common.dart';
-
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dart';
-
 import 'package:project_danso/utils/danso_function.dart';
 import 'package:project_danso/widgets/widgets.dart';
-
-import 'pitch_check_controller.dart';
 
 class JungganboController extends GetxController {
   bool startStopState = false;
   String startButton = '시작하기';
   bool krState = false;
   String krButton = '한자';
+  bool isChallenge = false;
+  bool isPractice = false;
+  bool isLevelPractice = false;
+
   // 정간보 변수
   int line = 0;
   int jungSection = 0;
@@ -33,31 +31,28 @@ class JungganboController extends GetxController {
   String jangDan = '';
   late int mill;
   late int sheetVertical;
-
-  // =========================
   late int micro;
   JungGanBo? jungGanBo;
-  bool isChallenge = false;
-  bool isPractice = false;
-  bool isLevelPractice = false;
   int scoreResult = 0;
   var yulmyoungsCount = 0;
+  // =========================
+
+  //디텍터 변수
   final _audioRecorder = FlutterAudioCapture();
   final pitchDetectorDart = PitchDetector(44100, 2000);
   final pitchupDart = PitchHandler(InstrumentType.guitar);
-  PitchModelInterface pitchModelInterface = PitchModel();
-  late List<dynamic> matchTrueFalse;
   double pitchValue = 0;
   List<double> pitchValueList = [];
+  late List<dynamic> matchTrueFalse;
+  PitchModelInterface pitchModelInterface = PitchModel();
+  //==============================================
   late AudioSession audioSessions;
 
   final _tearController = Get.put(TearController());
   final _myHistoryController = Get.put(MyHistoryController());
-
   final learningSongAndLevelController =
       Get.put(LearningSongAndLevelController());
   final playAndTestController = Get.put(PlayAndTestController());
-
   final jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
 
@@ -84,16 +79,10 @@ class JungganboController extends GetxController {
   }
 
   void listener(dynamic obj) {
-    //Gets the audio sample
     var buffer = Float64List.fromList(obj.cast<double>());
     final audioSample = buffer.toList();
-    //Uses pitch_detector_dart library to detect a pitch from the audio sample
     final result = pitchDetectorDart.getPitch(audioSample);
-    //If there is a pitch - evaluate it
     if (result.pitched) {
-      //Uses the pitchupDart library to check a given pitch for a Guitar
-      //Updates the state with the result
-
       pitchValue = result.pitch;
       pitchValueList.add(pitchValue);
       pitchModelInterface
@@ -340,15 +329,6 @@ class JungganboController extends GetxController {
     update();
   }
 
-//   void changespeedState() {
-//     speedCount++;
-//     if (speedCount == 5) {
-//       speedCount = 0;
-//     }
-
-//     update();
-//   }
-
   void create2DList() {
     matchTrueFalse = List.generate(
         jungGanBo!.sheet.length,
@@ -418,7 +398,6 @@ class JungganboController extends GetxController {
     countingJungganboYulmyeong();
     copySheetHorizontal = sheetHorizontal;
     setJungganboVariable();
-//     Timer.periodic(Duration(microseconds: micro ~/ speed[speedCount]), (timer) {
 
     Timer.periodic(
         Duration(

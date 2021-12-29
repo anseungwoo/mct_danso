@@ -28,12 +28,12 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
   JungganboController jungganboController = Get.put(JungganboController());
   JangdanAndDansoSoundController jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
+
   @override
   void dispose() {
     if (audioRecordController.isRecording == true) {
       audioRecordController.stopRecording(
           songId: widget.songId, exerType: 'audio');
-//       jungganboController.jandanStop();
       jangdanAndDansoSoundController.jandanStop();
     }
 
@@ -67,8 +67,6 @@ class SongAudioRecorderState extends State<SongAudioRecorder> {
                 onPressed: () async {
                   audioRecordController.isRecordingState();
                   jungganboController.changeStartStopState();
-                  // widget.controller.changeListenRecordState();
-
                   if (jungganboController.startStopState) {
                     await jangdanAndDansoSoundController
                         .setJandan(widget.jangdan);

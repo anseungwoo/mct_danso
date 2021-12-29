@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
-import 'package:project_danso/screens/screens.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,17 +21,17 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.put(PermissionController());
   FlutterMidi flutterMidi = FlutterMidi();
   final SongController _songController = Get.put(SongController());
-  void load() async {
-    await flutterMidi.unmute();
-    var byteData = await rootBundle.load('assets/Dan.sf2');
-    await flutterMidi.prepare(sf2: byteData, name: 'Dan.sf2');
-  }
+  // void load() async {
+  //   await flutterMidi.unmute();
+  //   var byteData = await rootBundle.load('assets/Dan.sf2');
+  //   await flutterMidi.prepare(sf2: byteData, name: 'Dan.sf2');
+  // }
 
   @override
   void initState() {
     super.initState();
 
-    load();
+    // load();
     _songController.insertSongToJson();
     // _tearController.loadExp();
     startTime();
@@ -44,9 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
       await permissionController.checkPermission().then((value) async {
         if (!value) {
           await permissionController.buildPermissionDialog(context,
-              runMethod: Get.off(MainScreen()));
+              runMethod: Get.offNamed('/home'));
         } else if (value) {
-          await Get.off(MainScreen());
+          await Get.offNamed('/home');
         }
       });
     });

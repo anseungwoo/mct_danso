@@ -4,18 +4,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
+import 'package:project_danso/models/song_from_json_model.dart';
+import 'package:project_danso/screens/screens.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
-class LearningSongListScreen extends StatefulWidget {
-  LearningSongListScreen({
+class InstrumentalListScreen extends StatefulWidget {
+  InstrumentalListScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<LearningSongListScreen> createState() => _LearningSongListScreenState();
+  State<InstrumentalListScreen> createState() => _InstrumentalListScreenState();
 }
 
-class _LearningSongListScreenState extends State<LearningSongListScreen> {
+class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
   final LearningSongAndLevelController learningSongLevelController =
       Get.put(LearningSongAndLevelController());
   final permissionController = Get.put(PermissionController());
@@ -46,15 +48,19 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
             body: Column(
               children: [
                 SizedBox(height: 30),
+                //레벨 바꾸는 버튼 레벨표시 아이콘
                 levelSwapButton(controller),
                 SizedBox(height: 20),
                 Column(
                   children: [
+                    //각 난이도 별 율명 한글
                     yulmyeongHangeul(controller),
+                    //각 난이도 별 율명 한자
                     yulmyeongHanja(controller),
                   ],
                 ),
                 SizedBox(height: 20.h),
+                //각 단계별 곡 리스트를 보여줌
                 songListView(controller),
               ],
             ),
@@ -75,7 +81,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                 child: InkWell(
                   onTap: () {
                     Get.to(
-                      SongPlayAndTest(
+                      JungGanBoPage(
                         appbarTitle: item.songTitle,
                         jangdan: item.songJangdan,
                         sheetData: item.songSheet,
@@ -84,6 +90,25 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                         songId: item.songId,
                       ),
                     );
+                    // await Get.toNamed('/jungganbo', arguments: {
+                    //   'songTitle': item!.songTitle,
+                    //   'jangdan': item!.songJangdan,
+                    //   'sheetData': item!.songSheet,
+                    //   'sheetVertical': item!.songSheetVertical,
+                    //   'sheetHorizontal': item!.songSheetHorizontal,
+                    //   'songId': item!.songId
+                    // });
+                    // print('${item.songTitle}');
+
+                    // await Get.toNamed('/jungganbo',
+                    //     arguments: SongDataModel(
+                    //       songTitle: item.songTitle!,
+                    //       songJangdan: item.songJangdan!,
+                    //       songSheet: item.songSheet!,
+                    //       songSheetVertical: item.songSheetVertical!,
+                    //       songSheetHorizontal: item.songSheetHorizontal!,
+                    //       songId: item.songId!,
+                    //     ));
                   },
                   child: Container(
                       decoration: BoxDecoration(
@@ -112,8 +137,8 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
                               radius: 40.r,
                               onTap: () {
                                 controller.updateLikeSongList(
-                                  songId: item.songId,
-                                  songLike: item.songLike,
+                                  songId: item.songId!,
+                                  songLike: item.songLike!,
                                   exerNum: controller.currentLevel,
                                 );
                               },
@@ -140,6 +165,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
     );
   }
 
+  //율명 한자를 표기하는 위젯
   Row yulmyeongHanja(LearningSongAndLevelController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -167,6 +193,7 @@ class _LearningSongListScreenState extends State<LearningSongListScreen> {
     );
   }
 
+//율명 한글를 표기하는 위젯
   Row yulmyeongHangeul(LearningSongAndLevelController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

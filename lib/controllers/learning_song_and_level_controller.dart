@@ -117,7 +117,6 @@ class LearningSongAndLevelController extends GetxController {
       {required String songLike,
       required int songId,
       required int exerNum}) async {
-    // var data = await
     var like = songLike == 'true' ? 'false' : 'true';
     await DBHelPer().updateLikeSongList(like, songId);
     getExerSongList(exerNum);

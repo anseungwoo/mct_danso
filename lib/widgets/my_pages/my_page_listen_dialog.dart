@@ -8,21 +8,6 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-extension FormatString on Duration {
-  String get mmSSFormat {
-    String twoDigits(int n) {
-      if (n >= 10) return '$n';
-      return '0$n';
-    }
-
-    final twoDigitMinutes =
-        twoDigits(inMinutes.remainder(Duration.minutesPerHour));
-    final twoDigitSeconds =
-        twoDigits(inSeconds.remainder(Duration.secondsPerMinute));
-    return '$twoDigitMinutes:$twoDigitSeconds';
-  }
-}
-
 class MyPageListenDialog extends StatefulWidget {
   final recordItem;
 
@@ -35,7 +20,6 @@ class MyPageListenDialog extends StatefulWidget {
 
 class _MyPageListenDialogState extends State<MyPageListenDialog> {
   var myPageMusicController = Get.put(MyPageMusicController());
-  // var audioAndVideoListController = Get.put(AudioAndVideoListController());
 
   @override
   void initState() {

@@ -9,13 +9,6 @@ class AudioAndVideoListController extends GetxController {
   var audioList = <ExerciseModel>[].obs;
   var videoList = <ExerciseModel>[].obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    // getAudioList();
-    // getVideoList();
-  }
-
   void getAudioList() async {
     try {
       var data = await DBHelPer().readExerSoundData();
@@ -46,7 +39,6 @@ class AudioAndVideoListController extends GetxController {
         print(_localFile);
         final file = _localFile;
         await file.delete();
-
         Get.back();
       } else {
         Get.back();
@@ -58,6 +50,7 @@ class AudioAndVideoListController extends GetxController {
   }
 
   void shareFile(String? path) {
-    Share.shareFiles([path!], text: 'my Good File');
+    // Share.shareFiles([path!], text: 'my Good File');
+    Share.shareFiles([path!]);
   }
 }
