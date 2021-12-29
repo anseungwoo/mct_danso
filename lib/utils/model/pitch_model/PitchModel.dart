@@ -5,6 +5,7 @@ class PitchModel implements PitchModelInterface {
   double _standardFrequency = STANDARD_PITCH;
   double _userAdjustedPitchFrequency = 0;
   double _correctRange = STANDARD_CORRECT_RANGE;
+  double _correctRangeHigh = HIGH_CORRECT_RANGE;
   static final PitchModel _instance = PitchModel._internal();
 
   factory PitchModel() {
@@ -90,11 +91,17 @@ class PitchModel implements PitchModelInterface {
   //List[0] = low, List[1] = high
   List getFrequencyRangeByYulmyeong(
       Yulmyeong yulmyeong, ScaleStatus scaleStatus) {
-    List correctRange = [
-      getFrequencyByYulmyeong(yulmyeong, scaleStatus) - _correctRange,
-      getFrequencyByYulmyeong(yulmyeong, scaleStatus) + _correctRange
-    ];
-    return correctRange;
+        if (scaleStatus == ScaleStatus.origin) {
+          return [
+            getFrequencyByYulmyeong(yulmyeong, scaleStatus) - _correctRange,
+            getFrequencyByYulmyeong(yulmyeong, scaleStatus) + _correctRange
+          ];
+        } else {
+          return [
+            getFrequencyByYulmyeong(yulmyeong, scaleStatus) - _correctRangeHigh,
+            getFrequencyByYulmyeong(yulmyeong, scaleStatus) + _correctRangeHigh
+          ];
+        }
   }
 
   List getFrequencyRangeByOutputPitch(YulmyeongNote outPutPitch) {
@@ -117,7 +124,10 @@ class PitchModel implements PitchModelInterface {
       //Yulmyeong.nam: double.parse(nam.toStringAsFixed(2)),
       Yulmyeong.moo: double.parse(moo.toStringAsFixed(2)),
       Yulmyeong.hwang: double.parse(hwang.toStringAsFixed(2)),
-      Yulmyeong.tae: double.parse(tae.toStringAsFixed(2))
+      Yulmyeong.tae: double.parse(tae.toStringAsFixed(2)),
+      Yulmyeong.blank: 20.0,
+      Yulmyeong.long: 20.0,
+      Yulmyeong.rest: 20.0
     };
     return yulmyeongFrequency;
   }
