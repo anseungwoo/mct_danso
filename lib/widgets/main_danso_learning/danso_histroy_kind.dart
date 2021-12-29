@@ -4,6 +4,7 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class DansoHistroyKind extends StatelessWidget {
+  //단소 유트뷰 제목 설명을 보여줌
   final String subject;
   final String explanation;
   final String url;

@@ -5,6 +5,7 @@ import 'package:project_danso/common/common.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget challengeDialog() {
+  //도전하기시에 경고문구 담당
   return Column(
     mainAxisSize: MainAxisSize.min,
     mainAxisAlignment: MainAxisAlignment.center,

@@ -8,6 +8,7 @@ import 'package:project_danso/controllers/jangdan_and_danso_sound_controller.dar
 import 'package:project_danso/widgets/widgets.dart';
 
 class SongAudioRecorder extends StatefulWidget {
+  //녹음 부분을 담당
   final JungGanBo jungGanBo;
   final songId;
   final String jangdan;

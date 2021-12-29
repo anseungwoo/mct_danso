@@ -5,6 +5,7 @@ import 'package:project_danso/common/common.dart';
 import 'package:project_danso/controllers/controllers.dart';
 
 Widget myPageDeleteDialog(var path, exerId) {
+  //파일 삭제 기능을 담당
   final audioAndVideoListController = Get.put(AudioAndVideoListController());
   return WillPopScope(
     onWillPop: () async => false,

@@ -8,6 +8,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class MyPageChallangeHistory extends GetView<MyHistoryController> {
+  //내기록을 세운 연주곡 리스트를 보여줌
   final String songname;
 
   MyPageChallangeHistory({Key? key, required this.songname}) : super(key: key);

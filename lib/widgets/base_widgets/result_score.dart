@@ -7,6 +7,7 @@ import 'package:project_danso/controllers/controllers.dart';
 import 'package:project_danso/widgets/widgets.dart';
 
 class ResultScore extends StatefulWidget {
+  //점수 화면 페이지 담당
   final int scrore;
   final songTitle;
   final songId;
