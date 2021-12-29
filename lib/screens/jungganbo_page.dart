@@ -90,49 +90,56 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                       width: 340.w,
                       child: Stack(
                         children: [
-                          if (controller.statecount ==
-                              0) // 맨 처음 버튼 도전하기, 연습하기 ,한글/한자 ,배속
+                          // 맨 처음 버튼 도전하기, 연습하기 ,한글/한자 ,배속
+                          if (controller.statecount == 0)
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 //도전하기
                                 songSwapButton(
-                                  text: Text('도전하기',
-                                      style: TextStyle(
-                                          fontSize: MctSize.twelve.getSize.sp)),
+                                  text: Text(
+                                    '도전하기',
+                                    style: TextStyle(
+                                        fontSize: MctSize.twelve.getSize.sp),
+                                  ),
                                   onPressed: () async {
+                                    //도전하기전 경고문을 띄워줌
                                     await Get.dialog(Dialog(
                                         insetAnimationDuration:
                                             Duration(seconds: 3),
-                                        child:
-                                            challengeDialog())); //도전하기전 경고문을 띄워줌
+                                        child: challengeCautionDialog()));
+                                    //장단 파일을 열어줌
                                     await jangdanAndDansoSoundController
-                                        .setJandan(widget.jangdan); //장단 파일을 열어줌
-                                    controller.nextButton(); // 중지 버튼으로
-                                    jungcontroller
-                                        .isChallengeState(); //도전하기시 경험치를 관련
-                                    jangdanAndDansoSoundController
-                                        .jandanPlay(); //장단을 플레이
+                                        .setJandan(widget.jangdan);
+                                    // 중지 버튼으로
+                                    controller.nextButton();
+                                    jungcontroller.isChallengeState();
+                                    //장단 플레이
+                                    jangdanAndDansoSoundController.jandanPlay();
+                                    //음인식시작
+                                    await jungcontroller.startCapture();
+                                    jungcontroller.audioSessionConfigure();
+
+                                    //예박을 위한 준비 단계
                                     await Get.dialog(
-                                      //예박을 위한 준비 단계
                                       WillPopScope(
                                         onWillPop: () async => false,
                                         child: Dialog(
-                                            backgroundColor:
-                                                Colors.white.withOpacity(0),
-                                            elevation: 0,
-                                            child: GameTimerWidget(
-                                              timer: testJungGanBo
-                                                      .jangDan.delay ~/
-                                                  jangdanAndDansoSoundController
-                                                          .speed[
-                                                      jangdanAndDansoSoundController
-                                                          .speedCount],
-                                            )),
+                                          backgroundColor:
+                                              Colors.white.withOpacity(0),
+                                          elevation: 0,
+                                          child: GameTimerWidget(
+                                            timer: testJungGanBo
+                                                    .jangDan.delay ~/
+                                                jangdanAndDansoSoundController
+                                                        .speed[
+                                                    jangdanAndDansoSoundController
+                                                        .speedCount],
+                                          ),
+                                        ),
                                       ),
                                       barrierDismissible: false,
                                     );
-                                    await jungcontroller.startCapture(); //음인식시작
                                     jungcontroller.stepStart(
                                         //애니매이션 실행
                                         songId: widget.songId,
@@ -275,6 +282,7 @@ class _JungGanBoPageState extends State<JungGanBoPage> {
                                     jungcontroller.changeStartStopState();
                                     controller.nextButton();
                                     jangdanAndDansoSoundController.jandanPlay();
+                                    jungcontroller.audioSessionConfigure();
                                     await Get.dialog(
                                       WillPopScope(
                                         onWillPop: () async => false,

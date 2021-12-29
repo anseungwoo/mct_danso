@@ -18,16 +18,17 @@ class _HomeStepByStepAndTestScreenState
     extends State<HomeStepByStepAndTestScreen> {
   final dansoSoundLearningController = Get.put(DansoSoundLearningController());
 
-  var controller = Get.find<MainScreenController>();
+  var mainScreenController = Get.find<MainScreenController>();
   JangdanAndDansoSoundController jangdanAndDansoSoundController =
       Get.put(JangdanAndDansoSoundController());
+  var jungganboController = Get.find<JungganboController>();
   @override
   void dispose() {
     super.dispose();
     dansoSoundLearningController.disposeFunction();
 
-    if (controller.musicState.value) {
-      controller.player.play();
+    if (mainScreenController.musicState.value) {
+      mainScreenController.player.play();
     }
     ;
   }
@@ -36,8 +37,8 @@ class _HomeStepByStepAndTestScreenState
   void initState() {
     super.initState();
     dansoSoundLearningController.disposeFunction();
-    if (controller.musicState.value) {
-      controller.player.pause();
+    if (mainScreenController.musicState.value) {
+      mainScreenController.player.pause();
     }
   }
 
@@ -196,6 +197,7 @@ class _HomeStepByStepAndTestScreenState
                           //     controller.hanJaAndGel[0].getYulmyengPathFile());
                           jangdanAndDansoSoundController
                               .playJangdanAndDansoSound();
+                          jungganboController.audioSessionConfigure();
                         }
                         if (!controller.listenTuningState) {
                           jangdanAndDansoSoundController
@@ -216,6 +218,7 @@ class _HomeStepByStepAndTestScreenState
                         controller.isRecording
                             ? controller.startCapture()
                             : controller.stopCapture();
+                        jungganboController.audioSessionConfigure();
                       },
           ),
           //연습하기

@@ -40,32 +40,33 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
   Widget build(BuildContext context) {
     permissionController.checkPermission();
     return GetBuilder<LearningSongAndLevelController>(
-        init: learningSongLevelController,
-        builder: (controller) {
-          return Scaffold(
-            appBar: tabbarAndAppBar(
-                title: '연주곡 익히기', tabbar: null, enableTabBar: false),
-            body: Column(
-              children: [
-                SizedBox(height: 30),
-                //레벨 바꾸는 버튼 레벨표시 아이콘
-                levelSwapButton(controller),
-                SizedBox(height: 20),
-                Column(
-                  children: [
-                    //각 난이도 별 율명 한글
-                    yulmyeongHangeul(controller),
-                    //각 난이도 별 율명 한자
-                    yulmyeongHanja(controller),
-                  ],
-                ),
-                SizedBox(height: 20.h),
-                //각 단계별 곡 리스트를 보여줌
-                songListView(controller),
-              ],
-            ),
-          );
-        });
+      init: learningSongLevelController,
+      builder: (controller) {
+        return Scaffold(
+          appBar: tabbarAndAppBar(
+              title: '연주곡 익히기', tabbar: null, enableTabBar: false),
+          body: Column(
+            children: [
+              SizedBox(height: 30),
+              //레벨 바꾸는 버튼 레벨표시 아이콘
+              levelSwapButton(controller),
+              SizedBox(height: 20),
+              Column(
+                children: [
+                  //각 난이도 별 율명 한글
+                  yulmyeongHangeul(controller),
+                  //각 난이도 별 율명 한자
+                  yulmyeongHanja(controller),
+                ],
+              ),
+              SizedBox(height: 20.h),
+              //각 단계별 곡 리스트를 보여줌
+              songListView(controller),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Expanded songListView(LearningSongAndLevelController controller) {
@@ -73,94 +74,95 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
       child: Padding(
         padding: EdgeInsets.all(MctSize.fifteen.getSize),
         child: ListView.builder(
-            itemCount: controller.songList.length,
-            itemBuilder: (BuildContext context, int index) {
-              var item = controller.songList[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(
-                      JungGanBoPage(
-                        appbarTitle: item.songTitle,
-                        jangdan: item.songJangdan,
-                        sheetData: item.songSheet,
-                        sheetVertical: item.songSheetVertical,
-                        sheetHorizontal: item.songSheetHorizontal,
-                        songId: item.songId,
-                      ),
-                    );
-                    // await Get.toNamed('/jungganbo', arguments: {
-                    //   'songTitle': item!.songTitle,
-                    //   'jangdan': item!.songJangdan,
-                    //   'sheetData': item!.songSheet,
-                    //   'sheetVertical': item!.songSheetVertical,
-                    //   'sheetHorizontal': item!.songSheetHorizontal,
-                    //   'songId': item!.songId
-                    // });
-                    // print('${item.songTitle}');
+          itemCount: controller.songList.length,
+          itemBuilder: (BuildContext context, int index) {
+            var item = controller.songList[index];
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: InkWell(
+                onTap: () {
+                  Get.to(
+                    JungGanBoPage(
+                      appbarTitle: item.songTitle,
+                      jangdan: item.songJangdan,
+                      sheetData: item.songSheet,
+                      sheetVertical: item.songSheetVertical,
+                      sheetHorizontal: item.songSheetHorizontal,
+                      songId: item.songId,
+                    ),
+                  );
+                  // await Get.toNamed('/jungganbo', arguments: {
+                  //   'songTitle': item!.songTitle,
+                  //   'jangdan': item!.songJangdan,
+                  //   'sheetData': item!.songSheet,
+                  //   'sheetVertical': item!.songSheetVertical,
+                  //   'sheetHorizontal': item!.songSheetHorizontal,
+                  //   'songId': item!.songId
+                  // });
+                  // print('${item.songTitle}');
 
-                    // await Get.toNamed('/jungganbo',
-                    //     arguments: SongDataModel(
-                    //       songTitle: item.songTitle!,
-                    //       songJangdan: item.songJangdan!,
-                    //       songSheet: item.songSheet!,
-                    //       songSheetVertical: item.songSheetVertical!,
-                    //       songSheetHorizontal: item.songSheetHorizontal!,
-                    //       songId: item.songId!,
-                    //     ));
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                        color: MctColor.buttonColorYellow.getMctColor,
-                        borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      ),
-                      height: 57.h,
-                      // width: 330.w,
-                      child: Padding(
-                        padding: EdgeInsets.all(MctSize.fifteen.getSize),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              COUNT_LIST_SVG[index],
-                              width: 23.w,
-                              height: 23.h,
-                            ),
-                            SizedBox(width: 15.w),
-                            Text('${item.songTitle}',
-                                style: TextStyle(
-                                    fontSize: MctSize.fourteen.getSize.sp,
-                                    color: MctColor.white.getMctColor,
-                                    fontFamily: NOTO_MEDIUM)),
-                            Spacer(flex: 1),
-                            InkWell(
-                              radius: 40.r,
-                              onTap: () {
-                                controller.updateLikeSongList(
-                                  songId: item.songId!,
-                                  songLike: item.songLike!,
-                                  exerNum: controller.currentLevel,
-                                );
-                              },
-                              child: Container(
-                                margin:
-                                    EdgeInsets.only(left: 5, bottom: 5, top: 5),
-                                child: SvgPicture.asset(
-                                  BOOKMARK_SVG,
-                                  width: 40.w,
-                                  height: 40.w,
-                                  color: item.songLike == 'true'
-                                      ? Colors.red
-                                      : MctColor.white.getMctColor,
-                                ),
-                              ),
-                            ),
-                          ],
+                  // await Get.toNamed('/jungganbo',
+                  //     arguments: SongDataModel(
+                  //       songTitle: item.songTitle!,
+                  //       songJangdan: item.songJangdan!,
+                  //       songSheet: item.songSheet!,
+                  //       songSheetVertical: item.songSheetVertical!,
+                  //       songSheetHorizontal: item.songSheetHorizontal!,
+                  //       songId: item.songId!,
+                  //     ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: MctColor.buttonColorYellow.getMctColor,
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  ),
+                  height: 57.h,
+                  // width: 330.w,
+                  child: Padding(
+                    padding: EdgeInsets.all(MctSize.fifteen.getSize),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          COUNT_LIST_SVG[index],
+                          width: 23.w,
+                          height: 23.h,
                         ),
-                      )),
+                        SizedBox(width: 15.w),
+                        Text('${item.songTitle}',
+                            style: TextStyle(
+                                fontSize: MctSize.fourteen.getSize.sp,
+                                color: MctColor.white.getMctColor,
+                                fontFamily: NOTO_MEDIUM)),
+                        Spacer(flex: 1),
+                        InkWell(
+                          radius: 40.r,
+                          onTap: () {
+                            controller.updateLikeSongList(
+                              songId: item.songId!,
+                              songLike: item.songLike!,
+                              exerNum: controller.currentLevel,
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(left: 5, bottom: 5, top: 5),
+                            child: SvgPicture.asset(
+                              BOOKMARK_SVG,
+                              width: 40.w,
+                              height: 40.w,
+                              color: item.songLike == 'true'
+                                  ? Colors.red
+                                  : MctColor.white.getMctColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              );
-            }),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -183,10 +185,11 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
                     Border.all(color: MctColor.black.getMctColor, width: 0.5)),
             child: Center(
               child: Text(
-                  '${controller.yulmyeongHanja[controller.currentLevel][i].toChineseCharacter()}',
-                  style: TextStyle(
-                      fontSize: MctSize.eighteen.getSize.sp,
-                      fontFamily: NOTO_REGULAR)),
+                '${controller.yulmyeongHanja[controller.currentLevel][i].toChineseCharacter()}',
+                style: TextStyle(
+                    fontSize: MctSize.eighteen.getSize.sp,
+                    fontFamily: NOTO_REGULAR),
+              ),
             ),
           )
       ],
@@ -211,10 +214,11 @@ class _InstrumentalListScreenState extends State<InstrumentalListScreen> {
                     Border.all(color: MctColor.black.getMctColor, width: 0.5)),
             child: Center(
               child: Text(
-                  '${controller.yulmyeongHangeul[controller.currentLevel][i].toHangeul()}',
-                  style: TextStyle(
-                      fontSize: MctSize.eighteen.getSize.sp,
-                      fontFamily: NOTO_REGULAR)),
+                '${controller.yulmyeongHangeul[controller.currentLevel][i].toHangeul()}',
+                style: TextStyle(
+                    fontSize: MctSize.eighteen.getSize.sp,
+                    fontFamily: NOTO_REGULAR),
+              ),
             ),
           )
       ],

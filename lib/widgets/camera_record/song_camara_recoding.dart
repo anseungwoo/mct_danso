@@ -50,11 +50,12 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
       return Center(child: Text('Loading...'));
     } else {
       return Container(
-        height: 50.h,
-        width: 111.w,
+        color: Colors.grey,
+        height: 60.h,
+        // width: 111.w,
         child: Center(
           child: AspectRatio(
-            aspectRatio: 6 / 4,
+            aspectRatio: 5 / 6,
             child: CameraPreview(cameraRecordcontroller.controller),
           ),
         ),
@@ -67,64 +68,58 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Row(
-          children: <Widget>[
-            Container(
-              width: 81.w,
-              height: 30.h,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    elevation: 0,
-                    primary: MctColor.white.getMctColor,
-                    onPrimary: MctColor.buttonColorOrange.getMctColor,
-                    side: BorderSide(
-                        color: MctColor.buttonColorOrange.getMctColor),
-                    textStyle: TextStyle(
-                        fontSize: 12.sp,
-                        color: MctColor.buttonColorOrange.getMctColor)),
-                onPressed: () async {
-                  caController.isRecordingState();
-                  jungganboController.changeStartStopState();
+        Container(
+          width: 81.w,
+          height: 30.h,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                elevation: 0,
+                primary: MctColor.white.getMctColor,
+                onPrimary: MctColor.buttonColorOrange.getMctColor,
+                side: BorderSide(color: MctColor.buttonColorOrange.getMctColor),
+                textStyle: TextStyle(
+                    fontSize: 12.sp,
+                    color: MctColor.buttonColorOrange.getMctColor)),
+            onPressed: () async {
+              caController.isRecordingState();
+              jungganboController.changeStartStopState();
 
-                  if (caController.isRecording) {
-                    await jangdanAndDansoSoundController
-                        .setJandan(widget.jangdan);
-                    jungganboController.isLevelPracticeState();
-                    jangdanAndDansoSoundController.jandanPlay();
-                    await caController.onRecord();
-                    await Get.dialog(
-                      WillPopScope(
-                        onWillPop: () async => false,
-                        child: Dialog(
-                          backgroundColor:
-                              MctColor.white.getMctColor.withOpacity(0),
-                          elevation: 0,
-                          child: GameTimerWidget(
-                            timer: widget.jungGanBo.jangDan.delay ~/
-                                jangdanAndDansoSoundController.speed[
-                                    jangdanAndDansoSoundController.speedCount],
-                          ),
-                        ),
+              if (caController.isRecording) {
+                await jangdanAndDansoSoundController.setJandan(widget.jangdan);
+                jungganboController.isLevelPracticeState();
+                jangdanAndDansoSoundController.jandanPlay();
+                await caController.onRecord();
+                await Get.dialog(
+                  WillPopScope(
+                    onWillPop: () async => false,
+                    child: Dialog(
+                      backgroundColor:
+                          MctColor.white.getMctColor.withOpacity(0),
+                      elevation: 0,
+                      child: GameTimerWidget(
+                        timer: widget.jungGanBo.jangDan.delay ~/
+                            jangdanAndDansoSoundController.speed[
+                                jangdanAndDansoSoundController.speedCount],
                       ),
-                      barrierDismissible: false,
-                    );
-                    jungganboController.stepStart();
-                  }
-                  if (caController.isRecording == false) {
-                    await caController.onStop(songId: widget.songId);
-                    jangdanAndDansoSoundController.jandanStop();
-                    jungganboController.isLevelPracticeState();
-                    caController.getBack();
-                    jungganboController.stepStop();
-                  }
-                },
-                child: Text(caController.recordingText,
-                    style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
-              ),
-            ),
-          ],
+                    ),
+                  ),
+                  barrierDismissible: false,
+                );
+                jungganboController.stepStart();
+              }
+              if (caController.isRecording == false) {
+                await caController.onStop(songId: widget.songId);
+                jangdanAndDansoSoundController.jandanStop();
+                jungganboController.isLevelPracticeState();
+                caController.getBack();
+                jungganboController.stepStop();
+              }
+            },
+            child: Text(caController.recordingText,
+                style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
+          ),
         ),
-        SizedBox(height: 3.h),
+        // SizedBox(height: 3.h),
         Text(
             '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
             style: TextStyle(fontSize: MctSize.twelve.getSize.sp)),
@@ -145,11 +140,18 @@ class _SongCamaraRecodingState extends State<SongCamaraRecoding> {
           future: caController.initializeControllerFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return Row(
+              return Stack(
                 children: [
-                  _buildCamera(caController: caController),
-                  Spacer(flex: 1),
-                  _buildControls(caController: caController),
+                  Positioned(
+                    left: 10,
+                    child: _buildCamera(caController: caController),
+                  ),
+                  Row(
+                    children: [
+                      Spacer(flex: 1),
+                      _buildControls(caController: caController),
+                    ],
+                  ),
                 ],
               );
             } else {

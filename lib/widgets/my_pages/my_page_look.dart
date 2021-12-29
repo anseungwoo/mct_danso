@@ -80,14 +80,21 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
-                              //공유하기 할때 필요한 path
-                              controller.shareFile(item.exerPath);
-                            }
-                            if (value == 2) {
                               var dir =
                                   (await getApplicationDocumentsDirectory())
                                       .path;
-//삭제시 필요한 path
+                              //공유를 위한 path
+                              controller.shareFile(
+                                Platform.isIOS
+                                    ? '$dir/camera/videos/${item.exerPath}'
+                                    : item.exerPath,
+                              );
+                            }
+                            if (value == 2) {
+                              //삭제시 필요한 path
+                              var dir =
+                                  (await getApplicationDocumentsDirectory())
+                                      .path;
                               await Get.dialog(myPageDeleteDialog(
                                   Platform.isIOS
                                       ? '$dir/camera/videos/${item.exerPath}'
@@ -96,13 +103,14 @@ class MyPageLook extends GetView<AudioAndVideoListController> {
                             }
                           },
                           child: Container(
-                              height: 25.w,
-                              width: 40.w,
-                              margin: EdgeInsets.only(right: 10, left: 10),
-                              child: SvgPicture.asset(
-                                SEE_MORE_SVG,
-                                fit: BoxFit.contain,
-                              )),
+                            height: 25.w,
+                            width: 40.w,
+                            margin: EdgeInsets.only(right: 10, left: 10),
+                            child: SvgPicture.asset(
+                              SEE_MORE_SVG,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               value: 1,

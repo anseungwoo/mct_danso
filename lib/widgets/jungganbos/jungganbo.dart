@@ -109,14 +109,15 @@ Widget changeTextColor(JungGanBo testJungGanBo, int i, int j, int heightNumber,
   return Text(
     text,
     style: TextStyle(
-        fontFamily: NOTO_REGULAR,
-        fontSize: heightNumber == 12
-            ? MctSize.eighteen.getSize.sp
-            : MctSize.fourteen.getSize.sp,
-        color: controller.isChallenge
-            ? controller.matchTrueFalse[i][j]
-                ? Colors.blue
-                : Colors.red
-            : MctColor.black.getMctColor),
+      fontFamily: NOTO_REGULAR,
+      fontSize: heightNumber == 12
+          ? MctSize.eighteen.getSize.sp
+          : MctSize.fourteen.getSize.sp,
+      color: controller.isChallenge
+          ? controller.matchTrueFalse[i][j]
+              ? Colors.blue
+              : Colors.red
+          : MctColor.black.getMctColor,
+    ),
   );
 }

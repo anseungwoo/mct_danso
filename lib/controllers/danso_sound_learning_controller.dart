@@ -193,10 +193,12 @@ class DansoSoundLearningController extends GetxController {
   Text buildPitchCorrectTextWidget(double scl, var yulmyeong) {
     try {
       if (scl > 2000 || scl < 300) {
-        return Text('단소를 불러보세요',
-            style: TextStyle(
-              fontSize: 14.sp,
-            ));
+        return Text(
+          '단소를 불러보세요',
+          style: TextStyle(
+            fontSize: 14.sp,
+          ),
+        );
       } else {
         if (pitchModelInterface.isCorrectPitch(scl, yulmyeong)!) {
           return Text(
@@ -206,11 +208,13 @@ class DansoSoundLearningController extends GetxController {
                 fontSize: 14.sp),
           );
         } else {
-          return Text('다시 불러보세요!',
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: MctColor.dansoCodeunMatchColor.getMctColor,
-              ));
+          return Text(
+            '다시 불러보세요!',
+            style: TextStyle(
+              fontSize: 14.sp,
+              color: MctColor.dansoCodeunMatchColor.getMctColor,
+            ),
+          );
         }
       }
     } catch (er) {
@@ -273,8 +277,6 @@ class DansoSoundLearningController extends GetxController {
         await stopCapture();
       }
     }
-    // await getDbFr();
-
     update();
   }
 }

@@ -50,7 +50,6 @@ class AudioRecordController extends GetxController {
     // print('파일 이름 : $iosPath');
     // .wav <---> AudioFormat.WAV
     // .mp4 .m4a .aac <---> AudioFormat.AAC
-    // AudioFormat is optional, if given value, will overwrite path extension when there is conflicts.
     recorder = FlutterAudioRecorder2('$customPath.mp4');
     print(customPath);
 
@@ -78,12 +77,15 @@ class AudioRecordController extends GetxController {
     var current = await recorder.current();
     _recording = current!;
 
-    time = Timer.periodic(Duration(milliseconds: 3), (Timer t) async {
-      var current = await recorder.current();
-      _recording = current!;
-      time = t;
-      update();
-    });
+    time = Timer.periodic(
+      Duration(milliseconds: 3),
+      (Timer t) async {
+        var current = await recorder.current();
+        _recording = current!;
+        time = t;
+        update();
+      },
+    );
     update();
   }
 
