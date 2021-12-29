@@ -72,28 +72,35 @@ class MyPageListen extends GetView<AudioAndVideoListController> {
                         ),
                         Spacer(flex: 1),
                         InkWell(
-                            radius: 40.r,
-                            onTap: () async {
-                              var dir =
-                                  (await getApplicationDocumentsDirectory())
-                                      .path;
-                              //녹음한 파일을 들을수 있게 path를 넘겨줌
-                              await Get.dialog(MyPageListenDialog(
+                          radius: 40.r,
+                          onTap: () async {
+                            var dir =
+                                (await getApplicationDocumentsDirectory()).path;
+                            //녹음한 파일을 들을수 있게 path를 넘겨줌
+                            await Get.dialog(
+                              MyPageListenDialog(
                                 recordItem: Platform.isIOS
                                     ? '$dir/${item.exerPath}'
                                     : item.exerPath,
-                              ));
-                            },
-                            child: SvgPicture.asset(
-                              PLAY_SVG,
-                              width: 20.w,
-                              height: 20.w,
-                            )),
+                              ),
+                            );
+                          },
+                          child: SvgPicture.asset(
+                            PLAY_SVG,
+                            width: 20.w,
+                            height: 20.w,
+                          ),
+                        ),
                         PopupMenuButton(
                           onSelected: (value) async {
                             if (value == 1) {
+                              var dir =
+                                  (await getApplicationDocumentsDirectory())
+                                      .path;
                               //공유를 위한 path
-                              controller.shareFile(item.exerPath);
+                              controller.shareFile(Platform.isIOS
+                                  ? '$dir/${item.exerPath}'
+                                  : item.exerPath);
                             }
                             if (value == 2) {
                               var dir =

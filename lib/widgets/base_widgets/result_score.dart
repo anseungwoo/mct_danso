@@ -36,80 +36,81 @@ class _ResultScoreState extends State<ResultScore> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ReslutScoreController>(
-        init: reslutScoreController,
-        builder: (controller) {
-          return Scaffold(
-            appBar: AppBar(
-              backgroundColor: MctColor.mainBackGround.getMctColor,
-              automaticallyImplyLeading: false,
-              elevation: 0,
-              actions: [
-                IconButton(
-                  onPressed: () => Get.back(),
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: MctColor.black.getMctColor,
-                  ),
+      init: reslutScoreController,
+      builder: (controller) {
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: MctColor.mainBackGround.getMctColor,
+            automaticallyImplyLeading: false,
+            elevation: 0,
+            actions: [
+              IconButton(
+                onPressed: () => Get.back(),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: MctColor.black.getMctColor,
                 ),
-              ],
-            ),
-            floatingActionButton: Padding(
-              padding: EdgeInsets.all(MctSize.fifteen.getSize),
-              child: Container(
-                width: 70.w,
-                height: 70.h,
-                child: FloatingActionButton(
-                  elevation: 0,
-                  backgroundColor: MctColor.buttonColorOrange.getMctColor,
-                  onPressed: () {
-                    Get.off(
-                      SongScoreGraph(
-                        songId: widget.songId,
-                        songTitle: widget.songTitle,
-                      ),
-                    );
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        GRAPH_SVG,
-                        height: 24.h,
-                      ),
-                      Text(
-                        '그래프',
-                        style: TextStyle(fontSize: MctSize.fourteen.getSize.sp),
-                      )
-                    ],
-                  ),
+              ),
+            ],
+          ),
+          floatingActionButton: Padding(
+            padding: EdgeInsets.all(MctSize.fifteen.getSize),
+            child: Container(
+              width: 70.w,
+              height: 70.h,
+              child: FloatingActionButton(
+                elevation: 0,
+                backgroundColor: MctColor.buttonColorOrange.getMctColor,
+                onPressed: () {
+                  Get.off(
+                    SongScoreGraph(
+                      songId: widget.songId,
+                      songTitle: widget.songTitle,
+                    ),
+                  );
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      GRAPH_SVG,
+                      height: 24.h,
+                    ),
+                    Text(
+                      '그래프',
+                      style: TextStyle(fontSize: MctSize.fourteen.getSize.sp),
+                    )
+                  ],
                 ),
               ),
             ),
-            body: Column(
-              children: [
-                SizedBox(height: 50.h),
-                Center(
-                    child: Container(
-                        width: 250.w,
-                        height: 250.h,
-                        child: SvgPicture.asset(controller.iamge))),
-                Text(
-                  '${widget.scrore}',
-                  style: TextStyle(
-                      fontSize: 26.sp,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: NOTO_MEDIUM),
-                ),
-                SizedBox(height: MctSize.fifteen.getSize),
-                Text(
-                  controller.comment,
-                  style: TextStyle(
-                      fontSize: MctSize.eighteen.getSize.sp,
-                      fontFamily: NOTO_REGULAR),
-                ),
-              ],
-            ),
-          );
-        });
+          ),
+          body: Column(
+            children: [
+              SizedBox(height: 50.h),
+              Center(
+                  child: Container(
+                      width: 250.w,
+                      height: 250.h,
+                      child: SvgPicture.asset(controller.iamge))),
+              Text(
+                '${widget.scrore}',
+                style: TextStyle(
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: NOTO_MEDIUM),
+              ),
+              SizedBox(height: MctSize.fifteen.getSize),
+              Text(
+                controller.comment,
+                style: TextStyle(
+                    fontSize: MctSize.eighteen.getSize.sp,
+                    fontFamily: NOTO_REGULAR),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

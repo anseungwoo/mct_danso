@@ -39,16 +39,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   dynamic startTime() async {
     var _duration = Duration(seconds: 3);
-    return Timer(_duration, () async {
-      await permissionController.checkPermission().then((value) async {
-        if (!value) {
-          await permissionController.buildPermissionDialog(context,
-              runMethod: Get.offNamed('/home'));
-        } else if (value) {
-          await Get.offNamed('/home');
-        }
-      });
-    });
+    return Timer(
+      _duration,
+      () async {
+        await permissionController.checkPermission().then(
+          (value) async {
+            if (!value) {
+              await permissionController.buildPermissionDialog(context,
+                  runMethod: Get.offNamed('/home'));
+            } else if (value) {
+              await Get.offNamed('/home');
+            }
+          },
+        );
+      },
+    );
   }
 
   @override

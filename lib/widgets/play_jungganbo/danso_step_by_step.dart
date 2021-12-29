@@ -47,108 +47,109 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
     var testJungGanBo = JungGanBo('연습곡', widget.jangdan, widget.sheetData);
     jungganboController.jangDan = widget.jangdan;
     return GetBuilder<JungganboController>(
-        init: jungganboController,
-        builder: (controller) {
-          controller.micro = testJungGanBo.jangDan.microSecond;
-          controller.jungGanBo = testJungGanBo;
-          controller.sheetVertical = 12;
-          jangdanAndDansoSoundController.setJangdanAndDansoSoundSpeed(
-              jangdanAndDansoSoundController
-                  .speed[jangdanAndDansoSoundController.speedCount]);
+      init: jungganboController,
+      builder: (controller) {
+        controller.micro = testJungGanBo.jangDan.microSecond;
+        controller.jungGanBo = testJungGanBo;
+        controller.sheetVertical = 12;
+        jangdanAndDansoSoundController.setJangdanAndDansoSoundSpeed(
+            jangdanAndDansoSoundController
+                .speed[jangdanAndDansoSoundController.speedCount]);
 
-          return Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(right: 12.w),
-                  child: Stack(
-                    children: [
-                      jungganboScreen(12, jungganboController),
-                      jungganbo(
-                          12, controller, testJungGanBo, controller.krState),
-                      jungganboFromFlash(12, controller, testJungGanBo),
-                    ],
-                  ),
+        return Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.only(right: 12.w),
+                child: Stack(
+                  children: [
+                    jungganboScreen(12, jungganboController),
+                    jungganbo(
+                        12, controller, testJungGanBo, controller.krState),
+                    jungganboFromFlash(12, controller, testJungGanBo),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        //시작하기
-                        levelButton(
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //시작하기
+                      levelButton(
+                        controller: controller,
+                        text: '${controller.startButton}',
+                        onPressed: () async {
+                          controller.changeStartStopState();
+
+                          if (controller.startStopState) {
+                            await jangdanAndDansoSoundController
+                                .setJangdanAndDansoSound(widget.currentLevel);
+                            controller.isPracticeState();
+                            jangdanAndDansoSoundController
+                                .playJangdanAndDansoSound();
+                            jungganboController.audioSessionConfigure();
+
+                            await Get.dialog(
+                              WillPopScope(
+                                onWillPop: () async => false,
+                                child: Dialog(
+                                    backgroundColor:
+                                        Colors.white.withOpacity(0),
+                                    elevation: 0,
+                                    child: GameTimerWidget(
+                                      timer: testJungGanBo.jangDan.delay ~/
+                                          jangdanAndDansoSoundController.speed[
+                                              jangdanAndDansoSoundController
+                                                  .speedCount],
+                                    )),
+                              ),
+                              barrierDismissible: false,
+                            );
+                            controller.stepStart();
+                          }
+                          if (!controller.startStopState) {
+                            controller.isPracticeState();
+                            controller.stepStop();
+                            jangdanAndDansoSoundController
+                                .stopJangdanAndDansoSound();
+                          }
+                        },
+                      ),
+
+                      //한글한자
+                      levelButton(
                           controller: controller,
-                          text: '${controller.startButton}',
-                          onPressed: () async {
-                            controller.changeStartStopState();
-
-                            if (controller.startStopState) {
-                              await jangdanAndDansoSoundController
-                                  .setJangdanAndDansoSound(widget.currentLevel);
-                              controller.isPracticeState();
-                              jangdanAndDansoSoundController
-                                  .playJangdanAndDansoSound();
-
-                              await Get.dialog(
-                                WillPopScope(
-                                  onWillPop: () async => false,
-                                  child: Dialog(
-                                      backgroundColor:
-                                          Colors.white.withOpacity(0),
-                                      elevation: 0,
-                                      child: GameTimerWidget(
-                                        timer: testJungGanBo.jangDan.delay ~/
-                                            jangdanAndDansoSoundController
-                                                    .speed[
-                                                jangdanAndDansoSoundController
-                                                    .speedCount],
-                                      )),
-                                ),
-                                barrierDismissible: false,
-                              );
-                              controller.stepStart();
-                            }
-                            if (!controller.startStopState) {
-                              controller.isPracticeState();
-                              controller.stepStop();
-                              jangdanAndDansoSoundController
-                                  .stopJangdanAndDansoSound();
-                            }
-                          },
-                        ),
-
-                        //한글한자
-                        levelButton(
-                            controller: controller,
-                            text: '${controller.krButton}',
-                            onPressed: controller.startStopState
-                                ? null
-                                : () {
-                                    controller.changekrState();
-                                  }),
-
-                        //배속
-                        levelButton(
-                          controller: controller,
-                          text:
-                              '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
+                          text: '${controller.krButton}',
                           onPressed: controller.startStopState
                               ? null
                               : () {
-                                  controller.changespeedState();
-                                },
-                        ),
-                      ],
-                    ),
+                                  controller.changekrState();
+                                }),
+
+                      //배속
+                      levelButton(
+                        controller: controller,
+                        text:
+                            '${jangdanAndDansoSoundController.speed[jangdanAndDansoSoundController.speedCount]} 배속',
+                        onPressed: controller.startStopState
+                            ? null
+                            : () {
+                                controller.changespeedState();
+                              },
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          );
-        });
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Widget levelButton(
@@ -156,17 +157,20 @@ class _DansoStepByStepState extends State<DansoStepByStep> {
       required Function()? onPressed,
       required String text}) {
     return Container(
-        width: 105.w,
-        height: 37.h,
-        child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                elevation: 0,
-                primary: MctColor.buttonColorOrange.getMctColor,
-                onSurface: MctColor.unButtonColorOrange.getMctColor),
-            onPressed: onPressed,
-            child: Text(text,
-                style: TextStyle(
-                    fontSize: MctSize.fourteen.getSize.sp,
-                    fontFamily: NOTO_REGULAR))));
+      width: 105.w,
+      height: 37.h,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            elevation: 0,
+            primary: MctColor.buttonColorOrange.getMctColor,
+            onSurface: MctColor.unButtonColorOrange.getMctColor),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: TextStyle(
+              fontSize: MctSize.fourteen.getSize.sp, fontFamily: NOTO_REGULAR),
+        ),
+      ),
+    );
   }
 }
