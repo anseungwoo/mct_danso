@@ -11,10 +11,10 @@ class SongScoreGraph extends GetView<MyHistoryController> {
       : super(key: key);
   final songId;
   final songTitle;
-
+  final myHistoryController = Get.put(MyHistoryController());
   @override
   Widget build(BuildContext context) {
-    controller.getMyHistoryGraphList(songId);
+    myHistoryController.getMyHistoryGraphList(songId);
 
     return Scaffold(
       appBar: songtabbarAndAppBar(
