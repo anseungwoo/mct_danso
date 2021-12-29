@@ -149,10 +149,6 @@ class JungganboController extends GetxController {
             pitchValue!, data.yulmyeongs[0])!) {
           matchTrueFalse[i][0] = true;
         }
-        if (pitchModelInterface.isCorrectPitch(
-            pitchValue!, data.yulmyeongs[1])!) {
-          matchTrueFalse[i][1] = true;
-        }
       } else if (data.yulmyeongs[0].yulmyeong == Yulmyeong.long ||
           data.yulmyeongs[0].yulmyeong == Yulmyeong.blank ||
           data.yulmyeongs[0].yulmyeong == Yulmyeong.rest) {
@@ -160,10 +156,6 @@ class JungganboController extends GetxController {
         if (pitchModelInterface.isCorrectPitch(
             pitchValue!, data.yulmyeongs[0])!) {
           matchTrueFalse[i][0] = true;
-        }
-        if (pitchModelInterface.isCorrectPitch(
-            pitchValue!, data.yulmyeongs[1])!) {
-          matchTrueFalse[i][1] = true;
         }
       }
     } else if (data.divisionStatus == DivisionStatus.two) {
